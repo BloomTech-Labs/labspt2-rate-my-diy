@@ -56,7 +56,7 @@ type Project {
   
 type Review {
   id: ID!
-  title: String!
+  Title: String!
   author: User!
   stars: Stars
   text: String!
@@ -79,7 +79,7 @@ type Privilege{
 }
 
 type Billing{
-AmtPaid:Float
+amtPaid:Float
 DatePaid:String
 OrderNumber:INT
 Description:String
