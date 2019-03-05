@@ -1,12 +1,7 @@
 type Query {
 
-  getUsers: [User!]!
-  getUserById: User!
-  getProjects: [Project!]!
-  getProjectById: Project!
-  getProjectByAuthor
-  getReviews: [Review!]!
-  getReviewById: Review!
+
+
   
   
   
