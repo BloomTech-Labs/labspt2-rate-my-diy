@@ -1,5 +1,12 @@
 type Query {
-
+  
+  getUsers: [User!]!
+  getUserById: User!
+  getProjects: [Project!]!
+  getProjectByUser: [Project]!
+  getProjectById: Project!
+  getReviews: [Review!]!
+  getReviewById: Review!
 
 
  
