@@ -2,12 +2,13 @@
   "name": "rate-my-diy",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts" :{
+  "scripts": {
     "server": "nodemon index.js"
   },
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "^1.17.4"
+    "graphql-yoga": "^1.17.4",
+    "prisma-client-lib": "^1.27.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
