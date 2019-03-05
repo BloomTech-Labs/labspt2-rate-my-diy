@@ -29,7 +29,17 @@ yarn
 
 #### Back end
 
-to be continued...
+1. Open your terminal on the root of the project and cd into the server folder. You can also open the terminal on the server folder and skip this step.
+
+```
+cd server
+```
+
+2. Run the yarn command to install all the node packages
+
+```
+yarn
+```
 
 ## Deployment
 
@@ -41,11 +51,20 @@ While being on the root of the client folder run the following command
 yarn build
 ```
 
+### Back End
+
+While being on the root of the server folder run the following command
+
+```
+yarn server
+```
+
 ## Built with
 
 * [Gatsby](https://www.gatsbyjs.org/)
 * [GraphQL](https://graphql.org/)
 * [Apollo Client](https://www.apollographql.com/docs/react/)
+* [GraphQL Yoga](https://github.com/prisma/graphql-yoga)
 * [Prisma](https://www.prisma.io/)
 * [MongoDB](https://www.mongodb.com/)
 
