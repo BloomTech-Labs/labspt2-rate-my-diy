@@ -52,8 +52,8 @@ yarn build
 ## Authors
 
 * **Angela La Salle** - [alasalle](https://github.com/alasalle)
-* **Christopher Ferrell**
-* **James Bierly**
+* **Christopher Ferrell** - [cferrell2](https://github.com/cferrell2)
+* **James Bierly** - [jbierly1](https://github.com/jbierly1)
 * **Lorenzo Evans** - [LorenzoEvans](https://github.com/LorenzoEvans)
 * **Luis Alvarez** - [TheGameFreak720](https://github.com/TheGameFreak720)
 * **Michael Trew** - [mtrew2015](https://github.com/mtrew2015)
