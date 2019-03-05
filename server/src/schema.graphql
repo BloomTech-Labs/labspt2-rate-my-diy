@@ -2,10 +2,7 @@ type Query {
 
 
 
-  
-  
-  
-  
+ 
 }
 #Types needed:  Users, Projects, Reviews, Comments
 
