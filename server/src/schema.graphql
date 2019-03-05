@@ -58,15 +58,15 @@ type Project {
 }
   
 type Review {
-  id: ID!
-  title: String!
-  author: User!
-  stars: Stars
-  text: String!
-  editedAt: String!
-  reviewThumbsUp: INT
-  reviewThumbsDown: INT
-  comments: [Comment]
+  Id: ID!
+  Title: String!
+  Author: User!
+  Stars: Stars
+  Text: String!
+  EditedAt: String!
+  ReviewThumbsUp: INT
+  ReviewThumbsDown: INT
+  Comments: [Comment]
 }
 
 type Comment {
@@ -82,10 +82,10 @@ type Privilege{
 }
 
 type Billing{
-AmtPaid:Float
-DatePaid:String
-OrderNumber:INT
-Description:String
+amtPaid:Float
+datePaid:String
+orderNumber:INT
+description:String
 }
 
 
