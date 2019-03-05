@@ -1,40 +1,54 @@
 type Query {
+
+  getUsers: [User!]!
+  getUserById: User!
+  getProjects: [Project!]!
+  getProjectById: Project!
+  getProjectByAuthor
+  getReviews: [Review!]!
+  getReviewById: Review!
+  
+  
+  
   
 }
 #Types needed:  Users, Projects, Reviews, Comments
 
   type Stars {
-    number:FLOAT! @defaultValue('1')
+    number:FLOAT! # @defaultValue('1')
   }
 
-  Type Privileges {
+  type Privileges {
   isModerator:Boolean!
   isAdmin:Boolean!
   isPlebian:Boolean!
 }
-
 type Mutation {
-  post(url: String!, description: String!): Link!
-  updateLink(id: ID!, url: String, description: String): Link
-  deleteLink(id: ID!): Link
+
 }
-#Types needed:  Users, Projects, Reviews, Comments
+
 type User {
   id: ID!
   projects: [Project!]!
   privileges: [Privilege!]!
   makerRating: Float
   ReviewerThumbs: INT! @defaultValue(‘1)
-  ProjectList:[ID]
-  ReviewList:[ID]
+  ProjectList:[Project!]!
+  ReviewList:[Review!]!
   Bio:Bio
   Settings:Settings
   Billing:Billing
-
   url: String!
+  password: String! # @unique
+  email: String! # @unique
 }
   
-type Projects {
+type StepArray {[
+  textBlurbs: String
+  imgUrls: String
+]
+}
+type Project {
  id: ID!
  name: String!
  category: String!
@@ -43,11 +57,40 @@ type Projects {
  EditedAt: String!
  author: User!
  titleImg: String!
+ titleBlurb: String!
+ Steps:StepArray
+ Reviews:[Review]
 }
   
-type Reviews {
+type Review {
   id: ID!
-  
+  title: String!
+  author: User!
+  stars: Stars
+  text: String!
+  editedAt: String!
+  reviewThumbsUp: INT
+  reviewThumbsDown: INT
+  comments: [Comment]
+}
+
+type Comment {
+  id: ID!
+  editedAt: DateTime!
+  text: String!
+  user: User!
+}
+
+type Privilege{
+  id: ID!
+  name: String!
+}
+
+type Billing{
+AmtPaid:Float
+DatePaid:String
+OrderNumber:INT
+Description:String
 }
 
 
