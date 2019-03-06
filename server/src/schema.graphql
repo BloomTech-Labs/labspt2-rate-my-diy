@@ -1,11 +1,15 @@
 type Query {
+  
+  getUsers: [User!]!
+  getUserById: User!
+  getProjects: [Project!]!
+  getProjectByUser: [Project]!
+  getProjectById: Project!
+  getReviews: [Review!]!
+  getReviewById: Review!
 
 
-
-  
-  
-  
-  
+ 
 }
 #Types needed:  Users, Projects, Reviews, Comments
 
@@ -58,15 +62,15 @@ type Project {
 }
   
 type Review {
-  Id: ID!
+  id: ID!
   Title: String!
-  Author: User!
-  Stars: Stars
-  Text: String!
-  EditedAt: String!
-  ReviewThumbsUp: INT
-  ReviewThumbsDown: INT
-  Comments: [Comment]
+  author: User!
+  stars: Stars
+  text: String!
+  editedAt: String!
+  reviewThumbsUp: INT
+  reviewThumbsDown: INT
+  comments: [Comment]
 }
 
 type Comment {
@@ -83,9 +87,9 @@ type Privilege{
 
 type Billing{
 amtPaid:Float
-datePaid:String
-orderNumber:INT
-description:String
+DatePaid:String
+OrderNumber:INT
+Description:String
 }
 
 
