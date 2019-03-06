@@ -48,7 +48,6 @@ type User {
  email: String! # @unique
 }
 
-#Created bio
 type Bio {
   id: ID!
   user: User!
