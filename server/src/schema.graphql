@@ -1,5 +1,7 @@
 type Query {
   
+type Query {
+  
   getUsers: [User!]!
   getUserById: User!
   getProjects: [Project!]!
