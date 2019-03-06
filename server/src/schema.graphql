@@ -18,7 +18,7 @@ type Query {
 }
  
 type Mutation {
-  
+  createUser(id: ID!, username: String!, password: String!, email: String!): User!
 }
 
 type Stars {
@@ -36,20 +36,19 @@ type User {
  projects: [Project!]!
  privileges: [Privilege!]!
  makerRating: Float
- ReviewerThumbs: INT! @defaultValue(‘1)
- ProjectList:[Project!]!
- ReviewList:[Review!]!
- Bio:Bio
- Settings:Settings
- Billing:Billing
+ reviewerThumbs: INT! @defaultValue(‘1)
+ reviews: [Review!]!
+ bio: Bio
+ billing: Billing
  url: String!
+ username: String! # @unique
  password: String! # @unique
  email: String! # @unique
 }
 
 type Bio {
   id: ID!
-  User: User!
+  user: User!
   age: INT
   about: String
   location: String
