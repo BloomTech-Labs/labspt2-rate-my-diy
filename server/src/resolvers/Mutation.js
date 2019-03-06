@@ -1,5 +1,4 @@
 const users = require("../dummy-data/dummy.json")
-//Created mutation createUser
 
 const createUser = (parent, args) => {
     const user = {
