@@ -25,7 +25,7 @@ type Stars {
   number:FLOAT! # @defaultValue('1')
 }
 
-  type Privilege {
+type Privilege {
   isModerator:Boolean!
   isAdmin:Boolean!
   isPlebian:Boolean!
