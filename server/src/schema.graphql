@@ -1,5 +1,7 @@
 type Query {
   
+type Query {
+  
   getUsers: [User!]!
   getUserById: User!
   getProjects: [Project!]!
@@ -7,6 +9,15 @@ type Query {
   getProjectById: Project!
   getReviews: [Review!]!
   getReviewById: Review!
+  getStars: [Star!]!
+  getPrivileges: [Privilege!]!
+  getBios: [Bio!]!
+  getBioById: Bio!
+  getComments: [Comment!]!
+  getModerators: [Moderator!]!
+  getAdmins: [Admin!]!
+
+}
 
 
  
