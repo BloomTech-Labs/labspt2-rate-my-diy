@@ -21,7 +21,7 @@ type Query {
  
 type Mutation {
   createUser(id: ID!, username: String!, password: String!, email: String!): User!
-}
+},
 
 type Stars {
   number:FLOAT! # @defaultValue('1')
