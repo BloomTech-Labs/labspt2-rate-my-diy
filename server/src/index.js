@@ -2,7 +2,8 @@ const {GraphQLServer} = require('graphql-yoga');
 
 const resolvers = {
   Query: {
-    info: () => `Hello World`
+    info: () => `Hello World`,
+    // getUsers: () => 
   }
 }
 

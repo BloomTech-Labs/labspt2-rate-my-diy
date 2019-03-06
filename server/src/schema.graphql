@@ -7,39 +7,52 @@ type Query {
   getProjectById: Project!
   getReviews: [Review!]!
   getReviewById: Review!
+  getStars: [Star!]!
+  getPrivileges: [Privilege!]!
+  getBios: [Bio!]!
+  getBioById: Bio!
+  getComments: [Comment!]!
+  getModerators: [Moderator!]!
+  getAdmins: [Admin!]!
 
-
- 
 }
-#Types needed:  Users, Projects, Reviews, Comments
+ 
+type Mutation {
+  
+}
 
-  type Stars {
-    number:FLOAT! # @defaultValue('1')
-  }
+type Stars {
+  number:FLOAT! # @defaultValue('1')
+}
 
-  type Privileges {
+  type Privilege {
   isModerator:Boolean!
   isAdmin:Boolean!
   isPlebian:Boolean!
 }
-type Mutation {
-
-}
 
 type User {
+ id: ID!
+ projects: [Project!]!
+ privileges: [Privilege!]!
+ makerRating: Float
+ ReviewerThumbs: INT! @defaultValue(‘1)
+ ProjectList:[Project!]!
+ ReviewList:[Review!]!
+ Bio:Bio
+ Settings:Settings
+ Billing:Billing
+ url: String!
+ password: String! # @unique
+ email: String! # @unique
+}
+
+type Bio {
   id: ID!
-  projects: [Project!]!
-  privileges: [Privilege!]!
-  makerRating: Float
-  ReviewerThumbs: INT! @defaultValue(‘1)
-  ProjectList:[Project!]!
-  ReviewList:[Review!]!
-  Bio:Bio
-  Settings:Settings
-  Billing:Billing
-  url: String!
-  password: String! # @unique
-  email: String! # @unique
+  User: User!
+  age: INT
+  about: String
+  location: String
 }
   
 type StepArray {[
@@ -92,5 +105,14 @@ OrderNumber:INT
 Description:String
 }
 
+type Moderators{
+  id: ID!
+  user: [User!]
+  isModerator: Boolean
+}
 
-
+type Admin{
+  id: ID!
+  user: [User!]
+  isAdmin: Boolean
+}
