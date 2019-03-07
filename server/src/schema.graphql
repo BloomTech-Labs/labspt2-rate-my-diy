@@ -23,8 +23,6 @@ type Mutation {
 
 type Stars {
   number: Float!
-
-
 }
 
 type Privilege {
@@ -37,17 +35,16 @@ type User {
  id: ID!
  projects: [Project!]!
  privileges: [Privilege!]!
- makerRating: Float# @unique
+ makerRating: Float  # @unique
  reviewerThumbs: INT! @defaultValue(‘1)
  reviews: [Review!]!
  bio: Bio
  billing: Billing
  url: String!
  username: String! # @unique
- p
-  assword: String  email: String! 
+ password: String  email: String! 
 
-  }
+}
 
 type Bio {
   id: ID!
@@ -59,9 +56,9 @@ type Bio {
   
 type StepArray {[
   textBlurbs: String
-  imgUr ls: String
-] 
-}
+  imgUrls: String
+]}
+
 type Project {
  id: ID!
  name: String!
@@ -95,24 +92,20 @@ type Comment {
   user: User!
 }
 
-
-  name: String!
+type Billing {
+  amtPaid:Float
+  DatePaid:String
+  OrderNumber:INT
+  Description:String
 }
 
-type Billing{
-amtPaid:Float
-DatePaid:String
-OrderNumber:INT
-Description:String
-}
-
-type Moderators{
+type Moderators {
   id: ID!
   user: [User!]
   isModerator: Boolean
 }
 
-type Admin{
+type Admin {
   id: ID!
   user: [User!]
   isAdmin: Boolean
