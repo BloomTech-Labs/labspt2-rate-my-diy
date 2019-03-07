@@ -24,7 +24,8 @@ type Mutation {
 
 
 type Stars {
-  number:FLOAT! # @defaultValue('1')
+  number: Float!
+
 
 }
 
@@ -38,7 +39,7 @@ type User {
  id: ID!
  projects: [Project!]!
  privileges: [Privilege!]!
- makerRating: Float
+ makerRating: Float# @unique
  reviewerThumbs: INT! @defaultValue(‘1)
  reviews: [Review!]!
  bio: Bio

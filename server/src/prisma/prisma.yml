@@ -1,7 +1,7 @@
-endpoint: ''
+endpoint: 
 
 datamodel: datamodel.prisma
-
+# Points to data model.
 generate: 
   - generator: graphql-schema
     output: ../src/generated/prisma-client

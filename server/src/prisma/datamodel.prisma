@@ -1,6 +1,6 @@
 # These type-definitions allow the prisma client to speak to the DB 
 # according to the types defined in schema.graphql.
-# They also allow prisma to generate out
+# They also allow prisma to generate crud operations for us.
 
 type Query {
   getUsers: [User!]!
