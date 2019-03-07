@@ -13,10 +13,12 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "apollo-boost": "^0.3.1",
     "gatsby": "^2.1.23",
     "gatsby-plugin-sass": "^2.0.10",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
+    "react-apollo": "^2.5.2",
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
