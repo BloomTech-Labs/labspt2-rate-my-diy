@@ -1,13 +1,12 @@
+# This needs work returning error
 type Query {
-  
 type Query {
-  
   getUsers: [User!]!
   getUserById: User!
   getProjects: [Project!]!
   getProjectByUser: [Project]!
   getProjectById: Project!
-  getReviews: [Review!]!
+  info: getReviews: [Review!]!
   getReviewById: Review!
   getStars: [Star!]!
   getPrivileges: [Privilege!]!
@@ -20,11 +19,13 @@ type Query {
 }
  
 type Mutation {
-  createUser(id: ID!, username: String!, password: String!, email: String!): User!
-},
+  createUser(id: ID!
+}
+
 
 type Stars {
   number:FLOAT! # @defaultValue('1')
+
 }
 
 type Privilege {
@@ -44,9 +45,10 @@ type User {
  billing: Billing
  url: String!
  username: String! # @unique
- password: String! # @unique
- email: String! # @unique
-}
+ p
+  assword: String  email: String! 
+
+  }
 
 type Bio {
   id: ID!
@@ -58,8 +60,8 @@ type Bio {
   
 type StepArray {[
   textBlurbs: String
-  imgUrls: String
-]
+  imgUr ls: String
+] 
 }
 type Project {
  id: ID!
@@ -94,8 +96,7 @@ type Comment {
   user: User!
 }
 
-type Privilege{
-  id: ID!
+
   name: String!
 }
 
