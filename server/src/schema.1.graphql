@@ -8,15 +8,10 @@ type Mutation {
 
 type User {
  id: ID!
- projects: [Project!]!
- privileges: [Privilege!]!
- makerRating: Float  # @unique
- reviewerThumbs: INT! @defaultValue(‘1)
- reviews: [Review!]!
- bio: Bio
- billing: Billing
+ makerRating: Float  
+ reviewerThumbs: Int! 
  url: String!
- username: String! # @unique
- password: String  email: String! 
-
+ username: String! 
+ password: String  
+ email: String! 
 }

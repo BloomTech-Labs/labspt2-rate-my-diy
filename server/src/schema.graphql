@@ -42,7 +42,8 @@ type User {
  billing: Billing
  url: String!
  username: String! # @unique
- password: String  email: String! 
+ password: String  
+ email: String! 
 
 }
 
