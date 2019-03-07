@@ -25,6 +25,11 @@ const server = new GraphQLServer({
   
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+const options = {
+	port: process.env.PORT || 4000 ,
+	endpoint: '/graphql'
+};
+
+server.start(options, ({ port }) =>
+	console.log(`🚀 Server ready at ${port}`)
+);
