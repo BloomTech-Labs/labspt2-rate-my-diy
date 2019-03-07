@@ -22,15 +22,14 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: './src/schema.1.graphql',
   resolvers,
-  
+  introspection: true,
+  playground: true
 });
 
 const options = {
 	port: process.env.PORT || 4000 ,
   endpoint: '/graphql',
   subscriptions: '/subscriptions',
-  playground: '/playground',
-  introspection: true
 };
 
 server.start(options, ({ port }) =>
