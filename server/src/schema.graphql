@@ -1,5 +1,3 @@
-# This needs work returning error
-type Query {
 type Query {
   getUsers: [User!]!
   getUserById: User!
@@ -19,7 +17,7 @@ type Query {
 }
  
 type Mutation {
-  createUser(id: ID!
+  createUser(id: ID!, username: String!, password: String!, email: String!): User!
 }
 
 
