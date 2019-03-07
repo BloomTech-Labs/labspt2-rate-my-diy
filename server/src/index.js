@@ -27,7 +27,10 @@ const server = new GraphQLServer({
 
 const options = {
 	port: process.env.PORT || 4000 ,
-	endpoint: '/graphql'
+  endpoint: '/graphql',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
+  introspection: true
 };
 
 server.start(options, ({ port }) =>
