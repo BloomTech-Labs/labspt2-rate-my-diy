@@ -1,0 +1,6 @@
+endpoint: https://us1.prisma.sh/lorenzo-evans-e9af31/labspt2-rate-my-diy/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
