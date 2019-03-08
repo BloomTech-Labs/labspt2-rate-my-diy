@@ -17,8 +17,7 @@ type User {
  Projects: [Project!]! 
  Privileges: [Privilege!]!
  Reviews: [Review!]!
- GetReviewById: Review!
- GetStars: [Stars!]!
+ Bio: Bio
 }
 
 type Project {
@@ -46,6 +45,14 @@ type Review {
   reviewThumbsUp: Int
   reviewThumbsDown: Int
   Author: User!
+}
+
+type Bio {
+  id: ID!
+  user: User!
+  age: Int
+  about: String
+  location: String
 }
 
 type Stars {
