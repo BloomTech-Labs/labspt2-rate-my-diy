@@ -16,6 +16,7 @@ type User {
  email: String!
  Projects: [Project!]! 
  Privileges: [Privilege!]!
+ Reviews: [Review!]!
 }
 
 type Project {
@@ -33,4 +34,14 @@ type Privilege {
   isModerator:Boolean!
   isAdmin:Boolean!
   isPlebian:Boolean!
+}
+
+type Review {
+  id: ID!
+  Title: String!
+  text: String!
+  editedAt: String!
+  reviewThumbsUp: Int
+  reviewThumbsDown: Int
+  Author: User!
 }
