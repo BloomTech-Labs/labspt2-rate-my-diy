@@ -1,28 +1,50 @@
 type Query {
-  getUsers: [User!]!
-  getUserById: User!
-  getProjects: [Project!]!
-  getProjectByUser: [Project]!
-  getProjectById: Project!
-  info: getReviews: [Review!]!
+  info: String!
+  GetUsers: [User!]!
+  GetUserById: User!
+  GetProjects: [Project!]!
+  GetProjectByUser: [Project]!
+  GetProjectById: Project!
+  GetReviews: [Review!]!
   getReviewById: Review!
-  getStars: [Star!]!
+  getStars: [Stars!]!
   getPrivileges: [Privilege!]!
   getBios: [Bio!]!
   getBioById: Bio!
   getComments: [Comment!]!
-  getModerators: [Moderator!]!
-  getAdmins: [Admin!]!
-
 }
- 
+
 type Mutation {
   createUser(id: ID!, username: String!, password: String!, email: String!): User!
 }
 
+type User {
+ id: ID!
+ makerRating: Float  
+ reviewerThumbs: Int! 
+ url: String!
+ username: String! 
+ password: String  
+ email: String!
+ Projects: [Project!]! 
+ Privileges: [Privilege!]!
+ Reviews: [Review!]!
+ Bio: Bio
+ Billing: [Billing!]!
+}
 
-type Stars {
-  number: Float!
+type Project {
+ id: ID!
+ name: String!
+ category: String!
+ timestamp: String!
+ editedAt: String!
+ titleImg: String!
+ titleBlurb: String!
+ Author: User!
+ Stars: Stars
+ Steps: [StepArray!]!
+ Reviews: [Review!]
 }
 
 type Privilege {
@@ -31,83 +53,44 @@ type Privilege {
   isPlebian:Boolean!
 }
 
-type User {
- id: ID!
- projects: [Project!]!
- privileges: [Privilege!]!
- makerRating: Float  # @unique
- reviewerThumbs: Int!
- reviews: [Review!]!
- bio: Bio
- billing: Billing
- url: String!
- username: String! # @unique
- password: String  
- email: String! 
+type Review {
+  id: ID!
+  Title: String!
+  text: String!
+  editedAt: String!
+  reviewThumbsUp: Int
+  reviewThumbsDown: Int
+  Author: User!
+  Comments: [Comment]
+}
 
+type Comment {
+  id: ID!
+  editedAt: String!
+  text: String!
+  user: User!
 }
 
 type Bio {
   id: ID!
   user: User!
-  age: INT
+  age: Int
   about: String
   location: String
 }
-  
-type StepArray {[
+
+type Stars {
+  number: Float!
+}
+
+type StepArray {
   textBlurbs: String
   imgUrls: String
-]}
-
-type Project {
- id: ID!
- name: String!
- category: String!
- stars: Stars
- timestamp: String!
- EditedAt: String!
- author: User!
- titleImg: String!
- titleBlurb: String!
- Steps:StepArray
- Reviews:[Review]
-}
-  
-type Review {
-  id: ID!
-  Title: String!
-  author: User!
-  stars: Stars
-  text: String!
-  editedAt: String!
-  reviewThumbsUp: INT
-  reviewThumbsDown: INT
-  comments: [Comment]
-}
-
-type Comment {
-  id: ID!
-  editedAt: DateTime!
-  text: String!
-  user: User!
 }
 
 type Billing {
-  amtPaid:Float
-  DatePaid:String
-  OrderNumber:INT
-  Description:String
-}
-
-type Moderators {
-  id: ID!
-  user: [User!]
-  isModerator: Boolean
-}
-
-type Admin {
-  id: ID!
-  user: [User!]
-  isAdmin: Boolean
+  amtPaid: Float!
+  datePaid: String!
+  orderNumber: Int!
+  description: String!
 }
