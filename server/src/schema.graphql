@@ -1,12 +1,12 @@
 type Query {
   info: String!
   GetUsers: [User!]!
-  GetUserById: User!
+  GetUserById(id: ID!): User!
   GetProjects: [Project!]!
-  GetProjectByUser: [Project]!
+  GetProjectsByUser(username: String!): [Project]!
   GetProjectById: Project!
   GetReviews: [Review!]!
-  getReviewById: Review!
+  getReviewById(id: ID!): Review!
   getStars: [Stars!]!
   getPrivileges: [Privilege!]!
   getBios: [Bio!]!
@@ -15,7 +15,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(id: ID!, username: String!, password: String!, email: String!): User!
+  createUser(id: ID, username: String!, password: String!, email: String!): User!
 }
 
 type User {
@@ -28,8 +28,9 @@ type User {
  email: String!
  Projects: [Project!]! 
  Privileges: [Privilege!]!
- Reviews: [Review!]!
- Bio: Bio
+ ReviewList: [Review!]!
+#  Bio: Bio
+# enum data type required for Bio
  Billing: [Billing!]!
 }
 

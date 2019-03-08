@@ -4,7 +4,7 @@
 
 type Query {
   getUsers: [User!]!
-  getUserById: User!
+  getUserById(id: String!): User!
   getProjects: [Project!]!
   getProjectByUser: [Project]!
   getProjectById: Project!
@@ -24,20 +24,20 @@ type Privileges {
 }
 
 type Mutation {
-  createUser(id: ID!, username: String!, password: String!, email: String!): User!
+  createUser(id: ID, username: String!, password: String!, email: String!): User!
 }
 
 type User {
   id: ID! @unique
   makerRating: Float
-  ReviewerThumbs: Int! @default(value: 1)
+  reviewerThumbs: Int! @default(value: 1)
   url: String!
   username: String! @unique
   password: String! @unique
   email: String! @unique
-  Projects: [Project!]!
   ReviewList: [Review!]!
-  Bio: Bio
+  # Bio: Bio
+  # enum data type required for Bio
   Billing: [Billing!]!
   Projects: [Project!]!
   Privileges: [Privilege!]!
@@ -49,10 +49,10 @@ type StepArray {
 }
 
 type Project {
- id: ID! 
+ id: ID! @unique
  name: String!
  category: String!
- timestamp: String!
+ timestamp: DateTime!
  EditedAt: String!
  titleImg: String!
  titleBlurb: String!
@@ -60,10 +60,11 @@ type Project {
  Author: User!
  Steps: [StepArray!]!
  Reviews:[Review!]!
+ user: User!
 }
   
 type Review {
-  id: ID! 
+  id: ID! @unique 
   title: String!
   text: String!
   editedAt: String!
@@ -75,14 +76,14 @@ type Review {
 }
 
 type Comment {
-  id: ID!
+  id: ID! @unique
   editedAt: DateTime!
   text: String!
   User: User!
 }
 
-type Privilege{
-  id: ID!
+type Privilege {
+  id: ID! @unique
   name: String!
 }
 
