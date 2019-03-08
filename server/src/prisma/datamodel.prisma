@@ -23,64 +23,62 @@ type Privileges {
  isPlebian: Boolean!
 }
 
-# type Mutation {
-
-# }
+type Mutation {
+  createUser(id: ID!, username: String!, password: String!, email: String!): User!
+}
 
 type User {
   id: ID! @unique
-  projects: [Project!]!
-  privileges: [Privilege!]!
   makerRating: Float
   ReviewerThumbs: Int! @default(value: 1)
-  ProjectList: [Project!]!
-  ReviewList: [Review!]!
-  Bio: Bio
-  Settings: Settings
-  Billing: Billing
   url: String!
-  # adding username field to User type
   username: String! @unique
   password: String! @unique
   email: String! @unique
+  Projects: [Project!]!
+  ReviewList: [Review!]!
+  Bio: Bio
+  Billing: [Billing!]!
+  Projects: [Project!]!
+  Privileges: [Privilege!]!
 }
   
-type StepArray {[
+type StepArray {
   textBlurbs: String
   imgUrls: String
-]}
+}
 
 type Project {
  id: ID! 
  name: String!
  category: String!
- stars: Stars
  timestamp: String!
  EditedAt: String!
- author: User!
  titleImg: String!
  titleBlurb: String!
- Steps:StepArray
- Reviews:[Review]
+ Stars: Stars
+ Author: User!
+ Steps: [StepArray!]!
+ Reviews:[Review!]!
 }
   
 type Review {
   id: ID! 
-  Title: String!
-  author: User!
-  stars: Stars
+  title: String!
   text: String!
   editedAt: String!
-  reviewThumbsUp: INT
-  reviewThumbsDown: INT
-  comments: [Comment]
+  reviewThumbsUp: Int
+  reviewThumbsDown: Int
+  Comments: [Comment]
+  Author: User!
+  Stars: Stars
 }
 
 type Comment {
   id: ID!
   editedAt: DateTime!
   text: String!
-  user: User!
+  User: User!
 }
 
 type Privilege{
@@ -89,10 +87,10 @@ type Privilege{
 }
 
 type Billing {
-  amtPaid:Float
-  DatePaid:String
-  OrderNumber:INT
-  Description:String
+  amtPaid: Float
+  DatePaid: String
+  OrderNumber: Int
+  Description: String
 }
 
 

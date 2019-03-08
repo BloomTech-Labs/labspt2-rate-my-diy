@@ -9,7 +9,6 @@ const createUser = (parent, args) => {
     }
 
     users.push(user);
-
     
     return user;
 }

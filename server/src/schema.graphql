@@ -68,7 +68,7 @@ type Comment {
   id: ID!
   editedAt: String!
   text: String!
-  user: User!
+  User: User!
 }
 
 type Bio {
