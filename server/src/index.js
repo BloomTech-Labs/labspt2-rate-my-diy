@@ -21,6 +21,8 @@ const options = {
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
+  introspection: true,
+  playground: true
 });
 
 server.start(options, ({ port }) => 
