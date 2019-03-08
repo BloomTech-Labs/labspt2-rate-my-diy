@@ -32,6 +32,7 @@ type Project {
  Author: User!
  Stars: Stars
  Steps: [StepArray!]!
+ Reviews: [Review!]
 }
 
 type Privilege {
@@ -48,6 +49,14 @@ type Review {
   reviewThumbsUp: Int
   reviewThumbsDown: Int
   Author: User!
+  Comments: [Comment]
+}
+
+type Comment {
+  id: ID!
+  editedAt: String!
+  text: String!
+  user: User!
 }
 
 type Bio {
