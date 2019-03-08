@@ -6,7 +6,7 @@ type Query {
   getUsers: [User!]! @relation(name: "Users")
   getUserById(id: String!): User! @relation(name: "User")
   getProjects: [Project!]! @relation(name: "Projects")
-  getProjectByUser: [Project]! @relation(name: "UserProjects")
+  getProjectByUser: [Project]! @relation(name: "UsersProjects")
   getProjectById: Project! @relation(name: "Project")
   getReviews: [Review!]! @relation(name: "Reviews")
   getReviewById: Review! @relation(name: "UserReview")
@@ -39,7 +39,7 @@ type User {
   # Bio: Bio
   # enum data type required for Bio
   Billing: [Billing!]!
-  Projects: [Project!]!
+  Projects: [Project!]! @relation(name: "UserProjects")
   Privileges: [Privilege!]!
 }
   
@@ -57,10 +57,10 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  Stars: Stars
- Author: User! @relation(name: "User")
+ Author: User! @relation(name: "ProjectAuthor")
  Steps: [StepArray!]!
  Reviews:[Review!]!
-#  user: User!
+ user: User! @relation(name: "UserProjects")
 }
   
 type Review {
