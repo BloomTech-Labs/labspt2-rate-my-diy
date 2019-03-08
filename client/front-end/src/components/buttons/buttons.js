@@ -1,9 +1,7 @@
 import React from 'react'
 
- function buttons() {
+ function smallButton() {
   return (
-    <div>
-      
-    </div>
+    <button className="smallButton"></button>
   )
 }
