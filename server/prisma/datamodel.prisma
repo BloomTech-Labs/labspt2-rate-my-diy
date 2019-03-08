@@ -3,13 +3,13 @@
 # They also allow prisma to generate crud operations for us.
 
 type Query {
-  getUsers: [User!]!
-  getUserById(id: String!): User!
-  getProjects: [Project!]!
-  getProjectByUser: [Project]!
-  getProjectById: Project!
-  getReviews: [Review!]!
-  getReviewById: Review!
+  getUsers: [User!]! @relation(name: "Users")
+  getUserById(id: String!): User! @relation(name: "User")
+  getProjects: [Project!]! @relation(name: "Projects")
+  getProjectByUser: [Project]! @relation(name: "UserProjects")
+  getProjectById: Project! @relation(name: "Project")
+  getReviews: [Review!]! @relation(name: "Reviews")
+  getReviewById: Review! @relation(name: "UserReview")
 }
 #Types needed:  Users, Projects, Reviews, Comments
 
@@ -57,10 +57,10 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  Stars: Stars
- Author: User!
+ Author: User! @relation(name: "User")
  Steps: [StepArray!]!
  Reviews:[Review!]!
- user: User!
+#  user: User!
 }
   
 type Review {
