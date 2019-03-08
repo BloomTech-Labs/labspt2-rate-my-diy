@@ -11,6 +11,7 @@ const { prisma } = require('../generated/prisma-client/');
 
 
 
+<<<<<<< HEAD
  
  const options = {
    port: 4466,
@@ -21,8 +22,24 @@ const { prisma } = require('../generated/prisma-client/');
     typeDefs: './src/schema.graphql',
     resolvers,
     context: { prisma },
+=======
+//context: { prisma },
+
+const options = {
+  port: 4466,
+  endpoint: '/graphql'
+}
+
+const server = new GraphQLServer({
+  typeDefs: './src/schema.graphql',
+  resolvers,
+  introspection: true,
+  playground: true
+>>>>>>> 4ddcb462663676cc0147e41f980fcecbd3cb2840
 });
 
 server.start(options, ({ port }) => 
   console.log(`🚀 Server ready at ${port}`)
 );
+// https://github.com/timanovsky/subdir-heroku-buildpack
+// PROJECT_PATH
