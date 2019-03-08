@@ -13,9 +13,16 @@ const {GraphQLServer} = require('graphql-yoga');
 
 //context: { prisma },
 
+const options = {
+  port: 4466,
+  endpoint: '/graphql'
+}
+
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
 });
 
-server.start(() => console.log(`🚀 Server ready at 4000`));
+server.start(options, ({ port }) => 
+  console.log(`🚀 Server ready at ${port}`)
+);
