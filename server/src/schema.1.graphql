@@ -18,6 +18,7 @@ type User {
  Privileges: [Privilege!]!
  Reviews: [Review!]!
  Bio: Bio
+ Billing: [Billing!]!
 }
 
 type Project {
@@ -57,4 +58,11 @@ type Bio {
 
 type Stars {
   number: Float!
+}
+
+type Billing {
+  amtPaid: Float!
+  datePaid: String!
+  orderNumber: Int!
+  description: String!
 }
