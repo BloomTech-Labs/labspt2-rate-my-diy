@@ -6,6 +6,7 @@ const {GraphQLServer} = require('graphql-yoga');
 
  const resolvers = {
    Query,
+   Mutation
  }
 
 
