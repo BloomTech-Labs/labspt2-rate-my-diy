@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server": "node ./src/index.js",
-    "test-server": "nodemon index.js",
+    "server": "nodemon ./src/index.js",
     "heroku-postbuild": "node ./src/index.js"
   },
   "license": "MIT",
