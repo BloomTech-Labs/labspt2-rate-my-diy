@@ -1,10 +1,16 @@
-endpoint: 
+# The HTTP endpoint for your Prisma API
+endpoint: ''
 
+# Points to the file that contains your datamodel
 datamodel: datamodel.prisma
-# Points to data model.
+
+# Specifies language & location for the generated Prisma client
 generate: 
-  - generator: graphql-schema
+  - generator: javascript-client
     output: ../src/generated/prisma-client
+
+
+# Exposes CRUD operations to newly added models automatically
 
 hooks:
   post-deploy:
