@@ -1,5 +1,17 @@
 type Query {
   info: String!
+  GetUsers: [User!]!
+  GetUserById: User!
+  GetProjects: [Project!]!
+  GetProjectByUser: [Project]!
+  GetProjectById: Project!
+  GetReviews: [Review!]!
+  getReviewById: Review!
+  getStars: [Stars!]!
+  getPrivileges: [Privilege!]!
+  getBios: [Bio!]!
+  getBioById: Bio!
+  getComments: [Comment!]!
 }
 
 type Mutation {
