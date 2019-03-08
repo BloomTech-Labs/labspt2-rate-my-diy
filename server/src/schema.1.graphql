@@ -8,13 +8,14 @@ type Mutation {
 
 type User {
  id: ID!
- Projects: [Project!]!
  makerRating: Float  
  reviewerThumbs: Int! 
  url: String!
  username: String! 
  password: String  
- email: String! 
+ email: String!
+ Projects: [Project!]! 
+ Privileges: [Privilege!]!
 }
 
 type Project {
@@ -23,7 +24,13 @@ type Project {
  category: String!
  timestamp: String!
  editedAt: String!
- Author: User!
  titleImg: String!
  titleBlurb: String!
+ Author: User!
+}
+
+type Privilege {
+  isModerator:Boolean!
+  isAdmin:Boolean!
+  isPlebian:Boolean!
 }
