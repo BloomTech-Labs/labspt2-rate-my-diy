@@ -30,6 +30,8 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  Author: User!
+ Stars: Stars
+ Steps: [StepArray!]!
 }
 
 type Privilege {
@@ -58,6 +60,11 @@ type Bio {
 
 type Stars {
   number: Float!
+}
+
+type StepArray {
+  textBlurbs: String
+  imgUrls: String
 }
 
 type Billing {
