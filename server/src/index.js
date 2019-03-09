@@ -6,19 +6,21 @@ const { prisma } = require('../generated/prisma-client/');
 
  const resolvers = {
    Query,
-   Mutation
+   Mutation,
  }
 
  
  const options = {
    port: 4466,
-   endpoint: '/graphql'
+   endpoint: 'https://us1.prisma.sh/lorenzo-evans-e9af31/server/dev'
   }
   
   const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
     resolvers,
-    context: { prisma },
+    context: requestObj => {
+     return { ...requestObj, prisma }
+    } 
 });
 
 server.start(options, ({ port }) => 
