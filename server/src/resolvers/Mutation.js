@@ -1,14 +1,13 @@
-const users = require("../dummy-data/dummy.json")
+const { prisma } = require('../generated/prisma-client/');
 
-const createUser = (parent, args, context) => {
- return context.prisma.createUser({
-  username: args.username,
-  email: args.email,
-  password: args.password
-
- })
+const Mutation = {
+    createUser: async (parent, args, info) => {
+        const user = await prisma.createUser({
+            username: args.username,
+            email: args.email,
+            password: args.password
+        })
+    }
 }
 
-module.exports = {
-    createUser,
-}
+module.exports = Mutation

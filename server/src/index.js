@@ -1,5 +1,5 @@
 const {GraphQLServer} = require('graphql-yoga');
-const { prisma } = require('../generated/prisma-client/');
+const { prisma } = require('./generated/prisma-client/');
  const Mutation = require('./resolvers/Mutation');
  const Query = require('./resolvers/Query');
  const User = require('./resolvers/User');
@@ -18,13 +18,11 @@ const { prisma } = require('../generated/prisma-client/');
   const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
     resolvers,
-    context: requestObj => {
-     return { ...requestObj, prisma }
-    } 
+    context: { prisma },
+    introspection: true,
+    playground: true
 });
 
 server.start(options, ({ port }) => 
   console.log(`🚀 Server ready at ${port}`)
 );
-// https://github.com/timanovsky/subdir-heroku-buildpack
-// PROJECT_PATH
