@@ -15,6 +15,7 @@ type Query {
 }
 
 input UserInput {
+ # this abstracts the data needed to create users away from the related mutation (createUser)
  id: ID
  username: String!
  email: String!
