@@ -26,5 +26,3 @@ const { prisma } = require('./generated/prisma-client/');
 server.start(options, ({ port }) => 
   console.log(`🚀 Server ready at ${port}`)
 );
-// https://github.com/timanovsky/subdir-heroku-buildpack
-// PROJECT_PATH
