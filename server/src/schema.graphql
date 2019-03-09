@@ -1,6 +1,6 @@
 type Query {
   info: String!
-  GetUsers: [User!]!
+  getUsers: [User!]!
   GetUserById(id: ID!): User!
   GetProjects: [Project!]!
   GetProjectsByUser(username: String!): [Project]!
@@ -14,24 +14,32 @@ type Query {
   getComments: [Comment!]!
 }
 
+input UserInput {
+ # this abstracts the data needed to create users away from the related mutation (createUser)
+ id: ID
+ username: String!
+ email: String!
+ password: String!
+}
+
 type Mutation {
-  createUser(id: ID, username: String!, password: String!, email: String!): User!
+ createUser(input: UserInput): User
 }
 
 type User {
  id: ID!
  makerRating: Float  
- reviewerThumbs: Int! 
- url: String!
+ reviewerThumbs: Int 
+ url: String
  username: String! 
  password: String  
  email: String!
- Projects: [Project!]! 
- Privileges: [Privilege!]!
- ReviewList: [Review!]!
+ Projects: [Project!] 
+ Privileges: [Privilege!]
+ ReviewList: [Review!]
 #  Bio: Bio
 # enum data type required for Bio
- Billing: [Billing!]!
+ Billing: [Billing!]
 }
 
 type Project {

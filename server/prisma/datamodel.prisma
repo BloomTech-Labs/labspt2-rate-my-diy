@@ -28,20 +28,22 @@ type Mutation {
 }
 
 type User {
-  id: ID! @unique
-  makerRating: Float
-  reviewerThumbs: Int! @default(value: 1)
-  url: String!
-  username: String! @unique
-  password: String! @unique
-  email: String! @unique
-  ReviewList: [Review!]!
-  # Bio: Bio
-  # enum data type required for Bio
-  Billing: [Billing!]!
-  Projects: [Project!]! @relation(name: "UserProjects")
-  Privileges: [Privilege!]!
+ id: ID! @unique
+ makerRating: Float  
+ reviewerThumbs: Int @default(value: 1)
+ url: String
+ username: String! @unique
+ password: String! @unique  
+ email: String! @unique
+ Projects: [Project!] @relation(name: "UserProjects")
+ Privileges: [Privilege!]
+ ReviewList: [Review!]
+#  Bio: Bio
+# enum data type required for Bio
+ Billing: [Billing!]
 }
+
+
   
 type StepArray {
   textBlurbs: String
