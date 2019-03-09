@@ -1,0 +1,98 @@
+# These type-definitions allow the prisma client to speak to the DB 
+# according to the types defined in schema.graphql.
+# They also allow prisma to generate crud operations for us.
+
+type Query {
+  getUsers: [User!]! @relation(name: "Users")
+  getUserById(id: String!): User! @relation(name: "User")
+  getProjects: [Project!]! @relation(name: "Projects")
+  getProjectByUser: [Project]! @relation(name: "UsersProjects")
+  getProjectById: Project! @relation(name: "Project")
+  getReviews: [Review!]! @relation(name: "Reviews")
+  getReviewById: Review! @relation(name: "UserReview")
+}
+#Types needed:  Users, Projects, Reviews, Comments
+
+type Stars {
+ number: Float! @default(value: 1)
+}
+
+type Privileges {
+ isModerator: Boolean!
+ isAdmin: Boolean!
+ isPlebian: Boolean!
+}
+
+type Mutation {
+  createUser(id: ID, username: String!, password: String!, email: String!): User!
+}
+
+type User {
+  id: ID! @unique
+  makerRating: Float
+  reviewerThumbs: Int! @default(value: 1)
+  url: String!
+  username: String! @unique
+  password: String! @unique
+  email: String! @unique
+  ReviewList: [Review!]!
+  # Bio: Bio
+  # enum data type required for Bio
+  Billing: [Billing!]!
+  Projects: [Project!]! @relation(name: "UserProjects")
+  Privileges: [Privilege!]!
+}
+  
+type StepArray {
+  textBlurbs: String
+  imgUrls: String
+}
+
+type Project {
+ id: ID! @unique
+ name: String!
+ category: String!
+ timestamp: DateTime!
+ EditedAt: String!
+ titleImg: String!
+ titleBlurb: String!
+ Stars: Stars
+ Author: User! @relation(name: "ProjectAuthor")
+ Steps: [StepArray!]!
+ Reviews:[Review!]!
+ user: User! @relation(name: "UserProjects")
+}
+  
+type Review {
+  id: ID! @unique 
+  title: String!
+  text: String!
+  editedAt: String!
+  reviewThumbsUp: Int
+  reviewThumbsDown: Int
+  Comments: [Comment]
+  Author: User!
+  Stars: Stars
+}
+
+type Comment {
+  id: ID! @unique
+  editedAt: DateTime!
+  text: String!
+  User: User!
+}
+
+type Privilege {
+  id: ID! @unique
+  name: String!
+}
+
+type Billing {
+  amtPaid: Float
+  DatePaid: String
+  OrderNumber: Int
+  Description: String
+}
+
+
+
