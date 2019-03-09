@@ -2,6 +2,8 @@
 
 This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top.
 
+Link to Production Front-End: https://rate-my-diy.netlify.com/
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
