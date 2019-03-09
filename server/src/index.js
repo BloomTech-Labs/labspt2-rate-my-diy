@@ -19,6 +19,8 @@ const { prisma } = require('./generated/prisma-client/');
     typeDefs: './src/schema.graphql',
     resolvers,
     context: { prisma },
+    introspection: true,
+    playground: true
 });
 
 server.start(options, ({ port }) => 
