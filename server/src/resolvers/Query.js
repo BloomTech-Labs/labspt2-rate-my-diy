@@ -1,11 +1,10 @@
- const info = () => {
-  return `This is a great app for DIY Reviews`
+const { prisma } = require('../generated/prisma-client/');
+
+const Query = {
+  info: () => {
+    return `This is a great app for DIY Reviews`
+  }
 }
 
-// const getUsers = (parent, args, context) => {
 
-// }
-
-module.exports = {
-  info,
-}
+module.exports = Query

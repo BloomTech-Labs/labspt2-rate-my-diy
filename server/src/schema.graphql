@@ -1,97 +1,98 @@
 type Query {
   info: String!
-  GetUsers: [User!]!
-  GetUserById(id: ID!): User!
-  GetProjects: [Project!]!
-  GetProjectsByUser(username: String!): [Project]!
-  GetProjectById: Project!
-  GetReviews: [Review!]!
-  getReviewById(id: ID!): Review!
-  getStars: [Stars!]!
-  getPrivileges: [Privilege!]!
-  getBios: [Bio!]!
-  getBioById: Bio!
-  getComments: [Comment!]!
+  users: [User]!
+  # GetUsers: [User!]!
+  # GetUserById(id: ID!): User!
+  # GetProjects: [Project!]!
+  # GetProjectsByUser(username: String!): [Project]!
+  # GetProjectById: Project!
+  # GetReviews: [Review!]!
+  # getReviewById(id: ID!): Review!
+  # getStars: [Stars!]!
+  # getPrivileges: [Privilege!]!
+  # getBios: [Bio!]!
+  # getBioById: Bio!
+  # getComments: [Comment!]!
 }
 
 type Mutation {
-  createUser(id: ID, username: String!, password: String!, email: String!): User!
+  createUser(username: String!, password: String!, email: String!): User!
 }
 
-type User {
- id: ID!
- makerRating: Float  
- reviewerThumbs: Int! 
- url: String!
- username: String! 
- password: String  
- email: String!
- Projects: [Project!]! 
- Privileges: [Privilege!]!
- ReviewList: [Review!]!
-#  Bio: Bio
-# enum data type required for Bio
- Billing: [Billing!]!
-}
+# type User {
+#  id: ID!
+#  makerRating: Float  
+#  reviewerThumbs: Int! 
+#  url: String!
+#  username: String! 
+#  password: String  
+#  email: String!
+#  Projects: [Project!]! 
+#  Privileges: [Privilege!]!
+#  ReviewList: [Review!]!
+# #  Bio: Bio
+# # enum data type required for Bio
+#  Billing: [Billing!]!
+# }
 
-type Project {
- id: ID!
- name: String!
- category: String!
- timestamp: String!
- editedAt: String!
- titleImg: String!
- titleBlurb: String!
- Author: User!
- Stars: Stars
- Steps: [StepArray!]!
- Reviews: [Review!]
-}
+# type Project {
+#  id: ID!
+#  name: String!
+#  category: String!
+#  timestamp: String!
+#  editedAt: String!
+#  titleImg: String!
+#  titleBlurb: String!
+#  Author: User!
+#  Stars: Stars
+#  Steps: [StepArray!]!
+#  Reviews: [Review!]
+# }
 
-type Privilege {
-  isModerator:Boolean!
-  isAdmin:Boolean!
-  isPlebian:Boolean!
-}
+# type Privilege {
+#   isModerator:Boolean!
+#   isAdmin:Boolean!
+#   isPlebian:Boolean!
+# }
 
-type Review {
-  id: ID!
-  Title: String!
-  text: String!
-  editedAt: String!
-  reviewThumbsUp: Int
-  reviewThumbsDown: Int
-  Author: User!
-  Comments: [Comment]
-}
+# type Review {
+#   id: ID!
+#   Title: String!
+#   text: String!
+#   editedAt: String!
+#   reviewThumbsUp: Int
+#   reviewThumbsDown: Int
+#   Author: User!
+#   Comments: [Comment]
+# }
 
-type Comment {
-  id: ID!
-  editedAt: String!
-  text: String!
-  User: User!
-}
+# type Comment {
+#   id: ID!
+#   editedAt: String!
+#   text: String!
+#   User: User!
+# }
 
-type Bio {
-  id: ID!
-  user: User!
-  age: Int
-  about: String
-  location: String
-}
+# type Bio {
+#   id: ID!
+#   user: User!
+#   age: Int
+#   about: String
+#   location: String
+# }
 
-type Stars {
-  number: Float!
-}
+# type Stars {
+#   number: Float!
+# }
 
-type StepArray {
-  textBlurbs: String
-  imgUrls: String
-}
+# type StepArray {
+#   textBlurbs: String
+#   imgUrls: String
+# }
 
-type Billing {
-  amtPaid: Float!
-  datePaid: String!
-  orderNumber: Int!
-  description: String!
-}
+# type Billing {
+#   amtPaid: Float!
+#   datePaid: String!
+#   orderNumber: Int!
+#   description: String!
+# }
