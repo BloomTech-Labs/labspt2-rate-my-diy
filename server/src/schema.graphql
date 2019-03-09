@@ -1,19 +1,17 @@
-type Query {
-  info: String!
-  users: [User]!
-  # GetUsers: [User!]!
-  # GetUserById(id: ID!): User!
-  # GetProjects: [Project!]!
-  # GetProjectsByUser(username: String!): [Project]!
-  # GetProjectById: Project!
-  # GetReviews: [Review!]!
-  # getReviewById(id: ID!): Review!
-  # getStars: [Stars!]!
-  # getPrivileges: [Privilege!]!
-  # getBios: [Bio!]!
-  # getBioById: Bio!
-  # getComments: [Comment!]!
-}
+# type Query {
+#   # GetUsers: [User!]!
+#   # GetUserById(id: ID!): User!
+#   # GetProjects: [Project!]!
+#   # GetProjectsByUser(username: String!): [Project]!
+#   # GetProjectById: Project!
+#   # GetReviews: [Review!]!
+#   # getReviewById(id: ID!): Review!
+#   # getStars: [Stars!]!
+#   # getPrivileges: [Privilege!]!
+#   # getBios: [Bio!]!
+#   # getBioById: Bio!
+#   # getComments: [Comment!]!
+# }
 
 type Mutation {
   createUser(username: String!, password: String!, email: String!): User!
