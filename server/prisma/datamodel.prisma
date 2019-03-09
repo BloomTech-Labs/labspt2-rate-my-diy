@@ -38,6 +38,8 @@ type User {
   Projects: [Project!] @relation(name: "UserProjects")
   Privileges: [Privilege!]
 }
+
+
   
 type StepArray {
   textBlurbs: String
