@@ -1,14 +1,15 @@
 import React from 'react'
+import './card.scss';
 
 
- function card() {
+ function Card() {
   return (
     <div className="card">
     <p>Props.Image To Be Added</p>
-    <h2>StarsComponent To Be Added</h2>
+    <p>StarsComponent To Be Added</p>
     <p>Props.user</p>
     </div>
   )
 }
 
-export default card
+export default Card
