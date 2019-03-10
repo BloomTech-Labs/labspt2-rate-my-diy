@@ -23,12 +23,12 @@ class SearchBar extends Component {
 	}
 	render() {
 		return (
-			<div className="searchbar">
-				<span>
+			<div className="searchBar">
+				<span className="searchSpan">
 					<FontAwesomeIcon icon={faSearch} />
 					<input type="text" onChange="kj" placeholder={this.state.text} />
 				</span>
-
+				{/* will need to be replaced with Button component/styling when that file is completed */}
 				<button className="search">Search</button>
 			</div>
 		);
