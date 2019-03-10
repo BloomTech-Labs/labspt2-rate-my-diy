@@ -1,5 +1,4 @@
 //todo:
-//control searchbar component
 //make isLoggedIn state
 //make onClick for submit button
 //onClick should check isLoggedIn
@@ -21,12 +20,19 @@ class SearchBar extends Component {
 			text: ' search'
 		};
 	}
+	changeHandler = e => {
+		this.setState({ text: e.target.value });
+	};
 	render() {
 		return (
 			<div className="searchBar">
 				<span className="searchSpan">
 					<FontAwesomeIcon icon={faSearch} />
-					<input type="text" onChange="kj" placeholder={this.state.text} />
+					<input
+						type="text"
+						onChange={this.changeHandler}
+						placeholder={this.state.text}
+					/>
 				</span>
 				{/* will need to be replaced with Button component/styling when that file is completed */}
 				<button className="search">Search</button>
