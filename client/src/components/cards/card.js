@@ -5,8 +5,8 @@ import './card.scss';
  function Card() {
   return (
     <div className="card">
-    <p>Props.Image To Be Added</p>
-    <p>StarsComponent To Be Added</p>
+    <p>Props.Image</p>
+    <p>Props.Starsd</p>
     <p>Props.user</p>
     </div>
   )
