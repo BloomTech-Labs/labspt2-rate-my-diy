@@ -2,15 +2,15 @@
 # according to the types defined in schema.graphql.
 # They also allow prisma to generate crud operations for us.
 
-type Query {
-  getUsers: [User!]! @relation(name: "Users")
-  getUserById(id: String!): User! @relation(name: "User")
-  getProjects: [Project!]! @relation(name: "Projects")
-  getProjectByUser: [Project]! @relation(name: "UsersProjects")
-  getProjectById: Project! @relation(name: "Project")
-  getReviews: [Review!]! @relation(name: "Reviews")
-  getReviewById: Review! @relation(name: "UserReview")
-}
+# type Query {
+#   getUsers: [User!]! @relation(name: "Users")
+#   getUserById(id: String!): User! @relation(name: "User")
+#   getProjects: [Project!]! @relation(name: "Projects")
+#   getProjectByUser: [Project]! @relation(name: "UsersProjects")
+#   getProjectById: Project! @relation(name: "Project")
+#   getReviews: [Review!]! @relation(name: "Reviews")
+#   getReviewById: Review! @relation(name: "UserReview")
+# }
 #Types needed:  Users, Projects, Reviews, Comments
 
 type Stars {
@@ -23,25 +23,23 @@ type Privileges {
  isPlebian: Boolean!
 }
 
-type Mutation {
-  createUser(id: ID, username: String!, password: String!, email: String!): User!
-}
-
 type User {
   id: ID! @unique
   makerRating: Float
-  reviewerThumbs: Int! @default(value: 1)
-  url: String!
+  reviewerThumbs: Int @default(value: 1)
+  url: String
   username: String! @unique
-  password: String! @unique
+  password: String! 
   email: String! @unique
-  ReviewList: [Review!]!
+  ReviewList: [Review!]
   # Bio: Bio
   # enum data type required for Bio
-  Billing: [Billing!]!
-  Projects: [Project!]! @relation(name: "UserProjects")
-  Privileges: [Privilege!]!
+  Billing: [Billing!]
+  Projects: [Project!] @relation(name: "UserProjects")
+  Privileges: [Privilege!]
 }
+
+
   
 type StepArray {
   textBlurbs: String

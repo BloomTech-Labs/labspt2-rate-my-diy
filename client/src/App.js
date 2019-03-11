@@ -10,7 +10,10 @@ class App extends Component {
 				<Nav />
 				<Footer />
 				<SearchBar />
-			</div>
+			<div className='App'>
+				<Nav />
+				<Footer />
+						</div>
 		);
 	}
 }
