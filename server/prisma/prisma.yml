@@ -1,5 +1,7 @@
 # The HTTP endpoint for your Prisma API
-#endpoint: ''
+# endpoint: ''
+
+# This endpoint is our current development server. If you need to deploy comment this endpoint and uncomment the one that is empty 
 endpoint: https://labspt2-backend-d9e4c217f3.herokuapp.com/development/dev
 
 # Points to the file that contains your datamodel

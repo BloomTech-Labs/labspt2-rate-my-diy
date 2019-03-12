@@ -5,7 +5,7 @@ const Query = {
     return context.prisma.users()
   },
   
-  GetReviews: (parent,args,context) => {
+  getReviews: (parent,args,context) => {
     return context.prisma.reviews()
   },
   
@@ -19,10 +19,4 @@ const Query = {
 }
 
 
-module.exports = {
-  info,
-  getUsers,
-  GetReviews,
-  getReviewById,
-  getStars
-}
+module.exports = Query
