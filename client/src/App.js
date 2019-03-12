@@ -7,13 +7,12 @@ import ExampleQuery from './examples/exampleQuery';
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
+			<div className='App'>
 				<Nav />
-        <ExampleQuery />
-				<Footer />
 				<SearchBar />
+				<ExampleQuery />
 				<Footer />
-     </div>
+			</div>
 		);
 	}
 }
