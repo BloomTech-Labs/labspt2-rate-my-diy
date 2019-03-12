@@ -44,6 +44,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://labspt2-backend-d9e4c217f3.herokuapp.com/development/dev`
+  endpoint: `https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/production`
 });
 exports.prisma = new exports.Prisma();

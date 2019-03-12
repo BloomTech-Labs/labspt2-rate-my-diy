@@ -2,8 +2,6 @@
 
 This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top.
 
-Link to Production Front-End: https://rate-my-diy.netlify.com/
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -53,6 +51,8 @@ While being on the root of the client folder run the following command
 yarn build
 ```
 
+[Production Front-End](https://rate-my-diy.netlify.com/)
+
 ### Back End
 
 While being on the root of the server folder run the following command
@@ -61,14 +61,16 @@ While being on the root of the server folder run the following command
 yarn server
 ```
 
+[Production Back-End](https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/production)
+
 ## Built with
 
-* [Gatsby](https://www.gatsbyjs.org/)
+* [React](https://reactjs.org/)
 * [GraphQL](https://graphql.org/)
 * [Apollo Client](https://www.apollographql.com/docs/react/)
 * [GraphQL Yoga](https://github.com/prisma/graphql-yoga)
 * [Prisma](https://www.prisma.io/)
-* [MongoDB](https://www.mongodb.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 ## Authors
 
