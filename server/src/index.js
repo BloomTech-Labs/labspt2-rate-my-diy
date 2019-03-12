@@ -8,12 +8,6 @@ const { prisma } = require('./generated/prisma-client/');
    Query,
    Mutation,
  }
-
- 
- const options = {
-   port: 4466,
-   endpoint: 'https://us1.prisma.sh/lorenzo-evans-e9af31/server/dev'
-  }
   
   const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
@@ -23,6 +17,6 @@ const { prisma } = require('./generated/prisma-client/');
     playground: true
 });
 
-server.start(options, ({ port }) => 
-  console.log(`🚀 Server ready at ${port}`)
+server.start(() => 
+  console.log(`🚀 Server ready at port:4000`)
 );
