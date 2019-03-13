@@ -43,6 +43,7 @@ import gql from 'graphql-tag';
 
 import FeaturedAndMakers from '../../components/featureProject/featureProject.js';
 import PopularReviewerCard from '../../components/popularReviewers/popularReviewers.js';
+import './landingPage.scss';
 
 class LandingPage extends Component {
 	constructor() {
@@ -54,43 +55,46 @@ class LandingPage extends Component {
 			<div>
 				<SearchBar />
 				<h1>Featured Projects</h1>
-				<div>
-					{/* featured project query */}
-					<Query
-						query={gql`
-							{
-								projects(orderBy: timestamp_DESC, first: 2) {
-									id
-									name
-									titleImg
-									rating
-									authorName
-									timestamp
-								}
+				{/* featured project query */}
+				<Query
+					query={gql`
+						{
+							projects(orderBy: timestamp_DESC, first: 2) {
+								id
+								name
+								titleImg
+								rating
+								authorName
+								timestamp
 							}
-						`}
-					>
-						{/*timestamp may have error, hopefully will be resolved with switch to timestamps */}
-						{({ loading, error, data }) => {
-							if (loading) return <p>Loading...</p>;
-							if (error) return <p>Error :(</p>;
+						}
+					`}
+				>
+					{/*timestamp may have error, hopefully will be resolved with switch to timestamps */}
+					{({ loading, error, data }) => {
+						if (loading) return <p>Loading...</p>;
+						if (error) return <p>Error :(</p>;
 
-							return data.projects.map(
-								({ id, name, titleImg, rating, authorName }) => (
-									<FeaturedAndMakers
-										type="featured"
-										key={id}
-										image={titleImg}
-										stars={rating}
-										title={name}
-										// below might need to be edited
-										user={authorName}
-									/>
-								)
-							);
-						}}
-					</Query>
-				</div>
+						return (
+							<div className='card-container'>
+								{data.projects.map(
+									({ id, name, titleImg, rating, authorName }) => (
+										<FeaturedAndMakers
+											type="featured"
+											key={id}
+											image={titleImg}
+											stars={rating}
+											title={name}
+											// below might need to be edited
+											user={authorName}
+										/>
+									)
+								)}
+							</div>
+						)
+					}}
+				</Query>
+			
 				<h1>Popular Makers</h1>
 				{/* popular makers query */}
 
