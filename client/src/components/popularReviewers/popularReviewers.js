@@ -4,7 +4,7 @@ import '../cards/card.scss';
 function PopularReviewerCard(props) {
 	return (
 		<div className="card">
-			<img src={props.userProfileImage} />
+			<img src={props.userProfileImage} alt='user profile' />
 			<p>{props.username}</p>
 		</div>
 	);
