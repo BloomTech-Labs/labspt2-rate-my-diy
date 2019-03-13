@@ -1,6 +1,10 @@
 //todo:
 //featured projects
 
+//back as well
+
+//How to determine which to display??
+
 //popular makers
 
 //popular reviewers
@@ -34,9 +38,11 @@
 
 import React, { Component } from 'react';
 import SearchBar from '../../components/searchbar/searchbar.js';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import FeaturedAndMakers from '../../components/featureProject/featureProject.js';
-import PopularReviewerCard from '../../components/popularReviewers.js';
+import PopularReviewerCard from '../../components/popularReviewers/popularReviewers.js';
 
 class LandingPage extends Component {
 	constructor() {
@@ -47,7 +53,55 @@ class LandingPage extends Component {
 		return (
 			<div>
 				<SearchBar />
+				<h1>Featured Projects</h1>
+				<div>
+					{/* featured project query */}
+					<Query
+						query={gql`
+							{
+								projects(orderBy: timestamp_DESC, first: 2) {
+									id
+									name
+									titleImg
+									rating
+									Author
+									timestamp
+								}
+							}
+						`}
+					>
+						{/*timestamp may have error, hopefully will be resolved with switch to timestamps */}
+						{({ loading, error, data }) => {
+							if (loading) return <p>Loading...</p>;
+							if (error) return <p>Error :(</p>;
+
+							return data.projects.map(
+								({ id, name, titleImg, rating, Author }) => (
+									<FeaturedAndMakers
+										type="featured"
+										key={id}
+										Image={titleImg}
+										Stars={rating}
+										Title={name}
+										// below might need to be edited
+										User={Author.username}
+									/>
+								)
+							);
+						}}
+					</Query>
+				</div>
+				<h1>Popular Makers</h1>
+				{/* popular makers query */}
+
+				<FeaturedAndMakers />
+				<h1>Popular Reviewers</h1>
+				{/* popular reviewers query */}
+
+				<PopularReviewerCard />
 			</div>
 		);
 	}
 }
+
+export default LandingPage;

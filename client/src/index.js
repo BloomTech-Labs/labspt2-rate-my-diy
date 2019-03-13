@@ -6,12 +6,12 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 const client = new ApolloClient({
-	uri: 'https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/production',
+	uri: 'https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev'
 });
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<App />
 	</ApolloProvider>,
-	document.getElementById('root'),
+	document.getElementById('root')
 );

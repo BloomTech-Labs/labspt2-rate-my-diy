@@ -1,6 +1,6 @@
 import React from 'react';
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 function exampleQuery() {
 	return (
@@ -14,7 +14,8 @@ function exampleQuery() {
 							email
 						}
 					}
-				`}>
+				`}
+			>
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
