@@ -32,8 +32,7 @@ type Project {
  id: ID! @unique
  name: String!
  category: String!
- timestamp: DateTime!
- editedAt: String!
+ timestamp: String!
  titleImg: String!
  titleBlurb: String!
  rating: Float! @default(value: 1)

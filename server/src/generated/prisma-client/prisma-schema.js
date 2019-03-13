@@ -559,8 +559,7 @@ type Project {
   id: ID!
   name: String!
   category: String!
-  timestamp: DateTime!
-  editedAt: String!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float!
@@ -578,8 +577,7 @@ type ProjectConnection {
 input ProjectCreateInput {
   name: String!
   category: String!
-  timestamp: DateTime!
-  editedAt: String!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float
@@ -607,8 +605,6 @@ enum ProjectOrderByInput {
   category_DESC
   timestamp_ASC
   timestamp_DESC
-  editedAt_ASC
-  editedAt_DESC
   titleImg_ASC
   titleImg_DESC
   titleBlurb_ASC
@@ -627,8 +623,7 @@ type ProjectPreviousValues {
   id: ID!
   name: String!
   category: String!
-  timestamp: DateTime!
-  editedAt: String!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float!
@@ -678,28 +673,20 @@ input ProjectScalarWhereInput {
   category_not_starts_with: String
   category_ends_with: String
   category_not_ends_with: String
-  timestamp: DateTime
-  timestamp_not: DateTime
-  timestamp_in: [DateTime!]
-  timestamp_not_in: [DateTime!]
-  timestamp_lt: DateTime
-  timestamp_lte: DateTime
-  timestamp_gt: DateTime
-  timestamp_gte: DateTime
-  editedAt: String
-  editedAt_not: String
-  editedAt_in: [String!]
-  editedAt_not_in: [String!]
-  editedAt_lt: String
-  editedAt_lte: String
-  editedAt_gt: String
-  editedAt_gte: String
-  editedAt_contains: String
-  editedAt_not_contains: String
-  editedAt_starts_with: String
-  editedAt_not_starts_with: String
-  editedAt_ends_with: String
-  editedAt_not_ends_with: String
+  timestamp: String
+  timestamp_not: String
+  timestamp_in: [String!]
+  timestamp_not_in: [String!]
+  timestamp_lt: String
+  timestamp_lte: String
+  timestamp_gt: String
+  timestamp_gte: String
+  timestamp_contains: String
+  timestamp_not_contains: String
+  timestamp_starts_with: String
+  timestamp_not_starts_with: String
+  timestamp_ends_with: String
+  timestamp_not_ends_with: String
   titleImg: String
   titleImg_not: String
   titleImg_in: [String!]
@@ -776,8 +763,7 @@ input ProjectSubscriptionWhereInput {
 input ProjectUpdateDataInput {
   name: String
   category: String
-  timestamp: DateTime
-  editedAt: String
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -789,8 +775,7 @@ input ProjectUpdateDataInput {
 input ProjectUpdateInput {
   name: String
   category: String
-  timestamp: DateTime
-  editedAt: String
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -802,8 +787,7 @@ input ProjectUpdateInput {
 input ProjectUpdateManyDataInput {
   name: String
   category: String
-  timestamp: DateTime
-  editedAt: String
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -825,8 +809,7 @@ input ProjectUpdateManyInput {
 input ProjectUpdateManyMutationInput {
   name: String
   category: String
-  timestamp: DateTime
-  editedAt: String
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -892,28 +875,20 @@ input ProjectWhereInput {
   category_not_starts_with: String
   category_ends_with: String
   category_not_ends_with: String
-  timestamp: DateTime
-  timestamp_not: DateTime
-  timestamp_in: [DateTime!]
-  timestamp_not_in: [DateTime!]
-  timestamp_lt: DateTime
-  timestamp_lte: DateTime
-  timestamp_gt: DateTime
-  timestamp_gte: DateTime
-  editedAt: String
-  editedAt_not: String
-  editedAt_in: [String!]
-  editedAt_not_in: [String!]
-  editedAt_lt: String
-  editedAt_lte: String
-  editedAt_gt: String
-  editedAt_gte: String
-  editedAt_contains: String
-  editedAt_not_contains: String
-  editedAt_starts_with: String
-  editedAt_not_starts_with: String
-  editedAt_ends_with: String
-  editedAt_not_ends_with: String
+  timestamp: String
+  timestamp_not: String
+  timestamp_in: [String!]
+  timestamp_not_in: [String!]
+  timestamp_lt: String
+  timestamp_lte: String
+  timestamp_gt: String
+  timestamp_gte: String
+  timestamp_contains: String
+  timestamp_not_contains: String
+  timestamp_starts_with: String
+  timestamp_not_starts_with: String
+  timestamp_ends_with: String
+  timestamp_not_ends_with: String
   titleImg: String
   titleImg_not: String
   titleImg_in: [String!]

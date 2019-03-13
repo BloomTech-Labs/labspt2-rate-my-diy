@@ -387,8 +387,6 @@ export type ProjectOrderByInput =
   | "category_DESC"
   | "timestamp_ASC"
   | "timestamp_DESC"
-  | "editedAt_ASC"
-  | "editedAt_DESC"
   | "titleImg_ASC"
   | "titleImg_DESC"
   | "titleBlurb_ASC"
@@ -741,28 +739,20 @@ export interface ProjectWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: DateTimeInput;
-  timestamp_not?: DateTimeInput;
-  timestamp_in?: DateTimeInput[] | DateTimeInput;
-  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
-  timestamp_lt?: DateTimeInput;
-  timestamp_lte?: DateTimeInput;
-  timestamp_gt?: DateTimeInput;
-  timestamp_gte?: DateTimeInput;
-  editedAt?: String;
-  editedAt_not?: String;
-  editedAt_in?: String[] | String;
-  editedAt_not_in?: String[] | String;
-  editedAt_lt?: String;
-  editedAt_lte?: String;
-  editedAt_gt?: String;
-  editedAt_gte?: String;
-  editedAt_contains?: String;
-  editedAt_not_contains?: String;
-  editedAt_starts_with?: String;
-  editedAt_not_starts_with?: String;
-  editedAt_ends_with?: String;
-  editedAt_not_ends_with?: String;
+  timestamp?: String;
+  timestamp_not?: String;
+  timestamp_in?: String[] | String;
+  timestamp_not_in?: String[] | String;
+  timestamp_lt?: String;
+  timestamp_lte?: String;
+  timestamp_gt?: String;
+  timestamp_gte?: String;
+  timestamp_contains?: String;
+  timestamp_not_contains?: String;
+  timestamp_starts_with?: String;
+  timestamp_not_starts_with?: String;
+  timestamp_ends_with?: String;
+  timestamp_not_ends_with?: String;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -973,8 +963,7 @@ export interface ProjectCreateManyInput {
 export interface ProjectCreateInput {
   name: String;
   category: String;
-  timestamp: DateTimeInput;
-  editedAt: String;
+  timestamp: String;
   titleImg: String;
   titleBlurb: String;
   rating?: Float;
@@ -1310,8 +1299,7 @@ export interface ProjectUpdateWithWhereUniqueNestedInput {
 export interface ProjectUpdateDataInput {
   name?: String;
   category?: String;
-  timestamp?: DateTimeInput;
-  editedAt?: String;
+  timestamp?: String;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1560,28 +1548,20 @@ export interface ProjectScalarWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: DateTimeInput;
-  timestamp_not?: DateTimeInput;
-  timestamp_in?: DateTimeInput[] | DateTimeInput;
-  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
-  timestamp_lt?: DateTimeInput;
-  timestamp_lte?: DateTimeInput;
-  timestamp_gt?: DateTimeInput;
-  timestamp_gte?: DateTimeInput;
-  editedAt?: String;
-  editedAt_not?: String;
-  editedAt_in?: String[] | String;
-  editedAt_not_in?: String[] | String;
-  editedAt_lt?: String;
-  editedAt_lte?: String;
-  editedAt_gt?: String;
-  editedAt_gte?: String;
-  editedAt_contains?: String;
-  editedAt_not_contains?: String;
-  editedAt_starts_with?: String;
-  editedAt_not_starts_with?: String;
-  editedAt_ends_with?: String;
-  editedAt_not_ends_with?: String;
+  timestamp?: String;
+  timestamp_not?: String;
+  timestamp_in?: String[] | String;
+  timestamp_not_in?: String[] | String;
+  timestamp_lt?: String;
+  timestamp_lte?: String;
+  timestamp_gt?: String;
+  timestamp_gte?: String;
+  timestamp_contains?: String;
+  timestamp_not_contains?: String;
+  timestamp_starts_with?: String;
+  timestamp_not_starts_with?: String;
+  timestamp_ends_with?: String;
+  timestamp_not_ends_with?: String;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -1645,8 +1625,7 @@ export interface ProjectUpdateManyWithWhereNestedInput {
 export interface ProjectUpdateManyDataInput {
   name?: String;
   category?: String;
-  timestamp?: DateTimeInput;
-  editedAt?: String;
+  timestamp?: String;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1686,8 +1665,7 @@ export interface PrivilegesUpdateManyMutationInput {
 export interface ProjectUpdateInput {
   name?: String;
   category?: String;
-  timestamp?: DateTimeInput;
-  editedAt?: String;
+  timestamp?: String;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1699,8 +1677,7 @@ export interface ProjectUpdateInput {
 export interface ProjectUpdateManyMutationInput {
   name?: String;
   category?: String;
-  timestamp?: DateTimeInput;
-  editedAt?: String;
+  timestamp?: String;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -2014,8 +1991,7 @@ export interface Project {
   id: ID_Output;
   name: String;
   category: String;
-  timestamp: DateTimeOutput;
-  editedAt: String;
+  timestamp: String;
   titleImg: String;
   titleBlurb: String;
   rating: Float;
@@ -2026,8 +2002,7 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   category: () => Promise<String>;
-  timestamp: () => Promise<DateTimeOutput>;
-  editedAt: () => Promise<String>;
+  timestamp: () => Promise<String>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
@@ -2062,8 +2037,7 @@ export interface ProjectSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  editedAt: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<String>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
@@ -2736,8 +2710,7 @@ export interface ProjectPreviousValues {
   id: ID_Output;
   name: String;
   category: String;
-  timestamp: DateTimeOutput;
-  editedAt: String;
+  timestamp: String;
   titleImg: String;
   titleBlurb: String;
   rating: Float;
@@ -2750,8 +2723,7 @@ export interface ProjectPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   category: () => Promise<String>;
-  timestamp: () => Promise<DateTimeOutput>;
-  editedAt: () => Promise<String>;
+  timestamp: () => Promise<String>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
@@ -2764,8 +2736,7 @@ export interface ProjectPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  editedAt: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<String>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
