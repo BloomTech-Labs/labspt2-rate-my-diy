@@ -64,7 +64,7 @@ class LandingPage extends Component {
 									name
 									titleImg
 									rating
-									Author
+									authorName
 									timestamp
 								}
 							}
@@ -76,7 +76,7 @@ class LandingPage extends Component {
 							if (error) return <p>Error :(</p>;
 
 							return data.projects.map(
-								({ id, name, titleImg, rating, Author }) => (
+								({ id, name, titleImg, rating, authorName }) => (
 									<FeaturedAndMakers
 										type="featured"
 										key={id}
@@ -84,7 +84,7 @@ class LandingPage extends Component {
 										Stars={rating}
 										Title={name}
 										// below might need to be edited
-										User={Author.username}
+										User={authorName}
 									/>
 								)
 							);
