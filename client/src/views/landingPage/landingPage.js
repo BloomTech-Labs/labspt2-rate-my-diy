@@ -127,12 +127,39 @@ class LandingPage extends Component {
 						)
 					}}
 				</Query>
-
-				<FeaturedAndMakers />
 				<h1>Popular Reviewers</h1>
 				{/* popular reviewers query */}
+				<Query
+					query={gql`
+						{
+							users(orderBy: username_ASC) {
+								id
+								username
+								userProfileImage
+							}
+						}
+					`}
+				>
+					{({ loading, error, data }) => {
+						if (loading) return <p>Loading...</p>;
+						if (error) return <p>Error :(</p>;
 
-				<PopularReviewerCard />
+						return (
+							<div className='card-container'>
+								{data.users.map(
+									({ id, username, userProfileImage }) => (
+										<PopularReviewerCard
+											type="featured"
+											key={id}
+											username={username}
+											userProfileImage={userProfileImage}
+										/>
+									)
+								)}
+							</div>
+						)
+					}}
+				</Query>	
 			</div>
 		);
 	}
