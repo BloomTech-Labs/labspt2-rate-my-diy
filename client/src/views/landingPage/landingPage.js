@@ -70,7 +70,6 @@ class LandingPage extends Component {
 						}
 					`}
 				>
-					{/*timestamp may have error, hopefully will be resolved with switch to timestamps */}
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
@@ -97,6 +96,37 @@ class LandingPage extends Component {
 			
 				<h1>Popular Makers</h1>
 				{/* popular makers query */}
+				<Query
+					query={gql`
+						{
+							users(orderBy: username_ASC) {
+								id
+								username
+								userProfileImage
+							}
+						}
+					`}
+				>
+					{({ loading, error, data }) => {
+						if (loading) return <p>Loading...</p>;
+						if (error) return <p>Error :(</p>;
+
+						return (
+							<div className='card-container'>
+								{data.users.map(
+									({ id, username, userProfileImage }) => (
+										<PopularReviewerCard
+											type="featured"
+											key={id}
+											username={username}
+											userProfileImage={userProfileImage}
+										/>
+									)
+								)}
+							</div>
+						)
+					}}
+				</Query>
 
 				<FeaturedAndMakers />
 				<h1>Popular Reviewers</h1>

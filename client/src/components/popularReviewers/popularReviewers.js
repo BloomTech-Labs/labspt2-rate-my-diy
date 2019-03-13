@@ -1,11 +1,11 @@
 import React from 'react';
 import '../cards/card.scss';
 
-function PopularReviewerCard() {
+function PopularReviewerCard(props) {
 	return (
 		<div className="card">
-			<p>Props.Image</p>
-			<p>Props.User</p>
+			<img src={props.userProfileImage} />
+			<p>{props.username}</p>
 		</div>
 	);
 }

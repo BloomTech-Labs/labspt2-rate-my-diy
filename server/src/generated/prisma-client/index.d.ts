@@ -451,6 +451,8 @@ export type UserOrderByInput =
   | "password_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "userProfileImage_ASC"
+  | "userProfileImage_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -682,6 +684,20 @@ export interface UserWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
+  userProfileImage?: String;
+  userProfileImage_not?: String;
+  userProfileImage_in?: String[] | String;
+  userProfileImage_not_in?: String[] | String;
+  userProfileImage_lt?: String;
+  userProfileImage_lte?: String;
+  userProfileImage_gt?: String;
+  userProfileImage_gte?: String;
+  userProfileImage_contains?: String;
+  userProfileImage_not_contains?: String;
+  userProfileImage_starts_with?: String;
+  userProfileImage_not_starts_with?: String;
+  userProfileImage_ends_with?: String;
+  userProfileImage_not_ends_with?: String;
   ReviewList_every?: ReviewWhereInput;
   ReviewList_some?: ReviewWhereInput;
   ReviewList_none?: ReviewWhereInput;
@@ -739,20 +755,14 @@ export interface ProjectWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: String;
-  timestamp_not?: String;
-  timestamp_in?: String[] | String;
-  timestamp_not_in?: String[] | String;
-  timestamp_lt?: String;
-  timestamp_lte?: String;
-  timestamp_gt?: String;
-  timestamp_gte?: String;
-  timestamp_contains?: String;
-  timestamp_not_contains?: String;
-  timestamp_starts_with?: String;
-  timestamp_not_starts_with?: String;
-  timestamp_ends_with?: String;
-  timestamp_not_ends_with?: String;
+  timestamp?: DateTimeInput;
+  timestamp_not?: DateTimeInput;
+  timestamp_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_lt?: DateTimeInput;
+  timestamp_lte?: DateTimeInput;
+  timestamp_gt?: DateTimeInput;
+  timestamp_gte?: DateTimeInput;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -930,6 +940,7 @@ export interface UserCreateInput {
   username: String;
   password: String;
   email: String;
+  userProfileImage?: String;
   ReviewList?: ReviewCreateManyWithoutAuthorInput;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
@@ -963,7 +974,7 @@ export interface ProjectCreateManyInput {
 export interface ProjectCreateInput {
   name: String;
   category: String;
-  timestamp: String;
+  timestamp: DateTimeInput;
   titleImg: String;
   titleBlurb: String;
   rating?: Float;
@@ -1009,6 +1020,7 @@ export interface UserCreateWithoutReviewListInput {
   username: String;
   password: String;
   email: String;
+  userProfileImage?: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
 }
@@ -1042,6 +1054,7 @@ export interface UserUpdateDataInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
@@ -1299,7 +1312,7 @@ export interface ProjectUpdateWithWhereUniqueNestedInput {
 export interface ProjectUpdateDataInput {
   name?: String;
   category?: String;
-  timestamp?: String;
+  timestamp?: DateTimeInput;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1408,6 +1421,7 @@ export interface UserUpdateWithoutReviewListDataInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
 }
@@ -1548,20 +1562,14 @@ export interface ProjectScalarWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: String;
-  timestamp_not?: String;
-  timestamp_in?: String[] | String;
-  timestamp_not_in?: String[] | String;
-  timestamp_lt?: String;
-  timestamp_lte?: String;
-  timestamp_gt?: String;
-  timestamp_gte?: String;
-  timestamp_contains?: String;
-  timestamp_not_contains?: String;
-  timestamp_starts_with?: String;
-  timestamp_not_starts_with?: String;
-  timestamp_ends_with?: String;
-  timestamp_not_ends_with?: String;
+  timestamp?: DateTimeInput;
+  timestamp_not?: DateTimeInput;
+  timestamp_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_lt?: DateTimeInput;
+  timestamp_lte?: DateTimeInput;
+  timestamp_gt?: DateTimeInput;
+  timestamp_gte?: DateTimeInput;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -1625,7 +1633,7 @@ export interface ProjectUpdateManyWithWhereNestedInput {
 export interface ProjectUpdateManyDataInput {
   name?: String;
   category?: String;
-  timestamp?: String;
+  timestamp?: DateTimeInput;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1665,7 +1673,7 @@ export interface PrivilegesUpdateManyMutationInput {
 export interface ProjectUpdateInput {
   name?: String;
   category?: String;
-  timestamp?: String;
+  timestamp?: DateTimeInput;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1677,7 +1685,7 @@ export interface ProjectUpdateInput {
 export interface ProjectUpdateManyMutationInput {
   name?: String;
   category?: String;
-  timestamp?: String;
+  timestamp?: DateTimeInput;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1716,6 +1724,7 @@ export interface UserUpdateInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
@@ -1728,6 +1737,7 @@ export interface UserUpdateManyMutationInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
 }
 
 export interface CommentSubscriptionWhereInput {
@@ -1841,6 +1851,7 @@ export interface User {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1851,6 +1862,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
+  userProfileImage: () => Promise<String>;
   ReviewList: <T = FragmentableArray<Review>>(
     args?: {
       where?: ReviewWhereInput;
@@ -1896,6 +1908,7 @@ export interface UserSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
   ReviewList: <T = Promise<AsyncIterator<ReviewSubscription>>>(
     args?: {
       where?: ReviewWhereInput;
@@ -1991,7 +2004,7 @@ export interface Project {
   id: ID_Output;
   name: String;
   category: String;
-  timestamp: String;
+  timestamp: DateTimeOutput;
   titleImg: String;
   titleBlurb: String;
   rating: Float;
@@ -2002,7 +2015,7 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   category: () => Promise<String>;
-  timestamp: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
@@ -2037,7 +2050,7 @@ export interface ProjectSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
@@ -2710,7 +2723,7 @@ export interface ProjectPreviousValues {
   id: ID_Output;
   name: String;
   category: String;
-  timestamp: String;
+  timestamp: DateTimeOutput;
   titleImg: String;
   titleBlurb: String;
   rating: Float;
@@ -2723,7 +2736,7 @@ export interface ProjectPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   category: () => Promise<String>;
-  timestamp: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
@@ -2736,7 +2749,7 @@ export interface ProjectPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
@@ -2879,6 +2892,7 @@ export interface UserPreviousValues {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -2891,6 +2905,7 @@ export interface UserPreviousValuesPromise
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
+  userProfileImage: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -2903,6 +2918,7 @@ export interface UserPreviousValuesSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
 }
 
 /*
