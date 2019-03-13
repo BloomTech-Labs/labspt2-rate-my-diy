@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import Nav from './components/nav/nav';
-import SearchBar from './components/searchbar/searchbar.js';
 import Footer from './components/footer/footer';
 import ExampleQuery from './examples/exampleQuery';
+import LandingPage from './views/landingPage/landingPage.js';
 
 class App extends Component {
 	render() {
 		return (
-			<div className='App'>
+			<div className="App">
 				<Nav />
-				<SearchBar />
+				<LandingPage />
 				<ExampleQuery />
 				<Footer />
 			</div>
