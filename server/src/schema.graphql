@@ -6,7 +6,7 @@ type Query {
   getProjectById: Project!
   getReviews: [Review!]!
   getReviewById(id: ID!): Review!
-  getStars: [Stars!]!
+  # getStars: [Stars!]!
   getPrivileges: [Privilege!]!
   getBios: [Bio!]!
   getBioById: Bio!
@@ -30,7 +30,7 @@ type User {
  ReviewList: [Review!]!
 #  Bio: Bio
 # enum data type required for Bio
- Billing: [Billing!]!
+#  Billing: [Billing!]!
 }
 
 type Project {

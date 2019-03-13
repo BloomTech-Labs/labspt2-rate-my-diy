@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import Nav from './components/nav/nav';
-//import SearchBar from './components/searchbar/searchbar.js';
 import Footer from './components/footer/footer';
-import ExampleQuery from './examples/exampleQuery';
+import { Route } from 'react-router-dom';
+//Views below here
+import Login from './views/loginPage/login';
 
 class App extends Component {
 	render() {
 		return (
 			<div className='App'>
-				<Nav />
-				
-				<ExampleQuery />
-				<Footer />
+				<Route path='/' component={Nav} />
+				<Route path='/login' exact component={Login} />
+				<Route path='/' component={Footer} />
 			</div>
 		);
 	}
 }
+
+// please update your components and Routes as needed
 
 export default App;
