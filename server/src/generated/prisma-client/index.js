@@ -5,10 +5,6 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "Stars",
-    embedded: false
-  },
-  {
     name: "Privileges",
     embedded: false
   },
@@ -35,15 +31,11 @@ var models = [
   {
     name: "Privilege",
     embedded: false
-  },
-  {
-    name: "Billing",
-    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/production`
+  endpoint: `https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev`
 });
 exports.prisma = new exports.Prisma();

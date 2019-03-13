@@ -14,7 +14,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(username: String!, password: String!, email: String!): User!
+  createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
 }
 
 type User {
@@ -25,6 +25,7 @@ type User {
  username: String! 
  password: String  
  email: String!
+ userProfileImage: String!
  Projects: [Project!]! 
  Privileges: [Privilege!]!
  ReviewList: [Review!]!
@@ -38,14 +39,14 @@ type Project {
  name: String!
  category: String!
  timestamp: String!
- editedAt: String!
  titleImg: String!
  titleBlurb: String!
- Author: User!
- Stars: Stars
+ rating: Float!
+ authorName: String!
  Steps: [StepArray!]!
- Reviews: [Review!]
+ Reviews:[Review!]!
 }
+  
 
 type Privilege {
   isModerator:Boolean!
@@ -79,18 +80,7 @@ type Bio {
   location: String
 }
 
-type Stars {
-  number: Float!
-}
-
 type StepArray {
   textBlurbs: String
   imgUrls: String
-}
-
-type Billing {
-  amtPaid: Float!
-  datePaid: String!
-  orderNumber: Int!
-  description: String!
 }

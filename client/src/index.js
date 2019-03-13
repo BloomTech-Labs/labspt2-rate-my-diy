@@ -7,7 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
-	uri: 'https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/production',
+	uri: 'https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev',
 });
 
 ReactDOM.render(
