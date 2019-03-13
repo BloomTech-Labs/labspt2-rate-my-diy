@@ -26,10 +26,28 @@
 
 //conditionally render ability to share project and rate projects
 
+//recheck wireframe
+
 //make and run tests?
 
 //stretch- make functional 'sliding' display for UI cards
 
 import React, { Component } from 'react';
+import SearchBar from '../../components/searchbar/searchbar.js';
+
 import FeaturedAndMakers from '../../components/featureProject/featureProject.js';
 import PopularReviewerCard from '../../components/popularReviewers.js';
+
+class LandingPage extends Component {
+	constructor() {
+		super();
+		this.state = {};
+	}
+	render() {
+		return (
+			<div>
+				<SearchBar />
+			</div>
+		);
+	}
+}
