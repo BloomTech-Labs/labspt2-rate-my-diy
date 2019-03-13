@@ -19,7 +19,7 @@ const Mutation = {
             plan: process.env.STRIPE_PLAN_ID
         });
         user.stripeId = customer.id;
-        user.type = "standard";
+        user.type = "standard-tier";
         await user.save();
         return user;
     }

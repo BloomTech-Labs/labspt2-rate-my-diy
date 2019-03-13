@@ -1,7 +1,7 @@
 # The HTTP endpoint for your Prisma API
 # This endpoint is our current production server. If you need to deploy comment this endpoint and uncomment the one that is empty 
-#endpoint: ''
-endpoint: https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev
+endpoint: 'https://guarded-beach-26773.herokuapp.com/'
+# endpoint: https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev
 
 # Add any other deployment links under here to keep it clean
 
