@@ -80,11 +80,11 @@ class LandingPage extends Component {
 									<FeaturedAndMakers
 										type="featured"
 										key={id}
-										Image={titleImg}
-										Stars={rating}
-										Title={name}
+										image={titleImg}
+										stars={rating}
+										title={name}
 										// below might need to be edited
-										User={authorName}
+										user={authorName}
 									/>
 								)
 							);

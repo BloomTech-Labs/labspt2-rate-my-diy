@@ -1,14 +1,12 @@
 import React from 'react';
 import '../cards/card.scss';
 
-function FeaturedAndMakers(Props) {
+function FeaturedAndMakers(props) {
 	return (
 		<div className="card">
-			<p>Props.Image</p>
-			<p>Props.Stars</p>
-
-			{Props.type === 'featured' ? <p>Props.Title</p> : null}
-			<p>Props.User</p>
+			{props.type === 'featured' ? <p>{props.title}</p> : null}
+			<p>{props.user}</p>
+			<p>{props.stars}</p>
 		</div>
 	);
 }
