@@ -1,7 +1,7 @@
 import React from 'react';
 import '../cards/card.scss';
 
-function PopularCard() {
+function PopularReviewerCard() {
 	return (
 		<div className="card">
 			<p>Props.Image</p>
@@ -10,4 +10,4 @@ function PopularCard() {
 	);
 }
 
-export default PopularCard;
+export default PopularReviewerCard;

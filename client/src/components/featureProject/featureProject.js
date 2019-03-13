@@ -1,7 +1,7 @@
 import React from 'react';
 import '../cards/card.scss';
 
-function Featured() {
+function FeaturedAndMakers() {
 	return (
 		<div className="card">
 			<p>Props.Image</p>
@@ -13,4 +13,4 @@ function Featured() {
 	);
 }
 
-export default Featured;
+export default FeaturedAndMakers;
