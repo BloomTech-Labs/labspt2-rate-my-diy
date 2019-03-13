@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './components/nav/nav';
 import Footer from './components/footer/footer';
+import Stripe from './components/stripe/stripe';
 import { Route } from 'react-router-dom';
 //Views below here
 import Login from './views/loginPage/login';
@@ -11,6 +12,7 @@ class App extends Component {
 			<div className='App'>
 				<Route path='/' component={Nav} />
 				<Route path='/login' exact component={Login} />
+				<Route path='/subscribe' component={Stripe} />
 				<Route path='/' component={Footer} />
 			</div>
 		);

@@ -1532,6 +1532,8 @@ type User {
   ReviewList(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
   Projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
   Privileges(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privilege!]
+  stripeId: String
+  accountType: String!
 }
 
 type UserConnection {
@@ -1550,6 +1552,8 @@ input UserCreateInput {
   ReviewList: ReviewCreateManyWithoutAuthorInput
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
+  stripeId: String
+  accountType: String
 }
 
 input UserCreateOneInput {
@@ -1571,6 +1575,8 @@ input UserCreateWithoutReviewListInput {
   email: String!
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
+  stripeId: String
+  accountType: String
 }
 
 type UserEdge {
@@ -1593,6 +1599,10 @@ enum UserOrderByInput {
   password_DESC
   email_ASC
   email_DESC
+  stripeId_ASC
+  stripeId_DESC
+  accountType_ASC
+  accountType_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1607,6 +1617,8 @@ type UserPreviousValues {
   username: String!
   password: String!
   email: String!
+  stripeId: String
+  accountType: String!
 }
 
 type UserSubscriptionPayload {
@@ -1637,6 +1649,8 @@ input UserUpdateDataInput {
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   Projects: ProjectUpdateManyInput
   Privileges: PrivilegeUpdateManyInput
+  stripeId: String
+  accountType: String
 }
 
 input UserUpdateInput {
@@ -1649,6 +1663,8 @@ input UserUpdateInput {
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   Projects: ProjectUpdateManyInput
   Privileges: PrivilegeUpdateManyInput
+  stripeId: String
+  accountType: String
 }
 
 input UserUpdateManyMutationInput {
@@ -1658,6 +1674,8 @@ input UserUpdateManyMutationInput {
   username: String
   password: String
   email: String
+  stripeId: String
+  accountType: String
 }
 
 input UserUpdateOneRequiredInput {
@@ -1683,6 +1701,8 @@ input UserUpdateWithoutReviewListDataInput {
   email: String
   Projects: ProjectUpdateManyInput
   Privileges: PrivilegeUpdateManyInput
+  stripeId: String
+  accountType: String
 }
 
 input UserUpsertNestedInput {
@@ -1791,6 +1811,34 @@ input UserWhereInput {
   Privileges_every: PrivilegeWhereInput
   Privileges_some: PrivilegeWhereInput
   Privileges_none: PrivilegeWhereInput
+  stripeId: String
+  stripeId_not: String
+  stripeId_in: [String!]
+  stripeId_not_in: [String!]
+  stripeId_lt: String
+  stripeId_lte: String
+  stripeId_gt: String
+  stripeId_gte: String
+  stripeId_contains: String
+  stripeId_not_contains: String
+  stripeId_starts_with: String
+  stripeId_not_starts_with: String
+  stripeId_ends_with: String
+  stripeId_not_ends_with: String
+  accountType: String
+  accountType_not: String
+  accountType_in: [String!]
+  accountType_not_in: [String!]
+  accountType_lt: String
+  accountType_lte: String
+  accountType_gt: String
+  accountType_gte: String
+  accountType_contains: String
+  accountType_not_contains: String
+  accountType_starts_with: String
+  accountType_not_starts_with: String
+  accountType_ends_with: String
+  accountType_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

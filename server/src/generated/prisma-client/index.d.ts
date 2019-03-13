@@ -451,6 +451,10 @@ export type UserOrderByInput =
   | "password_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "stripeId_ASC"
+  | "stripeId_DESC"
+  | "accountType_ASC"
+  | "accountType_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -569,6 +573,34 @@ export interface UserWhereInput {
   Privileges_every?: PrivilegeWhereInput;
   Privileges_some?: PrivilegeWhereInput;
   Privileges_none?: PrivilegeWhereInput;
+  stripeId?: String;
+  stripeId_not?: String;
+  stripeId_in?: String[] | String;
+  stripeId_not_in?: String[] | String;
+  stripeId_lt?: String;
+  stripeId_lte?: String;
+  stripeId_gt?: String;
+  stripeId_gte?: String;
+  stripeId_contains?: String;
+  stripeId_not_contains?: String;
+  stripeId_starts_with?: String;
+  stripeId_not_starts_with?: String;
+  stripeId_ends_with?: String;
+  stripeId_not_ends_with?: String;
+  accountType?: String;
+  accountType_not?: String;
+  accountType_in?: String[] | String;
+  accountType_not_in?: String[] | String;
+  accountType_lt?: String;
+  accountType_lte?: String;
+  accountType_gt?: String;
+  accountType_gte?: String;
+  accountType_contains?: String;
+  accountType_not_contains?: String;
+  accountType_starts_with?: String;
+  accountType_not_starts_with?: String;
+  accountType_ends_with?: String;
+  accountType_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -812,6 +844,8 @@ export interface UserUpdateWithoutReviewListDataInput {
   email?: String;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface CommentCreateManyInput {
@@ -891,6 +925,8 @@ export interface UserUpdateManyMutationInput {
   username?: String;
   password?: String;
   email?: String;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface ReviewCreateManyInput {
@@ -908,6 +944,8 @@ export interface UserUpdateInput {
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface ReviewCreateInput {
@@ -955,6 +993,8 @@ export interface UserCreateWithoutReviewListInput {
   email: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface ProjectUpdateInput {
@@ -1021,6 +1061,8 @@ export interface UserUpdateDataInput {
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface ProjectUpdateManyWithWhereNestedInput {
@@ -1157,6 +1199,8 @@ export interface UserCreateInput {
   ReviewList?: ReviewCreateManyWithoutAuthorInput;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface ProjectWhereInput {
@@ -1819,6 +1863,8 @@ export interface UserPreviousValues {
   username: String;
   password: String;
   email: String;
+  stripeId?: String;
+  accountType: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -1831,6 +1877,8 @@ export interface UserPreviousValuesPromise
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
+  stripeId: () => Promise<String>;
+  accountType: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -1843,6 +1891,8 @@ export interface UserPreviousValuesSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  stripeId: () => Promise<AsyncIterator<String>>;
+  accountType: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PrivilegeEdge {
@@ -2815,6 +2865,8 @@ export interface User {
   username: String;
   password: String;
   email: String;
+  stripeId?: String;
+  accountType: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -2858,6 +2910,8 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  stripeId: () => Promise<String>;
+  accountType: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -2903,6 +2957,8 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
+  stripeId: () => Promise<AsyncIterator<String>>;
+  accountType: () => Promise<AsyncIterator<String>>;
 }
 
 /*

@@ -15,6 +15,7 @@ type Query {
 
 type Mutation {
   createUser(username: String!, password: String!, email: String!): User!
+  createSubscription(source: String!): User
 }
 
 type User {
@@ -28,6 +29,8 @@ type User {
  Projects: [Project!]! 
  Privileges: [Privilege!]!
  ReviewList: [Review!]!
+ stripeId: String
+ accountType: String!
 #  Bio: Bio
 # enum data type required for Bio
 #  Billing: [Billing!]!
