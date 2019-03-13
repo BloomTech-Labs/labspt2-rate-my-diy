@@ -14,13 +14,11 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  billing: (where?: BillingWhereInput) => Promise<boolean>;
   comment: (where?: CommentWhereInput) => Promise<boolean>;
   privilege: (where?: PrivilegeWhereInput) => Promise<boolean>;
   privileges: (where?: PrivilegesWhereInput) => Promise<boolean>;
   project: (where?: ProjectWhereInput) => Promise<boolean>;
   review: (where?: ReviewWhereInput) => Promise<boolean>;
-  stars: (where?: StarsWhereInput) => Promise<boolean>;
   stepArray: (where?: StepArrayWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
@@ -44,28 +42,6 @@ export interface Prisma {
    * Queries
    */
 
-  billings: (
-    args?: {
-      where?: BillingWhereInput;
-      orderBy?: BillingOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Billing>;
-  billingsConnection: (
-    args?: {
-      where?: BillingWhereInput;
-      orderBy?: BillingOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => BillingConnectionPromise;
   comment: (where: CommentWhereUniqueInput) => CommentPromise;
   comments: (
     args?: {
@@ -180,28 +156,6 @@ export interface Prisma {
       last?: Int;
     }
   ) => ReviewConnectionPromise;
-  starses: (
-    args?: {
-      where?: StarsWhereInput;
-      orderBy?: StarsOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Stars>;
-  starsesConnection: (
-    args?: {
-      where?: StarsWhereInput;
-      orderBy?: StarsOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => StarsConnectionPromise;
   stepArrays: (
     args?: {
       where?: StepArrayWhereInput;
@@ -253,11 +207,6 @@ export interface Prisma {
    * Mutations
    */
 
-  createBilling: (data: BillingCreateInput) => BillingPromise;
-  updateManyBillings: (
-    args: { data: BillingUpdateManyMutationInput; where?: BillingWhereInput }
-  ) => BatchPayloadPromise;
-  deleteManyBillings: (where?: BillingWhereInput) => BatchPayloadPromise;
   createComment: (data: CommentCreateInput) => CommentPromise;
   updateComment: (
     args: { data: CommentUpdateInput; where: CommentWhereUniqueInput }
@@ -333,11 +282,6 @@ export interface Prisma {
   ) => ReviewPromise;
   deleteReview: (where: ReviewWhereUniqueInput) => ReviewPromise;
   deleteManyReviews: (where?: ReviewWhereInput) => BatchPayloadPromise;
-  createStars: (data: StarsCreateInput) => StarsPromise;
-  updateManyStarses: (
-    args: { data: StarsUpdateManyMutationInput; where?: StarsWhereInput }
-  ) => BatchPayloadPromise;
-  deleteManyStarses: (where?: StarsWhereInput) => BatchPayloadPromise;
   createStepArray: (data: StepArrayCreateInput) => StepArrayPromise;
   updateManyStepArrays: (
     args: {
@@ -371,9 +315,6 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  billing: (
-    where?: BillingSubscriptionWhereInput
-  ) => BillingSubscriptionPayloadSubscription;
   comment: (
     where?: CommentSubscriptionWhereInput
   ) => CommentSubscriptionPayloadSubscription;
@@ -389,9 +330,6 @@ export interface Subscription {
   review: (
     where?: ReviewSubscriptionWhereInput
   ) => ReviewSubscriptionPayloadSubscription;
-  stars: (
-    where?: StarsSubscriptionWhereInput
-  ) => StarsSubscriptionPayloadSubscription;
   stepArray: (
     where?: StepArraySubscriptionWhereInput
   ) => StepArraySubscriptionPayloadSubscription;
@@ -408,22 +346,6 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type BillingOrderByInput =
-  | "amtPaid_ASC"
-  | "amtPaid_DESC"
-  | "DatePaid_ASC"
-  | "DatePaid_DESC"
-  | "OrderNumber_ASC"
-  | "OrderNumber_DESC"
-  | "Description_ASC"
-  | "Description_DESC"
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type ReviewOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -433,6 +355,8 @@ export type ReviewOrderByInput =
   | "text_DESC"
   | "editedAt_ASC"
   | "editedAt_DESC"
+  | "rating_ASC"
+  | "rating_DESC"
   | "reviewThumbsUp_ASC"
   | "reviewThumbsUp_DESC"
   | "reviewThumbsDown_ASC"
@@ -463,12 +387,16 @@ export type ProjectOrderByInput =
   | "category_DESC"
   | "timestamp_ASC"
   | "timestamp_DESC"
-  | "EditedAt_ASC"
-  | "EditedAt_DESC"
+  | "editedAt_ASC"
+  | "editedAt_DESC"
   | "titleImg_ASC"
   | "titleImg_DESC"
   | "titleBlurb_ASC"
   | "titleBlurb_DESC"
+  | "rating_ASC"
+  | "rating_DESC"
+  | "authorName_ASC"
+  | "authorName_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -510,16 +438,6 @@ export type PrivilegesOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type StarsOrderByInput =
-  | "number_ASC"
-  | "number_DESC"
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -541,56 +459,6 @@ export type UserOrderByInput =
   | "updatedAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
-export interface BillingWhereInput {
-  amtPaid?: Float;
-  amtPaid_not?: Float;
-  amtPaid_in?: Float[] | Float;
-  amtPaid_not_in?: Float[] | Float;
-  amtPaid_lt?: Float;
-  amtPaid_lte?: Float;
-  amtPaid_gt?: Float;
-  amtPaid_gte?: Float;
-  DatePaid?: String;
-  DatePaid_not?: String;
-  DatePaid_in?: String[] | String;
-  DatePaid_not_in?: String[] | String;
-  DatePaid_lt?: String;
-  DatePaid_lte?: String;
-  DatePaid_gt?: String;
-  DatePaid_gte?: String;
-  DatePaid_contains?: String;
-  DatePaid_not_contains?: String;
-  DatePaid_starts_with?: String;
-  DatePaid_not_starts_with?: String;
-  DatePaid_ends_with?: String;
-  DatePaid_not_ends_with?: String;
-  OrderNumber?: Int;
-  OrderNumber_not?: Int;
-  OrderNumber_in?: Int[] | Int;
-  OrderNumber_not_in?: Int[] | Int;
-  OrderNumber_lt?: Int;
-  OrderNumber_lte?: Int;
-  OrderNumber_gt?: Int;
-  OrderNumber_gte?: Int;
-  Description?: String;
-  Description_not?: String;
-  Description_in?: String[] | String;
-  Description_not_in?: String[] | String;
-  Description_lt?: String;
-  Description_lte?: String;
-  Description_gt?: String;
-  Description_gte?: String;
-  Description_contains?: String;
-  Description_not_contains?: String;
-  Description_starts_with?: String;
-  Description_not_starts_with?: String;
-  Description_ends_with?: String;
-  Description_not_ends_with?: String;
-  AND?: BillingWhereInput[] | BillingWhereInput;
-  OR?: BillingWhereInput[] | BillingWhereInput;
-  NOT?: BillingWhereInput[] | BillingWhereInput;
-}
 
 export type CommentWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
@@ -653,6 +521,14 @@ export interface ReviewWhereInput {
   editedAt_not_starts_with?: String;
   editedAt_ends_with?: String;
   editedAt_not_ends_with?: String;
+  rating?: Float;
+  rating_not?: Float;
+  rating_in?: Float[] | Float;
+  rating_not_in?: Float[] | Float;
+  rating_lt?: Float;
+  rating_lte?: Float;
+  rating_gt?: Float;
+  rating_gte?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsUp_not?: Int;
   reviewThumbsUp_in?: Int[] | Int;
@@ -673,7 +549,6 @@ export interface ReviewWhereInput {
   Comments_some?: CommentWhereInput;
   Comments_none?: CommentWhereInput;
   Author?: UserWhereInput;
-  Stars?: StarsWhereInput;
   AND?: ReviewWhereInput[] | ReviewWhereInput;
   OR?: ReviewWhereInput[] | ReviewWhereInput;
   NOT?: ReviewWhereInput[] | ReviewWhereInput;
@@ -812,9 +687,6 @@ export interface UserWhereInput {
   ReviewList_every?: ReviewWhereInput;
   ReviewList_some?: ReviewWhereInput;
   ReviewList_none?: ReviewWhereInput;
-  Billing_every?: BillingWhereInput;
-  Billing_some?: BillingWhereInput;
-  Billing_none?: BillingWhereInput;
   Projects_every?: ProjectWhereInput;
   Projects_some?: ProjectWhereInput;
   Projects_none?: ProjectWhereInput;
@@ -877,20 +749,20 @@ export interface ProjectWhereInput {
   timestamp_lte?: DateTimeInput;
   timestamp_gt?: DateTimeInput;
   timestamp_gte?: DateTimeInput;
-  EditedAt?: String;
-  EditedAt_not?: String;
-  EditedAt_in?: String[] | String;
-  EditedAt_not_in?: String[] | String;
-  EditedAt_lt?: String;
-  EditedAt_lte?: String;
-  EditedAt_gt?: String;
-  EditedAt_gte?: String;
-  EditedAt_contains?: String;
-  EditedAt_not_contains?: String;
-  EditedAt_starts_with?: String;
-  EditedAt_not_starts_with?: String;
-  EditedAt_ends_with?: String;
-  EditedAt_not_ends_with?: String;
+  editedAt?: String;
+  editedAt_not?: String;
+  editedAt_in?: String[] | String;
+  editedAt_not_in?: String[] | String;
+  editedAt_lt?: String;
+  editedAt_lte?: String;
+  editedAt_gt?: String;
+  editedAt_gte?: String;
+  editedAt_contains?: String;
+  editedAt_not_contains?: String;
+  editedAt_starts_with?: String;
+  editedAt_not_starts_with?: String;
+  editedAt_ends_with?: String;
+  editedAt_not_ends_with?: String;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -919,32 +791,37 @@ export interface ProjectWhereInput {
   titleBlurb_not_starts_with?: String;
   titleBlurb_ends_with?: String;
   titleBlurb_not_ends_with?: String;
-  Stars?: StarsWhereInput;
-  Author?: UserWhereInput;
+  rating?: Float;
+  rating_not?: Float;
+  rating_in?: Float[] | Float;
+  rating_not_in?: Float[] | Float;
+  rating_lt?: Float;
+  rating_lte?: Float;
+  rating_gt?: Float;
+  rating_gte?: Float;
+  authorName?: String;
+  authorName_not?: String;
+  authorName_in?: String[] | String;
+  authorName_not_in?: String[] | String;
+  authorName_lt?: String;
+  authorName_lte?: String;
+  authorName_gt?: String;
+  authorName_gte?: String;
+  authorName_contains?: String;
+  authorName_not_contains?: String;
+  authorName_starts_with?: String;
+  authorName_not_starts_with?: String;
+  authorName_ends_with?: String;
+  authorName_not_ends_with?: String;
   Steps_every?: StepArrayWhereInput;
   Steps_some?: StepArrayWhereInput;
   Steps_none?: StepArrayWhereInput;
   Reviews_every?: ReviewWhereInput;
   Reviews_some?: ReviewWhereInput;
   Reviews_none?: ReviewWhereInput;
-  user?: UserWhereInput;
   AND?: ProjectWhereInput[] | ProjectWhereInput;
   OR?: ProjectWhereInput[] | ProjectWhereInput;
   NOT?: ProjectWhereInput[] | ProjectWhereInput;
-}
-
-export interface StarsWhereInput {
-  number?: Float;
-  number_not?: Float;
-  number_in?: Float[] | Float;
-  number_not_in?: Float[] | Float;
-  number_lt?: Float;
-  number_lte?: Float;
-  number_gt?: Float;
-  number_gte?: Float;
-  AND?: StarsWhereInput[] | StarsWhereInput;
-  OR?: StarsWhereInput[] | StarsWhereInput;
-  NOT?: StarsWhereInput[] | StarsWhereInput;
 }
 
 export interface StepArrayWhereInput {
@@ -1045,20 +922,6 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: String;
 }>;
 
-export interface BillingCreateInput {
-  amtPaid?: Float;
-  DatePaid?: String;
-  OrderNumber?: Int;
-  Description?: String;
-}
-
-export interface BillingUpdateManyMutationInput {
-  amtPaid?: Float;
-  DatePaid?: String;
-  OrderNumber?: Int;
-  Description?: String;
-}
-
 export interface CommentCreateInput {
   editedAt: DateTimeInput;
   text: String;
@@ -1078,8 +941,7 @@ export interface UserCreateInput {
   password: String;
   email: String;
   ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  Billing?: BillingCreateManyInput;
-  Projects?: ProjectCreateManyWithoutUserInput;
+  Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
 }
 
@@ -1092,10 +954,10 @@ export interface ReviewCreateWithoutAuthorInput {
   title: String;
   text: String;
   editedAt: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
   Comments?: CommentCreateManyInput;
-  Stars?: StarsCreateOneInput;
 }
 
 export interface CommentCreateManyInput {
@@ -1103,32 +965,20 @@ export interface CommentCreateManyInput {
   connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
 }
 
-export interface StarsCreateOneInput {
-  create?: StarsCreateInput;
-}
-
-export interface StarsCreateInput {
-  number?: Float;
-}
-
-export interface BillingCreateManyInput {
-  create?: BillingCreateInput[] | BillingCreateInput;
-}
-
-export interface ProjectCreateManyWithoutUserInput {
-  create?: ProjectCreateWithoutUserInput[] | ProjectCreateWithoutUserInput;
+export interface ProjectCreateManyInput {
+  create?: ProjectCreateInput[] | ProjectCreateInput;
   connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
 }
 
-export interface ProjectCreateWithoutUserInput {
+export interface ProjectCreateInput {
   name: String;
   category: String;
   timestamp: DateTimeInput;
-  EditedAt: String;
+  editedAt: String;
   titleImg: String;
   titleBlurb: String;
-  Stars?: StarsCreateOneInput;
-  Author: UserCreateOneInput;
+  rating?: Float;
+  authorName: String;
   Steps?: StepArrayCreateManyInput;
   Reviews?: ReviewCreateManyInput;
 }
@@ -1151,11 +1001,11 @@ export interface ReviewCreateInput {
   title: String;
   text: String;
   editedAt: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
   Comments?: CommentCreateManyInput;
   Author: UserCreateOneWithoutReviewListInput;
-  Stars?: StarsCreateOneInput;
 }
 
 export interface UserCreateOneWithoutReviewListInput {
@@ -1170,8 +1020,7 @@ export interface UserCreateWithoutReviewListInput {
   username: String;
   password: String;
   email: String;
-  Billing?: BillingCreateManyInput;
-  Projects?: ProjectCreateManyWithoutUserInput;
+  Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
 }
 
@@ -1205,8 +1054,7 @@ export interface UserUpdateDataInput {
   password?: String;
   email?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Billing?: BillingUpdateManyInput;
-  Projects?: ProjectUpdateManyWithoutUserInput;
+  Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
 }
 
@@ -1237,10 +1085,10 @@ export interface ReviewUpdateWithoutAuthorDataInput {
   title?: String;
   text?: String;
   editedAt?: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
   Comments?: CommentUpdateManyInput;
-  Stars?: StarsUpdateOneInput;
 }
 
 export interface CommentUpdateManyInput {
@@ -1330,23 +1178,6 @@ export interface CommentUpdateManyDataInput {
   text?: String;
 }
 
-export interface StarsUpdateOneInput {
-  create?: StarsCreateInput;
-  update?: StarsUpdateDataInput;
-  upsert?: StarsUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-}
-
-export interface StarsUpdateDataInput {
-  number?: Float;
-}
-
-export interface StarsUpsertNestedInput {
-  update: StarsUpdateDataInput;
-  create: StarsCreateInput;
-}
-
 export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
   where: ReviewWhereUniqueInput;
   update: ReviewUpdateWithoutAuthorDataInput;
@@ -1410,6 +1241,14 @@ export interface ReviewScalarWhereInput {
   editedAt_not_starts_with?: String;
   editedAt_ends_with?: String;
   editedAt_not_ends_with?: String;
+  rating?: Float;
+  rating_not?: Float;
+  rating_in?: Float[] | Float;
+  rating_not_in?: Float[] | Float;
+  rating_lt?: Float;
+  rating_lte?: Float;
+  rating_gt?: Float;
+  rating_gte?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsUp_not?: Int;
   reviewThumbsUp_in?: Int[] | Int;
@@ -1440,112 +1279,43 @@ export interface ReviewUpdateManyDataInput {
   title?: String;
   text?: String;
   editedAt?: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
 }
 
-export interface BillingUpdateManyInput {
-  create?: BillingCreateInput[] | BillingCreateInput;
-  deleteMany?: BillingScalarWhereInput[] | BillingScalarWhereInput;
-  updateMany?:
-    | BillingUpdateManyWithWhereNestedInput[]
-    | BillingUpdateManyWithWhereNestedInput;
-}
-
-export interface BillingScalarWhereInput {
-  amtPaid?: Float;
-  amtPaid_not?: Float;
-  amtPaid_in?: Float[] | Float;
-  amtPaid_not_in?: Float[] | Float;
-  amtPaid_lt?: Float;
-  amtPaid_lte?: Float;
-  amtPaid_gt?: Float;
-  amtPaid_gte?: Float;
-  DatePaid?: String;
-  DatePaid_not?: String;
-  DatePaid_in?: String[] | String;
-  DatePaid_not_in?: String[] | String;
-  DatePaid_lt?: String;
-  DatePaid_lte?: String;
-  DatePaid_gt?: String;
-  DatePaid_gte?: String;
-  DatePaid_contains?: String;
-  DatePaid_not_contains?: String;
-  DatePaid_starts_with?: String;
-  DatePaid_not_starts_with?: String;
-  DatePaid_ends_with?: String;
-  DatePaid_not_ends_with?: String;
-  OrderNumber?: Int;
-  OrderNumber_not?: Int;
-  OrderNumber_in?: Int[] | Int;
-  OrderNumber_not_in?: Int[] | Int;
-  OrderNumber_lt?: Int;
-  OrderNumber_lte?: Int;
-  OrderNumber_gt?: Int;
-  OrderNumber_gte?: Int;
-  Description?: String;
-  Description_not?: String;
-  Description_in?: String[] | String;
-  Description_not_in?: String[] | String;
-  Description_lt?: String;
-  Description_lte?: String;
-  Description_gt?: String;
-  Description_gte?: String;
-  Description_contains?: String;
-  Description_not_contains?: String;
-  Description_starts_with?: String;
-  Description_not_starts_with?: String;
-  Description_ends_with?: String;
-  Description_not_ends_with?: String;
-  AND?: BillingScalarWhereInput[] | BillingScalarWhereInput;
-  OR?: BillingScalarWhereInput[] | BillingScalarWhereInput;
-  NOT?: BillingScalarWhereInput[] | BillingScalarWhereInput;
-}
-
-export interface BillingUpdateManyWithWhereNestedInput {
-  where: BillingScalarWhereInput;
-  data: BillingUpdateManyDataInput;
-}
-
-export interface BillingUpdateManyDataInput {
-  amtPaid?: Float;
-  DatePaid?: String;
-  OrderNumber?: Int;
-  Description?: String;
-}
-
-export interface ProjectUpdateManyWithoutUserInput {
-  create?: ProjectCreateWithoutUserInput[] | ProjectCreateWithoutUserInput;
+export interface ProjectUpdateManyInput {
+  create?: ProjectCreateInput[] | ProjectCreateInput;
+  update?:
+    | ProjectUpdateWithWhereUniqueNestedInput[]
+    | ProjectUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ProjectUpsertWithWhereUniqueNestedInput[]
+    | ProjectUpsertWithWhereUniqueNestedInput;
   delete?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
   connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
   set?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
   disconnect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-  update?:
-    | ProjectUpdateWithWhereUniqueWithoutUserInput[]
-    | ProjectUpdateWithWhereUniqueWithoutUserInput;
-  upsert?:
-    | ProjectUpsertWithWhereUniqueWithoutUserInput[]
-    | ProjectUpsertWithWhereUniqueWithoutUserInput;
   deleteMany?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
   updateMany?:
     | ProjectUpdateManyWithWhereNestedInput[]
     | ProjectUpdateManyWithWhereNestedInput;
 }
 
-export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
+export interface ProjectUpdateWithWhereUniqueNestedInput {
   where: ProjectWhereUniqueInput;
-  data: ProjectUpdateWithoutUserDataInput;
+  data: ProjectUpdateDataInput;
 }
 
-export interface ProjectUpdateWithoutUserDataInput {
+export interface ProjectUpdateDataInput {
   name?: String;
   category?: String;
   timestamp?: DateTimeInput;
-  EditedAt?: String;
+  editedAt?: String;
   titleImg?: String;
   titleBlurb?: String;
-  Stars?: StarsUpdateOneInput;
-  Author?: UserUpdateOneRequiredInput;
+  rating?: Float;
+  authorName?: String;
   Steps?: StepArrayUpdateManyInput;
   Reviews?: ReviewUpdateManyInput;
 }
@@ -1629,11 +1399,11 @@ export interface ReviewUpdateDataInput {
   title?: String;
   text?: String;
   editedAt?: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
   Comments?: CommentUpdateManyInput;
   Author?: UserUpdateOneRequiredWithoutReviewListInput;
-  Stars?: StarsUpdateOneInput;
 }
 
 export interface UserUpdateOneRequiredWithoutReviewListInput {
@@ -1650,8 +1420,7 @@ export interface UserUpdateWithoutReviewListDataInput {
   username?: String;
   password?: String;
   email?: String;
-  Billing?: BillingUpdateManyInput;
-  Projects?: ProjectUpdateManyWithoutUserInput;
+  Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
 }
 
@@ -1742,10 +1511,10 @@ export interface ReviewUpsertWithWhereUniqueNestedInput {
   create: ReviewCreateInput;
 }
 
-export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
+export interface ProjectUpsertWithWhereUniqueNestedInput {
   where: ProjectWhereUniqueInput;
-  update: ProjectUpdateWithoutUserDataInput;
-  create: ProjectCreateWithoutUserInput;
+  update: ProjectUpdateDataInput;
+  create: ProjectCreateInput;
 }
 
 export interface ProjectScalarWhereInput {
@@ -1799,20 +1568,20 @@ export interface ProjectScalarWhereInput {
   timestamp_lte?: DateTimeInput;
   timestamp_gt?: DateTimeInput;
   timestamp_gte?: DateTimeInput;
-  EditedAt?: String;
-  EditedAt_not?: String;
-  EditedAt_in?: String[] | String;
-  EditedAt_not_in?: String[] | String;
-  EditedAt_lt?: String;
-  EditedAt_lte?: String;
-  EditedAt_gt?: String;
-  EditedAt_gte?: String;
-  EditedAt_contains?: String;
-  EditedAt_not_contains?: String;
-  EditedAt_starts_with?: String;
-  EditedAt_not_starts_with?: String;
-  EditedAt_ends_with?: String;
-  EditedAt_not_ends_with?: String;
+  editedAt?: String;
+  editedAt_not?: String;
+  editedAt_in?: String[] | String;
+  editedAt_not_in?: String[] | String;
+  editedAt_lt?: String;
+  editedAt_lte?: String;
+  editedAt_gt?: String;
+  editedAt_gte?: String;
+  editedAt_contains?: String;
+  editedAt_not_contains?: String;
+  editedAt_starts_with?: String;
+  editedAt_not_starts_with?: String;
+  editedAt_ends_with?: String;
+  editedAt_not_ends_with?: String;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -1841,6 +1610,28 @@ export interface ProjectScalarWhereInput {
   titleBlurb_not_starts_with?: String;
   titleBlurb_ends_with?: String;
   titleBlurb_not_ends_with?: String;
+  rating?: Float;
+  rating_not?: Float;
+  rating_in?: Float[] | Float;
+  rating_not_in?: Float[] | Float;
+  rating_lt?: Float;
+  rating_lte?: Float;
+  rating_gt?: Float;
+  rating_gte?: Float;
+  authorName?: String;
+  authorName_not?: String;
+  authorName_in?: String[] | String;
+  authorName_not_in?: String[] | String;
+  authorName_lt?: String;
+  authorName_lte?: String;
+  authorName_gt?: String;
+  authorName_gte?: String;
+  authorName_contains?: String;
+  authorName_not_contains?: String;
+  authorName_starts_with?: String;
+  authorName_not_starts_with?: String;
+  authorName_ends_with?: String;
+  authorName_not_ends_with?: String;
   AND?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
   OR?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
   NOT?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
@@ -1855,9 +1646,11 @@ export interface ProjectUpdateManyDataInput {
   name?: String;
   category?: String;
   timestamp?: DateTimeInput;
-  EditedAt?: String;
+  editedAt?: String;
   titleImg?: String;
   titleBlurb?: String;
+  rating?: Float;
+  authorName?: String;
 }
 
 export interface UserUpsertNestedInput {
@@ -1890,105 +1683,48 @@ export interface PrivilegesUpdateManyMutationInput {
   isPlebian?: Boolean;
 }
 
-export interface ProjectCreateInput {
-  name: String;
-  category: String;
-  timestamp: DateTimeInput;
-  EditedAt: String;
-  titleImg: String;
-  titleBlurb: String;
-  Stars?: StarsCreateOneInput;
-  Author: UserCreateOneInput;
-  Steps?: StepArrayCreateManyInput;
-  Reviews?: ReviewCreateManyInput;
-  user: UserCreateOneWithoutProjectsInput;
-}
-
-export interface UserCreateOneWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserCreateWithoutProjectsInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username: String;
-  password: String;
-  email: String;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  Billing?: BillingCreateManyInput;
-  Privileges?: PrivilegeCreateManyInput;
-}
-
 export interface ProjectUpdateInput {
   name?: String;
   category?: String;
   timestamp?: DateTimeInput;
-  EditedAt?: String;
+  editedAt?: String;
   titleImg?: String;
   titleBlurb?: String;
-  Stars?: StarsUpdateOneInput;
-  Author?: UserUpdateOneRequiredInput;
+  rating?: Float;
+  authorName?: String;
   Steps?: StepArrayUpdateManyInput;
   Reviews?: ReviewUpdateManyInput;
-  user?: UserUpdateOneRequiredWithoutProjectsInput;
-}
-
-export interface UserUpdateOneRequiredWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput;
-  update?: UserUpdateWithoutProjectsDataInput;
-  upsert?: UserUpsertWithoutProjectsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpdateWithoutProjectsDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Billing?: BillingUpdateManyInput;
-  Privileges?: PrivilegeUpdateManyInput;
-}
-
-export interface UserUpsertWithoutProjectsInput {
-  update: UserUpdateWithoutProjectsDataInput;
-  create: UserCreateWithoutProjectsInput;
 }
 
 export interface ProjectUpdateManyMutationInput {
   name?: String;
   category?: String;
   timestamp?: DateTimeInput;
-  EditedAt?: String;
+  editedAt?: String;
   titleImg?: String;
   titleBlurb?: String;
+  rating?: Float;
+  authorName?: String;
 }
 
 export interface ReviewUpdateInput {
   title?: String;
   text?: String;
   editedAt?: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
   Comments?: CommentUpdateManyInput;
   Author?: UserUpdateOneRequiredWithoutReviewListInput;
-  Stars?: StarsUpdateOneInput;
 }
 
 export interface ReviewUpdateManyMutationInput {
   title?: String;
   text?: String;
   editedAt?: String;
+  rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
-}
-
-export interface StarsUpdateManyMutationInput {
-  number?: Float;
 }
 
 export interface StepArrayUpdateManyMutationInput {
@@ -2004,8 +1740,7 @@ export interface UserUpdateInput {
   password?: String;
   email?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Billing?: BillingUpdateManyInput;
-  Projects?: ProjectUpdateManyWithoutUserInput;
+  Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
 }
 
@@ -2016,17 +1751,6 @@ export interface UserUpdateManyMutationInput {
   username?: String;
   password?: String;
   email?: String;
-}
-
-export interface BillingSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: BillingWhereInput;
-  AND?: BillingSubscriptionWhereInput[] | BillingSubscriptionWhereInput;
-  OR?: BillingSubscriptionWhereInput[] | BillingSubscriptionWhereInput;
-  NOT?: BillingSubscriptionWhereInput[] | BillingSubscriptionWhereInput;
 }
 
 export interface CommentSubscriptionWhereInput {
@@ -2084,17 +1808,6 @@ export interface ReviewSubscriptionWhereInput {
   NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
 }
 
-export interface StarsSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: StarsWhereInput;
-  AND?: StarsSubscriptionWhereInput[] | StarsSubscriptionWhereInput;
-  OR?: StarsSubscriptionWhereInput[] | StarsSubscriptionWhereInput;
-  NOT?: StarsSubscriptionWhereInput[] | StarsSubscriptionWhereInput;
-}
-
 export interface StepArraySubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
@@ -2119,106 +1832,6 @@ export interface UserSubscriptionWhereInput {
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface Billing {
-  amtPaid?: Float;
-  DatePaid?: String;
-  OrderNumber?: Int;
-  Description?: String;
-}
-
-export interface BillingPromise extends Promise<Billing>, Fragmentable {
-  amtPaid: () => Promise<Float>;
-  DatePaid: () => Promise<String>;
-  OrderNumber: () => Promise<Int>;
-  Description: () => Promise<String>;
-}
-
-export interface BillingSubscription
-  extends Promise<AsyncIterator<Billing>>,
-    Fragmentable {
-  amtPaid: () => Promise<AsyncIterator<Float>>;
-  DatePaid: () => Promise<AsyncIterator<String>>;
-  OrderNumber: () => Promise<AsyncIterator<Int>>;
-  Description: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BillingConnection {
-  pageInfo: PageInfo;
-  edges: BillingEdge[];
-}
-
-export interface BillingConnectionPromise
-  extends Promise<BillingConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BillingEdge>>() => T;
-  aggregate: <T = AggregateBillingPromise>() => T;
-}
-
-export interface BillingConnectionSubscription
-  extends Promise<AsyncIterator<BillingConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BillingEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBillingSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BillingEdge {
-  node: Billing;
-  cursor: String;
-}
-
-export interface BillingEdgePromise extends Promise<BillingEdge>, Fragmentable {
-  node: <T = BillingPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface BillingEdgeSubscription
-  extends Promise<AsyncIterator<BillingEdge>>,
-    Fragmentable {
-  node: <T = BillingSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateBilling {
-  count: Int;
-}
-
-export interface AggregateBillingPromise
-  extends Promise<AggregateBilling>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateBillingSubscription
-  extends Promise<AsyncIterator<AggregateBilling>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Comment {
@@ -2272,17 +1885,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
-  Billing: <T = FragmentableArray<Billing>>(
-    args?: {
-      where?: BillingWhereInput;
-      orderBy?: BillingOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
   Projects: <T = FragmentableArray<Project>>(
     args?: {
       where?: ProjectWhereInput;
@@ -2328,17 +1930,6 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
-  Billing: <T = Promise<AsyncIterator<BillingSubscription>>>(
-    args?: {
-      where?: BillingWhereInput;
-      orderBy?: BillingOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
   Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
     args?: {
       where?: ProjectWhereInput;
@@ -2368,6 +1959,7 @@ export interface Review {
   title: String;
   text: String;
   editedAt: String;
+  rating: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
 }
@@ -2377,6 +1969,7 @@ export interface ReviewPromise extends Promise<Review>, Fragmentable {
   title: () => Promise<String>;
   text: () => Promise<String>;
   editedAt: () => Promise<String>;
+  rating: () => Promise<Float>;
   reviewThumbsUp: () => Promise<Int>;
   reviewThumbsDown: () => Promise<Int>;
   Comments: <T = FragmentableArray<Comment>>(
@@ -2391,7 +1984,6 @@ export interface ReviewPromise extends Promise<Review>, Fragmentable {
     }
   ) => T;
   Author: <T = UserPromise>() => T;
-  Stars: <T = StarsPromise>() => T;
 }
 
 export interface ReviewSubscription
@@ -2401,6 +1993,7 @@ export interface ReviewSubscription
   title: () => Promise<AsyncIterator<String>>;
   text: () => Promise<AsyncIterator<String>>;
   editedAt: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
   reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
   reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
   Comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
@@ -2415,21 +2008,6 @@ export interface ReviewSubscription
     }
   ) => T;
   Author: <T = UserSubscription>() => T;
-  Stars: <T = StarsSubscription>() => T;
-}
-
-export interface Stars {
-  number: Float;
-}
-
-export interface StarsPromise extends Promise<Stars>, Fragmentable {
-  number: () => Promise<Float>;
-}
-
-export interface StarsSubscription
-  extends Promise<AsyncIterator<Stars>>,
-    Fragmentable {
-  number: () => Promise<AsyncIterator<Float>>;
 }
 
 export interface Project {
@@ -2437,9 +2015,11 @@ export interface Project {
   name: String;
   category: String;
   timestamp: DateTimeOutput;
-  EditedAt: String;
+  editedAt: String;
   titleImg: String;
   titleBlurb: String;
+  rating: Float;
+  authorName: String;
 }
 
 export interface ProjectPromise extends Promise<Project>, Fragmentable {
@@ -2447,11 +2027,11 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
   name: () => Promise<String>;
   category: () => Promise<String>;
   timestamp: () => Promise<DateTimeOutput>;
-  EditedAt: () => Promise<String>;
+  editedAt: () => Promise<String>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
-  Stars: <T = StarsPromise>() => T;
-  Author: <T = UserPromise>() => T;
+  rating: () => Promise<Float>;
+  authorName: () => Promise<String>;
   Steps: <T = FragmentableArray<StepArray>>(
     args?: {
       where?: StepArrayWhereInput;
@@ -2474,7 +2054,6 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
       last?: Int;
     }
   ) => T;
-  user: <T = UserPromise>() => T;
 }
 
 export interface ProjectSubscription
@@ -2484,11 +2063,11 @@ export interface ProjectSubscription
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
   timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  EditedAt: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<String>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
-  Stars: <T = StarsSubscription>() => T;
-  Author: <T = UserSubscription>() => T;
+  rating: () => Promise<AsyncIterator<Float>>;
+  authorName: () => Promise<AsyncIterator<String>>;
   Steps: <T = Promise<AsyncIterator<StepArraySubscription>>>(
     args?: {
       where?: StepArrayWhereInput;
@@ -2511,7 +2090,6 @@ export interface ProjectSubscription
       last?: Int;
     }
   ) => T;
-  user: <T = UserSubscription>() => T;
 }
 
 export interface StepArray {
@@ -2567,6 +2145,29 @@ export interface CommentConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
   aggregate: <T = AggregateCommentSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CommentEdge {
@@ -2842,60 +2443,6 @@ export interface AggregateReviewSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface StarsConnection {
-  pageInfo: PageInfo;
-  edges: StarsEdge[];
-}
-
-export interface StarsConnectionPromise
-  extends Promise<StarsConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<StarsEdge>>() => T;
-  aggregate: <T = AggregateStarsPromise>() => T;
-}
-
-export interface StarsConnectionSubscription
-  extends Promise<AsyncIterator<StarsConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<StarsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateStarsSubscription>() => T;
-}
-
-export interface StarsEdge {
-  node: Stars;
-  cursor: String;
-}
-
-export interface StarsEdgePromise extends Promise<StarsEdge>, Fragmentable {
-  node: <T = StarsPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface StarsEdgeSubscription
-  extends Promise<AsyncIterator<StarsEdge>>,
-    Fragmentable {
-  node: <T = StarsSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateStars {
-  count: Int;
-}
-
-export interface AggregateStarsPromise
-  extends Promise<AggregateStars>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateStarsSubscription
-  extends Promise<AsyncIterator<AggregateStars>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 export interface StepArrayConnection {
   pageInfo: PageInfo;
   edges: StepArrayEdge[];
@@ -3020,56 +2567,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface BillingSubscriptionPayload {
-  mutation: MutationType;
-  node: Billing;
-  updatedFields: String[];
-  previousValues: BillingPreviousValues;
-}
-
-export interface BillingSubscriptionPayloadPromise
-  extends Promise<BillingSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = BillingPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = BillingPreviousValuesPromise>() => T;
-}
-
-export interface BillingSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BillingSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BillingSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BillingPreviousValuesSubscription>() => T;
-}
-
-export interface BillingPreviousValues {
-  amtPaid?: Float;
-  DatePaid?: String;
-  OrderNumber?: Int;
-  Description?: String;
-}
-
-export interface BillingPreviousValuesPromise
-  extends Promise<BillingPreviousValues>,
-    Fragmentable {
-  amtPaid: () => Promise<Float>;
-  DatePaid: () => Promise<String>;
-  OrderNumber: () => Promise<Int>;
-  Description: () => Promise<String>;
-}
-
-export interface BillingPreviousValuesSubscription
-  extends Promise<AsyncIterator<BillingPreviousValues>>,
-    Fragmentable {
-  amtPaid: () => Promise<AsyncIterator<Float>>;
-  DatePaid: () => Promise<AsyncIterator<String>>;
-  OrderNumber: () => Promise<AsyncIterator<Int>>;
-  Description: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CommentSubscriptionPayload {
@@ -3240,9 +2737,11 @@ export interface ProjectPreviousValues {
   name: String;
   category: String;
   timestamp: DateTimeOutput;
-  EditedAt: String;
+  editedAt: String;
   titleImg: String;
   titleBlurb: String;
+  rating: Float;
+  authorName: String;
 }
 
 export interface ProjectPreviousValuesPromise
@@ -3252,9 +2751,11 @@ export interface ProjectPreviousValuesPromise
   name: () => Promise<String>;
   category: () => Promise<String>;
   timestamp: () => Promise<DateTimeOutput>;
-  EditedAt: () => Promise<String>;
+  editedAt: () => Promise<String>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
+  rating: () => Promise<Float>;
+  authorName: () => Promise<String>;
 }
 
 export interface ProjectPreviousValuesSubscription
@@ -3264,9 +2765,11 @@ export interface ProjectPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
   timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  EditedAt: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<String>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  authorName: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ReviewSubscriptionPayload {
@@ -3299,6 +2802,7 @@ export interface ReviewPreviousValues {
   title: String;
   text: String;
   editedAt: String;
+  rating: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
 }
@@ -3310,6 +2814,7 @@ export interface ReviewPreviousValuesPromise
   title: () => Promise<String>;
   text: () => Promise<String>;
   editedAt: () => Promise<String>;
+  rating: () => Promise<Float>;
   reviewThumbsUp: () => Promise<Int>;
   reviewThumbsDown: () => Promise<Int>;
 }
@@ -3321,49 +2826,9 @@ export interface ReviewPreviousValuesSubscription
   title: () => Promise<AsyncIterator<String>>;
   text: () => Promise<AsyncIterator<String>>;
   editedAt: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
   reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
   reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface StarsSubscriptionPayload {
-  mutation: MutationType;
-  node: Stars;
-  updatedFields: String[];
-  previousValues: StarsPreviousValues;
-}
-
-export interface StarsSubscriptionPayloadPromise
-  extends Promise<StarsSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = StarsPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = StarsPreviousValuesPromise>() => T;
-}
-
-export interface StarsSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<StarsSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = StarsSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = StarsPreviousValuesSubscription>() => T;
-}
-
-export interface StarsPreviousValues {
-  number: Float;
-}
-
-export interface StarsPreviousValuesPromise
-  extends Promise<StarsPreviousValues>,
-    Fragmentable {
-  number: () => Promise<Float>;
-}
-
-export interface StarsPreviousValuesSubscription
-  extends Promise<AsyncIterator<StarsPreviousValues>>,
-    Fragmentable {
-  number: () => Promise<AsyncIterator<Float>>;
 }
 
 export interface StepArraySubscriptionPayload {
@@ -3470,26 +2935,6 @@ export interface UserPreviousValuesSubscription
 }
 
 /*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
-*/
-export type Float = number;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
@@ -3505,6 +2950,26 @@ DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
 
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
 export type Long = string;
 
 /**
@@ -3512,10 +2977,6 @@ export type Long = string;
  */
 
 export const models: Model[] = [
-  {
-    name: "Stars",
-    embedded: false
-  },
   {
     name: "Privileges",
     embedded: false
@@ -3542,10 +3003,6 @@ export const models: Model[] = [
   },
   {
     name: "Privilege",
-    embedded: false
-  },
-  {
-    name: "Billing",
     embedded: false
   }
 ];
