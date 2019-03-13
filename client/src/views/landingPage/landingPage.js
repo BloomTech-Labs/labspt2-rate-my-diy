@@ -59,7 +59,7 @@ class LandingPage extends Component {
 				<Query
 					query={gql`
 						{
-							projects(orderBy: timestamp_DESC, first: 2) {
+							projects(orderBy: timestamp_DESC, first: 10) {
 								id
 								name
 								titleImg
