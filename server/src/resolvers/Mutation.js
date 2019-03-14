@@ -14,8 +14,8 @@ const Mutation = {
         // }
         // const user = await prisma.user({id: 1})
         const newUser = await prisma.createUser({
-                username: "firstUser",
-                email: "jack@gmail.com",
+                username: "dummy",
+                email: "jim@gmail.com",
                 password: "jgvds"
             
         })
