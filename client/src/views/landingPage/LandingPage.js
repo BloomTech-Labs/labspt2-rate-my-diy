@@ -59,7 +59,7 @@ class LandingPage extends Component {
 				<Query
 					query={gql`
 						{
-							projects(orderBy: timestamp_DESC, first: 10) {
+							projects(orderBy: timestamp_DESC) {
 								id
 								name
 								titleImg
@@ -73,10 +73,33 @@ class LandingPage extends Component {
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
+						
+						//This function filters the projects in the current month and year and returns the 4 with the highest rating	
+						const filteredProjects = () => {
+							const currentTime = new Date()
+
+							var month = currentTime.getMonth() + 1
+						
+							var year = currentTime.getFullYear()
+
+							const newProjects = [];
+
+							data.projects.map(project => {
+								if (project.timestamp.slice(0, 4) == year && project.timestamp.slice(5, 7) == month) { 
+									newProjects.push(project);
+								}
+							});
+
+							const sortedByRating = newProjects.sort(function(a, b){return b.rating - a.rating});
+
+							return sortedByRating.slice(0, 4);
+						}	
+						
+						const projects = filteredProjects();
 
 						return (
 							<div className='card-container'>
-								{data.projects.map(
+								{projects.map(
 									({ id, name, titleImg, rating, authorName }) => (
 										<FeaturedAndMakers
 											type="featured"
