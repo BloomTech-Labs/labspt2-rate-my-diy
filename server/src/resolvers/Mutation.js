@@ -19,12 +19,13 @@ const Mutation = {
                 password: "jgvds"
             
         })
+        const user = await prisma.user({id: 1})
         const customer = await stripe.customers.create({
             email: user.email,
             source,
             plan: process.env.STRIPE_PLAN_ID
         });
-        const user = await prisma.user({id: 1})
+        
         const updatingUser = await prisma.updateUser({
             where: {id: user.id},
             data: {
