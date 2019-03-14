@@ -5,7 +5,9 @@ const Mutation = {
         const user = await prisma.createUser({
             username: args.username,
             email: args.email,
-            password: args.password
+            password: args.password,
+            stripeId: "",
+            accountType: "free-tier"
         })
     },
     createSubscription: async (parent, {source}, {req}, info) => {
@@ -14,12 +16,12 @@ const Mutation = {
         // }
         // const user = await prisma.user({id: 1})
         const newUser = await prisma.createUser({
-                username: "dummy",
-                email: "jim@gmail.com",
+                username: "new",
+                email: "abd@gmail.com",
                 password: "jgvds"
             
         })
-        const user = await prisma.user({id: 1})
+        const user = await prisma.user({username: "new"})
         const customer = await stripe.customers.create({
             email: user.email,
             source,
@@ -33,7 +35,7 @@ const Mutation = {
                 type: "standard-tier"
             }
         })
-        const updatedUser = await prisma.user({id: 1})
+        const updatedUser = await prisma.user({username: "new"})
         
         return updatedUser;
     }
