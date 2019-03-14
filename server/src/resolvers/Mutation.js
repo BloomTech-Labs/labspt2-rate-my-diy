@@ -12,7 +12,7 @@ const Mutation = {
         // if (!req.session || !req.session.userId) {
         //     throw new Error("not authenticated")
         // }
-        const user = await prisma.getUserById({id: 1})
+        const user = await prisma.user({where: {id: 1}})
         const customer = await stripe.customers.create({
             email: user.email,
             source,
@@ -25,7 +25,7 @@ const Mutation = {
                 type: "standard-tier"
             }
         })
-        const updatedUser = await prisma.getUserById({id: 1})
+        const updatedUser = await prisma.user({id: 1})
         
         return updatedUser;
     }
