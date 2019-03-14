@@ -56,7 +56,6 @@ class LandingPage extends Component {
 	//This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
 	clickUserHandler = (username) => {
 		this.setState({ userClicked: username });
-		console.log(this.state.userClicked);
 	}
 
 	render() {
@@ -186,6 +185,7 @@ class LandingPage extends Component {
 											key={id}
 											username={username}
 											userProfileImage={userProfileImage}
+											clickHandler={this.clickUserHandler}
 										/>
 									)
 								)}
