@@ -14,8 +14,8 @@ type Query {
 }
 
 type Mutation {
-  createUser(username: String!, password: String!, email: String!): User!
   createSubscription(source: String!): User
+  createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
 }
 
 type User {
@@ -26,6 +26,7 @@ type User {
  username: String! 
  password: String  
  email: String!
+ userProfileImage: String!
  Projects: [Project!]! 
  Privileges: [Privilege!]!
  ReviewList: [Review!]!
