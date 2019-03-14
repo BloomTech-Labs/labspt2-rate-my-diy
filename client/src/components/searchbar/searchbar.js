@@ -12,14 +12,21 @@ import LoginPopup from "../loginpopup/LoginPopup.js";
 import "./searchbar.scss";
 
 class SearchBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: " search",
       isLoggedIn: false,
       displayPopUp: false
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.userClicked !== null) {
+      this.setState({ text: nextProps.userClicked });
+    }
+  }
+
   changeHandler = e => {
     this.setState({ text: e.target.value });
   };

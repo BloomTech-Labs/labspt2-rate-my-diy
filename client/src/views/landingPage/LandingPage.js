@@ -48,12 +48,21 @@ import './landingPage.scss';
 class LandingPage extends Component {
 	constructor() {
 		super();
-		this.state = {};
+		this.state = {
+			userClicked: null
+		};
 	}
+	
+	//This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
+	clickUserHandler = (username) => {
+		this.setState({ userClicked: username });
+		console.log(this.state.userClicked);
+	}
+
 	render() {
 		return (
 			<div>
-				<SearchBar />
+				<SearchBar userClicked={this.state.userClicked} />
 				<h1>Featured Projects</h1>
 				{/* featured project query */}
 				<Query
@@ -143,6 +152,7 @@ class LandingPage extends Component {
 											key={id}
 											username={username}
 											userProfileImage={userProfileImage}
+											clickHandler={this.clickUserHandler}
 										/>
 									)
 								)}
