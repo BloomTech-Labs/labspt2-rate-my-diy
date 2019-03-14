@@ -16,8 +16,8 @@ const Mutation = {
         // }
         // const user = await prisma.user({id: 1})
         const newUser = await prisma.createUser({
-                username: "new",
-                email: "abd@gmail.com",
+                username: "again",
+                email: "abf@gmail.com",
                 password: "jgvds"
             
         })
@@ -25,7 +25,7 @@ const Mutation = {
         const customer = await stripe.customers.create({
             email: user.email,
             source,
-            plan: process.env.STRIPE_PLAN_ID
+            plan: "plan_EgOcH41cdoNcdA"
         });
         
         const updatingUser = await prisma.updateUser({

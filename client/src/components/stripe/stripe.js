@@ -20,7 +20,7 @@ const Stripe = ({ mutate }) => {
         const response = await mutate({ variables: { source: token.id } });
         console.log({ response: response });
       }}
-      stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+      stripeKey="pk_test_c80Nc7ujL3MIYgeZj479Sn0H"
     />
   );
 };
