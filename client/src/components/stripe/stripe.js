@@ -4,7 +4,7 @@ import { graphql } from "react-apollo";
 import {gql} from "apollo-boost";
 
 const createSubscriptionMutation = gql`
-  mutation CreateSubscriptionMutation($source: String!) {
+  mutation createSubscription($source: String!) {
     createSubscription(source: $source) {
       id
       email

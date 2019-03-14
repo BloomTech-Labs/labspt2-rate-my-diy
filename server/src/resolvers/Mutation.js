@@ -18,10 +18,16 @@ const Mutation = {
             source,
             plan: process.env.STRIPE_PLAN_ID
         });
-        user.stripeId = customer.id;
-        user.type = "standard-tier";
-        await user.save();
-        return user;
+        const updatingUser = await prisma.updateUser({
+            where: {id: user.id},
+            data: {
+                stripeId: customer.id,
+                type: "standard-tier"
+            }
+        })
+        const updatedUser = await prisma.getUserById({id: 1})
+        
+        return updatedUser;
     }
 }
 

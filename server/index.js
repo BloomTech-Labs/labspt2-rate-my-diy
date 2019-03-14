@@ -1,4 +1,5 @@
 const {GraphQLServer} = require('graphql-yoga');
+const {Prisma} = require('prisma-binding');
 require("dotenv/config");
 const { prisma } = require('./src/generated/prisma-client');
  const Mutation = require('./src/resolvers/Mutation');
@@ -21,6 +22,7 @@ const { prisma } = require('./src/generated/prisma-client');
     introspection: true,
     playground: true
 });
+
 
 server.start(() => 
   console.log(`🚀 Server ready at port:4000`)
