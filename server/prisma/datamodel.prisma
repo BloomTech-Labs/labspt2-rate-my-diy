@@ -22,6 +22,8 @@ type User {
   # enum data type required for Bio
   Projects: [Project!] @relation(name: "UserProjects")
   Privileges: [Privilege!]
+  stripeId: String
+  accountType: String! @default(value: "free-tier")
 }
   
 type StepArray {
@@ -65,7 +67,3 @@ type Privilege {
   id: ID! @unique
   name: String!
 }
-
-
-
-

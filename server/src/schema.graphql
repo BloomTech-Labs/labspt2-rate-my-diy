@@ -6,7 +6,7 @@ type Query {
   getProjectById: Project!
   getReviews: [Review!]!
   getReviewById(id: ID!): Review!
-  getStars: [Stars!]!
+  # getStars: [Stars!]!
   getPrivileges: [Privilege!]!
   getBios: [Bio!]!
   getBioById: Bio!
@@ -14,6 +14,7 @@ type Query {
 }
 
 type Mutation {
+  createSubscription(source: String!): User
   createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
 }
 
@@ -29,9 +30,11 @@ type User {
  Projects: [Project!]! 
  Privileges: [Privilege!]!
  ReviewList: [Review!]!
+ stripeId: String
+ accountType: String!
 #  Bio: Bio
 # enum data type required for Bio
- Billing: [Billing!]!
+#  Billing: [Billing!]!
 }
 
 type Project {
