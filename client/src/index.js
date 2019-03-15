@@ -4,7 +4,8 @@ import './styles/_globals.scss';
 import App from './App';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import Firebase, { FirebaseContext } from './components/firebase/index';
+import { Firebase, FirebaseContext } from './components/firebase/index';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
 	// uri: 'https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev',
@@ -14,7 +15,9 @@ const client = new ApolloClient({
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<FirebaseContext.Provider value={new Firebase()}>
-			<App />
+			<Router>
+				<App />
+			</Router>
 		</FirebaseContext.Provider>
 	</ApolloProvider>,
 	document.getElementById('root'),

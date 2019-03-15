@@ -4,7 +4,7 @@ export default class landingPage extends Component {
   render() {
     return (
       <div>
-        
+        <p>Landing Page</p>
       </div>
     )
   }
