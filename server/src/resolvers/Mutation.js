@@ -38,6 +38,18 @@ const Mutation = {
         const updatedUser = await prisma.user({username: "new"})
         
         return updatedUser;
+    },
+
+    createProject: async (parent, args, context, info) => {
+        const project = await prisma.createProject({
+            titleBlurb: args.titleBlurb,
+            name: args.name,
+            timestamp: args.timestamp,
+            rating: args.rating,
+            titleImg: args.titleImg,
+            category: args.category,
+			authorName: args.authorName
+        });
     }
 }
 
