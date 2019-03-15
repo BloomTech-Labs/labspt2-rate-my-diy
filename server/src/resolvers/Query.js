@@ -13,9 +13,9 @@ const Query = {
     return context.prisma.review({where: {id: args.id}}, info)
   },
   
-  getStars: (parents, args, context) => {
-    return context.prisma.stars()
-  }
+  // getStars: (parents, args, context) => {
+  //   return context.prisma.stars()
+  // }
 }
 
 
