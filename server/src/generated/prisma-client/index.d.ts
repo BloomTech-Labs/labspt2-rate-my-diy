@@ -1010,7 +1010,7 @@ export interface UserCreateWithoutReviewListInput {
   username: String;
   password: String;
   email: String;
-  userProfileImage: String;
+  userProfileImage?: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
   stripeId?: String;
@@ -1218,7 +1218,7 @@ export interface UserCreateInput {
   password: String;
   email: String;
   ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  userProfileImage: String;
+  userProfileImage?: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
   stripeId?: String;
@@ -1885,7 +1885,7 @@ export interface UserPreviousValues {
   username: String;
   password: String;
   email: String;
-  userProfileImage: String;
+  userProfileImage?: String;
   stripeId?: String;
   accountType: String;
 }
@@ -2890,7 +2890,7 @@ export interface User {
   username: String;
   password: String;
   email: String;
-  userProfileImage: String;
+  userProfileImage?: String;
   stripeId?: String;
   accountType: String;
 }

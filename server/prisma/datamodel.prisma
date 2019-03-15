@@ -19,7 +19,7 @@ type User {
   ReviewList: [Review!]
   # Bio: Bio
   # enum data type required for Bio
-  userProfileImage: String!
+  userProfileImage: String
   Projects: [Project!] @relation(name: "UserProjects")
   Privileges: [Privilege!]
   stripeId: String

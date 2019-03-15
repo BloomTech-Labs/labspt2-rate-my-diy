@@ -36,6 +36,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: ``
+  endpoint: `https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev`
 });
 exports.prisma = new exports.Prisma();

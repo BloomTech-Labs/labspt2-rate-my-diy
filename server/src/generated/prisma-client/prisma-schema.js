@@ -1530,7 +1530,7 @@ type User {
   password: String!
   email: String!
   ReviewList(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
-  userProfileImage: String!
+  userProfileImage: String
   Projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
   Privileges(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privilege!]
   stripeId: String
@@ -1551,7 +1551,7 @@ input UserCreateInput {
   password: String!
   email: String!
   ReviewList: ReviewCreateManyWithoutAuthorInput
-  userProfileImage: String!
+  userProfileImage: String
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
   stripeId: String
@@ -1575,7 +1575,7 @@ input UserCreateWithoutReviewListInput {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String!
+  userProfileImage: String
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
   stripeId: String
@@ -1622,7 +1622,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String!
+  userProfileImage: String
   stripeId: String
   accountType: String!
 }

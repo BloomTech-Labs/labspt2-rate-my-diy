@@ -1,15 +1,17 @@
 const { prisma } = require('../generated/prisma-client/');
 const {stripe} = require("../stripe");
 const Mutation = {
-    createUser: async (parent, args, context, info) => {
-        const user = await prisma.createUser({
-            username: args.username,
-            email: args.email,
-            password: args.password,
-            stripeId: "",
-            accountType: "free-tier"
-        })
-    },
+    // createUser: async (parent, args, context, info) => {
+        
+    //     const user = await prisma.createUser({
+    //         username: args.username,
+    //         email: args.email,
+    //         password: args.password,
+    //         stripeId: "",
+    //         accountType: "free-tier"
+            
+    //     })
+    // },
     createSubscription: async (parent, {source}, {req}, info) => {
         // if (!req.session || !req.session.userId) {
         //     throw new Error("not authenticated")
