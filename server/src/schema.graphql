@@ -14,7 +14,8 @@
 
 
 type Mutation {
-  createSubscription(source: String!): User
+  addUser(username: String!, email: String!, password: String!): User!
+  createSubscription(source: String!): User!
   
   # createUser(username: String!, password: String!, email: String!, userProfileImage: String): User!
 }

@@ -12,6 +12,20 @@ const Mutation = {
             
     //     })
     // },
+    addUser: (_, args, context, info) => {
+        return context.prisma.mutation.createUser(
+            {
+                data: {
+                    username: args.username,
+                    email: args.email,
+                    password: args.password,
+                    stripeId: "",
+                    accountType: "free-tier"
+                },
+            },
+            info
+        )
+    },
     createSubscription: async (parent, {source}, {req}, info) => {
         // if (!req.session || !req.session.userId) {
         //     throw new Error("not authenticated")
