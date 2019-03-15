@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import Nav from './components/nav/nav';
-import Footer from './components/footer/footer';
-import Stripe from './components/stripe/stripe';
-import { Route } from 'react-router-dom';
-//Views below here
-import Login from './views/loginPage/login';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navigation from './reactRouter/reactRouter'
 
 class App extends Component {
 	render() {
 		return (
-			<div className='App'>
-				<Route path='/' component={Nav} />
-				<Route path='/login' exact component={Login} />
-				<Route path='/subscribe' component={Stripe} />
-				<Route path='/' component={Footer} />
-			</div>
+			<Router>
+				<Navigation />
+			</Router>
 		);
 	}
 }
