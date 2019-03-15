@@ -7,6 +7,61 @@
 # import Query from './generated/prisma-client/prisma.graphql'
 # import Mutation from './generated/prisma-client/prisma.graphql'
 
+<<<<<<< HEAD
+=======
+type Mutation {
+  createSubscription(source: String!): User
+  createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
+  createProject(
+      titleBlurb: String!,
+      name: String!,
+      timestamp: String!,
+      rating: Float!,
+      titleImg: String!,
+      category: String!,
+			authorName: String!
+  ): Project!
+}
+
+type User {
+ id: ID!
+ makerRating: Float  
+ reviewerThumbs: Int! 
+ url: String!
+ username: String! 
+ password: String  
+ email: String!
+ userProfileImage: String!
+ Projects: [Project!]! 
+ Privileges: [Privilege!]!
+ ReviewList: [Review!]!
+ stripeId: String
+ accountType: String!
+#  Bio: Bio
+# enum data type required for Bio
+#  Billing: [Billing!]!
+}
+
+type Project {
+ id: ID!
+ name: String!
+ category: String!
+ timestamp: String!
+ titleImg: String!
+ titleBlurb: String!
+ rating: Float!
+ authorName: String!
+ Steps: [StepArray!]!
+ Reviews:[Review!]!
+}
+  
+
+type Privilege {
+  isModerator:Boolean!
+  isAdmin:Boolean!
+  isPlebian:Boolean!
+}
+>>>>>>> 584433047c63af5f0e8f4f6a505a7c3c66622331
 
 type Mutation {
   addUser(username: String!, email: String!, password: String!): User!

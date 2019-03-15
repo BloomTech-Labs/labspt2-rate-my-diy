@@ -16,6 +16,7 @@ type User {
   username: String! @unique
   password: String! 
   email: String! @unique
+  userProfileImage: String! @default(value: "https://cdn-images-1.medium.com/max/1200/1*aZB4dwe_JRcp1uMHiGYf8g.jpeg")
   ReviewList: [Review!]
   # Bio: Bio
   # enum data type required for Bio
@@ -35,7 +36,7 @@ type Project {
  id: ID! @unique
  name: String!
  category: String!
- timestamp: String!
+ timestamp: DateTime!
  titleImg: String!
  titleBlurb: String!
  rating: Float! @default(value: 1)

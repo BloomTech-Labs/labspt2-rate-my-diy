@@ -1,9 +1,14 @@
-.card{
+.card {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
-  width: 200px;
-  height: 200px;
+  width: 20%;
+  height: 500px;
   border: 2px solid black;
+  text-align: center;
+
+  img {
+    height: 300px;
+  }
 }

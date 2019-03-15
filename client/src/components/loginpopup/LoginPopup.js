@@ -4,6 +4,7 @@ import React, { Component } from "react";
 class LoginPopup extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
   render() {
     return this.props.show === true ? (
