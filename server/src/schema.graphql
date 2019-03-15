@@ -19,7 +19,7 @@ type Mutation {
   createProject(
       titleBlurb: String!,
       name: String!,
-      timestamp: DateTime!,
+      timestamp: String!,
       rating: Float!,
       titleImg: String!,
       category: String!,
@@ -50,7 +50,7 @@ type Project {
  id: ID!
  name: String!
  category: String!
- timestamp: DateTime!
+ timestamp: String!
  titleImg: String!
  titleBlurb: String!
  rating: Float!
