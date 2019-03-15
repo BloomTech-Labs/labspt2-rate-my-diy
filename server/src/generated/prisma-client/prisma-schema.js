@@ -1345,12 +1345,12 @@ input ReviewWhereInput {
   NOT: [ReviewWhereInput!]
 }
 
-input ReviewWhereUniarcane-earth-31962
+input ReviewWhereUniqueInput {
   id: ID
 }
 
 type StepArray {
-  textBlurbs: Stringarcane-earth-31962
+  textBlurbs: String
   imgUrls: String
 }
 
@@ -1403,9 +1403,9 @@ input StepArrayScalarWhereInput {
   textBlurbs_gte: String
   textBlurbs_contains: String
   textBlurbs_not_contains: String
-  textBlurbs_starts_with: Striarcane-earth-31962
-  textBlurbs_not_starts_with: arcane-earth-31962
-  textBlurbs_ends_with: Stringarcane-earth-31962
+  textBlurbs_starts_with: String
+  textBlurbs_not_starts_with: String
+  textBlurbs_ends_with: String
   textBlurbs_not_ends_with: String
   imgUrls: String
   imgUrls_not: String
@@ -1463,7 +1463,7 @@ input StepArrayUpdateManyMutationInput {
 input StepArrayUpdateManyWithWhereNestedInput {
   where: StepArrayScalarWhereInput!
   data: StepArrayUpdateManyDataInput!
-}arcane-earth-31962
+}
 
 input StepArrayWhereInput {
   textBlurbs: String
@@ -1590,6 +1590,8 @@ enum UserOrderByInput {
   password_DESC
   email_ASC
   email_DESC
+  userProfileImage_ASC
+  userProfileImage_DESC
   stripeId_ASC
   stripeId_DESC
   accountType_ASC
@@ -1608,6 +1610,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   email: String!
+  userProfileImage: String!
   stripeId: String
   accountType: String!
 }
@@ -1631,10 +1634,10 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
-  makerRating: Floarcane-earth-31962
-  reviewerThumbs: arcane-earth-31962
+  makerRating: Float
+  reviewerThumbs: Int
   url: String
-  username: Stringarcane-earth-31962
+  username: String
   password: String
   email: String
   userProfileImage: String
@@ -1667,6 +1670,7 @@ input UserUpdateManyMutationInput {
   username: String
   password: String
   email: String
+  userProfileImage: String
   stripeId: String
   accountType: String
 }
