@@ -451,6 +451,8 @@ export type UserOrderByInput =
   | "password_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "userProfileImage_ASC"
+  | "userProfileImage_DESC"
   | "stripeId_ASC"
   | "stripeId_DESC"
   | "accountType_ASC"
@@ -462,278 +464,9 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
-  where: ReviewWhereUniqueInput;
-  data: ReviewUpdateWithoutAuthorDataInput;
-}
-
 export type CommentWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
-
-export interface CommentUpsertWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput;
-  update: CommentUpdateDataInput;
-  create: CommentCreateInput;
-}
-
-export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  makerRating?: Float;
-  makerRating_not?: Float;
-  makerRating_in?: Float[] | Float;
-  makerRating_not_in?: Float[] | Float;
-  makerRating_lt?: Float;
-  makerRating_lte?: Float;
-  makerRating_gt?: Float;
-  makerRating_gte?: Float;
-  reviewerThumbs?: Int;
-  reviewerThumbs_not?: Int;
-  reviewerThumbs_in?: Int[] | Int;
-  reviewerThumbs_not_in?: Int[] | Int;
-  reviewerThumbs_lt?: Int;
-  reviewerThumbs_lte?: Int;
-  reviewerThumbs_gt?: Int;
-  reviewerThumbs_gte?: Int;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  username?: String;
-  username_not?: String;
-  username_in?: String[] | String;
-  username_not_in?: String[] | String;
-  username_lt?: String;
-  username_lte?: String;
-  username_gt?: String;
-  username_gte?: String;
-  username_contains?: String;
-  username_not_contains?: String;
-  username_starts_with?: String;
-  username_not_starts_with?: String;
-  username_ends_with?: String;
-  username_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  ReviewList_every?: ReviewWhereInput;
-  ReviewList_some?: ReviewWhereInput;
-  ReviewList_none?: ReviewWhereInput;
-  Projects_every?: ProjectWhereInput;
-  Projects_some?: ProjectWhereInput;
-  Projects_none?: ProjectWhereInput;
-  Privileges_every?: PrivilegeWhereInput;
-  Privileges_some?: PrivilegeWhereInput;
-  Privileges_none?: PrivilegeWhereInput;
-  stripeId?: String;
-  stripeId_not?: String;
-  stripeId_in?: String[] | String;
-  stripeId_not_in?: String[] | String;
-  stripeId_lt?: String;
-  stripeId_lte?: String;
-  stripeId_gt?: String;
-  stripeId_gte?: String;
-  stripeId_contains?: String;
-  stripeId_not_contains?: String;
-  stripeId_starts_with?: String;
-  stripeId_not_starts_with?: String;
-  stripeId_ends_with?: String;
-  stripeId_not_ends_with?: String;
-  accountType?: String;
-  accountType_not?: String;
-  accountType_in?: String[] | String;
-  accountType_not_in?: String[] | String;
-  accountType_lt?: String;
-  accountType_lte?: String;
-  accountType_gt?: String;
-  accountType_gte?: String;
-  accountType_contains?: String;
-  accountType_not_contains?: String;
-  accountType_starts_with?: String;
-  accountType_not_starts_with?: String;
-  accountType_ends_with?: String;
-  accountType_not_ends_with?: String;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
-}
-
-export interface CommentScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  editedAt?: DateTimeInput;
-  editedAt_not?: DateTimeInput;
-  editedAt_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_lt?: DateTimeInput;
-  editedAt_lte?: DateTimeInput;
-  editedAt_gt?: DateTimeInput;
-  editedAt_gte?: DateTimeInput;
-  text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  AND?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  OR?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  NOT?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-}
-
-export interface StepArrayWhereInput {
-  textBlurbs?: String;
-  textBlurbs_not?: String;
-  textBlurbs_in?: String[] | String;
-  textBlurbs_not_in?: String[] | String;
-  textBlurbs_lt?: String;
-  textBlurbs_lte?: String;
-  textBlurbs_gt?: String;
-  textBlurbs_gte?: String;
-  textBlurbs_contains?: String;
-  textBlurbs_not_contains?: String;
-  textBlurbs_starts_with?: String;
-  textBlurbs_not_starts_with?: String;
-  textBlurbs_ends_with?: String;
-  textBlurbs_not_ends_with?: String;
-  imgUrls?: String;
-  imgUrls_not?: String;
-  imgUrls_in?: String[] | String;
-  imgUrls_not_in?: String[] | String;
-  imgUrls_lt?: String;
-  imgUrls_lte?: String;
-  imgUrls_gt?: String;
-  imgUrls_gte?: String;
-  imgUrls_contains?: String;
-  imgUrls_not_contains?: String;
-  imgUrls_starts_with?: String;
-  imgUrls_not_starts_with?: String;
-  imgUrls_ends_with?: String;
-  imgUrls_not_ends_with?: String;
-  AND?: StepArrayWhereInput[] | StepArrayWhereInput;
-  OR?: StepArrayWhereInput[] | StepArrayWhereInput;
-  NOT?: StepArrayWhereInput[] | StepArrayWhereInput;
-}
-
-export interface CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput;
-  data: CommentUpdateManyDataInput;
-}
-
-export interface CommentWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  editedAt?: DateTimeInput;
-  editedAt_not?: DateTimeInput;
-  editedAt_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_lt?: DateTimeInput;
-  editedAt_lte?: DateTimeInput;
-  editedAt_gt?: DateTimeInput;
-  editedAt_gte?: DateTimeInput;
-  text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  User?: UserWhereInput;
-  AND?: CommentWhereInput[] | CommentWhereInput;
-  OR?: CommentWhereInput[] | CommentWhereInput;
-  NOT?: CommentWhereInput[] | CommentWhereInput;
-}
-
-export interface CommentUpdateManyDataInput {
-  editedAt?: DateTimeInput;
-  text?: String;
-}
 
 export interface ReviewWhereInput {
   id?: ID_Input;
@@ -825,320 +558,7 @@ export interface ReviewWhereInput {
   NOT?: ReviewWhereInput[] | ReviewWhereInput;
 }
 
-export interface ReviewCreateWithoutAuthorInput {
-  title: String;
-  text: String;
-  editedAt: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentCreateManyInput;
-}
-
-export interface UserUpdateWithoutReviewListDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  Projects?: ProjectUpdateManyInput;
-  Privileges?: PrivilegeUpdateManyInput;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface CommentCreateManyInput {
-  create?: CommentCreateInput[] | CommentCreateInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-}
-
-export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
-  where: ReviewWhereUniqueInput;
-  update: ReviewUpdateWithoutAuthorDataInput;
-  create: ReviewCreateWithoutAuthorInput;
-}
-
-export interface ProjectCreateManyInput {
-  create?: ProjectCreateInput[] | ProjectCreateInput;
-  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-}
-
-export interface StepArraySubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: StepArrayWhereInput;
-  AND?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-  OR?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-  NOT?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-}
-
-export interface ProjectCreateInput {
-  name: String;
-  category: String;
-  timestamp: String;
-  titleImg: String;
-  titleBlurb: String;
-  rating?: Float;
-  authorName: String;
-  Steps?: StepArrayCreateManyInput;
-  Reviews?: ReviewCreateManyInput;
-}
-
-export interface ProjectSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ProjectWhereInput;
-  AND?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-  OR?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-  NOT?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-}
-
-export interface StepArrayCreateManyInput {
-  create?: StepArrayCreateInput[] | StepArrayCreateInput;
-}
-
-export interface PrivilegeSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PrivilegeWhereInput;
-  AND?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
-  OR?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
-  NOT?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
-}
-
-export interface StepArrayCreateInput {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface UserUpdateManyMutationInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ReviewCreateManyInput {
-  create?: ReviewCreateInput[] | ReviewCreateInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-}
-
-export interface UserUpdateInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Projects?: ProjectUpdateManyInput;
-  Privileges?: PrivilegeUpdateManyInput;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ReviewCreateInput {
-  title: String;
-  text: String;
-  editedAt: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentCreateManyInput;
-  Author: UserCreateOneWithoutReviewListInput;
-}
-
-export interface ReviewUpdateManyMutationInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-}
-
-export interface UserCreateOneWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface ReviewUpdateInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput;
-}
-
-export interface UserCreateWithoutReviewListInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username: String;
-  password: String;
-  email: String;
-  Projects?: ProjectCreateManyInput;
-  Privileges?: PrivilegeCreateManyInput;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ProjectUpdateInput {
-  name?: String;
-  category?: String;
-  timestamp?: String;
-  titleImg?: String;
-  titleBlurb?: String;
-  rating?: Float;
-  authorName?: String;
-  Steps?: StepArrayUpdateManyInput;
-  Reviews?: ReviewUpdateManyInput;
-}
-
-export interface PrivilegeCreateManyInput {
-  create?: PrivilegeCreateInput[] | PrivilegeCreateInput;
-  connect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
-}
-
-export interface PrivilegesCreateInput {
-  isModerator: Boolean;
-  isAdmin: Boolean;
-  isPlebian: Boolean;
-}
-
-export interface PrivilegeCreateInput {
-  name: String;
-}
-
-export interface PrivilegeUpdateManyMutationInput {
-  name?: String;
-}
-
-export interface CommentUpdateInput {
-  editedAt?: DateTimeInput;
-  text?: String;
-  User?: UserUpdateOneRequiredInput;
-}
-
-export interface CommentUpdateManyMutationInput {
-  editedAt?: DateTimeInput;
-  text?: String;
-}
-
-export interface UserUpdateOneRequiredInput {
-  create?: UserCreateInput;
-  update?: UserUpdateDataInput;
-  upsert?: UserUpsertNestedInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface UserUpdateDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Projects?: ProjectUpdateManyInput;
-  Privileges?: PrivilegeUpdateManyInput;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ProjectUpdateManyWithWhereNestedInput {
-  where: ProjectScalarWhereInput;
-  data: ProjectUpdateManyDataInput;
-}
-
-export interface ReviewUpdateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
-  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  update?:
-    | ReviewUpdateWithWhereUniqueWithoutAuthorInput[]
-    | ReviewUpdateWithWhereUniqueWithoutAuthorInput;
-  upsert?:
-    | ReviewUpsertWithWhereUniqueWithoutAuthorInput[]
-    | ReviewUpsertWithWhereUniqueWithoutAuthorInput;
-  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-  updateMany?:
-    | ReviewUpdateManyWithWhereNestedInput[]
-    | ReviewUpdateManyWithWhereNestedInput;
-}
-
-export interface ProjectUpsertWithWhereUniqueNestedInput {
-  where: ProjectWhereUniqueInput;
-  update: ProjectUpdateDataInput;
-  create: ProjectCreateInput;
-}
-
-export interface PrivilegeUpsertWithWhereUniqueNestedInput {
-  where: PrivilegeWhereUniqueInput;
-  update: PrivilegeUpdateDataInput;
-  create: PrivilegeCreateInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  username?: String;
-  email?: String;
-}>;
-
-export interface ReviewUpdateWithoutAuthorDataInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
-}
-
-export interface PrivilegeUpdateManyDataInput {
-  name?: String;
-}
-
-export interface CommentUpdateManyInput {
-  create?: CommentCreateInput[] | CommentCreateInput;
-  update?:
-    | CommentUpdateWithWhereUniqueNestedInput[]
-    | CommentUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | CommentUpsertWithWhereUniqueNestedInput[]
-    | CommentUpsertWithWhereUniqueNestedInput;
-  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  updateMany?:
-    | CommentUpdateManyWithWhereNestedInput[]
-    | CommentUpdateManyWithWhereNestedInput;
-}
-
-export interface PrivilegeScalarWhereInput {
+export interface CommentWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -1153,54 +573,175 @@ export interface PrivilegeScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  AND?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
-  OR?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
-  NOT?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
-}
-
-export interface CommentUpdateWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput;
-  data: CommentUpdateDataInput;
-}
-
-export interface CommentCreateInput {
-  editedAt: DateTimeInput;
-  text: String;
-  User: UserCreateOneInput;
-}
-
-export interface CommentUpdateDataInput {
   editedAt?: DateTimeInput;
+  editedAt_not?: DateTimeInput;
+  editedAt_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_lt?: DateTimeInput;
+  editedAt_lte?: DateTimeInput;
+  editedAt_gt?: DateTimeInput;
+  editedAt_gte?: DateTimeInput;
   text?: String;
-  User?: UserUpdateOneRequiredInput;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  User?: UserWhereInput;
+  AND?: CommentWhereInput[] | CommentWhereInput;
+  OR?: CommentWhereInput[] | CommentWhereInput;
+  NOT?: CommentWhereInput[] | CommentWhereInput;
 }
 
-export interface UserCreateInput {
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
   makerRating?: Float;
+  makerRating_not?: Float;
+  makerRating_in?: Float[] | Float;
+  makerRating_not_in?: Float[] | Float;
+  makerRating_lt?: Float;
+  makerRating_lte?: Float;
+  makerRating_gt?: Float;
+  makerRating_gte?: Float;
   reviewerThumbs?: Int;
+  reviewerThumbs_not?: Int;
+  reviewerThumbs_in?: Int[] | Int;
+  reviewerThumbs_not_in?: Int[] | Int;
+  reviewerThumbs_lt?: Int;
+  reviewerThumbs_lte?: Int;
+  reviewerThumbs_gt?: Int;
+  reviewerThumbs_gte?: Int;
   url?: String;
-  username: String;
-  password: String;
-  email: String;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  Projects?: ProjectCreateManyInput;
-  Privileges?: PrivilegeCreateManyInput;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  userProfileImage?: String;
+  userProfileImage_not?: String;
+  userProfileImage_in?: String[] | String;
+  userProfileImage_not_in?: String[] | String;
+  userProfileImage_lt?: String;
+  userProfileImage_lte?: String;
+  userProfileImage_gt?: String;
+  userProfileImage_gte?: String;
+  userProfileImage_contains?: String;
+  userProfileImage_not_contains?: String;
+  userProfileImage_starts_with?: String;
+  userProfileImage_not_starts_with?: String;
+  userProfileImage_ends_with?: String;
+  userProfileImage_not_ends_with?: String;
+  ReviewList_every?: ReviewWhereInput;
+  ReviewList_some?: ReviewWhereInput;
+  ReviewList_none?: ReviewWhereInput;
+  Projects_every?: ProjectWhereInput;
+  Projects_some?: ProjectWhereInput;
+  Projects_none?: ProjectWhereInput;
+  Privileges_every?: PrivilegeWhereInput;
+  Privileges_some?: PrivilegeWhereInput;
+  Privileges_none?: PrivilegeWhereInput;
   stripeId?: String;
+  stripeId_not?: String;
+  stripeId_in?: String[] | String;
+  stripeId_not_in?: String[] | String;
+  stripeId_lt?: String;
+  stripeId_lte?: String;
+  stripeId_gt?: String;
+  stripeId_gte?: String;
+  stripeId_contains?: String;
+  stripeId_not_contains?: String;
+  stripeId_starts_with?: String;
+  stripeId_not_starts_with?: String;
+  stripeId_ends_with?: String;
+  stripeId_not_ends_with?: String;
   accountType?: String;
+  accountType_not?: String;
+  accountType_in?: String[] | String;
+  accountType_not_in?: String[] | String;
+  accountType_lt?: String;
+  accountType_lte?: String;
+  accountType_gt?: String;
+  accountType_gte?: String;
+  accountType_contains?: String;
+  accountType_not_contains?: String;
+  accountType_starts_with?: String;
+  accountType_not_starts_with?: String;
+  accountType_ends_with?: String;
+  accountType_not_ends_with?: String;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
 }
 
 export interface ProjectWhereInput {
@@ -1246,20 +787,14 @@ export interface ProjectWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: String;
-  timestamp_not?: String;
-  timestamp_in?: String[] | String;
-  timestamp_not_in?: String[] | String;
-  timestamp_lt?: String;
-  timestamp_lte?: String;
-  timestamp_gt?: String;
-  timestamp_gte?: String;
-  timestamp_contains?: String;
-  timestamp_not_contains?: String;
-  timestamp_starts_with?: String;
-  timestamp_not_starts_with?: String;
-  timestamp_ends_with?: String;
-  timestamp_not_ends_with?: String;
+  timestamp?: DateTimeInput;
+  timestamp_not?: DateTimeInput;
+  timestamp_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_lt?: DateTimeInput;
+  timestamp_lte?: DateTimeInput;
+  timestamp_gt?: DateTimeInput;
+  timestamp_gte?: DateTimeInput;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -1321,15 +856,38 @@ export interface ProjectWhereInput {
   NOT?: ProjectWhereInput[] | ProjectWhereInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface StepArrayWhereInput {
+  textBlurbs?: String;
+  textBlurbs_not?: String;
+  textBlurbs_in?: String[] | String;
+  textBlurbs_not_in?: String[] | String;
+  textBlurbs_lt?: String;
+  textBlurbs_lte?: String;
+  textBlurbs_gt?: String;
+  textBlurbs_gte?: String;
+  textBlurbs_contains?: String;
+  textBlurbs_not_contains?: String;
+  textBlurbs_starts_with?: String;
+  textBlurbs_not_starts_with?: String;
+  textBlurbs_ends_with?: String;
+  textBlurbs_not_ends_with?: String;
+  imgUrls?: String;
+  imgUrls_not?: String;
+  imgUrls_in?: String[] | String;
+  imgUrls_not_in?: String[] | String;
+  imgUrls_lt?: String;
+  imgUrls_lte?: String;
+  imgUrls_gt?: String;
+  imgUrls_gte?: String;
+  imgUrls_contains?: String;
+  imgUrls_not_contains?: String;
+  imgUrls_starts_with?: String;
+  imgUrls_not_starts_with?: String;
+  imgUrls_ends_with?: String;
+  imgUrls_not_ends_with?: String;
+  AND?: StepArrayWhereInput[] | StepArrayWhereInput;
+  OR?: StepArrayWhereInput[] | StepArrayWhereInput;
+  NOT?: StepArrayWhereInput[] | StepArrayWhereInput;
 }
 
 export interface PrivilegeWhereInput {
@@ -1366,29 +924,9 @@ export interface PrivilegeWhereInput {
   NOT?: PrivilegeWhereInput[] | PrivilegeWhereInput;
 }
 
-export interface PrivilegesSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PrivilegesWhereInput;
-  AND?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
-  OR?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
-  NOT?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
-}
-
-export interface PrivilegeUpdateDataInput {
-  name?: String;
-}
-
 export type PrivilegeWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
-
-export interface PrivilegeUpdateWithWhereUniqueNestedInput {
-  where: PrivilegeWhereUniqueInput;
-  data: PrivilegeUpdateDataInput;
-}
 
 export interface PrivilegesWhereInput {
   isModerator?: Boolean;
@@ -1402,28 +940,288 @@ export interface PrivilegesWhereInput {
   NOT?: PrivilegesWhereInput[] | PrivilegesWhereInput;
 }
 
-export interface PrivilegeUpdateManyInput {
-  create?: PrivilegeCreateInput[] | PrivilegeCreateInput;
-  update?:
-    | PrivilegeUpdateWithWhereUniqueNestedInput[]
-    | PrivilegeUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | PrivilegeUpsertWithWhereUniqueNestedInput[]
-    | PrivilegeUpsertWithWhereUniqueNestedInput;
-  delete?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
-  connect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
-  set?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
-  disconnect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
-  deleteMany?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
-  updateMany?:
-    | PrivilegeUpdateManyWithWhereNestedInput[]
-    | PrivilegeUpdateManyWithWhereNestedInput;
+export type ProjectWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type ReviewWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+  email?: String;
+}>;
+
+export interface CommentCreateInput {
+  editedAt: DateTimeInput;
+  text: String;
+  User: UserCreateOneInput;
 }
 
-export interface PrivilegesUpdateManyMutationInput {
-  isModerator?: Boolean;
-  isAdmin?: Boolean;
-  isPlebian?: Boolean;
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  Projects?: ProjectCreateManyInput;
+  Privileges?: PrivilegeCreateManyInput;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface ReviewCreateManyWithoutAuthorInput {
+  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+}
+
+export interface ReviewCreateWithoutAuthorInput {
+  title: String;
+  text: String;
+  editedAt: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+  Comments?: CommentCreateManyInput;
+}
+
+export interface CommentCreateManyInput {
+  create?: CommentCreateInput[] | CommentCreateInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+}
+
+export interface ProjectCreateManyInput {
+  create?: ProjectCreateInput[] | ProjectCreateInput;
+  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+}
+
+export interface ProjectCreateInput {
+  name: String;
+  category: String;
+  timestamp: DateTimeInput;
+  titleImg: String;
+  titleBlurb: String;
+  rating?: Float;
+  authorName: String;
+  Steps?: StepArrayCreateManyInput;
+  Reviews?: ReviewCreateManyInput;
+}
+
+export interface StepArrayCreateManyInput {
+  create?: StepArrayCreateInput[] | StepArrayCreateInput;
+}
+
+export interface StepArrayCreateInput {
+  textBlurbs?: String;
+  imgUrls?: String;
+}
+
+export interface ReviewCreateManyInput {
+  create?: ReviewCreateInput[] | ReviewCreateInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+}
+
+export interface ReviewCreateInput {
+  title: String;
+  text: String;
+  editedAt: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+  Comments?: CommentCreateManyInput;
+  Author: UserCreateOneWithoutReviewListInput;
+}
+
+export interface UserCreateOneWithoutReviewListInput {
+  create?: UserCreateWithoutReviewListInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutReviewListInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  Projects?: ProjectCreateManyInput;
+  Privileges?: PrivilegeCreateManyInput;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface PrivilegeCreateManyInput {
+  create?: PrivilegeCreateInput[] | PrivilegeCreateInput;
+  connect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
+}
+
+export interface PrivilegeCreateInput {
+  name: String;
+}
+
+export interface CommentUpdateInput {
+  editedAt?: DateTimeInput;
+  text?: String;
+  User?: UserUpdateOneRequiredInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateDataInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  Projects?: ProjectUpdateManyInput;
+  Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface ReviewUpdateManyWithoutAuthorInput {
+  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  update?:
+    | ReviewUpdateWithWhereUniqueWithoutAuthorInput[]
+    | ReviewUpdateWithWhereUniqueWithoutAuthorInput;
+  upsert?:
+    | ReviewUpsertWithWhereUniqueWithoutAuthorInput[]
+    | ReviewUpsertWithWhereUniqueWithoutAuthorInput;
+  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  updateMany?:
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutAuthorDataInput;
+}
+
+export interface ReviewUpdateWithoutAuthorDataInput {
+  title?: String;
+  text?: String;
+  editedAt?: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+  Comments?: CommentUpdateManyInput;
+}
+
+export interface CommentUpdateManyInput {
+  create?: CommentCreateInput[] | CommentCreateInput;
+  update?:
+    | CommentUpdateWithWhereUniqueNestedInput[]
+    | CommentUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | CommentUpsertWithWhereUniqueNestedInput[]
+    | CommentUpsertWithWhereUniqueNestedInput;
+  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  updateMany?:
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput;
+}
+
+export interface CommentUpdateWithWhereUniqueNestedInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateDataInput;
+}
+
+export interface CommentUpdateDataInput {
+  editedAt?: DateTimeInput;
+  text?: String;
+  User?: UserUpdateOneRequiredInput;
+}
+
+export interface CommentUpsertWithWhereUniqueNestedInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateDataInput;
+  create: CommentCreateInput;
+}
+
+export interface CommentScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  editedAt?: DateTimeInput;
+  editedAt_not?: DateTimeInput;
+  editedAt_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_lt?: DateTimeInput;
+  editedAt_lte?: DateTimeInput;
+  editedAt_gt?: DateTimeInput;
+  editedAt_gte?: DateTimeInput;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  AND?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  OR?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  NOT?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+}
+
+export interface CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput;
+  data: CommentUpdateManyDataInput;
+}
+
+export interface CommentUpdateManyDataInput {
+  editedAt?: DateTimeInput;
+  text?: String;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutAuthorDataInput;
+  create: ReviewCreateWithoutAuthorInput;
 }
 
 export interface ReviewScalarWhereInput {
@@ -1512,23 +1310,9 @@ export interface ReviewScalarWhereInput {
   NOT?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
 }
 
-export interface PrivilegeUpdateInput {
-  name?: String;
-}
-
 export interface ReviewUpdateManyWithWhereNestedInput {
   where: ReviewScalarWhereInput;
   data: ReviewUpdateManyDataInput;
-}
-
-export interface ProjectUpdateManyDataInput {
-  name?: String;
-  category?: String;
-  timestamp?: String;
-  titleImg?: String;
-  titleBlurb?: String;
-  rating?: Float;
-  authorName?: String;
 }
 
 export interface ReviewUpdateManyDataInput {
@@ -1538,12 +1322,6 @@ export interface ReviewUpdateManyDataInput {
   rating?: Float;
   reviewThumbsUp?: Int;
   reviewThumbsDown?: Int;
-}
-
-export interface ReviewUpsertWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  update: ReviewUpdateDataInput;
-  create: ReviewCreateInput;
 }
 
 export interface ProjectUpdateManyInput {
@@ -1564,25 +1342,15 @@ export interface ProjectUpdateManyInput {
     | ProjectUpdateManyWithWhereNestedInput;
 }
 
-export interface PrivilegeUpdateManyWithWhereNestedInput {
-  where: PrivilegeScalarWhereInput;
-  data: PrivilegeUpdateManyDataInput;
-}
-
 export interface ProjectUpdateWithWhereUniqueNestedInput {
   where: ProjectWhereUniqueInput;
   data: ProjectUpdateDataInput;
 }
 
-export interface UserCreateOneInput {
-  create?: UserCreateInput;
-  connect?: UserWhereUniqueInput;
-}
-
 export interface ProjectUpdateDataInput {
   name?: String;
   category?: String;
-  timestamp?: String;
+  timestamp?: DateTimeInput;
   titleImg?: String;
   titleBlurb?: String;
   rating?: Float;
@@ -1591,28 +1359,12 @@ export interface ProjectUpdateDataInput {
   Reviews?: ReviewUpdateManyInput;
 }
 
-export interface ReviewSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ReviewWhereInput;
-  AND?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
-  OR?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
-  NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
-}
-
 export interface StepArrayUpdateManyInput {
   create?: StepArrayCreateInput[] | StepArrayCreateInput;
   deleteMany?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
   updateMany?:
     | StepArrayUpdateManyWithWhereNestedInput[]
     | StepArrayUpdateManyWithWhereNestedInput;
-}
-
-export interface StepArrayUpdateManyMutationInput {
-  textBlurbs?: String;
-  imgUrls?: String;
 }
 
 export interface StepArrayScalarWhereInput {
@@ -1649,13 +1401,162 @@ export interface StepArrayScalarWhereInput {
   NOT?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
 }
 
-export type ProjectWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
 export interface StepArrayUpdateManyWithWhereNestedInput {
   where: StepArrayScalarWhereInput;
   data: StepArrayUpdateManyDataInput;
+}
+
+export interface StepArrayUpdateManyDataInput {
+  textBlurbs?: String;
+  imgUrls?: String;
+}
+
+export interface ReviewUpdateManyInput {
+  create?: ReviewCreateInput[] | ReviewCreateInput;
+  update?:
+    | ReviewUpdateWithWhereUniqueNestedInput[]
+    | ReviewUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ReviewUpsertWithWhereUniqueNestedInput[]
+    | ReviewUpsertWithWhereUniqueNestedInput;
+  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  updateMany?:
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput;
+}
+
+export interface ReviewUpdateWithWhereUniqueNestedInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateDataInput;
+}
+
+export interface ReviewUpdateDataInput {
+  title?: String;
+  text?: String;
+  editedAt?: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+  Comments?: CommentUpdateManyInput;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+}
+
+export interface UserUpdateOneRequiredWithoutReviewListInput {
+  create?: UserCreateWithoutReviewListInput;
+  update?: UserUpdateWithoutReviewListDataInput;
+  upsert?: UserUpsertWithoutReviewListInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutReviewListDataInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  Projects?: ProjectUpdateManyInput;
+  Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface PrivilegeUpdateManyInput {
+  create?: PrivilegeCreateInput[] | PrivilegeCreateInput;
+  update?:
+    | PrivilegeUpdateWithWhereUniqueNestedInput[]
+    | PrivilegeUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | PrivilegeUpsertWithWhereUniqueNestedInput[]
+    | PrivilegeUpsertWithWhereUniqueNestedInput;
+  delete?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
+  connect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
+  set?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
+  disconnect?: PrivilegeWhereUniqueInput[] | PrivilegeWhereUniqueInput;
+  deleteMany?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
+  updateMany?:
+    | PrivilegeUpdateManyWithWhereNestedInput[]
+    | PrivilegeUpdateManyWithWhereNestedInput;
+}
+
+export interface PrivilegeUpdateWithWhereUniqueNestedInput {
+  where: PrivilegeWhereUniqueInput;
+  data: PrivilegeUpdateDataInput;
+}
+
+export interface PrivilegeUpdateDataInput {
+  name?: String;
+}
+
+export interface PrivilegeUpsertWithWhereUniqueNestedInput {
+  where: PrivilegeWhereUniqueInput;
+  update: PrivilegeUpdateDataInput;
+  create: PrivilegeCreateInput;
+}
+
+export interface PrivilegeScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  AND?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
+  OR?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
+  NOT?: PrivilegeScalarWhereInput[] | PrivilegeScalarWhereInput;
+}
+
+export interface PrivilegeUpdateManyWithWhereNestedInput {
+  where: PrivilegeScalarWhereInput;
+  data: PrivilegeUpdateManyDataInput;
+}
+
+export interface PrivilegeUpdateManyDataInput {
+  name?: String;
+}
+
+export interface UserUpsertWithoutReviewListInput {
+  update: UserUpdateWithoutReviewListDataInput;
+  create: UserCreateWithoutReviewListInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueNestedInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateDataInput;
+  create: ReviewCreateInput;
+}
+
+export interface ProjectUpsertWithWhereUniqueNestedInput {
+  where: ProjectWhereUniqueInput;
+  update: ProjectUpdateDataInput;
+  create: ProjectCreateInput;
 }
 
 export interface ProjectScalarWhereInput {
@@ -1701,20 +1602,14 @@ export interface ProjectScalarWhereInput {
   category_not_starts_with?: String;
   category_ends_with?: String;
   category_not_ends_with?: String;
-  timestamp?: String;
-  timestamp_not?: String;
-  timestamp_in?: String[] | String;
-  timestamp_not_in?: String[] | String;
-  timestamp_lt?: String;
-  timestamp_lte?: String;
-  timestamp_gt?: String;
-  timestamp_gte?: String;
-  timestamp_contains?: String;
-  timestamp_not_contains?: String;
-  timestamp_starts_with?: String;
-  timestamp_not_starts_with?: String;
-  timestamp_ends_with?: String;
-  timestamp_not_ends_with?: String;
+  timestamp?: DateTimeInput;
+  timestamp_not?: DateTimeInput;
+  timestamp_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_not_in?: DateTimeInput[] | DateTimeInput;
+  timestamp_lt?: DateTimeInput;
+  timestamp_lte?: DateTimeInput;
+  timestamp_gt?: DateTimeInput;
+  timestamp_gte?: DateTimeInput;
   titleImg?: String;
   titleImg_not?: String;
   titleImg_in?: String[] | String;
@@ -1770,9 +1665,123 @@ export interface ProjectScalarWhereInput {
   NOT?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
 }
 
-export interface StepArrayUpdateManyDataInput {
+export interface ProjectUpdateManyWithWhereNestedInput {
+  where: ProjectScalarWhereInput;
+  data: ProjectUpdateManyDataInput;
+}
+
+export interface ProjectUpdateManyDataInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  authorName?: String;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface CommentUpdateManyMutationInput {
+  editedAt?: DateTimeInput;
+  text?: String;
+}
+
+export interface PrivilegeUpdateInput {
+  name?: String;
+}
+
+export interface PrivilegeUpdateManyMutationInput {
+  name?: String;
+}
+
+export interface PrivilegesCreateInput {
+  isModerator: Boolean;
+  isAdmin: Boolean;
+  isPlebian: Boolean;
+}
+
+export interface PrivilegesUpdateManyMutationInput {
+  isModerator?: Boolean;
+  isAdmin?: Boolean;
+  isPlebian?: Boolean;
+}
+
+export interface ProjectUpdateInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  authorName?: String;
+  Steps?: StepArrayUpdateManyInput;
+  Reviews?: ReviewUpdateManyInput;
+}
+
+export interface ProjectUpdateManyMutationInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  authorName?: String;
+}
+
+export interface ReviewUpdateInput {
+  title?: String;
+  text?: String;
+  editedAt?: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+  Comments?: CommentUpdateManyInput;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+}
+
+export interface ReviewUpdateManyMutationInput {
+  title?: String;
+  text?: String;
+  editedAt?: String;
+  rating?: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+}
+
+export interface StepArrayUpdateManyMutationInput {
   textBlurbs?: String;
   imgUrls?: String;
+}
+
+export interface UserUpdateInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  Projects?: ProjectUpdateManyInput;
+  Privileges?: PrivilegeUpdateManyInput;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface UserUpdateManyMutationInput {
+  makerRating?: Float;
+  reviewerThumbs?: Int;
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  stripeId?: String;
+  accountType?: String;
 }
 
 export interface CommentSubscriptionWhereInput {
@@ -1786,76 +1795,99 @@ export interface CommentSubscriptionWhereInput {
   NOT?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
 }
 
-export interface UserUpdateOneRequiredWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput;
-  update?: UserUpdateWithoutReviewListDataInput;
-  upsert?: UserUpsertWithoutReviewListInput;
-  connect?: UserWhereUniqueInput;
+export interface PrivilegeSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PrivilegeWhereInput;
+  AND?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
+  OR?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
+  NOT?: PrivilegeSubscriptionWhereInput[] | PrivilegeSubscriptionWhereInput;
 }
 
-export interface ReviewUpdateDataInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+export interface PrivilegesSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PrivilegesWhereInput;
+  AND?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
+  OR?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
+  NOT?: PrivilegesSubscriptionWhereInput[] | PrivilegesSubscriptionWhereInput;
 }
 
-export interface ReviewUpdateWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  data: ReviewUpdateDataInput;
+export interface ProjectSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProjectWhereInput;
+  AND?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
+  OR?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
+  NOT?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
 }
 
-export interface ReviewUpdateManyInput {
-  create?: ReviewCreateInput[] | ReviewCreateInput;
-  update?:
-    | ReviewUpdateWithWhereUniqueNestedInput[]
-    | ReviewUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | ReviewUpsertWithWhereUniqueNestedInput[]
-    | ReviewUpsertWithWhereUniqueNestedInput;
-  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-  updateMany?:
-    | ReviewUpdateManyWithWhereNestedInput[]
-    | ReviewUpdateManyWithWhereNestedInput;
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ReviewWhereInput;
+  AND?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  OR?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
 }
 
-export interface ProjectUpdateManyMutationInput {
-  name?: String;
-  category?: String;
-  timestamp?: String;
-  titleImg?: String;
-  titleBlurb?: String;
-  rating?: Float;
-  authorName?: String;
+export interface StepArraySubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: StepArrayWhereInput;
+  AND?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
+  OR?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
+  NOT?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
 }
 
-export interface ReviewCreateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
-
-export interface UserUpsertWithoutReviewListInput {
-  update: UserUpdateWithoutReviewListDataInput;
-  create: UserCreateWithoutReviewListInput;
-}
-
-export type ReviewWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface UserPreviousValues {
+export interface Comment {
+  id: ID_Output;
+  editedAt: DateTimeOutput;
+  text: String;
+}
+
+export interface CommentPromise extends Promise<Comment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  editedAt: () => Promise<DateTimeOutput>;
+  text: () => Promise<String>;
+  User: <T = UserPromise>() => T;
+}
+
+export interface CommentSubscription
+  extends Promise<AsyncIterator<Comment>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  text: () => Promise<AsyncIterator<String>>;
+  User: <T = UserSubscription>() => T;
+}
+
+export interface User {
   id: ID_Output;
   makerRating?: Float;
   reviewerThumbs?: Int;
@@ -1863,13 +1895,12 @@ export interface UserPreviousValues {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
   stripeId?: String;
   accountType: String;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
+export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   makerRating: () => Promise<Float>;
   reviewerThumbs: () => Promise<Int>;
@@ -1877,12 +1908,46 @@ export interface UserPreviousValuesPromise
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
+  userProfileImage: () => Promise<String>;
+  ReviewList: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Projects: <T = FragmentableArray<Project>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Privileges: <T = FragmentableArray<Privilege>>(
+    args?: {
+      where?: PrivilegeWhereInput;
+      orderBy?: PrivilegeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
   stripeId: () => Promise<String>;
   accountType: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   makerRating: () => Promise<AsyncIterator<Float>>;
@@ -1891,127 +1956,42 @@ export interface UserPreviousValuesSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
+  ReviewList: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Privileges: <T = Promise<AsyncIterator<PrivilegeSubscription>>>(
+    args?: {
+      where?: PrivilegeWhereInput;
+      orderBy?: PrivilegeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
   stripeId: () => Promise<AsyncIterator<String>>;
   accountType: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PrivilegeEdge {
-  node: Privilege;
-  cursor: String;
-}
-
-export interface PrivilegeEdgePromise
-  extends Promise<PrivilegeEdge>,
-    Fragmentable {
-  node: <T = PrivilegePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PrivilegeEdgeSubscription
-  extends Promise<AsyncIterator<PrivilegeEdge>>,
-    Fragmentable {
-  node: <T = PrivilegeSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Project {
-  id: ID_Output;
-  name: String;
-  category: String;
-  timestamp: String;
-  titleImg: String;
-  titleBlurb: String;
-  rating: Float;
-  authorName: String;
-}
-
-export interface ProjectPromise extends Promise<Project>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  category: () => Promise<String>;
-  timestamp: () => Promise<String>;
-  titleImg: () => Promise<String>;
-  titleBlurb: () => Promise<String>;
-  rating: () => Promise<Float>;
-  authorName: () => Promise<String>;
-  Steps: <T = FragmentableArray<StepArray>>(
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Reviews: <T = FragmentableArray<Review>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProjectSubscription
-  extends Promise<AsyncIterator<Project>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<String>>;
-  titleImg: () => Promise<AsyncIterator<String>>;
-  titleBlurb: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  authorName: () => Promise<AsyncIterator<String>>;
-  Steps: <T = Promise<AsyncIterator<StepArraySubscription>>>(
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface PrivilegeConnection {
-  pageInfo: PageInfo;
-  edges: PrivilegeEdge[];
-}
-
-export interface PrivilegeConnectionPromise
-  extends Promise<PrivilegeConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PrivilegeEdge>>() => T;
-  aggregate: <T = AggregatePrivilegePromise>() => T;
-}
-
-export interface PrivilegeConnectionSubscription
-  extends Promise<AsyncIterator<PrivilegeConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PrivilegeEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePrivilegeSubscription>() => T;
 }
 
 export interface Review {
@@ -2070,36 +2050,161 @@ export interface ReviewSubscription
   Author: <T = UserSubscription>() => T;
 }
 
-export interface AggregateComment {
-  count: Int;
+export interface Project {
+  id: ID_Output;
+  name: String;
+  category: String;
+  timestamp: DateTimeOutput;
+  titleImg: String;
+  titleBlurb: String;
+  rating: Float;
+  authorName: String;
 }
 
-export interface AggregateCommentPromise
-  extends Promise<AggregateComment>,
+export interface ProjectPromise extends Promise<Project>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  category: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
+  titleImg: () => Promise<String>;
+  titleBlurb: () => Promise<String>;
+  rating: () => Promise<Float>;
+  authorName: () => Promise<String>;
+  Steps: <T = FragmentableArray<StepArray>>(
+    args?: {
+      where?: StepArrayWhereInput;
+      orderBy?: StepArrayOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Reviews: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProjectSubscription
+  extends Promise<AsyncIterator<Project>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
+  titleImg: () => Promise<AsyncIterator<String>>;
+  titleBlurb: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  authorName: () => Promise<AsyncIterator<String>>;
+  Steps: <T = Promise<AsyncIterator<StepArraySubscription>>>(
+    args?: {
+      where?: StepArrayWhereInput;
+      orderBy?: StepArrayOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
-export interface AggregateCommentSubscription
-  extends Promise<AsyncIterator<AggregateComment>>,
+export interface StepArray {
+  textBlurbs?: String;
+  imgUrls?: String;
+}
+
+export interface StepArrayPromise extends Promise<StepArray>, Fragmentable {
+  textBlurbs: () => Promise<String>;
+  imgUrls: () => Promise<String>;
+}
+
+export interface StepArraySubscription
+  extends Promise<AsyncIterator<StepArray>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  textBlurbs: () => Promise<AsyncIterator<String>>;
+  imgUrls: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUser {
-  count: Int;
+export interface Privilege {
+  id: ID_Output;
+  name: String;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface PrivilegePromise extends Promise<Privilege>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface PrivilegeSubscription
+  extends Promise<AsyncIterator<Privilege>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface CommentConnection {
+  pageInfo: PageInfo;
+  edges: CommentEdge[];
+}
+
+export interface CommentConnectionPromise
+  extends Promise<CommentConnection>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentEdge>>() => T;
+  aggregate: <T = AggregateCommentPromise>() => T;
+}
+
+export interface CommentConnectionSubscription
+  extends Promise<AsyncIterator<CommentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CommentEdge {
@@ -2119,217 +2224,190 @@ export interface CommentEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface Comment {
-  id: ID_Output;
-  editedAt: DateTimeOutput;
-  text: String;
-}
-
-export interface CommentPromise extends Promise<Comment>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  editedAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
-  User: <T = UserPromise>() => T;
-}
-
-export interface CommentSubscription
-  extends Promise<AsyncIterator<Comment>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  text: () => Promise<AsyncIterator<String>>;
-  User: <T = UserSubscription>() => T;
-}
-
-export interface AggregateStepArray {
+export interface AggregateComment {
   count: Int;
 }
 
-export interface AggregateStepArrayPromise
-  extends Promise<AggregateStepArray>,
+export interface AggregateCommentPromise
+  extends Promise<AggregateComment>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateStepArraySubscription
-  extends Promise<AsyncIterator<AggregateStepArray>>,
+export interface AggregateCommentSubscription
+  extends Promise<AsyncIterator<AggregateComment>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface CommentSubscriptionPayload {
-  mutation: MutationType;
-  node: Comment;
-  updatedFields: String[];
-  previousValues: CommentPreviousValues;
-}
-
-export interface CommentSubscriptionPayloadPromise
-  extends Promise<CommentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CommentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CommentPreviousValuesPromise>() => T;
-}
-
-export interface CommentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CommentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CommentPreviousValuesSubscription>() => T;
-}
-
-export interface StepArrayConnection {
+export interface PrivilegeConnection {
   pageInfo: PageInfo;
-  edges: StepArrayEdge[];
+  edges: PrivilegeEdge[];
 }
 
-export interface StepArrayConnectionPromise
-  extends Promise<StepArrayConnection>,
+export interface PrivilegeConnectionPromise
+  extends Promise<PrivilegeConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<StepArrayEdge>>() => T;
-  aggregate: <T = AggregateStepArrayPromise>() => T;
+  edges: <T = FragmentableArray<PrivilegeEdge>>() => T;
+  aggregate: <T = AggregatePrivilegePromise>() => T;
 }
 
-export interface StepArrayConnectionSubscription
-  extends Promise<AsyncIterator<StepArrayConnection>>,
+export interface PrivilegeConnectionSubscription
+  extends Promise<AsyncIterator<PrivilegeConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<StepArrayEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateStepArraySubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PrivilegeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePrivilegeSubscription>() => T;
 }
 
-export interface CommentPreviousValues {
-  id: ID_Output;
-  editedAt: DateTimeOutput;
-  text: String;
-}
-
-export interface CommentPreviousValuesPromise
-  extends Promise<CommentPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  editedAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
-}
-
-export interface CommentPreviousValuesSubscription
-  extends Promise<AsyncIterator<CommentPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ReviewEdge {
-  node: Review;
+export interface PrivilegeEdge {
+  node: Privilege;
   cursor: String;
 }
 
-export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
-  node: <T = ReviewPromise>() => T;
+export interface PrivilegeEdgePromise
+  extends Promise<PrivilegeEdge>,
+    Fragmentable {
+  node: <T = PrivilegePromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ReviewEdgeSubscription
-  extends Promise<AsyncIterator<ReviewEdge>>,
+export interface PrivilegeEdgeSubscription
+  extends Promise<AsyncIterator<PrivilegeEdge>>,
     Fragmentable {
-  node: <T = ReviewSubscription>() => T;
+  node: <T = PrivilegeSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface StepArrayEdge {
-  node: StepArray;
-  cursor: String;
-}
-
-export interface StepArrayEdgePromise
-  extends Promise<StepArrayEdge>,
-    Fragmentable {
-  node: <T = StepArrayPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface StepArrayEdgeSubscription
-  extends Promise<AsyncIterator<StepArrayEdge>>,
-    Fragmentable {
-  node: <T = StepArraySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ReviewPreviousValues {
-  id: ID_Output;
-  title: String;
-  text: String;
-  editedAt: String;
-  rating: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-}
-
-export interface ReviewPreviousValuesPromise
-  extends Promise<ReviewPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  text: () => Promise<String>;
-  editedAt: () => Promise<String>;
-  rating: () => Promise<Float>;
-  reviewThumbsUp: () => Promise<Int>;
-  reviewThumbsDown: () => Promise<Int>;
-}
-
-export interface ReviewPreviousValuesSubscription
-  extends Promise<AsyncIterator<ReviewPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-  editedAt: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
-  reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateReview {
+export interface AggregatePrivilege {
   count: Int;
 }
 
-export interface AggregateReviewPromise
-  extends Promise<AggregateReview>,
+export interface AggregatePrivilegePromise
+  extends Promise<AggregatePrivilege>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateReviewSubscription
-  extends Promise<AsyncIterator<AggregateReview>>,
+export interface AggregatePrivilegeSubscription
+  extends Promise<AsyncIterator<AggregatePrivilege>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Privileges {
+  isModerator: Boolean;
+  isAdmin: Boolean;
+  isPlebian: Boolean;
+}
+
+export interface PrivilegesPromise extends Promise<Privileges>, Fragmentable {
+  isModerator: () => Promise<Boolean>;
+  isAdmin: () => Promise<Boolean>;
+  isPlebian: () => Promise<Boolean>;
+}
+
+export interface PrivilegesSubscription
+  extends Promise<AsyncIterator<Privileges>>,
+    Fragmentable {
+  isModerator: () => Promise<AsyncIterator<Boolean>>;
+  isAdmin: () => Promise<AsyncIterator<Boolean>>;
+  isPlebian: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface PrivilegesConnection {
+  pageInfo: PageInfo;
+  edges: PrivilegesEdge[];
+}
+
+export interface PrivilegesConnectionPromise
+  extends Promise<PrivilegesConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PrivilegesEdge>>() => T;
+  aggregate: <T = AggregatePrivilegesPromise>() => T;
+}
+
+export interface PrivilegesConnectionSubscription
+  extends Promise<AsyncIterator<PrivilegesConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PrivilegesEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePrivilegesSubscription>() => T;
+}
+
+export interface PrivilegesEdge {
+  node: Privileges;
+  cursor: String;
+}
+
+export interface PrivilegesEdgePromise
+  extends Promise<PrivilegesEdge>,
+    Fragmentable {
+  node: <T = PrivilegesPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PrivilegesEdgeSubscription
+  extends Promise<AsyncIterator<PrivilegesEdge>>,
+    Fragmentable {
+  node: <T = PrivilegesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregatePrivileges {
+  count: Int;
+}
+
+export interface AggregatePrivilegesPromise
+  extends Promise<AggregatePrivileges>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePrivilegesSubscription
+  extends Promise<AsyncIterator<AggregatePrivileges>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectConnection {
+  pageInfo: PageInfo;
+  edges: ProjectEdge[];
+}
+
+export interface ProjectConnectionPromise
+  extends Promise<ProjectConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectEdge>>() => T;
+  aggregate: <T = AggregateProjectPromise>() => T;
+}
+
+export interface ProjectConnectionSubscription
+  extends Promise<AsyncIterator<ProjectConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectSubscription>() => T;
+}
+
+export interface ProjectEdge {
+  node: Project;
+  cursor: String;
+}
+
+export interface ProjectEdgePromise extends Promise<ProjectEdge>, Fragmentable {
+  node: <T = ProjectPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectEdgeSubscription
+  extends Promise<AsyncIterator<ProjectEdge>>,
+    Fragmentable {
+  node: <T = ProjectSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateProject {
@@ -2369,21 +2447,147 @@ export interface ReviewConnectionSubscription
   aggregate: <T = AggregateReviewSubscription>() => T;
 }
 
-export interface ProjectEdge {
-  node: Project;
+export interface ReviewEdge {
+  node: Review;
   cursor: String;
 }
 
-export interface ProjectEdgePromise extends Promise<ProjectEdge>, Fragmentable {
-  node: <T = ProjectPromise>() => T;
+export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
+  node: <T = ReviewPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ProjectEdgeSubscription
-  extends Promise<AsyncIterator<ProjectEdge>>,
+export interface ReviewEdgeSubscription
+  extends Promise<AsyncIterator<ReviewEdge>>,
     Fragmentable {
-  node: <T = ProjectSubscription>() => T;
+  node: <T = ReviewSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateReview {
+  count: Int;
+}
+
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface StepArrayConnection {
+  pageInfo: PageInfo;
+  edges: StepArrayEdge[];
+}
+
+export interface StepArrayConnectionPromise
+  extends Promise<StepArrayConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StepArrayEdge>>() => T;
+  aggregate: <T = AggregateStepArrayPromise>() => T;
+}
+
+export interface StepArrayConnectionSubscription
+  extends Promise<AsyncIterator<StepArrayConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StepArrayEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStepArraySubscription>() => T;
+}
+
+export interface StepArrayEdge {
+  node: StepArray;
+  cursor: String;
+}
+
+export interface StepArrayEdgePromise
+  extends Promise<StepArrayEdge>,
+    Fragmentable {
+  node: <T = StepArrayPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface StepArrayEdgeSubscription
+  extends Promise<AsyncIterator<StepArrayEdge>>,
+    Fragmentable {
+  node: <T = StepArraySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateStepArray {
+  count: Int;
+}
+
+export interface AggregateStepArrayPromise
+  extends Promise<AggregateStepArray>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateStepArraySubscription
+  extends Promise<AsyncIterator<AggregateStepArray>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BatchPayload {
@@ -2402,20 +2606,51 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface AggregatePrivileges {
-  count: Int;
+export interface CommentSubscriptionPayload {
+  mutation: MutationType;
+  node: Comment;
+  updatedFields: String[];
+  previousValues: CommentPreviousValues;
 }
 
-export interface AggregatePrivilegesPromise
-  extends Promise<AggregatePrivileges>,
+export interface CommentSubscriptionPayloadPromise
+  extends Promise<CommentSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Int>;
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentPreviousValuesPromise>() => T;
 }
 
-export interface AggregatePrivilegesSubscription
-  extends Promise<AsyncIterator<AggregatePrivileges>>,
+export interface CommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentPreviousValuesSubscription>() => T;
+}
+
+export interface CommentPreviousValues {
+  id: ID_Output;
+  editedAt: DateTimeOutput;
+  text: String;
+}
+
+export interface CommentPreviousValuesPromise
+  extends Promise<CommentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  editedAt: () => Promise<DateTimeOutput>;
+  text: () => Promise<String>;
+}
+
+export interface CommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  text: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PrivilegeSubscriptionPayload {
@@ -2443,27 +2678,6 @@ export interface PrivilegeSubscriptionPayloadSubscription
   previousValues: <T = PrivilegePreviousValuesSubscription>() => T;
 }
 
-export interface PrivilegesConnection {
-  pageInfo: PageInfo;
-  edges: PrivilegesEdge[];
-}
-
-export interface PrivilegesConnectionPromise
-  extends Promise<PrivilegesConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PrivilegesEdge>>() => T;
-  aggregate: <T = AggregatePrivilegesPromise>() => T;
-}
-
-export interface PrivilegesConnectionSubscription
-  extends Promise<AsyncIterator<PrivilegesConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PrivilegesEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePrivilegesSubscription>() => T;
-}
-
 export interface PrivilegePreviousValues {
   id: ID_Output;
   name: String;
@@ -2481,65 +2695,6 @@ export interface PrivilegePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface StepArray {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface StepArrayPromise extends Promise<StepArray>, Fragmentable {
-  textBlurbs: () => Promise<String>;
-  imgUrls: () => Promise<String>;
-}
-
-export interface StepArraySubscription
-  extends Promise<AsyncIterator<StepArray>>,
-    Fragmentable {
-  textBlurbs: () => Promise<AsyncIterator<String>>;
-  imgUrls: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface StepArrayPreviousValues {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface StepArrayPreviousValuesPromise
-  extends Promise<StepArrayPreviousValues>,
-    Fragmentable {
-  textBlurbs: () => Promise<String>;
-  imgUrls: () => Promise<String>;
-}
-
-export interface StepArrayPreviousValuesSubscription
-  extends Promise<AsyncIterator<StepArrayPreviousValues>>,
-    Fragmentable {
-  textBlurbs: () => Promise<AsyncIterator<String>>;
-  imgUrls: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PrivilegesSubscriptionPayload {
@@ -2567,23 +2722,6 @@ export interface PrivilegesSubscriptionPayloadSubscription
   previousValues: <T = PrivilegesPreviousValuesSubscription>() => T;
 }
 
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
 export interface PrivilegesPreviousValues {
   isModerator: Boolean;
   isAdmin: Boolean;
@@ -2604,166 +2742,6 @@ export interface PrivilegesPreviousValuesSubscription
   isModerator: () => Promise<AsyncIterator<Boolean>>;
   isAdmin: () => Promise<AsyncIterator<Boolean>>;
   isPlebian: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface CommentConnection {
-  pageInfo: PageInfo;
-  edges: CommentEdge[];
-}
-
-export interface CommentConnectionPromise
-  extends Promise<CommentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CommentEdge>>() => T;
-  aggregate: <T = AggregateCommentPromise>() => T;
-}
-
-export interface CommentConnectionSubscription
-  extends Promise<AsyncIterator<CommentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCommentSubscription>() => T;
-}
-
-export interface PrivilegesEdge {
-  node: Privileges;
-  cursor: String;
-}
-
-export interface PrivilegesEdgePromise
-  extends Promise<PrivilegesEdge>,
-    Fragmentable {
-  node: <T = PrivilegesPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PrivilegesEdgeSubscription
-  extends Promise<AsyncIterator<PrivilegesEdge>>,
-    Fragmentable {
-  node: <T = PrivilegesSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregatePrivilege {
-  count: Int;
-}
-
-export interface AggregatePrivilegePromise
-  extends Promise<AggregatePrivilege>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePrivilegeSubscription
-  extends Promise<AsyncIterator<AggregatePrivilege>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ReviewSubscriptionPayload {
-  mutation: MutationType;
-  node: Review;
-  updatedFields: String[];
-  previousValues: ReviewPreviousValues;
-}
-
-export interface ReviewSubscriptionPayloadPromise
-  extends Promise<ReviewSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ReviewPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ReviewPreviousValuesPromise>() => T;
-}
-
-export interface ReviewSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ReviewSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
-}
-
-export interface Privilege {
-  id: ID_Output;
-  name: String;
-}
-
-export interface PrivilegePromise extends Promise<Privilege>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface PrivilegeSubscription
-  extends Promise<AsyncIterator<Privilege>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ProjectPreviousValues {
-  id: ID_Output;
-  name: String;
-  category: String;
-  timestamp: String;
-  titleImg: String;
-  titleBlurb: String;
-  rating: Float;
-  authorName: String;
-}
-
-export interface ProjectPreviousValuesPromise
-  extends Promise<ProjectPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  category: () => Promise<String>;
-  timestamp: () => Promise<String>;
-  titleImg: () => Promise<String>;
-  titleBlurb: () => Promise<String>;
-  rating: () => Promise<Float>;
-  authorName: () => Promise<String>;
-}
-
-export interface ProjectPreviousValuesSubscription
-  extends Promise<AsyncIterator<ProjectPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<String>>;
-  titleImg: () => Promise<AsyncIterator<String>>;
-  titleBlurb: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  authorName: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProjectSubscriptionPayload {
@@ -2791,6 +2769,102 @@ export interface ProjectSubscriptionPayloadSubscription
   previousValues: <T = ProjectPreviousValuesSubscription>() => T;
 }
 
+export interface ProjectPreviousValues {
+  id: ID_Output;
+  name: String;
+  category: String;
+  timestamp: DateTimeOutput;
+  titleImg: String;
+  titleBlurb: String;
+  rating: Float;
+  authorName: String;
+}
+
+export interface ProjectPreviousValuesPromise
+  extends Promise<ProjectPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  category: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
+  titleImg: () => Promise<String>;
+  titleBlurb: () => Promise<String>;
+  rating: () => Promise<Float>;
+  authorName: () => Promise<String>;
+}
+
+export interface ProjectPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
+  titleImg: () => Promise<AsyncIterator<String>>;
+  titleBlurb: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  authorName: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Review;
+  updatedFields: String[];
+  previousValues: ReviewPreviousValues;
+}
+
+export interface ReviewSubscriptionPayloadPromise
+  extends Promise<ReviewSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+}
+
+export interface ReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
+}
+
+export interface ReviewPreviousValues {
+  id: ID_Output;
+  title: String;
+  text: String;
+  editedAt: String;
+  rating: Float;
+  reviewThumbsUp?: Int;
+  reviewThumbsDown?: Int;
+}
+
+export interface ReviewPreviousValuesPromise
+  extends Promise<ReviewPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  text: () => Promise<String>;
+  editedAt: () => Promise<String>;
+  rating: () => Promise<Float>;
+  reviewThumbsUp: () => Promise<Int>;
+  reviewThumbsDown: () => Promise<Int>;
+}
+
+export interface ReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
+  reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface StepArraySubscriptionPayload {
   mutation: MutationType;
   node: StepArray;
@@ -2816,48 +2890,51 @@ export interface StepArraySubscriptionPayloadSubscription
   previousValues: <T = StepArrayPreviousValuesSubscription>() => T;
 }
 
-export interface Privileges {
-  isModerator: Boolean;
-  isAdmin: Boolean;
-  isPlebian: Boolean;
+export interface StepArrayPreviousValues {
+  textBlurbs?: String;
+  imgUrls?: String;
 }
 
-export interface PrivilegesPromise extends Promise<Privileges>, Fragmentable {
-  isModerator: () => Promise<Boolean>;
-  isAdmin: () => Promise<Boolean>;
-  isPlebian: () => Promise<Boolean>;
-}
-
-export interface PrivilegesSubscription
-  extends Promise<AsyncIterator<Privileges>>,
+export interface StepArrayPreviousValuesPromise
+  extends Promise<StepArrayPreviousValues>,
     Fragmentable {
-  isModerator: () => Promise<AsyncIterator<Boolean>>;
-  isAdmin: () => Promise<AsyncIterator<Boolean>>;
-  isPlebian: () => Promise<AsyncIterator<Boolean>>;
+  textBlurbs: () => Promise<String>;
+  imgUrls: () => Promise<String>;
 }
 
-export interface ProjectConnection {
-  pageInfo: PageInfo;
-  edges: ProjectEdge[];
-}
-
-export interface ProjectConnectionPromise
-  extends Promise<ProjectConnection>,
+export interface StepArrayPreviousValuesSubscription
+  extends Promise<AsyncIterator<StepArrayPreviousValues>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ProjectEdge>>() => T;
-  aggregate: <T = AggregateProjectPromise>() => T;
+  textBlurbs: () => Promise<AsyncIterator<String>>;
+  imgUrls: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ProjectConnectionSubscription
-  extends Promise<AsyncIterator<ProjectConnection>>,
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ProjectEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateProjectSubscription>() => T;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface User {
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface UserPreviousValues {
   id: ID_Output;
   makerRating?: Float;
   reviewerThumbs?: Int;
@@ -2865,11 +2942,14 @@ export interface User {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
   stripeId?: String;
   accountType: String;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   makerRating: () => Promise<Float>;
   reviewerThumbs: () => Promise<Int>;
@@ -2877,45 +2957,13 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
-  ReviewList: <T = FragmentableArray<Review>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Projects: <T = FragmentableArray<Project>>(
-    args?: {
-      where?: ProjectWhereInput;
-      orderBy?: ProjectOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Privileges: <T = FragmentableArray<Privilege>>(
-    args?: {
-      where?: PrivilegeWhereInput;
-      orderBy?: PrivilegeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
+  userProfileImage: () => Promise<String>;
   stripeId: () => Promise<String>;
   accountType: () => Promise<String>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   makerRating: () => Promise<AsyncIterator<Float>>;
@@ -2924,64 +2972,10 @@ export interface UserSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
-  ReviewList: <T = Promise<AsyncIterator<ReviewSubscription>>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
-    args?: {
-      where?: ProjectWhereInput;
-      orderBy?: ProjectOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Privileges: <T = Promise<AsyncIterator<PrivilegeSubscription>>>(
-    args?: {
-      where?: PrivilegeWhereInput;
-      orderBy?: PrivilegeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
   stripeId: () => Promise<AsyncIterator<String>>;
   accountType: () => Promise<AsyncIterator<String>>;
 }
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
-*/
-export type Float = number;
-
-export type Long = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2998,6 +2992,28 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+export type Long = string;
 
 /**
  * Model Metadata

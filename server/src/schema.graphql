@@ -16,6 +16,15 @@ type Query {
 type Mutation {
   createSubscription(source: String!): User
   createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
+  createProject(
+      titleBlurb: String!,
+      name: String!,
+      timestamp: String!,
+      rating: Float!,
+      titleImg: String!,
+      category: String!,
+			authorName: String!
+  ): Project!
 }
 
 type User {
