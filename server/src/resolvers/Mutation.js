@@ -15,13 +15,29 @@ const Mutation = {
         //     throw new Error("not authenticated")
         // }
         // const user = await prisma.user({id: 1})
+
+        const makeid = (length) => {
+            let text = "";
+            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+          
+            for (let i = 0; i < length; i++)
+              text += possible.charAt(Math.floor(Math.random() * possible.length));
+          
+            return text;
+          }
+
+          const userName = makeid(8);
+          const emailFront = makeid(5);
+          const email = `${emailFront}@gmail.com`;
+          const password = makeid(7);
+          
         const newUser = await prisma.createUser({
-                username: "blah",
-                email: "abg@gmail.com",
-                password: "jgvds"
+                username: userName,
+                email: email,
+                password: password
             
         })
-        const user = await prisma.user({username: "new"})
+        const user = await prisma.user({username: userName})
         const customer = await stripe.customers.create({
             email: user.email,
             source,
@@ -35,7 +51,7 @@ const Mutation = {
                 accountType: "standard-tier"
             }
         })
-        const updatedUser = await prisma.user({username: "new"})
+        const updatedUser = await prisma.user({username: userName})
         
         return updatedUser;
     }
