@@ -1225,7 +1225,6 @@ export interface CommentUpdateDataInput {
   User?: UserUpdateOneRequiredInput;
 }
 
-<<<<<<< HEAD
 export interface UserCreateInput {
   makerRating?: Float;
   reviewerThumbs?: Int;
@@ -1368,12 +1367,6 @@ export interface UserSubscriptionWhereInput {
   AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
   OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
   NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-=======
-export interface CommentUpsertWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput;
-  update: CommentUpdateDataInput;
-  create: CommentCreateInput;
->>>>>>> 584433047c63af5f0e8f4f6a505a7c3c66622331
 }
 
 export interface CommentScalarWhereInput {

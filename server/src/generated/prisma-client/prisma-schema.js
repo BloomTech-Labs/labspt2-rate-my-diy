@@ -1612,11 +1612,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   email: String!
-<<<<<<< HEAD
   userProfileImage: String
-=======
-  userProfileImage: String!
->>>>>>> 584433047c63af5f0e8f4f6a505a7c3c66622331
   stripeId: String
   accountType: String!
 }
