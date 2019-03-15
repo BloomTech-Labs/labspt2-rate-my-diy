@@ -1,5 +1,4 @@
 const {GraphQLServer} = require('graphql-yoga');
-const {Prisma} = require('prisma-binding');
 const {config} = require('dotenv');
 const { prisma } = require('./src/generated/prisma-client');
 const { importSchema } = require('graphql-import');
@@ -18,8 +17,8 @@ const Mutation = require('./src/resolvers/Mutation');
    Mutation,
  }
 
- const gqlTypeDefs = importSchema('../server/src/schema.graphql');
- const prismaTypeDefs = importSchema('../server/src/generated/prisma-client/prisma.graphql');
+ const gqlTypeDefs = importSchema('./src/schema.gaphql');
+ const prismaTypeDefs = importSchema('./src/generated/prisma-client/prisma.graphql');
 
  const gqlSchema = makeExecutableSchema({
   typeDefs: gqlTypeDefs
@@ -46,10 +45,11 @@ const schema = mergeSchemas({
   schema,
   context: req => ({
     ...req,
-    db: new Prisma({
-      typeDefs: prismaTypeDefs,
-      endpoint: 'https://ratemydiy-afd5a3785b.herokuapp.com/labsRMD/dev',
-    })
+    prisma
+    // db: new Prisma({
+    //   typeDefs: prismaTypeDefs,
+    //   endpoint: 'https://ratemydiy-afd5a3785b.herokuapp.com/labsRMD/dev',
+    // })
   }),
 })
 
