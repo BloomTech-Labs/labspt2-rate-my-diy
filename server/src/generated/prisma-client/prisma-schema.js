@@ -559,7 +559,7 @@ type Project {
   id: ID!
   name: String!
   category: String!
-  timestamp: DateTime!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float!
@@ -577,7 +577,7 @@ type ProjectConnection {
 input ProjectCreateInput {
   name: String!
   category: String!
-  timestamp: DateTime!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float
@@ -623,7 +623,7 @@ type ProjectPreviousValues {
   id: ID!
   name: String!
   category: String!
-  timestamp: DateTime!
+  timestamp: String!
   titleImg: String!
   titleBlurb: String!
   rating: Float!
@@ -673,14 +673,20 @@ input ProjectScalarWhereInput {
   category_not_starts_with: String
   category_ends_with: String
   category_not_ends_with: String
-  timestamp: DateTime
-  timestamp_not: DateTime
-  timestamp_in: [DateTime!]
-  timestamp_not_in: [DateTime!]
-  timestamp_lt: DateTime
-  timestamp_lte: DateTime
-  timestamp_gt: DateTime
-  timestamp_gte: DateTime
+  timestamp: String
+  timestamp_not: String
+  timestamp_in: [String!]
+  timestamp_not_in: [String!]
+  timestamp_lt: String
+  timestamp_lte: String
+  timestamp_gt: String
+  timestamp_gte: String
+  timestamp_contains: String
+  timestamp_not_contains: String
+  timestamp_starts_with: String
+  timestamp_not_starts_with: String
+  timestamp_ends_with: String
+  timestamp_not_ends_with: String
   titleImg: String
   titleImg_not: String
   titleImg_in: [String!]
@@ -757,7 +763,7 @@ input ProjectSubscriptionWhereInput {
 input ProjectUpdateDataInput {
   name: String
   category: String
-  timestamp: DateTime
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -769,7 +775,7 @@ input ProjectUpdateDataInput {
 input ProjectUpdateInput {
   name: String
   category: String
-  timestamp: DateTime
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -781,7 +787,7 @@ input ProjectUpdateInput {
 input ProjectUpdateManyDataInput {
   name: String
   category: String
-  timestamp: DateTime
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -803,7 +809,7 @@ input ProjectUpdateManyInput {
 input ProjectUpdateManyMutationInput {
   name: String
   category: String
-  timestamp: DateTime
+  timestamp: String
   titleImg: String
   titleBlurb: String
   rating: Float
@@ -869,14 +875,20 @@ input ProjectWhereInput {
   category_not_starts_with: String
   category_ends_with: String
   category_not_ends_with: String
-  timestamp: DateTime
-  timestamp_not: DateTime
-  timestamp_in: [DateTime!]
-  timestamp_not_in: [DateTime!]
-  timestamp_lt: DateTime
-  timestamp_lte: DateTime
-  timestamp_gt: DateTime
-  timestamp_gte: DateTime
+  timestamp: String
+  timestamp_not: String
+  timestamp_in: [String!]
+  timestamp_not_in: [String!]
+  timestamp_lt: String
+  timestamp_lte: String
+  timestamp_gt: String
+  timestamp_gte: String
+  timestamp_contains: String
+  timestamp_not_contains: String
+  timestamp_starts_with: String
+  timestamp_not_starts_with: String
+  timestamp_ends_with: String
+  timestamp_not_ends_with: String
   titleImg: String
   titleImg_not: String
   titleImg_in: [String!]
@@ -1517,9 +1529,8 @@ type User {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String!
   ReviewList(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
-  userProfileImage: String
+  userProfileImage: String!
   Projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
   Privileges(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privilege!]
   stripeId: String
@@ -1539,9 +1550,8 @@ input UserCreateInput {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String
   ReviewList: ReviewCreateManyWithoutAuthorInput
-  userProfileImage: String
+  userProfileImage: String!
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
   stripeId: String
@@ -1565,7 +1575,7 @@ input UserCreateWithoutReviewListInput {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   Projects: ProjectCreateManyInput
   Privileges: PrivilegeCreateManyInput
   stripeId: String
@@ -1612,7 +1622,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   stripeId: String
   accountType: String!
 }
@@ -1642,7 +1652,6 @@ input UserUpdateDataInput {
   username: String
   password: String
   email: String
-  userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   userProfileImage: String
   Projects: ProjectUpdateManyInput
@@ -1658,7 +1667,6 @@ input UserUpdateInput {
   username: String
   password: String
   email: String
-  userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   userProfileImage: String
   Projects: ProjectUpdateManyInput
@@ -1804,20 +1812,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  userProfileImage: String
-  userProfileImage_not: String
-  userProfileImage_in: [String!]
-  userProfileImage_not_in: [String!]
-  userProfileImage_lt: String
-  userProfileImage_lte: String
-  userProfileImage_gt: String
-  userProfileImage_gte: String
-  userProfileImage_contains: String
-  userProfileImage_not_contains: String
-  userProfileImage_starts_with: String
-  userProfileImage_not_starts_with: String
-  userProfileImage_ends_with: String
-  userProfileImage_not_ends_with: String
   ReviewList_every: ReviewWhereInput
   ReviewList_some: ReviewWhereInput
   ReviewList_none: ReviewWhereInput

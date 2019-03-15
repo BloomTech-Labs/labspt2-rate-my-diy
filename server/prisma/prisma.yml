@@ -1,7 +1,11 @@
 # The HTTP endpoint for your Prisma API
 # This endpoint is our current production server. If you need to deploy comment this endpoint and uncomment the one that is empty 
 
-endpoint: https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev
+#endpoint: ''
+#endpoint: ''endpoint: https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev
+
+
+# endpoint: https://labspt2-874e014ab3.herokuapp.com/RMDserver/dev
 
 
 # Add any other deployment links under here to keep it clean
