@@ -451,6 +451,8 @@ export type UserOrderByInput =
   | "password_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "userProfileImage_ASC"
+  | "userProfileImage_DESC"
   | "stripeId_ASC"
   | "stripeId_DESC"
   | "accountType_ASC"
@@ -567,6 +569,20 @@ export interface UserWhereInput {
   ReviewList_every?: ReviewWhereInput;
   ReviewList_some?: ReviewWhereInput;
   ReviewList_none?: ReviewWhereInput;
+  userProfileImage?: String;
+  userProfileImage_not?: String;
+  userProfileImage_in?: String[] | String;
+  userProfileImage_not_in?: String[] | String;
+  userProfileImage_lt?: String;
+  userProfileImage_lte?: String;
+  userProfileImage_gt?: String;
+  userProfileImage_gte?: String;
+  userProfileImage_contains?: String;
+  userProfileImage_not_contains?: String;
+  userProfileImage_starts_with?: String;
+  userProfileImage_not_starts_with?: String;
+  userProfileImage_ends_with?: String;
+  userProfileImage_not_ends_with?: String;
   Projects_every?: ProjectWhereInput;
   Projects_some?: ProjectWhereInput;
   Projects_none?: ProjectWhereInput;
@@ -842,6 +858,7 @@ export interface UserUpdateWithoutReviewListDataInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
   stripeId?: String;
@@ -925,6 +942,7 @@ export interface UserUpdateManyMutationInput {
   username?: String;
   password?: String;
   email?: String;
+  userProfileImage?: String;
   stripeId?: String;
   accountType?: String;
 }
@@ -942,6 +960,7 @@ export interface UserUpdateInput {
   password?: String;
   email?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  userProfileImage?: String;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
   stripeId?: String;
@@ -991,6 +1010,7 @@ export interface UserCreateWithoutReviewListInput {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
   stripeId?: String;
@@ -1059,6 +1079,7 @@ export interface UserUpdateDataInput {
   password?: String;
   email?: String;
   ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  userProfileImage?: String;
   Projects?: ProjectUpdateManyInput;
   Privileges?: PrivilegeUpdateManyInput;
   stripeId?: String;
@@ -1197,6 +1218,7 @@ export interface UserCreateInput {
   password: String;
   email: String;
   ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  userProfileImage: String;
   Projects?: ProjectCreateManyInput;
   Privileges?: PrivilegeCreateManyInput;
   stripeId?: String;
@@ -1863,6 +1885,7 @@ export interface UserPreviousValues {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
   stripeId?: String;
   accountType: String;
 }
@@ -1877,6 +1900,7 @@ export interface UserPreviousValuesPromise
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
+  userProfileImage: () => Promise<String>;
   stripeId: () => Promise<String>;
   accountType: () => Promise<String>;
 }
@@ -1891,6 +1915,7 @@ export interface UserPreviousValuesSubscription
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
   stripeId: () => Promise<AsyncIterator<String>>;
   accountType: () => Promise<AsyncIterator<String>>;
 }
@@ -2865,6 +2890,7 @@ export interface User {
   username: String;
   password: String;
   email: String;
+  userProfileImage: String;
   stripeId?: String;
   accountType: String;
 }
@@ -2888,6 +2914,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  userProfileImage: () => Promise<String>;
   Projects: <T = FragmentableArray<Project>>(
     args?: {
       where?: ProjectWhereInput;
@@ -2935,6 +2962,7 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
   Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
     args?: {
       where?: ProjectWhereInput;
