@@ -23,7 +23,15 @@ class Firebase {
  signInWithCreds = (email, password) => {
   this.auth.signInWithEmailAndPassword(email, password)
  }
- doSignOut = () => this.auth.signOut();
+
+ signOut = () => this.auth.signOut()
+
+ passWordReset = email => {this.auth.sendPasswordResetEmail(email)}
+
+ passWordUpdate = password => {
+  this.auth.currentUser.updatePassword(password)
+ }
+ 
 }
 
 export default Firebase
