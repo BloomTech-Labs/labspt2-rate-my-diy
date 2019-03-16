@@ -1,98 +1,15 @@
-type Query {
-  getUsers: [User!]!
-  getUserById(id: ID!): User!
-  getProjects: [Project!]!
-  getProjectsByUser(username: String!): [Project]!
-  getProjectById: Project!
-  getReviews: [Review!]!
-  getReviewById(id: ID!): Review!
-  # getStars: [Stars!]!
-  getPrivileges: [Privilege!]!
-  getBios: [Bio!]!
-  getBioById: Bio!
-  getComments: [Comment!]!
-}
+# import User from './generated/prisma-client/prisma.graphql'
+# import Project from './generated/prisma-client/prisma.graphql'
+# import Privilege from './generated/prisma-client/prisma.graphql'
+# import Review from './generated/prisma-client/prisma.graphql'
+# import Comment from './generated/prisma-client/prisma.graphql'
+# import StepArray from './generated/prisma-client/prisma.graphql'
+# import Query from './generated/prisma-client/prisma.graphql'
+# import Mutation from './generated/prisma-client/prisma.graphql'
+
+
 
 type Mutation {
-  createSubscription(source: String!): User
-  createUser(username: String!, password: String!, email: String!, userProfileImage: String!): User!
-  createProject(
-      titleBlurb: String!,
-      name: String!,
-      timestamp: String!,
-      rating: Float!,
-      titleImg: String!,
-      category: String!,
-			authorName: String!
-  ): Project!
-}
-
-type User {
- id: ID!
- makerRating: Float  
- reviewerThumbs: Int! 
- url: String!
- username: String! 
- password: String  
- email: String!
- userProfileImage: String!
- Projects: [Project!]! 
- Privileges: [Privilege!]!
- ReviewList: [Review!]!
- stripeId: String
- accountType: String!
-#  Bio: Bio
-# enum data type required for Bio
-#  Billing: [Billing!]!
-}
-
-type Project {
- id: ID!
- name: String!
- category: String!
- timestamp: String!
- titleImg: String!
- titleBlurb: String!
- rating: Float!
- authorName: String!
- Steps: [StepArray!]!
- Reviews:[Review!]!
-}
-  
-
-type Privilege {
-  isModerator:Boolean!
-  isAdmin:Boolean!
-  isPlebian:Boolean!
-}
-
-type Review {
-  id: ID!
-  Title: String!
-  text: String!
-  editedAt: String!
-  reviewThumbsUp: Int
-  reviewThumbsDown: Int
-  Author: User!
-  Comments: [Comment]
-}
-
-type Comment {
-  id: ID!
-  editedAt: String!
-  text: String!
-  User: User!
-}
-
-type Bio {
-  id: ID!
-  user: User!
-  age: Int
-  about: String
-  location: String
-}
-
-type StepArray {
-  textBlurbs: String
-  imgUrls: String
+  addUser(username: String!, email: String!, password: String!): User!
+  createSubscription(source: String!): User!
 }
