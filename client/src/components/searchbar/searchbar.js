@@ -32,7 +32,7 @@ class SearchBar extends Component {
     this.setState({ text: e.target.value });
   };
 
-  clickHandler = e => {
+  handleSubmit = e => {
     e.preventDefault();
     this.state.isLoggedIn
       ? this.setState({ displayPopUp: false })
@@ -42,20 +42,19 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="searchBar">
-        <span className="searchSpan">
-          <FontAwesomeIcon icon={faSearch} />
-          <input
-            type="text"
-            onChange={this.changeHandler}
-            
-          >
-          {this.state.text}
-          </input>
-        </span>
+        <form onSubmit={this.handleSubmit}>
+          <div className="searchSpan">
+            <FontAwesomeIcon icon={faSearch} />
+            <input
+              type="text"
+              onChange={this.changeHandler}
+              value= {this.state.text}
+            />
+          </div>
+          <input type="submit" value="Search" />
+        </form>
         {/* will need to be replaced with Button component/styling when that file is completed */}
-        <button className="search" onClick={this.clickHandler}>
-          Search
-        </button>
+        
         <LoginPopup show={this.state.displayPopUp} />
       </div>
     );
