@@ -19,6 +19,10 @@ class Firebase {
  addUserWithCreds = (email, password) => {
   this.auth.createUserWithEmailAndPassword(email, password)
  }
+
+ signInWithCreds = (email, password) => {
+  this.auth.signInWithEmailAndPassword(email, password)
+ }
 }
 
 export default Firebase
