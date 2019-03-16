@@ -19,7 +19,7 @@ const Mutation = {
     createSubscription: async (parent, {source}, {req}, info) => {
         // if (!req.session || !req.session.userId) {
         //     throw new Error("not authenticated")
-        // }
+        // }/k
         // const user = await prisma.user({id: 1})
 
         const makeid = (length) => {
