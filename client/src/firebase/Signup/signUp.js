@@ -19,6 +19,8 @@ const initState = {
 export default class SignUpForm extends Component {
  constructor(props) {
   super(props)
+
+  this.state = {...initState}
  } 
 
  onSubmitHandler = () => {
@@ -26,14 +28,36 @@ export default class SignUpForm extends Component {
  }
 
  onChangeHandler = () => {
-
+  this.setState({
+   [event.target.name]: event.target.value
+  })
  }
  render() {
     return (
       <form onSubmit={this.onSubmitHandler}>
-
+       <input
+       name
+       value
+       onChange
+       type
+       placeholder
+       />
+       <input
+       name
+       value
+       onChange
+       type
+       placeholder
+       />
+       <input
+       name
+       value
+       onChange
+       type
+       placeholder
+       />
       </form>
-     )
+       )
   }
 }
 
