@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
 
 const SignUpPage = () => {
- <div>
+return <div>
    <h1>Sign Up</h1>
    <SignUpForm />
  </div>
@@ -13,26 +13,33 @@ const initState = {
  username: '',
  email: '',
  passwordOne: '',
- passwordTWo: '',
+ passwordTwo: '',
  error: null
 }
 export default class SignUpForm extends Component {
  constructor(props) {
   super(props)
 
-  this.state = {...initState}
+  this.state = { ...initState, }
  } 
 
  onSubmitHandler = () => {
 
  }
 
- onChangeHandler = () => {
+ onChangeHandler = (event) => {
   this.setState({
    [event.target.name]: event.target.value
   })
  }
  render() {
+    const {
+     username,
+     email,
+     passwordOne,
+     passwordTwo,
+     error,
+    } = this.state
     return (
       <form onSubmit={this.onSubmitHandler}>
        <input
@@ -51,14 +58,14 @@ export default class SignUpForm extends Component {
        />
        <input
        name="passwordOne"
-       value={passwordOne}
+       value={ passwordOne }
        onChange={this.onChangeHandler}
        type="text"
        placeholder="Password"
        />
        <input 
        name="passwordTwo"
-       value={passwordTWo}
+       value={passwordTwo}
        type="text"
        placeholder="Confirm password."
        />
@@ -70,7 +77,7 @@ export default class SignUpForm extends Component {
 }
 
 const SignUpLink = () => {
- <p>
+ return <p>
   Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
  </p>
 }
