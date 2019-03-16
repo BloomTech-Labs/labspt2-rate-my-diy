@@ -7,7 +7,9 @@
 # import Query from './generated/prisma-client/prisma.graphql'
 # import Mutation from './generated/prisma-client/prisma.graphql'
 
-
+type Query {
+  getUsers: [User!]!
+}
 
 type Mutation {
   addUser(username: String!, email: String!, password: String!): User!
