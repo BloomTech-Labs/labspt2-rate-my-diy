@@ -9,7 +9,8 @@ const Mutation = {
                     email: args.email,
                     password: args.password,
                     stripeId: "",
-                    accountType: "free-tier"
+                    accountType: "free-tier",
+                    userProfileImage: args.userProfileImage
                 },
             },
             info
