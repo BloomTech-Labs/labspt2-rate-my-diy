@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signUp/signUp';
-import { withFirebase } from '../firebase/firebase';
+import { withFirebase } from '../../components/firebase/index';
 import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
@@ -33,7 +33,7 @@ class signInFormBase extends Component {
 				this.props.history.push(ROUTES.HOME);
 			})
 			.catch((err) => {
-				this.setState({ error });
+				this.setState({ err });
 			});
 		e.preventDefault();
 	};
