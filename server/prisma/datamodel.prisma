@@ -39,7 +39,7 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  rating: Float! @default(value: 1)
- authorName: String!
+ User: [User!] @relation(name: "authorName")
  Steps: [StepArray!]!
  Reviews:[Review!]!
 }
