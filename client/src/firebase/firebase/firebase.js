@@ -1,5 +1,5 @@
 import app from 'firebase/app'
-
+// import 'firebase/auth'
 var config = {
 	apiKey: 'AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM',
 	authDomain: 'ratemydiy-9453b.firebaseapp.com',
