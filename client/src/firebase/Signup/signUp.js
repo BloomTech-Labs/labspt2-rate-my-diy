@@ -36,26 +36,34 @@ export default class SignUpForm extends Component {
     return (
       <form onSubmit={this.onSubmitHandler}>
        <input
-       name
-       value
-       onChange
-       type
-       placeholder
+       name="username"
+       value={username}
+       onChange={this.onChangeHandler}
+       type='text'
+       placeholder="Full name"
        />
        <input
-       name
-       value
-       onChange
-       type
-       placeholder
+       name="email"
+       value={email}
+       onChange={this.onChangeHandler}
+       type="text"
+       placeholder="Email Address"
        />
        <input
-       name
-       value
-       onChange
-       type
-       placeholder
+       name="passwordOne"
+       value={passwordOne}
+       onChange={this.onChangeHandler}
+       type="text"
+       placeholder="Password"
        />
+       <input 
+       name="passwordTwo"
+       value={passwordTWo}
+       type="text"
+       placeholder="Confirm password."
+       />
+       <button type="submit"> Sign Up</button>
+       {error && <p>{error.message}</p> }
       </form>
        )
   }
@@ -67,6 +75,6 @@ const SignUpLink = () => {
  </p>
 }
 
-export default SignUpPage
+// export default SignUpPage
 
-export { SignUpForm, SignUpLink}
+export {SignUpPage, SignUpForm, SignUpLink}
