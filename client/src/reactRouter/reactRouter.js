@@ -30,12 +30,14 @@ const NavigationAuth = () => {
   );
 };
 const NavigationNonAuth = () => {
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-  </ul>;
+  return (
+    <ul>
+      <li>
+        <Link to={ROUTES.LANDING}>Landing</Link>
+      </li>
+      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    </ul>
+  );
 };
 
 export default Navigation;

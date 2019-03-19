@@ -11,6 +11,7 @@ import AccountPage from "./firebase/account/account";
 import AdminPage from "./views/adminPage/adminPage";
 import ReviewList from "./views/reviewList/reviewList";
 import ProjectList from "./views/projectList/projectList";
+import { withFirebase } from "../src/components/firebase/index";
 
 import * as ROUTES from "../src/constants/routes";
 
@@ -55,4 +56,4 @@ class App extends Component {
 
 // please update your components and Routes as needed
 
-export default App;
+export default withFirebase(App);
