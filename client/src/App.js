@@ -30,6 +30,10 @@ class App extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.listener();
+  }
+
   render() {
     return (
       <React.Fragment>
