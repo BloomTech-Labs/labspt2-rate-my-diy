@@ -9,6 +9,10 @@ module.exports = {
         return (id ? db('projects').where('id', id) : db('projects'));
     },
 
+    getByDate: function(date) {
+        return db('projects').where('created_at', 'like', `${date}%`);
+    },
+
     update: function(id, changes) {
         return db('projects')
         .where('id', id)
