@@ -22,6 +22,13 @@ class App extends Component {
       authUser: null
     };
   }
+  componentDidMount() {
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({ authUser })
+        : this.setState({ authUser: null });
+    });
+  }
 
   render() {
     return (
