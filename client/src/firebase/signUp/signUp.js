@@ -3,11 +3,13 @@ import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { withFirebase } from "../../components/firebase/context";
 import * as ROUTES from "../../constants/routes";
+
 const SignUpPage = () => {
   return (
     <div>
-      <h1>Sign Up</h1>
+      <h1>Changing This</h1>
       <SignUpForm />
+      <SignUpLink />
     </div>
   );
 };
@@ -18,13 +20,13 @@ const initState = {
   passwordTwo: "",
   error: null
 };
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...initState };
   }
   onSubmitHandler = event => {
-    const { username, email, passwordOne, passwordTwo } = this.state;
+    const { email, passwordOne } = this.state;
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -97,6 +99,8 @@ const SignUpLink = () => {
 const SignUpFormBase = compose(
   withRouter,
   withFirebase
-)(SignUpForm);
+)(SignUpPage);
 // Allow SignUpForm to use Firebase and Router via recompose.
-export { SignUpPage, SignUpFormBase, SignUpLink };
+
+export default SignUpPage;
+export { SignUpLink, SignUpFormBase };
