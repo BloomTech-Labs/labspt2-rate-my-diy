@@ -1,5 +1,10 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+
+const database = require('firebase/database')
+const firebase = require('firebase/app')
+const firebaseAuth = require('firebase/auth')
+
 var config = {
 	apiKey: 'AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM',
 	authDomain: 'ratemydiy-9453b.firebaseapp.com',
@@ -11,7 +16,8 @@ var config = {
 
 class Firebase {
 	constructor() {
-		app.initializeApp(config);
+  app.initializeApp(config);
+  app.database()
 
 		this.auth = app.auth();
 	}

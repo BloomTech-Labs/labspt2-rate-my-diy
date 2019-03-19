@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+import { withFirebase } from '../../components/firebase/context'
 import * as ROUTES from '../../constants/routes'
 
 const SignUpPage = () => {
@@ -23,8 +25,18 @@ export default class SignUpForm extends Component {
   this.state = { ...initState, }
  } 
 
- onSubmitHandler = () => {
+ onSubmitHandler = (event) => {
+  const { username, email, passwordOne, passwordTwo} = this.state
 
+  this.props.firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
+   .then(authUser => {
+    this.setState({...initState})
+    this.props.history.push(ROUTES.HOME)
+   })
+   .catch(error => {
+    this.setState({ error })
+   })
+   // event.preventDefault()
  }
 
  onChangeHandler = (event) => {
@@ -40,6 +52,13 @@ export default class SignUpForm extends Component {
      passwordTwo,
      error,
     } = this.state
+
+    const isInvalid =
+    passwordOne !== passwordTwo ||
+    passwordOne === '' ||
+    email === '' ||
+    username === '';
+
     return (
       <form onSubmit={this.onSubmitHandler}>
        <input
@@ -58,7 +77,7 @@ export default class SignUpForm extends Component {
        />
        <input
        name="passwordOne"
-       value={ passwordOne }
+       value={passwordOne}
        onChange={this.onChangeHandler}
        type="text"
        placeholder="Password"
@@ -66,10 +85,11 @@ export default class SignUpForm extends Component {
        <input 
        name="passwordTwo"
        value={passwordTwo}
+       onChange={this.onChangeHandler}
        type="text"
        placeholder="Confirm password."
        />
-       <button type="submit"> Sign Up</button>
+       <button disabled={isInvalid} type="submit"> Sign Up</button>
        {error && <p>{error.message}</p> }
       </form>
        )
@@ -81,7 +101,9 @@ const SignUpLink = () => {
   Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
  </p>
 }
-
-// export default SignUpPage
-
-export {SignUpPage, SignUpForm, SignUpLink}
+const SignUpFormBase = compose(
+ withRouter,
+ withFirebase
+)(SignUpForm)
+// Allow SignUpForm to use Firebase and Router via recompose.
+export {SignUpPage, SignUpFormBase, SignUpLink}
