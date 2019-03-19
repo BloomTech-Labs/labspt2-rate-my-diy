@@ -1,5 +1,5 @@
-import app from "firebase/app";
-import "firebase/auth";
+// import app from 'firebase/app'
+// import 'firebase/auth'
 
 const database = require("firebase/database");
 const firebase = require("firebase/app");
@@ -16,27 +16,25 @@ var config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
-    app.database();
-
-    this.auth = app.auth();
+    firebase.initializeApp(config);
+    this.auth = firebaseAuth;
   }
 
-  addUserWithCreds = (email, password) => {
+  doCreateUserWithEmailAndPassword = (email, password) => {
     this.auth.createUserWithEmailAndPassword(email, password);
   };
 
-  signInWithCreds = (email, password) => {
+  doSignInWithCreds = (email, password) => {
     this.auth.signInWithEmailAndPassword(email, password);
   };
 
-  signOut = () => this.auth.signOut();
+  doSignOut = () => this.auth.signOut();
 
-  passWordReset = email => {
+  doPassWordReset = email => {
     this.auth.sendPasswordResetEmail(email);
   };
 
-  passWordUpdate = password => {
+  doPassWordUpdate = password => {
     this.auth.currentUser.updatePassword(password);
   };
 }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "./reactRouter/reactRouter";
 import LandingPage from "./views/landingPage/landingPage";
-import SignUp from "./firebase/signUp/signUp";
 import SignInPage from "./firebase/signIn/signIn";
 import SignUpPage from "./firebase/signUp/signUp";
 import PasswordForget from "./firebase/passwordForget/passwordForget";

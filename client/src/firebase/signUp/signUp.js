@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import { withFirebase } from "../../components/firebase/context";
+import { withFirebase } from "../../components/firebase/index";
 import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = () => {
@@ -9,7 +9,6 @@ const SignUpPage = () => {
     <div>
       <h1>Changing This</h1>
       <SignUpForm />
-      <SignUpLink />
     </div>
   );
 };
@@ -20,15 +19,16 @@ const initState = {
   passwordTwo: "",
   error: null
 };
-class SignUpForm extends Component {
+class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...initState };
   }
   onSubmitHandler = event => {
+    event.preventDefault();
     const { email, passwordOne } = this.state;
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .addUserWithCreds(email, passwordOne)
       .then(authUser => {
         this.setState({ ...initState });
         this.props.history.push(ROUTES.HOME);
@@ -36,7 +36,6 @@ class SignUpForm extends Component {
       .catch(error => {
         this.setState({ error });
       });
-    // event.preventDefault()
   };
   onChangeHandler = event => {
     this.setState({
@@ -96,11 +95,11 @@ const SignUpLink = () => {
     </p>
   );
 };
-const SignUpFormBase = compose(
+const SignUpForm = compose(
   withRouter,
   withFirebase
-)(SignUpPage);
+)(SignUpFormBase);
 // Allow SignUpForm to use Firebase and Router via recompose.
 
 export default SignUpPage;
-export { SignUpLink, SignUpFormBase };
+export { SignUpForm, SignUpLink };
