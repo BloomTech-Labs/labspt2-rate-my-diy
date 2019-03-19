@@ -40,7 +40,6 @@ class App extends Component {
       <React.Fragment>
         <Navigation />
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
