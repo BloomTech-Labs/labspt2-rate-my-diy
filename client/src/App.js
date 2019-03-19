@@ -15,6 +15,14 @@ import ProjectList from "./views/projectList/projectList";
 import * as ROUTES from "../src/constants/routes";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null
+    };
+  }
+
   render() {
     return (
       <React.Fragment>
