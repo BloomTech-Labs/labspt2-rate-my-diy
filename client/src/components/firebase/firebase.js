@@ -1,9 +1,6 @@
-// import app from 'firebase/app'
-// import 'firebase/auth'
-
-const database = require("firebase/database");
-const firebase = require("firebase/app");
-const firebaseAuth = require("firebase/auth");
+import app from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
 var config = {
   apiKey: "AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM",
@@ -16,15 +13,18 @@ var config = {
 
 class Firebase {
   constructor() {
-    firebase.initializeApp(config);
-    this.auth = firebaseAuth;
+    app.initializeApp(config);
+    this.auth = app.auth();
+    this.db = app.database();
+    this.emailAuthProvider = app.auth.EmailAuthProvider;
+    this.serverValue = app.database.ServerValue;
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
     this.auth.createUserWithEmailAndPassword(email, password);
   };
 
-  doSignInWithCreds = (email, password) => {
+  doSignInWithEmailAndPassword = (email, password) => {
     this.auth.signInWithEmailAndPassword(email, password);
   };
 

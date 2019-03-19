@@ -12,14 +12,13 @@ const client = new ApolloClient({
   uri: "https://guarded-beach-26773.herokuapp.com/"
 });
 
-const ActualApp = (
+ReactDOM.render(
   <ApolloProvider client={client}>
     <FirebaseContext.Provider value={new Firebase()}>
       <Router>
         <App />
       </Router>
     </FirebaseContext.Provider>
-  </ApolloProvider>
+  </ApolloProvider>,
+  document.getElementById("root")
 );
-
-ReactDOM.render(<ActualApp />, document.getElementById("root"));
