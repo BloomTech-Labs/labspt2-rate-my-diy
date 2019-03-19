@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
       table.string('title').notNullable();
       table.string('category').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
-      table.string('title_image').notNullable();
+      table.string('title_image');
       table.string('title_blurb')
       table.float('rating').defaultTo(1);
       table.timestamp('created_at').defaultTo(knex.fn.now());
