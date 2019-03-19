@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { withFirebase } from "../../components/firebase/context";
 import * as ROUTES from "../../constants/routes";
-
 const SignUpPage = () => {
   return (
     <div>
@@ -12,7 +11,6 @@ const SignUpPage = () => {
     </div>
   );
 };
-
 const initState = {
   username: "",
   email: "",
@@ -23,36 +21,33 @@ const initState = {
 export default class SignUpForm extends Component {
   constructor(props) {
     super(props);
-
-    onSubmitHandler = event => {
-      const { username, email, passwordOne, passwordTwo } = this.state;
-
-      this.props.firebase
-        .doCreateUserWithEmailAndPassword(email, passwordOne)
-        .then(authUser => {
-          this.setState({ ...initState });
-          this.props.history.push(ROUTES.HOME);
-        })
-        .catch(error => {
-          this.setState({ error });
-        });
-      // event.preventDefault()
-    };
-
-    onChangeHandler = event => {
-      this.setState({
-        [event.target.name]: event.target.value
+    this.state = { ...initState };
+  }
+  onSubmitHandler = event => {
+    const { username, email, passwordOne, passwordTwo } = this.state;
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        this.setState({ ...initState });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch(error => {
+        this.setState({ error });
       });
-    };
-    render();
+    // event.preventDefault()
+  };
+  onChangeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+  render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
-
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
       email === "" ||
       username === "";
-
     return (
       <form onSubmit={this.onSubmitHandler}>
         <input
@@ -92,7 +87,6 @@ export default class SignUpForm extends Component {
     );
   }
 }
-
 const SignUpLink = () => {
   return (
     <p>
