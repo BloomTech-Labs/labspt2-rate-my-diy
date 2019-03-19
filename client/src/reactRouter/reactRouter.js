@@ -1,9 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
-import SignOutButton from '../firebase/signOut/signOut';
+import React from "react";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../constants/routes";
+import SignOutButton from "../firebase/signOut/signOut";
 
-function ReactRouter() {
+const Navigation = ({ authUser }) => (
+  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+);
+
+const NavigationAuth = () => {
   return (
     <ul>
       <li>
@@ -24,6 +28,14 @@ function ReactRouter() {
       <SignOutButton />
     </ul>
   );
-}
+};
+const NavigationNonAuth = () => {
+  <ul>
+    <li>
+      <Link to={ROUTES.LANDING}>Landing</Link>
+    </li>
+    <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+  </ul>;
+};
 
-export default ReactRouter;
+export default Navigation;
