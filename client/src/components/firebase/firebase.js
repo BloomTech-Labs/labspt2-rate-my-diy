@@ -1,6 +1,8 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import * as ROUTES from "../../constants/routes";
+import { withRouter } from "react-router-dom";
 
 var config = {
   apiKey: "AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM",
