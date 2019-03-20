@@ -1,14 +1,12 @@
-
-// //  createSubscription(source: String!): User!
-
 import * as path from 'path'
 import { GraphQLServer } from 'graphql-yoga'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { prisma } from './src/generated/prisma-client'
 import datamodelInfo from './src/generated/nexus-prisma'
 import {stripe} from './src/stripe'
-import { stringArg, arg } from 'nexus/dist/definitions/args';
-import { StripeResource } from 'stripe';
+import { stringArg } from 'nexus/dist/definitions/args';
+import * as cors from 'cors';
+
 
 const Query = prismaObjectType({
   name: 'Query',
@@ -92,6 +90,7 @@ const server = new GraphQLServer({
   schema,
   context: { prisma }
 })
+server.use(cors())
 server.start(() => console.log(`Server is running on http://localhost:4000`))
 
 
