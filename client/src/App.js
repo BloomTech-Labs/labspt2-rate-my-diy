@@ -11,6 +11,7 @@ import AdminPage from "./views/adminPage/adminPage";
 import ReviewList from "./views/reviewList/reviewList";
 import ProjectList from "./views/projectList/projectList";
 import { withFirebase } from "../src/components/firebase/index";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import * as ROUTES from "../src/constants/routes";
 
@@ -36,18 +37,20 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Navigation />
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-        <Route path={ROUTES.HOME} component={HomePage} />
-        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} />
-        <Route path={ROUTES.REVIEW_LIST} component={ReviewList} />
-        <Route path={ROUTES.PROJECT_LIST} component={ProjectList} />
-      </React.Fragment>
+      <Router>
+        <div>
+          <Navigation />
+          <Route exact path={ROUTES.LANDING} component={LandingPage} />
+          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+          <Route path={ROUTES.HOME} component={HomePage} />
+          <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+          <Route path={ROUTES.ADMIN} component={AdminPage} />
+          <Route path={ROUTES.REVIEW_LIST} component={ReviewList} />
+          <Route path={ROUTES.PROJECT_LIST} component={ProjectList} />
+        </div>
+      </Router>
     );
   }
 }
