@@ -2,11 +2,6 @@
 # according to the types defined in schema.graphql.
 # They also allow prisma to generate crud operations for us.
 
-type Privileges {
- isModerator: Boolean!
- isAdmin: Boolean!
- isPlebian: Boolean!
-}
 
 type User {
   id: ID! @unique
@@ -21,7 +16,7 @@ type User {
   # Bio: Bio
   # enum data type required for Bio
   Projects: [Project!] @relation(name: "UserProjects")
-  Privileges: [Privilege!]
+  Privilege: String!
   stripeId: String
   accountType: String! @default(value: "free-tier")
 }
@@ -39,7 +34,7 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  rating: Float! @default(value: 1)
- User: [User!] @relation(name: "authorName")
+ User: [User!] @relation(name: "AuthorName")
  Steps: [StepArray!]!
  Reviews:[Review!]!
 }
@@ -61,9 +56,4 @@ type Comment {
   editedAt: DateTime!
   text: String!
   User: User!
-}
-
-type Privilege {
-  id: ID! @unique
-  name: String!
 }
