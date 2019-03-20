@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "../../reactRouter/reactRouter";
 import LandingPage from "../../views/landingPage/landingPage";
-import SignInPage from "../../firebase/signIn/signIn";
-import SignUpPage from "../../firebase/signUp/signUp";
-import PasswordForget from "../../firebase/passwordForget/passwordForget";
+import SignInPage from "../signIn/signIn";
+import SignUpPage from "../signUp/signUp";
+import PasswordForget from "../passwordForget/passwordForget";
 import HomePage from "../../views/homePage/homePage";
-import AccountPage from "../../firebase/account/account";
+import AccountPage from "../account/account";
 import AdminPage from "../../views/adminPage/adminPage";
 import ReviewList from "../../views/reviewList/reviewList";
 import ProjectList from "../../views/projectList/projectList";
 import { withFirebase } from "../firebase/index";
 import { BrowserRouter as Router } from "react-router-dom";
-
 import * as ROUTES from "../../constants/routes";
 
 class App extends Component {

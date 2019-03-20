@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import SignOutButton from "../firebase/signOut/signOut";
+import SignOutButton from "../components/signOut/signOut";
 
 const Navigation = ({ authUser }) => (
   <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
