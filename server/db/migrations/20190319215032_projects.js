@@ -10,7 +10,6 @@ exports.up = function(knex, Promise) {
       table.float('rating').defaultTo(1);
       table.integer('author_id').unsigned().references('id').inTable('users');
       table.string('steps_array');
-      table.string('review_array');
     });
   };
   
