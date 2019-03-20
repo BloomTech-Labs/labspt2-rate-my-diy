@@ -1,6 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
+import "firebase/firestore";
 import * as ROUTES from "../../constants/routes";
 
 var config = {
@@ -16,9 +16,11 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
-    this.db = app.database();
     this.emailAuthProvider = app.auth.EmailAuthProvider;
-    this.serverValue = app.database.ServerValue;
+    this.fieldValue = app.firestore.FieldValue;
+    this.emailAuthProvider = app.auth.EmailAuthProvider;
+    this.db = app.firestore();
+    this.db.settings({ timestampsInSnapshots: true });
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
