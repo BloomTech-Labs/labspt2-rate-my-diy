@@ -16,7 +16,7 @@ type User {
   # Bio: Bio
   # enum data type required for Bio
   Projects: [Project!] @relation(name: "UserProjects")
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String! @default(value: "free-tier")
 }
