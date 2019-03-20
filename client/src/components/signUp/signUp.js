@@ -26,12 +26,42 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
   onSubmitHandler = event => {
-    const { email, passwordOne } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
+    const roles = [];
+    /*I don't think we've specified roles or isAdmin yet*/
+    // if (isAdmin) {
+    //  roles.push(roles.isAdmin)
+    // }
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(response => console.log(response))
-      .then(() => this.props.history.push(ROUTES.HOME))
-      .catch(err => console.log(err));
+      .then(authUser => {
+        console.log(authUser);
+        return this.props.firebase.user(authUser.user.uid).set(
+          {
+            username,
+            email,
+            roles
+          },
+          { merge: true }
+        );
+      })
+      .then(() => {
+        return this.props.firebase.doSendEmailVerification();
+        // This function is commented out in firebase.js due to requiring a .env variable.
+      })
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch(err => {
+        // Made error codes/msg's strings until we set the value.
+        if (err.code === "ERROR_CODE_ACCOUNT_EXISTS") {
+          err.message = "ERROR_MSG_ACCOUNT_EXISTS";
+        }
+
+        this.setState({ err });
+        console.log(err);
+      });
     event.preventDefault();
   };
   onChangeHandler = event => {
