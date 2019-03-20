@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom';
 import Login from './views/loginPage/login';
 import LandingPage from './views/landingPage/LandingPage';
 
+//<Route path='/subscribe' component={Stripe} />
+
 class App extends Component {
 	render() {
 		return (
@@ -14,7 +16,7 @@ class App extends Component {
 				<Route path='/' component={Nav} />
 				<Route exact path='/' component={LandingPage} />
 				<Route path='/login' exact component={Login} />
-				<Route path='/subscribe' component={Stripe} />
+				
 				<Route path='/' component={Footer} />
 			</div>
 		);
