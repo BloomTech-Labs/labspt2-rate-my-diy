@@ -17,16 +17,10 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.emailAuthProvider = app.auth.EmailAuthProvider;
-<<<<<<< HEAD
-    this.serverValue = app.database.ServerValue;
-    this.twitterProvider = new app.auth.TwitterAuthProvider()
-    this.githubProvider = new app.auth.GithubAuthProvider()
-=======
     this.fieldValue = app.firestore.FieldValue;
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
     this.db.settings({ timestampsInSnapshots: true });
->>>>>>> eb464ae9058938eeaa46602020fe2ecae27c4edf
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
@@ -39,14 +33,13 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-
   doSignInWithTwitter = () => {
-   this.auth.signInWithPopup(this.twitterProvider)
-  }
+    this.auth.signInWithPopup(this.twitterProvider);
+  };
 
   doSignWithGithub = () => {
-   this.auth.signInWithPopup(this.githubProvider)
-  }
+    this.auth.signInWithPopup(this.githubProvider);
+  };
   doSignOut = () => this.auth.signOut();
 
   doPassWordReset = email => {
