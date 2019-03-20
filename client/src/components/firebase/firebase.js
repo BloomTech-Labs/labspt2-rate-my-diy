@@ -24,10 +24,7 @@ class Firebase {
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
-    this.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(response => console.log(response))
-      .catch(err => console.log(err));
+    return this.auth.createUserWithEmailAndPassword(email, password);
   };
 
   doSignInWithEmailAndPassword = (email, password) =>
@@ -49,6 +46,46 @@ class Firebase {
   doPassWordUpdate = password => {
     this.auth.currentUser.updatePassword(password);
   };
+
+  // doSendEmailVerification = () => {
+  //  this.auth.currentUser.sendEmailVerification({
+  //   url: process.env.port
+  //  })
+  // }
+
+  onAuthListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.user(authUser.uid)
+          .get()
+          .then(snapshot => {
+            const dbUser = snapshot.data();
+
+            if (!dbUser.roles) {
+              dbUser.roles = [];
+            }
+
+            authUser = {
+              uid: authUser.uid,
+              email: authUser.email,
+              emailVerified: authUser.emailVerified,
+              providerData: authUser.providerData,
+              ...dbUser
+            };
+            next(authUser);
+          });
+      } else {
+        fallback();
+      }
+    });
+
+  // User API
+  user = uid => this.db.doc(`users/${uid}`);
+  users = () => this.db.collection("users");
+
+  // Message API
+  message = uid => this.db.doc(`messages/${uid}`);
+  message = () => this.db.collection("messages");
 }
 
 export default Firebase;
