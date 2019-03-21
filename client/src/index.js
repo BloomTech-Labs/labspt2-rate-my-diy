@@ -7,7 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
-	uri: 'https://git.heroku.com/stark-meadow-13883.herokuapp.com/'
+	uri: 'https://stark-meadow-13883.herokuapp.com/'
 });
 
 ReactDOM.render(
