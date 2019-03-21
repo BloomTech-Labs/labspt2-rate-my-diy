@@ -23,18 +23,14 @@ class SignInGithubBase extends Component {
     this.props.firebase
       .doSignInWithGithub()
       .then(socialAuthUser => {
-        return this.props.firebase.user(socialAuthUser.user.uid).set(
-          {
-            username: socialAuthUser.additionalUserInfo.profile.name,
-            email: socialAuthUser.additionalUserInfo.email,
-            roles: []
-          },
-          { merge: true }
-        );
+        return this.props.firebase.user(socialAuthUser.user.uid).set({
+          username: socialAuthUser.additionalUserInfo.profile.name,
+          email: socialAuthUser.additionalUserInfo.profile.email,
+          roles: []
+        });
       })
       .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
+        return this.props.history.push(ROUTES.HOME);
       })
       .catch(err => {
         if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
