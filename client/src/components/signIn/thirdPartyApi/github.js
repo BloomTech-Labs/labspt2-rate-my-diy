@@ -4,6 +4,16 @@ import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
 import { withFirebase } from "../../firebase";
 
+const ERROR_CODE_ACCOUNT_EXISTS =
+  "auth/account-exists-with-different-credential";
+
+const ERROR_MSG_ACCOUNT_EXISTS = `
+  An account with an E-Mail address to
+  this social account already exists. Try to login from
+  this account instead and associate your social accounts on
+  your personal account page.
+`;
+
 class SignInGithubBase extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +45,7 @@ class SignInGithubBase extends Component {
     event.preventDefault();
   };
   render() {
+    const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
         <button type="submit">Sign In with Github</button>
