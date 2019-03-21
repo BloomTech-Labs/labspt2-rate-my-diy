@@ -1,4 +1,4 @@
-const {path} = require('path')
+const path = require('path')
 const { GraphQLServer } = require('graphql-yoga') 
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma') 
 const { prisma } = require('./src/generated/prisma-client') 
