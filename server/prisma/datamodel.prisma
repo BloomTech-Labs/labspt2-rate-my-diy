@@ -5,25 +5,17 @@
 
 type User {
   id: ID! @unique
-  makerRating: Float
-  reviewerThumbs: Int @default(value: 1)
   url: String
   username: String! @unique
   password: String! 
   email: String! @unique
   userProfileImage: String! @default(value: "https://cdn-images-1.medium.com/max/1200/1*aZB4dwe_JRcp1uMHiGYf8g.jpeg")
-  ReviewList: [Review!]
-  # Bio: Bio
-  # enum data type required for Bio
-  Projects: [Project!] @relation(name: "UserProjects")
+  bio: String!
   privilege: String!
   stripeId: String
   accountType: String! @default(value: "free-tier")
-}
-  
-type StepArray {
-  textBlurbs: String
-  imgUrls: String
+  ReviewList: [Review!]
+  Projects: [Project!] 
 }
 
 type Project {
@@ -34,8 +26,8 @@ type Project {
  titleImg: String!
  titleBlurb: String!
  rating: Float! @default(value: 1)
+ steps: String!
  User: [User!] @relation(name: "AuthorName")
- Steps: [StepArray!]!
  Reviews:[Review!]!
 }
   
@@ -45,15 +37,9 @@ type Review {
   text: String!
   editedAt: String!
   rating: Float! @default(value: 1)
-  reviewThumbsUp: Int
-  reviewThumbsDown: Int
-  Comments: [Comment]
+  thumbsUp: Int
+  userThumbsUpArray: String!
+  thumbsDown: Int
+  userThumbsDownArray: String!
   Author: User!
-}
-
-type Comment {
-  id: ID! @unique
-  editedAt: DateTime!
-  text: String!
-  User: User!
 }
