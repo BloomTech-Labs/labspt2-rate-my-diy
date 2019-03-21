@@ -10,7 +10,7 @@ type User {
   password: String! 
   email: String! @unique
   userProfileImage: String! @default(value: "https://cdn-images-1.medium.com/max/1200/1*aZB4dwe_JRcp1uMHiGYf8g.jpeg")
-  bio: String!
+  bio: String! @default(value: "Hi, this is my page where I share projects and reviews")
   privilege: String!
   stripeId: String
   accountType: String! @default(value: "free-tier")
