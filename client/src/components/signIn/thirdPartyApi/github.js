@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as ROUTES from "../../../constants/routes";
 import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
-import { withFirebase } from "../../firebase";
+import { withFirebase } from "../../firebase/index";
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   "auth/account-exists-with-different-credential";
@@ -20,6 +20,7 @@ class SignInGithubBase extends Component {
     this.state = { error: null };
   }
   onSubmit = event => {
+    event.preventDefault();
     this.props.firebase
       .doSignInWithGithub()
       .then(socialAuthUser => {
@@ -42,7 +43,6 @@ class SignInGithubBase extends Component {
         }
         this.setState({ err });
       });
-    event.preventDefault();
   };
   render() {
     const { error } = this.state;

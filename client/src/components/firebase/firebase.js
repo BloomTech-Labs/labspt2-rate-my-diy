@@ -21,6 +21,7 @@ class Firebase {
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
     this.db.settings({ timestampsInSnapshots: true });
+    this.github = new app.auth.GithubAuthProvider();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
@@ -36,7 +37,7 @@ class Firebase {
   };
 
   doSignInWithGithub = () => {
-    return this.auth.signInWithPopup(this.githubProvider);
+    return this.auth.signInWithPopup(this.github);
   };
   doSignOut = () => this.auth.signOut();
 
