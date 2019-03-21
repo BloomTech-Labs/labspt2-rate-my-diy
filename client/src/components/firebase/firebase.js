@@ -27,24 +27,25 @@ class Firebase {
     return this.auth.createUserWithEmailAndPassword(email, password);
   };
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithEmailAndPassword = (email, password) => {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  };
 
   doSignInWithTwitter = () => {
-    this.auth.signInWithPopup(this.twitterProvider);
+    return this.auth.signInWithPopup(this.twitterProvider);
   };
 
   doSignWithGithub = () => {
-    this.auth.signInWithPopup(this.githubProvider);
+    return this.auth.signInWithPopup(this.githubProvider);
   };
   doSignOut = () => this.auth.signOut();
 
   doPassWordReset = email => {
-    this.auth.sendPasswordResetEmail(email);
+    return this.auth.sendPasswordResetEmail(email);
   };
 
   doPassWordUpdate = password => {
-    this.auth.currentUser.updatePassword(password);
+    return this.auth.currentUser.updatePassword(password);
   };
 
   // doSendEmailVerification = () => {
