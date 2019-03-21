@@ -5,6 +5,9 @@ export default class signInGithub extends Component {
     super(props);
     this.state = { error: null };
   }
+  onSubmit = event => {
+    this.props.firebase.doSignInWithGithub();
+  };
   render() {
     return <div />;
   }

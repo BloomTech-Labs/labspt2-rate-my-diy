@@ -35,7 +35,7 @@ class Firebase {
     return this.auth.signInWithPopup(this.twitterProvider);
   };
 
-  doSignWithGithub = () => {
+  doSignInWithGithub = () => {
     return this.auth.signInWithPopup(this.githubProvider);
   };
   doSignOut = () => this.auth.signOut();
