@@ -39,6 +39,10 @@ class SearchBar extends Component {
       : this.setState({ displayPopUp: true });
   };
 
+  closePopUp = () => {
+    this.setState({ displayPopUp: false });
+  }
+
   render() {
     return (
       <div className="searchBar">
@@ -55,7 +59,7 @@ class SearchBar extends Component {
         </form>
         {/* will need to be replaced with Button component/styling when that file is completed */}
         
-        <LoginPopup show={this.state.displayPopUp} />
+        <LoginPopup show={this.state.displayPopUp} closePopUp={this.closePopUp} />
       </div>
     );
   }
