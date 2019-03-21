@@ -22,7 +22,7 @@ class Firebase {
     this.db = app.firestore();
     this.github = new app.auth.GithubAuthProvider();
     this.google = new app.auth.GoogleAuthProvider();
-    this.twitter = new app.auth.twitterProvider()
+    this.twitter = new app.auth.TwitterAuthProvider();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
@@ -34,7 +34,7 @@ class Firebase {
   };
 
   doSignInWithTwitter = () => {
-    return this.auth.signInWithPopup(this.twitterProvider);
+    return this.auth.signInWithPopup(this.twitter);
   };
 
   doSignInWithGithub = () => {

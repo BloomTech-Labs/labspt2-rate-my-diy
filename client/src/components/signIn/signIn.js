@@ -6,6 +6,7 @@ import { withFirebase } from "../firebase/index";
 import * as ROUTES from "../../constants/routes";
 import SignInGithub from "./thirdPartyApi/github";
 import SignInGoogle from "./thirdPartyApi/google";
+import SignInTwitter from "./thirdPartyApi/twitter";
 
 const SignInPage = () => (
   <div>
@@ -13,6 +14,7 @@ const SignInPage = () => (
     <SignInForm />
     <SignInGithub />
     <SignInGoogle />
+    <SignInTwitter />
     <SignUpLink />
   </div>
 );
