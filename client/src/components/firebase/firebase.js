@@ -22,6 +22,7 @@ class Firebase {
     this.db = app.firestore();
     this.github = new app.auth.GithubAuthProvider();
     this.google = new app.auth.GoogleAuthProvider();
+    this.twitter = new app.auth.twitterProvider()
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
