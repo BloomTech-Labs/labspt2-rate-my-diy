@@ -5,12 +5,14 @@ import { SignUpLink } from "../signUp/signUp";
 import { withFirebase } from "../firebase/index";
 import * as ROUTES from "../../constants/routes";
 import SignInGithub from "./thirdPartyApi/github";
+import SignInGoogle from "./thirdPartyApi/google";
 
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
     <SignInGithub />
+    <SignInGoogle />
     <SignUpLink />
   </div>
 );
