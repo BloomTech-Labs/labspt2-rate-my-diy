@@ -7,8 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
-	// uri: 'https://secure-harbor-25045.herokuapp.com/'
-	uri: 'https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev'
+	uri: 'https://git.heroku.com/stark-meadow-13883.herokuapp.com/'
 });
 
 ReactDOM.render(
