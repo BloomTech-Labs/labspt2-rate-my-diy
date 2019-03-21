@@ -1,11 +1,10 @@
 {
   "name": "rate-my-diy",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "server": "nodemon",
-    "start": "node index.js",
-    "nexus": "ts-node-dev --no-notify --respawn --transpileOnly ./"
+    "build": "tsc",
+    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./"
   },
   "license": "MIT",
   "dependencies": {
