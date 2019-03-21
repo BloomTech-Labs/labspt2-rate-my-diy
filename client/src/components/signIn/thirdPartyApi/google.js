@@ -52,7 +52,6 @@ class SignInGoogleBase extends Component {
   };
   render() {
     const { error } = this.state;
-    console.log(this.props);
     return (
       <form onSubmit={this.submitHandler}>
         <button type="submit">Sign In With Google</button>

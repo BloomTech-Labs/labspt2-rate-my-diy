@@ -22,6 +22,7 @@ class Firebase {
     this.db = app.firestore();
     this.db.settings({ timestampsInSnapshots: true });
     this.github = new app.auth.GithubAuthProvider();
+    this.google = new app.auth.GoogleAuthProvider();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
@@ -38,6 +39,10 @@ class Firebase {
 
   doSignInWithGithub = () => {
     return this.auth.signInWithPopup(this.github);
+  };
+
+  doSignInWithGoogle = () => {
+    return this.auth.signInWithPopup(this.google);
   };
   doSignOut = () => this.auth.signOut();
 
