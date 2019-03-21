@@ -20,7 +20,6 @@ class SignInGithubBase extends Component {
     this.state = { error: null };
   }
   onSubmit = event => {
-    event.preventDefault();
     this.props.firebase
       .doSignInWithGithub()
       .then(socialAuthUser => {
@@ -43,6 +42,7 @@ class SignInGithubBase extends Component {
         }
         this.setState({ err });
       });
+    event.preventDefault();
   };
   render() {
     const { error } = this.state;
