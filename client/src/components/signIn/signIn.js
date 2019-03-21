@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { SignUpLink } from "../signUp/signUp";
-import { withFirebase } from '../firebase/index';
+import { withFirebase } from "../firebase/index";
 import * as ROUTES from "../../constants/routes";
-import SignInGithub from './thirdPartyApi/github';
+import SignInGithub from "./thirdPartyApi/github";
 
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
-    <SignInGithub/>
+    <SignInGithub />
     <SignUpLink />
   </div>
 );
