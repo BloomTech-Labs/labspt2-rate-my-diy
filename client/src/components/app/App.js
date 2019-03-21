@@ -4,7 +4,7 @@ import Navigation from "../../reactRouter/reactRouter";
 import LandingPage from "../../views/landingPage/landingPage";
 import SignInPage from "../signIn/signIn";
 import SignUpPage from "../signUp/signUp";
-import PasswordForget from "../passwordForget/passwordForget";
+import PasswordForget from "../../components/passwordForget/passwordForget";
 import HomePage from "../../views/homePage/homePage";
 import AccountPage from "../account/account";
 import AdminPage from "../../views/adminPage/adminPage";

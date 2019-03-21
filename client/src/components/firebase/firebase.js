@@ -20,7 +20,6 @@ class Firebase {
     this.fieldValue = app.firestore.FieldValue;
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
-    this.db.settings({ timestampsInSnapshots: true });
     this.github = new app.auth.GithubAuthProvider();
   }
 
