@@ -1,17 +1,10 @@
 {
   "name": "rate-my-diy",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build-ts": "tsc",
-    "postinstall": "npm run build-ts",
-    "start": "npm run serve",
-    "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
-    "watch-ts": "tsc -w"
-  },
-  "engines": {
-    "node": "10.15.1"
+    "server": "nodemon",
+    "start": "node src/index.js"
   },
   "license": "MIT",
   "dependencies": {

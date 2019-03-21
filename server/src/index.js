@@ -1,8 +1,8 @@
-import * as path from 'path'
-import { GraphQLServer } from 'graphql-yoga'
-import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { prisma } from './generated/prisma-client'
-import datamodelInfo from './generated/nexus-prisma'
+const {path} = require('path')
+const { GraphQLServer } = require('graphql-yoga') 
+const { makePrismaSchema, prismaObjectType } = require('nexus-prisma') 
+const { prisma } = require('./generated/prisma-client') 
+const datamodelInfo = require('./generated/nexus-prisma') 
 const {stripe} = require('./stripe') 
 const { stringArg } = require('nexus/dist/definitions/args') 
 
@@ -26,7 +26,7 @@ const Mutation = prismaObjectType({
         // }/k
         // const user = await prisma.user({id: 1})
 
-        const makeid = (length: number) => {
+        const makeid = (length) => {
             let text = "";
             const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
           
@@ -81,7 +81,7 @@ const schema = makePrismaSchema({
 
   outputs: {
     schema: path.join(__dirname, './generated/schema.graphql'),
-    typegen: path.join(__dirname, './generated/nexus.ts'),
+    typegen: path.join(__dirname, './generated/nexus.js'),
   },
 })
 
