@@ -1,10 +1,17 @@
 {
   "name": "rate-my-diy",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./"
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w"
+  },
+  "engines": {
+    "node": "10.15.1"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,6 +41,7 @@
     "@types/ws": "^6.0.1",
     "nodemon": "^1.18.10",
     "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.14.0",
     "typescript": "^3.3.4000"
   }
 }

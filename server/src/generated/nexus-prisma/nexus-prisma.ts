@@ -510,7 +510,7 @@ type UserObject =
   | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
   | { name: 'ReviewList', args?: UserReviewListArgs[] | false, alias?: string  } 
   | { name: 'Projects', args?: UserProjectsArgs[] | false, alias?: string  } 
-  | { name: 'Privilege', args?: [] | false, alias?: string  } 
+  | { name: 'privilege', args?: [] | false, alias?: string  } 
   | { name: 'stripeId', args?: [] | false, alias?: string  } 
   | { name: 'accountType', args?: [] | false, alias?: string  } 
 
@@ -525,7 +525,7 @@ type UserFields =
   | 'userProfileImage'
   | 'ReviewList'
   | 'Projects'
-  | 'Privilege'
+  | 'privilege'
   | 'stripeId'
   | 'accountType'
 
@@ -639,7 +639,7 @@ export interface UserFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Project[]> | prisma.Project[]
   }
-  Privilege: {
+  privilege: {
     type: 'String'
     args: {}
     description: string
@@ -2412,7 +2412,7 @@ type UserPreviousValuesObject =
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
   | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
-  | { name: 'Privilege', args?: [] | false, alias?: string  } 
+  | { name: 'privilege', args?: [] | false, alias?: string  } 
   | { name: 'stripeId', args?: [] | false, alias?: string  } 
   | { name: 'accountType', args?: [] | false, alias?: string  } 
 
@@ -2425,7 +2425,7 @@ type UserPreviousValuesFields =
   | 'password'
   | 'email'
   | 'userProfileImage'
-  | 'Privilege'
+  | 'privilege'
   | 'stripeId'
   | 'accountType'
 
@@ -2498,7 +2498,7 @@ export interface UserPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  Privilege: {
+  privilege: {
     type: 'String'
     args: {}
     description: string
@@ -3438,20 +3438,20 @@ export interface UserWhereInput {
   Projects_every?: ProjectWhereInput | null
   Projects_some?: ProjectWhereInput | null
   Projects_none?: ProjectWhereInput | null
-  Privilege?: string | null
-  Privilege_not?: string | null
-  Privilege_in?: string[]
-  Privilege_not_in?: string[]
-  Privilege_lt?: string | null
-  Privilege_lte?: string | null
-  Privilege_gt?: string | null
-  Privilege_gte?: string | null
-  Privilege_contains?: string | null
-  Privilege_not_contains?: string | null
-  Privilege_starts_with?: string | null
-  Privilege_not_starts_with?: string | null
-  Privilege_ends_with?: string | null
-  Privilege_not_ends_with?: string | null
+  privilege?: string | null
+  privilege_not?: string | null
+  privilege_in?: string[]
+  privilege_not_in?: string[]
+  privilege_lt?: string | null
+  privilege_lte?: string | null
+  privilege_gt?: string | null
+  privilege_gte?: string | null
+  privilege_contains?: string | null
+  privilege_not_contains?: string | null
+  privilege_starts_with?: string | null
+  privilege_not_starts_with?: string | null
+  privilege_ends_with?: string | null
+  privilege_not_ends_with?: string | null
   stripeId?: string | null
   stripeId_not?: string | null
   stripeId_in?: string[]
@@ -3592,20 +3592,20 @@ export type UserWhereInputInputObject =
   | { name: 'Projects_every', alias?: string  } 
   | { name: 'Projects_some', alias?: string  } 
   | { name: 'Projects_none', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
-  | { name: 'Privilege_not', alias?: string  } 
-  | { name: 'Privilege_in', alias?: string  } 
-  | { name: 'Privilege_not_in', alias?: string  } 
-  | { name: 'Privilege_lt', alias?: string  } 
-  | { name: 'Privilege_lte', alias?: string  } 
-  | { name: 'Privilege_gt', alias?: string  } 
-  | { name: 'Privilege_gte', alias?: string  } 
-  | { name: 'Privilege_contains', alias?: string  } 
-  | { name: 'Privilege_not_contains', alias?: string  } 
-  | { name: 'Privilege_starts_with', alias?: string  } 
-  | { name: 'Privilege_not_starts_with', alias?: string  } 
-  | { name: 'Privilege_ends_with', alias?: string  } 
-  | { name: 'Privilege_not_ends_with', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'privilege_not', alias?: string  } 
+  | { name: 'privilege_in', alias?: string  } 
+  | { name: 'privilege_not_in', alias?: string  } 
+  | { name: 'privilege_lt', alias?: string  } 
+  | { name: 'privilege_lte', alias?: string  } 
+  | { name: 'privilege_gt', alias?: string  } 
+  | { name: 'privilege_gte', alias?: string  } 
+  | { name: 'privilege_contains', alias?: string  } 
+  | { name: 'privilege_not_contains', alias?: string  } 
+  | { name: 'privilege_starts_with', alias?: string  } 
+  | { name: 'privilege_not_starts_with', alias?: string  } 
+  | { name: 'privilege_ends_with', alias?: string  } 
+  | { name: 'privilege_not_ends_with', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'stripeId_not', alias?: string  } 
   | { name: 'stripeId_in', alias?: string  } 
@@ -3937,7 +3937,7 @@ export interface UserCreateInput {
   userProfileImage?: string | null
   ReviewList?: ReviewCreateManyWithoutAuthorInput | null
   Projects?: ProjectCreateManyWithoutUserInput | null
-  Privilege?: string
+  privilege?: string
   stripeId?: string | null
   accountType?: string | null
 }
@@ -3952,7 +3952,7 @@ export type UserCreateInputInputObject =
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'ReviewList', alias?: string  } 
   | { name: 'Projects', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -4107,7 +4107,7 @@ export interface UserCreateWithoutReviewListInput {
   email?: string
   userProfileImage?: string | null
   Projects?: ProjectCreateManyWithoutUserInput | null
-  Privilege?: string
+  privilege?: string
   stripeId?: string | null
   accountType?: string | null
 }
@@ -4121,7 +4121,7 @@ export type UserCreateWithoutReviewListInputInputObject =
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'Projects', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -4135,7 +4135,7 @@ export interface UserUpdateInput {
   userProfileImage?: string | null
   ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
   Projects?: ProjectUpdateManyWithoutUserInput | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -4150,7 +4150,7 @@ export type UserUpdateInputInputObject =
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'ReviewList', alias?: string  } 
   | { name: 'Projects', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -4271,7 +4271,7 @@ export interface UserUpdateDataInput {
   userProfileImage?: string | null
   ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
   Projects?: ProjectUpdateManyWithoutUserInput | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -4286,7 +4286,7 @@ export type UserUpdateDataInputInputObject =
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'ReviewList', alias?: string  } 
   | { name: 'Projects', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -4514,7 +4514,7 @@ export interface UserUpdateWithoutReviewListDataInput {
   email?: string | null
   userProfileImage?: string | null
   Projects?: ProjectUpdateManyWithoutUserInput | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -4528,7 +4528,7 @@ export type UserUpdateWithoutReviewListDataInputInputObject =
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'Projects', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -5109,7 +5109,7 @@ export interface UserUpdateManyMutationInput {
   password?: string | null
   email?: string | null
   userProfileImage?: string | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -5122,7 +5122,7 @@ export type UserUpdateManyMutationInputInputObject =
   | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -5176,7 +5176,7 @@ export interface UserCreateWithoutProjectsInput {
   email?: string
   userProfileImage?: string | null
   ReviewList?: ReviewCreateManyWithoutAuthorInput | null
-  Privilege?: string
+  privilege?: string
   stripeId?: string | null
   accountType?: string | null
 }
@@ -5190,7 +5190,7 @@ export type UserCreateWithoutProjectsInputInputObject =
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'ReviewList', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -5258,7 +5258,7 @@ export interface UserUpdateWithoutProjectsDataInput {
   email?: string | null
   userProfileImage?: string | null
   ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -5272,7 +5272,7 @@ export type UserUpdateWithoutProjectsDataInputInputObject =
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'ReviewList', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -5388,20 +5388,20 @@ export interface UserScalarWhereInput {
   userProfileImage_not_starts_with?: string | null
   userProfileImage_ends_with?: string | null
   userProfileImage_not_ends_with?: string | null
-  Privilege?: string | null
-  Privilege_not?: string | null
-  Privilege_in?: string[]
-  Privilege_not_in?: string[]
-  Privilege_lt?: string | null
-  Privilege_lte?: string | null
-  Privilege_gt?: string | null
-  Privilege_gte?: string | null
-  Privilege_contains?: string | null
-  Privilege_not_contains?: string | null
-  Privilege_starts_with?: string | null
-  Privilege_not_starts_with?: string | null
-  Privilege_ends_with?: string | null
-  Privilege_not_ends_with?: string | null
+  privilege?: string | null
+  privilege_not?: string | null
+  privilege_in?: string[]
+  privilege_not_in?: string[]
+  privilege_lt?: string | null
+  privilege_lte?: string | null
+  privilege_gt?: string | null
+  privilege_gte?: string | null
+  privilege_contains?: string | null
+  privilege_not_contains?: string | null
+  privilege_starts_with?: string | null
+  privilege_not_starts_with?: string | null
+  privilege_ends_with?: string | null
+  privilege_not_ends_with?: string | null
   stripeId?: string | null
   stripeId_not?: string | null
   stripeId_in?: string[]
@@ -5536,20 +5536,20 @@ export type UserScalarWhereInputInputObject =
   | { name: 'userProfileImage_not_starts_with', alias?: string  } 
   | { name: 'userProfileImage_ends_with', alias?: string  } 
   | { name: 'userProfileImage_not_ends_with', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
-  | { name: 'Privilege_not', alias?: string  } 
-  | { name: 'Privilege_in', alias?: string  } 
-  | { name: 'Privilege_not_in', alias?: string  } 
-  | { name: 'Privilege_lt', alias?: string  } 
-  | { name: 'Privilege_lte', alias?: string  } 
-  | { name: 'Privilege_gt', alias?: string  } 
-  | { name: 'Privilege_gte', alias?: string  } 
-  | { name: 'Privilege_contains', alias?: string  } 
-  | { name: 'Privilege_not_contains', alias?: string  } 
-  | { name: 'Privilege_starts_with', alias?: string  } 
-  | { name: 'Privilege_not_starts_with', alias?: string  } 
-  | { name: 'Privilege_ends_with', alias?: string  } 
-  | { name: 'Privilege_not_ends_with', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'privilege_not', alias?: string  } 
+  | { name: 'privilege_in', alias?: string  } 
+  | { name: 'privilege_not_in', alias?: string  } 
+  | { name: 'privilege_lt', alias?: string  } 
+  | { name: 'privilege_lte', alias?: string  } 
+  | { name: 'privilege_gt', alias?: string  } 
+  | { name: 'privilege_gte', alias?: string  } 
+  | { name: 'privilege_contains', alias?: string  } 
+  | { name: 'privilege_not_contains', alias?: string  } 
+  | { name: 'privilege_starts_with', alias?: string  } 
+  | { name: 'privilege_not_starts_with', alias?: string  } 
+  | { name: 'privilege_ends_with', alias?: string  } 
+  | { name: 'privilege_not_ends_with', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'stripeId_not', alias?: string  } 
   | { name: 'stripeId_in', alias?: string  } 
@@ -5599,7 +5599,7 @@ export interface UserUpdateManyDataInput {
   password?: string | null
   email?: string | null
   userProfileImage?: string | null
-  Privilege?: string | null
+  privilege?: string | null
   stripeId?: string | null
   accountType?: string | null
 }
@@ -5612,7 +5612,7 @@ export type UserUpdateManyDataInputInputObject =
   | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
-  | { name: 'Privilege', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
   | { name: 'stripeId', alias?: string  } 
   | { name: 'accountType', alias?: string  } 
   
@@ -5866,8 +5866,8 @@ export type UserOrderByInputValues =
   | 'email_DESC'
   | 'userProfileImage_ASC'
   | 'userProfileImage_DESC'
-  | 'Privilege_ASC'
-  | 'Privilege_DESC'
+  | 'privilege_ASC'
+  | 'privilege_DESC'
   | 'stripeId_ASC'
   | 'stripeId_DESC'
   | 'accountType_ASC'

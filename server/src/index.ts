@@ -1,11 +1,10 @@
 import * as path from 'path'
 import { GraphQLServer } from 'graphql-yoga'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { prisma } from './src/generated/prisma-client'
-import datamodelInfo from './src/generated/nexus-prisma'
-import {stripe} from './src/stripe'
-import { stringArg } from 'nexus/dist/definitions/args';
-import * as cors from 'cors';
+import { prisma } from './generated/prisma-client'
+import datamodelInfo from './generated/nexus-prisma'
+const {stripe} = require('./stripe') 
+const { stringArg } = require('nexus/dist/definitions/args') 
 
 
 const Query = prismaObjectType({
@@ -46,7 +45,7 @@ const Mutation = prismaObjectType({
                 username: userName,
                 email: email,
                 password: password,
-                Privilege: "basic"
+                privilege: "basic"
             
         })
         const user = await prisma.user({username: userName})
@@ -90,7 +89,6 @@ const server = new GraphQLServer({
   schema,
   context: { prisma }
 })
-server.use(cors())
 server.start(() => console.log(`Server is running on http://localhost:4000`))
 
 

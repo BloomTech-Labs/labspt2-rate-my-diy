@@ -1221,7 +1221,7 @@ type User {
   userProfileImage: String!
   ReviewList(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
   Projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String!
 }
@@ -1242,7 +1242,7 @@ input UserCreateInput {
   userProfileImage: String
   ReviewList: ReviewCreateManyWithoutAuthorInput
   Projects: ProjectCreateManyWithoutUserInput
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String
 }
@@ -1271,7 +1271,7 @@ input UserCreateWithoutProjectsInput {
   email: String!
   userProfileImage: String
   ReviewList: ReviewCreateManyWithoutAuthorInput
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String
 }
@@ -1285,7 +1285,7 @@ input UserCreateWithoutReviewListInput {
   email: String!
   userProfileImage: String
   Projects: ProjectCreateManyWithoutUserInput
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String
 }
@@ -1312,8 +1312,8 @@ enum UserOrderByInput {
   email_DESC
   userProfileImage_ASC
   userProfileImage_DESC
-  Privilege_ASC
-  Privilege_DESC
+  privilege_ASC
+  privilege_DESC
   stripeId_ASC
   stripeId_DESC
   accountType_ASC
@@ -1333,7 +1333,7 @@ type UserPreviousValues {
   password: String!
   email: String!
   userProfileImage: String!
-  Privilege: String!
+  privilege: String!
   stripeId: String
   accountType: String!
 }
@@ -1439,20 +1439,20 @@ input UserScalarWhereInput {
   userProfileImage_not_starts_with: String
   userProfileImage_ends_with: String
   userProfileImage_not_ends_with: String
-  Privilege: String
-  Privilege_not: String
-  Privilege_in: [String!]
-  Privilege_not_in: [String!]
-  Privilege_lt: String
-  Privilege_lte: String
-  Privilege_gt: String
-  Privilege_gte: String
-  Privilege_contains: String
-  Privilege_not_contains: String
-  Privilege_starts_with: String
-  Privilege_not_starts_with: String
-  Privilege_ends_with: String
-  Privilege_not_ends_with: String
+  privilege: String
+  privilege_not: String
+  privilege_in: [String!]
+  privilege_not_in: [String!]
+  privilege_lt: String
+  privilege_lte: String
+  privilege_gt: String
+  privilege_gte: String
+  privilege_contains: String
+  privilege_not_contains: String
+  privilege_starts_with: String
+  privilege_not_starts_with: String
+  privilege_ends_with: String
+  privilege_not_ends_with: String
   stripeId: String
   stripeId_not: String
   stripeId_in: [String!]
@@ -1514,7 +1514,7 @@ input UserUpdateDataInput {
   userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   Projects: ProjectUpdateManyWithoutUserInput
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1529,7 +1529,7 @@ input UserUpdateInput {
   userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   Projects: ProjectUpdateManyWithoutUserInput
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1542,7 +1542,7 @@ input UserUpdateManyDataInput {
   password: String
   email: String
   userProfileImage: String
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1555,7 +1555,7 @@ input UserUpdateManyMutationInput {
   password: String
   email: String
   userProfileImage: String
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1600,7 +1600,7 @@ input UserUpdateWithoutProjectsDataInput {
   email: String
   userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1614,7 +1614,7 @@ input UserUpdateWithoutReviewListDataInput {
   email: String
   userProfileImage: String
   Projects: ProjectUpdateManyWithoutUserInput
-  Privilege: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1747,20 +1747,20 @@ input UserWhereInput {
   Projects_every: ProjectWhereInput
   Projects_some: ProjectWhereInput
   Projects_none: ProjectWhereInput
-  Privilege: String
-  Privilege_not: String
-  Privilege_in: [String!]
-  Privilege_not_in: [String!]
-  Privilege_lt: String
-  Privilege_lte: String
-  Privilege_gt: String
-  Privilege_gte: String
-  Privilege_contains: String
-  Privilege_not_contains: String
-  Privilege_starts_with: String
-  Privilege_not_starts_with: String
-  Privilege_ends_with: String
-  Privilege_not_ends_with: String
+  privilege: String
+  privilege_not: String
+  privilege_in: [String!]
+  privilege_not_in: [String!]
+  privilege_lt: String
+  privilege_lte: String
+  privilege_gt: String
+  privilege_gte: String
+  privilege_contains: String
+  privilege_not_contains: String
+  privilege_starts_with: String
+  privilege_not_starts_with: String
+  privilege_ends_with: String
+  privilege_not_ends_with: String
   stripeId: String
   stripeId_not: String
   stripeId_in: [String!]

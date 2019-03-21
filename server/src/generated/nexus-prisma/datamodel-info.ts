@@ -1426,7 +1426,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "args": [],
             "type": {
@@ -4200,7 +4200,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4210,7 +4210,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not",
+            "name": "privilege_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4220,7 +4220,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_in",
+            "name": "privilege_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -4238,7 +4238,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_in",
+            "name": "privilege_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -4256,7 +4256,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_lt",
+            "name": "privilege_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4266,7 +4266,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_lte",
+            "name": "privilege_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4276,7 +4276,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_gt",
+            "name": "privilege_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4286,7 +4286,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_gte",
+            "name": "privilege_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4296,7 +4296,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_contains",
+            "name": "privilege_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4306,7 +4306,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_contains",
+            "name": "privilege_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4316,7 +4316,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_starts_with",
+            "name": "privilege_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4326,7 +4326,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_starts_with",
+            "name": "privilege_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4336,7 +4336,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_ends_with",
+            "name": "privilege_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4346,7 +4346,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_ends_with",
+            "name": "privilege_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -7337,13 +7337,13 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "Privilege_ASC",
+            "name": "privilege_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "Privilege_DESC",
+            "name": "privilege_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -9460,7 +9460,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -10271,7 +10271,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -10406,7 +10406,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11134,7 +11134,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12424,7 +12424,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15602,7 +15602,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15971,7 +15971,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -16409,7 +16409,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17631,7 +17631,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17641,7 +17641,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not",
+            "name": "privilege_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17651,7 +17651,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_in",
+            "name": "privilege_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -17669,7 +17669,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_in",
+            "name": "privilege_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -17687,7 +17687,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_lt",
+            "name": "privilege_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17697,7 +17697,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_lte",
+            "name": "privilege_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17707,7 +17707,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_gt",
+            "name": "privilege_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17717,7 +17717,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_gte",
+            "name": "privilege_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17727,7 +17727,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_contains",
+            "name": "privilege_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17737,7 +17737,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_contains",
+            "name": "privilege_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17747,7 +17747,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_starts_with",
+            "name": "privilege_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17757,7 +17757,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_starts_with",
+            "name": "privilege_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17767,7 +17767,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_ends_with",
+            "name": "privilege_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17777,7 +17777,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege_not_ends_with",
+            "name": "privilege_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -18273,7 +18273,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19099,7 +19099,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "Privilege",
+            "name": "privilege",
             "description": null,
             "args": [],
             "type": {
