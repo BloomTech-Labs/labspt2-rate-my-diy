@@ -9,7 +9,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import LoginPopup from "../loginpopup/LoginPopup.js";
+import LoginPopup from '../loginPopUp/loginPopUp'
 import "./searchbar.scss";
 
 class SearchBar extends Component {

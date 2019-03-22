@@ -11,14 +11,14 @@ class LandingPage extends Component {
 	constructor() {
 		super();
 		this.state = {
-			userClicked: null
+			userClicked: null,
 		};
 	}
-	
+
 	//This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
 	clickUserHandler = (username) => {
 		this.setState({ userClicked: username });
-	}
+	};
 
 	render() {
 		return (
@@ -33,64 +33,63 @@ class LandingPage extends Component {
 								name
 								titleImg
 								rating
-								User
-    								{
-										id
-      									username
-										email  
-    								}
+								User {
+									id
+									username
+									email
+								}
 								timestamp
 							}
 						}
-					`}
-				>
+					`}>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
-						
-						//This function filters the projects in the current month and year and returns the 4 with the highest rating	
-						const filteredProjects = () => {
-							const currentTime = new Date()
 
-							var month = currentTime.getMonth() + 1
-						
-							var year = currentTime.getFullYear()
+						//This function filters the projects in the current month and year and returns the 4 with the highest rating
+						const filteredProjects = () => {
+							const currentTime = new Date();
+
+							var month = currentTime.getMonth() + 1;
+
+							var year = currentTime.getFullYear();
 
 							const newProjects = [];
 
-							data.projects.map(project => {
-								if (project.timestamp.slice(0, 4) == year && project.timestamp.slice(5, 7) == month) { 
-									newProjects.push(project);
+							data.projects.map((project) => {
+								if (project.timestamp.slice(0, 4) === year && project.timestamp.slice(5, 7) === month) {
+                newProjects.push(project);
+                
 								}
 							});
 
-							const sortedByRating = newProjects.sort(function(a, b){return b.rating - a.rating});
+							const sortedByRating = newProjects.sort(function(a, b) {
+								return b.rating - a.rating;
+							});
 
 							return sortedByRating.slice(0, 4);
-						}	
-						
+						};
+
 						const projects = filteredProjects();
 
 						return (
 							<div className='card-container'>
-								{projects.map(
-									({ id, name, titleImg, rating, User }) => (
-										<FeaturedAndMakers
-											type="featured"
-											key={id}
-											image={titleImg}
-											stars={rating}
-											title={name}
-											// below might need to be edited
-											user={User}
-										/>
-									)
-								)}
+								{projects.map(({ id, name, titleImg, rating, User }) => (
+									<FeaturedAndMakers
+										type='featured'
+										key={id}
+										image={titleImg}
+										stars={rating}
+										title={name}
+										// below might need to be edited
+										user={User}
+									/>
+								))}
 							</div>
-						)
+						);
 					}}
 				</Query>
-			
+
 				<h1>Popular Makers</h1>
 				<Query
 					query={gql`
@@ -101,27 +100,24 @@ class LandingPage extends Component {
 								userProfileImage
 							}
 						}
-					`}
-				>
+					`}>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
 
 						return (
 							<div className='card-container'>
-								{data.users.map(
-									({ id, username, userProfileImage }) => (
-										<PopularReviewerCard
-											type="featured"
-											key={id}
-											username={username}
-											userProfileImage={userProfileImage}
-											clickHandler={this.clickUserHandler}
-										/>
-									)
-								)}
+								{data.users.map(({ id, username, userProfileImage }) => (
+									<PopularReviewerCard
+										type='featured'
+										key={id}
+										username={username}
+										userProfileImage={userProfileImage}
+										clickHandler={this.clickUserHandler}
+									/>
+								))}
 							</div>
-						)
+						);
 					}}
 				</Query>
 				<h1>Popular Reviewers</h1>
@@ -134,29 +130,26 @@ class LandingPage extends Component {
 								userProfileImage
 							}
 						}
-					`}
-				>
+					`}>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
 
 						return (
 							<div className='card-container'>
-								{data.users.map(
-									({ id, username, userProfileImage }) => (
-										<PopularReviewerCard
-											type="featured"
-											key={id}
-											username={username}
-											userProfileImage={userProfileImage}
-											clickHandler={this.clickUserHandler}
-										/>
-									)
-								)}
+								{data.users.map(({ id, username, userProfileImage }) => (
+									<PopularReviewerCard
+										type='featured'
+										key={id}
+										username={username}
+										userProfileImage={userProfileImage}
+										clickHandler={this.clickUserHandler}
+									/>
+								))}
 							</div>
-						)
+						);
 					}}
-				</Query>	
+				</Query>
 			</div>
 		);
 	}

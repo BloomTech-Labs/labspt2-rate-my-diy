@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "../../reactRouter/reactRouter";
-import LandingPage from "../../views/landingPage/landingPage";
+import LandingPage from '../../views/landingPage/landingPage'
 import SignInPage from "../signIn/signIn";
 import SignUpPage from "../signUp/signUp";
 import PasswordForget from "../../components/passwordForget/passwordForget";
@@ -13,7 +13,7 @@ import ProjectList from "../../views/projectList/projectList";
 import { withFirebase } from "../firebase/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
-import Stripe from "./components/stripe/stripe";
+import Stripe from '../stripe/stripe'
 
 class App extends Component {
   constructor(props) {

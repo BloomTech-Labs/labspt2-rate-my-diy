@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { withFirebase } from "../../components/firebase/index";
 import * as ROUTES from "../../constants/routes";
-import { auth } from "firebase";
+
 
 const SignUpPage = () => {
   return (
@@ -26,7 +26,7 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
   onSubmitHandler = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
+    const { username, email, passwordOne} = this.state;
     const roles = [];
     /*I don't think we've specified roles or isAdmin yet*/
     // if (isAdmin) {

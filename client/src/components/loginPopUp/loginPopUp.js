@@ -1,4 +1,4 @@
-import "./LoginPopup.scss";
+import './loginPopUp.scss'
 import React, { Component } from "react";
 
 class LoginPopup extends Component {

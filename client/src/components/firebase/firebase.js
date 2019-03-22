@@ -1,7 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import * as ROUTES from "../../constants/routes";
+
 
 var config = {
   apiKey: "AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM",
