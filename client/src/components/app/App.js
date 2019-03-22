@@ -13,6 +13,7 @@ import ProjectList from "../../views/projectList/projectList";
 import { withFirebase } from "../firebase/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
+import Stripe from "./components/stripe/stripe";
 
 class App extends Component {
   constructor(props) {

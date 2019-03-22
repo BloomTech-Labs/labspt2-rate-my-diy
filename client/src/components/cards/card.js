@@ -1,15 +1,14 @@
-import React from 'react'
-import './card.scss';
+import React from "react";
+import "./card.scss";
 
-
- function Card() {
+function Card() {
   return (
     <div className="card">
-    <p>Props.Image</p>
-    <p>Props.Starsd</p>
-    <p>Props.user</p>
+      <p>Props.Image</p>
+      <p>Props.Stars</p>
+      <p>Props.user</p>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;

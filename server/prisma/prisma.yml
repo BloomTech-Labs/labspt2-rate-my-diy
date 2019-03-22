@@ -1,10 +1,11 @@
 # The HTTP endpoint for your Prisma API
-# This endpoint is our current production server. If you need to deploy comment this endpoint and uncomment the one that is empty 
-# endpoint: https://us1.prisma.sh/server/dev
-# endpoint: https://labspt-diy-1bdc9280b0.herokuapp.com/labspt2-diy/dev
 #endpoint: ''
-endpoint: https://us1.prisma.sh/angelina-la-salle/server/dev
-# endpoint: https://us1.prisma.sh/labspt2-rate-my-diy/dev
+
+endpoint: https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev
+
+
+# endpoint: https://labspt2-874e014ab3.herokuapp.com/RMDserver/dev
+
 
 # Add any other deployment links under here to keep it clean
 
@@ -12,7 +13,9 @@ endpoint: https://us1.prisma.sh/angelina-la-salle/server/dev
 datamodel: datamodel.prisma
 
 # Specifies language & location for the generated Prisma client
-generate: 
+generate:
+  - generator: graphql-schema
+    output: ../src/generated/prisma-client
   - generator: javascript-client
     output: ../src/generated/prisma-client
 
@@ -22,3 +25,4 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+    - npx nexus-prisma-generate --client ./generated/prisma-client --output ./generated/nexus-prisma --js
