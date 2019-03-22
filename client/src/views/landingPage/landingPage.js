@@ -7,6 +7,7 @@ import FeaturedAndMakers from '../../components/featureProject/featureProject.js
 import PopularReviewerCard from '../../components/popularReviewers/popularReviewers.js';
 import './landingPage.scss';
 
+
 class LandingPage extends Component {
 	constructor() {
 		super();

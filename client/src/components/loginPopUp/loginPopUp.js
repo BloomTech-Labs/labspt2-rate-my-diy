@@ -1,5 +1,6 @@
-import "./LoginPopup.scss";
+import './loginPopUp.scss'
 import React, { Component } from "react";
+import {Link} from 'react-router-dom'
 
 class LoginPopup extends Component {
   constructor(props) {
@@ -11,8 +12,10 @@ class LoginPopup extends Component {
       <div className="modal">
         <div className="modal-content">
           <h1>Login Popup Box </h1>
-          <button onClick={this.props.closePopUp} className="close button">Close</button>
-          <button className="login button">login button</button>
+          <button onClick={this.props.closePopUp} className="close button">
+            Close
+          </button>
+          <Link to='/signin'><button className="loginButton">Login</button></Link>
         </div>
       </div>
     ) : null;

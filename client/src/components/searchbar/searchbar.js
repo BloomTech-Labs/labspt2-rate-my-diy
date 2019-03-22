@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import LoginPopup from "../loginpopup/LoginPopup.js";
+import LoginPopup from '../loginPopUp/loginPopUp'
 import "./searchbar.scss";
 
 class SearchBar extends Component {
@@ -15,7 +15,7 @@ class SearchBar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.userClicked !== null) {
+    if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
     }
   }
@@ -33,7 +33,7 @@ class SearchBar extends Component {
 
   closePopUp = () => {
     this.setState({ displayPopUp: false });
-  }
+  };
 
   render() {
     return (
@@ -44,14 +44,17 @@ class SearchBar extends Component {
             <input
               type="text"
               onChange={this.changeHandler}
-              value= {this.state.text}
+              value={this.state.text}
             />
           </div>
           <input type="submit" value="Search" />
         </form>
         {/* will need to be replaced with Button component/styling when that file is completed */}
-        
-        <LoginPopup show={this.state.displayPopUp} closePopUp={this.closePopUp} />
+
+        <LoginPopup
+          show={this.state.displayPopUp}
+          closePopUp={this.closePopUp}
+        />
       </div>
     );
   }
