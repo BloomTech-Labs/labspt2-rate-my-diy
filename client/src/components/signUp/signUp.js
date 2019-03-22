@@ -46,12 +46,8 @@ class SignUpFormBase extends Component {
         );
       })
       .then(() => {
-        return this.props.firebase.doSendEmailVerification();
-        // This function is commented out in firebase.js due to requiring a .env variable.
-      })
-      .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.LANDING);
       })
       .catch(err => {
         // Made error codes/msg's strings until we set the value.
