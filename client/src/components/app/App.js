@@ -13,6 +13,7 @@ import ProjectList from "../../views/projectList/projectList";
 import { withFirebase } from "../firebase/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
+import Footer from '../footer/footer';
 import Stripe from '../stripe/stripe'
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
           <Route path={ROUTES.ADMIN} component={AdminPage} />
           <Route path={ROUTES.REVIEW_LIST} component={ReviewList} />
           <Route path={ROUTES.PROJECT_LIST} component={ProjectList} />
+          <Route path={ROUTES.FOOTER} component={Footer} />
         </div>
       </Router>
     );
