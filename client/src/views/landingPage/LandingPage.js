@@ -1,41 +1,3 @@
-//todo:
-//featured projects
-
-//back as well
-
-//How to determine which to display??
-
-//popular makers
-
-//popular reviewers
-
-//remove searchbar from app, put it here instead
-
-//connect to app state
-
-//make popup dismissible
-
-//figure out how to query api
-
-//make search results route to a search result page (both an api call and a react route)
-
-//conditionally display sign up and log in buttons
-
-//conditionally turn sign up and log in buttons into a hamburger button (links in trello)
-
-//Clicking a `Makers` card will redirect the user to the search page _with_ search
-//    fields on the search field pre-populated with the maker entered into the necessary fields
-
-//Clicking a `Popular Reviewers` card will redirect the user to the search page _with_ the reviewer field populated with that reviewer's name.
-
-//conditionally render ability to share project and rate projects
-
-//recheck wireframe
-
-//make and run tests?
-
-//stretch- make functional 'sliding' display for UI cards
-
 import React, { Component } from 'react';
 import SearchBar from '../../components/searchbar/searchbar.js';
 import { Query } from 'react-apollo';
@@ -63,7 +25,6 @@ class LandingPage extends Component {
 			<div>
 				<SearchBar userClicked={this.state.userClicked} />
 				<h1>Featured Projects</h1>
-				{/* featured project query */}
 				<Query
 					query={gql`
 						{
@@ -72,7 +33,12 @@ class LandingPage extends Component {
 								name
 								titleImg
 								rating
-								authorName
+								User
+    								{
+										id
+      									username
+										email  
+    								}
 								timestamp
 							}
 						}
@@ -108,7 +74,7 @@ class LandingPage extends Component {
 						return (
 							<div className='card-container'>
 								{projects.map(
-									({ id, name, titleImg, rating, authorName }) => (
+									({ id, name, titleImg, rating, User }) => (
 										<FeaturedAndMakers
 											type="featured"
 											key={id}
@@ -116,7 +82,7 @@ class LandingPage extends Component {
 											stars={rating}
 											title={name}
 											// below might need to be edited
-											user={authorName}
+											user={User}
 										/>
 									)
 								)}
@@ -126,7 +92,6 @@ class LandingPage extends Component {
 				</Query>
 			
 				<h1>Popular Makers</h1>
-				{/* popular makers query */}
 				<Query
 					query={gql`
 						{
@@ -160,7 +125,6 @@ class LandingPage extends Component {
 					}}
 				</Query>
 				<h1>Popular Reviewers</h1>
-				{/* popular reviewers query */}
 				<Query
 					query={gql`
 						{

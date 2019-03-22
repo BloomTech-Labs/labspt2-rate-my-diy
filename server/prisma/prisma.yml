@@ -1,8 +1,6 @@
 # The HTTP endpoint for your Prisma API
-# This endpoint is our current production server. If you need to deploy comment this endpoint and uncomment the one that is empty 
+#endpoint: ''
 
-#endpoint: ''
-#endpoint: ''
 endpoint: https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev
 
 
@@ -27,3 +25,4 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+    - npx nexus-prisma-generate --client ./generated/prisma-client --output ./generated/nexus-prisma --js

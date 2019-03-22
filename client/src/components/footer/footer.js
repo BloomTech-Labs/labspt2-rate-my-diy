@@ -5,12 +5,11 @@ function Footer() {
   return (
     <div className="footer">
       <nav className="bottomNav">
-        <p>Links</p>
-        <a href="/">Link One</a>
-        <a href="/">Link Two</a>
-        <a href="/">Link Three</a>
+        <a href='/'>Home</a>
+        <a href="/">About the Team</a>
+        <a href="/subscribe">Support Us</a>
       </nav>
-      <p>2018 Copyright <a href='/'>Rate My DIY</a> </p>
+      <p>2019 Copyright <a href='/'>Rate My DIY</a> </p>
     </div>
   )
 }

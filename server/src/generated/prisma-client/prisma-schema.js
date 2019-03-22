@@ -7,14 +7,6 @@ module.exports = {
   count: Int!
 }
 
-type AggregatePrivilege {
-  count: Int!
-}
-
-type AggregatePrivileges {
-  count: Int!
-}
-
 type AggregateProject {
   count: Int!
 }
@@ -251,15 +243,6 @@ type Mutation {
   upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
   deleteComment(where: CommentWhereUniqueInput!): Comment
   deleteManyComments(where: CommentWhereInput): BatchPayload!
-  createPrivilege(data: PrivilegeCreateInput!): Privilege!
-  updatePrivilege(data: PrivilegeUpdateInput!, where: PrivilegeWhereUniqueInput!): Privilege
-  updateManyPrivileges(data: PrivilegeUpdateManyMutationInput!, where: PrivilegeWhereInput): BatchPayload!
-  upsertPrivilege(where: PrivilegeWhereUniqueInput!, create: PrivilegeCreateInput!, update: PrivilegeUpdateInput!): Privilege!
-  deletePrivilege(where: PrivilegeWhereUniqueInput!): Privilege
-  deleteManyPrivileges(where: PrivilegeWhereInput): BatchPayload!
-  createPrivileges(data: PrivilegesCreateInput!): Privileges!
-  updateManyPrivilegeses(data: PrivilegesUpdateManyMutationInput!, where: PrivilegesWhereInput): BatchPayload!
-  deleteManyPrivilegeses(where: PrivilegesWhereInput): BatchPayload!
   createProject(data: ProjectCreateInput!): Project!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
@@ -300,261 +283,6 @@ type PageInfo {
   endCursor: String
 }
 
-type Privilege {
-  id: ID!
-  name: String!
-}
-
-type PrivilegeConnection {
-  pageInfo: PageInfo!
-  edges: [PrivilegeEdge]!
-  aggregate: AggregatePrivilege!
-}
-
-input PrivilegeCreateInput {
-  name: String!
-}
-
-input PrivilegeCreateManyInput {
-  create: [PrivilegeCreateInput!]
-  connect: [PrivilegeWhereUniqueInput!]
-}
-
-type PrivilegeEdge {
-  node: Privilege!
-  cursor: String!
-}
-
-enum PrivilegeOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type PrivilegePreviousValues {
-  id: ID!
-  name: String!
-}
-
-type Privileges {
-  isModerator: Boolean!
-  isAdmin: Boolean!
-  isPlebian: Boolean!
-}
-
-input PrivilegeScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [PrivilegeScalarWhereInput!]
-  OR: [PrivilegeScalarWhereInput!]
-  NOT: [PrivilegeScalarWhereInput!]
-}
-
-type PrivilegesConnection {
-  pageInfo: PageInfo!
-  edges: [PrivilegesEdge]!
-  aggregate: AggregatePrivileges!
-}
-
-input PrivilegesCreateInput {
-  isModerator: Boolean!
-  isAdmin: Boolean!
-  isPlebian: Boolean!
-}
-
-type PrivilegesEdge {
-  node: Privileges!
-  cursor: String!
-}
-
-enum PrivilegesOrderByInput {
-  isModerator_ASC
-  isModerator_DESC
-  isAdmin_ASC
-  isAdmin_DESC
-  isPlebian_ASC
-  isPlebian_DESC
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type PrivilegesPreviousValues {
-  isModerator: Boolean!
-  isAdmin: Boolean!
-  isPlebian: Boolean!
-}
-
-type PrivilegesSubscriptionPayload {
-  mutation: MutationType!
-  node: Privileges
-  updatedFields: [String!]
-  previousValues: PrivilegesPreviousValues
-}
-
-input PrivilegesSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: PrivilegesWhereInput
-  AND: [PrivilegesSubscriptionWhereInput!]
-  OR: [PrivilegesSubscriptionWhereInput!]
-  NOT: [PrivilegesSubscriptionWhereInput!]
-}
-
-type PrivilegeSubscriptionPayload {
-  mutation: MutationType!
-  node: Privilege
-  updatedFields: [String!]
-  previousValues: PrivilegePreviousValues
-}
-
-input PrivilegeSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: PrivilegeWhereInput
-  AND: [PrivilegeSubscriptionWhereInput!]
-  OR: [PrivilegeSubscriptionWhereInput!]
-  NOT: [PrivilegeSubscriptionWhereInput!]
-}
-
-input PrivilegesUpdateManyMutationInput {
-  isModerator: Boolean
-  isAdmin: Boolean
-  isPlebian: Boolean
-}
-
-input PrivilegesWhereInput {
-  isModerator: Boolean
-  isModerator_not: Boolean
-  isAdmin: Boolean
-  isAdmin_not: Boolean
-  isPlebian: Boolean
-  isPlebian_not: Boolean
-  AND: [PrivilegesWhereInput!]
-  OR: [PrivilegesWhereInput!]
-  NOT: [PrivilegesWhereInput!]
-}
-
-input PrivilegeUpdateDataInput {
-  name: String
-}
-
-input PrivilegeUpdateInput {
-  name: String
-}
-
-input PrivilegeUpdateManyDataInput {
-  name: String
-}
-
-input PrivilegeUpdateManyInput {
-  create: [PrivilegeCreateInput!]
-  update: [PrivilegeUpdateWithWhereUniqueNestedInput!]
-  upsert: [PrivilegeUpsertWithWhereUniqueNestedInput!]
-  delete: [PrivilegeWhereUniqueInput!]
-  connect: [PrivilegeWhereUniqueInput!]
-  set: [PrivilegeWhereUniqueInput!]
-  disconnect: [PrivilegeWhereUniqueInput!]
-  deleteMany: [PrivilegeScalarWhereInput!]
-  updateMany: [PrivilegeUpdateManyWithWhereNestedInput!]
-}
-
-input PrivilegeUpdateManyMutationInput {
-  name: String
-}
-
-input PrivilegeUpdateManyWithWhereNestedInput {
-  where: PrivilegeScalarWhereInput!
-  data: PrivilegeUpdateManyDataInput!
-}
-
-input PrivilegeUpdateWithWhereUniqueNestedInput {
-  where: PrivilegeWhereUniqueInput!
-  data: PrivilegeUpdateDataInput!
-}
-
-input PrivilegeUpsertWithWhereUniqueNestedInput {
-  where: PrivilegeWhereUniqueInput!
-  update: PrivilegeUpdateDataInput!
-  create: PrivilegeCreateInput!
-}
-
-input PrivilegeWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [PrivilegeWhereInput!]
-  OR: [PrivilegeWhereInput!]
-  NOT: [PrivilegeWhereInput!]
-}
-
-input PrivilegeWhereUniqueInput {
-  id: ID
-}
-
 type Project {
   id: ID!
   name: String!
@@ -563,7 +291,7 @@ type Project {
   titleImg: String!
   titleBlurb: String!
   rating: Float!
-  authorName: String!
+  User(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   Steps(where: StepArrayWhereInput, orderBy: StepArrayOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StepArray!]
   Reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
 }
@@ -581,14 +309,25 @@ input ProjectCreateInput {
   titleImg: String!
   titleBlurb: String!
   rating: Float
-  authorName: String!
+  User: UserCreateManyWithoutProjectsInput
   Steps: StepArrayCreateManyInput
   Reviews: ReviewCreateManyInput
 }
 
-input ProjectCreateManyInput {
-  create: [ProjectCreateInput!]
+input ProjectCreateManyWithoutUserInput {
+  create: [ProjectCreateWithoutUserInput!]
   connect: [ProjectWhereUniqueInput!]
+}
+
+input ProjectCreateWithoutUserInput {
+  name: String!
+  category: String!
+  timestamp: DateTime!
+  titleImg: String!
+  titleBlurb: String!
+  rating: Float
+  Steps: StepArrayCreateManyInput
+  Reviews: ReviewCreateManyInput
 }
 
 type ProjectEdge {
@@ -611,8 +350,6 @@ enum ProjectOrderByInput {
   titleBlurb_DESC
   rating_ASC
   rating_DESC
-  authorName_ASC
-  authorName_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -627,7 +364,6 @@ type ProjectPreviousValues {
   titleImg: String!
   titleBlurb: String!
   rating: Float!
-  authorName: String!
 }
 
 input ProjectScalarWhereInput {
@@ -717,20 +453,6 @@ input ProjectScalarWhereInput {
   rating_lte: Float
   rating_gt: Float
   rating_gte: Float
-  authorName: String
-  authorName_not: String
-  authorName_in: [String!]
-  authorName_not_in: [String!]
-  authorName_lt: String
-  authorName_lte: String
-  authorName_gt: String
-  authorName_gte: String
-  authorName_contains: String
-  authorName_not_contains: String
-  authorName_starts_with: String
-  authorName_not_starts_with: String
-  authorName_ends_with: String
-  authorName_not_ends_with: String
   AND: [ProjectScalarWhereInput!]
   OR: [ProjectScalarWhereInput!]
   NOT: [ProjectScalarWhereInput!]
@@ -754,18 +476,6 @@ input ProjectSubscriptionWhereInput {
   NOT: [ProjectSubscriptionWhereInput!]
 }
 
-input ProjectUpdateDataInput {
-  name: String
-  category: String
-  timestamp: DateTime
-  titleImg: String
-  titleBlurb: String
-  rating: Float
-  authorName: String
-  Steps: StepArrayUpdateManyInput
-  Reviews: ReviewUpdateManyInput
-}
-
 input ProjectUpdateInput {
   name: String
   category: String
@@ -773,7 +483,7 @@ input ProjectUpdateInput {
   titleImg: String
   titleBlurb: String
   rating: Float
-  authorName: String
+  User: UserUpdateManyWithoutProjectsInput
   Steps: StepArrayUpdateManyInput
   Reviews: ReviewUpdateManyInput
 }
@@ -785,19 +495,6 @@ input ProjectUpdateManyDataInput {
   titleImg: String
   titleBlurb: String
   rating: Float
-  authorName: String
-}
-
-input ProjectUpdateManyInput {
-  create: [ProjectCreateInput!]
-  update: [ProjectUpdateWithWhereUniqueNestedInput!]
-  upsert: [ProjectUpsertWithWhereUniqueNestedInput!]
-  delete: [ProjectWhereUniqueInput!]
-  connect: [ProjectWhereUniqueInput!]
-  set: [ProjectWhereUniqueInput!]
-  disconnect: [ProjectWhereUniqueInput!]
-  deleteMany: [ProjectScalarWhereInput!]
-  updateMany: [ProjectUpdateManyWithWhereNestedInput!]
 }
 
 input ProjectUpdateManyMutationInput {
@@ -807,7 +504,18 @@ input ProjectUpdateManyMutationInput {
   titleImg: String
   titleBlurb: String
   rating: Float
-  authorName: String
+}
+
+input ProjectUpdateManyWithoutUserInput {
+  create: [ProjectCreateWithoutUserInput!]
+  delete: [ProjectWhereUniqueInput!]
+  connect: [ProjectWhereUniqueInput!]
+  set: [ProjectWhereUniqueInput!]
+  disconnect: [ProjectWhereUniqueInput!]
+  update: [ProjectUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [ProjectUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [ProjectScalarWhereInput!]
+  updateMany: [ProjectUpdateManyWithWhereNestedInput!]
 }
 
 input ProjectUpdateManyWithWhereNestedInput {
@@ -815,15 +523,26 @@ input ProjectUpdateManyWithWhereNestedInput {
   data: ProjectUpdateManyDataInput!
 }
 
-input ProjectUpdateWithWhereUniqueNestedInput {
-  where: ProjectWhereUniqueInput!
-  data: ProjectUpdateDataInput!
+input ProjectUpdateWithoutUserDataInput {
+  name: String
+  category: String
+  timestamp: DateTime
+  titleImg: String
+  titleBlurb: String
+  rating: Float
+  Steps: StepArrayUpdateManyInput
+  Reviews: ReviewUpdateManyInput
 }
 
-input ProjectUpsertWithWhereUniqueNestedInput {
+input ProjectUpdateWithWhereUniqueWithoutUserInput {
   where: ProjectWhereUniqueInput!
-  update: ProjectUpdateDataInput!
-  create: ProjectCreateInput!
+  data: ProjectUpdateWithoutUserDataInput!
+}
+
+input ProjectUpsertWithWhereUniqueWithoutUserInput {
+  where: ProjectWhereUniqueInput!
+  update: ProjectUpdateWithoutUserDataInput!
+  create: ProjectCreateWithoutUserInput!
 }
 
 input ProjectWhereInput {
@@ -913,20 +632,9 @@ input ProjectWhereInput {
   rating_lte: Float
   rating_gt: Float
   rating_gte: Float
-  authorName: String
-  authorName_not: String
-  authorName_in: [String!]
-  authorName_not_in: [String!]
-  authorName_lt: String
-  authorName_lte: String
-  authorName_gt: String
-  authorName_gte: String
-  authorName_contains: String
-  authorName_not_contains: String
-  authorName_starts_with: String
-  authorName_not_starts_with: String
-  authorName_ends_with: String
-  authorName_not_ends_with: String
+  User_every: UserWhereInput
+  User_some: UserWhereInput
+  User_none: UserWhereInput
   Steps_every: StepArrayWhereInput
   Steps_some: StepArrayWhereInput
   Steps_none: StepArrayWhereInput
@@ -946,11 +654,6 @@ type Query {
   comment(where: CommentWhereUniqueInput!): Comment
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-  privilege(where: PrivilegeWhereUniqueInput!): Privilege
-  privileges(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privilege]!
-  privilegesConnection(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PrivilegeConnection!
-  privilegeses(where: PrivilegesWhereInput, orderBy: PrivilegesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privileges]!
-  privilegesesConnection(where: PrivilegesWhereInput, orderBy: PrivilegesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PrivilegesConnection!
   project(where: ProjectWhereUniqueInput!): Project
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
@@ -1501,8 +1204,6 @@ input StepArrayWhereInput {
 
 type Subscription {
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
-  privilege(where: PrivilegeSubscriptionWhereInput): PrivilegeSubscriptionPayload
-  privileges(where: PrivilegesSubscriptionWhereInput): PrivilegesSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   review(where: ReviewSubscriptionWhereInput): ReviewSubscriptionPayload
   stepArray(where: StepArraySubscriptionWhereInput): StepArraySubscriptionPayload
@@ -1520,7 +1221,7 @@ type User {
   userProfileImage: String!
   ReviewList(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
   Projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
-  Privileges(where: PrivilegeWhereInput, orderBy: PrivilegeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Privilege!]
+  privilege: String!
   stripeId: String
   accountType: String!
 }
@@ -1540,10 +1241,15 @@ input UserCreateInput {
   email: String!
   userProfileImage: String
   ReviewList: ReviewCreateManyWithoutAuthorInput
-  Projects: ProjectCreateManyInput
-  Privileges: PrivilegeCreateManyInput
+  Projects: ProjectCreateManyWithoutUserInput
+  privilege: String!
   stripeId: String
   accountType: String
+}
+
+input UserCreateManyWithoutProjectsInput {
+  create: [UserCreateWithoutProjectsInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateOneInput {
@@ -1556,6 +1262,20 @@ input UserCreateOneWithoutReviewListInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateWithoutProjectsInput {
+  makerRating: Float
+  reviewerThumbs: Int
+  url: String
+  username: String!
+  password: String!
+  email: String!
+  userProfileImage: String
+  ReviewList: ReviewCreateManyWithoutAuthorInput
+  privilege: String!
+  stripeId: String
+  accountType: String
+}
+
 input UserCreateWithoutReviewListInput {
   makerRating: Float
   reviewerThumbs: Int
@@ -1564,8 +1284,8 @@ input UserCreateWithoutReviewListInput {
   password: String!
   email: String!
   userProfileImage: String
-  Projects: ProjectCreateManyInput
-  Privileges: PrivilegeCreateManyInput
+  Projects: ProjectCreateManyWithoutUserInput
+  privilege: String!
   stripeId: String
   accountType: String
 }
@@ -1592,6 +1312,8 @@ enum UserOrderByInput {
   email_DESC
   userProfileImage_ASC
   userProfileImage_DESC
+  privilege_ASC
+  privilege_DESC
   stripeId_ASC
   stripeId_DESC
   accountType_ASC
@@ -1611,8 +1333,157 @@ type UserPreviousValues {
   password: String!
   email: String!
   userProfileImage: String!
+  privilege: String!
   stripeId: String
   accountType: String!
+}
+
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  makerRating: Float
+  makerRating_not: Float
+  makerRating_in: [Float!]
+  makerRating_not_in: [Float!]
+  makerRating_lt: Float
+  makerRating_lte: Float
+  makerRating_gt: Float
+  makerRating_gte: Float
+  reviewerThumbs: Int
+  reviewerThumbs_not: Int
+  reviewerThumbs_in: [Int!]
+  reviewerThumbs_not_in: [Int!]
+  reviewerThumbs_lt: Int
+  reviewerThumbs_lte: Int
+  reviewerThumbs_gt: Int
+  reviewerThumbs_gte: Int
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  userProfileImage: String
+  userProfileImage_not: String
+  userProfileImage_in: [String!]
+  userProfileImage_not_in: [String!]
+  userProfileImage_lt: String
+  userProfileImage_lte: String
+  userProfileImage_gt: String
+  userProfileImage_gte: String
+  userProfileImage_contains: String
+  userProfileImage_not_contains: String
+  userProfileImage_starts_with: String
+  userProfileImage_not_starts_with: String
+  userProfileImage_ends_with: String
+  userProfileImage_not_ends_with: String
+  privilege: String
+  privilege_not: String
+  privilege_in: [String!]
+  privilege_not_in: [String!]
+  privilege_lt: String
+  privilege_lte: String
+  privilege_gt: String
+  privilege_gte: String
+  privilege_contains: String
+  privilege_not_contains: String
+  privilege_starts_with: String
+  privilege_not_starts_with: String
+  privilege_ends_with: String
+  privilege_not_ends_with: String
+  stripeId: String
+  stripeId_not: String
+  stripeId_in: [String!]
+  stripeId_not_in: [String!]
+  stripeId_lt: String
+  stripeId_lte: String
+  stripeId_gt: String
+  stripeId_gte: String
+  stripeId_contains: String
+  stripeId_not_contains: String
+  stripeId_starts_with: String
+  stripeId_not_starts_with: String
+  stripeId_ends_with: String
+  stripeId_not_ends_with: String
+  accountType: String
+  accountType_not: String
+  accountType_in: [String!]
+  accountType_not_in: [String!]
+  accountType_lt: String
+  accountType_lte: String
+  accountType_gt: String
+  accountType_gte: String
+  accountType_contains: String
+  accountType_not_contains: String
+  accountType_starts_with: String
+  accountType_not_starts_with: String
+  accountType_ends_with: String
+  accountType_not_ends_with: String
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
 }
 
 type UserSubscriptionPayload {
@@ -1642,8 +1513,8 @@ input UserUpdateDataInput {
   email: String
   userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
-  Projects: ProjectUpdateManyInput
-  Privileges: PrivilegeUpdateManyInput
+  Projects: ProjectUpdateManyWithoutUserInput
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1657,8 +1528,21 @@ input UserUpdateInput {
   email: String
   userProfileImage: String
   ReviewList: ReviewUpdateManyWithoutAuthorInput
-  Projects: ProjectUpdateManyInput
-  Privileges: PrivilegeUpdateManyInput
+  Projects: ProjectUpdateManyWithoutUserInput
+  privilege: String
+  stripeId: String
+  accountType: String
+}
+
+input UserUpdateManyDataInput {
+  makerRating: Float
+  reviewerThumbs: Int
+  url: String
+  username: String
+  password: String
+  email: String
+  userProfileImage: String
+  privilege: String
   stripeId: String
   accountType: String
 }
@@ -1671,8 +1555,26 @@ input UserUpdateManyMutationInput {
   password: String
   email: String
   userProfileImage: String
+  privilege: String
   stripeId: String
   accountType: String
+}
+
+input UserUpdateManyWithoutProjectsInput {
+  create: [UserCreateWithoutProjectsInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutProjectsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutProjectsInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
 }
 
 input UserUpdateOneRequiredInput {
@@ -1689,6 +1591,20 @@ input UserUpdateOneRequiredWithoutReviewListInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateWithoutProjectsDataInput {
+  makerRating: Float
+  reviewerThumbs: Int
+  url: String
+  username: String
+  password: String
+  email: String
+  userProfileImage: String
+  ReviewList: ReviewUpdateManyWithoutAuthorInput
+  privilege: String
+  stripeId: String
+  accountType: String
+}
+
 input UserUpdateWithoutReviewListDataInput {
   makerRating: Float
   reviewerThumbs: Int
@@ -1697,10 +1613,15 @@ input UserUpdateWithoutReviewListDataInput {
   password: String
   email: String
   userProfileImage: String
-  Projects: ProjectUpdateManyInput
-  Privileges: PrivilegeUpdateManyInput
+  Projects: ProjectUpdateManyWithoutUserInput
+  privilege: String
   stripeId: String
   accountType: String
+}
+
+input UserUpdateWithWhereUniqueWithoutProjectsInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutProjectsDataInput!
 }
 
 input UserUpsertNestedInput {
@@ -1711,6 +1632,12 @@ input UserUpsertNestedInput {
 input UserUpsertWithoutReviewListInput {
   update: UserUpdateWithoutReviewListDataInput!
   create: UserCreateWithoutReviewListInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutProjectsInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutProjectsDataInput!
+  create: UserCreateWithoutProjectsInput!
 }
 
 input UserWhereInput {
@@ -1820,9 +1747,20 @@ input UserWhereInput {
   Projects_every: ProjectWhereInput
   Projects_some: ProjectWhereInput
   Projects_none: ProjectWhereInput
-  Privileges_every: PrivilegeWhereInput
-  Privileges_some: PrivilegeWhereInput
-  Privileges_none: PrivilegeWhereInput
+  privilege: String
+  privilege_not: String
+  privilege_in: [String!]
+  privilege_not_in: [String!]
+  privilege_lt: String
+  privilege_lte: String
+  privilege_gt: String
+  privilege_gte: String
+  privilege_contains: String
+  privilege_not_contains: String
+  privilege_starts_with: String
+  privilege_not_starts_with: String
+  privilege_ends_with: String
+  privilege_not_ends_with: String
   stripeId: String
   stripeId_not: String
   stripeId_in: [String!]

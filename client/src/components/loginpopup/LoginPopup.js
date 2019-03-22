@@ -11,7 +11,7 @@ class LoginPopup extends Component {
       <div className="modal">
         <div className="modal-content">
           <h1>Login Popup Box </h1>
-          <button className="close button">Close</button>
+          <button onClick={this.props.closePopUp} className="close button">Close</button>
           <button className="login button">login button</button>
         </div>
       </div>

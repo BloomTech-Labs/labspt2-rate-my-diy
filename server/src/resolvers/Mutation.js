@@ -1,35 +1,10 @@
 const { prisma } = require('../generated/prisma-client/');
 const {stripe} = require("../stripe");
 const Mutation = {
-    // createUser: async (parent, args, context, info) => {
-        
-    //     const user = await prisma.createUser({
-    //         username: args.username,
-    //         email: args.email,
-    //         password: args.password,
-    //         stripeId: "",
-    //         accountType: "free-tier"
-            
-    //     })
-    // },
-    addUser: (_, args, context, info) => {
-        return context.prisma.mutation.createUser(
-            {
-                data: {
-                    username: args.username,
-                    email: args.email,
-                    password: args.password,
-                    stripeId: "",
-                    accountType: "free-tier"
-                },
-            },
-            info
-        )
-    },
     createSubscription: async (parent, {source}, {req}, info) => {
         // if (!req.session || !req.session.userId) {
         //     throw new Error("not authenticated")
-        // }
+        // }/k
         // const user = await prisma.user({id: 1})
 
         const makeid = (length) => {
@@ -71,18 +46,6 @@ const Mutation = {
         
         return updatedUser;
     },
-
-    createProject: async (parent, args, context, info) => {
-        const project = await prisma.createProject({
-            titleBlurb: args.titleBlurb,
-            name: args.name,
-            timestamp: args.timestamp,
-            rating: args.rating,
-            titleImg: args.titleImg,
-            category: args.category,
-			authorName: args.authorName
-        });
-    }
 }
 
 module.exports = Mutation
