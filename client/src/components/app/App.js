@@ -53,7 +53,8 @@ class App extends Component {
           <Route path={ROUTES.FOOTER} component={Footer} />
         </div>
       </Router>
-    );
+    
+      );
   }
 }
 
