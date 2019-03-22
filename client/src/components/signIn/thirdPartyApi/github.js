@@ -30,7 +30,7 @@ class SignInGithubBase extends Component {
         });
       })
       .then(() => {
-        return this.props.history.push(ROUTES.HOME);
+        return this.props.history.push(ROUTES.LANDING);
       })
       .catch(err => {
         if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
