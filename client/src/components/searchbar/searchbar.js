@@ -1,11 +1,3 @@
-//todo:
-
-// pop-up should have functional dismiss button-- dismiss button should set back popup state
-//functional dismiss button requires app state-- implement after Apollo Client/Redux/React Context etc.?
-//move on to o auth implementation
-//wire logged in state to larger app using react context
-//https://arcane-earth-31962.herokuapp.com/
-
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
