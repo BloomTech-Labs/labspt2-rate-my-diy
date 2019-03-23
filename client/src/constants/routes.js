@@ -1,10 +1,8 @@
-export const LANDING = '/';
+export const HOME = '/';
 export const SIGN_UP ='/signup';
 export const SIGN_IN='/signin';
 export const FOOTER = '/'
-export const HOME='/home';
 export const ACCOUNT='/account';
-export const ADMIN='/admin';
 export const PASSWORD_FORGET='/pwforget';
 export const CREATE_PROJECT='/createproject';
 export const REVIEW_LIST='/reviews';
