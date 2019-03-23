@@ -5,6 +5,36 @@ const { prisma } = require('./src/generated/prisma-client')
 const datamodelInfo = require('./generated/nexus-prisma') 
 const {stripe} = require('./src/stripe') 
 const { stringArg } = require('nexus/dist/definitions/args') 
+const nodemailer = require('nodemailer');
+
+async function main() {
+
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+  let account = await nodemailer.createTestAccount();
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: 'gmail', 
+    auth: {
+      user: 'ratemydiyproject@gmail.com', // generated ethereal user
+      pass: 'lambda123' // generated ethereal password
+    }
+  });
+
+  const mailOptions = {
+    from: 'ratemydiyproject@gmail.com', // sender address
+    to: 'to@email.com', // list of receivers
+    subject: 'Welcome to Rate My DIY Community', // Subject line
+    html: '<p>Welcome to Rate My Diy. We hope you enjoy your visit here, if we can help you at all let us know!!</p>'// plain text body
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err)
+      console.log(err)
+    else
+      console.log(info);
+  });
 
 
 const Query = prismaObjectType({
@@ -69,6 +99,7 @@ const Mutation = prismaObjectType({
     }) 
 
     }
+     
 })
 
 const schema = makePrismaSchema({
