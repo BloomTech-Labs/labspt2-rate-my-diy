@@ -64,6 +64,7 @@ type PageInfo {
 type Project {
   id: ID!
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String!
@@ -83,6 +84,7 @@ type ProjectConnection {
 
 input ProjectCreateInput {
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String
@@ -111,6 +113,7 @@ input ProjectCreateOneWithoutReviewsInput {
 
 input ProjectCreateWithoutRatedByInput {
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String
@@ -123,6 +126,7 @@ input ProjectCreateWithoutRatedByInput {
 
 input ProjectCreateWithoutReviewsInput {
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String
@@ -135,6 +139,7 @@ input ProjectCreateWithoutReviewsInput {
 
 input ProjectCreateWithoutUserInput {
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String
@@ -155,6 +160,8 @@ enum ProjectOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  key_ASC
+  key_DESC
   category_ASC
   category_DESC
   timestamp_ASC
@@ -176,6 +183,7 @@ enum ProjectOrderByInput {
 type ProjectPreviousValues {
   id: ID!
   name: String!
+  key: String
   category: String!
   timestamp: DateTime!
   titleImg: String!
@@ -213,6 +221,20 @@ input ProjectScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  key: String
+  key_not: String
+  key_in: [String!]
+  key_not_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_gt: String
+  key_gte: String
+  key_contains: String
+  key_not_contains: String
+  key_starts_with: String
+  key_not_starts_with: String
+  key_ends_with: String
+  key_not_ends_with: String
   category: String
   category_not: String
   category_in: [String!]
@@ -310,6 +332,7 @@ input ProjectSubscriptionWhereInput {
 
 input ProjectUpdateInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -323,6 +346,7 @@ input ProjectUpdateInput {
 
 input ProjectUpdateManyDataInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -333,6 +357,7 @@ input ProjectUpdateManyDataInput {
 
 input ProjectUpdateManyMutationInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -379,6 +404,7 @@ input ProjectUpdateOneRequiredWithoutReviewsInput {
 
 input ProjectUpdateWithoutRatedByDataInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -391,6 +417,7 @@ input ProjectUpdateWithoutRatedByDataInput {
 
 input ProjectUpdateWithoutReviewsDataInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -403,6 +430,7 @@ input ProjectUpdateWithoutReviewsDataInput {
 
 input ProjectUpdateWithoutUserDataInput {
   name: String
+  key: String
   category: String
   timestamp: DateTime
   titleImg: String
@@ -469,6 +497,20 @@ input ProjectWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  key: String
+  key_not: String
+  key_in: [String!]
+  key_not_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_gt: String
+  key_gte: String
+  key_contains: String
+  key_not_contains: String
+  key_starts_with: String
+  key_not_starts_with: String
+  key_ends_with: String
+  key_not_ends_with: String
   category: String
   category_not: String
   category_in: [String!]
@@ -555,6 +597,7 @@ input ProjectWhereInput {
 
 input ProjectWhereUniqueInput {
   id: ID
+  key: String
 }
 
 type Query {
@@ -573,9 +616,9 @@ type Query {
 type Review {
   id: ID!
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float!
   thumbsUp: Int!
   LikedBy(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   thumbsDown: Int!
@@ -592,9 +635,9 @@ type ReviewConnection {
 
 input ReviewCreateInput {
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   thumbsDown: Int!
@@ -625,9 +668,9 @@ input ReviewCreateManyWithoutProjectReviewedInput {
 
 input ReviewCreateWithoutAuthorInput {
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   thumbsDown: Int!
@@ -637,9 +680,9 @@ input ReviewCreateWithoutAuthorInput {
 
 input ReviewCreateWithoutDislikedByInput {
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   thumbsDown: Int!
@@ -649,9 +692,9 @@ input ReviewCreateWithoutDislikedByInput {
 
 input ReviewCreateWithoutLikedByInput {
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float
   thumbsUp: Int
   thumbsDown: Int!
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
@@ -661,9 +704,9 @@ input ReviewCreateWithoutLikedByInput {
 
 input ReviewCreateWithoutProjectReviewedInput {
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   thumbsDown: Int!
@@ -681,12 +724,12 @@ enum ReviewOrderByInput {
   id_DESC
   title_ASC
   title_DESC
+  rKey_ASC
+  rKey_DESC
   text_ASC
   text_DESC
   editedAt_ASC
   editedAt_DESC
-  rating_ASC
-  rating_DESC
   thumbsUp_ASC
   thumbsUp_DESC
   thumbsDown_ASC
@@ -700,9 +743,9 @@ enum ReviewOrderByInput {
 type ReviewPreviousValues {
   id: ID!
   title: String!
+  rKey: String
   text: String!
   editedAt: DateTime!
-  rating: Float!
   thumbsUp: Int!
   thumbsDown: Int!
 }
@@ -736,6 +779,20 @@ input ReviewScalarWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  rKey: String
+  rKey_not: String
+  rKey_in: [String!]
+  rKey_not_in: [String!]
+  rKey_lt: String
+  rKey_lte: String
+  rKey_gt: String
+  rKey_gte: String
+  rKey_contains: String
+  rKey_not_contains: String
+  rKey_starts_with: String
+  rKey_not_starts_with: String
+  rKey_ends_with: String
+  rKey_not_ends_with: String
   text: String
   text_not: String
   text_in: [String!]
@@ -758,14 +815,6 @@ input ReviewScalarWhereInput {
   editedAt_lte: DateTime
   editedAt_gt: DateTime
   editedAt_gte: DateTime
-  rating: Float
-  rating_not: Float
-  rating_in: [Float!]
-  rating_not_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_gt: Float
-  rating_gte: Float
   thumbsUp: Int
   thumbsUp_not: Int
   thumbsUp_in: [Int!]
@@ -807,9 +856,9 @@ input ReviewSubscriptionWhereInput {
 
 input ReviewUpdateInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -820,18 +869,18 @@ input ReviewUpdateInput {
 
 input ReviewUpdateManyDataInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   thumbsDown: Int
 }
 
 input ReviewUpdateManyMutationInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   thumbsDown: Int
 }
@@ -891,9 +940,9 @@ input ReviewUpdateManyWithWhereNestedInput {
 
 input ReviewUpdateWithoutAuthorDataInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -903,9 +952,9 @@ input ReviewUpdateWithoutAuthorDataInput {
 
 input ReviewUpdateWithoutDislikedByDataInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -915,9 +964,9 @@ input ReviewUpdateWithoutDislikedByDataInput {
 
 input ReviewUpdateWithoutLikedByDataInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   thumbsDown: Int
   DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
@@ -927,9 +976,9 @@ input ReviewUpdateWithoutLikedByDataInput {
 
 input ReviewUpdateWithoutProjectReviewedDataInput {
   title: String
+  rKey: String
   text: String
   editedAt: DateTime
-  rating: Float
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -1010,6 +1059,20 @@ input ReviewWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  rKey: String
+  rKey_not: String
+  rKey_in: [String!]
+  rKey_not_in: [String!]
+  rKey_lt: String
+  rKey_lte: String
+  rKey_gt: String
+  rKey_gte: String
+  rKey_contains: String
+  rKey_not_contains: String
+  rKey_starts_with: String
+  rKey_not_starts_with: String
+  rKey_ends_with: String
+  rKey_not_ends_with: String
   text: String
   text_not: String
   text_in: [String!]
@@ -1032,14 +1095,6 @@ input ReviewWhereInput {
   editedAt_lte: DateTime
   editedAt_gt: DateTime
   editedAt_gte: DateTime
-  rating: Float
-  rating_not: Float
-  rating_in: [Float!]
-  rating_not_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_gt: Float
-  rating_gte: Float
   thumbsUp: Int
   thumbsUp_not: Int
   thumbsUp_in: [Int!]
@@ -1071,6 +1126,7 @@ input ReviewWhereInput {
 
 input ReviewWhereUniqueInput {
   id: ID
+  rKey: String
 }
 
 type Subscription {

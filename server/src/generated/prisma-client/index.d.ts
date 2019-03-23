@@ -194,12 +194,12 @@ export type ReviewOrderByInput =
   | "id_DESC"
   | "title_ASC"
   | "title_DESC"
+  | "rKey_ASC"
+  | "rKey_DESC"
   | "text_ASC"
   | "text_DESC"
   | "editedAt_ASC"
   | "editedAt_DESC"
-  | "rating_ASC"
-  | "rating_DESC"
   | "thumbsUp_ASC"
   | "thumbsUp_DESC"
   | "thumbsDown_ASC"
@@ -240,6 +240,8 @@ export type ProjectOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "key_ASC"
+  | "key_DESC"
   | "category_ASC"
   | "category_DESC"
   | "timestamp_ASC"
@@ -266,10 +268,12 @@ export interface ReviewUpdateWithWhereUniqueWithoutDislikedByInput {
 
 export type ProjectWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  key?: String;
 }>;
 
 export interface ProjectUpdateInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -283,6 +287,7 @@ export interface ProjectUpdateInput {
 
 export interface ProjectUpdateWithoutReviewsDataInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -541,9 +546,9 @@ export interface UserUpdateManyMutationInput {
 
 export interface ReviewUpdateWithoutAuthorDataInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
   thumbsDown?: Int;
@@ -590,9 +595,9 @@ export interface UserUpdateManyWithoutLikedReviewsInput {
 
 export interface ReviewUpdateInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
   thumbsDown?: Int;
@@ -608,6 +613,7 @@ export interface UserUpdateWithWhereUniqueWithoutLikedReviewsInput {
 
 export interface ProjectUpdateManyMutationInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -676,9 +682,9 @@ export interface ReviewUpsertWithWhereUniqueWithoutDislikedByInput {
 
 export interface ReviewUpdateWithoutDislikedByDataInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
   thumbsDown?: Int;
@@ -701,6 +707,7 @@ export interface UserUpdateOneRequiredWithoutReviewListInput {
 
 export interface ProjectCreateInput {
   name: String;
+  key?: String;
   category: String;
   timestamp: DateTimeInput;
   titleImg?: String;
@@ -741,6 +748,20 @@ export interface ReviewWhereInput {
   title_not_starts_with?: String;
   title_ends_with?: String;
   title_not_ends_with?: String;
+  rKey?: String;
+  rKey_not?: String;
+  rKey_in?: String[] | String;
+  rKey_not_in?: String[] | String;
+  rKey_lt?: String;
+  rKey_lte?: String;
+  rKey_gt?: String;
+  rKey_gte?: String;
+  rKey_contains?: String;
+  rKey_not_contains?: String;
+  rKey_starts_with?: String;
+  rKey_not_starts_with?: String;
+  rKey_ends_with?: String;
+  rKey_not_ends_with?: String;
   text?: String;
   text_not?: String;
   text_in?: String[] | String;
@@ -763,14 +784,6 @@ export interface ReviewWhereInput {
   editedAt_lte?: DateTimeInput;
   editedAt_gt?: DateTimeInput;
   editedAt_gte?: DateTimeInput;
-  rating?: Float;
-  rating_not?: Float;
-  rating_in?: Float[] | Float;
-  rating_not_in?: Float[] | Float;
-  rating_lt?: Float;
-  rating_lte?: Float;
-  rating_gt?: Float;
-  rating_gte?: Float;
   thumbsUp?: Int;
   thumbsUp_not?: Int;
   thumbsUp_in?: Int[] | Int;
@@ -836,9 +849,9 @@ export interface ReviewUpdateManyWithoutLikedByInput {
 
 export interface ReviewCreateWithoutAuthorInput {
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserCreateManyWithoutLikedReviewsInput;
   thumbsDown: Int;
@@ -869,9 +882,9 @@ export interface UserCreateWithoutLikedReviewsInput {
 
 export interface ReviewUpdateWithoutLikedByDataInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   thumbsDown?: Int;
   DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput;
@@ -881,9 +894,9 @@ export interface ReviewUpdateWithoutLikedByDataInput {
 
 export interface ReviewCreateWithoutDislikedByInput {
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserCreateManyWithoutLikedReviewsInput;
   thumbsDown: Int;
@@ -934,9 +947,9 @@ export interface UserUpdateWithWhereUniqueWithoutDislikedReviewsInput {
 
 export interface ReviewCreateWithoutLikedByInput {
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   thumbsDown: Int;
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput;
@@ -996,6 +1009,7 @@ export interface ProjectUpdateManyWithoutUserInput {
 
 export interface ProjectCreateWithoutUserInput {
   name: String;
+  key?: String;
   category: String;
   timestamp: DateTimeInput;
   titleImg?: String;
@@ -1013,9 +1027,9 @@ export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
 
 export interface ReviewCreateWithoutProjectReviewedInput {
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserCreateManyWithoutLikedReviewsInput;
   thumbsDown: Int;
@@ -1025,6 +1039,7 @@ export interface ReviewCreateWithoutProjectReviewedInput {
 
 export interface ProjectUpdateWithoutUserDataInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -1073,6 +1088,7 @@ export interface ReviewUpdateManyWithoutProjectReviewedInput {
 
 export interface ProjectCreateWithoutRatedByInput {
   name: String;
+  key?: String;
   category: String;
   timestamp: DateTimeInput;
   titleImg?: String;
@@ -1090,6 +1106,7 @@ export interface ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput {
 
 export interface ProjectCreateWithoutReviewsInput {
   name: String;
+  key?: String;
   category: String;
   timestamp: DateTimeInput;
   titleImg?: String;
@@ -1102,9 +1119,9 @@ export interface ProjectCreateWithoutReviewsInput {
 
 export interface ReviewUpdateWithoutProjectReviewedDataInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
   thumbsDown?: Int;
@@ -1141,6 +1158,20 @@ export interface ProjectWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  key?: String;
+  key_not?: String;
+  key_in?: String[] | String;
+  key_not_in?: String[] | String;
+  key_lt?: String;
+  key_lte?: String;
+  key_gt?: String;
+  key_gte?: String;
+  key_contains?: String;
+  key_not_contains?: String;
+  key_starts_with?: String;
+  key_not_starts_with?: String;
+  key_ends_with?: String;
+  key_not_ends_with?: String;
   category?: String;
   category_not?: String;
   category_in?: String[] | String;
@@ -1277,6 +1308,20 @@ export interface ReviewScalarWhereInput {
   title_not_starts_with?: String;
   title_ends_with?: String;
   title_not_ends_with?: String;
+  rKey?: String;
+  rKey_not?: String;
+  rKey_in?: String[] | String;
+  rKey_not_in?: String[] | String;
+  rKey_lt?: String;
+  rKey_lte?: String;
+  rKey_gt?: String;
+  rKey_gte?: String;
+  rKey_contains?: String;
+  rKey_not_contains?: String;
+  rKey_starts_with?: String;
+  rKey_not_starts_with?: String;
+  rKey_ends_with?: String;
+  rKey_not_ends_with?: String;
   text?: String;
   text_not?: String;
   text_in?: String[] | String;
@@ -1299,14 +1344,6 @@ export interface ReviewScalarWhereInput {
   editedAt_lte?: DateTimeInput;
   editedAt_gt?: DateTimeInput;
   editedAt_gte?: DateTimeInput;
-  rating?: Float;
-  rating_not?: Float;
-  rating_in?: Float[] | Float;
-  rating_not_in?: Float[] | Float;
-  rating_lt?: Float;
-  rating_lte?: Float;
-  rating_gt?: Float;
-  rating_gte?: Float;
   thumbsUp?: Int;
   thumbsUp_not?: Int;
   thumbsUp_in?: Int[] | Int;
@@ -1330,9 +1367,9 @@ export interface ReviewScalarWhereInput {
 
 export interface ReviewCreateInput {
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   LikedBy?: UserCreateManyWithoutLikedReviewsInput;
   thumbsDown: Int;
@@ -1354,9 +1391,9 @@ export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
 
 export interface ReviewUpdateManyDataInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   thumbsDown?: Int;
 }
@@ -1633,9 +1670,9 @@ export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
 
 export interface ReviewUpdateManyMutationInput {
   title?: String;
+  rKey?: String;
   text?: String;
   editedAt?: DateTimeInput;
-  rating?: Float;
   thumbsUp?: Int;
   thumbsDown?: Int;
 }
@@ -1669,6 +1706,20 @@ export interface ProjectScalarWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  key?: String;
+  key_not?: String;
+  key_in?: String[] | String;
+  key_not_in?: String[] | String;
+  key_lt?: String;
+  key_lte?: String;
+  key_gt?: String;
+  key_gte?: String;
+  key_contains?: String;
+  key_not_contains?: String;
+  key_starts_with?: String;
+  key_not_starts_with?: String;
+  key_ends_with?: String;
+  key_not_ends_with?: String;
   category?: String;
   category_not?: String;
   category_in?: String[] | String;
@@ -1764,6 +1815,7 @@ export interface ReviewCreateManyWithoutAuthorInput {
 
 export interface ProjectUpdateManyDataInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -1841,6 +1893,7 @@ export interface ProjectUpsertWithWhereUniqueWithoutRatedByInput {
 
 export interface ProjectUpdateWithoutRatedByDataInput {
   name?: String;
+  key?: String;
   category?: String;
   timestamp?: DateTimeInput;
   titleImg?: String;
@@ -1860,6 +1913,7 @@ export interface ReviewCreateManyWithoutDislikedByInput {
 
 export type ReviewWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  rKey?: String;
 }>;
 
 export interface ProjectCreateOneWithoutReviewsInput {
@@ -2091,43 +2145,10 @@ export interface UserSubscription
   ) => T;
 }
 
-export interface ReviewPreviousValues {
-  id: ID_Output;
-  title: String;
-  text: String;
-  editedAt: DateTimeOutput;
-  rating: Float;
-  thumbsUp: Int;
-  thumbsDown: Int;
-}
-
-export interface ReviewPreviousValuesPromise
-  extends Promise<ReviewPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  text: () => Promise<String>;
-  editedAt: () => Promise<DateTimeOutput>;
-  rating: () => Promise<Float>;
-  thumbsUp: () => Promise<Int>;
-  thumbsDown: () => Promise<Int>;
-}
-
-export interface ReviewPreviousValuesSubscription
-  extends Promise<AsyncIterator<ReviewPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  thumbsUp: () => Promise<AsyncIterator<Int>>;
-  thumbsDown: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ProjectPreviousValues {
+export interface Project {
   id: ID_Output;
   name: String;
+  key?: String;
   category: String;
   timestamp: DateTimeOutput;
   titleImg: String;
@@ -2136,30 +2157,93 @@ export interface ProjectPreviousValues {
   steps: String;
 }
 
-export interface ProjectPreviousValuesPromise
-  extends Promise<ProjectPreviousValues>,
-    Fragmentable {
+export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  key: () => Promise<String>;
   category: () => Promise<String>;
   timestamp: () => Promise<DateTimeOutput>;
   titleImg: () => Promise<String>;
   titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
   steps: () => Promise<String>;
+  User: <T = UserPromise>() => T;
+  Reviews: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedBy: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
-export interface ProjectPreviousValuesSubscription
-  extends Promise<AsyncIterator<ProjectPreviousValues>>,
+export interface ProjectSubscription
+  extends Promise<AsyncIterator<Project>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  key: () => Promise<AsyncIterator<String>>;
   category: () => Promise<AsyncIterator<String>>;
   timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
   titleImg: () => Promise<AsyncIterator<String>>;
   titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
   steps: () => Promise<AsyncIterator<String>>;
+  User: <T = UserSubscription>() => T;
+  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PageInfo {
@@ -2185,21 +2269,44 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserEdge {
-  node: User;
-  cursor: String;
+export interface ProjectPreviousValues {
+  id: ID_Output;
+  name: String;
+  key?: String;
+  category: String;
+  timestamp: DateTimeOutput;
+  titleImg: String;
+  titleBlurb: String;
+  rating: Float;
+  steps: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface ProjectPreviousValuesPromise
+  extends Promise<ProjectPreviousValues>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  key: () => Promise<String>;
+  category: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
+  titleImg: () => Promise<String>;
+  titleBlurb: () => Promise<String>;
+  rating: () => Promise<Float>;
+  steps: () => Promise<String>;
+}
+
+export interface ProjectPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  key: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
+  titleImg: () => Promise<AsyncIterator<String>>;
+  titleBlurb: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  steps: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateUser {
@@ -2218,21 +2325,20 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ReviewEdge {
-  node: Review;
-  cursor: String;
+export interface AggregateReview {
+  count: Int;
 }
 
-export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
-  node: <T = ReviewPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ReviewEdgeSubscription
-  extends Promise<AsyncIterator<ReviewEdge>>,
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
     Fragmentable {
-  node: <T = ReviewSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserConnection {
@@ -2322,93 +2428,37 @@ export interface ProjectSubscriptionPayloadSubscription
   previousValues: <T = ProjectPreviousValuesSubscription>() => T;
 }
 
-export interface Project {
-  id: ID_Output;
-  name: String;
-  category: String;
-  timestamp: DateTimeOutput;
-  titleImg: String;
-  titleBlurb: String;
-  rating: Float;
-  steps: String;
+export interface ReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Review;
+  updatedFields: String[];
+  previousValues: ReviewPreviousValues;
 }
 
-export interface ProjectPromise extends Promise<Project>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  category: () => Promise<String>;
-  timestamp: () => Promise<DateTimeOutput>;
-  titleImg: () => Promise<String>;
-  titleBlurb: () => Promise<String>;
-  rating: () => Promise<Float>;
-  steps: () => Promise<String>;
-  User: <T = UserPromise>() => T;
-  Reviews: <T = FragmentableArray<Review>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  RatedBy: <T = FragmentableArray<User>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProjectSubscription
-  extends Promise<AsyncIterator<Project>>,
+export interface ReviewSubscriptionPayloadPromise
+  extends Promise<ReviewSubscriptionPayload>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  titleImg: () => Promise<AsyncIterator<String>>;
-  titleBlurb: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  steps: () => Promise<AsyncIterator<String>>;
-  User: <T = UserSubscription>() => T;
-  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  RatedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+}
+
+export interface ReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
 }
 
 export interface Review {
   id: ID_Output;
   title: String;
+  rKey?: String;
   text: String;
   editedAt: DateTimeOutput;
-  rating: Float;
   thumbsUp: Int;
   thumbsDown: Int;
 }
@@ -2416,9 +2466,9 @@ export interface Review {
 export interface ReviewPromise extends Promise<Review>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  rKey: () => Promise<String>;
   text: () => Promise<String>;
   editedAt: () => Promise<DateTimeOutput>;
-  rating: () => Promise<Float>;
   thumbsUp: () => Promise<Int>;
   LikedBy: <T = FragmentableArray<User>>(
     args?: {
@@ -2452,9 +2502,9 @@ export interface ReviewSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
+  rKey: () => Promise<AsyncIterator<String>>;
   text: () => Promise<AsyncIterator<String>>;
   editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  rating: () => Promise<AsyncIterator<Float>>;
   thumbsUp: () => Promise<AsyncIterator<Int>>;
   LikedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
     args?: {
@@ -2483,29 +2533,21 @@ export interface ReviewSubscription
   ProjectReviewed: <T = ProjectSubscription>() => T;
 }
 
-export interface ReviewSubscriptionPayload {
-  mutation: MutationType;
+export interface ReviewEdge {
   node: Review;
-  updatedFields: String[];
-  previousValues: ReviewPreviousValues;
+  cursor: String;
 }
 
-export interface ReviewSubscriptionPayloadPromise
-  extends Promise<ReviewSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
+export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
   node: <T = ReviewPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface ReviewSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+export interface ReviewEdgeSubscription
+  extends Promise<AsyncIterator<ReviewEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = ReviewSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProjectEdge {
@@ -2562,26 +2604,49 @@ export interface ReviewConnectionSubscription
   aggregate: <T = AggregateReviewSubscription>() => T;
 }
 
-export interface AggregateReview {
-  count: Int;
+export interface ReviewPreviousValues {
+  id: ID_Output;
+  title: String;
+  rKey?: String;
+  text: String;
+  editedAt: DateTimeOutput;
+  thumbsUp: Int;
+  thumbsDown: Int;
 }
 
-export interface AggregateReviewPromise
-  extends Promise<AggregateReview>,
+export interface ReviewPreviousValuesPromise
+  extends Promise<ReviewPreviousValues>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  rKey: () => Promise<String>;
+  text: () => Promise<String>;
+  editedAt: () => Promise<DateTimeOutput>;
+  thumbsUp: () => Promise<Int>;
+  thumbsDown: () => Promise<Int>;
 }
 
-export interface AggregateReviewSubscription
-  extends Promise<AsyncIterator<AggregateReview>>,
+export interface ReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewPreviousValues>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  rKey: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  thumbsUp: () => Promise<AsyncIterator<Int>>;
+  thumbsDown: () => Promise<AsyncIterator<Int>>;
 }
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+DateTime scalar input type, allowing Date
 */
-export type String = string;
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2602,14 +2667,9 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean;
 
 /*
-DateTime scalar input type, allowing Date
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
+export type String = string;
 
 /*
 The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 

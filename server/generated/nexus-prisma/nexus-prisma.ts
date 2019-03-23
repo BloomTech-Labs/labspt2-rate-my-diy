@@ -610,9 +610,9 @@ type ReviewObject =
   | ReviewFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
   | { name: 'editedAt', args?: [] | false, alias?: string  } 
-  | { name: 'rating', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'LikedBy', args?: ReviewLikedByArgs[] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
@@ -623,9 +623,9 @@ type ReviewObject =
 type ReviewFields =
   | 'id'
   | 'title'
+  | 'rKey'
   | 'text'
   | 'editedAt'
-  | 'rating'
   | 'thumbsUp'
   | 'LikedBy'
   | 'thumbsDown'
@@ -669,6 +669,14 @@ export interface ReviewFieldDetails {
     nullable: false
     resolve: undefined
   }
+  rKey: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   text: {
     type: 'String'
     args: {}
@@ -679,14 +687,6 @@ export interface ReviewFieldDetails {
   }
   editedAt: {
     type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  rating: {
-    type: 'Float'
     args: {}
     description: string
     list: undefined
@@ -770,6 +770,7 @@ type ProjectObject =
   | ProjectFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'key', args?: [] | false, alias?: string  } 
   | { name: 'category', args?: [] | false, alias?: string  } 
   | { name: 'timestamp', args?: [] | false, alias?: string  } 
   | { name: 'titleImg', args?: [] | false, alias?: string  } 
@@ -783,6 +784,7 @@ type ProjectObject =
 type ProjectFields =
   | 'id'
   | 'name'
+  | 'key'
   | 'category'
   | 'timestamp'
   | 'titleImg'
@@ -827,6 +829,14 @@ export interface ProjectFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  key: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   category: {
@@ -2032,6 +2042,7 @@ type ProjectPreviousValuesObject =
   | ProjectPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'key', args?: [] | false, alias?: string  } 
   | { name: 'category', args?: [] | false, alias?: string  } 
   | { name: 'timestamp', args?: [] | false, alias?: string  } 
   | { name: 'titleImg', args?: [] | false, alias?: string  } 
@@ -2042,6 +2053,7 @@ type ProjectPreviousValuesObject =
 type ProjectPreviousValuesFields =
   | 'id'
   | 'name'
+  | 'key'
   | 'category'
   | 'timestamp'
   | 'titleImg'
@@ -2068,6 +2080,14 @@ export interface ProjectPreviousValuesFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  key: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   category: {
@@ -2197,18 +2217,18 @@ type ReviewPreviousValuesObject =
   | ReviewPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
   | { name: 'editedAt', args?: [] | false, alias?: string  } 
-  | { name: 'rating', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
 
 type ReviewPreviousValuesFields =
   | 'id'
   | 'title'
+  | 'rKey'
   | 'text'
   | 'editedAt'
-  | 'rating'
   | 'thumbsUp'
   | 'thumbsDown'
 
@@ -2233,6 +2253,14 @@ export interface ReviewPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
+  rKey: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   text: {
     type: 'String'
     args: {}
@@ -2243,14 +2271,6 @@ export interface ReviewPreviousValuesFieldDetails {
   }
   editedAt: {
     type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  rating: {
-    type: 'Float'
     args: {}
     description: string
     list: undefined
@@ -2317,6 +2337,20 @@ export interface ReviewWhereInput {
   title_not_starts_with?: string | null
   title_ends_with?: string | null
   title_not_ends_with?: string | null
+  rKey?: string | null
+  rKey_not?: string | null
+  rKey_in?: string[]
+  rKey_not_in?: string[]
+  rKey_lt?: string | null
+  rKey_lte?: string | null
+  rKey_gt?: string | null
+  rKey_gte?: string | null
+  rKey_contains?: string | null
+  rKey_not_contains?: string | null
+  rKey_starts_with?: string | null
+  rKey_not_starts_with?: string | null
+  rKey_ends_with?: string | null
+  rKey_not_ends_with?: string | null
   text?: string | null
   text_not?: string | null
   text_in?: string[]
@@ -2339,14 +2373,6 @@ export interface ReviewWhereInput {
   editedAt_lte?: string | null
   editedAt_gt?: string | null
   editedAt_gte?: string | null
-  rating?: number | null
-  rating_not?: number | null
-  rating_in?: number[]
-  rating_not_in?: number[]
-  rating_lt?: number | null
-  rating_lte?: number | null
-  rating_gt?: number | null
-  rating_gte?: number | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -2405,6 +2431,20 @@ export type ReviewWhereInputInputObject =
   | { name: 'title_not_starts_with', alias?: string  } 
   | { name: 'title_ends_with', alias?: string  } 
   | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'rKey_not', alias?: string  } 
+  | { name: 'rKey_in', alias?: string  } 
+  | { name: 'rKey_not_in', alias?: string  } 
+  | { name: 'rKey_lt', alias?: string  } 
+  | { name: 'rKey_lte', alias?: string  } 
+  | { name: 'rKey_gt', alias?: string  } 
+  | { name: 'rKey_gte', alias?: string  } 
+  | { name: 'rKey_contains', alias?: string  } 
+  | { name: 'rKey_not_contains', alias?: string  } 
+  | { name: 'rKey_starts_with', alias?: string  } 
+  | { name: 'rKey_not_starts_with', alias?: string  } 
+  | { name: 'rKey_ends_with', alias?: string  } 
+  | { name: 'rKey_not_ends_with', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
   | { name: 'text_in', alias?: string  } 
@@ -2427,14 +2467,6 @@ export type ReviewWhereInputInputObject =
   | { name: 'editedAt_lte', alias?: string  } 
   | { name: 'editedAt_gt', alias?: string  } 
   | { name: 'editedAt_gte', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
-  | { name: 'rating_not', alias?: string  } 
-  | { name: 'rating_in', alias?: string  } 
-  | { name: 'rating_not_in', alias?: string  } 
-  | { name: 'rating_lt', alias?: string  } 
-  | { name: 'rating_lte', alias?: string  } 
-  | { name: 'rating_gt', alias?: string  } 
-  | { name: 'rating_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -2813,6 +2845,20 @@ export interface ProjectWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  key?: string | null
+  key_not?: string | null
+  key_in?: string[]
+  key_not_in?: string[]
+  key_lt?: string | null
+  key_lte?: string | null
+  key_gt?: string | null
+  key_gte?: string | null
+  key_contains?: string | null
+  key_not_contains?: string | null
+  key_starts_with?: string | null
+  key_not_starts_with?: string | null
+  key_ends_with?: string | null
+  key_not_ends_with?: string | null
   category?: string | null
   category_not?: string | null
   category_in?: string[]
@@ -2926,6 +2972,20 @@ export type ProjectWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'key_not', alias?: string  } 
+  | { name: 'key_in', alias?: string  } 
+  | { name: 'key_not_in', alias?: string  } 
+  | { name: 'key_lt', alias?: string  } 
+  | { name: 'key_lte', alias?: string  } 
+  | { name: 'key_gt', alias?: string  } 
+  | { name: 'key_gte', alias?: string  } 
+  | { name: 'key_contains', alias?: string  } 
+  | { name: 'key_not_contains', alias?: string  } 
+  | { name: 'key_starts_with', alias?: string  } 
+  | { name: 'key_not_starts_with', alias?: string  } 
+  | { name: 'key_ends_with', alias?: string  } 
+  | { name: 'key_not_ends_with', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'category_not', alias?: string  } 
   | { name: 'category_in', alias?: string  } 
@@ -3011,17 +3071,21 @@ export type ProjectWhereInputInputObject =
   
 export interface ProjectWhereUniqueInput {
   id?: string | null
+  key?: string | null
 }
 export type ProjectWhereUniqueInputInputObject =
   | Extract<keyof ProjectWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   
 export interface ReviewWhereUniqueInput {
   id?: string | null
+  rKey?: string | null
 }
 export type ReviewWhereUniqueInputInputObject =
   | Extract<keyof ReviewWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   
 export interface UserCreateInput {
   url?: string | null
@@ -3067,9 +3131,9 @@ export type ReviewCreateManyWithoutAuthorInputInputObject =
   
 export interface ReviewCreateWithoutAuthorInput {
   title?: string
+  rKey?: string | null
   text?: string
   editedAt?: string
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number
@@ -3079,9 +3143,9 @@ export interface ReviewCreateWithoutAuthorInput {
 export type ReviewCreateWithoutAuthorInputInputObject =
   | Extract<keyof ReviewCreateWithoutAuthorInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3139,9 +3203,9 @@ export type ReviewCreateManyWithoutDislikedByInputInputObject =
   
 export interface ReviewCreateWithoutDislikedByInput {
   title?: string
+  rKey?: string | null
   text?: string
   editedAt?: string
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number
@@ -3151,9 +3215,9 @@ export interface ReviewCreateWithoutDislikedByInput {
 export type ReviewCreateWithoutDislikedByInputInputObject =
   | Extract<keyof ReviewCreateWithoutDislikedByInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3211,9 +3275,9 @@ export type ReviewCreateManyWithoutLikedByInputInputObject =
   
 export interface ReviewCreateWithoutLikedByInput {
   title?: string
+  rKey?: string | null
   text?: string
   editedAt?: string
-  rating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
@@ -3223,9 +3287,9 @@ export interface ReviewCreateWithoutLikedByInput {
 export type ReviewCreateWithoutLikedByInputInputObject =
   | Extract<keyof ReviewCreateWithoutLikedByInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -3283,6 +3347,7 @@ export type ProjectCreateManyWithoutUserInputInputObject =
   
 export interface ProjectCreateWithoutUserInput {
   name?: string
+  key?: string | null
   category?: string
   timestamp?: string
   titleImg?: string | null
@@ -3295,6 +3360,7 @@ export interface ProjectCreateWithoutUserInput {
 export type ProjectCreateWithoutUserInputInputObject =
   | Extract<keyof ProjectCreateWithoutUserInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -3315,9 +3381,9 @@ export type ReviewCreateManyWithoutProjectReviewedInputInputObject =
   
 export interface ReviewCreateWithoutProjectReviewedInput {
   title?: string
+  rKey?: string | null
   text?: string
   editedAt?: string
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number
@@ -3327,9 +3393,9 @@ export interface ReviewCreateWithoutProjectReviewedInput {
 export type ReviewCreateWithoutProjectReviewedInputInputObject =
   | Extract<keyof ReviewCreateWithoutProjectReviewedInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3387,6 +3453,7 @@ export type ProjectCreateManyWithoutRatedByInputInputObject =
   
 export interface ProjectCreateWithoutRatedByInput {
   name?: string
+  key?: string | null
   category?: string
   timestamp?: string
   titleImg?: string | null
@@ -3399,6 +3466,7 @@ export interface ProjectCreateWithoutRatedByInput {
 export type ProjectCreateWithoutRatedByInputInputObject =
   | Extract<keyof ProjectCreateWithoutRatedByInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -3459,6 +3527,7 @@ export type ProjectCreateOneWithoutReviewsInputInputObject =
   
 export interface ProjectCreateWithoutReviewsInput {
   name?: string
+  key?: string | null
   category?: string
   timestamp?: string
   titleImg?: string | null
@@ -3471,6 +3540,7 @@ export interface ProjectCreateWithoutReviewsInput {
 export type ProjectCreateWithoutReviewsInputInputObject =
   | Extract<keyof ProjectCreateWithoutReviewsInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -3547,9 +3617,9 @@ export type ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject =
   
 export interface ReviewUpdateWithoutAuthorDataInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3559,9 +3629,9 @@ export interface ReviewUpdateWithoutAuthorDataInput {
 export type ReviewUpdateWithoutAuthorDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutAuthorDataInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3665,9 +3735,9 @@ export type ReviewUpdateWithWhereUniqueWithoutDislikedByInputInputObject =
   
 export interface ReviewUpdateWithoutDislikedByDataInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3677,9 +3747,9 @@ export interface ReviewUpdateWithoutDislikedByDataInput {
 export type ReviewUpdateWithoutDislikedByDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutDislikedByDataInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3764,9 +3834,9 @@ export type ReviewUpdateWithWhereUniqueWithoutLikedByInputInputObject =
   
 export interface ReviewUpdateWithoutLikedByDataInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
   DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
@@ -3776,9 +3846,9 @@ export interface ReviewUpdateWithoutLikedByDataInput {
 export type ReviewUpdateWithoutLikedByDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutLikedByDataInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -3882,6 +3952,7 @@ export type ProjectUpdateWithWhereUniqueWithoutUserInputInputObject =
   
 export interface ProjectUpdateWithoutUserDataInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -3894,6 +3965,7 @@ export interface ProjectUpdateWithoutUserDataInput {
 export type ProjectUpdateWithoutUserDataInputInputObject =
   | Extract<keyof ProjectUpdateWithoutUserDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -3937,9 +4009,9 @@ export type ReviewUpdateWithWhereUniqueWithoutProjectReviewedInputInputObject =
   
 export interface ReviewUpdateWithoutProjectReviewedDataInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3949,9 +4021,9 @@ export interface ReviewUpdateWithoutProjectReviewedDataInput {
 export type ReviewUpdateWithoutProjectReviewedDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutProjectReviewedDataInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3998,6 +4070,20 @@ export interface ReviewScalarWhereInput {
   title_not_starts_with?: string | null
   title_ends_with?: string | null
   title_not_ends_with?: string | null
+  rKey?: string | null
+  rKey_not?: string | null
+  rKey_in?: string[]
+  rKey_not_in?: string[]
+  rKey_lt?: string | null
+  rKey_lte?: string | null
+  rKey_gt?: string | null
+  rKey_gte?: string | null
+  rKey_contains?: string | null
+  rKey_not_contains?: string | null
+  rKey_starts_with?: string | null
+  rKey_not_starts_with?: string | null
+  rKey_ends_with?: string | null
+  rKey_not_ends_with?: string | null
   text?: string | null
   text_not?: string | null
   text_in?: string[]
@@ -4020,14 +4106,6 @@ export interface ReviewScalarWhereInput {
   editedAt_lte?: string | null
   editedAt_gt?: string | null
   editedAt_gte?: string | null
-  rating?: number | null
-  rating_not?: number | null
-  rating_in?: number[]
-  rating_not_in?: number[]
-  rating_lt?: number | null
-  rating_lte?: number | null
-  rating_gt?: number | null
-  rating_gte?: number | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -4078,6 +4156,20 @@ export type ReviewScalarWhereInputInputObject =
   | { name: 'title_not_starts_with', alias?: string  } 
   | { name: 'title_ends_with', alias?: string  } 
   | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'rKey_not', alias?: string  } 
+  | { name: 'rKey_in', alias?: string  } 
+  | { name: 'rKey_not_in', alias?: string  } 
+  | { name: 'rKey_lt', alias?: string  } 
+  | { name: 'rKey_lte', alias?: string  } 
+  | { name: 'rKey_gt', alias?: string  } 
+  | { name: 'rKey_gte', alias?: string  } 
+  | { name: 'rKey_contains', alias?: string  } 
+  | { name: 'rKey_not_contains', alias?: string  } 
+  | { name: 'rKey_starts_with', alias?: string  } 
+  | { name: 'rKey_not_starts_with', alias?: string  } 
+  | { name: 'rKey_ends_with', alias?: string  } 
+  | { name: 'rKey_not_ends_with', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
   | { name: 'text_in', alias?: string  } 
@@ -4100,14 +4192,6 @@ export type ReviewScalarWhereInputInputObject =
   | { name: 'editedAt_lte', alias?: string  } 
   | { name: 'editedAt_gt', alias?: string  } 
   | { name: 'editedAt_gte', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
-  | { name: 'rating_not', alias?: string  } 
-  | { name: 'rating_in', alias?: string  } 
-  | { name: 'rating_not_in', alias?: string  } 
-  | { name: 'rating_lt', alias?: string  } 
-  | { name: 'rating_lte', alias?: string  } 
-  | { name: 'rating_gt', alias?: string  } 
-  | { name: 'rating_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -4139,18 +4223,18 @@ export type ReviewUpdateManyWithWhereNestedInputInputObject =
   
 export interface ReviewUpdateManyDataInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
 export type ReviewUpdateManyDataInputInputObject =
   | Extract<keyof ReviewUpdateManyDataInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -4591,6 +4675,20 @@ export interface ProjectScalarWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  key?: string | null
+  key_not?: string | null
+  key_in?: string[]
+  key_not_in?: string[]
+  key_lt?: string | null
+  key_lte?: string | null
+  key_gt?: string | null
+  key_gte?: string | null
+  key_contains?: string | null
+  key_not_contains?: string | null
+  key_starts_with?: string | null
+  key_not_starts_with?: string | null
+  key_ends_with?: string | null
+  key_not_ends_with?: string | null
   category?: string | null
   category_not?: string | null
   category_in?: string[]
@@ -4697,6 +4795,20 @@ export type ProjectScalarWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'key_not', alias?: string  } 
+  | { name: 'key_in', alias?: string  } 
+  | { name: 'key_not_in', alias?: string  } 
+  | { name: 'key_lt', alias?: string  } 
+  | { name: 'key_lte', alias?: string  } 
+  | { name: 'key_gt', alias?: string  } 
+  | { name: 'key_gte', alias?: string  } 
+  | { name: 'key_contains', alias?: string  } 
+  | { name: 'key_not_contains', alias?: string  } 
+  | { name: 'key_starts_with', alias?: string  } 
+  | { name: 'key_not_starts_with', alias?: string  } 
+  | { name: 'key_ends_with', alias?: string  } 
+  | { name: 'key_not_ends_with', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'category_not', alias?: string  } 
   | { name: 'category_in', alias?: string  } 
@@ -4784,6 +4896,7 @@ export type ProjectUpdateManyWithWhereNestedInputInputObject =
   
 export interface ProjectUpdateManyDataInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -4794,6 +4907,7 @@ export interface ProjectUpdateManyDataInput {
 export type ProjectUpdateManyDataInputInputObject =
   | Extract<keyof ProjectUpdateManyDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -4835,6 +4949,7 @@ export type ProjectUpdateWithWhereUniqueWithoutRatedByInputInputObject =
   
 export interface ProjectUpdateWithoutRatedByDataInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -4847,6 +4962,7 @@ export interface ProjectUpdateWithoutRatedByDataInput {
 export type ProjectUpdateWithoutRatedByDataInputInputObject =
   | Extract<keyof ProjectUpdateWithoutRatedByDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -4946,6 +5062,7 @@ export type ProjectUpdateOneRequiredWithoutReviewsInputInputObject =
   
 export interface ProjectUpdateWithoutReviewsDataInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -4958,6 +5075,7 @@ export interface ProjectUpdateWithoutReviewsDataInput {
 export type ProjectUpdateWithoutReviewsDataInputInputObject =
   | Extract<keyof ProjectUpdateWithoutReviewsDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -5054,6 +5172,7 @@ export type UserUpdateManyMutationInputInputObject =
   
 export interface ProjectCreateInput {
   name?: string
+  key?: string | null
   category?: string
   timestamp?: string
   titleImg?: string | null
@@ -5067,6 +5186,7 @@ export interface ProjectCreateInput {
 export type ProjectCreateInputInputObject =
   | Extract<keyof ProjectCreateInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -5079,6 +5199,7 @@ export type ProjectCreateInputInputObject =
   
 export interface ProjectUpdateInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -5092,6 +5213,7 @@ export interface ProjectUpdateInput {
 export type ProjectUpdateInputInputObject =
   | Extract<keyof ProjectUpdateInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -5104,6 +5226,7 @@ export type ProjectUpdateInputInputObject =
   
 export interface ProjectUpdateManyMutationInput {
   name?: string | null
+  key?: string | null
   category?: string | null
   timestamp?: string | null
   titleImg?: string | null
@@ -5114,6 +5237,7 @@ export interface ProjectUpdateManyMutationInput {
 export type ProjectUpdateManyMutationInputInputObject =
   | Extract<keyof ProjectUpdateManyMutationInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
   | { name: 'titleImg', alias?: string  } 
@@ -5123,9 +5247,9 @@ export type ProjectUpdateManyMutationInputInputObject =
   
 export interface ReviewCreateInput {
   title?: string
+  rKey?: string | null
   text?: string
   editedAt?: string
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number
@@ -5136,9 +5260,9 @@ export interface ReviewCreateInput {
 export type ReviewCreateInputInputObject =
   | Extract<keyof ReviewCreateInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5148,9 +5272,9 @@ export type ReviewCreateInputInputObject =
   
 export interface ReviewUpdateInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -5161,9 +5285,9 @@ export interface ReviewUpdateInput {
 export type ReviewUpdateInputInputObject =
   | Extract<keyof ReviewUpdateInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5173,18 +5297,18 @@ export type ReviewUpdateInputInputObject =
   
 export interface ReviewUpdateManyMutationInput {
   title?: string | null
+  rKey?: string | null
   text?: string | null
   editedAt?: string | null
-  rating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
 export type ReviewUpdateManyMutationInputInputObject =
   | Extract<keyof ReviewUpdateManyMutationInput, string>
   | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'editedAt', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -5257,12 +5381,12 @@ export type ReviewOrderByInputValues =
   | 'id_DESC'
   | 'title_ASC'
   | 'title_DESC'
+  | 'rKey_ASC'
+  | 'rKey_DESC'
   | 'text_ASC'
   | 'text_DESC'
   | 'editedAt_ASC'
   | 'editedAt_DESC'
-  | 'rating_ASC'
-  | 'rating_DESC'
   | 'thumbsUp_ASC'
   | 'thumbsUp_DESC'
   | 'thumbsDown_ASC'
@@ -5303,6 +5427,8 @@ export type ProjectOrderByInputValues =
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
+  | 'key_ASC'
+  | 'key_DESC'
   | 'category_ASC'
   | 'category_DESC'
   | 'timestamp_ASC'

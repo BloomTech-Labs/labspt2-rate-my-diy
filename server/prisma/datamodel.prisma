@@ -9,7 +9,7 @@ type User {
   username: String! @unique
   password: String! 
   email: String! @unique
-  userProfileImage: String! @default(value: "http://i.pravatar.cc/300")
+  userProfileImage: String! @default(value: "https://picsum.photos/400?random")
   bio: String! @default(value: "Hi, this is my page where I share projects and reviews")
   privilege: String! @default(value: "Plebian")
   stripeId: String
@@ -24,6 +24,7 @@ type User {
 type Project {
  id: ID! @unique
  name: String!
+ key: String @unique
  category: String!
  timestamp: DateTime!
  titleImg: String! @default(value: "http://lorempixel.com/400/400/")
@@ -38,9 +39,9 @@ type Project {
 type Review {
   id: ID! @unique 
   title: String!
+  rKey: String @unique
   text: String!
   editedAt: DateTime!
-  rating: Float! @default(value: 0)
   thumbsUp: Int! @default(value: 0)
   LikedBy: [User!] @relation(name: "UserLikedReviews")
   thumbsDown: Int! @fefault(value: 0)
