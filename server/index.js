@@ -95,8 +95,7 @@ const Subscription = prismaObjectType({
     function newWelcomeEmail(parent, args, ctx, info) {
       return ctx.prisma.$subscribe.createUser({ mutation_in: ['CREATED'].node() })
     };
-
-    const welcomeEmail = {
+      welcomeEmail = {
       subscribe: newWelcomeEmail,
       resolve: (args) => {
         email = args.email;
