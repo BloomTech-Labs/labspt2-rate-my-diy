@@ -98,6 +98,10 @@ class LandingPage extends Component {
 								id
 								username
 								userProfileImage
+								Projects {
+      								rating
+      								timestamp
+    							}
 							}
 						}
 					`}
@@ -131,6 +135,10 @@ class LandingPage extends Component {
 								id
 								username
 								userProfileImage
+								ReviewList {
+      								rating
+      								timestamp
+    							}
 							}
 						}
 					`}
