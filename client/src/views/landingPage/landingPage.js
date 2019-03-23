@@ -29,7 +29,7 @@ class LandingPage extends Component {
 				<Query
 					query={gql`
 						{
-							projects(orderBy: timestamp_DESC) {
+							projects(orderBy: rating_DESC) {
 								id
 								name
 								titleImg
@@ -65,9 +65,7 @@ class LandingPage extends Component {
 								}
 							});
 
-							const sortedByRating = newProjects.sort(function(a, b){return b.rating - a.rating});
-
-							return sortedByRating.slice(0, 4);
+							return newProjects.slice(0, 4);
 						}	
 						
 						const projects = filteredProjects();
