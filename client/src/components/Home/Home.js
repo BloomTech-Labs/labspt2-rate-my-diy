@@ -80,7 +80,8 @@ class Home extends Component {
 											stars={rating}
 											title={name}
 											// below might need to be edited
-											user={User}
+											username={User.username}
+											clickHandler={this.clickUserHandler}
 										/>
 									)
 								)}
@@ -117,7 +118,7 @@ class Home extends Component {
 											type="featured"
 											key={id}
 											username={username}
-											userProfileImage={userProfileImage}
+											image={userProfileImage}
 											clickHandler={this.clickUserHandler}
 										/>
 									)
@@ -150,7 +151,7 @@ class Home extends Component {
 											type="featured"
 											key={id}
 											username={username}
-											userProfileImage={userProfileImage}
+											image={userProfileImage}
 											clickHandler={this.clickUserHandler}
 										/>
 									)
