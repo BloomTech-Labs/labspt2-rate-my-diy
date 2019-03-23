@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Featured from './Featured/Featured';
+import Header from './Header/Header';
 import './Home.scss';
 
 
@@ -23,6 +24,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
+				<Header />
 				<SearchBar userClicked={this.state.userClicked} />
 				<h1>Featured Projects</h1>
 				<Query
