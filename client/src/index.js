@@ -4,7 +4,7 @@ import "./styles/_globals.scss";
 import App from "./components/app/App";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Firebase, { FirebaseContext } from "./components/firebase/index";
+import { FirebaseContext, Firebase } from "./components/firebase/index.js";
 
 const client = new ApolloClient({
   uri: "https://stark-meadow-13883.herokuapp.com/"
