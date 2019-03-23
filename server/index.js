@@ -35,6 +35,7 @@ async function main() {
     else
       console.log(info);
   });
+}
 
 
 const Query = prismaObjectType({
