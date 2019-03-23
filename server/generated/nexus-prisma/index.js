@@ -3,6 +3,8 @@
  * Do not make changes to this file directly
  */
 
-const datamodelInfo = require("./datamodel-info");
-
-module.exports = datamodelInfo;
+const datamodelInfo = require('./datamodel-info')
+  
+module.exports = datamodelInfo
+  
+  

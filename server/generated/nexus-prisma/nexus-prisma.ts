@@ -3,9 +3,9 @@
  * Do not make changes to this file directly
  */
 
-import { core } from "nexus";
-import { GraphQLResolveInfo } from "graphql";
-import * as prisma from "../prisma-client";
+import { core } from 'nexus'
+import { GraphQLResolveInfo } from 'graphql'
+import * as prisma from '../prisma-client'
 
 declare global {
   interface NexusPrismaGen extends NexusPrismaTypes {}
@@ -14,5948 +14,5441 @@ declare global {
 export interface NexusPrismaTypes {
   objectTypes: {
     fields: {
-      Query: QueryObject;
-      User: UserObject;
-      Review: ReviewObject;
-      Comment: CommentObject;
-      Project: ProjectObject;
-      StepArray: StepArrayObject;
-      UserConnection: UserConnectionObject;
-      PageInfo: PageInfoObject;
-      UserEdge: UserEdgeObject;
-      AggregateUser: AggregateUserObject;
-      StepArrayConnection: StepArrayConnectionObject;
-      StepArrayEdge: StepArrayEdgeObject;
-      AggregateStepArray: AggregateStepArrayObject;
-      ProjectConnection: ProjectConnectionObject;
-      ProjectEdge: ProjectEdgeObject;
-      AggregateProject: AggregateProjectObject;
-      ReviewConnection: ReviewConnectionObject;
-      ReviewEdge: ReviewEdgeObject;
-      AggregateReview: AggregateReviewObject;
-      CommentConnection: CommentConnectionObject;
-      CommentEdge: CommentEdgeObject;
-      AggregateComment: AggregateCommentObject;
-      Mutation: MutationObject;
-      BatchPayload: BatchPayloadObject;
-      Subscription: SubscriptionObject;
-      UserSubscriptionPayload: UserSubscriptionPayloadObject;
-      UserPreviousValues: UserPreviousValuesObject;
-      StepArraySubscriptionPayload: StepArraySubscriptionPayloadObject;
-      StepArrayPreviousValues: StepArrayPreviousValuesObject;
-      ProjectSubscriptionPayload: ProjectSubscriptionPayloadObject;
-      ProjectPreviousValues: ProjectPreviousValuesObject;
-      ReviewSubscriptionPayload: ReviewSubscriptionPayloadObject;
-      ReviewPreviousValues: ReviewPreviousValuesObject;
-      CommentSubscriptionPayload: CommentSubscriptionPayloadObject;
-      CommentPreviousValues: CommentPreviousValuesObject;
-    };
+      Query: QueryObject
+      User: UserObject
+      Review: ReviewObject
+      Project: ProjectObject
+      UserConnection: UserConnectionObject
+      PageInfo: PageInfoObject
+      UserEdge: UserEdgeObject
+      AggregateUser: AggregateUserObject
+      ProjectConnection: ProjectConnectionObject
+      ProjectEdge: ProjectEdgeObject
+      AggregateProject: AggregateProjectObject
+      ReviewConnection: ReviewConnectionObject
+      ReviewEdge: ReviewEdgeObject
+      AggregateReview: AggregateReviewObject
+      Mutation: MutationObject
+      BatchPayload: BatchPayloadObject
+      Subscription: SubscriptionObject
+      UserSubscriptionPayload: UserSubscriptionPayloadObject
+      UserPreviousValues: UserPreviousValuesObject
+      ProjectSubscriptionPayload: ProjectSubscriptionPayloadObject
+      ProjectPreviousValues: ProjectPreviousValuesObject
+      ReviewSubscriptionPayload: ReviewSubscriptionPayloadObject
+      ReviewPreviousValues: ReviewPreviousValuesObject
+    }
     fieldsDetails: {
-      Query: QueryFieldDetails;
-      User: UserFieldDetails;
-      Review: ReviewFieldDetails;
-      Comment: CommentFieldDetails;
-      Project: ProjectFieldDetails;
-      StepArray: StepArrayFieldDetails;
-      UserConnection: UserConnectionFieldDetails;
-      PageInfo: PageInfoFieldDetails;
-      UserEdge: UserEdgeFieldDetails;
-      AggregateUser: AggregateUserFieldDetails;
-      StepArrayConnection: StepArrayConnectionFieldDetails;
-      StepArrayEdge: StepArrayEdgeFieldDetails;
-      AggregateStepArray: AggregateStepArrayFieldDetails;
-      ProjectConnection: ProjectConnectionFieldDetails;
-      ProjectEdge: ProjectEdgeFieldDetails;
-      AggregateProject: AggregateProjectFieldDetails;
-      ReviewConnection: ReviewConnectionFieldDetails;
-      ReviewEdge: ReviewEdgeFieldDetails;
-      AggregateReview: AggregateReviewFieldDetails;
-      CommentConnection: CommentConnectionFieldDetails;
-      CommentEdge: CommentEdgeFieldDetails;
-      AggregateComment: AggregateCommentFieldDetails;
-      Mutation: MutationFieldDetails;
-      BatchPayload: BatchPayloadFieldDetails;
-      Subscription: SubscriptionFieldDetails;
-      UserSubscriptionPayload: UserSubscriptionPayloadFieldDetails;
-      UserPreviousValues: UserPreviousValuesFieldDetails;
-      StepArraySubscriptionPayload: StepArraySubscriptionPayloadFieldDetails;
-      StepArrayPreviousValues: StepArrayPreviousValuesFieldDetails;
-      ProjectSubscriptionPayload: ProjectSubscriptionPayloadFieldDetails;
-      ProjectPreviousValues: ProjectPreviousValuesFieldDetails;
-      ReviewSubscriptionPayload: ReviewSubscriptionPayloadFieldDetails;
-      ReviewPreviousValues: ReviewPreviousValuesFieldDetails;
-      CommentSubscriptionPayload: CommentSubscriptionPayloadFieldDetails;
-      CommentPreviousValues: CommentPreviousValuesFieldDetails;
-    };
-  };
+      Query: QueryFieldDetails
+      User: UserFieldDetails
+      Review: ReviewFieldDetails
+      Project: ProjectFieldDetails
+      UserConnection: UserConnectionFieldDetails
+      PageInfo: PageInfoFieldDetails
+      UserEdge: UserEdgeFieldDetails
+      AggregateUser: AggregateUserFieldDetails
+      ProjectConnection: ProjectConnectionFieldDetails
+      ProjectEdge: ProjectEdgeFieldDetails
+      AggregateProject: AggregateProjectFieldDetails
+      ReviewConnection: ReviewConnectionFieldDetails
+      ReviewEdge: ReviewEdgeFieldDetails
+      AggregateReview: AggregateReviewFieldDetails
+      Mutation: MutationFieldDetails
+      BatchPayload: BatchPayloadFieldDetails
+      Subscription: SubscriptionFieldDetails
+      UserSubscriptionPayload: UserSubscriptionPayloadFieldDetails
+      UserPreviousValues: UserPreviousValuesFieldDetails
+      ProjectSubscriptionPayload: ProjectSubscriptionPayloadFieldDetails
+      ProjectPreviousValues: ProjectPreviousValuesFieldDetails
+      ReviewSubscriptionPayload: ReviewSubscriptionPayloadFieldDetails
+      ReviewPreviousValues: ReviewPreviousValuesFieldDetails
+    }
+  }
   inputTypes: {
     fields: {
-      UserWhereUniqueInput: UserWhereUniqueInputInputObject;
-      ReviewWhereInput: ReviewWhereInputInputObject;
-      CommentWhereInput: CommentWhereInputInputObject;
-      UserWhereInput: UserWhereInputInputObject;
-      ProjectWhereInput: ProjectWhereInputInputObject;
-      StepArrayWhereInput: StepArrayWhereInputInputObject;
-      ProjectWhereUniqueInput: ProjectWhereUniqueInputInputObject;
-      ReviewWhereUniqueInput: ReviewWhereUniqueInputInputObject;
-      CommentWhereUniqueInput: CommentWhereUniqueInputInputObject;
-      UserCreateInput: UserCreateInputInputObject;
-      ReviewCreateManyWithoutAuthorInput: ReviewCreateManyWithoutAuthorInputInputObject;
-      ReviewCreateWithoutAuthorInput: ReviewCreateWithoutAuthorInputInputObject;
-      CommentCreateManyInput: CommentCreateManyInputInputObject;
-      CommentCreateInput: CommentCreateInputInputObject;
-      UserCreateOneInput: UserCreateOneInputInputObject;
-      ProjectCreateManyWithoutUserInput: ProjectCreateManyWithoutUserInputInputObject;
-      ProjectCreateWithoutUserInput: ProjectCreateWithoutUserInputInputObject;
-      StepArrayCreateManyInput: StepArrayCreateManyInputInputObject;
-      StepArrayCreateInput: StepArrayCreateInputInputObject;
-      ReviewCreateManyInput: ReviewCreateManyInputInputObject;
-      ReviewCreateInput: ReviewCreateInputInputObject;
-      UserCreateOneWithoutReviewListInput: UserCreateOneWithoutReviewListInputInputObject;
-      UserCreateWithoutReviewListInput: UserCreateWithoutReviewListInputInputObject;
-      UserUpdateInput: UserUpdateInputInputObject;
-      ReviewUpdateManyWithoutAuthorInput: ReviewUpdateManyWithoutAuthorInputInputObject;
-      ReviewUpdateWithWhereUniqueWithoutAuthorInput: ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject;
-      ReviewUpdateWithoutAuthorDataInput: ReviewUpdateWithoutAuthorDataInputInputObject;
-      CommentUpdateManyInput: CommentUpdateManyInputInputObject;
-      CommentUpdateWithWhereUniqueNestedInput: CommentUpdateWithWhereUniqueNestedInputInputObject;
-      CommentUpdateDataInput: CommentUpdateDataInputInputObject;
-      UserUpdateOneRequiredInput: UserUpdateOneRequiredInputInputObject;
-      UserUpdateDataInput: UserUpdateDataInputInputObject;
-      ProjectUpdateManyWithoutUserInput: ProjectUpdateManyWithoutUserInputInputObject;
-      ProjectUpdateWithWhereUniqueWithoutUserInput: ProjectUpdateWithWhereUniqueWithoutUserInputInputObject;
-      ProjectUpdateWithoutUserDataInput: ProjectUpdateWithoutUserDataInputInputObject;
-      StepArrayUpdateManyInput: StepArrayUpdateManyInputInputObject;
-      StepArrayScalarWhereInput: StepArrayScalarWhereInputInputObject;
-      StepArrayUpdateManyWithWhereNestedInput: StepArrayUpdateManyWithWhereNestedInputInputObject;
-      StepArrayUpdateManyDataInput: StepArrayUpdateManyDataInputInputObject;
-      ReviewUpdateManyInput: ReviewUpdateManyInputInputObject;
-      ReviewUpdateWithWhereUniqueNestedInput: ReviewUpdateWithWhereUniqueNestedInputInputObject;
-      ReviewUpdateDataInput: ReviewUpdateDataInputInputObject;
-      UserUpdateOneRequiredWithoutReviewListInput: UserUpdateOneRequiredWithoutReviewListInputInputObject;
-      UserUpdateWithoutReviewListDataInput: UserUpdateWithoutReviewListDataInputInputObject;
-      UserUpsertWithoutReviewListInput: UserUpsertWithoutReviewListInputInputObject;
-      ReviewUpsertWithWhereUniqueNestedInput: ReviewUpsertWithWhereUniqueNestedInputInputObject;
-      ReviewScalarWhereInput: ReviewScalarWhereInputInputObject;
-      ReviewUpdateManyWithWhereNestedInput: ReviewUpdateManyWithWhereNestedInputInputObject;
-      ReviewUpdateManyDataInput: ReviewUpdateManyDataInputInputObject;
-      ProjectUpsertWithWhereUniqueWithoutUserInput: ProjectUpsertWithWhereUniqueWithoutUserInputInputObject;
-      ProjectScalarWhereInput: ProjectScalarWhereInputInputObject;
-      ProjectUpdateManyWithWhereNestedInput: ProjectUpdateManyWithWhereNestedInputInputObject;
-      ProjectUpdateManyDataInput: ProjectUpdateManyDataInputInputObject;
-      UserUpsertNestedInput: UserUpsertNestedInputInputObject;
-      CommentUpsertWithWhereUniqueNestedInput: CommentUpsertWithWhereUniqueNestedInputInputObject;
-      CommentScalarWhereInput: CommentScalarWhereInputInputObject;
-      CommentUpdateManyWithWhereNestedInput: CommentUpdateManyWithWhereNestedInputInputObject;
-      CommentUpdateManyDataInput: CommentUpdateManyDataInputInputObject;
-      ReviewUpsertWithWhereUniqueWithoutAuthorInput: ReviewUpsertWithWhereUniqueWithoutAuthorInputInputObject;
-      UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject;
-      StepArrayUpdateManyMutationInput: StepArrayUpdateManyMutationInputInputObject;
-      ProjectCreateInput: ProjectCreateInputInputObject;
-      UserCreateManyWithoutProjectsInput: UserCreateManyWithoutProjectsInputInputObject;
-      UserCreateWithoutProjectsInput: UserCreateWithoutProjectsInputInputObject;
-      ProjectUpdateInput: ProjectUpdateInputInputObject;
-      UserUpdateManyWithoutProjectsInput: UserUpdateManyWithoutProjectsInputInputObject;
-      UserUpdateWithWhereUniqueWithoutProjectsInput: UserUpdateWithWhereUniqueWithoutProjectsInputInputObject;
-      UserUpdateWithoutProjectsDataInput: UserUpdateWithoutProjectsDataInputInputObject;
-      UserUpsertWithWhereUniqueWithoutProjectsInput: UserUpsertWithWhereUniqueWithoutProjectsInputInputObject;
-      UserScalarWhereInput: UserScalarWhereInputInputObject;
-      UserUpdateManyWithWhereNestedInput: UserUpdateManyWithWhereNestedInputInputObject;
-      UserUpdateManyDataInput: UserUpdateManyDataInputInputObject;
-      ProjectUpdateManyMutationInput: ProjectUpdateManyMutationInputInputObject;
-      ReviewUpdateInput: ReviewUpdateInputInputObject;
-      ReviewUpdateManyMutationInput: ReviewUpdateManyMutationInputInputObject;
-      CommentUpdateInput: CommentUpdateInputInputObject;
-      CommentUpdateManyMutationInput: CommentUpdateManyMutationInputInputObject;
-      UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject;
-      StepArraySubscriptionWhereInput: StepArraySubscriptionWhereInputInputObject;
-      ProjectSubscriptionWhereInput: ProjectSubscriptionWhereInputInputObject;
-      ReviewSubscriptionWhereInput: ReviewSubscriptionWhereInputInputObject;
-      CommentSubscriptionWhereInput: CommentSubscriptionWhereInputInputObject;
-    };
-  };
+      UserWhereUniqueInput: UserWhereUniqueInputInputObject
+      ReviewWhereInput: ReviewWhereInputInputObject
+      UserWhereInput: UserWhereInputInputObject
+      ProjectWhereInput: ProjectWhereInputInputObject
+      ProjectWhereUniqueInput: ProjectWhereUniqueInputInputObject
+      ReviewWhereUniqueInput: ReviewWhereUniqueInputInputObject
+      UserCreateInput: UserCreateInputInputObject
+      ReviewCreateManyWithoutAuthorInput: ReviewCreateManyWithoutAuthorInputInputObject
+      ReviewCreateWithoutAuthorInput: ReviewCreateWithoutAuthorInputInputObject
+      UserCreateManyWithoutLikedReviewsInput: UserCreateManyWithoutLikedReviewsInputInputObject
+      UserCreateWithoutLikedReviewsInput: UserCreateWithoutLikedReviewsInputInputObject
+      ReviewCreateManyWithoutDislikedByInput: ReviewCreateManyWithoutDislikedByInputInputObject
+      ReviewCreateWithoutDislikedByInput: ReviewCreateWithoutDislikedByInputInputObject
+      UserCreateOneWithoutReviewListInput: UserCreateOneWithoutReviewListInputInputObject
+      UserCreateWithoutReviewListInput: UserCreateWithoutReviewListInputInputObject
+      ReviewCreateManyWithoutLikedByInput: ReviewCreateManyWithoutLikedByInputInputObject
+      ReviewCreateWithoutLikedByInput: ReviewCreateWithoutLikedByInputInputObject
+      UserCreateManyWithoutDislikedReviewsInput: UserCreateManyWithoutDislikedReviewsInputInputObject
+      UserCreateWithoutDislikedReviewsInput: UserCreateWithoutDislikedReviewsInputInputObject
+      ProjectCreateManyWithoutUserInput: ProjectCreateManyWithoutUserInputInputObject
+      ProjectCreateWithoutUserInput: ProjectCreateWithoutUserInputInputObject
+      ReviewCreateManyWithoutProjectReviewedInput: ReviewCreateManyWithoutProjectReviewedInputInputObject
+      ReviewCreateWithoutProjectReviewedInput: ReviewCreateWithoutProjectReviewedInputInputObject
+      UserCreateManyWithoutRatedProjectsInput: UserCreateManyWithoutRatedProjectsInputInputObject
+      UserCreateWithoutRatedProjectsInput: UserCreateWithoutRatedProjectsInputInputObject
+      ProjectCreateManyWithoutRatedByInput: ProjectCreateManyWithoutRatedByInputInputObject
+      ProjectCreateWithoutRatedByInput: ProjectCreateWithoutRatedByInputInputObject
+      UserCreateOneWithoutProjectsInput: UserCreateOneWithoutProjectsInputInputObject
+      UserCreateWithoutProjectsInput: UserCreateWithoutProjectsInputInputObject
+      ProjectCreateOneWithoutReviewsInput: ProjectCreateOneWithoutReviewsInputInputObject
+      ProjectCreateWithoutReviewsInput: ProjectCreateWithoutReviewsInputInputObject
+      UserUpdateInput: UserUpdateInputInputObject
+      ReviewUpdateManyWithoutAuthorInput: ReviewUpdateManyWithoutAuthorInputInputObject
+      ReviewUpdateWithWhereUniqueWithoutAuthorInput: ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject
+      ReviewUpdateWithoutAuthorDataInput: ReviewUpdateWithoutAuthorDataInputInputObject
+      UserUpdateManyWithoutLikedReviewsInput: UserUpdateManyWithoutLikedReviewsInputInputObject
+      UserUpdateWithWhereUniqueWithoutLikedReviewsInput: UserUpdateWithWhereUniqueWithoutLikedReviewsInputInputObject
+      UserUpdateWithoutLikedReviewsDataInput: UserUpdateWithoutLikedReviewsDataInputInputObject
+      ReviewUpdateManyWithoutDislikedByInput: ReviewUpdateManyWithoutDislikedByInputInputObject
+      ReviewUpdateWithWhereUniqueWithoutDislikedByInput: ReviewUpdateWithWhereUniqueWithoutDislikedByInputInputObject
+      ReviewUpdateWithoutDislikedByDataInput: ReviewUpdateWithoutDislikedByDataInputInputObject
+      UserUpdateOneRequiredWithoutReviewListInput: UserUpdateOneRequiredWithoutReviewListInputInputObject
+      UserUpdateWithoutReviewListDataInput: UserUpdateWithoutReviewListDataInputInputObject
+      ReviewUpdateManyWithoutLikedByInput: ReviewUpdateManyWithoutLikedByInputInputObject
+      ReviewUpdateWithWhereUniqueWithoutLikedByInput: ReviewUpdateWithWhereUniqueWithoutLikedByInputInputObject
+      ReviewUpdateWithoutLikedByDataInput: ReviewUpdateWithoutLikedByDataInputInputObject
+      UserUpdateManyWithoutDislikedReviewsInput: UserUpdateManyWithoutDislikedReviewsInputInputObject
+      UserUpdateWithWhereUniqueWithoutDislikedReviewsInput: UserUpdateWithWhereUniqueWithoutDislikedReviewsInputInputObject
+      UserUpdateWithoutDislikedReviewsDataInput: UserUpdateWithoutDislikedReviewsDataInputInputObject
+      ProjectUpdateManyWithoutUserInput: ProjectUpdateManyWithoutUserInputInputObject
+      ProjectUpdateWithWhereUniqueWithoutUserInput: ProjectUpdateWithWhereUniqueWithoutUserInputInputObject
+      ProjectUpdateWithoutUserDataInput: ProjectUpdateWithoutUserDataInputInputObject
+      ReviewUpdateManyWithoutProjectReviewedInput: ReviewUpdateManyWithoutProjectReviewedInputInputObject
+      ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput: ReviewUpdateWithWhereUniqueWithoutProjectReviewedInputInputObject
+      ReviewUpdateWithoutProjectReviewedDataInput: ReviewUpdateWithoutProjectReviewedDataInputInputObject
+      ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput: ReviewUpsertWithWhereUniqueWithoutProjectReviewedInputInputObject
+      ReviewScalarWhereInput: ReviewScalarWhereInputInputObject
+      ReviewUpdateManyWithWhereNestedInput: ReviewUpdateManyWithWhereNestedInputInputObject
+      ReviewUpdateManyDataInput: ReviewUpdateManyDataInputInputObject
+      UserUpdateManyWithoutRatedProjectsInput: UserUpdateManyWithoutRatedProjectsInputInputObject
+      UserUpdateWithWhereUniqueWithoutRatedProjectsInput: UserUpdateWithWhereUniqueWithoutRatedProjectsInputInputObject
+      UserUpdateWithoutRatedProjectsDataInput: UserUpdateWithoutRatedProjectsDataInputInputObject
+      UserUpsertWithWhereUniqueWithoutRatedProjectsInput: UserUpsertWithWhereUniqueWithoutRatedProjectsInputInputObject
+      UserScalarWhereInput: UserScalarWhereInputInputObject
+      UserUpdateManyWithWhereNestedInput: UserUpdateManyWithWhereNestedInputInputObject
+      UserUpdateManyDataInput: UserUpdateManyDataInputInputObject
+      ProjectUpsertWithWhereUniqueWithoutUserInput: ProjectUpsertWithWhereUniqueWithoutUserInputInputObject
+      ProjectScalarWhereInput: ProjectScalarWhereInputInputObject
+      ProjectUpdateManyWithWhereNestedInput: ProjectUpdateManyWithWhereNestedInputInputObject
+      ProjectUpdateManyDataInput: ProjectUpdateManyDataInputInputObject
+      ProjectUpdateManyWithoutRatedByInput: ProjectUpdateManyWithoutRatedByInputInputObject
+      ProjectUpdateWithWhereUniqueWithoutRatedByInput: ProjectUpdateWithWhereUniqueWithoutRatedByInputInputObject
+      ProjectUpdateWithoutRatedByDataInput: ProjectUpdateWithoutRatedByDataInputInputObject
+      UserUpdateOneRequiredWithoutProjectsInput: UserUpdateOneRequiredWithoutProjectsInputInputObject
+      UserUpdateWithoutProjectsDataInput: UserUpdateWithoutProjectsDataInputInputObject
+      UserUpsertWithoutProjectsInput: UserUpsertWithoutProjectsInputInputObject
+      ProjectUpsertWithWhereUniqueWithoutRatedByInput: ProjectUpsertWithWhereUniqueWithoutRatedByInputInputObject
+      UserUpsertWithWhereUniqueWithoutDislikedReviewsInput: UserUpsertWithWhereUniqueWithoutDislikedReviewsInputInputObject
+      ProjectUpdateOneRequiredWithoutReviewsInput: ProjectUpdateOneRequiredWithoutReviewsInputInputObject
+      ProjectUpdateWithoutReviewsDataInput: ProjectUpdateWithoutReviewsDataInputInputObject
+      ProjectUpsertWithoutReviewsInput: ProjectUpsertWithoutReviewsInputInputObject
+      ReviewUpsertWithWhereUniqueWithoutLikedByInput: ReviewUpsertWithWhereUniqueWithoutLikedByInputInputObject
+      UserUpsertWithoutReviewListInput: UserUpsertWithoutReviewListInputInputObject
+      ReviewUpsertWithWhereUniqueWithoutDislikedByInput: ReviewUpsertWithWhereUniqueWithoutDislikedByInputInputObject
+      UserUpsertWithWhereUniqueWithoutLikedReviewsInput: UserUpsertWithWhereUniqueWithoutLikedReviewsInputInputObject
+      ReviewUpsertWithWhereUniqueWithoutAuthorInput: ReviewUpsertWithWhereUniqueWithoutAuthorInputInputObject
+      UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
+      ProjectCreateInput: ProjectCreateInputInputObject
+      ProjectUpdateInput: ProjectUpdateInputInputObject
+      ProjectUpdateManyMutationInput: ProjectUpdateManyMutationInputInputObject
+      ReviewCreateInput: ReviewCreateInputInputObject
+      ReviewUpdateInput: ReviewUpdateInputInputObject
+      ReviewUpdateManyMutationInput: ReviewUpdateManyMutationInputInputObject
+      UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
+      ProjectSubscriptionWhereInput: ProjectSubscriptionWhereInputInputObject
+      ReviewSubscriptionWhereInput: ReviewSubscriptionWhereInputInputObject
+    }
+  }
   enumTypes: {
-    ReviewOrderByInput: ReviewOrderByInputValues;
-    CommentOrderByInput: CommentOrderByInputValues;
-    ProjectOrderByInput: ProjectOrderByInputValues;
-    UserOrderByInput: UserOrderByInputValues;
-    StepArrayOrderByInput: StepArrayOrderByInputValues;
-    MutationType: MutationTypeValues;
-  };
+    ReviewOrderByInput: ReviewOrderByInputValues,
+    UserOrderByInput: UserOrderByInputValues,
+    ProjectOrderByInput: ProjectOrderByInputValues,
+    MutationType: MutationTypeValues,
+  }
 }
 
 // Types for Query
 
 type QueryObject =
   | QueryFields
-  | { name: "user"; args?: QueryUserArgs[] | false; alias?: string }
-  | { name: "users"; args?: QueryUsersArgs[] | false; alias?: string }
-  | {
-      name: "usersConnection";
-      args?: QueryUsersConnectionArgs[] | false;
-      alias?: string;
-    }
-  | { name: "stepArrays"; args?: QueryStepArraysArgs[] | false; alias?: string }
-  | {
-      name: "stepArraysConnection";
-      args?: QueryStepArraysConnectionArgs[] | false;
-      alias?: string;
-    }
-  | { name: "project"; args?: QueryProjectArgs[] | false; alias?: string }
-  | { name: "projects"; args?: QueryProjectsArgs[] | false; alias?: string }
-  | {
-      name: "projectsConnection";
-      args?: QueryProjectsConnectionArgs[] | false;
-      alias?: string;
-    }
-  | { name: "review"; args?: QueryReviewArgs[] | false; alias?: string }
-  | { name: "reviews"; args?: QueryReviewsArgs[] | false; alias?: string }
-  | {
-      name: "reviewsConnection";
-      args?: QueryReviewsConnectionArgs[] | false;
-      alias?: string;
-    }
-  | { name: "comment"; args?: QueryCommentArgs[] | false; alias?: string }
-  | { name: "comments"; args?: QueryCommentsArgs[] | false; alias?: string }
-  | {
-      name: "commentsConnection";
-      args?: QueryCommentsConnectionArgs[] | false;
-      alias?: string;
-    };
+  | { name: 'user', args?: QueryUserArgs[] | false, alias?: string  } 
+  | { name: 'users', args?: QueryUsersArgs[] | false, alias?: string  } 
+  | { name: 'usersConnection', args?: QueryUsersConnectionArgs[] | false, alias?: string  } 
+  | { name: 'project', args?: QueryProjectArgs[] | false, alias?: string  } 
+  | { name: 'projects', args?: QueryProjectsArgs[] | false, alias?: string  } 
+  | { name: 'projectsConnection', args?: QueryProjectsConnectionArgs[] | false, alias?: string  } 
+  | { name: 'review', args?: QueryReviewArgs[] | false, alias?: string  } 
+  | { name: 'reviews', args?: QueryReviewsArgs[] | false, alias?: string  } 
+  | { name: 'reviewsConnection', args?: QueryReviewsConnectionArgs[] | false, alias?: string  } 
 
 type QueryFields =
-  | "user"
-  | "users"
-  | "usersConnection"
-  | "stepArrays"
-  | "stepArraysConnection"
-  | "project"
-  | "projects"
-  | "projectsConnection"
-  | "review"
-  | "reviews"
-  | "reviewsConnection"
-  | "comment"
-  | "comments"
-  | "commentsConnection";
+  | 'user'
+  | 'users'
+  | 'usersConnection'
+  | 'project'
+  | 'projects'
+  | 'projectsConnection'
+  | 'review'
+  | 'reviews'
+  | 'reviewsConnection'
 
-type QueryUserArgs = "where";
+
+type QueryUserArgs =
+  | 'where'
 type QueryUsersArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
 type QueryUsersConnectionArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryStepArraysArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryStepArraysConnectionArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryProjectArgs = "where";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryProjectArgs =
+  | 'where'
 type QueryProjectsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
 type QueryProjectsConnectionArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryReviewArgs = "where";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryReviewArgs =
+  | 'where'
 type QueryReviewsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
 type QueryReviewsConnectionArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryCommentArgs = "where";
-type QueryCommentsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type QueryCommentsConnectionArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
 
 export interface QueryFieldDetails {
   user: {
-    type: "User";
-    args: Record<QueryUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'User'
+    args: Record<QueryUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where: UserWhereUniqueInput },
+      args: { where: UserWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User | null> | prisma.User | null;
-  };
+    ) => Promise<prisma.User | null> | prisma.User | null
+  }
   users: {
-    type: "User";
-    args: Record<QueryUsersArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'User'
+    args: Record<QueryUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: UserWhereInput | null;
-        orderBy?: prisma.UserOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User[]> | prisma.User[];
-  };
+    ) => Promise<prisma.User[]> | prisma.User[]
+  }
   usersConnection: {
-    type: "UserConnection";
-    args: Record<QueryUsersConnectionArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'UserConnection'
+    args: Record<QueryUsersConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: UserWhereInput | null;
-        orderBy?: prisma.UserOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.UserConnection> | prisma.UserConnection;
-  };
-  stepArrays: {
-    type: "StepArray";
-    args: Record<QueryStepArraysArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: {
-        where?: StepArrayWhereInput | null;
-        orderBy?: prisma.StepArrayOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArray[]> | prisma.StepArray[];
-  };
-  stepArraysConnection: {
-    type: "StepArrayConnection";
-    args: Record<QueryStepArraysConnectionArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: {
-        where?: StepArrayWhereInput | null;
-        orderBy?: prisma.StepArrayOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArrayConnection> | prisma.StepArrayConnection;
-  };
+    ) => Promise<prisma.UserConnection> | prisma.UserConnection
+  }
   project: {
-    type: "Project";
-    args: Record<QueryProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Project'
+    args: Record<QueryProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where: ProjectWhereUniqueInput },
+      args: { where: ProjectWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project | null> | prisma.Project | null;
-  };
+    ) => Promise<prisma.Project | null> | prisma.Project | null
+  }
   projects: {
-    type: "Project";
-    args: Record<QueryProjectsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'Project'
+    args: Record<QueryProjectsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: ProjectWhereInput | null;
-        orderBy?: prisma.ProjectOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: ProjectWhereInput | null, orderBy?: prisma.ProjectOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project[]> | prisma.Project[];
-  };
+    ) => Promise<prisma.Project[]> | prisma.Project[]
+  }
   projectsConnection: {
-    type: "ProjectConnection";
-    args: Record<QueryProjectsConnectionArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'ProjectConnection'
+    args: Record<QueryProjectsConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: ProjectWhereInput | null;
-        orderBy?: prisma.ProjectOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: ProjectWhereInput | null, orderBy?: prisma.ProjectOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.ProjectConnection> | prisma.ProjectConnection;
-  };
+    ) => Promise<prisma.ProjectConnection> | prisma.ProjectConnection
+  }
   review: {
-    type: "Review";
-    args: Record<QueryReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Review'
+    args: Record<QueryReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where: ReviewWhereUniqueInput },
+      args: { where: ReviewWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review | null> | prisma.Review | null;
-  };
+    ) => Promise<prisma.Review | null> | prisma.Review | null
+  }
   reviews: {
-    type: "Review";
-    args: Record<QueryReviewsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'Review'
+    args: Record<QueryReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: ReviewWhereInput | null;
-        orderBy?: prisma.ReviewOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review[]> | prisma.Review[];
-  };
+    ) => Promise<prisma.Review[]> | prisma.Review[]
+  }
   reviewsConnection: {
-    type: "ReviewConnection";
-    args: Record<QueryReviewsConnectionArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'ReviewConnection'
+    args: Record<QueryReviewsConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: {
-        where?: ReviewWhereInput | null;
-        orderBy?: prisma.ReviewOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.ReviewConnection> | prisma.ReviewConnection;
-  };
-  comment: {
-    type: "Comment";
-    args: Record<QueryCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { where: CommentWhereUniqueInput },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment | null> | prisma.Comment | null;
-  };
-  comments: {
-    type: "Comment";
-    args: Record<QueryCommentsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: {
-        where?: CommentWhereInput | null;
-        orderBy?: prisma.CommentOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment[]> | prisma.Comment[];
-  };
-  commentsConnection: {
-    type: "CommentConnection";
-    args: Record<QueryCommentsConnectionArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: {
-        where?: CommentWhereInput | null;
-        orderBy?: prisma.CommentOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.CommentConnection> | prisma.CommentConnection;
-  };
+    ) => Promise<prisma.ReviewConnection> | prisma.ReviewConnection
+  }
 }
+  
 
 // Types for User
 
 type UserObject =
   | UserFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "makerRating"; args?: [] | false; alias?: string }
-  | { name: "reviewerThumbs"; args?: [] | false; alias?: string }
-  | { name: "url"; args?: [] | false; alias?: string }
-  | { name: "username"; args?: [] | false; alias?: string }
-  | { name: "password"; args?: [] | false; alias?: string }
-  | { name: "email"; args?: [] | false; alias?: string }
-  | { name: "userProfileImage"; args?: [] | false; alias?: string }
-  | { name: "ReviewList"; args?: UserReviewListArgs[] | false; alias?: string }
-  | { name: "Projects"; args?: UserProjectsArgs[] | false; alias?: string }
-  | { name: "privilege"; args?: [] | false; alias?: string }
-  | { name: "stripeId"; args?: [] | false; alias?: string }
-  | { name: "accountType"; args?: [] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
+  | { name: 'username', args?: [] | false, alias?: string  } 
+  | { name: 'password', args?: [] | false, alias?: string  } 
+  | { name: 'email', args?: [] | false, alias?: string  } 
+  | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
+  | { name: 'bio', args?: [] | false, alias?: string  } 
+  | { name: 'privilege', args?: [] | false, alias?: string  } 
+  | { name: 'stripeId', args?: [] | false, alias?: string  } 
+  | { name: 'accountType', args?: [] | false, alias?: string  } 
+  | { name: 'ReviewList', args?: UserReviewListArgs[] | false, alias?: string  } 
+  | { name: 'LikedReviews', args?: UserLikedReviewsArgs[] | false, alias?: string  } 
+  | { name: 'DislikedReviews', args?: UserDislikedReviewsArgs[] | false, alias?: string  } 
+  | { name: 'Projects', args?: UserProjectsArgs[] | false, alias?: string  } 
+  | { name: 'RatedProjects', args?: UserRatedProjectsArgs[] | false, alias?: string  } 
 
 type UserFields =
-  | "id"
-  | "makerRating"
-  | "reviewerThumbs"
-  | "url"
-  | "username"
-  | "password"
-  | "email"
-  | "userProfileImage"
-  | "ReviewList"
-  | "Projects"
-  | "privilege"
-  | "stripeId"
-  | "accountType";
+  | 'id'
+  | 'url'
+  | 'username'
+  | 'password'
+  | 'email'
+  | 'userProfileImage'
+  | 'bio'
+  | 'privilege'
+  | 'stripeId'
+  | 'accountType'
+  | 'ReviewList'
+  | 'LikedReviews'
+  | 'DislikedReviews'
+  | 'Projects'
+  | 'RatedProjects'
+
 
 type UserReviewListArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type UserLikedReviewsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type UserDislikedReviewsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
 type UserProjectsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type UserRatedProjectsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
 
 export interface UserFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  makerRating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  reviewerThumbs: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   url: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   username: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   password: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   email: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   userProfileImage: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  ReviewList: {
-    type: "Review";
-    args: Record<UserReviewListArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"User">,
-      args: {
-        where?: ReviewWhereInput | null;
-        orderBy?: prisma.ReviewOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review[]> | prisma.Review[];
-  };
-  Projects: {
-    type: "Project";
-    args: Record<UserProjectsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"User">,
-      args: {
-        where?: ProjectWhereInput | null;
-        orderBy?: prisma.ProjectOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project[]> | prisma.Project[];
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  bio: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   privilege: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   stripeId: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   accountType: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  ReviewList: {
+    type: 'Review'
+    args: Record<UserReviewListArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Review[]> | prisma.Review[]
+  }
+  LikedReviews: {
+    type: 'Review'
+    args: Record<UserLikedReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Review[]> | prisma.Review[]
+  }
+  DislikedReviews: {
+    type: 'Review'
+    args: Record<UserDislikedReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Review[]> | prisma.Review[]
+  }
+  Projects: {
+    type: 'Project'
+    args: Record<UserProjectsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: ProjectWhereInput | null, orderBy?: prisma.ProjectOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Project[]> | prisma.Project[]
+  }
+  RatedProjects: {
+    type: 'Project'
+    args: Record<UserRatedProjectsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: ProjectWhereInput | null, orderBy?: prisma.ProjectOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Project[]> | prisma.Project[]
+  }
 }
+  
 
 // Types for Review
 
 type ReviewObject =
   | ReviewFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "title"; args?: [] | false; alias?: string }
-  | { name: "text"; args?: [] | false; alias?: string }
-  | { name: "editedAt"; args?: [] | false; alias?: string }
-  | { name: "rating"; args?: [] | false; alias?: string }
-  | { name: "reviewThumbsUp"; args?: [] | false; alias?: string }
-  | { name: "reviewThumbsDown"; args?: [] | false; alias?: string }
-  | { name: "Comments"; args?: ReviewCommentsArgs[] | false; alias?: string }
-  | { name: "Author"; args?: [] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'rKey', args?: [] | false, alias?: string  } 
+  | { name: 'text', args?: [] | false, alias?: string  } 
+  | { name: 'editedAt', args?: [] | false, alias?: string  } 
+  | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
+  | { name: 'LikedBy', args?: ReviewLikedByArgs[] | false, alias?: string  } 
+  | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
+  | { name: 'DislikedBy', args?: ReviewDislikedByArgs[] | false, alias?: string  } 
+  | { name: 'Author', args?: [] | false, alias?: string  } 
+  | { name: 'ProjectReviewed', args?: [] | false, alias?: string  } 
 
 type ReviewFields =
-  | "id"
-  | "title"
-  | "text"
-  | "editedAt"
-  | "rating"
-  | "reviewThumbsUp"
-  | "reviewThumbsDown"
-  | "Comments"
-  | "Author";
+  | 'id'
+  | 'title'
+  | 'rKey'
+  | 'text'
+  | 'editedAt'
+  | 'thumbsUp'
+  | 'LikedBy'
+  | 'thumbsDown'
+  | 'DislikedBy'
+  | 'Author'
+  | 'ProjectReviewed'
 
-type ReviewCommentsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+
+type ReviewLikedByArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type ReviewDislikedByArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
 
 export interface ReviewFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   title: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  rKey: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   text: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   editedAt: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  rating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  reviewThumbsUp: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  reviewThumbsDown: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  Comments: {
-    type: "Comment";
-    args: Record<ReviewCommentsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thumbsUp: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  LikedBy: {
+    type: 'User'
+    args: Record<ReviewLikedByArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Review">,
-      args: {
-        where?: CommentWhereInput | null;
-        orderBy?: prisma.CommentOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment[]> | prisma.Comment[];
-  };
+    ) => Promise<prisma.User[]> | prisma.User[]
+  }
+  thumbsDown: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  DislikedBy: {
+    type: 'User'
+    args: Record<ReviewDislikedByArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Review">,
+      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.User[]> | prisma.User[]
+  }
   Author: {
-    type: "User";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Review">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User> | prisma.User;
-  };
-}
-
-// Types for Comment
-
-type CommentObject =
-  | CommentFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "editedAt"; args?: [] | false; alias?: string }
-  | { name: "text"; args?: [] | false; alias?: string }
-  | { name: "User"; args?: [] | false; alias?: string };
-
-type CommentFields = "id" | "editedAt" | "text" | "User";
-
-export interface CommentFieldDetails {
-  id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  editedAt: {
-    type: "DateTime";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  text: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  User: {
-    type: "User";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    ) => Promise<prisma.User> | prisma.User
+  }
+  ProjectReviewed: {
+    type: 'Project'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
-      root: core.RootValue<"Comment">,
-      args: {},
+      root: core.RootValue<"Review">,
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User> | prisma.User;
-  };
+    ) => Promise<prisma.Project> | prisma.Project
+  }
 }
+  
 
 // Types for Project
 
 type ProjectObject =
   | ProjectFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "name"; args?: [] | false; alias?: string }
-  | { name: "category"; args?: [] | false; alias?: string }
-  | { name: "timestamp"; args?: [] | false; alias?: string }
-  | { name: "titleImg"; args?: [] | false; alias?: string }
-  | { name: "titleBlurb"; args?: [] | false; alias?: string }
-  | { name: "rating"; args?: [] | false; alias?: string }
-  | { name: "User"; args?: ProjectUserArgs[] | false; alias?: string }
-  | { name: "Steps"; args?: ProjectStepsArgs[] | false; alias?: string }
-  | { name: "Reviews"; args?: ProjectReviewsArgs[] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'key', args?: [] | false, alias?: string  } 
+  | { name: 'category', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'titleImg', args?: [] | false, alias?: string  } 
+  | { name: 'titleBlurb', args?: [] | false, alias?: string  } 
+  | { name: 'rating', args?: [] | false, alias?: string  } 
+  | { name: 'steps', args?: [] | false, alias?: string  } 
+  | { name: 'User', args?: [] | false, alias?: string  } 
+  | { name: 'Reviews', args?: ProjectReviewsArgs[] | false, alias?: string  } 
+  | { name: 'RatedBy', args?: ProjectRatedByArgs[] | false, alias?: string  } 
 
 type ProjectFields =
-  | "id"
-  | "name"
-  | "category"
-  | "timestamp"
-  | "titleImg"
-  | "titleBlurb"
-  | "rating"
-  | "User"
-  | "Steps"
-  | "Reviews";
+  | 'id'
+  | 'name'
+  | 'key'
+  | 'category'
+  | 'timestamp'
+  | 'titleImg'
+  | 'titleBlurb'
+  | 'rating'
+  | 'steps'
+  | 'User'
+  | 'Reviews'
+  | 'RatedBy'
 
-type ProjectUserArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
-type ProjectStepsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+
 type ProjectReviewsArgs =
-  | "where"
-  | "orderBy"
-  | "skip"
-  | "after"
-  | "before"
-  | "first"
-  | "last";
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type ProjectRatedByArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
 
 export interface ProjectFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   name: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  key: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   category: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   timestamp: {
-    type: "DateTime";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   titleImg: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   titleBlurb: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   rating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  steps: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   User: {
-    type: "User";
-    args: Record<ProjectUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Project">,
-      args: {
-        where?: UserWhereInput | null;
-        orderBy?: prisma.UserOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User[]> | prisma.User[];
-  };
-  Steps: {
-    type: "StepArray";
-    args: Record<ProjectStepsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Project">,
-      args: {
-        where?: StepArrayWhereInput | null;
-        orderBy?: prisma.StepArrayOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArray[]> | prisma.StepArray[];
-  };
+    ) => Promise<prisma.User> | prisma.User
+  }
   Reviews: {
-    type: "Review";
-    args: Record<ProjectReviewsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'Review'
+    args: Record<ProjectReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Project">,
-      args: {
-        where?: ReviewWhereInput | null;
-        orderBy?: prisma.ReviewOrderByInput | null;
-        skip?: number | null;
-        after?: string | null;
-        before?: string | null;
-        first?: number | null;
-        last?: number | null;
-      },
+      args: { where?: ReviewWhereInput | null, orderBy?: prisma.ReviewOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review[]> | prisma.Review[];
-  };
+    ) => Promise<prisma.Review[]> | prisma.Review[]
+  }
+  RatedBy: {
+    type: 'User'
+    args: Record<ProjectRatedByArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Project">,
+      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.User[]> | prisma.User[]
+  }
 }
-
-// Types for StepArray
-
-type StepArrayObject =
-  | StepArrayFields
-  | { name: "textBlurbs"; args?: [] | false; alias?: string }
-  | { name: "imgUrls"; args?: [] | false; alias?: string };
-
-type StepArrayFields = "textBlurbs" | "imgUrls";
-
-export interface StepArrayFieldDetails {
-  textBlurbs: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  imgUrls: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-}
+  
 
 // Types for UserConnection
 
 type UserConnectionObject =
   | UserConnectionFields
-  | { name: "pageInfo"; args?: [] | false; alias?: string }
-  | { name: "edges"; args?: [] | false; alias?: string }
-  | { name: "aggregate"; args?: [] | false; alias?: string };
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
 
-type UserConnectionFields = "pageInfo" | "edges" | "aggregate";
+type UserConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
 
 export interface UserConnectionFieldDetails {
   pageInfo: {
-    type: "PageInfo";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"UserConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo;
-  };
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
   edges: {
-    type: "UserEdge";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'UserEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"UserConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.UserEdge[]> | prisma.UserEdge[];
-  };
+    ) => Promise<prisma.UserEdge[]> | prisma.UserEdge[]
+  }
   aggregate: {
-    type: "AggregateUser";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'AggregateUser'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"UserConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateUser> | prisma.AggregateUser;
-  };
+    ) => Promise<prisma.AggregateUser> | prisma.AggregateUser
+  }
 }
+  
 
 // Types for PageInfo
 
 type PageInfoObject =
   | PageInfoFields
-  | { name: "hasNextPage"; args?: [] | false; alias?: string }
-  | { name: "hasPreviousPage"; args?: [] | false; alias?: string }
-  | { name: "startCursor"; args?: [] | false; alias?: string }
-  | { name: "endCursor"; args?: [] | false; alias?: string };
+  | { name: 'hasNextPage', args?: [] | false, alias?: string  } 
+  | { name: 'hasPreviousPage', args?: [] | false, alias?: string  } 
+  | { name: 'startCursor', args?: [] | false, alias?: string  } 
+  | { name: 'endCursor', args?: [] | false, alias?: string  } 
 
 type PageInfoFields =
-  | "hasNextPage"
-  | "hasPreviousPage"
-  | "startCursor"
-  | "endCursor";
+  | 'hasNextPage'
+  | 'hasPreviousPage'
+  | 'startCursor'
+  | 'endCursor'
+
+
+
+  
 
 export interface PageInfoFieldDetails {
   hasNextPage: {
-    type: "Boolean";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Boolean'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   hasPreviousPage: {
-    type: "Boolean";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Boolean'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   startCursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   endCursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
 }
+  
 
 // Types for UserEdge
 
 type UserEdgeObject =
   | UserEdgeFields
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "cursor"; args?: [] | false; alias?: string };
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
 
-type UserEdgeFields = "node" | "cursor";
+type UserEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
 
 export interface UserEdgeFieldDetails {
   node: {
-    type: "User";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"UserEdge">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User> | prisma.User;
-  };
+    ) => Promise<prisma.User> | prisma.User
+  }
   cursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for AggregateUser
 
 type AggregateUserObject =
   | AggregateUserFields
-  | { name: "count"; args?: [] | false; alias?: string };
+  | { name: 'count', args?: [] | false, alias?: string  } 
 
-type AggregateUserFields = "count";
+type AggregateUserFields =
+  | 'count'
+
+
+
+  
 
 export interface AggregateUserFieldDetails {
   count: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
-
-// Types for StepArrayConnection
-
-type StepArrayConnectionObject =
-  | StepArrayConnectionFields
-  | { name: "pageInfo"; args?: [] | false; alias?: string }
-  | { name: "edges"; args?: [] | false; alias?: string }
-  | { name: "aggregate"; args?: [] | false; alias?: string };
-
-type StepArrayConnectionFields = "pageInfo" | "edges" | "aggregate";
-
-export interface StepArrayConnectionFieldDetails {
-  pageInfo: {
-    type: "PageInfo";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"StepArrayConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo;
-  };
-  edges: {
-    type: "StepArrayEdge";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"StepArrayConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArrayEdge[]> | prisma.StepArrayEdge[];
-  };
-  aggregate: {
-    type: "AggregateStepArray";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"StepArrayConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateStepArray> | prisma.AggregateStepArray;
-  };
-}
-
-// Types for StepArrayEdge
-
-type StepArrayEdgeObject =
-  | StepArrayEdgeFields
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "cursor"; args?: [] | false; alias?: string };
-
-type StepArrayEdgeFields = "node" | "cursor";
-
-export interface StepArrayEdgeFieldDetails {
-  node: {
-    type: "StepArray";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"StepArrayEdge">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArray> | prisma.StepArray;
-  };
-  cursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-}
-
-// Types for AggregateStepArray
-
-type AggregateStepArrayObject =
-  | AggregateStepArrayFields
-  | { name: "count"; args?: [] | false; alias?: string };
-
-type AggregateStepArrayFields = "count";
-
-export interface AggregateStepArrayFieldDetails {
-  count: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-}
+  
 
 // Types for ProjectConnection
 
 type ProjectConnectionObject =
   | ProjectConnectionFields
-  | { name: "pageInfo"; args?: [] | false; alias?: string }
-  | { name: "edges"; args?: [] | false; alias?: string }
-  | { name: "aggregate"; args?: [] | false; alias?: string };
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
 
-type ProjectConnectionFields = "pageInfo" | "edges" | "aggregate";
+type ProjectConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
 
 export interface ProjectConnectionFieldDetails {
   pageInfo: {
-    type: "PageInfo";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ProjectConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo;
-  };
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
   edges: {
-    type: "ProjectEdge";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'ProjectEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"ProjectConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.ProjectEdge[]> | prisma.ProjectEdge[];
-  };
+    ) => Promise<prisma.ProjectEdge[]> | prisma.ProjectEdge[]
+  }
   aggregate: {
-    type: "AggregateProject";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'AggregateProject'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ProjectConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateProject> | prisma.AggregateProject;
-  };
+    ) => Promise<prisma.AggregateProject> | prisma.AggregateProject
+  }
 }
+  
 
 // Types for ProjectEdge
 
 type ProjectEdgeObject =
   | ProjectEdgeFields
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "cursor"; args?: [] | false; alias?: string };
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
 
-type ProjectEdgeFields = "node" | "cursor";
+type ProjectEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
 
 export interface ProjectEdgeFieldDetails {
   node: {
-    type: "Project";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Project'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ProjectEdge">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project> | prisma.Project;
-  };
+    ) => Promise<prisma.Project> | prisma.Project
+  }
   cursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for AggregateProject
 
 type AggregateProjectObject =
   | AggregateProjectFields
-  | { name: "count"; args?: [] | false; alias?: string };
+  | { name: 'count', args?: [] | false, alias?: string  } 
 
-type AggregateProjectFields = "count";
+type AggregateProjectFields =
+  | 'count'
+
+
+
+  
 
 export interface AggregateProjectFieldDetails {
   count: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for ReviewConnection
 
 type ReviewConnectionObject =
   | ReviewConnectionFields
-  | { name: "pageInfo"; args?: [] | false; alias?: string }
-  | { name: "edges"; args?: [] | false; alias?: string }
-  | { name: "aggregate"; args?: [] | false; alias?: string };
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
 
-type ReviewConnectionFields = "pageInfo" | "edges" | "aggregate";
+type ReviewConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
 
 export interface ReviewConnectionFieldDetails {
   pageInfo: {
-    type: "PageInfo";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ReviewConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo;
-  };
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
   edges: {
-    type: "ReviewEdge";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
+    type: 'ReviewEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"ReviewConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.ReviewEdge[]> | prisma.ReviewEdge[];
-  };
+    ) => Promise<prisma.ReviewEdge[]> | prisma.ReviewEdge[]
+  }
   aggregate: {
-    type: "AggregateReview";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'AggregateReview'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ReviewConnection">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateReview> | prisma.AggregateReview;
-  };
+    ) => Promise<prisma.AggregateReview> | prisma.AggregateReview
+  }
 }
+  
 
 // Types for ReviewEdge
 
 type ReviewEdgeObject =
   | ReviewEdgeFields
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "cursor"; args?: [] | false; alias?: string };
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
 
-type ReviewEdgeFields = "node" | "cursor";
+type ReviewEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
 
 export interface ReviewEdgeFieldDetails {
   node: {
-    type: "Review";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Review'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ReviewEdge">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review> | prisma.Review;
-  };
+    ) => Promise<prisma.Review> | prisma.Review
+  }
   cursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for AggregateReview
 
 type AggregateReviewObject =
   | AggregateReviewFields
-  | { name: "count"; args?: [] | false; alias?: string };
+  | { name: 'count', args?: [] | false, alias?: string  } 
 
-type AggregateReviewFields = "count";
+type AggregateReviewFields =
+  | 'count'
+
+
+
+  
 
 export interface AggregateReviewFieldDetails {
   count: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
-
-// Types for CommentConnection
-
-type CommentConnectionObject =
-  | CommentConnectionFields
-  | { name: "pageInfo"; args?: [] | false; alias?: string }
-  | { name: "edges"; args?: [] | false; alias?: string }
-  | { name: "aggregate"; args?: [] | false; alias?: string };
-
-type CommentConnectionFields = "pageInfo" | "edges" | "aggregate";
-
-export interface CommentConnectionFieldDetails {
-  pageInfo: {
-    type: "PageInfo";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"CommentConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo;
-  };
-  edges: {
-    type: "CommentEdge";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"CommentConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.CommentEdge[]> | prisma.CommentEdge[];
-  };
-  aggregate: {
-    type: "AggregateComment";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"CommentConnection">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateComment> | prisma.AggregateComment;
-  };
-}
-
-// Types for CommentEdge
-
-type CommentEdgeObject =
-  | CommentEdgeFields
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "cursor"; args?: [] | false; alias?: string };
-
-type CommentEdgeFields = "node" | "cursor";
-
-export interface CommentEdgeFieldDetails {
-  node: {
-    type: "Comment";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"CommentEdge">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment> | prisma.Comment;
-  };
-  cursor: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-}
-
-// Types for AggregateComment
-
-type AggregateCommentObject =
-  | AggregateCommentFields
-  | { name: "count"; args?: [] | false; alias?: string };
-
-type AggregateCommentFields = "count";
-
-export interface AggregateCommentFieldDetails {
-  count: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-}
+  
 
 // Types for Mutation
 
 type MutationObject =
   | MutationFields
-  | {
-      name: "createUser";
-      args?: MutationCreateUserArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateUser";
-      args?: MutationUpdateUserArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateManyUsers";
-      args?: MutationUpdateManyUsersArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "upsertUser";
-      args?: MutationUpsertUserArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteUser";
-      args?: MutationDeleteUserArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteManyUsers";
-      args?: MutationDeleteManyUsersArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "createStepArray";
-      args?: MutationCreateStepArrayArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateManyStepArrays";
-      args?: MutationUpdateManyStepArraysArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteManyStepArrays";
-      args?: MutationDeleteManyStepArraysArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "createProject";
-      args?: MutationCreateProjectArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateProject";
-      args?: MutationUpdateProjectArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateManyProjects";
-      args?: MutationUpdateManyProjectsArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "upsertProject";
-      args?: MutationUpsertProjectArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteProject";
-      args?: MutationDeleteProjectArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteManyProjects";
-      args?: MutationDeleteManyProjectsArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "createReview";
-      args?: MutationCreateReviewArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateReview";
-      args?: MutationUpdateReviewArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateManyReviews";
-      args?: MutationUpdateManyReviewsArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "upsertReview";
-      args?: MutationUpsertReviewArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteReview";
-      args?: MutationDeleteReviewArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteManyReviews";
-      args?: MutationDeleteManyReviewsArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "createComment";
-      args?: MutationCreateCommentArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateComment";
-      args?: MutationUpdateCommentArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "updateManyComments";
-      args?: MutationUpdateManyCommentsArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "upsertComment";
-      args?: MutationUpsertCommentArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteComment";
-      args?: MutationDeleteCommentArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "deleteManyComments";
-      args?: MutationDeleteManyCommentsArgs[] | false;
-      alias?: string;
-    };
+  | { name: 'createUser', args?: MutationCreateUserArgs[] | false, alias?: string  } 
+  | { name: 'updateUser', args?: MutationUpdateUserArgs[] | false, alias?: string  } 
+  | { name: 'updateManyUsers', args?: MutationUpdateManyUsersArgs[] | false, alias?: string  } 
+  | { name: 'upsertUser', args?: MutationUpsertUserArgs[] | false, alias?: string  } 
+  | { name: 'deleteUser', args?: MutationDeleteUserArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyUsers', args?: MutationDeleteManyUsersArgs[] | false, alias?: string  } 
+  | { name: 'createProject', args?: MutationCreateProjectArgs[] | false, alias?: string  } 
+  | { name: 'updateProject', args?: MutationUpdateProjectArgs[] | false, alias?: string  } 
+  | { name: 'updateManyProjects', args?: MutationUpdateManyProjectsArgs[] | false, alias?: string  } 
+  | { name: 'upsertProject', args?: MutationUpsertProjectArgs[] | false, alias?: string  } 
+  | { name: 'deleteProject', args?: MutationDeleteProjectArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyProjects', args?: MutationDeleteManyProjectsArgs[] | false, alias?: string  } 
+  | { name: 'createReview', args?: MutationCreateReviewArgs[] | false, alias?: string  } 
+  | { name: 'updateReview', args?: MutationUpdateReviewArgs[] | false, alias?: string  } 
+  | { name: 'updateManyReviews', args?: MutationUpdateManyReviewsArgs[] | false, alias?: string  } 
+  | { name: 'upsertReview', args?: MutationUpsertReviewArgs[] | false, alias?: string  } 
+  | { name: 'deleteReview', args?: MutationDeleteReviewArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyReviews', args?: MutationDeleteManyReviewsArgs[] | false, alias?: string  } 
 
 type MutationFields =
-  | "createUser"
-  | "updateUser"
-  | "updateManyUsers"
-  | "upsertUser"
-  | "deleteUser"
-  | "deleteManyUsers"
-  | "createStepArray"
-  | "updateManyStepArrays"
-  | "deleteManyStepArrays"
-  | "createProject"
-  | "updateProject"
-  | "updateManyProjects"
-  | "upsertProject"
-  | "deleteProject"
-  | "deleteManyProjects"
-  | "createReview"
-  | "updateReview"
-  | "updateManyReviews"
-  | "upsertReview"
-  | "deleteReview"
-  | "deleteManyReviews"
-  | "createComment"
-  | "updateComment"
-  | "updateManyComments"
-  | "upsertComment"
-  | "deleteComment"
-  | "deleteManyComments";
+  | 'createUser'
+  | 'updateUser'
+  | 'updateManyUsers'
+  | 'upsertUser'
+  | 'deleteUser'
+  | 'deleteManyUsers'
+  | 'createProject'
+  | 'updateProject'
+  | 'updateManyProjects'
+  | 'upsertProject'
+  | 'deleteProject'
+  | 'deleteManyProjects'
+  | 'createReview'
+  | 'updateReview'
+  | 'updateManyReviews'
+  | 'upsertReview'
+  | 'deleteReview'
+  | 'deleteManyReviews'
 
-type MutationCreateUserArgs = "data";
-type MutationUpdateUserArgs = "data" | "where";
-type MutationUpdateManyUsersArgs = "data" | "where";
-type MutationUpsertUserArgs = "where" | "create" | "update";
-type MutationDeleteUserArgs = "where";
-type MutationDeleteManyUsersArgs = "where";
-type MutationCreateStepArrayArgs = "data";
-type MutationUpdateManyStepArraysArgs = "data" | "where";
-type MutationDeleteManyStepArraysArgs = "where";
-type MutationCreateProjectArgs = "data";
-type MutationUpdateProjectArgs = "data" | "where";
-type MutationUpdateManyProjectsArgs = "data" | "where";
-type MutationUpsertProjectArgs = "where" | "create" | "update";
-type MutationDeleteProjectArgs = "where";
-type MutationDeleteManyProjectsArgs = "where";
-type MutationCreateReviewArgs = "data";
-type MutationUpdateReviewArgs = "data" | "where";
-type MutationUpdateManyReviewsArgs = "data" | "where";
-type MutationUpsertReviewArgs = "where" | "create" | "update";
-type MutationDeleteReviewArgs = "where";
-type MutationDeleteManyReviewsArgs = "where";
-type MutationCreateCommentArgs = "data";
-type MutationUpdateCommentArgs = "data" | "where";
-type MutationUpdateManyCommentsArgs = "data" | "where";
-type MutationUpsertCommentArgs = "where" | "create" | "update";
-type MutationDeleteCommentArgs = "where";
-type MutationDeleteManyCommentsArgs = "where";
+
+type MutationCreateUserArgs =
+  | 'data'
+type MutationUpdateUserArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyUsersArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertUserArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteUserArgs =
+  | 'where'
+type MutationDeleteManyUsersArgs =
+  | 'where'
+type MutationCreateProjectArgs =
+  | 'data'
+type MutationUpdateProjectArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyProjectsArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertProjectArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteProjectArgs =
+  | 'where'
+type MutationDeleteManyProjectsArgs =
+  | 'where'
+type MutationCreateReviewArgs =
+  | 'data'
+type MutationUpdateReviewArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyReviewsArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertReviewArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteReviewArgs =
+  | 'where'
+type MutationDeleteManyReviewsArgs =
+  | 'where'
+  
 
 export interface MutationFieldDetails {
   createUser: {
-    type: "User";
-    args: Record<MutationCreateUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'User'
+    args: Record<MutationCreateUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: UserCreateInput },
+      args: { data: UserCreateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User> | prisma.User;
-  };
+    ) => Promise<prisma.User> | prisma.User
+  }
   updateUser: {
-    type: "User";
-    args: Record<MutationUpdateUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'User'
+    args: Record<MutationUpdateUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: UserUpdateInput; where: UserWhereUniqueInput },
+      args: { data: UserUpdateInput, where: UserWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User | null> | prisma.User | null;
-  };
+    ) => Promise<prisma.User | null> | prisma.User | null
+  }
   updateManyUsers: {
-    type: "BatchPayload";
-    args: Record<MutationUpdateManyUsersArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        data: UserUpdateManyMutationInput;
-        where?: UserWhereInput | null;
-      },
+      args: { data: UserUpdateManyMutationInput, where?: UserWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
   upsertUser: {
-    type: "User";
-    args: Record<MutationUpsertUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'User'
+    args: Record<MutationUpsertUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        where: UserWhereUniqueInput;
-        create: UserCreateInput;
-        update: UserUpdateInput;
-      },
+      args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User> | prisma.User;
-  };
+    ) => Promise<prisma.User> | prisma.User
+  }
   deleteUser: {
-    type: "User";
-    args: Record<MutationDeleteUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'User'
+    args: Record<MutationDeleteUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: UserWhereUniqueInput },
+      args: { where: UserWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User | null> | prisma.User | null;
-  };
+    ) => Promise<prisma.User | null> | prisma.User | null
+  }
   deleteManyUsers: {
-    type: "BatchPayload";
-    args: Record<MutationDeleteManyUsersArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where?: UserWhereInput | null },
+      args: { where?: UserWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
-  createStepArray: {
-    type: "StepArray";
-    args: Record<MutationCreateStepArrayArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: StepArrayCreateInput },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArray> | prisma.StepArray;
-  };
-  updateManyStepArrays: {
-    type: "BatchPayload";
-    args: Record<MutationUpdateManyStepArraysArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: {
-        data: StepArrayUpdateManyMutationInput;
-        where?: StepArrayWhereInput | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
-  deleteManyStepArrays: {
-    type: "BatchPayload";
-    args: Record<MutationDeleteManyStepArraysArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: StepArrayWhereInput | null },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
   createProject: {
-    type: "Project";
-    args: Record<MutationCreateProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Project'
+    args: Record<MutationCreateProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: ProjectCreateInput },
+      args: { data: ProjectCreateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project> | prisma.Project;
-  };
+    ) => Promise<prisma.Project> | prisma.Project
+  }
   updateProject: {
-    type: "Project";
-    args: Record<MutationUpdateProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Project'
+    args: Record<MutationUpdateProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: ProjectUpdateInput; where: ProjectWhereUniqueInput },
+      args: { data: ProjectUpdateInput, where: ProjectWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project | null> | prisma.Project | null;
-  };
+    ) => Promise<prisma.Project | null> | prisma.Project | null
+  }
   updateManyProjects: {
-    type: "BatchPayload";
-    args: Record<MutationUpdateManyProjectsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyProjectsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        data: ProjectUpdateManyMutationInput;
-        where?: ProjectWhereInput | null;
-      },
+      args: { data: ProjectUpdateManyMutationInput, where?: ProjectWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
   upsertProject: {
-    type: "Project";
-    args: Record<MutationUpsertProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Project'
+    args: Record<MutationUpsertProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        where: ProjectWhereUniqueInput;
-        create: ProjectCreateInput;
-        update: ProjectUpdateInput;
-      },
+      args: { where: ProjectWhereUniqueInput, create: ProjectCreateInput, update: ProjectUpdateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project> | prisma.Project;
-  };
+    ) => Promise<prisma.Project> | prisma.Project
+  }
   deleteProject: {
-    type: "Project";
-    args: Record<MutationDeleteProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Project'
+    args: Record<MutationDeleteProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: ProjectWhereUniqueInput },
+      args: { where: ProjectWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project | null> | prisma.Project | null;
-  };
+    ) => Promise<prisma.Project | null> | prisma.Project | null
+  }
   deleteManyProjects: {
-    type: "BatchPayload";
-    args: Record<MutationDeleteManyProjectsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyProjectsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where?: ProjectWhereInput | null },
+      args: { where?: ProjectWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
   createReview: {
-    type: "Review";
-    args: Record<MutationCreateReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Review'
+    args: Record<MutationCreateReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: ReviewCreateInput },
+      args: { data: ReviewCreateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review> | prisma.Review;
-  };
+    ) => Promise<prisma.Review> | prisma.Review
+  }
   updateReview: {
-    type: "Review";
-    args: Record<MutationUpdateReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Review'
+    args: Record<MutationUpdateReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: ReviewUpdateInput; where: ReviewWhereUniqueInput },
+      args: { data: ReviewUpdateInput, where: ReviewWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review | null> | prisma.Review | null;
-  };
+    ) => Promise<prisma.Review | null> | prisma.Review | null
+  }
   updateManyReviews: {
-    type: "BatchPayload";
-    args: Record<MutationUpdateManyReviewsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        data: ReviewUpdateManyMutationInput;
-        where?: ReviewWhereInput | null;
-      },
+      args: { data: ReviewUpdateManyMutationInput, where?: ReviewWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
   upsertReview: {
-    type: "Review";
-    args: Record<MutationUpsertReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'Review'
+    args: Record<MutationUpsertReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: {
-        where: ReviewWhereUniqueInput;
-        create: ReviewCreateInput;
-        update: ReviewUpdateInput;
-      },
+      args: { where: ReviewWhereUniqueInput, create: ReviewCreateInput, update: ReviewUpdateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review> | prisma.Review;
-  };
+    ) => Promise<prisma.Review> | prisma.Review
+  }
   deleteReview: {
-    type: "Review";
-    args: Record<MutationDeleteReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Review'
+    args: Record<MutationDeleteReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: ReviewWhereUniqueInput },
+      args: { where: ReviewWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review | null> | prisma.Review | null;
-  };
+    ) => Promise<prisma.Review | null> | prisma.Review | null
+  }
   deleteManyReviews: {
-    type: "BatchPayload";
-    args: Record<MutationDeleteManyReviewsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyReviewsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where?: ReviewWhereInput | null },
+      args: { where?: ReviewWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
-  createComment: {
-    type: "Comment";
-    args: Record<MutationCreateCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: CommentCreateInput },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment> | prisma.Comment;
-  };
-  updateComment: {
-    type: "Comment";
-    args: Record<MutationUpdateCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: CommentUpdateInput; where: CommentWhereUniqueInput },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment | null> | prisma.Comment | null;
-  };
-  updateManyComments: {
-    type: "BatchPayload";
-    args: Record<MutationUpdateManyCommentsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: {
-        data: CommentUpdateManyMutationInput;
-        where?: CommentWhereInput | null;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
-  upsertComment: {
-    type: "Comment";
-    args: Record<MutationUpsertCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: {
-        where: CommentWhereUniqueInput;
-        create: CommentCreateInput;
-        update: CommentUpdateInput;
-      },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment> | prisma.Comment;
-  };
-  deleteComment: {
-    type: "Comment";
-    args: Record<MutationDeleteCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: CommentWhereUniqueInput },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment | null> | prisma.Comment | null;
-  };
-  deleteManyComments: {
-    type: "BatchPayload";
-    args: Record<MutationDeleteManyCommentsArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: CommentWhereInput | null },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload;
-  };
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
 }
+  
 
 // Types for BatchPayload
 
 type BatchPayloadObject =
   | BatchPayloadFields
-  | { name: "count"; args?: [] | false; alias?: string };
+  | { name: 'count', args?: [] | false, alias?: string  } 
 
-type BatchPayloadFields = "count";
+type BatchPayloadFields =
+  | 'count'
+
+
+
+  
 
 export interface BatchPayloadFieldDetails {
   count: {
-    type: "Long";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Long'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for Subscription
 
 type SubscriptionObject =
   | SubscriptionFields
-  | { name: "user"; args?: SubscriptionUserArgs[] | false; alias?: string }
-  | {
-      name: "stepArray";
-      args?: SubscriptionStepArrayArgs[] | false;
-      alias?: string;
-    }
-  | {
-      name: "project";
-      args?: SubscriptionProjectArgs[] | false;
-      alias?: string;
-    }
-  | { name: "review"; args?: SubscriptionReviewArgs[] | false; alias?: string }
-  | {
-      name: "comment";
-      args?: SubscriptionCommentArgs[] | false;
-      alias?: string;
-    };
+  | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
+  | { name: 'project', args?: SubscriptionProjectArgs[] | false, alias?: string  } 
+  | { name: 'review', args?: SubscriptionReviewArgs[] | false, alias?: string  } 
 
 type SubscriptionFields =
-  | "user"
-  | "stepArray"
-  | "project"
-  | "review"
-  | "comment";
+  | 'user'
+  | 'project'
+  | 'review'
 
-type SubscriptionUserArgs = "where";
-type SubscriptionStepArrayArgs = "where";
-type SubscriptionProjectArgs = "where";
-type SubscriptionReviewArgs = "where";
-type SubscriptionCommentArgs = "where";
+
+type SubscriptionUserArgs =
+  | 'where'
+type SubscriptionProjectArgs =
+  | 'where'
+type SubscriptionReviewArgs =
+  | 'where'
+  
 
 export interface SubscriptionFieldDetails {
   user: {
-    type: "UserSubscriptionPayload";
-    args: Record<SubscriptionUserArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'UserSubscriptionPayload'
+    args: Record<SubscriptionUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Subscription">,
-      args: { where?: UserSubscriptionWhereInput | null },
+      args: { where?: UserSubscriptionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.UserSubscriptionPayload | null>
-      | prisma.UserSubscriptionPayload
-      | null;
-  };
-  stepArray: {
-    type: "StepArraySubscriptionPayload";
-    args: Record<SubscriptionStepArrayArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"Subscription">,
-      args: { where?: StepArraySubscriptionWhereInput | null },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.StepArraySubscriptionPayload | null>
-      | prisma.StepArraySubscriptionPayload
-      | null;
-  };
+    ) => Promise<prisma.UserSubscriptionPayload | null> | prisma.UserSubscriptionPayload | null
+  }
   project: {
-    type: "ProjectSubscriptionPayload";
-    args: Record<SubscriptionProjectArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'ProjectSubscriptionPayload'
+    args: Record<SubscriptionProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Subscription">,
-      args: { where?: ProjectSubscriptionWhereInput | null },
+      args: { where?: ProjectSubscriptionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.ProjectSubscriptionPayload | null>
-      | prisma.ProjectSubscriptionPayload
-      | null;
-  };
+    ) => Promise<prisma.ProjectSubscriptionPayload | null> | prisma.ProjectSubscriptionPayload | null
+  }
   review: {
-    type: "ReviewSubscriptionPayload";
-    args: Record<SubscriptionReviewArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'ReviewSubscriptionPayload'
+    args: Record<SubscriptionReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"Subscription">,
-      args: { where?: ReviewSubscriptionWhereInput | null },
+      args: { where?: ReviewSubscriptionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.ReviewSubscriptionPayload | null>
-      | prisma.ReviewSubscriptionPayload
-      | null;
-  };
-  comment: {
-    type: "CommentSubscriptionPayload";
-    args: Record<SubscriptionCommentArgs, core.NexusArgDef<string>>;
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"Subscription">,
-      args: { where?: CommentSubscriptionWhereInput | null },
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.CommentSubscriptionPayload | null>
-      | prisma.CommentSubscriptionPayload
-      | null;
-  };
+    ) => Promise<prisma.ReviewSubscriptionPayload | null> | prisma.ReviewSubscriptionPayload | null
+  }
 }
+  
 
 // Types for UserSubscriptionPayload
 
 type UserSubscriptionPayloadObject =
   | UserSubscriptionPayloadFields
-  | { name: "mutation"; args?: [] | false; alias?: string }
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "updatedFields"; args?: [] | false; alias?: string }
-  | { name: "previousValues"; args?: [] | false; alias?: string };
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
 
 type UserSubscriptionPayloadFields =
-  | "mutation"
-  | "node"
-  | "updatedFields"
-  | "previousValues";
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
 
 export interface UserSubscriptionPayloadFieldDetails {
   mutation: {
-    type: "MutationType";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"UserSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.MutationType> | prisma.MutationType;
-  };
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
   node: {
-    type: "User";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"UserSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.User | null> | prisma.User | null;
-  };
+    ) => Promise<prisma.User | null> | prisma.User | null
+  }
   updatedFields: {
-    type: "String";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
   previousValues: {
-    type: "UserPreviousValues";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'UserPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"UserSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.UserPreviousValues | null>
-      | prisma.UserPreviousValues
-      | null;
-  };
+    ) => Promise<prisma.UserPreviousValues | null> | prisma.UserPreviousValues | null
+  }
 }
+  
 
 // Types for UserPreviousValues
 
 type UserPreviousValuesObject =
   | UserPreviousValuesFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "makerRating"; args?: [] | false; alias?: string }
-  | { name: "reviewerThumbs"; args?: [] | false; alias?: string }
-  | { name: "url"; args?: [] | false; alias?: string }
-  | { name: "username"; args?: [] | false; alias?: string }
-  | { name: "password"; args?: [] | false; alias?: string }
-  | { name: "email"; args?: [] | false; alias?: string }
-  | { name: "userProfileImage"; args?: [] | false; alias?: string }
-  | { name: "privilege"; args?: [] | false; alias?: string }
-  | { name: "stripeId"; args?: [] | false; alias?: string }
-  | { name: "accountType"; args?: [] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
+  | { name: 'username', args?: [] | false, alias?: string  } 
+  | { name: 'password', args?: [] | false, alias?: string  } 
+  | { name: 'email', args?: [] | false, alias?: string  } 
+  | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
+  | { name: 'bio', args?: [] | false, alias?: string  } 
+  | { name: 'privilege', args?: [] | false, alias?: string  } 
+  | { name: 'stripeId', args?: [] | false, alias?: string  } 
+  | { name: 'accountType', args?: [] | false, alias?: string  } 
 
 type UserPreviousValuesFields =
-  | "id"
-  | "makerRating"
-  | "reviewerThumbs"
-  | "url"
-  | "username"
-  | "password"
-  | "email"
-  | "userProfileImage"
-  | "privilege"
-  | "stripeId"
-  | "accountType";
+  | 'id'
+  | 'url'
+  | 'username'
+  | 'password'
+  | 'email'
+  | 'userProfileImage'
+  | 'bio'
+  | 'privilege'
+  | 'stripeId'
+  | 'accountType'
+
+
+
+  
 
 export interface UserPreviousValuesFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  makerRating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  reviewerThumbs: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   url: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   username: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   password: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   email: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   userProfileImage: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  bio: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   privilege: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   stripeId: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   accountType: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
-
-// Types for StepArraySubscriptionPayload
-
-type StepArraySubscriptionPayloadObject =
-  | StepArraySubscriptionPayloadFields
-  | { name: "mutation"; args?: [] | false; alias?: string }
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "updatedFields"; args?: [] | false; alias?: string }
-  | { name: "previousValues"; args?: [] | false; alias?: string };
-
-type StepArraySubscriptionPayloadFields =
-  | "mutation"
-  | "node"
-  | "updatedFields"
-  | "previousValues";
-
-export interface StepArraySubscriptionPayloadFieldDetails {
-  mutation: {
-    type: "MutationType";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"StepArraySubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.MutationType> | prisma.MutationType;
-  };
-  node: {
-    type: "StepArray";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"StepArraySubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.StepArray | null> | prisma.StepArray | null;
-  };
-  updatedFields: {
-    type: "String";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: undefined;
-  };
-  previousValues: {
-    type: "StepArrayPreviousValues";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"StepArraySubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.StepArrayPreviousValues | null>
-      | prisma.StepArrayPreviousValues
-      | null;
-  };
-}
-
-// Types for StepArrayPreviousValues
-
-type StepArrayPreviousValuesObject =
-  | StepArrayPreviousValuesFields
-  | { name: "textBlurbs"; args?: [] | false; alias?: string }
-  | { name: "imgUrls"; args?: [] | false; alias?: string };
-
-type StepArrayPreviousValuesFields = "textBlurbs" | "imgUrls";
-
-export interface StepArrayPreviousValuesFieldDetails {
-  textBlurbs: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  imgUrls: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-}
+  
 
 // Types for ProjectSubscriptionPayload
 
 type ProjectSubscriptionPayloadObject =
   | ProjectSubscriptionPayloadFields
-  | { name: "mutation"; args?: [] | false; alias?: string }
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "updatedFields"; args?: [] | false; alias?: string }
-  | { name: "previousValues"; args?: [] | false; alias?: string };
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
 
 type ProjectSubscriptionPayloadFields =
-  | "mutation"
-  | "node"
-  | "updatedFields"
-  | "previousValues";
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
 
 export interface ProjectSubscriptionPayloadFieldDetails {
   mutation: {
-    type: "MutationType";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ProjectSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.MutationType> | prisma.MutationType;
-  };
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
   node: {
-    type: "Project";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Project'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"ProjectSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Project | null> | prisma.Project | null;
-  };
+    ) => Promise<prisma.Project | null> | prisma.Project | null
+  }
   updatedFields: {
-    type: "String";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
   previousValues: {
-    type: "ProjectPreviousValues";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'ProjectPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"ProjectSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.ProjectPreviousValues | null>
-      | prisma.ProjectPreviousValues
-      | null;
-  };
+    ) => Promise<prisma.ProjectPreviousValues | null> | prisma.ProjectPreviousValues | null
+  }
 }
+  
 
 // Types for ProjectPreviousValues
 
 type ProjectPreviousValuesObject =
   | ProjectPreviousValuesFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "name"; args?: [] | false; alias?: string }
-  | { name: "category"; args?: [] | false; alias?: string }
-  | { name: "timestamp"; args?: [] | false; alias?: string }
-  | { name: "titleImg"; args?: [] | false; alias?: string }
-  | { name: "titleBlurb"; args?: [] | false; alias?: string }
-  | { name: "rating"; args?: [] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'key', args?: [] | false, alias?: string  } 
+  | { name: 'category', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'titleImg', args?: [] | false, alias?: string  } 
+  | { name: 'titleBlurb', args?: [] | false, alias?: string  } 
+  | { name: 'rating', args?: [] | false, alias?: string  } 
+  | { name: 'steps', args?: [] | false, alias?: string  } 
 
 type ProjectPreviousValuesFields =
-  | "id"
-  | "name"
-  | "category"
-  | "timestamp"
-  | "titleImg"
-  | "titleBlurb"
-  | "rating";
+  | 'id'
+  | 'name'
+  | 'key'
+  | 'category'
+  | 'timestamp'
+  | 'titleImg'
+  | 'titleBlurb'
+  | 'rating'
+  | 'steps'
+
+
+
+  
 
 export interface ProjectPreviousValuesFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   name: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  key: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   category: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   timestamp: {
-    type: "DateTime";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   titleImg: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   titleBlurb: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   rating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  steps: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
 // Types for ReviewSubscriptionPayload
 
 type ReviewSubscriptionPayloadObject =
   | ReviewSubscriptionPayloadFields
-  | { name: "mutation"; args?: [] | false; alias?: string }
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "updatedFields"; args?: [] | false; alias?: string }
-  | { name: "previousValues"; args?: [] | false; alias?: string };
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
 
 type ReviewSubscriptionPayloadFields =
-  | "mutation"
-  | "node"
-  | "updatedFields"
-  | "previousValues";
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
 
 export interface ReviewSubscriptionPayloadFieldDetails {
   mutation: {
-    type: "MutationType";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
     resolve: (
       root: core.RootValue<"ReviewSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.MutationType> | prisma.MutationType;
-  };
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
   node: {
-    type: "Review";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'Review'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"ReviewSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Review | null> | prisma.Review | null;
-  };
+    ) => Promise<prisma.Review | null> | prisma.Review | null
+  }
   updatedFields: {
-    type: "String";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
   previousValues: {
-    type: "ReviewPreviousValues";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
+    type: 'ReviewPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: (
       root: core.RootValue<"ReviewSubscriptionPayload">,
-      args: {},
+      args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.ReviewPreviousValues | null>
-      | prisma.ReviewPreviousValues
-      | null;
-  };
+    ) => Promise<prisma.ReviewPreviousValues | null> | prisma.ReviewPreviousValues | null
+  }
 }
+  
 
 // Types for ReviewPreviousValues
 
 type ReviewPreviousValuesObject =
   | ReviewPreviousValuesFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "title"; args?: [] | false; alias?: string }
-  | { name: "text"; args?: [] | false; alias?: string }
-  | { name: "editedAt"; args?: [] | false; alias?: string }
-  | { name: "rating"; args?: [] | false; alias?: string }
-  | { name: "reviewThumbsUp"; args?: [] | false; alias?: string }
-  | { name: "reviewThumbsDown"; args?: [] | false; alias?: string };
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'rKey', args?: [] | false, alias?: string  } 
+  | { name: 'text', args?: [] | false, alias?: string  } 
+  | { name: 'editedAt', args?: [] | false, alias?: string  } 
+  | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
+  | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
 
 type ReviewPreviousValuesFields =
-  | "id"
-  | "title"
-  | "text"
-  | "editedAt"
-  | "rating"
-  | "reviewThumbsUp"
-  | "reviewThumbsDown";
+  | 'id'
+  | 'title'
+  | 'rKey'
+  | 'text'
+  | 'editedAt'
+  | 'thumbsUp'
+  | 'thumbsDown'
+
+
+
+  
 
 export interface ReviewPreviousValuesFieldDetails {
   id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   title: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  rKey: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   text: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   editedAt: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  rating: {
-    type: "Float";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  reviewThumbsUp: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
-  reviewThumbsDown: {
-    type: "Int";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: undefined;
-  };
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thumbsUp: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thumbsDown: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
+  
 
-// Types for CommentSubscriptionPayload
-
-type CommentSubscriptionPayloadObject =
-  | CommentSubscriptionPayloadFields
-  | { name: "mutation"; args?: [] | false; alias?: string }
-  | { name: "node"; args?: [] | false; alias?: string }
-  | { name: "updatedFields"; args?: [] | false; alias?: string }
-  | { name: "previousValues"; args?: [] | false; alias?: string };
-
-type CommentSubscriptionPayloadFields =
-  | "mutation"
-  | "node"
-  | "updatedFields"
-  | "previousValues";
-
-export interface CommentSubscriptionPayloadFieldDetails {
-  mutation: {
-    type: "MutationType";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: (
-      root: core.RootValue<"CommentSubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.MutationType> | prisma.MutationType;
-  };
-  node: {
-    type: "Comment";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"CommentSubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Comment | null> | prisma.Comment | null;
-  };
-  updatedFields: {
-    type: "String";
-    args: {};
-    description: string;
-    list: true;
-    nullable: false;
-    resolve: undefined;
-  };
-  previousValues: {
-    type: "CommentPreviousValues";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: true;
-    resolve: (
-      root: core.RootValue<"CommentSubscriptionPayload">,
-      args: {},
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) =>
-      | Promise<prisma.CommentPreviousValues | null>
-      | prisma.CommentPreviousValues
-      | null;
-  };
-}
-
-// Types for CommentPreviousValues
-
-type CommentPreviousValuesObject =
-  | CommentPreviousValuesFields
-  | { name: "id"; args?: [] | false; alias?: string }
-  | { name: "editedAt"; args?: [] | false; alias?: string }
-  | { name: "text"; args?: [] | false; alias?: string };
-
-type CommentPreviousValuesFields = "id" | "editedAt" | "text";
-
-export interface CommentPreviousValuesFieldDetails {
-  id: {
-    type: "ID";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  editedAt: {
-    type: "DateTime";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-  text: {
-    type: "String";
-    args: {};
-    description: string;
-    list: undefined;
-    nullable: false;
-    resolve: undefined;
-  };
-}
 
 export interface UserWhereUniqueInput {
-  id?: string | null;
-  username?: string | null;
-  email?: string | null;
+  id?: string | null
+  username?: string | null
+  email?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "email"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  
 export interface ReviewWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  title?: string | null;
-  title_not?: string | null;
-  title_in?: string[];
-  title_not_in?: string[];
-  title_lt?: string | null;
-  title_lte?: string | null;
-  title_gt?: string | null;
-  title_gte?: string | null;
-  title_contains?: string | null;
-  title_not_contains?: string | null;
-  title_starts_with?: string | null;
-  title_not_starts_with?: string | null;
-  title_ends_with?: string | null;
-  title_not_ends_with?: string | null;
-  text?: string | null;
-  text_not?: string | null;
-  text_in?: string[];
-  text_not_in?: string[];
-  text_lt?: string | null;
-  text_lte?: string | null;
-  text_gt?: string | null;
-  text_gte?: string | null;
-  text_contains?: string | null;
-  text_not_contains?: string | null;
-  text_starts_with?: string | null;
-  text_not_starts_with?: string | null;
-  text_ends_with?: string | null;
-  text_not_ends_with?: string | null;
-  editedAt?: string | null;
-  editedAt_not?: string | null;
-  editedAt_in?: string[];
-  editedAt_not_in?: string[];
-  editedAt_lt?: string | null;
-  editedAt_lte?: string | null;
-  editedAt_gt?: string | null;
-  editedAt_gte?: string | null;
-  editedAt_contains?: string | null;
-  editedAt_not_contains?: string | null;
-  editedAt_starts_with?: string | null;
-  editedAt_not_starts_with?: string | null;
-  editedAt_ends_with?: string | null;
-  editedAt_not_ends_with?: string | null;
-  rating?: number | null;
-  rating_not?: number | null;
-  rating_in?: number[];
-  rating_not_in?: number[];
-  rating_lt?: number | null;
-  rating_lte?: number | null;
-  rating_gt?: number | null;
-  rating_gte?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsUp_not?: number | null;
-  reviewThumbsUp_in?: number[];
-  reviewThumbsUp_not_in?: number[];
-  reviewThumbsUp_lt?: number | null;
-  reviewThumbsUp_lte?: number | null;
-  reviewThumbsUp_gt?: number | null;
-  reviewThumbsUp_gte?: number | null;
-  reviewThumbsDown?: number | null;
-  reviewThumbsDown_not?: number | null;
-  reviewThumbsDown_in?: number[];
-  reviewThumbsDown_not_in?: number[];
-  reviewThumbsDown_lt?: number | null;
-  reviewThumbsDown_lte?: number | null;
-  reviewThumbsDown_gt?: number | null;
-  reviewThumbsDown_gte?: number | null;
-  Comments_every?: CommentWhereInput | null;
-  Comments_some?: CommentWhereInput | null;
-  Comments_none?: CommentWhereInput | null;
-  Author?: UserWhereInput | null;
-  AND?: ReviewWhereInput[];
-  OR?: ReviewWhereInput[];
-  NOT?: ReviewWhereInput[];
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  title?: string | null
+  title_not?: string | null
+  title_in?: string[]
+  title_not_in?: string[]
+  title_lt?: string | null
+  title_lte?: string | null
+  title_gt?: string | null
+  title_gte?: string | null
+  title_contains?: string | null
+  title_not_contains?: string | null
+  title_starts_with?: string | null
+  title_not_starts_with?: string | null
+  title_ends_with?: string | null
+  title_not_ends_with?: string | null
+  rKey?: string | null
+  rKey_not?: string | null
+  rKey_in?: string[]
+  rKey_not_in?: string[]
+  rKey_lt?: string | null
+  rKey_lte?: string | null
+  rKey_gt?: string | null
+  rKey_gte?: string | null
+  rKey_contains?: string | null
+  rKey_not_contains?: string | null
+  rKey_starts_with?: string | null
+  rKey_not_starts_with?: string | null
+  rKey_ends_with?: string | null
+  rKey_not_ends_with?: string | null
+  text?: string | null
+  text_not?: string | null
+  text_in?: string[]
+  text_not_in?: string[]
+  text_lt?: string | null
+  text_lte?: string | null
+  text_gt?: string | null
+  text_gte?: string | null
+  text_contains?: string | null
+  text_not_contains?: string | null
+  text_starts_with?: string | null
+  text_not_starts_with?: string | null
+  text_ends_with?: string | null
+  text_not_ends_with?: string | null
+  editedAt?: string | null
+  editedAt_not?: string | null
+  editedAt_in?: string[]
+  editedAt_not_in?: string[]
+  editedAt_lt?: string | null
+  editedAt_lte?: string | null
+  editedAt_gt?: string | null
+  editedAt_gte?: string | null
+  thumbsUp?: number | null
+  thumbsUp_not?: number | null
+  thumbsUp_in?: number[]
+  thumbsUp_not_in?: number[]
+  thumbsUp_lt?: number | null
+  thumbsUp_lte?: number | null
+  thumbsUp_gt?: number | null
+  thumbsUp_gte?: number | null
+  LikedBy_every?: UserWhereInput | null
+  LikedBy_some?: UserWhereInput | null
+  LikedBy_none?: UserWhereInput | null
+  thumbsDown?: number | null
+  thumbsDown_not?: number | null
+  thumbsDown_in?: number[]
+  thumbsDown_not_in?: number[]
+  thumbsDown_lt?: number | null
+  thumbsDown_lte?: number | null
+  thumbsDown_gt?: number | null
+  thumbsDown_gte?: number | null
+  DislikedBy_every?: UserWhereInput | null
+  DislikedBy_some?: UserWhereInput | null
+  DislikedBy_none?: UserWhereInput | null
+  Author?: UserWhereInput | null
+  ProjectReviewed?: ProjectWhereInput | null
+  AND?: ReviewWhereInput[]
+  OR?: ReviewWhereInput[]
+  NOT?: ReviewWhereInput[]
 }
 export type ReviewWhereInputInputObject =
   | Extract<keyof ReviewWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "title"; alias?: string }
-  | { name: "title_not"; alias?: string }
-  | { name: "title_in"; alias?: string }
-  | { name: "title_not_in"; alias?: string }
-  | { name: "title_lt"; alias?: string }
-  | { name: "title_lte"; alias?: string }
-  | { name: "title_gt"; alias?: string }
-  | { name: "title_gte"; alias?: string }
-  | { name: "title_contains"; alias?: string }
-  | { name: "title_not_contains"; alias?: string }
-  | { name: "title_starts_with"; alias?: string }
-  | { name: "title_not_starts_with"; alias?: string }
-  | { name: "title_ends_with"; alias?: string }
-  | { name: "title_not_ends_with"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "text_not"; alias?: string }
-  | { name: "text_in"; alias?: string }
-  | { name: "text_not_in"; alias?: string }
-  | { name: "text_lt"; alias?: string }
-  | { name: "text_lte"; alias?: string }
-  | { name: "text_gt"; alias?: string }
-  | { name: "text_gte"; alias?: string }
-  | { name: "text_contains"; alias?: string }
-  | { name: "text_not_contains"; alias?: string }
-  | { name: "text_starts_with"; alias?: string }
-  | { name: "text_not_starts_with"; alias?: string }
-  | { name: "text_ends_with"; alias?: string }
-  | { name: "text_not_ends_with"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "editedAt_not"; alias?: string }
-  | { name: "editedAt_in"; alias?: string }
-  | { name: "editedAt_not_in"; alias?: string }
-  | { name: "editedAt_lt"; alias?: string }
-  | { name: "editedAt_lte"; alias?: string }
-  | { name: "editedAt_gt"; alias?: string }
-  | { name: "editedAt_gte"; alias?: string }
-  | { name: "editedAt_contains"; alias?: string }
-  | { name: "editedAt_not_contains"; alias?: string }
-  | { name: "editedAt_starts_with"; alias?: string }
-  | { name: "editedAt_not_starts_with"; alias?: string }
-  | { name: "editedAt_ends_with"; alias?: string }
-  | { name: "editedAt_not_ends_with"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "rating_not"; alias?: string }
-  | { name: "rating_in"; alias?: string }
-  | { name: "rating_not_in"; alias?: string }
-  | { name: "rating_lt"; alias?: string }
-  | { name: "rating_lte"; alias?: string }
-  | { name: "rating_gt"; alias?: string }
-  | { name: "rating_gte"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsUp_not"; alias?: string }
-  | { name: "reviewThumbsUp_in"; alias?: string }
-  | { name: "reviewThumbsUp_not_in"; alias?: string }
-  | { name: "reviewThumbsUp_lt"; alias?: string }
-  | { name: "reviewThumbsUp_lte"; alias?: string }
-  | { name: "reviewThumbsUp_gt"; alias?: string }
-  | { name: "reviewThumbsUp_gte"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "reviewThumbsDown_not"; alias?: string }
-  | { name: "reviewThumbsDown_in"; alias?: string }
-  | { name: "reviewThumbsDown_not_in"; alias?: string }
-  | { name: "reviewThumbsDown_lt"; alias?: string }
-  | { name: "reviewThumbsDown_lte"; alias?: string }
-  | { name: "reviewThumbsDown_gt"; alias?: string }
-  | { name: "reviewThumbsDown_gte"; alias?: string }
-  | { name: "Comments_every"; alias?: string }
-  | { name: "Comments_some"; alias?: string }
-  | { name: "Comments_none"; alias?: string }
-  | { name: "Author"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface CommentWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  editedAt?: string | null;
-  editedAt_not?: string | null;
-  editedAt_in?: string[];
-  editedAt_not_in?: string[];
-  editedAt_lt?: string | null;
-  editedAt_lte?: string | null;
-  editedAt_gt?: string | null;
-  editedAt_gte?: string | null;
-  text?: string | null;
-  text_not?: string | null;
-  text_in?: string[];
-  text_not_in?: string[];
-  text_lt?: string | null;
-  text_lte?: string | null;
-  text_gt?: string | null;
-  text_gte?: string | null;
-  text_contains?: string | null;
-  text_not_contains?: string | null;
-  text_starts_with?: string | null;
-  text_not_starts_with?: string | null;
-  text_ends_with?: string | null;
-  text_not_ends_with?: string | null;
-  User?: UserWhereInput | null;
-  AND?: CommentWhereInput[];
-  OR?: CommentWhereInput[];
-  NOT?: CommentWhereInput[];
-}
-export type CommentWhereInputInputObject =
-  | Extract<keyof CommentWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "editedAt_not"; alias?: string }
-  | { name: "editedAt_in"; alias?: string }
-  | { name: "editedAt_not_in"; alias?: string }
-  | { name: "editedAt_lt"; alias?: string }
-  | { name: "editedAt_lte"; alias?: string }
-  | { name: "editedAt_gt"; alias?: string }
-  | { name: "editedAt_gte"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "text_not"; alias?: string }
-  | { name: "text_in"; alias?: string }
-  | { name: "text_not_in"; alias?: string }
-  | { name: "text_lt"; alias?: string }
-  | { name: "text_lte"; alias?: string }
-  | { name: "text_gt"; alias?: string }
-  | { name: "text_gte"; alias?: string }
-  | { name: "text_contains"; alias?: string }
-  | { name: "text_not_contains"; alias?: string }
-  | { name: "text_starts_with"; alias?: string }
-  | { name: "text_not_starts_with"; alias?: string }
-  | { name: "text_ends_with"; alias?: string }
-  | { name: "text_not_ends_with"; alias?: string }
-  | { name: "User"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'title', alias?: string  } 
+  | { name: 'title_not', alias?: string  } 
+  | { name: 'title_in', alias?: string  } 
+  | { name: 'title_not_in', alias?: string  } 
+  | { name: 'title_lt', alias?: string  } 
+  | { name: 'title_lte', alias?: string  } 
+  | { name: 'title_gt', alias?: string  } 
+  | { name: 'title_gte', alias?: string  } 
+  | { name: 'title_contains', alias?: string  } 
+  | { name: 'title_not_contains', alias?: string  } 
+  | { name: 'title_starts_with', alias?: string  } 
+  | { name: 'title_not_starts_with', alias?: string  } 
+  | { name: 'title_ends_with', alias?: string  } 
+  | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'rKey_not', alias?: string  } 
+  | { name: 'rKey_in', alias?: string  } 
+  | { name: 'rKey_not_in', alias?: string  } 
+  | { name: 'rKey_lt', alias?: string  } 
+  | { name: 'rKey_lte', alias?: string  } 
+  | { name: 'rKey_gt', alias?: string  } 
+  | { name: 'rKey_gte', alias?: string  } 
+  | { name: 'rKey_contains', alias?: string  } 
+  | { name: 'rKey_not_contains', alias?: string  } 
+  | { name: 'rKey_starts_with', alias?: string  } 
+  | { name: 'rKey_not_starts_with', alias?: string  } 
+  | { name: 'rKey_ends_with', alias?: string  } 
+  | { name: 'rKey_not_ends_with', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'text_not', alias?: string  } 
+  | { name: 'text_in', alias?: string  } 
+  | { name: 'text_not_in', alias?: string  } 
+  | { name: 'text_lt', alias?: string  } 
+  | { name: 'text_lte', alias?: string  } 
+  | { name: 'text_gt', alias?: string  } 
+  | { name: 'text_gte', alias?: string  } 
+  | { name: 'text_contains', alias?: string  } 
+  | { name: 'text_not_contains', alias?: string  } 
+  | { name: 'text_starts_with', alias?: string  } 
+  | { name: 'text_not_starts_with', alias?: string  } 
+  | { name: 'text_ends_with', alias?: string  } 
+  | { name: 'text_not_ends_with', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'editedAt_not', alias?: string  } 
+  | { name: 'editedAt_in', alias?: string  } 
+  | { name: 'editedAt_not_in', alias?: string  } 
+  | { name: 'editedAt_lt', alias?: string  } 
+  | { name: 'editedAt_lte', alias?: string  } 
+  | { name: 'editedAt_gt', alias?: string  } 
+  | { name: 'editedAt_gte', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsUp_not', alias?: string  } 
+  | { name: 'thumbsUp_in', alias?: string  } 
+  | { name: 'thumbsUp_not_in', alias?: string  } 
+  | { name: 'thumbsUp_lt', alias?: string  } 
+  | { name: 'thumbsUp_lte', alias?: string  } 
+  | { name: 'thumbsUp_gt', alias?: string  } 
+  | { name: 'thumbsUp_gte', alias?: string  } 
+  | { name: 'LikedBy_every', alias?: string  } 
+  | { name: 'LikedBy_some', alias?: string  } 
+  | { name: 'LikedBy_none', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'thumbsDown_not', alias?: string  } 
+  | { name: 'thumbsDown_in', alias?: string  } 
+  | { name: 'thumbsDown_not_in', alias?: string  } 
+  | { name: 'thumbsDown_lt', alias?: string  } 
+  | { name: 'thumbsDown_lte', alias?: string  } 
+  | { name: 'thumbsDown_gt', alias?: string  } 
+  | { name: 'thumbsDown_gte', alias?: string  } 
+  | { name: 'DislikedBy_every', alias?: string  } 
+  | { name: 'DislikedBy_some', alias?: string  } 
+  | { name: 'DislikedBy_none', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface UserWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  makerRating?: number | null;
-  makerRating_not?: number | null;
-  makerRating_in?: number[];
-  makerRating_not_in?: number[];
-  makerRating_lt?: number | null;
-  makerRating_lte?: number | null;
-  makerRating_gt?: number | null;
-  makerRating_gte?: number | null;
-  reviewerThumbs?: number | null;
-  reviewerThumbs_not?: number | null;
-  reviewerThumbs_in?: number[];
-  reviewerThumbs_not_in?: number[];
-  reviewerThumbs_lt?: number | null;
-  reviewerThumbs_lte?: number | null;
-  reviewerThumbs_gt?: number | null;
-  reviewerThumbs_gte?: number | null;
-  url?: string | null;
-  url_not?: string | null;
-  url_in?: string[];
-  url_not_in?: string[];
-  url_lt?: string | null;
-  url_lte?: string | null;
-  url_gt?: string | null;
-  url_gte?: string | null;
-  url_contains?: string | null;
-  url_not_contains?: string | null;
-  url_starts_with?: string | null;
-  url_not_starts_with?: string | null;
-  url_ends_with?: string | null;
-  url_not_ends_with?: string | null;
-  username?: string | null;
-  username_not?: string | null;
-  username_in?: string[];
-  username_not_in?: string[];
-  username_lt?: string | null;
-  username_lte?: string | null;
-  username_gt?: string | null;
-  username_gte?: string | null;
-  username_contains?: string | null;
-  username_not_contains?: string | null;
-  username_starts_with?: string | null;
-  username_not_starts_with?: string | null;
-  username_ends_with?: string | null;
-  username_not_ends_with?: string | null;
-  password?: string | null;
-  password_not?: string | null;
-  password_in?: string[];
-  password_not_in?: string[];
-  password_lt?: string | null;
-  password_lte?: string | null;
-  password_gt?: string | null;
-  password_gte?: string | null;
-  password_contains?: string | null;
-  password_not_contains?: string | null;
-  password_starts_with?: string | null;
-  password_not_starts_with?: string | null;
-  password_ends_with?: string | null;
-  password_not_ends_with?: string | null;
-  email?: string | null;
-  email_not?: string | null;
-  email_in?: string[];
-  email_not_in?: string[];
-  email_lt?: string | null;
-  email_lte?: string | null;
-  email_gt?: string | null;
-  email_gte?: string | null;
-  email_contains?: string | null;
-  email_not_contains?: string | null;
-  email_starts_with?: string | null;
-  email_not_starts_with?: string | null;
-  email_ends_with?: string | null;
-  email_not_ends_with?: string | null;
-  userProfileImage?: string | null;
-  userProfileImage_not?: string | null;
-  userProfileImage_in?: string[];
-  userProfileImage_not_in?: string[];
-  userProfileImage_lt?: string | null;
-  userProfileImage_lte?: string | null;
-  userProfileImage_gt?: string | null;
-  userProfileImage_gte?: string | null;
-  userProfileImage_contains?: string | null;
-  userProfileImage_not_contains?: string | null;
-  userProfileImage_starts_with?: string | null;
-  userProfileImage_not_starts_with?: string | null;
-  userProfileImage_ends_with?: string | null;
-  userProfileImage_not_ends_with?: string | null;
-  ReviewList_every?: ReviewWhereInput | null;
-  ReviewList_some?: ReviewWhereInput | null;
-  ReviewList_none?: ReviewWhereInput | null;
-  Projects_every?: ProjectWhereInput | null;
-  Projects_some?: ProjectWhereInput | null;
-  Projects_none?: ProjectWhereInput | null;
-  privilege?: string | null;
-  privilege_not?: string | null;
-  privilege_in?: string[];
-  privilege_not_in?: string[];
-  privilege_lt?: string | null;
-  privilege_lte?: string | null;
-  privilege_gt?: string | null;
-  privilege_gte?: string | null;
-  privilege_contains?: string | null;
-  privilege_not_contains?: string | null;
-  privilege_starts_with?: string | null;
-  privilege_not_starts_with?: string | null;
-  privilege_ends_with?: string | null;
-  privilege_not_ends_with?: string | null;
-  stripeId?: string | null;
-  stripeId_not?: string | null;
-  stripeId_in?: string[];
-  stripeId_not_in?: string[];
-  stripeId_lt?: string | null;
-  stripeId_lte?: string | null;
-  stripeId_gt?: string | null;
-  stripeId_gte?: string | null;
-  stripeId_contains?: string | null;
-  stripeId_not_contains?: string | null;
-  stripeId_starts_with?: string | null;
-  stripeId_not_starts_with?: string | null;
-  stripeId_ends_with?: string | null;
-  stripeId_not_ends_with?: string | null;
-  accountType?: string | null;
-  accountType_not?: string | null;
-  accountType_in?: string[];
-  accountType_not_in?: string[];
-  accountType_lt?: string | null;
-  accountType_lte?: string | null;
-  accountType_gt?: string | null;
-  accountType_gte?: string | null;
-  accountType_contains?: string | null;
-  accountType_not_contains?: string | null;
-  accountType_starts_with?: string | null;
-  accountType_not_starts_with?: string | null;
-  accountType_ends_with?: string | null;
-  accountType_not_ends_with?: string | null;
-  AND?: UserWhereInput[];
-  OR?: UserWhereInput[];
-  NOT?: UserWhereInput[];
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  url?: string | null
+  url_not?: string | null
+  url_in?: string[]
+  url_not_in?: string[]
+  url_lt?: string | null
+  url_lte?: string | null
+  url_gt?: string | null
+  url_gte?: string | null
+  url_contains?: string | null
+  url_not_contains?: string | null
+  url_starts_with?: string | null
+  url_not_starts_with?: string | null
+  url_ends_with?: string | null
+  url_not_ends_with?: string | null
+  username?: string | null
+  username_not?: string | null
+  username_in?: string[]
+  username_not_in?: string[]
+  username_lt?: string | null
+  username_lte?: string | null
+  username_gt?: string | null
+  username_gte?: string | null
+  username_contains?: string | null
+  username_not_contains?: string | null
+  username_starts_with?: string | null
+  username_not_starts_with?: string | null
+  username_ends_with?: string | null
+  username_not_ends_with?: string | null
+  password?: string | null
+  password_not?: string | null
+  password_in?: string[]
+  password_not_in?: string[]
+  password_lt?: string | null
+  password_lte?: string | null
+  password_gt?: string | null
+  password_gte?: string | null
+  password_contains?: string | null
+  password_not_contains?: string | null
+  password_starts_with?: string | null
+  password_not_starts_with?: string | null
+  password_ends_with?: string | null
+  password_not_ends_with?: string | null
+  email?: string | null
+  email_not?: string | null
+  email_in?: string[]
+  email_not_in?: string[]
+  email_lt?: string | null
+  email_lte?: string | null
+  email_gt?: string | null
+  email_gte?: string | null
+  email_contains?: string | null
+  email_not_contains?: string | null
+  email_starts_with?: string | null
+  email_not_starts_with?: string | null
+  email_ends_with?: string | null
+  email_not_ends_with?: string | null
+  userProfileImage?: string | null
+  userProfileImage_not?: string | null
+  userProfileImage_in?: string[]
+  userProfileImage_not_in?: string[]
+  userProfileImage_lt?: string | null
+  userProfileImage_lte?: string | null
+  userProfileImage_gt?: string | null
+  userProfileImage_gte?: string | null
+  userProfileImage_contains?: string | null
+  userProfileImage_not_contains?: string | null
+  userProfileImage_starts_with?: string | null
+  userProfileImage_not_starts_with?: string | null
+  userProfileImage_ends_with?: string | null
+  userProfileImage_not_ends_with?: string | null
+  bio?: string | null
+  bio_not?: string | null
+  bio_in?: string[]
+  bio_not_in?: string[]
+  bio_lt?: string | null
+  bio_lte?: string | null
+  bio_gt?: string | null
+  bio_gte?: string | null
+  bio_contains?: string | null
+  bio_not_contains?: string | null
+  bio_starts_with?: string | null
+  bio_not_starts_with?: string | null
+  bio_ends_with?: string | null
+  bio_not_ends_with?: string | null
+  privilege?: string | null
+  privilege_not?: string | null
+  privilege_in?: string[]
+  privilege_not_in?: string[]
+  privilege_lt?: string | null
+  privilege_lte?: string | null
+  privilege_gt?: string | null
+  privilege_gte?: string | null
+  privilege_contains?: string | null
+  privilege_not_contains?: string | null
+  privilege_starts_with?: string | null
+  privilege_not_starts_with?: string | null
+  privilege_ends_with?: string | null
+  privilege_not_ends_with?: string | null
+  stripeId?: string | null
+  stripeId_not?: string | null
+  stripeId_in?: string[]
+  stripeId_not_in?: string[]
+  stripeId_lt?: string | null
+  stripeId_lte?: string | null
+  stripeId_gt?: string | null
+  stripeId_gte?: string | null
+  stripeId_contains?: string | null
+  stripeId_not_contains?: string | null
+  stripeId_starts_with?: string | null
+  stripeId_not_starts_with?: string | null
+  stripeId_ends_with?: string | null
+  stripeId_not_ends_with?: string | null
+  accountType?: string | null
+  accountType_not?: string | null
+  accountType_in?: string[]
+  accountType_not_in?: string[]
+  accountType_lt?: string | null
+  accountType_lte?: string | null
+  accountType_gt?: string | null
+  accountType_gte?: string | null
+  accountType_contains?: string | null
+  accountType_not_contains?: string | null
+  accountType_starts_with?: string | null
+  accountType_not_starts_with?: string | null
+  accountType_ends_with?: string | null
+  accountType_not_ends_with?: string | null
+  ReviewList_every?: ReviewWhereInput | null
+  ReviewList_some?: ReviewWhereInput | null
+  ReviewList_none?: ReviewWhereInput | null
+  LikedReviews_every?: ReviewWhereInput | null
+  LikedReviews_some?: ReviewWhereInput | null
+  LikedReviews_none?: ReviewWhereInput | null
+  DislikedReviews_every?: ReviewWhereInput | null
+  DislikedReviews_some?: ReviewWhereInput | null
+  DislikedReviews_none?: ReviewWhereInput | null
+  Projects_every?: ProjectWhereInput | null
+  Projects_some?: ProjectWhereInput | null
+  Projects_none?: ProjectWhereInput | null
+  RatedProjects_every?: ProjectWhereInput | null
+  RatedProjects_some?: ProjectWhereInput | null
+  RatedProjects_none?: ProjectWhereInput | null
+  AND?: UserWhereInput[]
+  OR?: UserWhereInput[]
+  NOT?: UserWhereInput[]
 }
 export type UserWhereInputInputObject =
   | Extract<keyof UserWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "makerRating"; alias?: string }
-  | { name: "makerRating_not"; alias?: string }
-  | { name: "makerRating_in"; alias?: string }
-  | { name: "makerRating_not_in"; alias?: string }
-  | { name: "makerRating_lt"; alias?: string }
-  | { name: "makerRating_lte"; alias?: string }
-  | { name: "makerRating_gt"; alias?: string }
-  | { name: "makerRating_gte"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "reviewerThumbs_not"; alias?: string }
-  | { name: "reviewerThumbs_in"; alias?: string }
-  | { name: "reviewerThumbs_not_in"; alias?: string }
-  | { name: "reviewerThumbs_lt"; alias?: string }
-  | { name: "reviewerThumbs_lte"; alias?: string }
-  | { name: "reviewerThumbs_gt"; alias?: string }
-  | { name: "reviewerThumbs_gte"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "url_not"; alias?: string }
-  | { name: "url_in"; alias?: string }
-  | { name: "url_not_in"; alias?: string }
-  | { name: "url_lt"; alias?: string }
-  | { name: "url_lte"; alias?: string }
-  | { name: "url_gt"; alias?: string }
-  | { name: "url_gte"; alias?: string }
-  | { name: "url_contains"; alias?: string }
-  | { name: "url_not_contains"; alias?: string }
-  | { name: "url_starts_with"; alias?: string }
-  | { name: "url_not_starts_with"; alias?: string }
-  | { name: "url_ends_with"; alias?: string }
-  | { name: "url_not_ends_with"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "username_not"; alias?: string }
-  | { name: "username_in"; alias?: string }
-  | { name: "username_not_in"; alias?: string }
-  | { name: "username_lt"; alias?: string }
-  | { name: "username_lte"; alias?: string }
-  | { name: "username_gt"; alias?: string }
-  | { name: "username_gte"; alias?: string }
-  | { name: "username_contains"; alias?: string }
-  | { name: "username_not_contains"; alias?: string }
-  | { name: "username_starts_with"; alias?: string }
-  | { name: "username_not_starts_with"; alias?: string }
-  | { name: "username_ends_with"; alias?: string }
-  | { name: "username_not_ends_with"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "password_not"; alias?: string }
-  | { name: "password_in"; alias?: string }
-  | { name: "password_not_in"; alias?: string }
-  | { name: "password_lt"; alias?: string }
-  | { name: "password_lte"; alias?: string }
-  | { name: "password_gt"; alias?: string }
-  | { name: "password_gte"; alias?: string }
-  | { name: "password_contains"; alias?: string }
-  | { name: "password_not_contains"; alias?: string }
-  | { name: "password_starts_with"; alias?: string }
-  | { name: "password_not_starts_with"; alias?: string }
-  | { name: "password_ends_with"; alias?: string }
-  | { name: "password_not_ends_with"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "email_not"; alias?: string }
-  | { name: "email_in"; alias?: string }
-  | { name: "email_not_in"; alias?: string }
-  | { name: "email_lt"; alias?: string }
-  | { name: "email_lte"; alias?: string }
-  | { name: "email_gt"; alias?: string }
-  | { name: "email_gte"; alias?: string }
-  | { name: "email_contains"; alias?: string }
-  | { name: "email_not_contains"; alias?: string }
-  | { name: "email_starts_with"; alias?: string }
-  | { name: "email_not_starts_with"; alias?: string }
-  | { name: "email_ends_with"; alias?: string }
-  | { name: "email_not_ends_with"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "userProfileImage_not"; alias?: string }
-  | { name: "userProfileImage_in"; alias?: string }
-  | { name: "userProfileImage_not_in"; alias?: string }
-  | { name: "userProfileImage_lt"; alias?: string }
-  | { name: "userProfileImage_lte"; alias?: string }
-  | { name: "userProfileImage_gt"; alias?: string }
-  | { name: "userProfileImage_gte"; alias?: string }
-  | { name: "userProfileImage_contains"; alias?: string }
-  | { name: "userProfileImage_not_contains"; alias?: string }
-  | { name: "userProfileImage_starts_with"; alias?: string }
-  | { name: "userProfileImage_not_starts_with"; alias?: string }
-  | { name: "userProfileImage_ends_with"; alias?: string }
-  | { name: "userProfileImage_not_ends_with"; alias?: string }
-  | { name: "ReviewList_every"; alias?: string }
-  | { name: "ReviewList_some"; alias?: string }
-  | { name: "ReviewList_none"; alias?: string }
-  | { name: "Projects_every"; alias?: string }
-  | { name: "Projects_some"; alias?: string }
-  | { name: "Projects_none"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "privilege_not"; alias?: string }
-  | { name: "privilege_in"; alias?: string }
-  | { name: "privilege_not_in"; alias?: string }
-  | { name: "privilege_lt"; alias?: string }
-  | { name: "privilege_lte"; alias?: string }
-  | { name: "privilege_gt"; alias?: string }
-  | { name: "privilege_gte"; alias?: string }
-  | { name: "privilege_contains"; alias?: string }
-  | { name: "privilege_not_contains"; alias?: string }
-  | { name: "privilege_starts_with"; alias?: string }
-  | { name: "privilege_not_starts_with"; alias?: string }
-  | { name: "privilege_ends_with"; alias?: string }
-  | { name: "privilege_not_ends_with"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "stripeId_not"; alias?: string }
-  | { name: "stripeId_in"; alias?: string }
-  | { name: "stripeId_not_in"; alias?: string }
-  | { name: "stripeId_lt"; alias?: string }
-  | { name: "stripeId_lte"; alias?: string }
-  | { name: "stripeId_gt"; alias?: string }
-  | { name: "stripeId_gte"; alias?: string }
-  | { name: "stripeId_contains"; alias?: string }
-  | { name: "stripeId_not_contains"; alias?: string }
-  | { name: "stripeId_starts_with"; alias?: string }
-  | { name: "stripeId_not_starts_with"; alias?: string }
-  | { name: "stripeId_ends_with"; alias?: string }
-  | { name: "stripeId_not_ends_with"; alias?: string }
-  | { name: "accountType"; alias?: string }
-  | { name: "accountType_not"; alias?: string }
-  | { name: "accountType_in"; alias?: string }
-  | { name: "accountType_not_in"; alias?: string }
-  | { name: "accountType_lt"; alias?: string }
-  | { name: "accountType_lte"; alias?: string }
-  | { name: "accountType_gt"; alias?: string }
-  | { name: "accountType_gte"; alias?: string }
-  | { name: "accountType_contains"; alias?: string }
-  | { name: "accountType_not_contains"; alias?: string }
-  | { name: "accountType_starts_with"; alias?: string }
-  | { name: "accountType_not_starts_with"; alias?: string }
-  | { name: "accountType_ends_with"; alias?: string }
-  | { name: "accountType_not_ends_with"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'url_not', alias?: string  } 
+  | { name: 'url_in', alias?: string  } 
+  | { name: 'url_not_in', alias?: string  } 
+  | { name: 'url_lt', alias?: string  } 
+  | { name: 'url_lte', alias?: string  } 
+  | { name: 'url_gt', alias?: string  } 
+  | { name: 'url_gte', alias?: string  } 
+  | { name: 'url_contains', alias?: string  } 
+  | { name: 'url_not_contains', alias?: string  } 
+  | { name: 'url_starts_with', alias?: string  } 
+  | { name: 'url_not_starts_with', alias?: string  } 
+  | { name: 'url_ends_with', alias?: string  } 
+  | { name: 'url_not_ends_with', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'username_not', alias?: string  } 
+  | { name: 'username_in', alias?: string  } 
+  | { name: 'username_not_in', alias?: string  } 
+  | { name: 'username_lt', alias?: string  } 
+  | { name: 'username_lte', alias?: string  } 
+  | { name: 'username_gt', alias?: string  } 
+  | { name: 'username_gte', alias?: string  } 
+  | { name: 'username_contains', alias?: string  } 
+  | { name: 'username_not_contains', alias?: string  } 
+  | { name: 'username_starts_with', alias?: string  } 
+  | { name: 'username_not_starts_with', alias?: string  } 
+  | { name: 'username_ends_with', alias?: string  } 
+  | { name: 'username_not_ends_with', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'password_not', alias?: string  } 
+  | { name: 'password_in', alias?: string  } 
+  | { name: 'password_not_in', alias?: string  } 
+  | { name: 'password_lt', alias?: string  } 
+  | { name: 'password_lte', alias?: string  } 
+  | { name: 'password_gt', alias?: string  } 
+  | { name: 'password_gte', alias?: string  } 
+  | { name: 'password_contains', alias?: string  } 
+  | { name: 'password_not_contains', alias?: string  } 
+  | { name: 'password_starts_with', alias?: string  } 
+  | { name: 'password_not_starts_with', alias?: string  } 
+  | { name: 'password_ends_with', alias?: string  } 
+  | { name: 'password_not_ends_with', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'email_not', alias?: string  } 
+  | { name: 'email_in', alias?: string  } 
+  | { name: 'email_not_in', alias?: string  } 
+  | { name: 'email_lt', alias?: string  } 
+  | { name: 'email_lte', alias?: string  } 
+  | { name: 'email_gt', alias?: string  } 
+  | { name: 'email_gte', alias?: string  } 
+  | { name: 'email_contains', alias?: string  } 
+  | { name: 'email_not_contains', alias?: string  } 
+  | { name: 'email_starts_with', alias?: string  } 
+  | { name: 'email_not_starts_with', alias?: string  } 
+  | { name: 'email_ends_with', alias?: string  } 
+  | { name: 'email_not_ends_with', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'userProfileImage_not', alias?: string  } 
+  | { name: 'userProfileImage_in', alias?: string  } 
+  | { name: 'userProfileImage_not_in', alias?: string  } 
+  | { name: 'userProfileImage_lt', alias?: string  } 
+  | { name: 'userProfileImage_lte', alias?: string  } 
+  | { name: 'userProfileImage_gt', alias?: string  } 
+  | { name: 'userProfileImage_gte', alias?: string  } 
+  | { name: 'userProfileImage_contains', alias?: string  } 
+  | { name: 'userProfileImage_not_contains', alias?: string  } 
+  | { name: 'userProfileImage_starts_with', alias?: string  } 
+  | { name: 'userProfileImage_not_starts_with', alias?: string  } 
+  | { name: 'userProfileImage_ends_with', alias?: string  } 
+  | { name: 'userProfileImage_not_ends_with', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'bio_not', alias?: string  } 
+  | { name: 'bio_in', alias?: string  } 
+  | { name: 'bio_not_in', alias?: string  } 
+  | { name: 'bio_lt', alias?: string  } 
+  | { name: 'bio_lte', alias?: string  } 
+  | { name: 'bio_gt', alias?: string  } 
+  | { name: 'bio_gte', alias?: string  } 
+  | { name: 'bio_contains', alias?: string  } 
+  | { name: 'bio_not_contains', alias?: string  } 
+  | { name: 'bio_starts_with', alias?: string  } 
+  | { name: 'bio_not_starts_with', alias?: string  } 
+  | { name: 'bio_ends_with', alias?: string  } 
+  | { name: 'bio_not_ends_with', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'privilege_not', alias?: string  } 
+  | { name: 'privilege_in', alias?: string  } 
+  | { name: 'privilege_not_in', alias?: string  } 
+  | { name: 'privilege_lt', alias?: string  } 
+  | { name: 'privilege_lte', alias?: string  } 
+  | { name: 'privilege_gt', alias?: string  } 
+  | { name: 'privilege_gte', alias?: string  } 
+  | { name: 'privilege_contains', alias?: string  } 
+  | { name: 'privilege_not_contains', alias?: string  } 
+  | { name: 'privilege_starts_with', alias?: string  } 
+  | { name: 'privilege_not_starts_with', alias?: string  } 
+  | { name: 'privilege_ends_with', alias?: string  } 
+  | { name: 'privilege_not_ends_with', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'stripeId_not', alias?: string  } 
+  | { name: 'stripeId_in', alias?: string  } 
+  | { name: 'stripeId_not_in', alias?: string  } 
+  | { name: 'stripeId_lt', alias?: string  } 
+  | { name: 'stripeId_lte', alias?: string  } 
+  | { name: 'stripeId_gt', alias?: string  } 
+  | { name: 'stripeId_gte', alias?: string  } 
+  | { name: 'stripeId_contains', alias?: string  } 
+  | { name: 'stripeId_not_contains', alias?: string  } 
+  | { name: 'stripeId_starts_with', alias?: string  } 
+  | { name: 'stripeId_not_starts_with', alias?: string  } 
+  | { name: 'stripeId_ends_with', alias?: string  } 
+  | { name: 'stripeId_not_ends_with', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'accountType_not', alias?: string  } 
+  | { name: 'accountType_in', alias?: string  } 
+  | { name: 'accountType_not_in', alias?: string  } 
+  | { name: 'accountType_lt', alias?: string  } 
+  | { name: 'accountType_lte', alias?: string  } 
+  | { name: 'accountType_gt', alias?: string  } 
+  | { name: 'accountType_gte', alias?: string  } 
+  | { name: 'accountType_contains', alias?: string  } 
+  | { name: 'accountType_not_contains', alias?: string  } 
+  | { name: 'accountType_starts_with', alias?: string  } 
+  | { name: 'accountType_not_starts_with', alias?: string  } 
+  | { name: 'accountType_ends_with', alias?: string  } 
+  | { name: 'accountType_not_ends_with', alias?: string  } 
+  | { name: 'ReviewList_every', alias?: string  } 
+  | { name: 'ReviewList_some', alias?: string  } 
+  | { name: 'ReviewList_none', alias?: string  } 
+  | { name: 'LikedReviews_every', alias?: string  } 
+  | { name: 'LikedReviews_some', alias?: string  } 
+  | { name: 'LikedReviews_none', alias?: string  } 
+  | { name: 'DislikedReviews_every', alias?: string  } 
+  | { name: 'DislikedReviews_some', alias?: string  } 
+  | { name: 'DislikedReviews_none', alias?: string  } 
+  | { name: 'Projects_every', alias?: string  } 
+  | { name: 'Projects_some', alias?: string  } 
+  | { name: 'Projects_none', alias?: string  } 
+  | { name: 'RatedProjects_every', alias?: string  } 
+  | { name: 'RatedProjects_some', alias?: string  } 
+  | { name: 'RatedProjects_none', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface ProjectWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  name?: string | null;
-  name_not?: string | null;
-  name_in?: string[];
-  name_not_in?: string[];
-  name_lt?: string | null;
-  name_lte?: string | null;
-  name_gt?: string | null;
-  name_gte?: string | null;
-  name_contains?: string | null;
-  name_not_contains?: string | null;
-  name_starts_with?: string | null;
-  name_not_starts_with?: string | null;
-  name_ends_with?: string | null;
-  name_not_ends_with?: string | null;
-  category?: string | null;
-  category_not?: string | null;
-  category_in?: string[];
-  category_not_in?: string[];
-  category_lt?: string | null;
-  category_lte?: string | null;
-  category_gt?: string | null;
-  category_gte?: string | null;
-  category_contains?: string | null;
-  category_not_contains?: string | null;
-  category_starts_with?: string | null;
-  category_not_starts_with?: string | null;
-  category_ends_with?: string | null;
-  category_not_ends_with?: string | null;
-  timestamp?: string | null;
-  timestamp_not?: string | null;
-  timestamp_in?: string[];
-  timestamp_not_in?: string[];
-  timestamp_lt?: string | null;
-  timestamp_lte?: string | null;
-  timestamp_gt?: string | null;
-  timestamp_gte?: string | null;
-  titleImg?: string | null;
-  titleImg_not?: string | null;
-  titleImg_in?: string[];
-  titleImg_not_in?: string[];
-  titleImg_lt?: string | null;
-  titleImg_lte?: string | null;
-  titleImg_gt?: string | null;
-  titleImg_gte?: string | null;
-  titleImg_contains?: string | null;
-  titleImg_not_contains?: string | null;
-  titleImg_starts_with?: string | null;
-  titleImg_not_starts_with?: string | null;
-  titleImg_ends_with?: string | null;
-  titleImg_not_ends_with?: string | null;
-  titleBlurb?: string | null;
-  titleBlurb_not?: string | null;
-  titleBlurb_in?: string[];
-  titleBlurb_not_in?: string[];
-  titleBlurb_lt?: string | null;
-  titleBlurb_lte?: string | null;
-  titleBlurb_gt?: string | null;
-  titleBlurb_gte?: string | null;
-  titleBlurb_contains?: string | null;
-  titleBlurb_not_contains?: string | null;
-  titleBlurb_starts_with?: string | null;
-  titleBlurb_not_starts_with?: string | null;
-  titleBlurb_ends_with?: string | null;
-  titleBlurb_not_ends_with?: string | null;
-  rating?: number | null;
-  rating_not?: number | null;
-  rating_in?: number[];
-  rating_not_in?: number[];
-  rating_lt?: number | null;
-  rating_lte?: number | null;
-  rating_gt?: number | null;
-  rating_gte?: number | null;
-  User_every?: UserWhereInput | null;
-  User_some?: UserWhereInput | null;
-  User_none?: UserWhereInput | null;
-  Steps_every?: StepArrayWhereInput | null;
-  Steps_some?: StepArrayWhereInput | null;
-  Steps_none?: StepArrayWhereInput | null;
-  Reviews_every?: ReviewWhereInput | null;
-  Reviews_some?: ReviewWhereInput | null;
-  Reviews_none?: ReviewWhereInput | null;
-  AND?: ProjectWhereInput[];
-  OR?: ProjectWhereInput[];
-  NOT?: ProjectWhereInput[];
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
+  key?: string | null
+  key_not?: string | null
+  key_in?: string[]
+  key_not_in?: string[]
+  key_lt?: string | null
+  key_lte?: string | null
+  key_gt?: string | null
+  key_gte?: string | null
+  key_contains?: string | null
+  key_not_contains?: string | null
+  key_starts_with?: string | null
+  key_not_starts_with?: string | null
+  key_ends_with?: string | null
+  key_not_ends_with?: string | null
+  category?: string | null
+  category_not?: string | null
+  category_in?: string[]
+  category_not_in?: string[]
+  category_lt?: string | null
+  category_lte?: string | null
+  category_gt?: string | null
+  category_gte?: string | null
+  category_contains?: string | null
+  category_not_contains?: string | null
+  category_starts_with?: string | null
+  category_not_starts_with?: string | null
+  category_ends_with?: string | null
+  category_not_ends_with?: string | null
+  timestamp?: string | null
+  timestamp_not?: string | null
+  timestamp_in?: string[]
+  timestamp_not_in?: string[]
+  timestamp_lt?: string | null
+  timestamp_lte?: string | null
+  timestamp_gt?: string | null
+  timestamp_gte?: string | null
+  titleImg?: string | null
+  titleImg_not?: string | null
+  titleImg_in?: string[]
+  titleImg_not_in?: string[]
+  titleImg_lt?: string | null
+  titleImg_lte?: string | null
+  titleImg_gt?: string | null
+  titleImg_gte?: string | null
+  titleImg_contains?: string | null
+  titleImg_not_contains?: string | null
+  titleImg_starts_with?: string | null
+  titleImg_not_starts_with?: string | null
+  titleImg_ends_with?: string | null
+  titleImg_not_ends_with?: string | null
+  titleBlurb?: string | null
+  titleBlurb_not?: string | null
+  titleBlurb_in?: string[]
+  titleBlurb_not_in?: string[]
+  titleBlurb_lt?: string | null
+  titleBlurb_lte?: string | null
+  titleBlurb_gt?: string | null
+  titleBlurb_gte?: string | null
+  titleBlurb_contains?: string | null
+  titleBlurb_not_contains?: string | null
+  titleBlurb_starts_with?: string | null
+  titleBlurb_not_starts_with?: string | null
+  titleBlurb_ends_with?: string | null
+  titleBlurb_not_ends_with?: string | null
+  rating?: number | null
+  rating_not?: number | null
+  rating_in?: number[]
+  rating_not_in?: number[]
+  rating_lt?: number | null
+  rating_lte?: number | null
+  rating_gt?: number | null
+  rating_gte?: number | null
+  steps?: string | null
+  steps_not?: string | null
+  steps_in?: string[]
+  steps_not_in?: string[]
+  steps_lt?: string | null
+  steps_lte?: string | null
+  steps_gt?: string | null
+  steps_gte?: string | null
+  steps_contains?: string | null
+  steps_not_contains?: string | null
+  steps_starts_with?: string | null
+  steps_not_starts_with?: string | null
+  steps_ends_with?: string | null
+  steps_not_ends_with?: string | null
+  User?: UserWhereInput | null
+  Reviews_every?: ReviewWhereInput | null
+  Reviews_some?: ReviewWhereInput | null
+  Reviews_none?: ReviewWhereInput | null
+  RatedBy_every?: UserWhereInput | null
+  RatedBy_some?: UserWhereInput | null
+  RatedBy_none?: UserWhereInput | null
+  AND?: ProjectWhereInput[]
+  OR?: ProjectWhereInput[]
+  NOT?: ProjectWhereInput[]
 }
 export type ProjectWhereInputInputObject =
   | Extract<keyof ProjectWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "name"; alias?: string }
-  | { name: "name_not"; alias?: string }
-  | { name: "name_in"; alias?: string }
-  | { name: "name_not_in"; alias?: string }
-  | { name: "name_lt"; alias?: string }
-  | { name: "name_lte"; alias?: string }
-  | { name: "name_gt"; alias?: string }
-  | { name: "name_gte"; alias?: string }
-  | { name: "name_contains"; alias?: string }
-  | { name: "name_not_contains"; alias?: string }
-  | { name: "name_starts_with"; alias?: string }
-  | { name: "name_not_starts_with"; alias?: string }
-  | { name: "name_ends_with"; alias?: string }
-  | { name: "name_not_ends_with"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "category_not"; alias?: string }
-  | { name: "category_in"; alias?: string }
-  | { name: "category_not_in"; alias?: string }
-  | { name: "category_lt"; alias?: string }
-  | { name: "category_lte"; alias?: string }
-  | { name: "category_gt"; alias?: string }
-  | { name: "category_gte"; alias?: string }
-  | { name: "category_contains"; alias?: string }
-  | { name: "category_not_contains"; alias?: string }
-  | { name: "category_starts_with"; alias?: string }
-  | { name: "category_not_starts_with"; alias?: string }
-  | { name: "category_ends_with"; alias?: string }
-  | { name: "category_not_ends_with"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "timestamp_not"; alias?: string }
-  | { name: "timestamp_in"; alias?: string }
-  | { name: "timestamp_not_in"; alias?: string }
-  | { name: "timestamp_lt"; alias?: string }
-  | { name: "timestamp_lte"; alias?: string }
-  | { name: "timestamp_gt"; alias?: string }
-  | { name: "timestamp_gte"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleImg_not"; alias?: string }
-  | { name: "titleImg_in"; alias?: string }
-  | { name: "titleImg_not_in"; alias?: string }
-  | { name: "titleImg_lt"; alias?: string }
-  | { name: "titleImg_lte"; alias?: string }
-  | { name: "titleImg_gt"; alias?: string }
-  | { name: "titleImg_gte"; alias?: string }
-  | { name: "titleImg_contains"; alias?: string }
-  | { name: "titleImg_not_contains"; alias?: string }
-  | { name: "titleImg_starts_with"; alias?: string }
-  | { name: "titleImg_not_starts_with"; alias?: string }
-  | { name: "titleImg_ends_with"; alias?: string }
-  | { name: "titleImg_not_ends_with"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "titleBlurb_not"; alias?: string }
-  | { name: "titleBlurb_in"; alias?: string }
-  | { name: "titleBlurb_not_in"; alias?: string }
-  | { name: "titleBlurb_lt"; alias?: string }
-  | { name: "titleBlurb_lte"; alias?: string }
-  | { name: "titleBlurb_gt"; alias?: string }
-  | { name: "titleBlurb_gte"; alias?: string }
-  | { name: "titleBlurb_contains"; alias?: string }
-  | { name: "titleBlurb_not_contains"; alias?: string }
-  | { name: "titleBlurb_starts_with"; alias?: string }
-  | { name: "titleBlurb_not_starts_with"; alias?: string }
-  | { name: "titleBlurb_ends_with"; alias?: string }
-  | { name: "titleBlurb_not_ends_with"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "rating_not"; alias?: string }
-  | { name: "rating_in"; alias?: string }
-  | { name: "rating_not_in"; alias?: string }
-  | { name: "rating_lt"; alias?: string }
-  | { name: "rating_lte"; alias?: string }
-  | { name: "rating_gt"; alias?: string }
-  | { name: "rating_gte"; alias?: string }
-  | { name: "User_every"; alias?: string }
-  | { name: "User_some"; alias?: string }
-  | { name: "User_none"; alias?: string }
-  | { name: "Steps_every"; alias?: string }
-  | { name: "Steps_some"; alias?: string }
-  | { name: "Steps_none"; alias?: string }
-  | { name: "Reviews_every"; alias?: string }
-  | { name: "Reviews_some"; alias?: string }
-  | { name: "Reviews_none"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface StepArrayWhereInput {
-  textBlurbs?: string | null;
-  textBlurbs_not?: string | null;
-  textBlurbs_in?: string[];
-  textBlurbs_not_in?: string[];
-  textBlurbs_lt?: string | null;
-  textBlurbs_lte?: string | null;
-  textBlurbs_gt?: string | null;
-  textBlurbs_gte?: string | null;
-  textBlurbs_contains?: string | null;
-  textBlurbs_not_contains?: string | null;
-  textBlurbs_starts_with?: string | null;
-  textBlurbs_not_starts_with?: string | null;
-  textBlurbs_ends_with?: string | null;
-  textBlurbs_not_ends_with?: string | null;
-  imgUrls?: string | null;
-  imgUrls_not?: string | null;
-  imgUrls_in?: string[];
-  imgUrls_not_in?: string[];
-  imgUrls_lt?: string | null;
-  imgUrls_lte?: string | null;
-  imgUrls_gt?: string | null;
-  imgUrls_gte?: string | null;
-  imgUrls_contains?: string | null;
-  imgUrls_not_contains?: string | null;
-  imgUrls_starts_with?: string | null;
-  imgUrls_not_starts_with?: string | null;
-  imgUrls_ends_with?: string | null;
-  imgUrls_not_ends_with?: string | null;
-  AND?: StepArrayWhereInput[];
-  OR?: StepArrayWhereInput[];
-  NOT?: StepArrayWhereInput[];
-}
-export type StepArrayWhereInputInputObject =
-  | Extract<keyof StepArrayWhereInput, string>
-  | { name: "textBlurbs"; alias?: string }
-  | { name: "textBlurbs_not"; alias?: string }
-  | { name: "textBlurbs_in"; alias?: string }
-  | { name: "textBlurbs_not_in"; alias?: string }
-  | { name: "textBlurbs_lt"; alias?: string }
-  | { name: "textBlurbs_lte"; alias?: string }
-  | { name: "textBlurbs_gt"; alias?: string }
-  | { name: "textBlurbs_gte"; alias?: string }
-  | { name: "textBlurbs_contains"; alias?: string }
-  | { name: "textBlurbs_not_contains"; alias?: string }
-  | { name: "textBlurbs_starts_with"; alias?: string }
-  | { name: "textBlurbs_not_starts_with"; alias?: string }
-  | { name: "textBlurbs_ends_with"; alias?: string }
-  | { name: "textBlurbs_not_ends_with"; alias?: string }
-  | { name: "imgUrls"; alias?: string }
-  | { name: "imgUrls_not"; alias?: string }
-  | { name: "imgUrls_in"; alias?: string }
-  | { name: "imgUrls_not_in"; alias?: string }
-  | { name: "imgUrls_lt"; alias?: string }
-  | { name: "imgUrls_lte"; alias?: string }
-  | { name: "imgUrls_gt"; alias?: string }
-  | { name: "imgUrls_gte"; alias?: string }
-  | { name: "imgUrls_contains"; alias?: string }
-  | { name: "imgUrls_not_contains"; alias?: string }
-  | { name: "imgUrls_starts_with"; alias?: string }
-  | { name: "imgUrls_not_starts_with"; alias?: string }
-  | { name: "imgUrls_ends_with"; alias?: string }
-  | { name: "imgUrls_not_ends_with"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'key_not', alias?: string  } 
+  | { name: 'key_in', alias?: string  } 
+  | { name: 'key_not_in', alias?: string  } 
+  | { name: 'key_lt', alias?: string  } 
+  | { name: 'key_lte', alias?: string  } 
+  | { name: 'key_gt', alias?: string  } 
+  | { name: 'key_gte', alias?: string  } 
+  | { name: 'key_contains', alias?: string  } 
+  | { name: 'key_not_contains', alias?: string  } 
+  | { name: 'key_starts_with', alias?: string  } 
+  | { name: 'key_not_starts_with', alias?: string  } 
+  | { name: 'key_ends_with', alias?: string  } 
+  | { name: 'key_not_ends_with', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'category_not', alias?: string  } 
+  | { name: 'category_in', alias?: string  } 
+  | { name: 'category_not_in', alias?: string  } 
+  | { name: 'category_lt', alias?: string  } 
+  | { name: 'category_lte', alias?: string  } 
+  | { name: 'category_gt', alias?: string  } 
+  | { name: 'category_gte', alias?: string  } 
+  | { name: 'category_contains', alias?: string  } 
+  | { name: 'category_not_contains', alias?: string  } 
+  | { name: 'category_starts_with', alias?: string  } 
+  | { name: 'category_not_starts_with', alias?: string  } 
+  | { name: 'category_ends_with', alias?: string  } 
+  | { name: 'category_not_ends_with', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'timestamp_not', alias?: string  } 
+  | { name: 'timestamp_in', alias?: string  } 
+  | { name: 'timestamp_not_in', alias?: string  } 
+  | { name: 'timestamp_lt', alias?: string  } 
+  | { name: 'timestamp_lte', alias?: string  } 
+  | { name: 'timestamp_gt', alias?: string  } 
+  | { name: 'timestamp_gte', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleImg_not', alias?: string  } 
+  | { name: 'titleImg_in', alias?: string  } 
+  | { name: 'titleImg_not_in', alias?: string  } 
+  | { name: 'titleImg_lt', alias?: string  } 
+  | { name: 'titleImg_lte', alias?: string  } 
+  | { name: 'titleImg_gt', alias?: string  } 
+  | { name: 'titleImg_gte', alias?: string  } 
+  | { name: 'titleImg_contains', alias?: string  } 
+  | { name: 'titleImg_not_contains', alias?: string  } 
+  | { name: 'titleImg_starts_with', alias?: string  } 
+  | { name: 'titleImg_not_starts_with', alias?: string  } 
+  | { name: 'titleImg_ends_with', alias?: string  } 
+  | { name: 'titleImg_not_ends_with', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'titleBlurb_not', alias?: string  } 
+  | { name: 'titleBlurb_in', alias?: string  } 
+  | { name: 'titleBlurb_not_in', alias?: string  } 
+  | { name: 'titleBlurb_lt', alias?: string  } 
+  | { name: 'titleBlurb_lte', alias?: string  } 
+  | { name: 'titleBlurb_gt', alias?: string  } 
+  | { name: 'titleBlurb_gte', alias?: string  } 
+  | { name: 'titleBlurb_contains', alias?: string  } 
+  | { name: 'titleBlurb_not_contains', alias?: string  } 
+  | { name: 'titleBlurb_starts_with', alias?: string  } 
+  | { name: 'titleBlurb_not_starts_with', alias?: string  } 
+  | { name: 'titleBlurb_ends_with', alias?: string  } 
+  | { name: 'titleBlurb_not_ends_with', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'rating_not', alias?: string  } 
+  | { name: 'rating_in', alias?: string  } 
+  | { name: 'rating_not_in', alias?: string  } 
+  | { name: 'rating_lt', alias?: string  } 
+  | { name: 'rating_lte', alias?: string  } 
+  | { name: 'rating_gt', alias?: string  } 
+  | { name: 'rating_gte', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'steps_not', alias?: string  } 
+  | { name: 'steps_in', alias?: string  } 
+  | { name: 'steps_not_in', alias?: string  } 
+  | { name: 'steps_lt', alias?: string  } 
+  | { name: 'steps_lte', alias?: string  } 
+  | { name: 'steps_gt', alias?: string  } 
+  | { name: 'steps_gte', alias?: string  } 
+  | { name: 'steps_contains', alias?: string  } 
+  | { name: 'steps_not_contains', alias?: string  } 
+  | { name: 'steps_starts_with', alias?: string  } 
+  | { name: 'steps_not_starts_with', alias?: string  } 
+  | { name: 'steps_ends_with', alias?: string  } 
+  | { name: 'steps_not_ends_with', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'Reviews_every', alias?: string  } 
+  | { name: 'Reviews_some', alias?: string  } 
+  | { name: 'Reviews_none', alias?: string  } 
+  | { name: 'RatedBy_every', alias?: string  } 
+  | { name: 'RatedBy_some', alias?: string  } 
+  | { name: 'RatedBy_none', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface ProjectWhereUniqueInput {
-  id?: string | null;
+  id?: string | null
+  key?: string | null
 }
 export type ProjectWhereUniqueInputInputObject =
   | Extract<keyof ProjectWhereUniqueInput, string>
-  | { name: "id"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  
 export interface ReviewWhereUniqueInput {
-  id?: string | null;
+  id?: string | null
+  rKey?: string | null
 }
 export type ReviewWhereUniqueInputInputObject =
   | Extract<keyof ReviewWhereUniqueInput, string>
-  | { name: "id"; alias?: string };
-
-export interface CommentWhereUniqueInput {
-  id?: string | null;
-}
-export type CommentWhereUniqueInputInputObject =
-  | Extract<keyof CommentWhereUniqueInput, string>
-  | { name: "id"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  
 export interface UserCreateInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string;
-  password?: string;
-  email?: string;
-  userProfileImage?: string | null;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput | null;
-  Projects?: ProjectCreateManyWithoutUserInput | null;
-  privilege?: string;
-  stripeId?: string | null;
-  accountType?: string | null;
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewCreateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput | null
+  Projects?: ProjectCreateManyWithoutUserInput | null
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput | null
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "ReviewList"; alias?: string }
-  | { name: "Projects"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
 export interface ReviewCreateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[];
-  connect?: ReviewWhereUniqueInput[];
+  create?: ReviewCreateWithoutAuthorInput[]
+  connect?: ReviewWhereUniqueInput[]
 }
 export type ReviewCreateManyWithoutAuthorInputInputObject =
   | Extract<keyof ReviewCreateManyWithoutAuthorInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
 export interface ReviewCreateWithoutAuthorInput {
-  title?: string;
-  text?: string;
-  editedAt?: string;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-  Comments?: CommentCreateManyInput | null;
+  title?: string
+  rKey?: string | null
+  text?: string
+  editedAt?: string
+  thumbsUp?: number | null
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
+  ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
 export type ReviewCreateWithoutAuthorInputInputObject =
   | Extract<keyof ReviewCreateWithoutAuthorInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "Comments"; alias?: string };
-
-export interface CommentCreateManyInput {
-  create?: CommentCreateInput[];
-  connect?: CommentWhereUniqueInput[];
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
+export interface UserCreateManyWithoutLikedReviewsInput {
+  create?: UserCreateWithoutLikedReviewsInput[]
+  connect?: UserWhereUniqueInput[]
 }
-export type CommentCreateManyInputInputObject =
-  | Extract<keyof CommentCreateManyInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface CommentCreateInput {
-  editedAt?: string;
-  text?: string;
-  User?: UserCreateOneInput;
+export type UserCreateManyWithoutLikedReviewsInputInputObject =
+  | Extract<keyof UserCreateManyWithoutLikedReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserCreateWithoutLikedReviewsInput {
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewCreateManyWithoutAuthorInput | null
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput | null
+  Projects?: ProjectCreateManyWithoutUserInput | null
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput | null
 }
-export type CommentCreateInputInputObject =
-  | Extract<keyof CommentCreateInput, string>
-  | { name: "editedAt"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "User"; alias?: string };
-
-export interface UserCreateOneInput {
-  create?: UserCreateInput | null;
-  connect?: UserWhereUniqueInput | null;
+export type UserCreateWithoutLikedReviewsInputInputObject =
+  | Extract<keyof UserCreateWithoutLikedReviewsInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ReviewCreateManyWithoutDislikedByInput {
+  create?: ReviewCreateWithoutDislikedByInput[]
+  connect?: ReviewWhereUniqueInput[]
 }
-export type UserCreateOneInputInputObject =
-  | Extract<keyof UserCreateOneInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface ProjectCreateManyWithoutUserInput {
-  create?: ProjectCreateWithoutUserInput[];
-  connect?: ProjectWhereUniqueInput[];
+export type ReviewCreateManyWithoutDislikedByInputInputObject =
+  | Extract<keyof ReviewCreateManyWithoutDislikedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ReviewCreateWithoutDislikedByInput {
+  title?: string
+  rKey?: string | null
+  text?: string
+  editedAt?: string
+  thumbsUp?: number | null
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number
+  Author?: UserCreateOneWithoutReviewListInput
+  ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
-export type ProjectCreateManyWithoutUserInputInputObject =
-  | Extract<keyof ProjectCreateManyWithoutUserInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface ProjectCreateWithoutUserInput {
-  name?: string;
-  category?: string;
-  timestamp?: string;
-  titleImg?: string;
-  titleBlurb?: string;
-  rating?: number | null;
-  Steps?: StepArrayCreateManyInput | null;
-  Reviews?: ReviewCreateManyInput | null;
-}
-export type ProjectCreateWithoutUserInputInputObject =
-  | Extract<keyof ProjectCreateWithoutUserInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "Steps"; alias?: string }
-  | { name: "Reviews"; alias?: string };
-
-export interface StepArrayCreateManyInput {
-  create?: StepArrayCreateInput[];
-}
-export type StepArrayCreateManyInputInputObject =
-  | Extract<keyof StepArrayCreateManyInput, string>
-  | { name: "create"; alias?: string };
-
-export interface StepArrayCreateInput {
-  textBlurbs?: string | null;
-  imgUrls?: string | null;
-}
-export type StepArrayCreateInputInputObject =
-  | Extract<keyof StepArrayCreateInput, string>
-  | { name: "textBlurbs"; alias?: string }
-  | { name: "imgUrls"; alias?: string };
-
-export interface ReviewCreateManyInput {
-  create?: ReviewCreateInput[];
-  connect?: ReviewWhereUniqueInput[];
-}
-export type ReviewCreateManyInputInputObject =
-  | Extract<keyof ReviewCreateManyInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface ReviewCreateInput {
-  title?: string;
-  text?: string;
-  editedAt?: string;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-  Comments?: CommentCreateManyInput | null;
-  Author?: UserCreateOneWithoutReviewListInput;
-}
-export type ReviewCreateInputInputObject =
-  | Extract<keyof ReviewCreateInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "Comments"; alias?: string }
-  | { name: "Author"; alias?: string };
-
+export type ReviewCreateWithoutDislikedByInputInputObject =
+  | Extract<keyof ReviewCreateWithoutDislikedByInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
 export interface UserCreateOneWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput | null;
-  connect?: UserWhereUniqueInput | null;
+  create?: UserCreateWithoutReviewListInput | null
+  connect?: UserWhereUniqueInput | null
 }
 export type UserCreateOneWithoutReviewListInputInputObject =
   | Extract<keyof UserCreateOneWithoutReviewListInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
 export interface UserCreateWithoutReviewListInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string;
-  password?: string;
-  email?: string;
-  userProfileImage?: string | null;
-  Projects?: ProjectCreateManyWithoutUserInput | null;
-  privilege?: string;
-  stripeId?: string | null;
-  accountType?: string | null;
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput | null
+  Projects?: ProjectCreateManyWithoutUserInput | null
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput | null
 }
 export type UserCreateWithoutReviewListInputInputObject =
   | Extract<keyof UserCreateWithoutReviewListInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "Projects"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface UserUpdateInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null;
-  Projects?: ProjectUpdateManyWithoutUserInput | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ReviewCreateManyWithoutLikedByInput {
+  create?: ReviewCreateWithoutLikedByInput[]
+  connect?: ReviewWhereUniqueInput[]
 }
-export type UserUpdateInputInputObject =
-  | Extract<keyof UserUpdateInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "ReviewList"; alias?: string }
-  | { name: "Projects"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface ReviewUpdateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[];
-  delete?: ReviewWhereUniqueInput[];
-  connect?: ReviewWhereUniqueInput[];
-  set?: ReviewWhereUniqueInput[];
-  disconnect?: ReviewWhereUniqueInput[];
-  update?: ReviewUpdateWithWhereUniqueWithoutAuthorInput[];
-  upsert?: ReviewUpsertWithWhereUniqueWithoutAuthorInput[];
-  deleteMany?: ReviewScalarWhereInput[];
-  updateMany?: ReviewUpdateManyWithWhereNestedInput[];
+export type ReviewCreateManyWithoutLikedByInputInputObject =
+  | Extract<keyof ReviewCreateManyWithoutLikedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ReviewCreateWithoutLikedByInput {
+  title?: string
+  rKey?: string | null
+  text?: string
+  editedAt?: string
+  thumbsUp?: number | null
+  thumbsDown?: number
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
+  Author?: UserCreateOneWithoutReviewListInput
+  ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
-export type ReviewUpdateManyWithoutAuthorInputInputObject =
-  | Extract<keyof ReviewUpdateManyWithoutAuthorInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "delete"; alias?: string }
-  | { name: "connect"; alias?: string }
-  | { name: "set"; alias?: string }
-  | { name: "disconnect"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
-  where?: ReviewWhereUniqueInput;
-  data?: ReviewUpdateWithoutAuthorDataInput;
+export type ReviewCreateWithoutLikedByInputInputObject =
+  | Extract<keyof ReviewCreateWithoutLikedByInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
+export interface UserCreateManyWithoutDislikedReviewsInput {
+  create?: UserCreateWithoutDislikedReviewsInput[]
+  connect?: UserWhereUniqueInput[]
 }
-export type ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject =
-  | Extract<keyof ReviewUpdateWithWhereUniqueWithoutAuthorInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface ReviewUpdateWithoutAuthorDataInput {
-  title?: string | null;
-  text?: string | null;
-  editedAt?: string | null;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-  Comments?: CommentUpdateManyInput | null;
+export type UserCreateManyWithoutDislikedReviewsInputInputObject =
+  | Extract<keyof UserCreateManyWithoutDislikedReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserCreateWithoutDislikedReviewsInput {
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewCreateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput | null
+  Projects?: ProjectCreateManyWithoutUserInput | null
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput | null
 }
-export type ReviewUpdateWithoutAuthorDataInputInputObject =
-  | Extract<keyof ReviewUpdateWithoutAuthorDataInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "Comments"; alias?: string };
-
-export interface CommentUpdateManyInput {
-  create?: CommentCreateInput[];
-  update?: CommentUpdateWithWhereUniqueNestedInput[];
-  upsert?: CommentUpsertWithWhereUniqueNestedInput[];
-  delete?: CommentWhereUniqueInput[];
-  connect?: CommentWhereUniqueInput[];
-  set?: CommentWhereUniqueInput[];
-  disconnect?: CommentWhereUniqueInput[];
-  deleteMany?: CommentScalarWhereInput[];
-  updateMany?: CommentUpdateManyWithWhereNestedInput[];
+export type UserCreateWithoutDislikedReviewsInputInputObject =
+  | Extract<keyof UserCreateWithoutDislikedReviewsInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ProjectCreateManyWithoutUserInput {
+  create?: ProjectCreateWithoutUserInput[]
+  connect?: ProjectWhereUniqueInput[]
 }
-export type CommentUpdateManyInputInputObject =
-  | Extract<keyof CommentUpdateManyInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "delete"; alias?: string }
-  | { name: "connect"; alias?: string }
-  | { name: "set"; alias?: string }
-  | { name: "disconnect"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface CommentUpdateWithWhereUniqueNestedInput {
-  where?: CommentWhereUniqueInput;
-  data?: CommentUpdateDataInput;
+export type ProjectCreateManyWithoutUserInputInputObject =
+  | Extract<keyof ProjectCreateManyWithoutUserInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ProjectCreateWithoutUserInput {
+  name?: string
+  key?: string | null
+  category?: string
+  timestamp?: string
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput | null
 }
-export type CommentUpdateWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof CommentUpdateWithWhereUniqueNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface CommentUpdateDataInput {
-  editedAt?: string | null;
-  text?: string | null;
-  User?: UserUpdateOneRequiredInput | null;
+export type ProjectCreateWithoutUserInputInputObject =
+  | Extract<keyof ProjectCreateWithoutUserInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
+export interface ReviewCreateManyWithoutProjectReviewedInput {
+  create?: ReviewCreateWithoutProjectReviewedInput[]
+  connect?: ReviewWhereUniqueInput[]
 }
-export type CommentUpdateDataInputInputObject =
-  | Extract<keyof CommentUpdateDataInput, string>
-  | { name: "editedAt"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "User"; alias?: string };
-
-export interface UserUpdateOneRequiredInput {
-  create?: UserCreateInput | null;
-  update?: UserUpdateDataInput | null;
-  upsert?: UserUpsertNestedInput | null;
-  connect?: UserWhereUniqueInput | null;
+export type ReviewCreateManyWithoutProjectReviewedInputInputObject =
+  | Extract<keyof ReviewCreateManyWithoutProjectReviewedInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ReviewCreateWithoutProjectReviewedInput {
+  title?: string
+  rKey?: string | null
+  text?: string
+  editedAt?: string
+  thumbsUp?: number | null
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
+  Author?: UserCreateOneWithoutReviewListInput
 }
-export type UserUpdateOneRequiredInputInputObject =
-  | Extract<keyof UserUpdateOneRequiredInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface UserUpdateDataInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null;
-  Projects?: ProjectUpdateManyWithoutUserInput | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
+export type ReviewCreateWithoutProjectReviewedInputInputObject =
+  | Extract<keyof ReviewCreateWithoutProjectReviewedInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  
+export interface UserCreateManyWithoutRatedProjectsInput {
+  create?: UserCreateWithoutRatedProjectsInput[]
+  connect?: UserWhereUniqueInput[]
 }
-export type UserUpdateDataInputInputObject =
-  | Extract<keyof UserUpdateDataInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "ReviewList"; alias?: string }
-  | { name: "Projects"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface ProjectUpdateManyWithoutUserInput {
-  create?: ProjectCreateWithoutUserInput[];
-  delete?: ProjectWhereUniqueInput[];
-  connect?: ProjectWhereUniqueInput[];
-  set?: ProjectWhereUniqueInput[];
-  disconnect?: ProjectWhereUniqueInput[];
-  update?: ProjectUpdateWithWhereUniqueWithoutUserInput[];
-  upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput[];
-  deleteMany?: ProjectScalarWhereInput[];
-  updateMany?: ProjectUpdateManyWithWhereNestedInput[];
+export type UserCreateManyWithoutRatedProjectsInputInputObject =
+  | Extract<keyof UserCreateManyWithoutRatedProjectsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserCreateWithoutRatedProjectsInput {
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewCreateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput | null
+  Projects?: ProjectCreateManyWithoutUserInput | null
 }
-export type ProjectUpdateManyWithoutUserInputInputObject =
-  | Extract<keyof ProjectUpdateManyWithoutUserInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "delete"; alias?: string }
-  | { name: "connect"; alias?: string }
-  | { name: "set"; alias?: string }
-  | { name: "disconnect"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
-  where?: ProjectWhereUniqueInput;
-  data?: ProjectUpdateWithoutUserDataInput;
+export type UserCreateWithoutRatedProjectsInputInputObject =
+  | Extract<keyof UserCreateWithoutRatedProjectsInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  
+export interface ProjectCreateManyWithoutRatedByInput {
+  create?: ProjectCreateWithoutRatedByInput[]
+  connect?: ProjectWhereUniqueInput[]
 }
-export type ProjectUpdateWithWhereUniqueWithoutUserInputInputObject =
-  | Extract<keyof ProjectUpdateWithWhereUniqueWithoutUserInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface ProjectUpdateWithoutUserDataInput {
-  name?: string | null;
-  category?: string | null;
-  timestamp?: string | null;
-  titleImg?: string | null;
-  titleBlurb?: string | null;
-  rating?: number | null;
-  Steps?: StepArrayUpdateManyInput | null;
-  Reviews?: ReviewUpdateManyInput | null;
+export type ProjectCreateManyWithoutRatedByInputInputObject =
+  | Extract<keyof ProjectCreateManyWithoutRatedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ProjectCreateWithoutRatedByInput {
+  name?: string
+  key?: string | null
+  category?: string
+  timestamp?: string
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserCreateOneWithoutProjectsInput
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
 }
-export type ProjectUpdateWithoutUserDataInputInputObject =
-  | Extract<keyof ProjectUpdateWithoutUserDataInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "Steps"; alias?: string }
-  | { name: "Reviews"; alias?: string };
-
-export interface StepArrayUpdateManyInput {
-  create?: StepArrayCreateInput[];
-  deleteMany?: StepArrayScalarWhereInput[];
-  updateMany?: StepArrayUpdateManyWithWhereNestedInput[];
+export type ProjectCreateWithoutRatedByInputInputObject =
+  | Extract<keyof ProjectCreateWithoutRatedByInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  
+export interface UserCreateOneWithoutProjectsInput {
+  create?: UserCreateWithoutProjectsInput | null
+  connect?: UserWhereUniqueInput | null
 }
-export type StepArrayUpdateManyInputInputObject =
-  | Extract<keyof StepArrayUpdateManyInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface StepArrayScalarWhereInput {
-  textBlurbs?: string | null;
-  textBlurbs_not?: string | null;
-  textBlurbs_in?: string[];
-  textBlurbs_not_in?: string[];
-  textBlurbs_lt?: string | null;
-  textBlurbs_lte?: string | null;
-  textBlurbs_gt?: string | null;
-  textBlurbs_gte?: string | null;
-  textBlurbs_contains?: string | null;
-  textBlurbs_not_contains?: string | null;
-  textBlurbs_starts_with?: string | null;
-  textBlurbs_not_starts_with?: string | null;
-  textBlurbs_ends_with?: string | null;
-  textBlurbs_not_ends_with?: string | null;
-  imgUrls?: string | null;
-  imgUrls_not?: string | null;
-  imgUrls_in?: string[];
-  imgUrls_not_in?: string[];
-  imgUrls_lt?: string | null;
-  imgUrls_lte?: string | null;
-  imgUrls_gt?: string | null;
-  imgUrls_gte?: string | null;
-  imgUrls_contains?: string | null;
-  imgUrls_not_contains?: string | null;
-  imgUrls_starts_with?: string | null;
-  imgUrls_not_starts_with?: string | null;
-  imgUrls_ends_with?: string | null;
-  imgUrls_not_ends_with?: string | null;
-  AND?: StepArrayScalarWhereInput[];
-  OR?: StepArrayScalarWhereInput[];
-  NOT?: StepArrayScalarWhereInput[];
-}
-export type StepArrayScalarWhereInputInputObject =
-  | Extract<keyof StepArrayScalarWhereInput, string>
-  | { name: "textBlurbs"; alias?: string }
-  | { name: "textBlurbs_not"; alias?: string }
-  | { name: "textBlurbs_in"; alias?: string }
-  | { name: "textBlurbs_not_in"; alias?: string }
-  | { name: "textBlurbs_lt"; alias?: string }
-  | { name: "textBlurbs_lte"; alias?: string }
-  | { name: "textBlurbs_gt"; alias?: string }
-  | { name: "textBlurbs_gte"; alias?: string }
-  | { name: "textBlurbs_contains"; alias?: string }
-  | { name: "textBlurbs_not_contains"; alias?: string }
-  | { name: "textBlurbs_starts_with"; alias?: string }
-  | { name: "textBlurbs_not_starts_with"; alias?: string }
-  | { name: "textBlurbs_ends_with"; alias?: string }
-  | { name: "textBlurbs_not_ends_with"; alias?: string }
-  | { name: "imgUrls"; alias?: string }
-  | { name: "imgUrls_not"; alias?: string }
-  | { name: "imgUrls_in"; alias?: string }
-  | { name: "imgUrls_not_in"; alias?: string }
-  | { name: "imgUrls_lt"; alias?: string }
-  | { name: "imgUrls_lte"; alias?: string }
-  | { name: "imgUrls_gt"; alias?: string }
-  | { name: "imgUrls_gte"; alias?: string }
-  | { name: "imgUrls_contains"; alias?: string }
-  | { name: "imgUrls_not_contains"; alias?: string }
-  | { name: "imgUrls_starts_with"; alias?: string }
-  | { name: "imgUrls_not_starts_with"; alias?: string }
-  | { name: "imgUrls_ends_with"; alias?: string }
-  | { name: "imgUrls_not_ends_with"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface StepArrayUpdateManyWithWhereNestedInput {
-  where?: StepArrayScalarWhereInput;
-  data?: StepArrayUpdateManyDataInput;
-}
-export type StepArrayUpdateManyWithWhereNestedInputInputObject =
-  | Extract<keyof StepArrayUpdateManyWithWhereNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface StepArrayUpdateManyDataInput {
-  textBlurbs?: string | null;
-  imgUrls?: string | null;
-}
-export type StepArrayUpdateManyDataInputInputObject =
-  | Extract<keyof StepArrayUpdateManyDataInput, string>
-  | { name: "textBlurbs"; alias?: string }
-  | { name: "imgUrls"; alias?: string };
-
-export interface ReviewUpdateManyInput {
-  create?: ReviewCreateInput[];
-  update?: ReviewUpdateWithWhereUniqueNestedInput[];
-  upsert?: ReviewUpsertWithWhereUniqueNestedInput[];
-  delete?: ReviewWhereUniqueInput[];
-  connect?: ReviewWhereUniqueInput[];
-  set?: ReviewWhereUniqueInput[];
-  disconnect?: ReviewWhereUniqueInput[];
-  deleteMany?: ReviewScalarWhereInput[];
-  updateMany?: ReviewUpdateManyWithWhereNestedInput[];
-}
-export type ReviewUpdateManyInputInputObject =
-  | Extract<keyof ReviewUpdateManyInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "delete"; alias?: string }
-  | { name: "connect"; alias?: string }
-  | { name: "set"; alias?: string }
-  | { name: "disconnect"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface ReviewUpdateWithWhereUniqueNestedInput {
-  where?: ReviewWhereUniqueInput;
-  data?: ReviewUpdateDataInput;
-}
-export type ReviewUpdateWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof ReviewUpdateWithWhereUniqueNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface ReviewUpdateDataInput {
-  title?: string | null;
-  text?: string | null;
-  editedAt?: string | null;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-  Comments?: CommentUpdateManyInput | null;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput | null;
-}
-export type ReviewUpdateDataInputInputObject =
-  | Extract<keyof ReviewUpdateDataInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "Comments"; alias?: string }
-  | { name: "Author"; alias?: string };
-
-export interface UserUpdateOneRequiredWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput | null;
-  update?: UserUpdateWithoutReviewListDataInput | null;
-  upsert?: UserUpsertWithoutReviewListInput | null;
-  connect?: UserWhereUniqueInput | null;
-}
-export type UserUpdateOneRequiredWithoutReviewListInputInputObject =
-  | Extract<keyof UserUpdateOneRequiredWithoutReviewListInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "connect"; alias?: string };
-
-export interface UserUpdateWithoutReviewListDataInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  Projects?: ProjectUpdateManyWithoutUserInput | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
-}
-export type UserUpdateWithoutReviewListDataInputInputObject =
-  | Extract<keyof UserUpdateWithoutReviewListDataInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "Projects"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface UserUpsertWithoutReviewListInput {
-  update?: UserUpdateWithoutReviewListDataInput;
-  create?: UserCreateWithoutReviewListInput;
-}
-export type UserUpsertWithoutReviewListInputInputObject =
-  | Extract<keyof UserUpsertWithoutReviewListInput, string>
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface ReviewUpsertWithWhereUniqueNestedInput {
-  where?: ReviewWhereUniqueInput;
-  update?: ReviewUpdateDataInput;
-  create?: ReviewCreateInput;
-}
-export type ReviewUpsertWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof ReviewUpsertWithWhereUniqueNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface ReviewScalarWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  title?: string | null;
-  title_not?: string | null;
-  title_in?: string[];
-  title_not_in?: string[];
-  title_lt?: string | null;
-  title_lte?: string | null;
-  title_gt?: string | null;
-  title_gte?: string | null;
-  title_contains?: string | null;
-  title_not_contains?: string | null;
-  title_starts_with?: string | null;
-  title_not_starts_with?: string | null;
-  title_ends_with?: string | null;
-  title_not_ends_with?: string | null;
-  text?: string | null;
-  text_not?: string | null;
-  text_in?: string[];
-  text_not_in?: string[];
-  text_lt?: string | null;
-  text_lte?: string | null;
-  text_gt?: string | null;
-  text_gte?: string | null;
-  text_contains?: string | null;
-  text_not_contains?: string | null;
-  text_starts_with?: string | null;
-  text_not_starts_with?: string | null;
-  text_ends_with?: string | null;
-  text_not_ends_with?: string | null;
-  editedAt?: string | null;
-  editedAt_not?: string | null;
-  editedAt_in?: string[];
-  editedAt_not_in?: string[];
-  editedAt_lt?: string | null;
-  editedAt_lte?: string | null;
-  editedAt_gt?: string | null;
-  editedAt_gte?: string | null;
-  editedAt_contains?: string | null;
-  editedAt_not_contains?: string | null;
-  editedAt_starts_with?: string | null;
-  editedAt_not_starts_with?: string | null;
-  editedAt_ends_with?: string | null;
-  editedAt_not_ends_with?: string | null;
-  rating?: number | null;
-  rating_not?: number | null;
-  rating_in?: number[];
-  rating_not_in?: number[];
-  rating_lt?: number | null;
-  rating_lte?: number | null;
-  rating_gt?: number | null;
-  rating_gte?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsUp_not?: number | null;
-  reviewThumbsUp_in?: number[];
-  reviewThumbsUp_not_in?: number[];
-  reviewThumbsUp_lt?: number | null;
-  reviewThumbsUp_lte?: number | null;
-  reviewThumbsUp_gt?: number | null;
-  reviewThumbsUp_gte?: number | null;
-  reviewThumbsDown?: number | null;
-  reviewThumbsDown_not?: number | null;
-  reviewThumbsDown_in?: number[];
-  reviewThumbsDown_not_in?: number[];
-  reviewThumbsDown_lt?: number | null;
-  reviewThumbsDown_lte?: number | null;
-  reviewThumbsDown_gt?: number | null;
-  reviewThumbsDown_gte?: number | null;
-  AND?: ReviewScalarWhereInput[];
-  OR?: ReviewScalarWhereInput[];
-  NOT?: ReviewScalarWhereInput[];
-}
-export type ReviewScalarWhereInputInputObject =
-  | Extract<keyof ReviewScalarWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "title"; alias?: string }
-  | { name: "title_not"; alias?: string }
-  | { name: "title_in"; alias?: string }
-  | { name: "title_not_in"; alias?: string }
-  | { name: "title_lt"; alias?: string }
-  | { name: "title_lte"; alias?: string }
-  | { name: "title_gt"; alias?: string }
-  | { name: "title_gte"; alias?: string }
-  | { name: "title_contains"; alias?: string }
-  | { name: "title_not_contains"; alias?: string }
-  | { name: "title_starts_with"; alias?: string }
-  | { name: "title_not_starts_with"; alias?: string }
-  | { name: "title_ends_with"; alias?: string }
-  | { name: "title_not_ends_with"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "text_not"; alias?: string }
-  | { name: "text_in"; alias?: string }
-  | { name: "text_not_in"; alias?: string }
-  | { name: "text_lt"; alias?: string }
-  | { name: "text_lte"; alias?: string }
-  | { name: "text_gt"; alias?: string }
-  | { name: "text_gte"; alias?: string }
-  | { name: "text_contains"; alias?: string }
-  | { name: "text_not_contains"; alias?: string }
-  | { name: "text_starts_with"; alias?: string }
-  | { name: "text_not_starts_with"; alias?: string }
-  | { name: "text_ends_with"; alias?: string }
-  | { name: "text_not_ends_with"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "editedAt_not"; alias?: string }
-  | { name: "editedAt_in"; alias?: string }
-  | { name: "editedAt_not_in"; alias?: string }
-  | { name: "editedAt_lt"; alias?: string }
-  | { name: "editedAt_lte"; alias?: string }
-  | { name: "editedAt_gt"; alias?: string }
-  | { name: "editedAt_gte"; alias?: string }
-  | { name: "editedAt_contains"; alias?: string }
-  | { name: "editedAt_not_contains"; alias?: string }
-  | { name: "editedAt_starts_with"; alias?: string }
-  | { name: "editedAt_not_starts_with"; alias?: string }
-  | { name: "editedAt_ends_with"; alias?: string }
-  | { name: "editedAt_not_ends_with"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "rating_not"; alias?: string }
-  | { name: "rating_in"; alias?: string }
-  | { name: "rating_not_in"; alias?: string }
-  | { name: "rating_lt"; alias?: string }
-  | { name: "rating_lte"; alias?: string }
-  | { name: "rating_gt"; alias?: string }
-  | { name: "rating_gte"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsUp_not"; alias?: string }
-  | { name: "reviewThumbsUp_in"; alias?: string }
-  | { name: "reviewThumbsUp_not_in"; alias?: string }
-  | { name: "reviewThumbsUp_lt"; alias?: string }
-  | { name: "reviewThumbsUp_lte"; alias?: string }
-  | { name: "reviewThumbsUp_gt"; alias?: string }
-  | { name: "reviewThumbsUp_gte"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "reviewThumbsDown_not"; alias?: string }
-  | { name: "reviewThumbsDown_in"; alias?: string }
-  | { name: "reviewThumbsDown_not_in"; alias?: string }
-  | { name: "reviewThumbsDown_lt"; alias?: string }
-  | { name: "reviewThumbsDown_lte"; alias?: string }
-  | { name: "reviewThumbsDown_gt"; alias?: string }
-  | { name: "reviewThumbsDown_gte"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface ReviewUpdateManyWithWhereNestedInput {
-  where?: ReviewScalarWhereInput;
-  data?: ReviewUpdateManyDataInput;
-}
-export type ReviewUpdateManyWithWhereNestedInputInputObject =
-  | Extract<keyof ReviewUpdateManyWithWhereNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface ReviewUpdateManyDataInput {
-  title?: string | null;
-  text?: string | null;
-  editedAt?: string | null;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-}
-export type ReviewUpdateManyDataInputInputObject =
-  | Extract<keyof ReviewUpdateManyDataInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string };
-
-export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
-  where?: ProjectWhereUniqueInput;
-  update?: ProjectUpdateWithoutUserDataInput;
-  create?: ProjectCreateWithoutUserInput;
-}
-export type ProjectUpsertWithWhereUniqueWithoutUserInputInputObject =
-  | Extract<keyof ProjectUpsertWithWhereUniqueWithoutUserInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface ProjectScalarWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  name?: string | null;
-  name_not?: string | null;
-  name_in?: string[];
-  name_not_in?: string[];
-  name_lt?: string | null;
-  name_lte?: string | null;
-  name_gt?: string | null;
-  name_gte?: string | null;
-  name_contains?: string | null;
-  name_not_contains?: string | null;
-  name_starts_with?: string | null;
-  name_not_starts_with?: string | null;
-  name_ends_with?: string | null;
-  name_not_ends_with?: string | null;
-  category?: string | null;
-  category_not?: string | null;
-  category_in?: string[];
-  category_not_in?: string[];
-  category_lt?: string | null;
-  category_lte?: string | null;
-  category_gt?: string | null;
-  category_gte?: string | null;
-  category_contains?: string | null;
-  category_not_contains?: string | null;
-  category_starts_with?: string | null;
-  category_not_starts_with?: string | null;
-  category_ends_with?: string | null;
-  category_not_ends_with?: string | null;
-  timestamp?: string | null;
-  timestamp_not?: string | null;
-  timestamp_in?: string[];
-  timestamp_not_in?: string[];
-  timestamp_lt?: string | null;
-  timestamp_lte?: string | null;
-  timestamp_gt?: string | null;
-  timestamp_gte?: string | null;
-  titleImg?: string | null;
-  titleImg_not?: string | null;
-  titleImg_in?: string[];
-  titleImg_not_in?: string[];
-  titleImg_lt?: string | null;
-  titleImg_lte?: string | null;
-  titleImg_gt?: string | null;
-  titleImg_gte?: string | null;
-  titleImg_contains?: string | null;
-  titleImg_not_contains?: string | null;
-  titleImg_starts_with?: string | null;
-  titleImg_not_starts_with?: string | null;
-  titleImg_ends_with?: string | null;
-  titleImg_not_ends_with?: string | null;
-  titleBlurb?: string | null;
-  titleBlurb_not?: string | null;
-  titleBlurb_in?: string[];
-  titleBlurb_not_in?: string[];
-  titleBlurb_lt?: string | null;
-  titleBlurb_lte?: string | null;
-  titleBlurb_gt?: string | null;
-  titleBlurb_gte?: string | null;
-  titleBlurb_contains?: string | null;
-  titleBlurb_not_contains?: string | null;
-  titleBlurb_starts_with?: string | null;
-  titleBlurb_not_starts_with?: string | null;
-  titleBlurb_ends_with?: string | null;
-  titleBlurb_not_ends_with?: string | null;
-  rating?: number | null;
-  rating_not?: number | null;
-  rating_in?: number[];
-  rating_not_in?: number[];
-  rating_lt?: number | null;
-  rating_lte?: number | null;
-  rating_gt?: number | null;
-  rating_gte?: number | null;
-  AND?: ProjectScalarWhereInput[];
-  OR?: ProjectScalarWhereInput[];
-  NOT?: ProjectScalarWhereInput[];
-}
-export type ProjectScalarWhereInputInputObject =
-  | Extract<keyof ProjectScalarWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "name"; alias?: string }
-  | { name: "name_not"; alias?: string }
-  | { name: "name_in"; alias?: string }
-  | { name: "name_not_in"; alias?: string }
-  | { name: "name_lt"; alias?: string }
-  | { name: "name_lte"; alias?: string }
-  | { name: "name_gt"; alias?: string }
-  | { name: "name_gte"; alias?: string }
-  | { name: "name_contains"; alias?: string }
-  | { name: "name_not_contains"; alias?: string }
-  | { name: "name_starts_with"; alias?: string }
-  | { name: "name_not_starts_with"; alias?: string }
-  | { name: "name_ends_with"; alias?: string }
-  | { name: "name_not_ends_with"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "category_not"; alias?: string }
-  | { name: "category_in"; alias?: string }
-  | { name: "category_not_in"; alias?: string }
-  | { name: "category_lt"; alias?: string }
-  | { name: "category_lte"; alias?: string }
-  | { name: "category_gt"; alias?: string }
-  | { name: "category_gte"; alias?: string }
-  | { name: "category_contains"; alias?: string }
-  | { name: "category_not_contains"; alias?: string }
-  | { name: "category_starts_with"; alias?: string }
-  | { name: "category_not_starts_with"; alias?: string }
-  | { name: "category_ends_with"; alias?: string }
-  | { name: "category_not_ends_with"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "timestamp_not"; alias?: string }
-  | { name: "timestamp_in"; alias?: string }
-  | { name: "timestamp_not_in"; alias?: string }
-  | { name: "timestamp_lt"; alias?: string }
-  | { name: "timestamp_lte"; alias?: string }
-  | { name: "timestamp_gt"; alias?: string }
-  | { name: "timestamp_gte"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleImg_not"; alias?: string }
-  | { name: "titleImg_in"; alias?: string }
-  | { name: "titleImg_not_in"; alias?: string }
-  | { name: "titleImg_lt"; alias?: string }
-  | { name: "titleImg_lte"; alias?: string }
-  | { name: "titleImg_gt"; alias?: string }
-  | { name: "titleImg_gte"; alias?: string }
-  | { name: "titleImg_contains"; alias?: string }
-  | { name: "titleImg_not_contains"; alias?: string }
-  | { name: "titleImg_starts_with"; alias?: string }
-  | { name: "titleImg_not_starts_with"; alias?: string }
-  | { name: "titleImg_ends_with"; alias?: string }
-  | { name: "titleImg_not_ends_with"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "titleBlurb_not"; alias?: string }
-  | { name: "titleBlurb_in"; alias?: string }
-  | { name: "titleBlurb_not_in"; alias?: string }
-  | { name: "titleBlurb_lt"; alias?: string }
-  | { name: "titleBlurb_lte"; alias?: string }
-  | { name: "titleBlurb_gt"; alias?: string }
-  | { name: "titleBlurb_gte"; alias?: string }
-  | { name: "titleBlurb_contains"; alias?: string }
-  | { name: "titleBlurb_not_contains"; alias?: string }
-  | { name: "titleBlurb_starts_with"; alias?: string }
-  | { name: "titleBlurb_not_starts_with"; alias?: string }
-  | { name: "titleBlurb_ends_with"; alias?: string }
-  | { name: "titleBlurb_not_ends_with"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "rating_not"; alias?: string }
-  | { name: "rating_in"; alias?: string }
-  | { name: "rating_not_in"; alias?: string }
-  | { name: "rating_lt"; alias?: string }
-  | { name: "rating_lte"; alias?: string }
-  | { name: "rating_gt"; alias?: string }
-  | { name: "rating_gte"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface ProjectUpdateManyWithWhereNestedInput {
-  where?: ProjectScalarWhereInput;
-  data?: ProjectUpdateManyDataInput;
-}
-export type ProjectUpdateManyWithWhereNestedInputInputObject =
-  | Extract<keyof ProjectUpdateManyWithWhereNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface ProjectUpdateManyDataInput {
-  name?: string | null;
-  category?: string | null;
-  timestamp?: string | null;
-  titleImg?: string | null;
-  titleBlurb?: string | null;
-  rating?: number | null;
-}
-export type ProjectUpdateManyDataInputInputObject =
-  | Extract<keyof ProjectUpdateManyDataInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string };
-
-export interface UserUpsertNestedInput {
-  update?: UserUpdateDataInput;
-  create?: UserCreateInput;
-}
-export type UserUpsertNestedInputInputObject =
-  | Extract<keyof UserUpsertNestedInput, string>
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface CommentUpsertWithWhereUniqueNestedInput {
-  where?: CommentWhereUniqueInput;
-  update?: CommentUpdateDataInput;
-  create?: CommentCreateInput;
-}
-export type CommentUpsertWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof CommentUpsertWithWhereUniqueNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface CommentScalarWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  editedAt?: string | null;
-  editedAt_not?: string | null;
-  editedAt_in?: string[];
-  editedAt_not_in?: string[];
-  editedAt_lt?: string | null;
-  editedAt_lte?: string | null;
-  editedAt_gt?: string | null;
-  editedAt_gte?: string | null;
-  text?: string | null;
-  text_not?: string | null;
-  text_in?: string[];
-  text_not_in?: string[];
-  text_lt?: string | null;
-  text_lte?: string | null;
-  text_gt?: string | null;
-  text_gte?: string | null;
-  text_contains?: string | null;
-  text_not_contains?: string | null;
-  text_starts_with?: string | null;
-  text_not_starts_with?: string | null;
-  text_ends_with?: string | null;
-  text_not_ends_with?: string | null;
-  AND?: CommentScalarWhereInput[];
-  OR?: CommentScalarWhereInput[];
-  NOT?: CommentScalarWhereInput[];
-}
-export type CommentScalarWhereInputInputObject =
-  | Extract<keyof CommentScalarWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "editedAt_not"; alias?: string }
-  | { name: "editedAt_in"; alias?: string }
-  | { name: "editedAt_not_in"; alias?: string }
-  | { name: "editedAt_lt"; alias?: string }
-  | { name: "editedAt_lte"; alias?: string }
-  | { name: "editedAt_gt"; alias?: string }
-  | { name: "editedAt_gte"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "text_not"; alias?: string }
-  | { name: "text_in"; alias?: string }
-  | { name: "text_not_in"; alias?: string }
-  | { name: "text_lt"; alias?: string }
-  | { name: "text_lte"; alias?: string }
-  | { name: "text_gt"; alias?: string }
-  | { name: "text_gte"; alias?: string }
-  | { name: "text_contains"; alias?: string }
-  | { name: "text_not_contains"; alias?: string }
-  | { name: "text_starts_with"; alias?: string }
-  | { name: "text_not_starts_with"; alias?: string }
-  | { name: "text_ends_with"; alias?: string }
-  | { name: "text_not_ends_with"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface CommentUpdateManyWithWhereNestedInput {
-  where?: CommentScalarWhereInput;
-  data?: CommentUpdateManyDataInput;
-}
-export type CommentUpdateManyWithWhereNestedInputInputObject =
-  | Extract<keyof CommentUpdateManyWithWhereNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface CommentUpdateManyDataInput {
-  editedAt?: string | null;
-  text?: string | null;
-}
-export type CommentUpdateManyDataInputInputObject =
-  | Extract<keyof CommentUpdateManyDataInput, string>
-  | { name: "editedAt"; alias?: string }
-  | { name: "text"; alias?: string };
-
-export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
-  where?: ReviewWhereUniqueInput;
-  update?: ReviewUpdateWithoutAuthorDataInput;
-  create?: ReviewCreateWithoutAuthorInput;
-}
-export type ReviewUpsertWithWhereUniqueWithoutAuthorInputInputObject =
-  | Extract<keyof ReviewUpsertWithWhereUniqueWithoutAuthorInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
-export interface UserUpdateManyMutationInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
-}
-export type UserUpdateManyMutationInputInputObject =
-  | Extract<keyof UserUpdateManyMutationInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface StepArrayUpdateManyMutationInput {
-  textBlurbs?: string | null;
-  imgUrls?: string | null;
-}
-export type StepArrayUpdateManyMutationInputInputObject =
-  | Extract<keyof StepArrayUpdateManyMutationInput, string>
-  | { name: "textBlurbs"; alias?: string }
-  | { name: "imgUrls"; alias?: string };
-
-export interface ProjectCreateInput {
-  name?: string;
-  category?: string;
-  timestamp?: string;
-  titleImg?: string;
-  titleBlurb?: string;
-  rating?: number | null;
-  User?: UserCreateManyWithoutProjectsInput | null;
-  Steps?: StepArrayCreateManyInput | null;
-  Reviews?: ReviewCreateManyInput | null;
-}
-export type ProjectCreateInputInputObject =
-  | Extract<keyof ProjectCreateInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "User"; alias?: string }
-  | { name: "Steps"; alias?: string }
-  | { name: "Reviews"; alias?: string };
-
-export interface UserCreateManyWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput[];
-  connect?: UserWhereUniqueInput[];
-}
-export type UserCreateManyWithoutProjectsInputInputObject =
-  | Extract<keyof UserCreateManyWithoutProjectsInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "connect"; alias?: string };
-
+export type UserCreateOneWithoutProjectsInputInputObject =
+  | Extract<keyof UserCreateOneWithoutProjectsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
 export interface UserCreateWithoutProjectsInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string;
-  password?: string;
-  email?: string;
-  userProfileImage?: string | null;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput | null;
-  privilege?: string;
-  stripeId?: string | null;
-  accountType?: string | null;
+  url?: string | null
+  username?: string
+  password?: string
+  email?: string
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewCreateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput | null
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput | null
 }
 export type UserCreateWithoutProjectsInputInputObject =
   | Extract<keyof UserCreateWithoutProjectsInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "ReviewList"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface ProjectUpdateInput {
-  name?: string | null;
-  category?: string | null;
-  timestamp?: string | null;
-  titleImg?: string | null;
-  titleBlurb?: string | null;
-  rating?: number | null;
-  User?: UserUpdateManyWithoutProjectsInput | null;
-  Steps?: StepArrayUpdateManyInput | null;
-  Reviews?: ReviewUpdateManyInput | null;
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ProjectCreateOneWithoutReviewsInput {
+  create?: ProjectCreateWithoutReviewsInput | null
+  connect?: ProjectWhereUniqueInput | null
 }
-export type ProjectUpdateInputInputObject =
-  | Extract<keyof ProjectUpdateInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "User"; alias?: string }
-  | { name: "Steps"; alias?: string }
-  | { name: "Reviews"; alias?: string };
-
-export interface UserUpdateManyWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput[];
-  delete?: UserWhereUniqueInput[];
-  connect?: UserWhereUniqueInput[];
-  set?: UserWhereUniqueInput[];
-  disconnect?: UserWhereUniqueInput[];
-  update?: UserUpdateWithWhereUniqueWithoutProjectsInput[];
-  upsert?: UserUpsertWithWhereUniqueWithoutProjectsInput[];
-  deleteMany?: UserScalarWhereInput[];
-  updateMany?: UserUpdateManyWithWhereNestedInput[];
+export type ProjectCreateOneWithoutReviewsInputInputObject =
+  | Extract<keyof ProjectCreateOneWithoutReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ProjectCreateWithoutReviewsInput {
+  name?: string
+  key?: string | null
+  category?: string
+  timestamp?: string
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserCreateOneWithoutProjectsInput
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput | null
 }
-export type UserUpdateManyWithoutProjectsInputInputObject =
-  | Extract<keyof UserUpdateManyWithoutProjectsInput, string>
-  | { name: "create"; alias?: string }
-  | { name: "delete"; alias?: string }
-  | { name: "connect"; alias?: string }
-  | { name: "set"; alias?: string }
-  | { name: "disconnect"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "upsert"; alias?: string }
-  | { name: "deleteMany"; alias?: string }
-  | { name: "updateMany"; alias?: string };
-
-export interface UserUpdateWithWhereUniqueWithoutProjectsInput {
-  where?: UserWhereUniqueInput;
-  data?: UserUpdateWithoutProjectsDataInput;
+export type ProjectCreateWithoutReviewsInputInputObject =
+  | Extract<keyof ProjectCreateWithoutReviewsInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
+export interface UserUpdateInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput | null
+  Projects?: ProjectUpdateManyWithoutUserInput | null
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput | null
 }
-export type UserUpdateWithWhereUniqueWithoutProjectsInputInputObject =
-  | Extract<keyof UserUpdateWithWhereUniqueWithoutProjectsInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
-export interface UserUpdateWithoutProjectsDataInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
+export type UserUpdateInputInputObject =
+  | Extract<keyof UserUpdateInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ReviewUpdateManyWithoutAuthorInput {
+  create?: ReviewCreateWithoutAuthorInput[]
+  delete?: ReviewWhereUniqueInput[]
+  connect?: ReviewWhereUniqueInput[]
+  set?: ReviewWhereUniqueInput[]
+  disconnect?: ReviewWhereUniqueInput[]
+  update?: ReviewUpdateWithWhereUniqueWithoutAuthorInput[]
+  upsert?: ReviewUpsertWithWhereUniqueWithoutAuthorInput[]
+  deleteMany?: ReviewScalarWhereInput[]
+  updateMany?: ReviewUpdateManyWithWhereNestedInput[]
 }
-export type UserUpdateWithoutProjectsDataInputInputObject =
-  | Extract<keyof UserUpdateWithoutProjectsDataInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "ReviewList"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
-export interface UserUpsertWithWhereUniqueWithoutProjectsInput {
-  where?: UserWhereUniqueInput;
-  update?: UserUpdateWithoutProjectsDataInput;
-  create?: UserCreateWithoutProjectsInput;
+export type ReviewUpdateManyWithoutAuthorInputInputObject =
+  | Extract<keyof ReviewUpdateManyWithoutAuthorInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
+  where?: ReviewWhereUniqueInput
+  data?: ReviewUpdateWithoutAuthorDataInput
 }
-export type UserUpsertWithWhereUniqueWithoutProjectsInputInputObject =
-  | Extract<keyof UserUpsertWithWhereUniqueWithoutProjectsInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "update"; alias?: string }
-  | { name: "create"; alias?: string };
-
+export type ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject =
+  | Extract<keyof ReviewUpdateWithWhereUniqueWithoutAuthorInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ReviewUpdateWithoutAuthorDataInput {
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number | null
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput | null
+}
+export type ReviewUpdateWithoutAuthorDataInputInputObject =
+  | Extract<keyof ReviewUpdateWithoutAuthorDataInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
+export interface UserUpdateManyWithoutLikedReviewsInput {
+  create?: UserCreateWithoutLikedReviewsInput[]
+  delete?: UserWhereUniqueInput[]
+  connect?: UserWhereUniqueInput[]
+  set?: UserWhereUniqueInput[]
+  disconnect?: UserWhereUniqueInput[]
+  update?: UserUpdateWithWhereUniqueWithoutLikedReviewsInput[]
+  upsert?: UserUpsertWithWhereUniqueWithoutLikedReviewsInput[]
+  deleteMany?: UserScalarWhereInput[]
+  updateMany?: UserUpdateManyWithWhereNestedInput[]
+}
+export type UserUpdateManyWithoutLikedReviewsInputInputObject =
+  | Extract<keyof UserUpdateManyWithoutLikedReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface UserUpdateWithWhereUniqueWithoutLikedReviewsInput {
+  where?: UserWhereUniqueInput
+  data?: UserUpdateWithoutLikedReviewsDataInput
+}
+export type UserUpdateWithWhereUniqueWithoutLikedReviewsInputInputObject =
+  | Extract<keyof UserUpdateWithWhereUniqueWithoutLikedReviewsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface UserUpdateWithoutLikedReviewsDataInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput | null
+  Projects?: ProjectUpdateManyWithoutUserInput | null
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput | null
+}
+export type UserUpdateWithoutLikedReviewsDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutLikedReviewsDataInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ReviewUpdateManyWithoutDislikedByInput {
+  create?: ReviewCreateWithoutDislikedByInput[]
+  delete?: ReviewWhereUniqueInput[]
+  connect?: ReviewWhereUniqueInput[]
+  set?: ReviewWhereUniqueInput[]
+  disconnect?: ReviewWhereUniqueInput[]
+  update?: ReviewUpdateWithWhereUniqueWithoutDislikedByInput[]
+  upsert?: ReviewUpsertWithWhereUniqueWithoutDislikedByInput[]
+  deleteMany?: ReviewScalarWhereInput[]
+  updateMany?: ReviewUpdateManyWithWhereNestedInput[]
+}
+export type ReviewUpdateManyWithoutDislikedByInputInputObject =
+  | Extract<keyof ReviewUpdateManyWithoutDislikedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ReviewUpdateWithWhereUniqueWithoutDislikedByInput {
+  where?: ReviewWhereUniqueInput
+  data?: ReviewUpdateWithoutDislikedByDataInput
+}
+export type ReviewUpdateWithWhereUniqueWithoutDislikedByInputInputObject =
+  | Extract<keyof ReviewUpdateWithWhereUniqueWithoutDislikedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ReviewUpdateWithoutDislikedByDataInput {
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number | null
+  Author?: UserUpdateOneRequiredWithoutReviewListInput | null
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput | null
+}
+export type ReviewUpdateWithoutDislikedByDataInputInputObject =
+  | Extract<keyof ReviewUpdateWithoutDislikedByDataInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
+export interface UserUpdateOneRequiredWithoutReviewListInput {
+  create?: UserCreateWithoutReviewListInput | null
+  update?: UserUpdateWithoutReviewListDataInput | null
+  upsert?: UserUpsertWithoutReviewListInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserUpdateOneRequiredWithoutReviewListInputInputObject =
+  | Extract<keyof UserUpdateOneRequiredWithoutReviewListInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserUpdateWithoutReviewListDataInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput | null
+  Projects?: ProjectUpdateManyWithoutUserInput | null
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput | null
+}
+export type UserUpdateWithoutReviewListDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutReviewListDataInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ReviewUpdateManyWithoutLikedByInput {
+  create?: ReviewCreateWithoutLikedByInput[]
+  delete?: ReviewWhereUniqueInput[]
+  connect?: ReviewWhereUniqueInput[]
+  set?: ReviewWhereUniqueInput[]
+  disconnect?: ReviewWhereUniqueInput[]
+  update?: ReviewUpdateWithWhereUniqueWithoutLikedByInput[]
+  upsert?: ReviewUpsertWithWhereUniqueWithoutLikedByInput[]
+  deleteMany?: ReviewScalarWhereInput[]
+  updateMany?: ReviewUpdateManyWithWhereNestedInput[]
+}
+export type ReviewUpdateManyWithoutLikedByInputInputObject =
+  | Extract<keyof ReviewUpdateManyWithoutLikedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ReviewUpdateWithWhereUniqueWithoutLikedByInput {
+  where?: ReviewWhereUniqueInput
+  data?: ReviewUpdateWithoutLikedByDataInput
+}
+export type ReviewUpdateWithWhereUniqueWithoutLikedByInputInputObject =
+  | Extract<keyof ReviewUpdateWithWhereUniqueWithoutLikedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ReviewUpdateWithoutLikedByDataInput {
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  thumbsDown?: number | null
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
+  Author?: UserUpdateOneRequiredWithoutReviewListInput | null
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput | null
+}
+export type ReviewUpdateWithoutLikedByDataInputInputObject =
+  | Extract<keyof ReviewUpdateWithoutLikedByDataInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
+export interface UserUpdateManyWithoutDislikedReviewsInput {
+  create?: UserCreateWithoutDislikedReviewsInput[]
+  delete?: UserWhereUniqueInput[]
+  connect?: UserWhereUniqueInput[]
+  set?: UserWhereUniqueInput[]
+  disconnect?: UserWhereUniqueInput[]
+  update?: UserUpdateWithWhereUniqueWithoutDislikedReviewsInput[]
+  upsert?: UserUpsertWithWhereUniqueWithoutDislikedReviewsInput[]
+  deleteMany?: UserScalarWhereInput[]
+  updateMany?: UserUpdateManyWithWhereNestedInput[]
+}
+export type UserUpdateManyWithoutDislikedReviewsInputInputObject =
+  | Extract<keyof UserUpdateManyWithoutDislikedReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface UserUpdateWithWhereUniqueWithoutDislikedReviewsInput {
+  where?: UserWhereUniqueInput
+  data?: UserUpdateWithoutDislikedReviewsDataInput
+}
+export type UserUpdateWithWhereUniqueWithoutDislikedReviewsInputInputObject =
+  | Extract<keyof UserUpdateWithWhereUniqueWithoutDislikedReviewsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface UserUpdateWithoutDislikedReviewsDataInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput | null
+  Projects?: ProjectUpdateManyWithoutUserInput | null
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput | null
+}
+export type UserUpdateWithoutDislikedReviewsDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutDislikedReviewsDataInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface ProjectUpdateManyWithoutUserInput {
+  create?: ProjectCreateWithoutUserInput[]
+  delete?: ProjectWhereUniqueInput[]
+  connect?: ProjectWhereUniqueInput[]
+  set?: ProjectWhereUniqueInput[]
+  disconnect?: ProjectWhereUniqueInput[]
+  update?: ProjectUpdateWithWhereUniqueWithoutUserInput[]
+  upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput[]
+  deleteMany?: ProjectScalarWhereInput[]
+  updateMany?: ProjectUpdateManyWithWhereNestedInput[]
+}
+export type ProjectUpdateManyWithoutUserInputInputObject =
+  | Extract<keyof ProjectUpdateManyWithoutUserInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
+  where?: ProjectWhereUniqueInput
+  data?: ProjectUpdateWithoutUserDataInput
+}
+export type ProjectUpdateWithWhereUniqueWithoutUserInputInputObject =
+  | Extract<keyof ProjectUpdateWithWhereUniqueWithoutUserInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ProjectUpdateWithoutUserDataInput {
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput | null
+}
+export type ProjectUpdateWithoutUserDataInputInputObject =
+  | Extract<keyof ProjectUpdateWithoutUserDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
+export interface ReviewUpdateManyWithoutProjectReviewedInput {
+  create?: ReviewCreateWithoutProjectReviewedInput[]
+  delete?: ReviewWhereUniqueInput[]
+  connect?: ReviewWhereUniqueInput[]
+  set?: ReviewWhereUniqueInput[]
+  disconnect?: ReviewWhereUniqueInput[]
+  update?: ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput[]
+  upsert?: ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput[]
+  deleteMany?: ReviewScalarWhereInput[]
+  updateMany?: ReviewUpdateManyWithWhereNestedInput[]
+}
+export type ReviewUpdateManyWithoutProjectReviewedInputInputObject =
+  | Extract<keyof ReviewUpdateManyWithoutProjectReviewedInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput {
+  where?: ReviewWhereUniqueInput
+  data?: ReviewUpdateWithoutProjectReviewedDataInput
+}
+export type ReviewUpdateWithWhereUniqueWithoutProjectReviewedInputInputObject =
+  | Extract<keyof ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ReviewUpdateWithoutProjectReviewedDataInput {
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number | null
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
+  Author?: UserUpdateOneRequiredWithoutReviewListInput | null
+}
+export type ReviewUpdateWithoutProjectReviewedDataInputInputObject =
+  | Extract<keyof ReviewUpdateWithoutProjectReviewedDataInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  
+export interface ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput {
+  where?: ReviewWhereUniqueInput
+  update?: ReviewUpdateWithoutProjectReviewedDataInput
+  create?: ReviewCreateWithoutProjectReviewedInput
+}
+export type ReviewUpsertWithWhereUniqueWithoutProjectReviewedInputInputObject =
+  | Extract<keyof ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ReviewScalarWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  title?: string | null
+  title_not?: string | null
+  title_in?: string[]
+  title_not_in?: string[]
+  title_lt?: string | null
+  title_lte?: string | null
+  title_gt?: string | null
+  title_gte?: string | null
+  title_contains?: string | null
+  title_not_contains?: string | null
+  title_starts_with?: string | null
+  title_not_starts_with?: string | null
+  title_ends_with?: string | null
+  title_not_ends_with?: string | null
+  rKey?: string | null
+  rKey_not?: string | null
+  rKey_in?: string[]
+  rKey_not_in?: string[]
+  rKey_lt?: string | null
+  rKey_lte?: string | null
+  rKey_gt?: string | null
+  rKey_gte?: string | null
+  rKey_contains?: string | null
+  rKey_not_contains?: string | null
+  rKey_starts_with?: string | null
+  rKey_not_starts_with?: string | null
+  rKey_ends_with?: string | null
+  rKey_not_ends_with?: string | null
+  text?: string | null
+  text_not?: string | null
+  text_in?: string[]
+  text_not_in?: string[]
+  text_lt?: string | null
+  text_lte?: string | null
+  text_gt?: string | null
+  text_gte?: string | null
+  text_contains?: string | null
+  text_not_contains?: string | null
+  text_starts_with?: string | null
+  text_not_starts_with?: string | null
+  text_ends_with?: string | null
+  text_not_ends_with?: string | null
+  editedAt?: string | null
+  editedAt_not?: string | null
+  editedAt_in?: string[]
+  editedAt_not_in?: string[]
+  editedAt_lt?: string | null
+  editedAt_lte?: string | null
+  editedAt_gt?: string | null
+  editedAt_gte?: string | null
+  thumbsUp?: number | null
+  thumbsUp_not?: number | null
+  thumbsUp_in?: number[]
+  thumbsUp_not_in?: number[]
+  thumbsUp_lt?: number | null
+  thumbsUp_lte?: number | null
+  thumbsUp_gt?: number | null
+  thumbsUp_gte?: number | null
+  thumbsDown?: number | null
+  thumbsDown_not?: number | null
+  thumbsDown_in?: number[]
+  thumbsDown_not_in?: number[]
+  thumbsDown_lt?: number | null
+  thumbsDown_lte?: number | null
+  thumbsDown_gt?: number | null
+  thumbsDown_gte?: number | null
+  AND?: ReviewScalarWhereInput[]
+  OR?: ReviewScalarWhereInput[]
+  NOT?: ReviewScalarWhereInput[]
+}
+export type ReviewScalarWhereInputInputObject =
+  | Extract<keyof ReviewScalarWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'title', alias?: string  } 
+  | { name: 'title_not', alias?: string  } 
+  | { name: 'title_in', alias?: string  } 
+  | { name: 'title_not_in', alias?: string  } 
+  | { name: 'title_lt', alias?: string  } 
+  | { name: 'title_lte', alias?: string  } 
+  | { name: 'title_gt', alias?: string  } 
+  | { name: 'title_gte', alias?: string  } 
+  | { name: 'title_contains', alias?: string  } 
+  | { name: 'title_not_contains', alias?: string  } 
+  | { name: 'title_starts_with', alias?: string  } 
+  | { name: 'title_not_starts_with', alias?: string  } 
+  | { name: 'title_ends_with', alias?: string  } 
+  | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'rKey_not', alias?: string  } 
+  | { name: 'rKey_in', alias?: string  } 
+  | { name: 'rKey_not_in', alias?: string  } 
+  | { name: 'rKey_lt', alias?: string  } 
+  | { name: 'rKey_lte', alias?: string  } 
+  | { name: 'rKey_gt', alias?: string  } 
+  | { name: 'rKey_gte', alias?: string  } 
+  | { name: 'rKey_contains', alias?: string  } 
+  | { name: 'rKey_not_contains', alias?: string  } 
+  | { name: 'rKey_starts_with', alias?: string  } 
+  | { name: 'rKey_not_starts_with', alias?: string  } 
+  | { name: 'rKey_ends_with', alias?: string  } 
+  | { name: 'rKey_not_ends_with', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'text_not', alias?: string  } 
+  | { name: 'text_in', alias?: string  } 
+  | { name: 'text_not_in', alias?: string  } 
+  | { name: 'text_lt', alias?: string  } 
+  | { name: 'text_lte', alias?: string  } 
+  | { name: 'text_gt', alias?: string  } 
+  | { name: 'text_gte', alias?: string  } 
+  | { name: 'text_contains', alias?: string  } 
+  | { name: 'text_not_contains', alias?: string  } 
+  | { name: 'text_starts_with', alias?: string  } 
+  | { name: 'text_not_starts_with', alias?: string  } 
+  | { name: 'text_ends_with', alias?: string  } 
+  | { name: 'text_not_ends_with', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'editedAt_not', alias?: string  } 
+  | { name: 'editedAt_in', alias?: string  } 
+  | { name: 'editedAt_not_in', alias?: string  } 
+  | { name: 'editedAt_lt', alias?: string  } 
+  | { name: 'editedAt_lte', alias?: string  } 
+  | { name: 'editedAt_gt', alias?: string  } 
+  | { name: 'editedAt_gte', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsUp_not', alias?: string  } 
+  | { name: 'thumbsUp_in', alias?: string  } 
+  | { name: 'thumbsUp_not_in', alias?: string  } 
+  | { name: 'thumbsUp_lt', alias?: string  } 
+  | { name: 'thumbsUp_lte', alias?: string  } 
+  | { name: 'thumbsUp_gt', alias?: string  } 
+  | { name: 'thumbsUp_gte', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'thumbsDown_not', alias?: string  } 
+  | { name: 'thumbsDown_in', alias?: string  } 
+  | { name: 'thumbsDown_not_in', alias?: string  } 
+  | { name: 'thumbsDown_lt', alias?: string  } 
+  | { name: 'thumbsDown_lte', alias?: string  } 
+  | { name: 'thumbsDown_gt', alias?: string  } 
+  | { name: 'thumbsDown_gte', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface ReviewUpdateManyWithWhereNestedInput {
+  where?: ReviewScalarWhereInput
+  data?: ReviewUpdateManyDataInput
+}
+export type ReviewUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof ReviewUpdateManyWithWhereNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ReviewUpdateManyDataInput {
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  thumbsDown?: number | null
+}
+export type ReviewUpdateManyDataInputInputObject =
+  | Extract<keyof ReviewUpdateManyDataInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  
+export interface UserUpdateManyWithoutRatedProjectsInput {
+  create?: UserCreateWithoutRatedProjectsInput[]
+  delete?: UserWhereUniqueInput[]
+  connect?: UserWhereUniqueInput[]
+  set?: UserWhereUniqueInput[]
+  disconnect?: UserWhereUniqueInput[]
+  update?: UserUpdateWithWhereUniqueWithoutRatedProjectsInput[]
+  upsert?: UserUpsertWithWhereUniqueWithoutRatedProjectsInput[]
+  deleteMany?: UserScalarWhereInput[]
+  updateMany?: UserUpdateManyWithWhereNestedInput[]
+}
+export type UserUpdateManyWithoutRatedProjectsInputInputObject =
+  | Extract<keyof UserUpdateManyWithoutRatedProjectsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface UserUpdateWithWhereUniqueWithoutRatedProjectsInput {
+  where?: UserWhereUniqueInput
+  data?: UserUpdateWithoutRatedProjectsDataInput
+}
+export type UserUpdateWithWhereUniqueWithoutRatedProjectsInputInputObject =
+  | Extract<keyof UserUpdateWithWhereUniqueWithoutRatedProjectsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface UserUpdateWithoutRatedProjectsDataInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput | null
+  Projects?: ProjectUpdateManyWithoutUserInput | null
+}
+export type UserUpdateWithoutRatedProjectsDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutRatedProjectsDataInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'Projects', alias?: string  } 
+  
+export interface UserUpsertWithWhereUniqueWithoutRatedProjectsInput {
+  where?: UserWhereUniqueInput
+  update?: UserUpdateWithoutRatedProjectsDataInput
+  create?: UserCreateWithoutRatedProjectsInput
+}
+export type UserUpsertWithWhereUniqueWithoutRatedProjectsInputInputObject =
+  | Extract<keyof UserUpsertWithWhereUniqueWithoutRatedProjectsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
 export interface UserScalarWhereInput {
-  id?: string | null;
-  id_not?: string | null;
-  id_in?: string[];
-  id_not_in?: string[];
-  id_lt?: string | null;
-  id_lte?: string | null;
-  id_gt?: string | null;
-  id_gte?: string | null;
-  id_contains?: string | null;
-  id_not_contains?: string | null;
-  id_starts_with?: string | null;
-  id_not_starts_with?: string | null;
-  id_ends_with?: string | null;
-  id_not_ends_with?: string | null;
-  makerRating?: number | null;
-  makerRating_not?: number | null;
-  makerRating_in?: number[];
-  makerRating_not_in?: number[];
-  makerRating_lt?: number | null;
-  makerRating_lte?: number | null;
-  makerRating_gt?: number | null;
-  makerRating_gte?: number | null;
-  reviewerThumbs?: number | null;
-  reviewerThumbs_not?: number | null;
-  reviewerThumbs_in?: number[];
-  reviewerThumbs_not_in?: number[];
-  reviewerThumbs_lt?: number | null;
-  reviewerThumbs_lte?: number | null;
-  reviewerThumbs_gt?: number | null;
-  reviewerThumbs_gte?: number | null;
-  url?: string | null;
-  url_not?: string | null;
-  url_in?: string[];
-  url_not_in?: string[];
-  url_lt?: string | null;
-  url_lte?: string | null;
-  url_gt?: string | null;
-  url_gte?: string | null;
-  url_contains?: string | null;
-  url_not_contains?: string | null;
-  url_starts_with?: string | null;
-  url_not_starts_with?: string | null;
-  url_ends_with?: string | null;
-  url_not_ends_with?: string | null;
-  username?: string | null;
-  username_not?: string | null;
-  username_in?: string[];
-  username_not_in?: string[];
-  username_lt?: string | null;
-  username_lte?: string | null;
-  username_gt?: string | null;
-  username_gte?: string | null;
-  username_contains?: string | null;
-  username_not_contains?: string | null;
-  username_starts_with?: string | null;
-  username_not_starts_with?: string | null;
-  username_ends_with?: string | null;
-  username_not_ends_with?: string | null;
-  password?: string | null;
-  password_not?: string | null;
-  password_in?: string[];
-  password_not_in?: string[];
-  password_lt?: string | null;
-  password_lte?: string | null;
-  password_gt?: string | null;
-  password_gte?: string | null;
-  password_contains?: string | null;
-  password_not_contains?: string | null;
-  password_starts_with?: string | null;
-  password_not_starts_with?: string | null;
-  password_ends_with?: string | null;
-  password_not_ends_with?: string | null;
-  email?: string | null;
-  email_not?: string | null;
-  email_in?: string[];
-  email_not_in?: string[];
-  email_lt?: string | null;
-  email_lte?: string | null;
-  email_gt?: string | null;
-  email_gte?: string | null;
-  email_contains?: string | null;
-  email_not_contains?: string | null;
-  email_starts_with?: string | null;
-  email_not_starts_with?: string | null;
-  email_ends_with?: string | null;
-  email_not_ends_with?: string | null;
-  userProfileImage?: string | null;
-  userProfileImage_not?: string | null;
-  userProfileImage_in?: string[];
-  userProfileImage_not_in?: string[];
-  userProfileImage_lt?: string | null;
-  userProfileImage_lte?: string | null;
-  userProfileImage_gt?: string | null;
-  userProfileImage_gte?: string | null;
-  userProfileImage_contains?: string | null;
-  userProfileImage_not_contains?: string | null;
-  userProfileImage_starts_with?: string | null;
-  userProfileImage_not_starts_with?: string | null;
-  userProfileImage_ends_with?: string | null;
-  userProfileImage_not_ends_with?: string | null;
-  privilege?: string | null;
-  privilege_not?: string | null;
-  privilege_in?: string[];
-  privilege_not_in?: string[];
-  privilege_lt?: string | null;
-  privilege_lte?: string | null;
-  privilege_gt?: string | null;
-  privilege_gte?: string | null;
-  privilege_contains?: string | null;
-  privilege_not_contains?: string | null;
-  privilege_starts_with?: string | null;
-  privilege_not_starts_with?: string | null;
-  privilege_ends_with?: string | null;
-  privilege_not_ends_with?: string | null;
-  stripeId?: string | null;
-  stripeId_not?: string | null;
-  stripeId_in?: string[];
-  stripeId_not_in?: string[];
-  stripeId_lt?: string | null;
-  stripeId_lte?: string | null;
-  stripeId_gt?: string | null;
-  stripeId_gte?: string | null;
-  stripeId_contains?: string | null;
-  stripeId_not_contains?: string | null;
-  stripeId_starts_with?: string | null;
-  stripeId_not_starts_with?: string | null;
-  stripeId_ends_with?: string | null;
-  stripeId_not_ends_with?: string | null;
-  accountType?: string | null;
-  accountType_not?: string | null;
-  accountType_in?: string[];
-  accountType_not_in?: string[];
-  accountType_lt?: string | null;
-  accountType_lte?: string | null;
-  accountType_gt?: string | null;
-  accountType_gte?: string | null;
-  accountType_contains?: string | null;
-  accountType_not_contains?: string | null;
-  accountType_starts_with?: string | null;
-  accountType_not_starts_with?: string | null;
-  accountType_ends_with?: string | null;
-  accountType_not_ends_with?: string | null;
-  AND?: UserScalarWhereInput[];
-  OR?: UserScalarWhereInput[];
-  NOT?: UserScalarWhereInput[];
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  url?: string | null
+  url_not?: string | null
+  url_in?: string[]
+  url_not_in?: string[]
+  url_lt?: string | null
+  url_lte?: string | null
+  url_gt?: string | null
+  url_gte?: string | null
+  url_contains?: string | null
+  url_not_contains?: string | null
+  url_starts_with?: string | null
+  url_not_starts_with?: string | null
+  url_ends_with?: string | null
+  url_not_ends_with?: string | null
+  username?: string | null
+  username_not?: string | null
+  username_in?: string[]
+  username_not_in?: string[]
+  username_lt?: string | null
+  username_lte?: string | null
+  username_gt?: string | null
+  username_gte?: string | null
+  username_contains?: string | null
+  username_not_contains?: string | null
+  username_starts_with?: string | null
+  username_not_starts_with?: string | null
+  username_ends_with?: string | null
+  username_not_ends_with?: string | null
+  password?: string | null
+  password_not?: string | null
+  password_in?: string[]
+  password_not_in?: string[]
+  password_lt?: string | null
+  password_lte?: string | null
+  password_gt?: string | null
+  password_gte?: string | null
+  password_contains?: string | null
+  password_not_contains?: string | null
+  password_starts_with?: string | null
+  password_not_starts_with?: string | null
+  password_ends_with?: string | null
+  password_not_ends_with?: string | null
+  email?: string | null
+  email_not?: string | null
+  email_in?: string[]
+  email_not_in?: string[]
+  email_lt?: string | null
+  email_lte?: string | null
+  email_gt?: string | null
+  email_gte?: string | null
+  email_contains?: string | null
+  email_not_contains?: string | null
+  email_starts_with?: string | null
+  email_not_starts_with?: string | null
+  email_ends_with?: string | null
+  email_not_ends_with?: string | null
+  userProfileImage?: string | null
+  userProfileImage_not?: string | null
+  userProfileImage_in?: string[]
+  userProfileImage_not_in?: string[]
+  userProfileImage_lt?: string | null
+  userProfileImage_lte?: string | null
+  userProfileImage_gt?: string | null
+  userProfileImage_gte?: string | null
+  userProfileImage_contains?: string | null
+  userProfileImage_not_contains?: string | null
+  userProfileImage_starts_with?: string | null
+  userProfileImage_not_starts_with?: string | null
+  userProfileImage_ends_with?: string | null
+  userProfileImage_not_ends_with?: string | null
+  bio?: string | null
+  bio_not?: string | null
+  bio_in?: string[]
+  bio_not_in?: string[]
+  bio_lt?: string | null
+  bio_lte?: string | null
+  bio_gt?: string | null
+  bio_gte?: string | null
+  bio_contains?: string | null
+  bio_not_contains?: string | null
+  bio_starts_with?: string | null
+  bio_not_starts_with?: string | null
+  bio_ends_with?: string | null
+  bio_not_ends_with?: string | null
+  privilege?: string | null
+  privilege_not?: string | null
+  privilege_in?: string[]
+  privilege_not_in?: string[]
+  privilege_lt?: string | null
+  privilege_lte?: string | null
+  privilege_gt?: string | null
+  privilege_gte?: string | null
+  privilege_contains?: string | null
+  privilege_not_contains?: string | null
+  privilege_starts_with?: string | null
+  privilege_not_starts_with?: string | null
+  privilege_ends_with?: string | null
+  privilege_not_ends_with?: string | null
+  stripeId?: string | null
+  stripeId_not?: string | null
+  stripeId_in?: string[]
+  stripeId_not_in?: string[]
+  stripeId_lt?: string | null
+  stripeId_lte?: string | null
+  stripeId_gt?: string | null
+  stripeId_gte?: string | null
+  stripeId_contains?: string | null
+  stripeId_not_contains?: string | null
+  stripeId_starts_with?: string | null
+  stripeId_not_starts_with?: string | null
+  stripeId_ends_with?: string | null
+  stripeId_not_ends_with?: string | null
+  accountType?: string | null
+  accountType_not?: string | null
+  accountType_in?: string[]
+  accountType_not_in?: string[]
+  accountType_lt?: string | null
+  accountType_lte?: string | null
+  accountType_gt?: string | null
+  accountType_gte?: string | null
+  accountType_contains?: string | null
+  accountType_not_contains?: string | null
+  accountType_starts_with?: string | null
+  accountType_not_starts_with?: string | null
+  accountType_ends_with?: string | null
+  accountType_not_ends_with?: string | null
+  AND?: UserScalarWhereInput[]
+  OR?: UserScalarWhereInput[]
+  NOT?: UserScalarWhereInput[]
 }
 export type UserScalarWhereInputInputObject =
   | Extract<keyof UserScalarWhereInput, string>
-  | { name: "id"; alias?: string }
-  | { name: "id_not"; alias?: string }
-  | { name: "id_in"; alias?: string }
-  | { name: "id_not_in"; alias?: string }
-  | { name: "id_lt"; alias?: string }
-  | { name: "id_lte"; alias?: string }
-  | { name: "id_gt"; alias?: string }
-  | { name: "id_gte"; alias?: string }
-  | { name: "id_contains"; alias?: string }
-  | { name: "id_not_contains"; alias?: string }
-  | { name: "id_starts_with"; alias?: string }
-  | { name: "id_not_starts_with"; alias?: string }
-  | { name: "id_ends_with"; alias?: string }
-  | { name: "id_not_ends_with"; alias?: string }
-  | { name: "makerRating"; alias?: string }
-  | { name: "makerRating_not"; alias?: string }
-  | { name: "makerRating_in"; alias?: string }
-  | { name: "makerRating_not_in"; alias?: string }
-  | { name: "makerRating_lt"; alias?: string }
-  | { name: "makerRating_lte"; alias?: string }
-  | { name: "makerRating_gt"; alias?: string }
-  | { name: "makerRating_gte"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "reviewerThumbs_not"; alias?: string }
-  | { name: "reviewerThumbs_in"; alias?: string }
-  | { name: "reviewerThumbs_not_in"; alias?: string }
-  | { name: "reviewerThumbs_lt"; alias?: string }
-  | { name: "reviewerThumbs_lte"; alias?: string }
-  | { name: "reviewerThumbs_gt"; alias?: string }
-  | { name: "reviewerThumbs_gte"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "url_not"; alias?: string }
-  | { name: "url_in"; alias?: string }
-  | { name: "url_not_in"; alias?: string }
-  | { name: "url_lt"; alias?: string }
-  | { name: "url_lte"; alias?: string }
-  | { name: "url_gt"; alias?: string }
-  | { name: "url_gte"; alias?: string }
-  | { name: "url_contains"; alias?: string }
-  | { name: "url_not_contains"; alias?: string }
-  | { name: "url_starts_with"; alias?: string }
-  | { name: "url_not_starts_with"; alias?: string }
-  | { name: "url_ends_with"; alias?: string }
-  | { name: "url_not_ends_with"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "username_not"; alias?: string }
-  | { name: "username_in"; alias?: string }
-  | { name: "username_not_in"; alias?: string }
-  | { name: "username_lt"; alias?: string }
-  | { name: "username_lte"; alias?: string }
-  | { name: "username_gt"; alias?: string }
-  | { name: "username_gte"; alias?: string }
-  | { name: "username_contains"; alias?: string }
-  | { name: "username_not_contains"; alias?: string }
-  | { name: "username_starts_with"; alias?: string }
-  | { name: "username_not_starts_with"; alias?: string }
-  | { name: "username_ends_with"; alias?: string }
-  | { name: "username_not_ends_with"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "password_not"; alias?: string }
-  | { name: "password_in"; alias?: string }
-  | { name: "password_not_in"; alias?: string }
-  | { name: "password_lt"; alias?: string }
-  | { name: "password_lte"; alias?: string }
-  | { name: "password_gt"; alias?: string }
-  | { name: "password_gte"; alias?: string }
-  | { name: "password_contains"; alias?: string }
-  | { name: "password_not_contains"; alias?: string }
-  | { name: "password_starts_with"; alias?: string }
-  | { name: "password_not_starts_with"; alias?: string }
-  | { name: "password_ends_with"; alias?: string }
-  | { name: "password_not_ends_with"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "email_not"; alias?: string }
-  | { name: "email_in"; alias?: string }
-  | { name: "email_not_in"; alias?: string }
-  | { name: "email_lt"; alias?: string }
-  | { name: "email_lte"; alias?: string }
-  | { name: "email_gt"; alias?: string }
-  | { name: "email_gte"; alias?: string }
-  | { name: "email_contains"; alias?: string }
-  | { name: "email_not_contains"; alias?: string }
-  | { name: "email_starts_with"; alias?: string }
-  | { name: "email_not_starts_with"; alias?: string }
-  | { name: "email_ends_with"; alias?: string }
-  | { name: "email_not_ends_with"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "userProfileImage_not"; alias?: string }
-  | { name: "userProfileImage_in"; alias?: string }
-  | { name: "userProfileImage_not_in"; alias?: string }
-  | { name: "userProfileImage_lt"; alias?: string }
-  | { name: "userProfileImage_lte"; alias?: string }
-  | { name: "userProfileImage_gt"; alias?: string }
-  | { name: "userProfileImage_gte"; alias?: string }
-  | { name: "userProfileImage_contains"; alias?: string }
-  | { name: "userProfileImage_not_contains"; alias?: string }
-  | { name: "userProfileImage_starts_with"; alias?: string }
-  | { name: "userProfileImage_not_starts_with"; alias?: string }
-  | { name: "userProfileImage_ends_with"; alias?: string }
-  | { name: "userProfileImage_not_ends_with"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "privilege_not"; alias?: string }
-  | { name: "privilege_in"; alias?: string }
-  | { name: "privilege_not_in"; alias?: string }
-  | { name: "privilege_lt"; alias?: string }
-  | { name: "privilege_lte"; alias?: string }
-  | { name: "privilege_gt"; alias?: string }
-  | { name: "privilege_gte"; alias?: string }
-  | { name: "privilege_contains"; alias?: string }
-  | { name: "privilege_not_contains"; alias?: string }
-  | { name: "privilege_starts_with"; alias?: string }
-  | { name: "privilege_not_starts_with"; alias?: string }
-  | { name: "privilege_ends_with"; alias?: string }
-  | { name: "privilege_not_ends_with"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "stripeId_not"; alias?: string }
-  | { name: "stripeId_in"; alias?: string }
-  | { name: "stripeId_not_in"; alias?: string }
-  | { name: "stripeId_lt"; alias?: string }
-  | { name: "stripeId_lte"; alias?: string }
-  | { name: "stripeId_gt"; alias?: string }
-  | { name: "stripeId_gte"; alias?: string }
-  | { name: "stripeId_contains"; alias?: string }
-  | { name: "stripeId_not_contains"; alias?: string }
-  | { name: "stripeId_starts_with"; alias?: string }
-  | { name: "stripeId_not_starts_with"; alias?: string }
-  | { name: "stripeId_ends_with"; alias?: string }
-  | { name: "stripeId_not_ends_with"; alias?: string }
-  | { name: "accountType"; alias?: string }
-  | { name: "accountType_not"; alias?: string }
-  | { name: "accountType_in"; alias?: string }
-  | { name: "accountType_not_in"; alias?: string }
-  | { name: "accountType_lt"; alias?: string }
-  | { name: "accountType_lte"; alias?: string }
-  | { name: "accountType_gt"; alias?: string }
-  | { name: "accountType_gte"; alias?: string }
-  | { name: "accountType_contains"; alias?: string }
-  | { name: "accountType_not_contains"; alias?: string }
-  | { name: "accountType_starts_with"; alias?: string }
-  | { name: "accountType_not_starts_with"; alias?: string }
-  | { name: "accountType_ends_with"; alias?: string }
-  | { name: "accountType_not_ends_with"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'url_not', alias?: string  } 
+  | { name: 'url_in', alias?: string  } 
+  | { name: 'url_not_in', alias?: string  } 
+  | { name: 'url_lt', alias?: string  } 
+  | { name: 'url_lte', alias?: string  } 
+  | { name: 'url_gt', alias?: string  } 
+  | { name: 'url_gte', alias?: string  } 
+  | { name: 'url_contains', alias?: string  } 
+  | { name: 'url_not_contains', alias?: string  } 
+  | { name: 'url_starts_with', alias?: string  } 
+  | { name: 'url_not_starts_with', alias?: string  } 
+  | { name: 'url_ends_with', alias?: string  } 
+  | { name: 'url_not_ends_with', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'username_not', alias?: string  } 
+  | { name: 'username_in', alias?: string  } 
+  | { name: 'username_not_in', alias?: string  } 
+  | { name: 'username_lt', alias?: string  } 
+  | { name: 'username_lte', alias?: string  } 
+  | { name: 'username_gt', alias?: string  } 
+  | { name: 'username_gte', alias?: string  } 
+  | { name: 'username_contains', alias?: string  } 
+  | { name: 'username_not_contains', alias?: string  } 
+  | { name: 'username_starts_with', alias?: string  } 
+  | { name: 'username_not_starts_with', alias?: string  } 
+  | { name: 'username_ends_with', alias?: string  } 
+  | { name: 'username_not_ends_with', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'password_not', alias?: string  } 
+  | { name: 'password_in', alias?: string  } 
+  | { name: 'password_not_in', alias?: string  } 
+  | { name: 'password_lt', alias?: string  } 
+  | { name: 'password_lte', alias?: string  } 
+  | { name: 'password_gt', alias?: string  } 
+  | { name: 'password_gte', alias?: string  } 
+  | { name: 'password_contains', alias?: string  } 
+  | { name: 'password_not_contains', alias?: string  } 
+  | { name: 'password_starts_with', alias?: string  } 
+  | { name: 'password_not_starts_with', alias?: string  } 
+  | { name: 'password_ends_with', alias?: string  } 
+  | { name: 'password_not_ends_with', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'email_not', alias?: string  } 
+  | { name: 'email_in', alias?: string  } 
+  | { name: 'email_not_in', alias?: string  } 
+  | { name: 'email_lt', alias?: string  } 
+  | { name: 'email_lte', alias?: string  } 
+  | { name: 'email_gt', alias?: string  } 
+  | { name: 'email_gte', alias?: string  } 
+  | { name: 'email_contains', alias?: string  } 
+  | { name: 'email_not_contains', alias?: string  } 
+  | { name: 'email_starts_with', alias?: string  } 
+  | { name: 'email_not_starts_with', alias?: string  } 
+  | { name: 'email_ends_with', alias?: string  } 
+  | { name: 'email_not_ends_with', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'userProfileImage_not', alias?: string  } 
+  | { name: 'userProfileImage_in', alias?: string  } 
+  | { name: 'userProfileImage_not_in', alias?: string  } 
+  | { name: 'userProfileImage_lt', alias?: string  } 
+  | { name: 'userProfileImage_lte', alias?: string  } 
+  | { name: 'userProfileImage_gt', alias?: string  } 
+  | { name: 'userProfileImage_gte', alias?: string  } 
+  | { name: 'userProfileImage_contains', alias?: string  } 
+  | { name: 'userProfileImage_not_contains', alias?: string  } 
+  | { name: 'userProfileImage_starts_with', alias?: string  } 
+  | { name: 'userProfileImage_not_starts_with', alias?: string  } 
+  | { name: 'userProfileImage_ends_with', alias?: string  } 
+  | { name: 'userProfileImage_not_ends_with', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'bio_not', alias?: string  } 
+  | { name: 'bio_in', alias?: string  } 
+  | { name: 'bio_not_in', alias?: string  } 
+  | { name: 'bio_lt', alias?: string  } 
+  | { name: 'bio_lte', alias?: string  } 
+  | { name: 'bio_gt', alias?: string  } 
+  | { name: 'bio_gte', alias?: string  } 
+  | { name: 'bio_contains', alias?: string  } 
+  | { name: 'bio_not_contains', alias?: string  } 
+  | { name: 'bio_starts_with', alias?: string  } 
+  | { name: 'bio_not_starts_with', alias?: string  } 
+  | { name: 'bio_ends_with', alias?: string  } 
+  | { name: 'bio_not_ends_with', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'privilege_not', alias?: string  } 
+  | { name: 'privilege_in', alias?: string  } 
+  | { name: 'privilege_not_in', alias?: string  } 
+  | { name: 'privilege_lt', alias?: string  } 
+  | { name: 'privilege_lte', alias?: string  } 
+  | { name: 'privilege_gt', alias?: string  } 
+  | { name: 'privilege_gte', alias?: string  } 
+  | { name: 'privilege_contains', alias?: string  } 
+  | { name: 'privilege_not_contains', alias?: string  } 
+  | { name: 'privilege_starts_with', alias?: string  } 
+  | { name: 'privilege_not_starts_with', alias?: string  } 
+  | { name: 'privilege_ends_with', alias?: string  } 
+  | { name: 'privilege_not_ends_with', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'stripeId_not', alias?: string  } 
+  | { name: 'stripeId_in', alias?: string  } 
+  | { name: 'stripeId_not_in', alias?: string  } 
+  | { name: 'stripeId_lt', alias?: string  } 
+  | { name: 'stripeId_lte', alias?: string  } 
+  | { name: 'stripeId_gt', alias?: string  } 
+  | { name: 'stripeId_gte', alias?: string  } 
+  | { name: 'stripeId_contains', alias?: string  } 
+  | { name: 'stripeId_not_contains', alias?: string  } 
+  | { name: 'stripeId_starts_with', alias?: string  } 
+  | { name: 'stripeId_not_starts_with', alias?: string  } 
+  | { name: 'stripeId_ends_with', alias?: string  } 
+  | { name: 'stripeId_not_ends_with', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'accountType_not', alias?: string  } 
+  | { name: 'accountType_in', alias?: string  } 
+  | { name: 'accountType_not_in', alias?: string  } 
+  | { name: 'accountType_lt', alias?: string  } 
+  | { name: 'accountType_lte', alias?: string  } 
+  | { name: 'accountType_gt', alias?: string  } 
+  | { name: 'accountType_gte', alias?: string  } 
+  | { name: 'accountType_contains', alias?: string  } 
+  | { name: 'accountType_not_contains', alias?: string  } 
+  | { name: 'accountType_starts_with', alias?: string  } 
+  | { name: 'accountType_not_starts_with', alias?: string  } 
+  | { name: 'accountType_ends_with', alias?: string  } 
+  | { name: 'accountType_not_ends_with', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface UserUpdateManyWithWhereNestedInput {
-  where?: UserScalarWhereInput;
-  data?: UserUpdateManyDataInput;
+  where?: UserScalarWhereInput
+  data?: UserUpdateManyDataInput
 }
 export type UserUpdateManyWithWhereNestedInputInputObject =
   | Extract<keyof UserUpdateManyWithWhereNestedInput, string>
-  | { name: "where"; alias?: string }
-  | { name: "data"; alias?: string };
-
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
 export interface UserUpdateManyDataInput {
-  makerRating?: number | null;
-  reviewerThumbs?: number | null;
-  url?: string | null;
-  username?: string | null;
-  password?: string | null;
-  email?: string | null;
-  userProfileImage?: string | null;
-  privilege?: string | null;
-  stripeId?: string | null;
-  accountType?: string | null;
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
 }
 export type UserUpdateManyDataInputInputObject =
   | Extract<keyof UserUpdateManyDataInput, string>
-  | { name: "makerRating"; alias?: string }
-  | { name: "reviewerThumbs"; alias?: string }
-  | { name: "url"; alias?: string }
-  | { name: "username"; alias?: string }
-  | { name: "password"; alias?: string }
-  | { name: "email"; alias?: string }
-  | { name: "userProfileImage"; alias?: string }
-  | { name: "privilege"; alias?: string }
-  | { name: "stripeId"; alias?: string }
-  | { name: "accountType"; alias?: string };
-
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  
+export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
+  where?: ProjectWhereUniqueInput
+  update?: ProjectUpdateWithoutUserDataInput
+  create?: ProjectCreateWithoutUserInput
+}
+export type ProjectUpsertWithWhereUniqueWithoutUserInputInputObject =
+  | Extract<keyof ProjectUpsertWithWhereUniqueWithoutUserInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ProjectScalarWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
+  key?: string | null
+  key_not?: string | null
+  key_in?: string[]
+  key_not_in?: string[]
+  key_lt?: string | null
+  key_lte?: string | null
+  key_gt?: string | null
+  key_gte?: string | null
+  key_contains?: string | null
+  key_not_contains?: string | null
+  key_starts_with?: string | null
+  key_not_starts_with?: string | null
+  key_ends_with?: string | null
+  key_not_ends_with?: string | null
+  category?: string | null
+  category_not?: string | null
+  category_in?: string[]
+  category_not_in?: string[]
+  category_lt?: string | null
+  category_lte?: string | null
+  category_gt?: string | null
+  category_gte?: string | null
+  category_contains?: string | null
+  category_not_contains?: string | null
+  category_starts_with?: string | null
+  category_not_starts_with?: string | null
+  category_ends_with?: string | null
+  category_not_ends_with?: string | null
+  timestamp?: string | null
+  timestamp_not?: string | null
+  timestamp_in?: string[]
+  timestamp_not_in?: string[]
+  timestamp_lt?: string | null
+  timestamp_lte?: string | null
+  timestamp_gt?: string | null
+  timestamp_gte?: string | null
+  titleImg?: string | null
+  titleImg_not?: string | null
+  titleImg_in?: string[]
+  titleImg_not_in?: string[]
+  titleImg_lt?: string | null
+  titleImg_lte?: string | null
+  titleImg_gt?: string | null
+  titleImg_gte?: string | null
+  titleImg_contains?: string | null
+  titleImg_not_contains?: string | null
+  titleImg_starts_with?: string | null
+  titleImg_not_starts_with?: string | null
+  titleImg_ends_with?: string | null
+  titleImg_not_ends_with?: string | null
+  titleBlurb?: string | null
+  titleBlurb_not?: string | null
+  titleBlurb_in?: string[]
+  titleBlurb_not_in?: string[]
+  titleBlurb_lt?: string | null
+  titleBlurb_lte?: string | null
+  titleBlurb_gt?: string | null
+  titleBlurb_gte?: string | null
+  titleBlurb_contains?: string | null
+  titleBlurb_not_contains?: string | null
+  titleBlurb_starts_with?: string | null
+  titleBlurb_not_starts_with?: string | null
+  titleBlurb_ends_with?: string | null
+  titleBlurb_not_ends_with?: string | null
+  rating?: number | null
+  rating_not?: number | null
+  rating_in?: number[]
+  rating_not_in?: number[]
+  rating_lt?: number | null
+  rating_lte?: number | null
+  rating_gt?: number | null
+  rating_gte?: number | null
+  steps?: string | null
+  steps_not?: string | null
+  steps_in?: string[]
+  steps_not_in?: string[]
+  steps_lt?: string | null
+  steps_lte?: string | null
+  steps_gt?: string | null
+  steps_gte?: string | null
+  steps_contains?: string | null
+  steps_not_contains?: string | null
+  steps_starts_with?: string | null
+  steps_not_starts_with?: string | null
+  steps_ends_with?: string | null
+  steps_not_ends_with?: string | null
+  AND?: ProjectScalarWhereInput[]
+  OR?: ProjectScalarWhereInput[]
+  NOT?: ProjectScalarWhereInput[]
+}
+export type ProjectScalarWhereInputInputObject =
+  | Extract<keyof ProjectScalarWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'key_not', alias?: string  } 
+  | { name: 'key_in', alias?: string  } 
+  | { name: 'key_not_in', alias?: string  } 
+  | { name: 'key_lt', alias?: string  } 
+  | { name: 'key_lte', alias?: string  } 
+  | { name: 'key_gt', alias?: string  } 
+  | { name: 'key_gte', alias?: string  } 
+  | { name: 'key_contains', alias?: string  } 
+  | { name: 'key_not_contains', alias?: string  } 
+  | { name: 'key_starts_with', alias?: string  } 
+  | { name: 'key_not_starts_with', alias?: string  } 
+  | { name: 'key_ends_with', alias?: string  } 
+  | { name: 'key_not_ends_with', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'category_not', alias?: string  } 
+  | { name: 'category_in', alias?: string  } 
+  | { name: 'category_not_in', alias?: string  } 
+  | { name: 'category_lt', alias?: string  } 
+  | { name: 'category_lte', alias?: string  } 
+  | { name: 'category_gt', alias?: string  } 
+  | { name: 'category_gte', alias?: string  } 
+  | { name: 'category_contains', alias?: string  } 
+  | { name: 'category_not_contains', alias?: string  } 
+  | { name: 'category_starts_with', alias?: string  } 
+  | { name: 'category_not_starts_with', alias?: string  } 
+  | { name: 'category_ends_with', alias?: string  } 
+  | { name: 'category_not_ends_with', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'timestamp_not', alias?: string  } 
+  | { name: 'timestamp_in', alias?: string  } 
+  | { name: 'timestamp_not_in', alias?: string  } 
+  | { name: 'timestamp_lt', alias?: string  } 
+  | { name: 'timestamp_lte', alias?: string  } 
+  | { name: 'timestamp_gt', alias?: string  } 
+  | { name: 'timestamp_gte', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleImg_not', alias?: string  } 
+  | { name: 'titleImg_in', alias?: string  } 
+  | { name: 'titleImg_not_in', alias?: string  } 
+  | { name: 'titleImg_lt', alias?: string  } 
+  | { name: 'titleImg_lte', alias?: string  } 
+  | { name: 'titleImg_gt', alias?: string  } 
+  | { name: 'titleImg_gte', alias?: string  } 
+  | { name: 'titleImg_contains', alias?: string  } 
+  | { name: 'titleImg_not_contains', alias?: string  } 
+  | { name: 'titleImg_starts_with', alias?: string  } 
+  | { name: 'titleImg_not_starts_with', alias?: string  } 
+  | { name: 'titleImg_ends_with', alias?: string  } 
+  | { name: 'titleImg_not_ends_with', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'titleBlurb_not', alias?: string  } 
+  | { name: 'titleBlurb_in', alias?: string  } 
+  | { name: 'titleBlurb_not_in', alias?: string  } 
+  | { name: 'titleBlurb_lt', alias?: string  } 
+  | { name: 'titleBlurb_lte', alias?: string  } 
+  | { name: 'titleBlurb_gt', alias?: string  } 
+  | { name: 'titleBlurb_gte', alias?: string  } 
+  | { name: 'titleBlurb_contains', alias?: string  } 
+  | { name: 'titleBlurb_not_contains', alias?: string  } 
+  | { name: 'titleBlurb_starts_with', alias?: string  } 
+  | { name: 'titleBlurb_not_starts_with', alias?: string  } 
+  | { name: 'titleBlurb_ends_with', alias?: string  } 
+  | { name: 'titleBlurb_not_ends_with', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'rating_not', alias?: string  } 
+  | { name: 'rating_in', alias?: string  } 
+  | { name: 'rating_not_in', alias?: string  } 
+  | { name: 'rating_lt', alias?: string  } 
+  | { name: 'rating_lte', alias?: string  } 
+  | { name: 'rating_gt', alias?: string  } 
+  | { name: 'rating_gte', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'steps_not', alias?: string  } 
+  | { name: 'steps_in', alias?: string  } 
+  | { name: 'steps_not_in', alias?: string  } 
+  | { name: 'steps_lt', alias?: string  } 
+  | { name: 'steps_lte', alias?: string  } 
+  | { name: 'steps_gt', alias?: string  } 
+  | { name: 'steps_gte', alias?: string  } 
+  | { name: 'steps_contains', alias?: string  } 
+  | { name: 'steps_not_contains', alias?: string  } 
+  | { name: 'steps_starts_with', alias?: string  } 
+  | { name: 'steps_not_starts_with', alias?: string  } 
+  | { name: 'steps_ends_with', alias?: string  } 
+  | { name: 'steps_not_ends_with', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface ProjectUpdateManyWithWhereNestedInput {
+  where?: ProjectScalarWhereInput
+  data?: ProjectUpdateManyDataInput
+}
+export type ProjectUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof ProjectUpdateManyWithWhereNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ProjectUpdateManyDataInput {
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+}
+export type ProjectUpdateManyDataInputInputObject =
+  | Extract<keyof ProjectUpdateManyDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  
+export interface ProjectUpdateManyWithoutRatedByInput {
+  create?: ProjectCreateWithoutRatedByInput[]
+  delete?: ProjectWhereUniqueInput[]
+  connect?: ProjectWhereUniqueInput[]
+  set?: ProjectWhereUniqueInput[]
+  disconnect?: ProjectWhereUniqueInput[]
+  update?: ProjectUpdateWithWhereUniqueWithoutRatedByInput[]
+  upsert?: ProjectUpsertWithWhereUniqueWithoutRatedByInput[]
+  deleteMany?: ProjectScalarWhereInput[]
+  updateMany?: ProjectUpdateManyWithWhereNestedInput[]
+}
+export type ProjectUpdateManyWithoutRatedByInputInputObject =
+  | Extract<keyof ProjectUpdateManyWithoutRatedByInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface ProjectUpdateWithWhereUniqueWithoutRatedByInput {
+  where?: ProjectWhereUniqueInput
+  data?: ProjectUpdateWithoutRatedByDataInput
+}
+export type ProjectUpdateWithWhereUniqueWithoutRatedByInputInputObject =
+  | Extract<keyof ProjectUpdateWithWhereUniqueWithoutRatedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ProjectUpdateWithoutRatedByDataInput {
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserUpdateOneRequiredWithoutProjectsInput | null
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
+}
+export type ProjectUpdateWithoutRatedByDataInputInputObject =
+  | Extract<keyof ProjectUpdateWithoutRatedByDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  
+export interface UserUpdateOneRequiredWithoutProjectsInput {
+  create?: UserCreateWithoutProjectsInput | null
+  update?: UserUpdateWithoutProjectsDataInput | null
+  upsert?: UserUpsertWithoutProjectsInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserUpdateOneRequiredWithoutProjectsInputInputObject =
+  | Extract<keyof UserUpdateOneRequiredWithoutProjectsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserUpdateWithoutProjectsDataInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput | null
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput | null
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput | null
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput | null
+}
+export type UserUpdateWithoutProjectsDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutProjectsDataInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  | { name: 'ReviewList', alias?: string  } 
+  | { name: 'LikedReviews', alias?: string  } 
+  | { name: 'DislikedReviews', alias?: string  } 
+  | { name: 'RatedProjects', alias?: string  } 
+  
+export interface UserUpsertWithoutProjectsInput {
+  update?: UserUpdateWithoutProjectsDataInput
+  create?: UserCreateWithoutProjectsInput
+}
+export type UserUpsertWithoutProjectsInputInputObject =
+  | Extract<keyof UserUpsertWithoutProjectsInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ProjectUpsertWithWhereUniqueWithoutRatedByInput {
+  where?: ProjectWhereUniqueInput
+  update?: ProjectUpdateWithoutRatedByDataInput
+  create?: ProjectCreateWithoutRatedByInput
+}
+export type ProjectUpsertWithWhereUniqueWithoutRatedByInputInputObject =
+  | Extract<keyof ProjectUpsertWithWhereUniqueWithoutRatedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface UserUpsertWithWhereUniqueWithoutDislikedReviewsInput {
+  where?: UserWhereUniqueInput
+  update?: UserUpdateWithoutDislikedReviewsDataInput
+  create?: UserCreateWithoutDislikedReviewsInput
+}
+export type UserUpsertWithWhereUniqueWithoutDislikedReviewsInputInputObject =
+  | Extract<keyof UserUpsertWithWhereUniqueWithoutDislikedReviewsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ProjectUpdateOneRequiredWithoutReviewsInput {
+  create?: ProjectCreateWithoutReviewsInput | null
+  update?: ProjectUpdateWithoutReviewsDataInput | null
+  upsert?: ProjectUpsertWithoutReviewsInput | null
+  connect?: ProjectWhereUniqueInput | null
+}
+export type ProjectUpdateOneRequiredWithoutReviewsInputInputObject =
+  | Extract<keyof ProjectUpdateOneRequiredWithoutReviewsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface ProjectUpdateWithoutReviewsDataInput {
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserUpdateOneRequiredWithoutProjectsInput | null
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput | null
+}
+export type ProjectUpdateWithoutReviewsDataInputInputObject =
+  | Extract<keyof ProjectUpdateWithoutReviewsDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
+export interface ProjectUpsertWithoutReviewsInput {
+  update?: ProjectUpdateWithoutReviewsDataInput
+  create?: ProjectCreateWithoutReviewsInput
+}
+export type ProjectUpsertWithoutReviewsInputInputObject =
+  | Extract<keyof ProjectUpsertWithoutReviewsInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ReviewUpsertWithWhereUniqueWithoutLikedByInput {
+  where?: ReviewWhereUniqueInput
+  update?: ReviewUpdateWithoutLikedByDataInput
+  create?: ReviewCreateWithoutLikedByInput
+}
+export type ReviewUpsertWithWhereUniqueWithoutLikedByInputInputObject =
+  | Extract<keyof ReviewUpsertWithWhereUniqueWithoutLikedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface UserUpsertWithoutReviewListInput {
+  update?: UserUpdateWithoutReviewListDataInput
+  create?: UserCreateWithoutReviewListInput
+}
+export type UserUpsertWithoutReviewListInputInputObject =
+  | Extract<keyof UserUpsertWithoutReviewListInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ReviewUpsertWithWhereUniqueWithoutDislikedByInput {
+  where?: ReviewWhereUniqueInput
+  update?: ReviewUpdateWithoutDislikedByDataInput
+  create?: ReviewCreateWithoutDislikedByInput
+}
+export type ReviewUpsertWithWhereUniqueWithoutDislikedByInputInputObject =
+  | Extract<keyof ReviewUpsertWithWhereUniqueWithoutDislikedByInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface UserUpsertWithWhereUniqueWithoutLikedReviewsInput {
+  where?: UserWhereUniqueInput
+  update?: UserUpdateWithoutLikedReviewsDataInput
+  create?: UserCreateWithoutLikedReviewsInput
+}
+export type UserUpsertWithWhereUniqueWithoutLikedReviewsInputInputObject =
+  | Extract<keyof UserUpsertWithWhereUniqueWithoutLikedReviewsInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
+  where?: ReviewWhereUniqueInput
+  update?: ReviewUpdateWithoutAuthorDataInput
+  create?: ReviewCreateWithoutAuthorInput
+}
+export type ReviewUpsertWithWhereUniqueWithoutAuthorInputInputObject =
+  | Extract<keyof ReviewUpsertWithWhereUniqueWithoutAuthorInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface UserUpdateManyMutationInput {
+  url?: string | null
+  username?: string | null
+  password?: string | null
+  email?: string | null
+  userProfileImage?: string | null
+  bio?: string | null
+  privilege?: string | null
+  stripeId?: string | null
+  accountType?: string | null
+}
+export type UserUpdateManyMutationInputInputObject =
+  | Extract<keyof UserUpdateManyMutationInput, string>
+  | { name: 'url', alias?: string  } 
+  | { name: 'username', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'userProfileImage', alias?: string  } 
+  | { name: 'bio', alias?: string  } 
+  | { name: 'privilege', alias?: string  } 
+  | { name: 'stripeId', alias?: string  } 
+  | { name: 'accountType', alias?: string  } 
+  
+export interface ProjectCreateInput {
+  name?: string
+  key?: string | null
+  category?: string
+  timestamp?: string
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserCreateOneWithoutProjectsInput
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput | null
+}
+export type ProjectCreateInputInputObject =
+  | Extract<keyof ProjectCreateInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
+export interface ProjectUpdateInput {
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
+  User?: UserUpdateOneRequiredWithoutProjectsInput | null
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput | null
+}
+export type ProjectUpdateInputInputObject =
+  | Extract<keyof ProjectUpdateInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  | { name: 'User', alias?: string  } 
+  | { name: 'Reviews', alias?: string  } 
+  | { name: 'RatedBy', alias?: string  } 
+  
 export interface ProjectUpdateManyMutationInput {
-  name?: string | null;
-  category?: string | null;
-  timestamp?: string | null;
-  titleImg?: string | null;
-  titleBlurb?: string | null;
-  rating?: number | null;
+  name?: string | null
+  key?: string | null
+  category?: string | null
+  timestamp?: string | null
+  titleImg?: string | null
+  titleBlurb?: string | null
+  rating?: number | null
+  steps?: string | null
 }
 export type ProjectUpdateManyMutationInputInputObject =
   | Extract<keyof ProjectUpdateManyMutationInput, string>
-  | { name: "name"; alias?: string }
-  | { name: "category"; alias?: string }
-  | { name: "timestamp"; alias?: string }
-  | { name: "titleImg"; alias?: string }
-  | { name: "titleBlurb"; alias?: string }
-  | { name: "rating"; alias?: string };
-
+  | { name: 'name', alias?: string  } 
+  | { name: 'key', alias?: string  } 
+  | { name: 'category', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'titleImg', alias?: string  } 
+  | { name: 'titleBlurb', alias?: string  } 
+  | { name: 'rating', alias?: string  } 
+  | { name: 'steps', alias?: string  } 
+  
+export interface ReviewCreateInput {
+  title?: string
+  rKey?: string | null
+  text?: string
+  editedAt?: string
+  thumbsUp?: number | null
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
+  Author?: UserCreateOneWithoutReviewListInput
+  ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
+}
+export type ReviewCreateInputInputObject =
+  | Extract<keyof ReviewCreateInput, string>
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
 export interface ReviewUpdateInput {
-  title?: string | null;
-  text?: string | null;
-  editedAt?: string | null;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
-  Comments?: CommentUpdateManyInput | null;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput | null;
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
+  thumbsDown?: number | null
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
+  Author?: UserUpdateOneRequiredWithoutReviewListInput | null
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput | null
 }
 export type ReviewUpdateInputInputObject =
   | Extract<keyof ReviewUpdateInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string }
-  | { name: "Comments"; alias?: string }
-  | { name: "Author"; alias?: string };
-
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'LikedBy', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  | { name: 'DislikedBy', alias?: string  } 
+  | { name: 'Author', alias?: string  } 
+  | { name: 'ProjectReviewed', alias?: string  } 
+  
 export interface ReviewUpdateManyMutationInput {
-  title?: string | null;
-  text?: string | null;
-  editedAt?: string | null;
-  rating?: number | null;
-  reviewThumbsUp?: number | null;
-  reviewThumbsDown?: number | null;
+  title?: string | null
+  rKey?: string | null
+  text?: string | null
+  editedAt?: string | null
+  thumbsUp?: number | null
+  thumbsDown?: number | null
 }
 export type ReviewUpdateManyMutationInputInputObject =
   | Extract<keyof ReviewUpdateManyMutationInput, string>
-  | { name: "title"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "editedAt"; alias?: string }
-  | { name: "rating"; alias?: string }
-  | { name: "reviewThumbsUp"; alias?: string }
-  | { name: "reviewThumbsDown"; alias?: string };
-
-export interface CommentUpdateInput {
-  editedAt?: string | null;
-  text?: string | null;
-  User?: UserUpdateOneRequiredInput | null;
-}
-export type CommentUpdateInputInputObject =
-  | Extract<keyof CommentUpdateInput, string>
-  | { name: "editedAt"; alias?: string }
-  | { name: "text"; alias?: string }
-  | { name: "User"; alias?: string };
-
-export interface CommentUpdateManyMutationInput {
-  editedAt?: string | null;
-  text?: string | null;
-}
-export type CommentUpdateManyMutationInputInputObject =
-  | Extract<keyof CommentUpdateManyMutationInput, string>
-  | { name: "editedAt"; alias?: string }
-  | { name: "text"; alias?: string };
-
+  | { name: 'title', alias?: string  } 
+  | { name: 'rKey', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'editedAt', alias?: string  } 
+  | { name: 'thumbsUp', alias?: string  } 
+  | { name: 'thumbsDown', alias?: string  } 
+  
 export interface UserSubscriptionWhereInput {
-  mutation_in?: prisma.MutationType[];
-  updatedFields_contains?: string | null;
-  updatedFields_contains_every?: string[];
-  updatedFields_contains_some?: string[];
-  node?: UserWhereInput | null;
-  AND?: UserSubscriptionWhereInput[];
-  OR?: UserSubscriptionWhereInput[];
-  NOT?: UserSubscriptionWhereInput[];
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: UserWhereInput | null
+  AND?: UserSubscriptionWhereInput[]
+  OR?: UserSubscriptionWhereInput[]
+  NOT?: UserSubscriptionWhereInput[]
 }
 export type UserSubscriptionWhereInputInputObject =
   | Extract<keyof UserSubscriptionWhereInput, string>
-  | { name: "mutation_in"; alias?: string }
-  | { name: "updatedFields_contains"; alias?: string }
-  | { name: "updatedFields_contains_every"; alias?: string }
-  | { name: "updatedFields_contains_some"; alias?: string }
-  | { name: "node"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface StepArraySubscriptionWhereInput {
-  mutation_in?: prisma.MutationType[];
-  updatedFields_contains?: string | null;
-  updatedFields_contains_every?: string[];
-  updatedFields_contains_some?: string[];
-  node?: StepArrayWhereInput | null;
-  AND?: StepArraySubscriptionWhereInput[];
-  OR?: StepArraySubscriptionWhereInput[];
-  NOT?: StepArraySubscriptionWhereInput[];
-}
-export type StepArraySubscriptionWhereInputInputObject =
-  | Extract<keyof StepArraySubscriptionWhereInput, string>
-  | { name: "mutation_in"; alias?: string }
-  | { name: "updatedFields_contains"; alias?: string }
-  | { name: "updatedFields_contains_every"; alias?: string }
-  | { name: "updatedFields_contains_some"; alias?: string }
-  | { name: "node"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface ProjectSubscriptionWhereInput {
-  mutation_in?: prisma.MutationType[];
-  updatedFields_contains?: string | null;
-  updatedFields_contains_every?: string[];
-  updatedFields_contains_some?: string[];
-  node?: ProjectWhereInput | null;
-  AND?: ProjectSubscriptionWhereInput[];
-  OR?: ProjectSubscriptionWhereInput[];
-  NOT?: ProjectSubscriptionWhereInput[];
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: ProjectWhereInput | null
+  AND?: ProjectSubscriptionWhereInput[]
+  OR?: ProjectSubscriptionWhereInput[]
+  NOT?: ProjectSubscriptionWhereInput[]
 }
 export type ProjectSubscriptionWhereInputInputObject =
   | Extract<keyof ProjectSubscriptionWhereInput, string>
-  | { name: "mutation_in"; alias?: string }
-  | { name: "updatedFields_contains"; alias?: string }
-  | { name: "updatedFields_contains_every"; alias?: string }
-  | { name: "updatedFields_contains_some"; alias?: string }
-  | { name: "node"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 export interface ReviewSubscriptionWhereInput {
-  mutation_in?: prisma.MutationType[];
-  updatedFields_contains?: string | null;
-  updatedFields_contains_every?: string[];
-  updatedFields_contains_some?: string[];
-  node?: ReviewWhereInput | null;
-  AND?: ReviewSubscriptionWhereInput[];
-  OR?: ReviewSubscriptionWhereInput[];
-  NOT?: ReviewSubscriptionWhereInput[];
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: ReviewWhereInput | null
+  AND?: ReviewSubscriptionWhereInput[]
+  OR?: ReviewSubscriptionWhereInput[]
+  NOT?: ReviewSubscriptionWhereInput[]
 }
 export type ReviewSubscriptionWhereInputInputObject =
   | Extract<keyof ReviewSubscriptionWhereInput, string>
-  | { name: "mutation_in"; alias?: string }
-  | { name: "updatedFields_contains"; alias?: string }
-  | { name: "updatedFields_contains_every"; alias?: string }
-  | { name: "updatedFields_contains_some"; alias?: string }
-  | { name: "node"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
-
-export interface CommentSubscriptionWhereInput {
-  mutation_in?: prisma.MutationType[];
-  updatedFields_contains?: string | null;
-  updatedFields_contains_every?: string[];
-  updatedFields_contains_some?: string[];
-  node?: CommentWhereInput | null;
-  AND?: CommentSubscriptionWhereInput[];
-  OR?: CommentSubscriptionWhereInput[];
-  NOT?: CommentSubscriptionWhereInput[];
-}
-export type CommentSubscriptionWhereInputInputObject =
-  | Extract<keyof CommentSubscriptionWhereInput, string>
-  | { name: "mutation_in"; alias?: string }
-  | { name: "updatedFields_contains"; alias?: string }
-  | { name: "updatedFields_contains_every"; alias?: string }
-  | { name: "updatedFields_contains_some"; alias?: string }
-  | { name: "node"; alias?: string }
-  | { name: "AND"; alias?: string }
-  | { name: "OR"; alias?: string }
-  | { name: "NOT"; alias?: string };
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 
 export type ReviewOrderByInputValues =
-  | "id_ASC"
-  | "id_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "text_ASC"
-  | "text_DESC"
-  | "editedAt_ASC"
-  | "editedAt_DESC"
-  | "rating_ASC"
-  | "rating_DESC"
-  | "reviewThumbsUp_ASC"
-  | "reviewThumbsUp_DESC"
-  | "reviewThumbsDown_ASC"
-  | "reviewThumbsDown_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type CommentOrderByInputValues =
-  | "id_ASC"
-  | "id_DESC"
-  | "editedAt_ASC"
-  | "editedAt_DESC"
-  | "text_ASC"
-  | "text_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type ProjectOrderByInputValues =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "category_ASC"
-  | "category_DESC"
-  | "timestamp_ASC"
-  | "timestamp_DESC"
-  | "titleImg_ASC"
-  | "titleImg_DESC"
-  | "titleBlurb_ASC"
-  | "titleBlurb_DESC"
-  | "rating_ASC"
-  | "rating_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'rKey_ASC'
+  | 'rKey_DESC'
+  | 'text_ASC'
+  | 'text_DESC'
+  | 'editedAt_ASC'
+  | 'editedAt_DESC'
+  | 'thumbsUp_ASC'
+  | 'thumbsUp_DESC'
+  | 'thumbsDown_ASC'
+  | 'thumbsDown_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  
 export type UserOrderByInputValues =
-  | "id_ASC"
-  | "id_DESC"
-  | "makerRating_ASC"
-  | "makerRating_DESC"
-  | "reviewerThumbs_ASC"
-  | "reviewerThumbs_DESC"
-  | "url_ASC"
-  | "url_DESC"
-  | "username_ASC"
-  | "username_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "userProfileImage_ASC"
-  | "userProfileImage_DESC"
-  | "privilege_ASC"
-  | "privilege_DESC"
-  | "stripeId_ASC"
-  | "stripeId_DESC"
-  | "accountType_ASC"
-  | "accountType_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type StepArrayOrderByInputValues =
-  | "textBlurbs_ASC"
-  | "textBlurbs_DESC"
-  | "imgUrls_ASC"
-  | "imgUrls_DESC"
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type MutationTypeValues = "CREATED" | "UPDATED" | "DELETED";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'url_ASC'
+  | 'url_DESC'
+  | 'username_ASC'
+  | 'username_DESC'
+  | 'password_ASC'
+  | 'password_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'userProfileImage_ASC'
+  | 'userProfileImage_DESC'
+  | 'bio_ASC'
+  | 'bio_DESC'
+  | 'privilege_ASC'
+  | 'privilege_DESC'
+  | 'stripeId_ASC'
+  | 'stripeId_DESC'
+  | 'accountType_ASC'
+  | 'accountType_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  
+export type ProjectOrderByInputValues =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'key_ASC'
+  | 'key_DESC'
+  | 'category_ASC'
+  | 'category_DESC'
+  | 'timestamp_ASC'
+  | 'timestamp_DESC'
+  | 'titleImg_ASC'
+  | 'titleImg_DESC'
+  | 'titleBlurb_ASC'
+  | 'titleBlurb_DESC'
+  | 'rating_ASC'
+  | 'rating_DESC'
+  | 'steps_ASC'
+  | 'steps_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  
+export type MutationTypeValues =
+  | 'CREATED'
+  | 'UPDATED'
+  | 'DELETED'
+  
+  

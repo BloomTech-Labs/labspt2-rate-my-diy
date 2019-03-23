@@ -9,25 +9,17 @@ var models = [
     embedded: false
   },
   {
-    name: "StepArray",
-    embedded: false
-  },
-  {
     name: "Project",
     embedded: false
   },
   {
     name: "Review",
     embedded: false
-  },
-  {
-    name: "Comment",
-    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev`
+  endpoint: `https://labspt2rmd-1b9679881a.herokuapp.com/labspt2rmd/dev`
 });
 exports.prisma = new exports.Prisma();
