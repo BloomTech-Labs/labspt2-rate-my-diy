@@ -1,0 +1,317 @@
+mutation {
+  user1: createUser(data: {
+    username: "asdfsd"
+    password: "abc123"
+    email: "asldkf@gmail.com"
+    Projects: {
+        create: [
+            {
+                name: "Sarah's 1st Project"
+                category: "random"
+                timestamp: "2019-02-01"
+            }
+            {
+                name: "Sarah's 2nd Project"
+                category: "home improvement"
+                timestamp: "2019-02-15"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user2: createUser(data: {
+    username: "sldfksd"
+    password: "abc123"
+    email: "lkjwe@gmail.com"
+    Projects: {
+        create: [
+            {
+                name: "Joe's 1st Project"
+                category: "random"
+                timestamp: "2018-02-01"
+            }
+            {
+                name: "Joe's 2nd Project"
+                category: "kitchen"
+                timestamp: "2018-05-15"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user3: createUser(data: {
+      username: "slekrj"
+      password: "abc123"
+      email: "riowjw@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Mark's 1st Project"
+                category: "garage"
+                timestamp: "2018-07-01"
+            }
+            {
+                name: "Mark's 2nd Project"
+                category: "handicrafts"
+                timestamp: "2019-01-22"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user4: createUser(data: {
+      username: "lkrjawe"
+      password: "abc123"
+      email: "orije@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Bo's 1st Project"
+                category: "web development"
+                timestamp: "2018-01-17"
+            }
+            {
+                name: "Bo's 2nd Project"
+                category: "cocktails"
+                timestamp: "2018-03-18"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user5: createUser(data: {
+      username: "lkrwetir"
+      password: "abc123"
+      email: "toieja@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Timmy's 1st Project"
+                category: "self improvement"
+                timestamp: "2018-01-21"
+            }
+            {
+                name: "Timmy's 2nd Project"
+                category: "home improvement"
+                timestamp: "2018-02-12"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user6: createUser(data: {
+      username: "toigjewe"
+      password: "abc123"
+      email: "rtoijge@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Rhonda's 1st Project"
+                category: "kitchen"
+                timestamp: "2018-07-01"
+            }
+            {
+                name: "Rhonda's 2nd Project"
+                category: "handicrafts"
+                timestamp: "2019-01-15"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user7: createUser(data: {
+      username: "oiwjoeawd"
+      password: "abc123"
+      email: "rglklsajfeee@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Yanelli's 1st Project"
+                category: "music"
+                timestamp: "2018-06-04"
+            }
+            {
+                name: "Yanelli's 2nd Project"
+                category: "cocktails"
+                timestamp: "2018-07-02"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user8: createUser(data: {
+      username: "wlefjwe"
+      password: "abc123"
+      email: "lrkgjwaelw@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Ashley's 1st Project"
+                category: "kid crafts"
+                timestamp: "2019-01-01"
+            }
+            {
+                name: "Ashley's 2nd Project"
+                category: "home improvement"
+                timestamp: "2019-02-24"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user9: createUser(data: {
+      username: "askldfjewavvv"
+      password: "abc123"
+      email: "glrijad@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Elmer's 1st Project"
+                category: "random"
+                timestamp: "2019-01-09"
+            }
+            {
+                name: "Elmer's 2nd Project"
+                category: "kid crafts"
+                timestamp: "2019-03-01"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user10: createUser(data: {
+      username: "lgrjraweks"
+      password: "abc123"
+      email: "tlirjerss@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Eric's 1st Project"
+                category: "music"
+                timestamp: "2019-01-15"
+            }
+            {
+                name: "Eric's 2nd Project"
+                category: "sewing"
+                timestamp: "2019-03-04"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user11: createUser(data: {
+      username: "lrijfwwa"
+      password: "abc123"
+      email: "dlgiawefs@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Derek's 1st Project"
+                category: "music"
+                timestamp: "2018-06-01"
+            }
+            {
+                name: "Derek's 2nd Project"
+                category: "kitchen"
+                timestamp: "2018-08-13"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user12: createUser(data: {
+      username: "itbdsldvf"
+      password: "abc123"
+      email: "tijaecvvdsd@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Melinda's 1st Project"
+                category: "dance"
+                timestamp: "2019-03-01"
+            }
+            {
+                name: "Melinda's 2nd Project"
+                category: "kitchen"
+                timestamp: "2019-03-18"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user13: createUser(data: {
+      username: "dlgirassdweeww"
+      password: "abc123"
+      email: "adlkfsvvwket@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Elsa's 1st Project"
+                category: "music"
+                timestamp: "2019-02-05"
+            }
+            {
+                name: "Elsa's 2nd Project"
+                category: "home improvement"
+                timestamp: "2019-02-18"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user14: createUser(data: {
+      username: "dglawerwdfvvyeiwq"
+      password: "abc123"
+      email: "tgiasccvdew2@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Robert's 1st Project"
+                category: "random"
+                timestamp: "2018-05-08"
+            }
+            {
+                name: "Robert's 2nd Project"
+                category: "self improvement"
+                timestamp: "2018-09-11"
+            }
+        ]
+    }
+  }){
+      id
+  }
+  user15: createUser(data: {
+      username: "yoirewowd"
+      password: "abc123"
+      email: "lgrakesl@gmail.com"
+      Projects: {
+        create: [
+            {
+                name: "Amy's 1st Project"
+                category: "music"
+                timestamp: "2019-02-04"
+            }
+            {
+                name: "Amy's 2nd Project"
+                category: "dance"
+                timestamp: "2019-03-20"
+            }
+        ]
+    }
+  }){
+      id
+  }
+}

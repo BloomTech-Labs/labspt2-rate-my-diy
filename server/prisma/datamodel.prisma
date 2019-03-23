@@ -9,13 +9,16 @@ type User {
   username: String! @unique
   password: String! 
   email: String! @unique
-  userProfileImage: String! @default(value: "https://cdn-images-1.medium.com/max/1200/1*aZB4dwe_JRcp1uMHiGYf8g.jpeg")
+  userProfileImage: String! @default(value: "http://i.pravatar.cc/300")
   bio: String! @default(value: "Hi, this is my page where I share projects and reviews")
-  privilege: String!
+  privilege: String! @default(value: "Plebian")
   stripeId: String
   accountType: String! @default(value: "free-tier")
-  ReviewList: [Review!]
-  Projects: [Project!] 
+  ReviewList: [Review!] @relation(name: "UserReviews" onDelete: CASCADE)
+  LikedReviews: [Review!] @relation(name: "UserLikedReviews" onDelete: CASCADE)
+  DislikedReviews: [Review!] @relation(name: "UserDislikedReviews" onDelete: CASCADE)
+  Projects: [Project!] @relation(name: "UserProjects" onDelete: CASCADE)
+  RatedProjects: [Project!] @relation(name: "UserRatedProjects" onDelete: CASCADE)
 }
 
 type Project {
@@ -23,23 +26,25 @@ type Project {
  name: String!
  category: String!
  timestamp: DateTime!
- titleImg: String!
- titleBlurb: String!
- rating: Float! @default(value: 1)
- steps: String!
- User: [User!] @relation(name: "AuthorName")
- Reviews:[Review!]!
+ titleImg: String! @default(value: "http://lorempixel.com/400/400/")
+ titleBlurb: String! @default(value: "I hope you like my project")
+ rating: Float! @default(value: 0)
+ steps: String! @default(value: "1. Put the lime in the coconut 2. Drink them both up 3. Call the doctor 4. Ask if there's anything you can take to relieve your bellyache")
+ User: User! @relation(name: "UserProjects")
+ Reviews:[Review!] @relation(name: "ProjectReviews" onDelete: CASCADE)
+ RatedBy: [User!] @relation(name: "UserRatedProjects")
 }
   
 type Review {
   id: ID! @unique 
   title: String!
   text: String!
-  editedAt: String!
-  rating: Float! @default(value: 1)
-  thumbsUp: Int
-  userThumbsUpArray: String!
-  thumbsDown: Int
-  userThumbsDownArray: String!
-  Author: User!
+  editedAt: DateTime!
+  rating: Float! @default(value: 0)
+  thumbsUp: Int! @default(value: 0)
+  LikedBy: [User!] @relation(name: "UserLikedReviews")
+  thumbsDown: Int! @fefault(value: 0)
+  DislikedBy: [User!] @relation(name: "UserDislikedReviews")
+  Author: User! @relation(name: "UserReviews")
+  ProjectReviewed: Project! @relation(name: "ProjectReviews")
 }

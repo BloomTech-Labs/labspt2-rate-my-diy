@@ -14,10 +14,8 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  comment: (where?: CommentWhereInput) => Promise<boolean>;
   project: (where?: ProjectWhereInput) => Promise<boolean>;
   review: (where?: ReviewWhereInput) => Promise<boolean>;
-  stepArray: (where?: StepArrayWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -40,29 +38,6 @@ export interface Prisma {
    * Queries
    */
 
-  comment: (where: CommentWhereUniqueInput) => CommentPromise;
-  comments: (
-    args?: {
-      where?: CommentWhereInput;
-      orderBy?: CommentOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Comment>;
-  commentsConnection: (
-    args?: {
-      where?: CommentWhereInput;
-      orderBy?: CommentOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => CommentConnectionPromise;
   project: (where: ProjectWhereUniqueInput) => ProjectPromise;
   projects: (
     args?: {
@@ -109,28 +84,6 @@ export interface Prisma {
       last?: Int;
     }
   ) => ReviewConnectionPromise;
-  stepArrays: (
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<StepArray>;
-  stepArraysConnection: (
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => StepArrayConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -160,22 +113,6 @@ export interface Prisma {
    * Mutations
    */
 
-  createComment: (data: CommentCreateInput) => CommentPromise;
-  updateComment: (
-    args: { data: CommentUpdateInput; where: CommentWhereUniqueInput }
-  ) => CommentPromise;
-  updateManyComments: (
-    args: { data: CommentUpdateManyMutationInput; where?: CommentWhereInput }
-  ) => BatchPayloadPromise;
-  upsertComment: (
-    args: {
-      where: CommentWhereUniqueInput;
-      create: CommentCreateInput;
-      update: CommentUpdateInput;
-    }
-  ) => CommentPromise;
-  deleteComment: (where: CommentWhereUniqueInput) => CommentPromise;
-  deleteManyComments: (where?: CommentWhereInput) => BatchPayloadPromise;
   createProject: (data: ProjectCreateInput) => ProjectPromise;
   updateProject: (
     args: { data: ProjectUpdateInput; where: ProjectWhereUniqueInput }
@@ -208,14 +145,6 @@ export interface Prisma {
   ) => ReviewPromise;
   deleteReview: (where: ReviewWhereUniqueInput) => ReviewPromise;
   deleteManyReviews: (where?: ReviewWhereInput) => BatchPayloadPromise;
-  createStepArray: (data: StepArrayCreateInput) => StepArrayPromise;
-  updateManyStepArrays: (
-    args: {
-      data: StepArrayUpdateManyMutationInput;
-      where?: StepArrayWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  deleteManyStepArrays: (where?: StepArrayWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -241,18 +170,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  comment: (
-    where?: CommentSubscriptionWhereInput
-  ) => CommentSubscriptionPayloadSubscription;
   project: (
     where?: ProjectSubscriptionWhereInput
   ) => ProjectSubscriptionPayloadSubscription;
   review: (
     where?: ReviewSubscriptionWhereInput
   ) => ReviewSubscriptionPayloadSubscription;
-  stepArray: (
-    where?: StepArraySubscriptionWhereInput
-  ) => StepArraySubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -277,22 +200,36 @@ export type ReviewOrderByInput =
   | "editedAt_DESC"
   | "rating_ASC"
   | "rating_DESC"
-  | "reviewThumbsUp_ASC"
-  | "reviewThumbsUp_DESC"
-  | "reviewThumbsDown_ASC"
-  | "reviewThumbsDown_DESC"
+  | "thumbsUp_ASC"
+  | "thumbsUp_DESC"
+  | "thumbsDown_ASC"
+  | "thumbsDown_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type CommentOrderByInput =
+export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "editedAt_ASC"
-  | "editedAt_DESC"
-  | "text_ASC"
-  | "text_DESC"
+  | "url_ASC"
+  | "url_DESC"
+  | "username_ASC"
+  | "username_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "userProfileImage_ASC"
+  | "userProfileImage_DESC"
+  | "bio_ASC"
+  | "bio_DESC"
+  | "privilege_ASC"
+  | "privilege_DESC"
+  | "stripeId_ASC"
+  | "stripeId_DESC"
+  | "accountType_ASC"
+  | "accountType_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -313,46 +250,8 @@ export type ProjectOrderByInput =
   | "titleBlurb_DESC"
   | "rating_ASC"
   | "rating_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "makerRating_ASC"
-  | "makerRating_DESC"
-  | "reviewerThumbs_ASC"
-  | "reviewerThumbs_DESC"
-  | "url_ASC"
-  | "url_DESC"
-  | "username_ASC"
-  | "username_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "userProfileImage_ASC"
-  | "userProfileImage_DESC"
-  | "privilege_ASC"
-  | "privilege_DESC"
-  | "stripeId_ASC"
-  | "stripeId_DESC"
-  | "accountType_ASC"
-  | "accountType_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type StepArrayOrderByInput =
-  | "textBlurbs_ASC"
-  | "textBlurbs_DESC"
-  | "imgUrls_ASC"
-  | "imgUrls_DESC"
-  | "id_ASC"
-  | "id_DESC"
+  | "steps_ASC"
+  | "steps_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -360,19 +259,457 @@ export type StepArrayOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface CommentUpdateDataInput {
-  editedAt?: DateTimeInput;
-  text?: String;
-  User?: UserUpdateOneRequiredInput;
+export interface ReviewUpdateWithWhereUniqueWithoutDislikedByInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutDislikedByDataInput;
 }
 
-export type CommentWhereUniqueInput = AtLeastOne<{
+export type ProjectWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface CommentUpdateManyDataInput {
-  editedAt?: DateTimeInput;
+export interface ProjectUpdateInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User?: UserUpdateOneRequiredWithoutProjectsInput;
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput;
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput;
+}
+
+export interface ProjectUpdateWithoutReviewsDataInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User?: UserUpdateOneRequiredWithoutProjectsInput;
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput;
+}
+
+export interface UserUpdateOneRequiredWithoutProjectsInput {
+  create?: UserCreateWithoutProjectsInput;
+  update?: UserUpdateWithoutProjectsDataInput;
+  upsert?: UserUpsertWithoutProjectsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutReviewListDataInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput;
+  Projects?: ProjectUpdateManyWithoutUserInput;
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput;
+}
+
+export interface UserUpdateWithoutProjectsDataInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput;
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  url?: String;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  userProfileImage?: String;
+  userProfileImage_not?: String;
+  userProfileImage_in?: String[] | String;
+  userProfileImage_not_in?: String[] | String;
+  userProfileImage_lt?: String;
+  userProfileImage_lte?: String;
+  userProfileImage_gt?: String;
+  userProfileImage_gte?: String;
+  userProfileImage_contains?: String;
+  userProfileImage_not_contains?: String;
+  userProfileImage_starts_with?: String;
+  userProfileImage_not_starts_with?: String;
+  userProfileImage_ends_with?: String;
+  userProfileImage_not_ends_with?: String;
+  bio?: String;
+  bio_not?: String;
+  bio_in?: String[] | String;
+  bio_not_in?: String[] | String;
+  bio_lt?: String;
+  bio_lte?: String;
+  bio_gt?: String;
+  bio_gte?: String;
+  bio_contains?: String;
+  bio_not_contains?: String;
+  bio_starts_with?: String;
+  bio_not_starts_with?: String;
+  bio_ends_with?: String;
+  bio_not_ends_with?: String;
+  privilege?: String;
+  privilege_not?: String;
+  privilege_in?: String[] | String;
+  privilege_not_in?: String[] | String;
+  privilege_lt?: String;
+  privilege_lte?: String;
+  privilege_gt?: String;
+  privilege_gte?: String;
+  privilege_contains?: String;
+  privilege_not_contains?: String;
+  privilege_starts_with?: String;
+  privilege_not_starts_with?: String;
+  privilege_ends_with?: String;
+  privilege_not_ends_with?: String;
+  stripeId?: String;
+  stripeId_not?: String;
+  stripeId_in?: String[] | String;
+  stripeId_not_in?: String[] | String;
+  stripeId_lt?: String;
+  stripeId_lte?: String;
+  stripeId_gt?: String;
+  stripeId_gte?: String;
+  stripeId_contains?: String;
+  stripeId_not_contains?: String;
+  stripeId_starts_with?: String;
+  stripeId_not_starts_with?: String;
+  stripeId_ends_with?: String;
+  stripeId_not_ends_with?: String;
+  accountType?: String;
+  accountType_not?: String;
+  accountType_in?: String[] | String;
+  accountType_not_in?: String[] | String;
+  accountType_lt?: String;
+  accountType_lte?: String;
+  accountType_gt?: String;
+  accountType_gte?: String;
+  accountType_contains?: String;
+  accountType_not_contains?: String;
+  accountType_starts_with?: String;
+  accountType_not_starts_with?: String;
+  accountType_ends_with?: String;
+  accountType_not_ends_with?: String;
+  ReviewList_every?: ReviewWhereInput;
+  ReviewList_some?: ReviewWhereInput;
+  ReviewList_none?: ReviewWhereInput;
+  LikedReviews_every?: ReviewWhereInput;
+  LikedReviews_some?: ReviewWhereInput;
+  LikedReviews_none?: ReviewWhereInput;
+  DislikedReviews_every?: ReviewWhereInput;
+  DislikedReviews_some?: ReviewWhereInput;
+  DislikedReviews_none?: ReviewWhereInput;
+  Projects_every?: ProjectWhereInput;
+  Projects_some?: ProjectWhereInput;
+  Projects_none?: ProjectWhereInput;
+  RatedProjects_every?: ProjectWhereInput;
+  RatedProjects_some?: ProjectWhereInput;
+  RatedProjects_none?: ProjectWhereInput;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface ReviewUpdateManyWithoutAuthorInput {
+  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  update?:
+    | ReviewUpdateWithWhereUniqueWithoutAuthorInput[]
+    | ReviewUpdateWithWhereUniqueWithoutAuthorInput;
+  upsert?:
+    | ReviewUpsertWithWhereUniqueWithoutAuthorInput[]
+    | ReviewUpsertWithWhereUniqueWithoutAuthorInput;
+  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  updateMany?:
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput;
+}
+
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ReviewWhereInput;
+  AND?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  OR?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutAuthorDataInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+}
+
+export interface ReviewUpdateWithoutAuthorDataInput {
+  title?: String;
   text?: String;
+  editedAt?: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
+  thumbsDown?: Int;
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput;
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput;
+}
+
+export interface UserCreateInput {
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput;
+  Projects?: ProjectCreateManyWithoutUserInput;
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput;
+}
+
+export interface UserUpdateManyWithoutLikedReviewsInput {
+  create?:
+    | UserCreateWithoutLikedReviewsInput[]
+    | UserCreateWithoutLikedReviewsInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutLikedReviewsInput[]
+    | UserUpdateWithWhereUniqueWithoutLikedReviewsInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutLikedReviewsInput[]
+    | UserUpsertWithWhereUniqueWithoutLikedReviewsInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
+}
+
+export interface ReviewUpdateInput {
+  title?: String;
+  text?: String;
+  editedAt?: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
+  thumbsDown?: Int;
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutLikedReviewsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutLikedReviewsDataInput;
+}
+
+export interface ProjectUpdateManyMutationInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+}
+
+export interface UserUpdateWithoutLikedReviewsDataInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput;
+  Projects?: ProjectUpdateManyWithoutUserInput;
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput;
+}
+
+export interface UserUpsertWithoutProjectsInput {
+  update: UserUpdateWithoutProjectsDataInput;
+  create: UserCreateWithoutProjectsInput;
+}
+
+export interface ReviewUpdateManyWithoutDislikedByInput {
+  create?:
+    | ReviewCreateWithoutDislikedByInput[]
+    | ReviewCreateWithoutDislikedByInput;
+  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  update?:
+    | ReviewUpdateWithWhereUniqueWithoutDislikedByInput[]
+    | ReviewUpdateWithWhereUniqueWithoutDislikedByInput;
+  upsert?:
+    | ReviewUpsertWithWhereUniqueWithoutDislikedByInput[]
+    | ReviewUpsertWithWhereUniqueWithoutDislikedByInput;
+  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  updateMany?:
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutLikedReviewsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutLikedReviewsDataInput;
+  create: UserCreateWithoutLikedReviewsInput;
+}
+
+export interface ProjectUpsertWithoutReviewsInput {
+  update: ProjectUpdateWithoutReviewsDataInput;
+  create: ProjectCreateWithoutReviewsInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutDislikedByInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutDislikedByDataInput;
+  create: ReviewCreateWithoutDislikedByInput;
+}
+
+export interface ReviewUpdateWithoutDislikedByDataInput {
+  title?: String;
+  text?: String;
+  editedAt?: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
+  thumbsDown?: Int;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutLikedByInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutLikedByDataInput;
+  create: ReviewCreateWithoutLikedByInput;
+}
+
+export interface UserUpdateOneRequiredWithoutReviewListInput {
+  create?: UserCreateWithoutReviewListInput;
+  update?: UserUpdateWithoutReviewListDataInput;
+  upsert?: UserUpsertWithoutReviewListInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ProjectCreateInput {
+  name: String;
+  category: String;
+  timestamp: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User: UserCreateOneWithoutProjectsInput;
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput;
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput;
 }
 
 export interface ReviewWhereInput {
@@ -418,20 +755,14 @@ export interface ReviewWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
-  editedAt?: String;
-  editedAt_not?: String;
-  editedAt_in?: String[] | String;
-  editedAt_not_in?: String[] | String;
-  editedAt_lt?: String;
-  editedAt_lte?: String;
-  editedAt_gt?: String;
-  editedAt_gte?: String;
-  editedAt_contains?: String;
-  editedAt_not_contains?: String;
-  editedAt_starts_with?: String;
-  editedAt_not_starts_with?: String;
-  editedAt_ends_with?: String;
-  editedAt_not_ends_with?: String;
+  editedAt?: DateTimeInput;
+  editedAt_not?: DateTimeInput;
+  editedAt_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_lt?: DateTimeInput;
+  editedAt_lte?: DateTimeInput;
+  editedAt_gt?: DateTimeInput;
+  editedAt_gte?: DateTimeInput;
   rating?: Float;
   rating_not?: Float;
   rating_in?: Float[] | Float;
@@ -440,810 +771,345 @@ export interface ReviewWhereInput {
   rating_lte?: Float;
   rating_gt?: Float;
   rating_gte?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsUp_not?: Int;
-  reviewThumbsUp_in?: Int[] | Int;
-  reviewThumbsUp_not_in?: Int[] | Int;
-  reviewThumbsUp_lt?: Int;
-  reviewThumbsUp_lte?: Int;
-  reviewThumbsUp_gt?: Int;
-  reviewThumbsUp_gte?: Int;
-  reviewThumbsDown?: Int;
-  reviewThumbsDown_not?: Int;
-  reviewThumbsDown_in?: Int[] | Int;
-  reviewThumbsDown_not_in?: Int[] | Int;
-  reviewThumbsDown_lt?: Int;
-  reviewThumbsDown_lte?: Int;
-  reviewThumbsDown_gt?: Int;
-  reviewThumbsDown_gte?: Int;
-  Comments_every?: CommentWhereInput;
-  Comments_some?: CommentWhereInput;
-  Comments_none?: CommentWhereInput;
+  thumbsUp?: Int;
+  thumbsUp_not?: Int;
+  thumbsUp_in?: Int[] | Int;
+  thumbsUp_not_in?: Int[] | Int;
+  thumbsUp_lt?: Int;
+  thumbsUp_lte?: Int;
+  thumbsUp_gt?: Int;
+  thumbsUp_gte?: Int;
+  LikedBy_every?: UserWhereInput;
+  LikedBy_some?: UserWhereInput;
+  LikedBy_none?: UserWhereInput;
+  thumbsDown?: Int;
+  thumbsDown_not?: Int;
+  thumbsDown_in?: Int[] | Int;
+  thumbsDown_not_in?: Int[] | Int;
+  thumbsDown_lt?: Int;
+  thumbsDown_lte?: Int;
+  thumbsDown_gt?: Int;
+  thumbsDown_gte?: Int;
+  DislikedBy_every?: UserWhereInput;
+  DislikedBy_some?: UserWhereInput;
+  DislikedBy_none?: UserWhereInput;
   Author?: UserWhereInput;
+  ProjectReviewed?: ProjectWhereInput;
   AND?: ReviewWhereInput[] | ReviewWhereInput;
   OR?: ReviewWhereInput[] | ReviewWhereInput;
   NOT?: ReviewWhereInput[] | ReviewWhereInput;
 }
 
-export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
-  where: ReviewWhereUniqueInput;
-  update: ReviewUpdateWithoutAuthorDataInput;
-  create: ReviewCreateWithoutAuthorInput;
-}
-
-export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  makerRating?: Float;
-  makerRating_not?: Float;
-  makerRating_in?: Float[] | Float;
-  makerRating_not_in?: Float[] | Float;
-  makerRating_lt?: Float;
-  makerRating_lte?: Float;
-  makerRating_gt?: Float;
-  makerRating_gte?: Float;
-  reviewerThumbs?: Int;
-  reviewerThumbs_not?: Int;
-  reviewerThumbs_in?: Int[] | Int;
-  reviewerThumbs_not_in?: Int[] | Int;
-  reviewerThumbs_lt?: Int;
-  reviewerThumbs_lte?: Int;
-  reviewerThumbs_gt?: Int;
-  reviewerThumbs_gte?: Int;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  username?: String;
-  username_not?: String;
-  username_in?: String[] | String;
-  username_not_in?: String[] | String;
-  username_lt?: String;
-  username_lte?: String;
-  username_gt?: String;
-  username_gte?: String;
-  username_contains?: String;
-  username_not_contains?: String;
-  username_starts_with?: String;
-  username_not_starts_with?: String;
-  username_ends_with?: String;
-  username_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  userProfileImage?: String;
-  userProfileImage_not?: String;
-  userProfileImage_in?: String[] | String;
-  userProfileImage_not_in?: String[] | String;
-  userProfileImage_lt?: String;
-  userProfileImage_lte?: String;
-  userProfileImage_gt?: String;
-  userProfileImage_gte?: String;
-  userProfileImage_contains?: String;
-  userProfileImage_not_contains?: String;
-  userProfileImage_starts_with?: String;
-  userProfileImage_not_starts_with?: String;
-  userProfileImage_ends_with?: String;
-  userProfileImage_not_ends_with?: String;
-  ReviewList_every?: ReviewWhereInput;
-  ReviewList_some?: ReviewWhereInput;
-  ReviewList_none?: ReviewWhereInput;
-  Projects_every?: ProjectWhereInput;
-  Projects_some?: ProjectWhereInput;
-  Projects_none?: ProjectWhereInput;
-  privilege?: String;
-  privilege_not?: String;
-  privilege_in?: String[] | String;
-  privilege_not_in?: String[] | String;
-  privilege_lt?: String;
-  privilege_lte?: String;
-  privilege_gt?: String;
-  privilege_gte?: String;
-  privilege_contains?: String;
-  privilege_not_contains?: String;
-  privilege_starts_with?: String;
-  privilege_not_starts_with?: String;
-  privilege_ends_with?: String;
-  privilege_not_ends_with?: String;
-  stripeId?: String;
-  stripeId_not?: String;
-  stripeId_in?: String[] | String;
-  stripeId_not_in?: String[] | String;
-  stripeId_lt?: String;
-  stripeId_lte?: String;
-  stripeId_gt?: String;
-  stripeId_gte?: String;
-  stripeId_contains?: String;
-  stripeId_not_contains?: String;
-  stripeId_starts_with?: String;
-  stripeId_not_starts_with?: String;
-  stripeId_ends_with?: String;
-  stripeId_not_ends_with?: String;
-  accountType?: String;
-  accountType_not?: String;
-  accountType_in?: String[] | String;
-  accountType_not_in?: String[] | String;
-  accountType_lt?: String;
-  accountType_lte?: String;
-  accountType_gt?: String;
-  accountType_gte?: String;
-  accountType_contains?: String;
-  accountType_not_contains?: String;
-  accountType_starts_with?: String;
-  accountType_not_starts_with?: String;
-  accountType_ends_with?: String;
-  accountType_not_ends_with?: String;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
-}
-
-export interface ReviewScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  editedAt?: String;
-  editedAt_not?: String;
-  editedAt_in?: String[] | String;
-  editedAt_not_in?: String[] | String;
-  editedAt_lt?: String;
-  editedAt_lte?: String;
-  editedAt_gt?: String;
-  editedAt_gte?: String;
-  editedAt_contains?: String;
-  editedAt_not_contains?: String;
-  editedAt_starts_with?: String;
-  editedAt_not_starts_with?: String;
-  editedAt_ends_with?: String;
-  editedAt_not_ends_with?: String;
-  rating?: Float;
-  rating_not?: Float;
-  rating_in?: Float[] | Float;
-  rating_not_in?: Float[] | Float;
-  rating_lt?: Float;
-  rating_lte?: Float;
-  rating_gt?: Float;
-  rating_gte?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsUp_not?: Int;
-  reviewThumbsUp_in?: Int[] | Int;
-  reviewThumbsUp_not_in?: Int[] | Int;
-  reviewThumbsUp_lt?: Int;
-  reviewThumbsUp_lte?: Int;
-  reviewThumbsUp_gt?: Int;
-  reviewThumbsUp_gte?: Int;
-  reviewThumbsDown?: Int;
-  reviewThumbsDown_not?: Int;
-  reviewThumbsDown_in?: Int[] | Int;
-  reviewThumbsDown_not_in?: Int[] | Int;
-  reviewThumbsDown_lt?: Int;
-  reviewThumbsDown_lte?: Int;
-  reviewThumbsDown_gt?: Int;
-  reviewThumbsDown_gte?: Int;
-  AND?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-  OR?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-  NOT?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-}
-
-export interface StepArrayWhereInput {
-  textBlurbs?: String;
-  textBlurbs_not?: String;
-  textBlurbs_in?: String[] | String;
-  textBlurbs_not_in?: String[] | String;
-  textBlurbs_lt?: String;
-  textBlurbs_lte?: String;
-  textBlurbs_gt?: String;
-  textBlurbs_gte?: String;
-  textBlurbs_contains?: String;
-  textBlurbs_not_contains?: String;
-  textBlurbs_starts_with?: String;
-  textBlurbs_not_starts_with?: String;
-  textBlurbs_ends_with?: String;
-  textBlurbs_not_ends_with?: String;
-  imgUrls?: String;
-  imgUrls_not?: String;
-  imgUrls_in?: String[] | String;
-  imgUrls_not_in?: String[] | String;
-  imgUrls_lt?: String;
-  imgUrls_lte?: String;
-  imgUrls_gt?: String;
-  imgUrls_gte?: String;
-  imgUrls_contains?: String;
-  imgUrls_not_contains?: String;
-  imgUrls_starts_with?: String;
-  imgUrls_not_starts_with?: String;
-  imgUrls_ends_with?: String;
-  imgUrls_not_ends_with?: String;
-  AND?: StepArrayWhereInput[] | StepArrayWhereInput;
-  OR?: StepArrayWhereInput[] | StepArrayWhereInput;
-  NOT?: StepArrayWhereInput[] | StepArrayWhereInput;
-}
-
-export interface ReviewCreateManyInput {
-  create?: ReviewCreateInput[] | ReviewCreateInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-}
-
-export interface ProjectUpdateManyWithWhereNestedInput {
-  where: ProjectScalarWhereInput;
-  data: ProjectUpdateManyDataInput;
-}
-
-export interface ReviewCreateInput {
-  title: String;
-  text: String;
-  editedAt: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentCreateManyInput;
-  Author: UserCreateOneWithoutReviewListInput;
-}
-
-export interface ReviewUpdateManyWithWhereNestedInput {
-  where: ReviewScalarWhereInput;
-  data: ReviewUpdateManyDataInput;
-}
-
-export interface UserCreateOneWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface StepArraySubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: StepArrayWhereInput;
-  AND?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-  OR?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-  NOT?: StepArraySubscriptionWhereInput[] | StepArraySubscriptionWhereInput;
-}
-
-export interface UserCreateWithoutReviewListInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
+export interface UserCreateWithoutProjectsInput {
   url?: String;
   username: String;
   password: String;
   email: String;
   userProfileImage?: String;
-  Projects?: ProjectCreateManyWithoutUserInput;
-  privilege: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ProjectSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ProjectWhereInput;
-  AND?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-  OR?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-  NOT?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
-}
-
-export interface CommentUpdateInput {
-  editedAt?: DateTimeInput;
-  text?: String;
-  User?: UserUpdateOneRequiredInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  userProfileImage?: String;
+  bio?: String;
   privilege?: String;
   stripeId?: String;
   accountType?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput;
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput;
 }
 
-export interface UserUpdateOneRequiredInput {
-  create?: UserCreateInput;
-  update?: UserUpdateDataInput;
-  upsert?: UserUpsertNestedInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface StepArrayUpdateManyMutationInput {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface UserUpdateDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  userProfileImage?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Projects?: ProjectUpdateManyWithoutUserInput;
-  privilege?: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ReviewUpdateInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput;
-}
-
-export interface ReviewUpdateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+export interface ReviewUpdateManyWithoutLikedByInput {
+  create?: ReviewCreateWithoutLikedByInput[] | ReviewCreateWithoutLikedByInput;
   delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
   connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
   set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
   disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
   update?:
-    | ReviewUpdateWithWhereUniqueWithoutAuthorInput[]
-    | ReviewUpdateWithWhereUniqueWithoutAuthorInput;
+    | ReviewUpdateWithWhereUniqueWithoutLikedByInput[]
+    | ReviewUpdateWithWhereUniqueWithoutLikedByInput;
   upsert?:
-    | ReviewUpsertWithWhereUniqueWithoutAuthorInput[]
-    | ReviewUpsertWithWhereUniqueWithoutAuthorInput;
+    | ReviewUpsertWithWhereUniqueWithoutLikedByInput[]
+    | ReviewUpsertWithWhereUniqueWithoutLikedByInput;
   deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
   updateMany?:
     | ReviewUpdateManyWithWhereNestedInput[]
     | ReviewUpdateManyWithWhereNestedInput;
 }
 
-export interface ProjectUpdateManyMutationInput {
-  name?: String;
-  category?: String;
-  timestamp?: DateTimeInput;
-  titleImg?: String;
-  titleBlurb?: String;
+export interface ReviewCreateWithoutAuthorInput {
+  title: String;
+  text: String;
+  editedAt: DateTimeInput;
   rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput;
+  thumbsDown: Int;
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput;
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput;
 }
 
-export interface ReviewUpdateWithWhereUniqueWithoutAuthorInput {
+export interface ReviewUpdateWithWhereUniqueWithoutLikedByInput {
   where: ReviewWhereUniqueInput;
-  data: ReviewUpdateWithoutAuthorDataInput;
+  data: ReviewUpdateWithoutLikedByDataInput;
 }
 
-export interface UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput;
-  data: UserUpdateManyDataInput;
+export interface UserCreateWithoutLikedReviewsInput {
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput;
+  Projects?: ProjectCreateManyWithoutUserInput;
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput;
 }
 
-export interface ReviewUpdateWithoutAuthorDataInput {
+export interface ReviewUpdateWithoutLikedByDataInput {
   title?: String;
   text?: String;
-  editedAt?: String;
+  editedAt?: DateTimeInput;
   rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
+  thumbsUp?: Int;
+  thumbsDown?: Int;
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
+  ProjectReviewed?: ProjectUpdateOneRequiredWithoutReviewsInput;
 }
 
-export interface UserScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  makerRating?: Float;
-  makerRating_not?: Float;
-  makerRating_in?: Float[] | Float;
-  makerRating_not_in?: Float[] | Float;
-  makerRating_lt?: Float;
-  makerRating_lte?: Float;
-  makerRating_gt?: Float;
-  makerRating_gte?: Float;
-  reviewerThumbs?: Int;
-  reviewerThumbs_not?: Int;
-  reviewerThumbs_in?: Int[] | Int;
-  reviewerThumbs_not_in?: Int[] | Int;
-  reviewerThumbs_lt?: Int;
-  reviewerThumbs_lte?: Int;
-  reviewerThumbs_gt?: Int;
-  reviewerThumbs_gte?: Int;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  username?: String;
-  username_not?: String;
-  username_in?: String[] | String;
-  username_not_in?: String[] | String;
-  username_lt?: String;
-  username_lte?: String;
-  username_gt?: String;
-  username_gte?: String;
-  username_contains?: String;
-  username_not_contains?: String;
-  username_starts_with?: String;
-  username_not_starts_with?: String;
-  username_ends_with?: String;
-  username_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  userProfileImage?: String;
-  userProfileImage_not?: String;
-  userProfileImage_in?: String[] | String;
-  userProfileImage_not_in?: String[] | String;
-  userProfileImage_lt?: String;
-  userProfileImage_lte?: String;
-  userProfileImage_gt?: String;
-  userProfileImage_gte?: String;
-  userProfileImage_contains?: String;
-  userProfileImage_not_contains?: String;
-  userProfileImage_starts_with?: String;
-  userProfileImage_not_starts_with?: String;
-  userProfileImage_ends_with?: String;
-  userProfileImage_not_ends_with?: String;
-  privilege?: String;
-  privilege_not?: String;
-  privilege_in?: String[] | String;
-  privilege_not_in?: String[] | String;
-  privilege_lt?: String;
-  privilege_lte?: String;
-  privilege_gt?: String;
-  privilege_gte?: String;
-  privilege_contains?: String;
-  privilege_not_contains?: String;
-  privilege_starts_with?: String;
-  privilege_not_starts_with?: String;
-  privilege_ends_with?: String;
-  privilege_not_ends_with?: String;
-  stripeId?: String;
-  stripeId_not?: String;
-  stripeId_in?: String[] | String;
-  stripeId_not_in?: String[] | String;
-  stripeId_lt?: String;
-  stripeId_lte?: String;
-  stripeId_gt?: String;
-  stripeId_gte?: String;
-  stripeId_contains?: String;
-  stripeId_not_contains?: String;
-  stripeId_starts_with?: String;
-  stripeId_not_starts_with?: String;
-  stripeId_ends_with?: String;
-  stripeId_not_ends_with?: String;
-  accountType?: String;
-  accountType_not?: String;
-  accountType_in?: String[] | String;
-  accountType_not_in?: String[] | String;
-  accountType_lt?: String;
-  accountType_lte?: String;
-  accountType_gt?: String;
-  accountType_gte?: String;
-  accountType_contains?: String;
-  accountType_not_contains?: String;
-  accountType_starts_with?: String;
-  accountType_not_starts_with?: String;
-  accountType_ends_with?: String;
-  accountType_not_ends_with?: String;
-  AND?: UserScalarWhereInput[] | UserScalarWhereInput;
-  OR?: UserScalarWhereInput[] | UserScalarWhereInput;
-  NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
+export interface ReviewCreateWithoutDislikedByInput {
+  title: String;
+  text: String;
+  editedAt: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput;
+  thumbsDown: Int;
+  Author: UserCreateOneWithoutReviewListInput;
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput;
 }
 
-export interface CommentUpdateManyInput {
-  create?: CommentCreateInput[] | CommentCreateInput;
-  update?:
-    | CommentUpdateWithWhereUniqueNestedInput[]
-    | CommentUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | CommentUpsertWithWhereUniqueNestedInput[]
-    | CommentUpsertWithWhereUniqueNestedInput;
-  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  updateMany?:
-    | CommentUpdateManyWithWhereNestedInput[]
-    | CommentUpdateManyWithWhereNestedInput;
-}
-
-export interface UserUpdateWithoutProjectsDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  userProfileImage?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  privilege?: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface CommentUpdateWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput;
-  data: CommentUpdateDataInput;
-}
-
-export interface UserUpdateManyWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput[] | UserCreateWithoutProjectsInput;
+export interface UserUpdateManyWithoutDislikedReviewsInput {
+  create?:
+    | UserCreateWithoutDislikedReviewsInput[]
+    | UserCreateWithoutDislikedReviewsInput;
   delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   update?:
-    | UserUpdateWithWhereUniqueWithoutProjectsInput[]
-    | UserUpdateWithWhereUniqueWithoutProjectsInput;
+    | UserUpdateWithWhereUniqueWithoutDislikedReviewsInput[]
+    | UserUpdateWithWhereUniqueWithoutDislikedReviewsInput;
   upsert?:
-    | UserUpsertWithWhereUniqueWithoutProjectsInput[]
-    | UserUpsertWithWhereUniqueWithoutProjectsInput;
+    | UserUpsertWithWhereUniqueWithoutDislikedReviewsInput[]
+    | UserUpsertWithWhereUniqueWithoutDislikedReviewsInput;
   deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
   updateMany?:
     | UserUpdateManyWithWhereNestedInput[]
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface CommentUpdateManyMutationInput {
-  editedAt?: DateTimeInput;
-  text?: String;
+export interface UserCreateWithoutReviewListInput {
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput;
+  Projects?: ProjectCreateManyWithoutUserInput;
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
+export interface UserUpdateWithWhereUniqueWithoutDislikedReviewsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutDislikedReviewsDataInput;
+}
+
+export interface ReviewCreateWithoutLikedByInput {
+  title: String;
+  text: String;
+  editedAt: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  thumbsDown: Int;
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput;
+  Author: UserCreateOneWithoutReviewListInput;
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput;
+}
+
+export interface UserUpdateWithoutDislikedReviewsDataInput {
+  url?: String;
   username?: String;
+  password?: String;
   email?: String;
-}>;
-
-export interface CommentUpsertWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput;
-  update: CommentUpdateDataInput;
-  create: CommentCreateInput;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput;
+  Projects?: ProjectUpdateManyWithoutUserInput;
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput;
 }
 
-export interface UserCreateManyWithoutProjectsInput {
-  create?: UserCreateWithoutProjectsInput[] | UserCreateWithoutProjectsInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+export interface UserCreateWithoutDislikedReviewsInput {
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput;
+  Projects?: ProjectCreateManyWithoutUserInput;
+  RatedProjects?: ProjectCreateManyWithoutRatedByInput;
 }
 
-export interface CommentScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  editedAt?: DateTimeInput;
-  editedAt_not?: DateTimeInput;
-  editedAt_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_lt?: DateTimeInput;
-  editedAt_lte?: DateTimeInput;
-  editedAt_gt?: DateTimeInput;
-  editedAt_gte?: DateTimeInput;
-  text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  AND?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  OR?: CommentScalarWhereInput[] | CommentScalarWhereInput;
-  NOT?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+export interface ProjectUpdateManyWithoutUserInput {
+  create?: ProjectCreateWithoutUserInput[] | ProjectCreateWithoutUserInput;
+  delete?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  set?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  disconnect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  update?:
+    | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    | ProjectUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    | ProjectUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
+  updateMany?:
+    | ProjectUpdateManyWithWhereNestedInput[]
+    | ProjectUpdateManyWithWhereNestedInput;
 }
 
-export interface UserCreateOneInput {
-  create?: UserCreateInput;
-  connect?: UserWhereUniqueInput;
+export interface ProjectCreateWithoutUserInput {
+  name: String;
+  category: String;
+  timestamp: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput;
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput;
 }
 
-export interface CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput;
-  data: CommentUpdateManyDataInput;
+export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
+  where: ProjectWhereUniqueInput;
+  data: ProjectUpdateWithoutUserDataInput;
 }
 
-export interface ReviewCreateManyWithoutAuthorInput {
-  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+export interface ReviewCreateWithoutProjectReviewedInput {
+  title: String;
+  text: String;
+  editedAt: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput;
+  thumbsDown: Int;
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput;
+  Author: UserCreateOneWithoutReviewListInput;
+}
+
+export interface ProjectUpdateWithoutUserDataInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput;
+  RatedBy?: UserUpdateManyWithoutRatedProjectsInput;
+}
+
+export interface UserCreateWithoutRatedProjectsInput {
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewCreateManyWithoutAuthorInput;
+  LikedReviews?: ReviewCreateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewCreateManyWithoutDislikedByInput;
+  Projects?: ProjectCreateManyWithoutUserInput;
+}
+
+export interface ReviewUpdateManyWithoutProjectReviewedInput {
+  create?:
+    | ReviewCreateWithoutProjectReviewedInput[]
+    | ReviewCreateWithoutProjectReviewedInput;
+  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
   connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+  update?:
+    | ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput[]
+    | ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput;
+  upsert?:
+    | ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput[]
+    | ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput;
+  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  updateMany?:
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput;
 }
 
-export interface CommentWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  editedAt?: DateTimeInput;
-  editedAt_not?: DateTimeInput;
-  editedAt_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  editedAt_lt?: DateTimeInput;
-  editedAt_lte?: DateTimeInput;
-  editedAt_gt?: DateTimeInput;
-  editedAt_gte?: DateTimeInput;
+export interface ProjectCreateWithoutRatedByInput {
+  name: String;
+  category: String;
+  timestamp: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User: UserCreateOneWithoutProjectsInput;
+  Reviews?: ReviewCreateManyWithoutProjectReviewedInput;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutProjectReviewedDataInput;
+}
+
+export interface ProjectCreateWithoutReviewsInput {
+  name: String;
+  category: String;
+  timestamp: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User: UserCreateOneWithoutProjectsInput;
+  RatedBy?: UserCreateManyWithoutRatedProjectsInput;
+}
+
+export interface ReviewUpdateWithoutProjectReviewedDataInput {
+  title?: String;
   text?: String;
-  text_not?: String;
-  text_in?: String[] | String;
-  text_not_in?: String[] | String;
-  text_lt?: String;
-  text_lte?: String;
-  text_gt?: String;
-  text_gte?: String;
-  text_contains?: String;
-  text_not_contains?: String;
-  text_starts_with?: String;
-  text_not_starts_with?: String;
-  text_ends_with?: String;
-  text_not_ends_with?: String;
-  User?: UserWhereInput;
-  AND?: CommentWhereInput[] | CommentWhereInput;
-  OR?: CommentWhereInput[] | CommentWhereInput;
-  NOT?: CommentWhereInput[] | CommentWhereInput;
-}
-
-export interface CommentCreateManyInput {
-  create?: CommentCreateInput[] | CommentCreateInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  editedAt?: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserUpdateManyWithoutLikedReviewsInput;
+  thumbsDown?: Int;
+  DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput;
+  Author?: UserUpdateOneRequiredWithoutReviewListInput;
 }
 
 export interface ProjectWhereInput {
@@ -1333,319 +1199,416 @@ export interface ProjectWhereInput {
   rating_lte?: Float;
   rating_gt?: Float;
   rating_gte?: Float;
-  User_every?: UserWhereInput;
-  User_some?: UserWhereInput;
-  User_none?: UserWhereInput;
-  Steps_every?: StepArrayWhereInput;
-  Steps_some?: StepArrayWhereInput;
-  Steps_none?: StepArrayWhereInput;
+  steps?: String;
+  steps_not?: String;
+  steps_in?: String[] | String;
+  steps_not_in?: String[] | String;
+  steps_lt?: String;
+  steps_lte?: String;
+  steps_gt?: String;
+  steps_gte?: String;
+  steps_contains?: String;
+  steps_not_contains?: String;
+  steps_starts_with?: String;
+  steps_not_starts_with?: String;
+  steps_ends_with?: String;
+  steps_not_ends_with?: String;
+  User?: UserWhereInput;
   Reviews_every?: ReviewWhereInput;
   Reviews_some?: ReviewWhereInput;
   Reviews_none?: ReviewWhereInput;
+  RatedBy_every?: UserWhereInput;
+  RatedBy_some?: UserWhereInput;
+  RatedBy_none?: UserWhereInput;
   AND?: ProjectWhereInput[] | ProjectWhereInput;
   OR?: ProjectWhereInput[] | ProjectWhereInput;
   NOT?: ProjectWhereInput[] | ProjectWhereInput;
 }
 
-export interface ProjectCreateWithoutUserInput {
-  name: String;
-  category: String;
-  timestamp: DateTimeInput;
-  titleImg: String;
-  titleBlurb: String;
+export interface ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutProjectReviewedDataInput;
+  create: ReviewCreateWithoutProjectReviewedInput;
+}
+
+export interface UserUpdateInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput;
+  Projects?: ProjectUpdateManyWithoutUserInput;
+  RatedProjects?: ProjectUpdateManyWithoutRatedByInput;
+}
+
+export interface ReviewScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  editedAt?: DateTimeInput;
+  editedAt_not?: DateTimeInput;
+  editedAt_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  editedAt_lt?: DateTimeInput;
+  editedAt_lte?: DateTimeInput;
+  editedAt_gt?: DateTimeInput;
+  editedAt_gte?: DateTimeInput;
   rating?: Float;
-  Steps?: StepArrayCreateManyInput;
-  Reviews?: ReviewCreateManyInput;
+  rating_not?: Float;
+  rating_in?: Float[] | Float;
+  rating_not_in?: Float[] | Float;
+  rating_lt?: Float;
+  rating_lte?: Float;
+  rating_gt?: Float;
+  rating_gte?: Float;
+  thumbsUp?: Int;
+  thumbsUp_not?: Int;
+  thumbsUp_in?: Int[] | Int;
+  thumbsUp_not_in?: Int[] | Int;
+  thumbsUp_lt?: Int;
+  thumbsUp_lte?: Int;
+  thumbsUp_gt?: Int;
+  thumbsUp_gte?: Int;
+  thumbsDown?: Int;
+  thumbsDown_not?: Int;
+  thumbsDown_in?: Int[] | Int;
+  thumbsDown_not_in?: Int[] | Int;
+  thumbsDown_lt?: Int;
+  thumbsDown_lte?: Int;
+  thumbsDown_gt?: Int;
+  thumbsDown_gte?: Int;
+  AND?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  OR?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
+  NOT?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface StepArrayCreateInput {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface ProjectUpdateManyDataInput {
-  name?: String;
-  category?: String;
-  timestamp?: DateTimeInput;
-  titleImg?: String;
-  titleBlurb?: String;
+export interface ReviewCreateInput {
+  title: String;
+  text: String;
+  editedAt: DateTimeInput;
   rating?: Float;
+  thumbsUp?: Int;
+  LikedBy?: UserCreateManyWithoutLikedReviewsInput;
+  thumbsDown: Int;
+  DislikedBy?: UserCreateManyWithoutDislikedReviewsInput;
+  Author: UserCreateOneWithoutReviewListInput;
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput;
 }
 
-export interface ReviewSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ReviewWhereInput;
-  AND?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
-  OR?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
-  NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+export interface ReviewUpdateManyWithWhereNestedInput {
+  where: ReviewScalarWhereInput;
+  data: ReviewUpdateManyDataInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutAuthorInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutAuthorDataInput;
+  create: ReviewCreateWithoutAuthorInput;
 }
 
 export interface ReviewUpdateManyDataInput {
   title?: String;
   text?: String;
-  editedAt?: String;
+  editedAt?: DateTimeInput;
   rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
+  thumbsUp?: Int;
+  thumbsDown?: Int;
 }
 
-export interface UserUpdateInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  userProfileImage?: String;
-  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
-  Projects?: ProjectUpdateManyWithoutUserInput;
-  privilege?: String;
-  stripeId?: String;
-  accountType?: String;
+export interface UserUpsertWithoutReviewListInput {
+  update: UserUpdateWithoutReviewListDataInput;
+  create: UserCreateWithoutReviewListInput;
 }
 
-export interface ProjectUpdateManyWithoutUserInput {
-  create?: ProjectCreateWithoutUserInput[] | ProjectCreateWithoutUserInput;
-  delete?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-  set?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-  disconnect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+export interface UserUpdateManyWithoutRatedProjectsInput {
+  create?:
+    | UserCreateWithoutRatedProjectsInput[]
+    | UserCreateWithoutRatedProjectsInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   update?:
-    | ProjectUpdateWithWhereUniqueWithoutUserInput[]
-    | ProjectUpdateWithWhereUniqueWithoutUserInput;
+    | UserUpdateWithWhereUniqueWithoutRatedProjectsInput[]
+    | UserUpdateWithWhereUniqueWithoutRatedProjectsInput;
   upsert?:
-    | ProjectUpsertWithWhereUniqueWithoutUserInput[]
-    | ProjectUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
+    | UserUpsertWithWhereUniqueWithoutRatedProjectsInput[]
+    | UserUpsertWithWhereUniqueWithoutRatedProjectsInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
   updateMany?:
-    | ProjectUpdateManyWithWhereNestedInput[]
-    | ProjectUpdateManyWithWhereNestedInput;
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
 }
 
-export type ProjectWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ProjectUpdateWithWhereUniqueWithoutUserInput {
-  where: ProjectWhereUniqueInput;
-  data: ProjectUpdateWithoutUserDataInput;
-}
-
-export type ReviewWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ProjectUpdateWithoutUserDataInput {
-  name?: String;
-  category?: String;
-  timestamp?: DateTimeInput;
-  titleImg?: String;
-  titleBlurb?: String;
-  rating?: Float;
-  Steps?: StepArrayUpdateManyInput;
-  Reviews?: ReviewUpdateManyInput;
-}
-
-export interface UserUpdateWithWhereUniqueWithoutProjectsInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutProjectsDataInput;
-}
-
-export interface StepArrayUpdateManyInput {
-  create?: StepArrayCreateInput[] | StepArrayCreateInput;
-  deleteMany?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
-  updateMany?:
-    | StepArrayUpdateManyWithWhereNestedInput[]
-    | StepArrayUpdateManyWithWhereNestedInput;
-}
-
-export interface UserCreateWithoutProjectsInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username: String;
-  password: String;
-  email: String;
-  userProfileImage?: String;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  privilege: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface StepArrayScalarWhereInput {
-  textBlurbs?: String;
-  textBlurbs_not?: String;
-  textBlurbs_in?: String[] | String;
-  textBlurbs_not_in?: String[] | String;
-  textBlurbs_lt?: String;
-  textBlurbs_lte?: String;
-  textBlurbs_gt?: String;
-  textBlurbs_gte?: String;
-  textBlurbs_contains?: String;
-  textBlurbs_not_contains?: String;
-  textBlurbs_starts_with?: String;
-  textBlurbs_not_starts_with?: String;
-  textBlurbs_ends_with?: String;
-  textBlurbs_not_ends_with?: String;
-  imgUrls?: String;
-  imgUrls_not?: String;
-  imgUrls_in?: String[] | String;
-  imgUrls_not_in?: String[] | String;
-  imgUrls_lt?: String;
-  imgUrls_lte?: String;
-  imgUrls_gt?: String;
-  imgUrls_gte?: String;
-  imgUrls_contains?: String;
-  imgUrls_not_contains?: String;
-  imgUrls_starts_with?: String;
-  imgUrls_not_starts_with?: String;
-  imgUrls_ends_with?: String;
-  imgUrls_not_ends_with?: String;
-  AND?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
-  OR?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
-  NOT?: StepArrayScalarWhereInput[] | StepArrayScalarWhereInput;
-}
-
-export interface CommentCreateInput {
-  editedAt: DateTimeInput;
-  text: String;
-  User: UserCreateOneInput;
-}
-
-export interface StepArrayUpdateManyWithWhereNestedInput {
-  where: StepArrayScalarWhereInput;
-  data: StepArrayUpdateManyDataInput;
-}
-
-export interface ReviewCreateWithoutAuthorInput {
-  title: String;
-  text: String;
-  editedAt: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentCreateManyInput;
-}
-
-export interface StepArrayUpdateManyDataInput {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface StepArrayCreateManyInput {
-  create?: StepArrayCreateInput[] | StepArrayCreateInput;
-}
-
-export interface ReviewUpdateManyInput {
-  create?: ReviewCreateInput[] | ReviewCreateInput;
-  update?:
-    | ReviewUpdateWithWhereUniqueNestedInput[]
-    | ReviewUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | ReviewUpsertWithWhereUniqueNestedInput[]
-    | ReviewUpsertWithWhereUniqueNestedInput;
-  delete?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  set?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  disconnect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
-  deleteMany?: ReviewScalarWhereInput[] | ReviewScalarWhereInput;
-  updateMany?:
-    | ReviewUpdateManyWithWhereNestedInput[]
-    | ReviewUpdateManyWithWhereNestedInput;
-}
-
-export interface CommentSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: CommentWhereInput;
-  AND?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
-  OR?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
-  NOT?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
-}
-
-export interface ReviewUpdateWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  data: ReviewUpdateDataInput;
-}
-
-export interface UserUpdateManyDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username?: String;
-  password?: String;
-  email?: String;
-  userProfileImage?: String;
-  privilege?: String;
-  stripeId?: String;
-  accountType?: String;
-}
-
-export interface ReviewUpdateDataInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
-  rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
-  Comments?: CommentUpdateManyInput;
-  Author?: UserUpdateOneRequiredWithoutReviewListInput;
-}
-
-export interface ProjectUpdateInput {
-  name?: String;
-  category?: String;
-  timestamp?: DateTimeInput;
-  titleImg?: String;
-  titleBlurb?: String;
-  rating?: Float;
-  User?: UserUpdateManyWithoutProjectsInput;
-  Steps?: StepArrayUpdateManyInput;
-  Reviews?: ReviewUpdateManyInput;
-}
-
-export interface UserUpdateOneRequiredWithoutReviewListInput {
-  create?: UserCreateWithoutReviewListInput;
-  update?: UserUpdateWithoutReviewListDataInput;
-  upsert?: UserUpsertWithoutReviewListInput;
+export interface UserCreateOneWithoutProjectsInput {
+  create?: UserCreateWithoutProjectsInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserCreateInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username: String;
-  password: String;
-  email: String;
-  userProfileImage?: String;
-  ReviewList?: ReviewCreateManyWithoutAuthorInput;
-  Projects?: ProjectCreateManyWithoutUserInput;
-  privilege: String;
-  stripeId?: String;
-  accountType?: String;
+export interface UserUpdateWithWhereUniqueWithoutRatedProjectsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutRatedProjectsDataInput;
 }
 
-export interface UserUpdateWithoutReviewListDataInput {
-  makerRating?: Float;
-  reviewerThumbs?: Int;
+export interface UserCreateManyWithoutLikedReviewsInput {
+  create?:
+    | UserCreateWithoutLikedReviewsInput[]
+    | UserCreateWithoutLikedReviewsInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutRatedProjectsDataInput {
   url?: String;
   username?: String;
   password?: String;
   email?: String;
   userProfileImage?: String;
+  bio?: String;
+  privilege?: String;
+  stripeId?: String;
+  accountType?: String;
+  ReviewList?: ReviewUpdateManyWithoutAuthorInput;
+  LikedReviews?: ReviewUpdateManyWithoutLikedByInput;
+  DislikedReviews?: ReviewUpdateManyWithoutDislikedByInput;
   Projects?: ProjectUpdateManyWithoutUserInput;
+}
+
+export interface UserCreateOneWithoutReviewListInput {
+  create?: UserCreateWithoutReviewListInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutRatedProjectsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutRatedProjectsDataInput;
+  create: UserCreateWithoutRatedProjectsInput;
+}
+
+export interface UserCreateManyWithoutDislikedReviewsInput {
+  create?:
+    | UserCreateWithoutDislikedReviewsInput[]
+    | UserCreateWithoutDislikedReviewsInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface UserScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  url?: String;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  userProfileImage?: String;
+  userProfileImage_not?: String;
+  userProfileImage_in?: String[] | String;
+  userProfileImage_not_in?: String[] | String;
+  userProfileImage_lt?: String;
+  userProfileImage_lte?: String;
+  userProfileImage_gt?: String;
+  userProfileImage_gte?: String;
+  userProfileImage_contains?: String;
+  userProfileImage_not_contains?: String;
+  userProfileImage_starts_with?: String;
+  userProfileImage_not_starts_with?: String;
+  userProfileImage_ends_with?: String;
+  userProfileImage_not_ends_with?: String;
+  bio?: String;
+  bio_not?: String;
+  bio_in?: String[] | String;
+  bio_not_in?: String[] | String;
+  bio_lt?: String;
+  bio_lte?: String;
+  bio_gt?: String;
+  bio_gte?: String;
+  bio_contains?: String;
+  bio_not_contains?: String;
+  bio_starts_with?: String;
+  bio_not_starts_with?: String;
+  bio_ends_with?: String;
+  bio_not_ends_with?: String;
+  privilege?: String;
+  privilege_not?: String;
+  privilege_in?: String[] | String;
+  privilege_not_in?: String[] | String;
+  privilege_lt?: String;
+  privilege_lte?: String;
+  privilege_gt?: String;
+  privilege_gte?: String;
+  privilege_contains?: String;
+  privilege_not_contains?: String;
+  privilege_starts_with?: String;
+  privilege_not_starts_with?: String;
+  privilege_ends_with?: String;
+  privilege_not_ends_with?: String;
+  stripeId?: String;
+  stripeId_not?: String;
+  stripeId_in?: String[] | String;
+  stripeId_not_in?: String[] | String;
+  stripeId_lt?: String;
+  stripeId_lte?: String;
+  stripeId_gt?: String;
+  stripeId_gte?: String;
+  stripeId_contains?: String;
+  stripeId_not_contains?: String;
+  stripeId_starts_with?: String;
+  stripeId_not_starts_with?: String;
+  stripeId_ends_with?: String;
+  stripeId_not_ends_with?: String;
+  accountType?: String;
+  accountType_not?: String;
+  accountType_in?: String[] | String;
+  accountType_not_in?: String[] | String;
+  accountType_lt?: String;
+  accountType_lte?: String;
+  accountType_gt?: String;
+  accountType_gte?: String;
+  accountType_contains?: String;
+  accountType_not_contains?: String;
+  accountType_starts_with?: String;
+  accountType_not_starts_with?: String;
+  accountType_ends_with?: String;
+  accountType_not_ends_with?: String;
+  AND?: UserScalarWhereInput[] | UserScalarWhereInput;
+  OR?: UserScalarWhereInput[] | UserScalarWhereInput;
+  NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
+}
+
+export interface ReviewCreateManyWithoutProjectReviewedInput {
+  create?:
+    | ReviewCreateWithoutProjectReviewedInput[]
+    | ReviewCreateWithoutProjectReviewedInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+}
+
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
+}
+
+export interface ProjectCreateManyWithoutRatedByInput {
+  create?:
+    | ProjectCreateWithoutRatedByInput[]
+    | ProjectCreateWithoutRatedByInput;
+  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+}
+
+export interface UserUpdateManyDataInput {
+  url?: String;
+  username?: String;
+  password?: String;
+  email?: String;
+  userProfileImage?: String;
+  bio?: String;
   privilege?: String;
   stripeId?: String;
   accountType?: String;
@@ -1660,6 +1623,21 @@ export interface UserSubscriptionWhereInput {
   AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
   OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
   NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
+  where: ProjectWhereUniqueInput;
+  update: ProjectUpdateWithoutUserDataInput;
+  create: ProjectCreateWithoutUserInput;
+}
+
+export interface ReviewUpdateManyMutationInput {
+  title?: String;
+  text?: String;
+  editedAt?: DateTimeInput;
+  rating?: Float;
+  thumbsUp?: Int;
+  thumbsDown?: Int;
 }
 
 export interface ProjectScalarWhereInput {
@@ -1749,58 +1727,149 @@ export interface ProjectScalarWhereInput {
   rating_lte?: Float;
   rating_gt?: Float;
   rating_gte?: Float;
+  steps?: String;
+  steps_not?: String;
+  steps_in?: String[] | String;
+  steps_not_in?: String[] | String;
+  steps_lt?: String;
+  steps_lte?: String;
+  steps_gt?: String;
+  steps_gte?: String;
+  steps_contains?: String;
+  steps_not_contains?: String;
+  steps_starts_with?: String;
+  steps_not_starts_with?: String;
+  steps_ends_with?: String;
+  steps_not_ends_with?: String;
   AND?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
   OR?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
   NOT?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
 }
 
-export interface ProjectUpsertWithWhereUniqueWithoutUserInput {
-  where: ProjectWhereUniqueInput;
-  update: ProjectUpdateWithoutUserDataInput;
-  create: ProjectCreateWithoutUserInput;
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+  email?: String;
+}>;
+
+export interface ProjectUpdateManyWithWhereNestedInput {
+  where: ProjectScalarWhereInput;
+  data: ProjectUpdateManyDataInput;
 }
 
-export interface ReviewUpsertWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  update: ReviewUpdateDataInput;
-  create: ReviewCreateInput;
+export interface ReviewCreateManyWithoutAuthorInput {
+  create?: ReviewCreateWithoutAuthorInput[] | ReviewCreateWithoutAuthorInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
 }
 
-export interface UserUpsertWithoutReviewListInput {
-  update: UserUpdateWithoutReviewListDataInput;
-  create: UserCreateWithoutReviewListInput;
-}
-
-export interface ReviewUpdateManyMutationInput {
-  title?: String;
-  text?: String;
-  editedAt?: String;
+export interface ProjectUpdateManyDataInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
   rating?: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
+  steps?: String;
+}
+
+export interface ReviewCreateManyWithoutLikedByInput {
+  create?: ReviewCreateWithoutLikedByInput[] | ReviewCreateWithoutLikedByInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+}
+
+export interface ProjectUpdateManyWithoutRatedByInput {
+  create?:
+    | ProjectCreateWithoutRatedByInput[]
+    | ProjectCreateWithoutRatedByInput;
+  delete?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  set?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  disconnect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
+  update?:
+    | ProjectUpdateWithWhereUniqueWithoutRatedByInput[]
+    | ProjectUpdateWithWhereUniqueWithoutRatedByInput;
+  upsert?:
+    | ProjectUpsertWithWhereUniqueWithoutRatedByInput[]
+    | ProjectUpsertWithWhereUniqueWithoutRatedByInput;
+  deleteMany?: ProjectScalarWhereInput[] | ProjectScalarWhereInput;
+  updateMany?:
+    | ProjectUpdateManyWithWhereNestedInput[]
+    | ProjectUpdateManyWithWhereNestedInput;
+}
+
+export interface UserCreateManyWithoutRatedProjectsInput {
+  create?:
+    | UserCreateWithoutRatedProjectsInput[]
+    | UserCreateWithoutRatedProjectsInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface ProjectUpdateWithWhereUniqueWithoutRatedByInput {
+  where: ProjectWhereUniqueInput;
+  data: ProjectUpdateWithoutRatedByDataInput;
+}
+
+export interface ProjectSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProjectWhereInput;
+  AND?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
+  OR?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
+  NOT?: ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput;
+}
+
+export interface ProjectUpdateOneRequiredWithoutReviewsInput {
+  create?: ProjectCreateWithoutReviewsInput;
+  update?: ProjectUpdateWithoutReviewsDataInput;
+  upsert?: ProjectUpsertWithoutReviewsInput;
+  connect?: ProjectWhereUniqueInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutDislikedReviewsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutDislikedReviewsDataInput;
+  create: UserCreateWithoutDislikedReviewsInput;
+}
+
+export interface ProjectUpsertWithWhereUniqueWithoutRatedByInput {
+  where: ProjectWhereUniqueInput;
+  update: ProjectUpdateWithoutRatedByDataInput;
+  create: ProjectCreateWithoutRatedByInput;
+}
+
+export interface ProjectUpdateWithoutRatedByDataInput {
+  name?: String;
+  category?: String;
+  timestamp?: DateTimeInput;
+  titleImg?: String;
+  titleBlurb?: String;
+  rating?: Float;
+  steps?: String;
+  User?: UserUpdateOneRequiredWithoutProjectsInput;
+  Reviews?: ReviewUpdateManyWithoutProjectReviewedInput;
+}
+
+export interface ReviewCreateManyWithoutDislikedByInput {
+  create?:
+    | ReviewCreateWithoutDislikedByInput[]
+    | ReviewCreateWithoutDislikedByInput;
+  connect?: ReviewWhereUniqueInput[] | ReviewWhereUniqueInput;
+}
+
+export type ReviewWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ProjectCreateOneWithoutReviewsInput {
+  create?: ProjectCreateWithoutReviewsInput;
+  connect?: ProjectWhereUniqueInput;
 }
 
 export interface ProjectCreateManyWithoutUserInput {
   create?: ProjectCreateWithoutUserInput[] | ProjectCreateWithoutUserInput;
   connect?: ProjectWhereUniqueInput[] | ProjectWhereUniqueInput;
-}
-
-export interface ProjectCreateInput {
-  name: String;
-  category: String;
-  timestamp: DateTimeInput;
-  titleImg: String;
-  titleBlurb: String;
-  rating?: Float;
-  User?: UserCreateManyWithoutProjectsInput;
-  Steps?: StepArrayCreateManyInput;
-  Reviews?: ReviewCreateManyInput;
-}
-
-export interface UserUpsertWithWhereUniqueWithoutProjectsInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutProjectsDataInput;
-  create: UserCreateWithoutProjectsInput;
 }
 
 export interface NodeNode {
@@ -1809,13 +1878,12 @@ export interface NodeNode {
 
 export interface UserPreviousValues {
   id: ID_Output;
-  makerRating?: Float;
-  reviewerThumbs?: Int;
   url?: String;
   username: String;
   password: String;
   email: String;
   userProfileImage: String;
+  bio: String;
   privilege: String;
   stripeId?: String;
   accountType: String;
@@ -1825,13 +1893,12 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  makerRating: () => Promise<Float>;
-  reviewerThumbs: () => Promise<Int>;
   url: () => Promise<String>;
   username: () => Promise<String>;
   password: () => Promise<String>;
   email: () => Promise<String>;
   userProfileImage: () => Promise<String>;
+  bio: () => Promise<String>;
   privilege: () => Promise<String>;
   stripeId: () => Promise<String>;
   accountType: () => Promise<String>;
@@ -1841,13 +1908,12 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  makerRating: () => Promise<AsyncIterator<Float>>;
-  reviewerThumbs: () => Promise<AsyncIterator<Int>>;
   url: () => Promise<AsyncIterator<String>>;
   username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   userProfileImage: () => Promise<AsyncIterator<String>>;
+  bio: () => Promise<AsyncIterator<String>>;
   privilege: () => Promise<AsyncIterator<String>>;
   stripeId: () => Promise<AsyncIterator<String>>;
   accountType: () => Promise<AsyncIterator<String>>;
@@ -1874,14 +1940,165 @@ export interface ProjectConnectionSubscription
   aggregate: <T = AggregateProjectSubscription>() => T;
 }
 
+export interface User {
+  id: ID_Output;
+  url?: String;
+  username: String;
+  password: String;
+  email: String;
+  userProfileImage: String;
+  bio: String;
+  privilege: String;
+  stripeId?: String;
+  accountType: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  url: () => Promise<String>;
+  username: () => Promise<String>;
+  password: () => Promise<String>;
+  email: () => Promise<String>;
+  userProfileImage: () => Promise<String>;
+  bio: () => Promise<String>;
+  privilege: () => Promise<String>;
+  stripeId: () => Promise<String>;
+  accountType: () => Promise<String>;
+  ReviewList: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  LikedReviews: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  DislikedReviews: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Projects: <T = FragmentableArray<Project>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedProjects: <T = FragmentableArray<Project>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  url: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  userProfileImage: () => Promise<AsyncIterator<String>>;
+  bio: () => Promise<AsyncIterator<String>>;
+  privilege: () => Promise<AsyncIterator<String>>;
+  stripeId: () => Promise<AsyncIterator<String>>;
+  accountType: () => Promise<AsyncIterator<String>>;
+  ReviewList: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  LikedReviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  DislikedReviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedProjects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
+    args?: {
+      where?: ProjectWhereInput;
+      orderBy?: ProjectOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
 export interface ReviewPreviousValues {
   id: ID_Output;
   title: String;
   text: String;
-  editedAt: String;
+  editedAt: DateTimeOutput;
   rating: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
+  thumbsUp: Int;
+  thumbsDown: Int;
 }
 
 export interface ReviewPreviousValuesPromise
@@ -1890,10 +2107,10 @@ export interface ReviewPreviousValuesPromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   text: () => Promise<String>;
-  editedAt: () => Promise<String>;
+  editedAt: () => Promise<DateTimeOutput>;
   rating: () => Promise<Float>;
-  reviewThumbsUp: () => Promise<Int>;
-  reviewThumbsDown: () => Promise<Int>;
+  thumbsUp: () => Promise<Int>;
+  thumbsDown: () => Promise<Int>;
 }
 
 export interface ReviewPreviousValuesSubscription
@@ -1902,150 +2119,47 @@ export interface ReviewPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   text: () => Promise<AsyncIterator<String>>;
-  editedAt: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   rating: () => Promise<AsyncIterator<Float>>;
-  reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
-  reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
+  thumbsUp: () => Promise<AsyncIterator<Int>>;
+  thumbsDown: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface AggregateComment {
-  count: Int;
-}
-
-export interface AggregateCommentPromise
-  extends Promise<AggregateComment>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCommentSubscription
-  extends Promise<AsyncIterator<AggregateComment>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Review {
+export interface ProjectPreviousValues {
   id: ID_Output;
-  title: String;
-  text: String;
-  editedAt: String;
+  name: String;
+  category: String;
+  timestamp: DateTimeOutput;
+  titleImg: String;
+  titleBlurb: String;
   rating: Float;
-  reviewThumbsUp?: Int;
-  reviewThumbsDown?: Int;
+  steps: String;
 }
 
-export interface ReviewPromise extends Promise<Review>, Fragmentable {
+export interface ProjectPreviousValuesPromise
+  extends Promise<ProjectPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  text: () => Promise<String>;
-  editedAt: () => Promise<String>;
+  name: () => Promise<String>;
+  category: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
+  titleImg: () => Promise<String>;
+  titleBlurb: () => Promise<String>;
   rating: () => Promise<Float>;
-  reviewThumbsUp: () => Promise<Int>;
-  reviewThumbsDown: () => Promise<Int>;
-  Comments: <T = FragmentableArray<Comment>>(
-    args?: {
-      where?: CommentWhereInput;
-      orderBy?: CommentOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Author: <T = UserPromise>() => T;
+  steps: () => Promise<String>;
 }
 
-export interface ReviewSubscription
-  extends Promise<AsyncIterator<Review>>,
+export interface ProjectPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-  editedAt: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
+  titleImg: () => Promise<AsyncIterator<String>>;
+  titleBlurb: () => Promise<AsyncIterator<String>>;
   rating: () => Promise<AsyncIterator<Float>>;
-  reviewThumbsUp: () => Promise<AsyncIterator<Int>>;
-  reviewThumbsDown: () => Promise<AsyncIterator<Int>>;
-  Comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
-    args?: {
-      where?: CommentWhereInput;
-      orderBy?: CommentOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Author: <T = UserSubscription>() => T;
-}
-
-export interface CommentEdge {
-  node: Comment;
-  cursor: String;
-}
-
-export interface CommentEdgePromise extends Promise<CommentEdge>, Fragmentable {
-  node: <T = CommentPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CommentEdgeSubscription
-  extends Promise<AsyncIterator<CommentEdge>>,
-    Fragmentable {
-  node: <T = CommentSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface StepArrayPreviousValues {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface StepArrayPreviousValuesPromise
-  extends Promise<StepArrayPreviousValues>,
-    Fragmentable {
-  textBlurbs: () => Promise<String>;
-  imgUrls: () => Promise<String>;
-}
-
-export interface StepArrayPreviousValuesSubscription
-  extends Promise<AsyncIterator<StepArrayPreviousValues>>,
-    Fragmentable {
-  textBlurbs: () => Promise<AsyncIterator<String>>;
-  imgUrls: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  steps: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PageInfo {
@@ -2071,332 +2185,35 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface CommentConnection {
-  pageInfo: PageInfo;
-  edges: CommentEdge[];
-}
-
-export interface CommentConnectionPromise
-  extends Promise<CommentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CommentEdge>>() => T;
-  aggregate: <T = AggregateCommentPromise>() => T;
-}
-
-export interface CommentConnectionSubscription
-  extends Promise<AsyncIterator<CommentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCommentSubscription>() => T;
-}
-
-export interface StepArrayEdge {
-  node: StepArray;
+export interface UserEdge {
+  node: User;
   cursor: String;
 }
 
-export interface StepArrayEdgePromise
-  extends Promise<StepArrayEdge>,
-    Fragmentable {
-  node: <T = StepArrayPromise>() => T;
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface StepArrayEdgeSubscription
-  extends Promise<AsyncIterator<StepArrayEdge>>,
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
     Fragmentable {
-  node: <T = StepArraySubscription>() => T;
+  node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface StepArray {
-  textBlurbs?: String;
-  imgUrls?: String;
-}
-
-export interface StepArrayPromise extends Promise<StepArray>, Fragmentable {
-  textBlurbs: () => Promise<String>;
-  imgUrls: () => Promise<String>;
-}
-
-export interface StepArraySubscription
-  extends Promise<AsyncIterator<StepArray>>,
-    Fragmentable {
-  textBlurbs: () => Promise<AsyncIterator<String>>;
-  imgUrls: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateReview {
+export interface AggregateUser {
   count: Int;
 }
 
-export interface AggregateReviewPromise
-  extends Promise<AggregateReview>,
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateReviewSubscription
-  extends Promise<AsyncIterator<AggregateReview>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Comment {
-  id: ID_Output;
-  editedAt: DateTimeOutput;
-  text: String;
-}
-
-export interface CommentPromise extends Promise<Comment>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  editedAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
-  User: <T = UserPromise>() => T;
-}
-
-export interface CommentSubscription
-  extends Promise<AsyncIterator<Comment>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  text: () => Promise<AsyncIterator<String>>;
-  User: <T = UserSubscription>() => T;
-}
-
-export interface ReviewConnection {
-  pageInfo: PageInfo;
-  edges: ReviewEdge[];
-}
-
-export interface ReviewConnectionPromise
-  extends Promise<ReviewConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ReviewEdge>>() => T;
-  aggregate: <T = AggregateReviewPromise>() => T;
-}
-
-export interface ReviewConnectionSubscription
-  extends Promise<AsyncIterator<ReviewConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateReviewSubscription>() => T;
-}
-
-export interface CommentSubscriptionPayload {
-  mutation: MutationType;
-  node: Comment;
-  updatedFields: String[];
-  previousValues: CommentPreviousValues;
-}
-
-export interface CommentSubscriptionPayloadPromise
-  extends Promise<CommentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CommentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CommentPreviousValuesPromise>() => T;
-}
-
-export interface CommentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CommentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CommentPreviousValuesSubscription>() => T;
-}
-
-export interface ProjectEdge {
-  node: Project;
-  cursor: String;
-}
-
-export interface ProjectEdgePromise extends Promise<ProjectEdge>, Fragmentable {
-  node: <T = ProjectPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ProjectEdgeSubscription
-  extends Promise<AsyncIterator<ProjectEdge>>,
-    Fragmentable {
-  node: <T = ProjectSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CommentPreviousValues {
-  id: ID_Output;
-  editedAt: DateTimeOutput;
-  text: String;
-}
-
-export interface CommentPreviousValuesPromise
-  extends Promise<CommentPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  editedAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
-}
-
-export interface CommentPreviousValuesSubscription
-  extends Promise<AsyncIterator<CommentPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface User {
-  id: ID_Output;
-  makerRating?: Float;
-  reviewerThumbs?: Int;
-  url?: String;
-  username: String;
-  password: String;
-  email: String;
-  userProfileImage: String;
-  privilege: String;
-  stripeId?: String;
-  accountType: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  makerRating: () => Promise<Float>;
-  reviewerThumbs: () => Promise<Int>;
-  url: () => Promise<String>;
-  username: () => Promise<String>;
-  password: () => Promise<String>;
-  email: () => Promise<String>;
-  userProfileImage: () => Promise<String>;
-  ReviewList: <T = FragmentableArray<Review>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Projects: <T = FragmentableArray<Project>>(
-    args?: {
-      where?: ProjectWhereInput;
-      orderBy?: ProjectOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  privilege: () => Promise<String>;
-  stripeId: () => Promise<String>;
-  accountType: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  makerRating: () => Promise<AsyncIterator<Float>>;
-  reviewerThumbs: () => Promise<AsyncIterator<Int>>;
-  url: () => Promise<AsyncIterator<String>>;
-  username: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  userProfileImage: () => Promise<AsyncIterator<String>>;
-  ReviewList: <T = Promise<AsyncIterator<ReviewSubscription>>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(
-    args?: {
-      where?: ProjectWhereInput;
-      orderBy?: ProjectOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  privilege: () => Promise<AsyncIterator<String>>;
-  stripeId: () => Promise<AsyncIterator<String>>;
-  accountType: () => Promise<AsyncIterator<String>>;
-}
-
-export interface StepArraySubscriptionPayload {
-  mutation: MutationType;
-  node: StepArray;
-  updatedFields: String[];
-  previousValues: StepArrayPreviousValues;
-}
-
-export interface StepArraySubscriptionPayloadPromise
-  extends Promise<StepArraySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = StepArrayPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = StepArrayPreviousValuesPromise>() => T;
-}
-
-export interface StepArraySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<StepArraySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = StepArraySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = StepArrayPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateStepArray {
-  count: Int;
-}
-
-export interface AggregateStepArrayPromise
-  extends Promise<AggregateStepArray>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateStepArraySubscription
-  extends Promise<AsyncIterator<AggregateStepArray>>,
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -2418,186 +2235,25 @@ export interface ReviewEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ReviewSubscriptionPayload {
-  mutation: MutationType;
-  node: Review;
-  updatedFields: String[];
-  previousValues: ReviewPreviousValues;
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
 }
 
-export interface ReviewSubscriptionPayloadPromise
-  extends Promise<ReviewSubscriptionPayload>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ReviewPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface ReviewSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ReviewSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
-}
-
-export interface Project {
-  id: ID_Output;
-  name: String;
-  category: String;
-  timestamp: DateTimeOutput;
-  titleImg: String;
-  titleBlurb: String;
-  rating: Float;
-}
-
-export interface ProjectPromise extends Promise<Project>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  category: () => Promise<String>;
-  timestamp: () => Promise<DateTimeOutput>;
-  titleImg: () => Promise<String>;
-  titleBlurb: () => Promise<String>;
-  rating: () => Promise<Float>;
-  User: <T = FragmentableArray<User>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Steps: <T = FragmentableArray<StepArray>>(
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Reviews: <T = FragmentableArray<Review>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProjectSubscription
-  extends Promise<AsyncIterator<Project>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  titleImg: () => Promise<AsyncIterator<String>>;
-  titleBlurb: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-  User: <T = Promise<AsyncIterator<UserSubscription>>>(
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Steps: <T = Promise<AsyncIterator<StepArraySubscription>>>(
-    args?: {
-      where?: StepArrayWhereInput;
-      orderBy?: StepArrayOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
-    args?: {
-      where?: ReviewWhereInput;
-      orderBy?: ReviewOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface ProjectPreviousValues {
-  id: ID_Output;
-  name: String;
-  category: String;
-  timestamp: DateTimeOutput;
-  titleImg: String;
-  titleBlurb: String;
-  rating: Float;
-}
-
-export interface ProjectPreviousValuesPromise
-  extends Promise<ProjectPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  category: () => Promise<String>;
-  timestamp: () => Promise<DateTimeOutput>;
-  titleImg: () => Promise<String>;
-  titleBlurb: () => Promise<String>;
-  rating: () => Promise<Float>;
-}
-
-export interface ProjectPreviousValuesSubscription
-  extends Promise<AsyncIterator<ProjectPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
-  titleImg: () => Promise<AsyncIterator<String>>;
-  titleBlurb: () => Promise<AsyncIterator<String>>;
-  rating: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface ProjectSubscriptionPayload {
-  mutation: MutationType;
-  node: Project;
-  updatedFields: String[];
-  previousValues: ProjectPreviousValues;
-}
-
-export interface ProjectSubscriptionPayloadPromise
-  extends Promise<ProjectSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ProjectPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ProjectPreviousValuesPromise>() => T;
-}
-
-export interface ProjectSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ProjectSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ProjectSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ProjectPreviousValuesSubscription>() => T;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface AggregateProject {
@@ -2614,44 +2270,6 @@ export interface AggregateProjectSubscription
   extends Promise<AsyncIterator<AggregateProject>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface StepArrayConnection {
-  pageInfo: PageInfo;
-  edges: StepArrayEdge[];
-}
-
-export interface StepArrayConnectionPromise
-  extends Promise<StepArrayConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<StepArrayEdge>>() => T;
-  aggregate: <T = AggregateStepArrayPromise>() => T;
-}
-
-export interface StepArrayConnectionSubscription
-  extends Promise<AsyncIterator<StepArrayConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<StepArrayEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateStepArraySubscription>() => T;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -2679,15 +2297,291 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
+export interface ProjectSubscriptionPayload {
+  mutation: MutationType;
+  node: Project;
+  updatedFields: String[];
+  previousValues: ProjectPreviousValues;
+}
+
+export interface ProjectSubscriptionPayloadPromise
+  extends Promise<ProjectSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectPreviousValuesPromise>() => T;
+}
+
+export interface ProjectSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectPreviousValuesSubscription>() => T;
+}
+
+export interface Project {
+  id: ID_Output;
+  name: String;
+  category: String;
+  timestamp: DateTimeOutput;
+  titleImg: String;
+  titleBlurb: String;
+  rating: Float;
+  steps: String;
+}
+
+export interface ProjectPromise extends Promise<Project>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  category: () => Promise<String>;
+  timestamp: () => Promise<DateTimeOutput>;
+  titleImg: () => Promise<String>;
+  titleBlurb: () => Promise<String>;
+  rating: () => Promise<Float>;
+  steps: () => Promise<String>;
+  User: <T = UserPromise>() => T;
+  Reviews: <T = FragmentableArray<Review>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedBy: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProjectSubscription
+  extends Promise<AsyncIterator<Project>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<DateTimeOutput>>;
+  titleImg: () => Promise<AsyncIterator<String>>;
+  titleBlurb: () => Promise<AsyncIterator<String>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  steps: () => Promise<AsyncIterator<String>>;
+  User: <T = UserSubscription>() => T;
+  Reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  RatedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface Review {
+  id: ID_Output;
+  title: String;
+  text: String;
+  editedAt: DateTimeOutput;
+  rating: Float;
+  thumbsUp: Int;
+  thumbsDown: Int;
+}
+
+export interface ReviewPromise extends Promise<Review>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  text: () => Promise<String>;
+  editedAt: () => Promise<DateTimeOutput>;
+  rating: () => Promise<Float>;
+  thumbsUp: () => Promise<Int>;
+  LikedBy: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  thumbsDown: () => Promise<Int>;
+  DislikedBy: <T = FragmentableArray<User>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Author: <T = UserPromise>() => T;
+  ProjectReviewed: <T = ProjectPromise>() => T;
+}
+
+export interface ReviewSubscription
+  extends Promise<AsyncIterator<Review>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+  editedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  rating: () => Promise<AsyncIterator<Float>>;
+  thumbsUp: () => Promise<AsyncIterator<Int>>;
+  LikedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  thumbsDown: () => Promise<AsyncIterator<Int>>;
+  DislikedBy: <T = Promise<AsyncIterator<UserSubscription>>>(
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  Author: <T = UserSubscription>() => T;
+  ProjectReviewed: <T = ProjectSubscription>() => T;
+}
+
+export interface ReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Review;
+  updatedFields: String[];
+  previousValues: ReviewPreviousValues;
+}
+
+export interface ReviewSubscriptionPayloadPromise
+  extends Promise<ReviewSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+}
+
+export interface ReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectEdge {
+  node: Project;
+  cursor: String;
+}
+
+export interface ProjectEdgePromise extends Promise<ProjectEdge>, Fragmentable {
+  node: <T = ProjectPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectEdgeSubscription
+  extends Promise<AsyncIterator<ProjectEdge>>,
+    Fragmentable {
+  node: <T = ProjectSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface ReviewConnection {
+  pageInfo: PageInfo;
+  edges: ReviewEdge[];
+}
+
+export interface ReviewConnectionPromise
+  extends Promise<ReviewConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewEdge>>() => T;
+  aggregate: <T = AggregateReviewPromise>() => T;
+}
+
+export interface ReviewConnectionSubscription
+  extends Promise<AsyncIterator<ReviewConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewSubscription>() => T;
+}
+
+export interface AggregateReview {
+  count: Int;
+}
+
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
 
 /*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type Float = number;
+export type String = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2703,6 +2597,11 @@ The `Int` scalar type represents non-fractional signed whole numeric values. Int
 export type Int = number;
 
 /*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -2713,9 +2612,9 @@ DateTime scalar output type, which is always a string
 export type DateTimeOutput = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
 */
-export type String = string;
+export type Float = number;
 
 /**
  * Model Metadata
@@ -2727,19 +2626,11 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "StepArray",
-    embedded: false
-  },
-  {
     name: "Project",
     embedded: false
   },
   {
     name: "Review",
-    embedded: false
-  },
-  {
-    name: "Comment",
     embedded: false
   }
 ];
