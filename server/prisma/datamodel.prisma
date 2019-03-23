@@ -36,6 +36,7 @@ type Review {
   title: String!
   text: String!
   editedAt: String!
+  timestamp: DateTime!
   rating: Float! @default(value: 1)
   thumbsUp: Int
   userThumbsUpArray: String!
