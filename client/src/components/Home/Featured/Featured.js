@@ -11,13 +11,16 @@ function Featured(props) {
   return (
     <div className="card" onClick={() => props.clickHandler(props.username)}>
       <img src={props.image} alt="project" />
-      <h2>{props.title}</h2>
-      <p>@{props.username}</p>
-      <div className="rating-container">
-        {stars.map(star => {
-          return star;
-        })}
+      <div className="info-container">
+        <h2>{props.title}</h2>
+        <p>@{props.username}</p>
+        <div className="rating-container">
+          {stars.map(star => {
+            return star;
+          })}
+        </div>
       </div>
+      
     </div>
   );
 }
