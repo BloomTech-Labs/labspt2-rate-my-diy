@@ -76,7 +76,6 @@ class Home extends Component {
 								{projects.map(
 									({ id, name, titleImg, rating, User }) => (
 										<Featured
-											type="featured"
 											key={id}
 											image={titleImg}
 											rating={rating}
@@ -117,7 +116,6 @@ class Home extends Component {
 								{data.users.map(
 									({ id, username, userProfileImage }) => (
 										<Featured
-											type="featured"
 											key={id}
 											username={username}
 											image={userProfileImage}
@@ -150,7 +148,6 @@ class Home extends Component {
 								{data.users.map(
 									({ id, username, userProfileImage }) => (
 										<Featured
-											type="featured"
 											key={id}
 											username={username}
 											image={userProfileImage}
