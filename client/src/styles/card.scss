@@ -12,4 +12,15 @@
   img {
     height: 300px;
   }
+
+  .rating-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    img {
+      width: 20%;
+      height: 50px;
+    }
+  }
 }

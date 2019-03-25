@@ -79,7 +79,7 @@ class Home extends Component {
 											type="featured"
 											key={id}
 											image={titleImg}
-											stars={rating}
+											rating={rating}
 											title={name}
 											// below might need to be edited
 											username={User.username}
