@@ -1,8 +1,10 @@
 .searchBar {
 	display: flex;
 	margin: 0 auto;
+	width: 20%;
+	padding: 50px 0;
 	.searchSpan {
-		border: 2px solid black;
+		border: 2px solid #ecf0f1;
 		border-radius: 25px;
 		padding: 10px;
 		display: flex;
@@ -16,6 +18,11 @@
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;
 		box-shadow: none;
+	}
+
+	.searchButton {
+		border: 2px solid #ecf0f1;
+		border-radius: 25px;
 	}
 	
 }
