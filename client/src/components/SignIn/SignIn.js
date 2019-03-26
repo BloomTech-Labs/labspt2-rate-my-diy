@@ -7,11 +7,13 @@ import * as ROUTES from "../../constants/routes";
 import SignInGithub from "./ThirdPartyApi/Github";
 import SignInGoogle from "./ThirdPartyApi/Google";
 import SignInTwitter from "./ThirdPartyApi/Twitter";
+import {PasswordForgetLink} from '../PasswordForget/PasswordForget';
 
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
+    <PasswordForgetLink/>
     <SignInGithub />
     <SignInGoogle />
     <SignInTwitter />
