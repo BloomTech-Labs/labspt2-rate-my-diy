@@ -22,6 +22,8 @@ const withAuthorization = () => Component => {
       return <Component {...this.props}/>
     }
   }
-  return WithAuthorization;
+  return compose(
+    withRouter, withFirebase,(WithAuthorization)
+  )
 }
 export default withAuthorization;
