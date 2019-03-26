@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
-
+import {withFirebase} from '../Firebase/Exports';
 const PasswordChangePage = () => (
   <div>
     <h1>Password Change</h1>
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-class PasswordChangeForm extends Component {
+class PasswordChangeBase extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { ...INITIAL_STATE };
@@ -73,6 +73,9 @@ const PasswordChangeLink = () => (
 		<Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
 	</p>
 );
+
+const PasswordChangeForm = withFirebase(PasswordChangeBase);
+
 export { PasswordChangeLink, PasswordChangeForm };
 
-export default PasswordChangePage;
+export default withFirebase(PasswordChangePage);
