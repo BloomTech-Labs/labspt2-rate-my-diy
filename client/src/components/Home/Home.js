@@ -21,6 +21,24 @@ class Home extends Component {
 		this.setState({ userClicked: username });
 	}
 
+	filterByCurrentMonth = (data) => {
+		const currentTime = new Date()
+
+		var month = currentTime.getMonth() + 1
+							
+		var year = currentTime.getFullYear()
+
+		const filteredData = [];
+
+		data.map(item => {
+			if (item.timestamp.slice(0, 4) == year && item.timestamp.slice(5, 7) == month) { 
+				filteredData.push(item);
+			}
+		});
+
+		return filteredData;
+	}
+
 	render() {
 		return (
 			<div>
