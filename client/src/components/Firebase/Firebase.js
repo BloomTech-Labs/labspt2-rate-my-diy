@@ -50,7 +50,7 @@ class Firebase {
     return this.auth.sendPasswordResetEmail(email);
   };
 
-  doPassWordUpdate = password => {
+  doPasswordUpdate = password => {
     return this.auth.currentUser.updatePassword(password);
   };
 

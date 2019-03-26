@@ -12,6 +12,7 @@ import PasswordForget from './components/PasswordForget/PasswordForget';
 import Footer from './components/Footer/Footer';
 import Stripe from './components/Stripe/Stripe';
 import Account from './components/Account/Account';
+import PasswordChange from './components/PasswordChange/PasswordChange'
 import { AuthUserContext, withAuthentication } from './components/Session/session';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
 					<Route path={ROUTES.SIGN_IN} component={SignIn} />
 					<Route path={ROUTES.SIGN_UP} component={SignUp} />
 					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+     <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
 					<Route path={ROUTES.ACCOUNT} component={Account} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
 				</div>
