@@ -69,26 +69,7 @@ class Home extends Component {
 							if (loading) return <p>Loading...</p>;
 							if (error) return <p>Error :(</p>;
 							
-							//This function filters the projects in the current month and year and returns the 4 with the highest rating	
-							const filteredProjects = () => {
-								const currentTime = new Date()
-
-								var month = currentTime.getMonth() + 1
-							
-								var year = currentTime.getFullYear()
-
-								const newProjects = [];
-
-								data.projects.map(project => {
-									if (project.timestamp.slice(0, 4) == year && project.timestamp.slice(5, 7) == month) { 
-										newProjects.push(project);
-									}
-								});
-
-								return newProjects.slice(0, 4);
-							}	
-							
-							const projects = filteredProjects();
+							const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
 
 							return (
 								<div className='card-container'>
