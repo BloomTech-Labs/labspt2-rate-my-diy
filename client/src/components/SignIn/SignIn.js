@@ -8,12 +8,14 @@ import SignInGithub from "./ThirdPartyApi/Github";
 import SignInGoogle from "./ThirdPartyApi/Google";
 import SignInTwitter from "./ThirdPartyApi/Twitter";
 import {PasswordForgetLink} from '../PasswordForget/PasswordForget';
+import {PasswordChangeLink} from '../PasswordChange/PasswordChange'
 
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
     <PasswordForgetLink/>
+    <PasswordChangeLink/>
     <SignInGithub />
     <SignInGoogle />
     <SignInTwitter />
