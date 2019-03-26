@@ -3,18 +3,15 @@ import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import * as ROUTES from './constants/routes';
-import { withFirebase } from './components/Firebase/Exports';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
-import PasswordForgetPage from './components/PasswordForget/PasswordForget';
 import PasswordForget from './components/PasswordForget/PasswordForget';
 import Footer from './components/Footer/Footer';
-import Stripe from './components/Stripe/Stripe';
 import Account from './components/Account/Account';
 import PasswordChange from './components/PasswordChange/PasswordChange';
-import { AuthUserContext, withAuthentication } from './components/Session/session';
+import {withAuthentication} from './components/Session/session';
 
 class App extends Component {
 	render() {

@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-class PasswordChangeForm extends React.Component {
+class PasswordChangeForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { ...INITIAL_STATE };
