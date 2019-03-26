@@ -11,167 +11,66 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  CommentCreateInput: { // input type
-    editedAt: any; // DateTime!
-    text: string; // String!
-    User: NexusGenInputs['UserCreateOneInput']; // UserCreateOneInput!
-  }
-  CommentCreateManyInput: { // input type
-    connect?: NexusGenInputs['CommentWhereUniqueInput'][] | null; // [CommentWhereUniqueInput!]
-    create?: NexusGenInputs['CommentCreateInput'][] | null; // [CommentCreateInput!]
-  }
-  CommentScalarWhereInput: { // input type
-    AND?: NexusGenInputs['CommentScalarWhereInput'][] | null; // [CommentScalarWhereInput!]
-    editedAt?: any | null; // DateTime
-    editedAt_gt?: any | null; // DateTime
-    editedAt_gte?: any | null; // DateTime
-    editedAt_in?: any[] | null; // [DateTime!]
-    editedAt_lt?: any | null; // DateTime
-    editedAt_lte?: any | null; // DateTime
-    editedAt_not?: any | null; // DateTime
-    editedAt_not_in?: any[] | null; // [DateTime!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    NOT?: NexusGenInputs['CommentScalarWhereInput'][] | null; // [CommentScalarWhereInput!]
-    OR?: NexusGenInputs['CommentScalarWhereInput'][] | null; // [CommentScalarWhereInput!]
-    text?: string | null; // String
-    text_contains?: string | null; // String
-    text_ends_with?: string | null; // String
-    text_gt?: string | null; // String
-    text_gte?: string | null; // String
-    text_in?: string[] | null; // [String!]
-    text_lt?: string | null; // String
-    text_lte?: string | null; // String
-    text_not?: string | null; // String
-    text_not_contains?: string | null; // String
-    text_not_ends_with?: string | null; // String
-    text_not_in?: string[] | null; // [String!]
-    text_not_starts_with?: string | null; // String
-    text_starts_with?: string | null; // String
-  }
-  CommentUpdateDataInput: { // input type
-    editedAt?: any | null; // DateTime
-    text?: string | null; // String
-    User?: NexusGenInputs['UserUpdateOneRequiredInput'] | null; // UserUpdateOneRequiredInput
-  }
-  CommentUpdateInput: { // input type
-    editedAt?: any | null; // DateTime
-    text?: string | null; // String
-    User?: NexusGenInputs['UserUpdateOneRequiredInput'] | null; // UserUpdateOneRequiredInput
-  }
-  CommentUpdateManyDataInput: { // input type
-    editedAt?: any | null; // DateTime
-    text?: string | null; // String
-  }
-  CommentUpdateManyInput: { // input type
-    connect?: NexusGenInputs['CommentWhereUniqueInput'][] | null; // [CommentWhereUniqueInput!]
-    create?: NexusGenInputs['CommentCreateInput'][] | null; // [CommentCreateInput!]
-    delete?: NexusGenInputs['CommentWhereUniqueInput'][] | null; // [CommentWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['CommentScalarWhereInput'][] | null; // [CommentScalarWhereInput!]
-    disconnect?: NexusGenInputs['CommentWhereUniqueInput'][] | null; // [CommentWhereUniqueInput!]
-    set?: NexusGenInputs['CommentWhereUniqueInput'][] | null; // [CommentWhereUniqueInput!]
-    update?: NexusGenInputs['CommentUpdateWithWhereUniqueNestedInput'][] | null; // [CommentUpdateWithWhereUniqueNestedInput!]
-    updateMany?: NexusGenInputs['CommentUpdateManyWithWhereNestedInput'][] | null; // [CommentUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['CommentUpsertWithWhereUniqueNestedInput'][] | null; // [CommentUpsertWithWhereUniqueNestedInput!]
-  }
-  CommentUpdateManyMutationInput: { // input type
-    editedAt?: any | null; // DateTime
-    text?: string | null; // String
-  }
-  CommentUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['CommentUpdateManyDataInput']; // CommentUpdateManyDataInput!
-    where: NexusGenInputs['CommentScalarWhereInput']; // CommentScalarWhereInput!
-  }
-  CommentUpdateWithWhereUniqueNestedInput: { // input type
-    data: NexusGenInputs['CommentUpdateDataInput']; // CommentUpdateDataInput!
-    where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
-  }
-  CommentUpsertWithWhereUniqueNestedInput: { // input type
-    create: NexusGenInputs['CommentCreateInput']; // CommentCreateInput!
-    update: NexusGenInputs['CommentUpdateDataInput']; // CommentUpdateDataInput!
-    where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
-  }
-  CommentWhereInput: { // input type
-    AND?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    editedAt?: any | null; // DateTime
-    editedAt_gt?: any | null; // DateTime
-    editedAt_gte?: any | null; // DateTime
-    editedAt_in?: any[] | null; // [DateTime!]
-    editedAt_lt?: any | null; // DateTime
-    editedAt_lte?: any | null; // DateTime
-    editedAt_not?: any | null; // DateTime
-    editedAt_not_in?: any[] | null; // [DateTime!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    NOT?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    OR?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
-    text?: string | null; // String
-    text_contains?: string | null; // String
-    text_ends_with?: string | null; // String
-    text_gt?: string | null; // String
-    text_gte?: string | null; // String
-    text_in?: string[] | null; // [String!]
-    text_lt?: string | null; // String
-    text_lte?: string | null; // String
-    text_not?: string | null; // String
-    text_not_contains?: string | null; // String
-    text_not_ends_with?: string | null; // String
-    text_not_in?: string[] | null; // [String!]
-    text_not_starts_with?: string | null; // String
-    text_starts_with?: string | null; // String
-    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-  }
-  CommentWhereUniqueInput: { // input type
-    id?: string | null; // ID
-  }
   ProjectCreateInput: { // input type
     category: string; // String!
+    key?: string | null; // String
     name: string; // String!
+    RatedBy?: NexusGenInputs['UserCreateManyWithoutRatedProjectsInput'] | null; // UserCreateManyWithoutRatedProjectsInput
     rating?: number | null; // Float
-    Reviews?: NexusGenInputs['ReviewCreateManyInput'] | null; // ReviewCreateManyInput
-    Steps?: NexusGenInputs['StepArrayCreateManyInput'] | null; // StepArrayCreateManyInput
+    Reviews?: NexusGenInputs['ReviewCreateManyWithoutProjectReviewedInput'] | null; // ReviewCreateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
     timestamp: any; // DateTime!
-    titleBlurb: string; // String!
-    titleImg: string; // String!
-    User?: NexusGenInputs['UserCreateManyWithoutProjectsInput'] | null; // UserCreateManyWithoutProjectsInput
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
+    User: NexusGenInputs['UserCreateOneWithoutProjectsInput']; // UserCreateOneWithoutProjectsInput!
+  }
+  ProjectCreateManyWithoutRatedByInput: { // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    create?: NexusGenInputs['ProjectCreateWithoutRatedByInput'][] | null; // [ProjectCreateWithoutRatedByInput!]
   }
   ProjectCreateManyWithoutUserInput: { // input type
     connect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
     create?: NexusGenInputs['ProjectCreateWithoutUserInput'][] | null; // [ProjectCreateWithoutUserInput!]
   }
-  ProjectCreateWithoutUserInput: { // input type
+  ProjectCreateOneWithoutReviewsInput: { // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'] | null; // ProjectWhereUniqueInput
+    create?: NexusGenInputs['ProjectCreateWithoutReviewsInput'] | null; // ProjectCreateWithoutReviewsInput
+  }
+  ProjectCreateWithoutRatedByInput: { // input type
     category: string; // String!
+    key?: string | null; // String
     name: string; // String!
     rating?: number | null; // Float
-    Reviews?: NexusGenInputs['ReviewCreateManyInput'] | null; // ReviewCreateManyInput
-    Steps?: NexusGenInputs['StepArrayCreateManyInput'] | null; // StepArrayCreateManyInput
+    Reviews?: NexusGenInputs['ReviewCreateManyWithoutProjectReviewedInput'] | null; // ReviewCreateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
     timestamp: any; // DateTime!
-    titleBlurb: string; // String!
-    titleImg: string; // String!
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
+    User: NexusGenInputs['UserCreateOneWithoutProjectsInput']; // UserCreateOneWithoutProjectsInput!
+  }
+  ProjectCreateWithoutReviewsInput: { // input type
+    category: string; // String!
+    key?: string | null; // String
+    name: string; // String!
+    RatedBy?: NexusGenInputs['UserCreateManyWithoutRatedProjectsInput'] | null; // UserCreateManyWithoutRatedProjectsInput
+    rating?: number | null; // Float
+    steps?: string | null; // String
+    timestamp: any; // DateTime!
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
+    User: NexusGenInputs['UserCreateOneWithoutProjectsInput']; // UserCreateOneWithoutProjectsInput!
+  }
+  ProjectCreateWithoutUserInput: { // input type
+    category: string; // String!
+    key?: string | null; // String
+    name: string; // String!
+    RatedBy?: NexusGenInputs['UserCreateManyWithoutRatedProjectsInput'] | null; // UserCreateManyWithoutRatedProjectsInput
+    rating?: number | null; // Float
+    Reviews?: NexusGenInputs['ReviewCreateManyWithoutProjectReviewedInput'] | null; // ReviewCreateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
+    timestamp: any; // DateTime!
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
   }
   ProjectScalarWhereInput: { // input type
     AND?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
@@ -203,6 +102,20 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    key?: string | null; // String
+    key_contains?: string | null; // String
+    key_ends_with?: string | null; // String
+    key_gt?: string | null; // String
+    key_gte?: string | null; // String
+    key_in?: string[] | null; // [String!]
+    key_lt?: string | null; // String
+    key_lte?: string | null; // String
+    key_not?: string | null; // String
+    key_not_contains?: string | null; // String
+    key_not_ends_with?: string | null; // String
+    key_not_in?: string[] | null; // [String!]
+    key_not_starts_with?: string | null; // String
+    key_starts_with?: string | null; // String
     name?: string | null; // String
     name_contains?: string | null; // String
     name_ends_with?: string | null; // String
@@ -227,6 +140,20 @@ export interface NexusGenInputs {
     rating_lte?: number | null; // Float
     rating_not?: number | null; // Float
     rating_not_in?: number[] | null; // [Float!]
+    steps?: string | null; // String
+    steps_contains?: string | null; // String
+    steps_ends_with?: string | null; // String
+    steps_gt?: string | null; // String
+    steps_gte?: string | null; // String
+    steps_in?: string[] | null; // [String!]
+    steps_lt?: string | null; // String
+    steps_lte?: string | null; // String
+    steps_not?: string | null; // String
+    steps_not_contains?: string | null; // String
+    steps_not_ends_with?: string | null; // String
+    steps_not_in?: string[] | null; // [String!]
+    steps_not_starts_with?: string | null; // String
+    steps_starts_with?: string | null; // String
     timestamp?: any | null; // DateTime
     timestamp_gt?: any | null; // DateTime
     timestamp_gte?: any | null; // DateTime
@@ -266,27 +193,33 @@ export interface NexusGenInputs {
   }
   ProjectUpdateInput: { // input type
     category?: string | null; // String
+    key?: string | null; // String
     name?: string | null; // String
+    RatedBy?: NexusGenInputs['UserUpdateManyWithoutRatedProjectsInput'] | null; // UserUpdateManyWithoutRatedProjectsInput
     rating?: number | null; // Float
-    Reviews?: NexusGenInputs['ReviewUpdateManyInput'] | null; // ReviewUpdateManyInput
-    Steps?: NexusGenInputs['StepArrayUpdateManyInput'] | null; // StepArrayUpdateManyInput
+    Reviews?: NexusGenInputs['ReviewUpdateManyWithoutProjectReviewedInput'] | null; // ReviewUpdateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
     timestamp?: any | null; // DateTime
     titleBlurb?: string | null; // String
     titleImg?: string | null; // String
-    User?: NexusGenInputs['UserUpdateManyWithoutProjectsInput'] | null; // UserUpdateManyWithoutProjectsInput
+    User?: NexusGenInputs['UserUpdateOneRequiredWithoutProjectsInput'] | null; // UserUpdateOneRequiredWithoutProjectsInput
   }
   ProjectUpdateManyDataInput: { // input type
     category?: string | null; // String
+    key?: string | null; // String
     name?: string | null; // String
     rating?: number | null; // Float
+    steps?: string | null; // String
     timestamp?: any | null; // DateTime
     titleBlurb?: string | null; // String
     titleImg?: string | null; // String
   }
   ProjectUpdateManyMutationInput: { // input type
     category?: string | null; // String
+    key?: string | null; // String
     name?: string | null; // String
     rating?: number | null; // Float
+    steps?: string | null; // String
     timestamp?: any | null; // DateTime
     titleBlurb?: string | null; // String
     titleImg?: string | null; // String
@@ -294,6 +227,17 @@ export interface NexusGenInputs {
   ProjectUpdateManyWithWhereNestedInput: { // input type
     data: NexusGenInputs['ProjectUpdateManyDataInput']; // ProjectUpdateManyDataInput!
     where: NexusGenInputs['ProjectScalarWhereInput']; // ProjectScalarWhereInput!
+  }
+  ProjectUpdateManyWithoutRatedByInput: { // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    create?: NexusGenInputs['ProjectCreateWithoutRatedByInput'][] | null; // [ProjectCreateWithoutRatedByInput!]
+    delete?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ProjectScalarWhereInput'][] | null; // [ProjectScalarWhereInput!]
+    disconnect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    set?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
+    update?: NexusGenInputs['ProjectUpdateWithWhereUniqueWithoutRatedByInput'][] | null; // [ProjectUpdateWithWhereUniqueWithoutRatedByInput!]
+    updateMany?: NexusGenInputs['ProjectUpdateManyWithWhereNestedInput'][] | null; // [ProjectUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutRatedByInput'][] | null; // [ProjectUpsertWithWhereUniqueWithoutRatedByInput!]
   }
   ProjectUpdateManyWithoutUserInput: { // input type
     connect?: NexusGenInputs['ProjectWhereUniqueInput'][] | null; // [ProjectWhereUniqueInput!]
@@ -306,24 +250,69 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['ProjectUpdateManyWithWhereNestedInput'][] | null; // [ProjectUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutUserInput'][] | null; // [ProjectUpsertWithWhereUniqueWithoutUserInput!]
   }
+  ProjectUpdateOneRequiredWithoutReviewsInput: { // input type
+    connect?: NexusGenInputs['ProjectWhereUniqueInput'] | null; // ProjectWhereUniqueInput
+    create?: NexusGenInputs['ProjectCreateWithoutReviewsInput'] | null; // ProjectCreateWithoutReviewsInput
+    update?: NexusGenInputs['ProjectUpdateWithoutReviewsDataInput'] | null; // ProjectUpdateWithoutReviewsDataInput
+    upsert?: NexusGenInputs['ProjectUpsertWithoutReviewsInput'] | null; // ProjectUpsertWithoutReviewsInput
+  }
+  ProjectUpdateWithWhereUniqueWithoutRatedByInput: { // input type
+    data: NexusGenInputs['ProjectUpdateWithoutRatedByDataInput']; // ProjectUpdateWithoutRatedByDataInput!
+    where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+  }
   ProjectUpdateWithWhereUniqueWithoutUserInput: { // input type
     data: NexusGenInputs['ProjectUpdateWithoutUserDataInput']; // ProjectUpdateWithoutUserDataInput!
     where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
   }
-  ProjectUpdateWithoutUserDataInput: { // input type
+  ProjectUpdateWithoutRatedByDataInput: { // input type
     category?: string | null; // String
+    key?: string | null; // String
     name?: string | null; // String
     rating?: number | null; // Float
-    Reviews?: NexusGenInputs['ReviewUpdateManyInput'] | null; // ReviewUpdateManyInput
-    Steps?: NexusGenInputs['StepArrayUpdateManyInput'] | null; // StepArrayUpdateManyInput
+    Reviews?: NexusGenInputs['ReviewUpdateManyWithoutProjectReviewedInput'] | null; // ReviewUpdateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
     timestamp?: any | null; // DateTime
     titleBlurb?: string | null; // String
     titleImg?: string | null; // String
+    User?: NexusGenInputs['UserUpdateOneRequiredWithoutProjectsInput'] | null; // UserUpdateOneRequiredWithoutProjectsInput
+  }
+  ProjectUpdateWithoutReviewsDataInput: { // input type
+    category?: string | null; // String
+    key?: string | null; // String
+    name?: string | null; // String
+    RatedBy?: NexusGenInputs['UserUpdateManyWithoutRatedProjectsInput'] | null; // UserUpdateManyWithoutRatedProjectsInput
+    rating?: number | null; // Float
+    steps?: string | null; // String
+    timestamp?: any | null; // DateTime
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
+    User?: NexusGenInputs['UserUpdateOneRequiredWithoutProjectsInput'] | null; // UserUpdateOneRequiredWithoutProjectsInput
+  }
+  ProjectUpdateWithoutUserDataInput: { // input type
+    category?: string | null; // String
+    key?: string | null; // String
+    name?: string | null; // String
+    RatedBy?: NexusGenInputs['UserUpdateManyWithoutRatedProjectsInput'] | null; // UserUpdateManyWithoutRatedProjectsInput
+    rating?: number | null; // Float
+    Reviews?: NexusGenInputs['ReviewUpdateManyWithoutProjectReviewedInput'] | null; // ReviewUpdateManyWithoutProjectReviewedInput
+    steps?: string | null; // String
+    timestamp?: any | null; // DateTime
+    titleBlurb?: string | null; // String
+    titleImg?: string | null; // String
+  }
+  ProjectUpsertWithWhereUniqueWithoutRatedByInput: { // input type
+    create: NexusGenInputs['ProjectCreateWithoutRatedByInput']; // ProjectCreateWithoutRatedByInput!
+    update: NexusGenInputs['ProjectUpdateWithoutRatedByDataInput']; // ProjectUpdateWithoutRatedByDataInput!
+    where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
   }
   ProjectUpsertWithWhereUniqueWithoutUserInput: { // input type
     create: NexusGenInputs['ProjectCreateWithoutUserInput']; // ProjectCreateWithoutUserInput!
     update: NexusGenInputs['ProjectUpdateWithoutUserDataInput']; // ProjectUpdateWithoutUserDataInput!
     where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+  }
+  ProjectUpsertWithoutReviewsInput: { // input type
+    create: NexusGenInputs['ProjectCreateWithoutReviewsInput']; // ProjectCreateWithoutReviewsInput!
+    update: NexusGenInputs['ProjectUpdateWithoutReviewsDataInput']; // ProjectUpdateWithoutReviewsDataInput!
   }
   ProjectWhereInput: { // input type
     AND?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
@@ -355,6 +344,20 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    key?: string | null; // String
+    key_contains?: string | null; // String
+    key_ends_with?: string | null; // String
+    key_gt?: string | null; // String
+    key_gte?: string | null; // String
+    key_in?: string[] | null; // [String!]
+    key_lt?: string | null; // String
+    key_lte?: string | null; // String
+    key_not?: string | null; // String
+    key_not_contains?: string | null; // String
+    key_not_ends_with?: string | null; // String
+    key_not_in?: string[] | null; // [String!]
+    key_not_starts_with?: string | null; // String
+    key_starts_with?: string | null; // String
     name?: string | null; // String
     name_contains?: string | null; // String
     name_ends_with?: string | null; // String
@@ -371,6 +374,9 @@ export interface NexusGenInputs {
     name_starts_with?: string | null; // String
     NOT?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
     OR?: NexusGenInputs['ProjectWhereInput'][] | null; // [ProjectWhereInput!]
+    RatedBy_every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    RatedBy_none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    RatedBy_some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     rating?: number | null; // Float
     rating_gt?: number | null; // Float
     rating_gte?: number | null; // Float
@@ -382,9 +388,20 @@ export interface NexusGenInputs {
     Reviews_every?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     Reviews_none?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     Reviews_some?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
-    Steps_every?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
-    Steps_none?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
-    Steps_some?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
+    steps?: string | null; // String
+    steps_contains?: string | null; // String
+    steps_ends_with?: string | null; // String
+    steps_gt?: string | null; // String
+    steps_gte?: string | null; // String
+    steps_in?: string[] | null; // [String!]
+    steps_lt?: string | null; // String
+    steps_lte?: string | null; // String
+    steps_not?: string | null; // String
+    steps_not_contains?: string | null; // String
+    steps_not_ends_with?: string | null; // String
+    steps_not_in?: string[] | null; // [String!]
+    steps_not_starts_with?: string | null; // String
+    steps_starts_with?: string | null; // String
     timestamp?: any | null; // DateTime
     timestamp_gt?: any | null; // DateTime
     timestamp_gte?: any | null; // DateTime
@@ -421,56 +438,94 @@ export interface NexusGenInputs {
     titleImg_not_in?: string[] | null; // [String!]
     titleImg_not_starts_with?: string | null; // String
     titleImg_starts_with?: string | null; // String
-    User_every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    User_some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    User?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
   ProjectWhereUniqueInput: { // input type
     id?: string | null; // ID
+    key?: string | null; // String
   }
   ReviewCreateInput: { // input type
     Author: NexusGenInputs['UserCreateOneWithoutReviewListInput']; // UserCreateOneWithoutReviewListInput!
-    Comments?: NexusGenInputs['CommentCreateManyInput'] | null; // CommentCreateManyInput
-    editedAt: string; // String!
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
+    editedAt: any; // DateTime!
+    LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
+    ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    rKey?: string | null; // String
     text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp?: number | null; // Int
     title: string; // String!
-  }
-  ReviewCreateManyInput: { // input type
-    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
-    create?: NexusGenInputs['ReviewCreateInput'][] | null; // [ReviewCreateInput!]
   }
   ReviewCreateManyWithoutAuthorInput: { // input type
     connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
     create?: NexusGenInputs['ReviewCreateWithoutAuthorInput'][] | null; // [ReviewCreateWithoutAuthorInput!]
   }
+  ReviewCreateManyWithoutDislikedByInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutDislikedByInput'][] | null; // [ReviewCreateWithoutDislikedByInput!]
+  }
+  ReviewCreateManyWithoutLikedByInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutLikedByInput'][] | null; // [ReviewCreateWithoutLikedByInput!]
+  }
+  ReviewCreateManyWithoutProjectReviewedInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutProjectReviewedInput'][] | null; // [ReviewCreateWithoutProjectReviewedInput!]
+  }
   ReviewCreateWithoutAuthorInput: { // input type
-    Comments?: NexusGenInputs['CommentCreateManyInput'] | null; // CommentCreateManyInput
-    editedAt: string; // String!
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
+    editedAt: any; // DateTime!
+    LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
+    ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    rKey?: string | null; // String
     text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp?: number | null; // Int
+    title: string; // String!
+  }
+  ReviewCreateWithoutDislikedByInput: { // input type
+    Author: NexusGenInputs['UserCreateOneWithoutReviewListInput']; // UserCreateOneWithoutReviewListInput!
+    editedAt: any; // DateTime!
+    LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
+    ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    rKey?: string | null; // String
+    text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp?: number | null; // Int
+    title: string; // String!
+  }
+  ReviewCreateWithoutLikedByInput: { // input type
+    Author: NexusGenInputs['UserCreateOneWithoutReviewListInput']; // UserCreateOneWithoutReviewListInput!
+    DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
+    editedAt: any; // DateTime!
+    ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    rKey?: string | null; // String
+    text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp?: number | null; // Int
+    title: string; // String!
+  }
+  ReviewCreateWithoutProjectReviewedInput: { // input type
+    Author: NexusGenInputs['UserCreateOneWithoutReviewListInput']; // UserCreateOneWithoutReviewListInput!
+    DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
+    editedAt: any; // DateTime!
+    LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
+    rKey?: string | null; // String
+    text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp?: number | null; // Int
     title: string; // String!
   }
   ReviewScalarWhereInput: { // input type
     AND?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
-    editedAt?: string | null; // String
-    editedAt_contains?: string | null; // String
-    editedAt_ends_with?: string | null; // String
-    editedAt_gt?: string | null; // String
-    editedAt_gte?: string | null; // String
-    editedAt_in?: string[] | null; // [String!]
-    editedAt_lt?: string | null; // String
-    editedAt_lte?: string | null; // String
-    editedAt_not?: string | null; // String
-    editedAt_not_contains?: string | null; // String
-    editedAt_not_ends_with?: string | null; // String
-    editedAt_not_in?: string[] | null; // [String!]
-    editedAt_not_starts_with?: string | null; // String
-    editedAt_starts_with?: string | null; // String
+    editedAt?: any | null; // DateTime
+    editedAt_gt?: any | null; // DateTime
+    editedAt_gte?: any | null; // DateTime
+    editedAt_in?: any[] | null; // [DateTime!]
+    editedAt_lt?: any | null; // DateTime
+    editedAt_lte?: any | null; // DateTime
+    editedAt_not?: any | null; // DateTime
+    editedAt_not_in?: any[] | null; // [DateTime!]
     id?: string | null; // ID
     id_contains?: string | null; // ID
     id_ends_with?: string | null; // ID
@@ -487,30 +542,20 @@ export interface NexusGenInputs {
     id_starts_with?: string | null; // ID
     NOT?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
     OR?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
-    rating?: number | null; // Float
-    rating_gt?: number | null; // Float
-    rating_gte?: number | null; // Float
-    rating_in?: number[] | null; // [Float!]
-    rating_lt?: number | null; // Float
-    rating_lte?: number | null; // Float
-    rating_not?: number | null; // Float
-    rating_not_in?: number[] | null; // [Float!]
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsDown_gt?: number | null; // Int
-    reviewThumbsDown_gte?: number | null; // Int
-    reviewThumbsDown_in?: number[] | null; // [Int!]
-    reviewThumbsDown_lt?: number | null; // Int
-    reviewThumbsDown_lte?: number | null; // Int
-    reviewThumbsDown_not?: number | null; // Int
-    reviewThumbsDown_not_in?: number[] | null; // [Int!]
-    reviewThumbsUp?: number | null; // Int
-    reviewThumbsUp_gt?: number | null; // Int
-    reviewThumbsUp_gte?: number | null; // Int
-    reviewThumbsUp_in?: number[] | null; // [Int!]
-    reviewThumbsUp_lt?: number | null; // Int
-    reviewThumbsUp_lte?: number | null; // Int
-    reviewThumbsUp_not?: number | null; // Int
-    reviewThumbsUp_not_in?: number[] | null; // [Int!]
+    rKey?: string | null; // String
+    rKey_contains?: string | null; // String
+    rKey_ends_with?: string | null; // String
+    rKey_gt?: string | null; // String
+    rKey_gte?: string | null; // String
+    rKey_in?: string[] | null; // [String!]
+    rKey_lt?: string | null; // String
+    rKey_lte?: string | null; // String
+    rKey_not?: string | null; // String
+    rKey_not_contains?: string | null; // String
+    rKey_not_ends_with?: string | null; // String
+    rKey_not_in?: string[] | null; // [String!]
+    rKey_not_starts_with?: string | null; // String
+    rKey_starts_with?: string | null; // String
     text?: string | null; // String
     text_contains?: string | null; // String
     text_ends_with?: string | null; // String
@@ -525,6 +570,22 @@ export interface NexusGenInputs {
     text_not_in?: string[] | null; // [String!]
     text_not_starts_with?: string | null; // String
     text_starts_with?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsDown_gt?: number | null; // Int
+    thumbsDown_gte?: number | null; // Int
+    thumbsDown_in?: number[] | null; // [Int!]
+    thumbsDown_lt?: number | null; // Int
+    thumbsDown_lte?: number | null; // Int
+    thumbsDown_not?: number | null; // Int
+    thumbsDown_not_in?: number[] | null; // [Int!]
+    thumbsUp?: number | null; // Int
+    thumbsUp_gt?: number | null; // Int
+    thumbsUp_gte?: number | null; // Int
+    thumbsUp_in?: number[] | null; // [Int!]
+    thumbsUp_lt?: number | null; // Int
+    thumbsUp_lte?: number | null; // Int
+    thumbsUp_not?: number | null; // Int
+    thumbsUp_not_in?: number[] | null; // [Int!]
     title?: string | null; // String
     title_contains?: string | null; // String
     title_ends_with?: string | null; // String
@@ -540,51 +601,32 @@ export interface NexusGenInputs {
     title_not_starts_with?: string | null; // String
     title_starts_with?: string | null; // String
   }
-  ReviewUpdateDataInput: { // input type
-    Author?: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'] | null; // UserUpdateOneRequiredWithoutReviewListInput
-    Comments?: NexusGenInputs['CommentUpdateManyInput'] | null; // CommentUpdateManyInput
-    editedAt?: string | null; // String
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
-    text?: string | null; // String
-    title?: string | null; // String
-  }
   ReviewUpdateInput: { // input type
     Author?: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'] | null; // UserUpdateOneRequiredWithoutReviewListInput
-    Comments?: NexusGenInputs['CommentUpdateManyInput'] | null; // CommentUpdateManyInput
-    editedAt?: string | null; // String
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
+    editedAt?: any | null; // DateTime
+    LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
+    ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    rKey?: string | null; // String
     text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
     title?: string | null; // String
   }
   ReviewUpdateManyDataInput: { // input type
-    editedAt?: string | null; // String
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    editedAt?: any | null; // DateTime
+    rKey?: string | null; // String
     text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
     title?: string | null; // String
   }
-  ReviewUpdateManyInput: { // input type
-    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
-    create?: NexusGenInputs['ReviewCreateInput'][] | null; // [ReviewCreateInput!]
-    delete?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
-    disconnect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
-    set?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
-    update?: NexusGenInputs['ReviewUpdateWithWhereUniqueNestedInput'][] | null; // [ReviewUpdateWithWhereUniqueNestedInput!]
-    updateMany?: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'][] | null; // [ReviewUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['ReviewUpsertWithWhereUniqueNestedInput'][] | null; // [ReviewUpsertWithWhereUniqueNestedInput!]
-  }
   ReviewUpdateManyMutationInput: { // input type
-    editedAt?: string | null; // String
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    editedAt?: any | null; // DateTime
+    rKey?: string | null; // String
     text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
     title?: string | null; // String
   }
   ReviewUpdateManyWithWhereNestedInput: { // input type
@@ -602,53 +644,133 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'][] | null; // [ReviewUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutAuthorInput'][] | null; // [ReviewUpsertWithWhereUniqueWithoutAuthorInput!]
   }
-  ReviewUpdateWithWhereUniqueNestedInput: { // input type
-    data: NexusGenInputs['ReviewUpdateDataInput']; // ReviewUpdateDataInput!
-    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  ReviewUpdateManyWithoutDislikedByInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutDislikedByInput'][] | null; // [ReviewCreateWithoutDislikedByInput!]
+    delete?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
+    disconnect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    set?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    update?: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutDislikedByInput'][] | null; // [ReviewUpdateWithWhereUniqueWithoutDislikedByInput!]
+    updateMany?: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'][] | null; // [ReviewUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutDislikedByInput'][] | null; // [ReviewUpsertWithWhereUniqueWithoutDislikedByInput!]
+  }
+  ReviewUpdateManyWithoutLikedByInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutLikedByInput'][] | null; // [ReviewCreateWithoutLikedByInput!]
+    delete?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
+    disconnect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    set?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    update?: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutLikedByInput'][] | null; // [ReviewUpdateWithWhereUniqueWithoutLikedByInput!]
+    updateMany?: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'][] | null; // [ReviewUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutLikedByInput'][] | null; // [ReviewUpsertWithWhereUniqueWithoutLikedByInput!]
+  }
+  ReviewUpdateManyWithoutProjectReviewedInput: { // input type
+    connect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    create?: NexusGenInputs['ReviewCreateWithoutProjectReviewedInput'][] | null; // [ReviewCreateWithoutProjectReviewedInput!]
+    delete?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
+    disconnect?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    set?: NexusGenInputs['ReviewWhereUniqueInput'][] | null; // [ReviewWhereUniqueInput!]
+    update?: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput'][] | null; // [ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput!]
+    updateMany?: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'][] | null; // [ReviewUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput'][] | null; // [ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput!]
   }
   ReviewUpdateWithWhereUniqueWithoutAuthorInput: { // input type
     data: NexusGenInputs['ReviewUpdateWithoutAuthorDataInput']; // ReviewUpdateWithoutAuthorDataInput!
     where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
   }
+  ReviewUpdateWithWhereUniqueWithoutDislikedByInput: { // input type
+    data: NexusGenInputs['ReviewUpdateWithoutDislikedByDataInput']; // ReviewUpdateWithoutDislikedByDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
+  ReviewUpdateWithWhereUniqueWithoutLikedByInput: { // input type
+    data: NexusGenInputs['ReviewUpdateWithoutLikedByDataInput']; // ReviewUpdateWithoutLikedByDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
+  ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput: { // input type
+    data: NexusGenInputs['ReviewUpdateWithoutProjectReviewedDataInput']; // ReviewUpdateWithoutProjectReviewedDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
   ReviewUpdateWithoutAuthorDataInput: { // input type
-    Comments?: NexusGenInputs['CommentUpdateManyInput'] | null; // CommentUpdateManyInput
-    editedAt?: string | null; // String
-    rating?: number | null; // Float
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
+    editedAt?: any | null; // DateTime
+    LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
+    ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    rKey?: string | null; // String
     text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
     title?: string | null; // String
   }
-  ReviewUpsertWithWhereUniqueNestedInput: { // input type
-    create: NexusGenInputs['ReviewCreateInput']; // ReviewCreateInput!
-    update: NexusGenInputs['ReviewUpdateDataInput']; // ReviewUpdateDataInput!
-    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  ReviewUpdateWithoutDislikedByDataInput: { // input type
+    Author?: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'] | null; // UserUpdateOneRequiredWithoutReviewListInput
+    editedAt?: any | null; // DateTime
+    LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
+    ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    rKey?: string | null; // String
+    text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
+    title?: string | null; // String
+  }
+  ReviewUpdateWithoutLikedByDataInput: { // input type
+    Author?: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'] | null; // UserUpdateOneRequiredWithoutReviewListInput
+    DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
+    editedAt?: any | null; // DateTime
+    ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    rKey?: string | null; // String
+    text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
+    title?: string | null; // String
+  }
+  ReviewUpdateWithoutProjectReviewedDataInput: { // input type
+    Author?: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'] | null; // UserUpdateOneRequiredWithoutReviewListInput
+    DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
+    editedAt?: any | null; // DateTime
+    LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
+    rKey?: string | null; // String
+    text?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsUp?: number | null; // Int
+    title?: string | null; // String
   }
   ReviewUpsertWithWhereUniqueWithoutAuthorInput: { // input type
     create: NexusGenInputs['ReviewCreateWithoutAuthorInput']; // ReviewCreateWithoutAuthorInput!
     update: NexusGenInputs['ReviewUpdateWithoutAuthorDataInput']; // ReviewUpdateWithoutAuthorDataInput!
     where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
   }
+  ReviewUpsertWithWhereUniqueWithoutDislikedByInput: { // input type
+    create: NexusGenInputs['ReviewCreateWithoutDislikedByInput']; // ReviewCreateWithoutDislikedByInput!
+    update: NexusGenInputs['ReviewUpdateWithoutDislikedByDataInput']; // ReviewUpdateWithoutDislikedByDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
+  ReviewUpsertWithWhereUniqueWithoutLikedByInput: { // input type
+    create: NexusGenInputs['ReviewCreateWithoutLikedByInput']; // ReviewCreateWithoutLikedByInput!
+    update: NexusGenInputs['ReviewUpdateWithoutLikedByDataInput']; // ReviewUpdateWithoutLikedByDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
+  ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput: { // input type
+    create: NexusGenInputs['ReviewCreateWithoutProjectReviewedInput']; // ReviewCreateWithoutProjectReviewedInput!
+    update: NexusGenInputs['ReviewUpdateWithoutProjectReviewedDataInput']; // ReviewUpdateWithoutProjectReviewedDataInput!
+    where: NexusGenInputs['ReviewWhereUniqueInput']; // ReviewWhereUniqueInput!
+  }
   ReviewWhereInput: { // input type
     AND?: NexusGenInputs['ReviewWhereInput'][] | null; // [ReviewWhereInput!]
     Author?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    Comments_every?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    Comments_none?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    Comments_some?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    editedAt?: string | null; // String
-    editedAt_contains?: string | null; // String
-    editedAt_ends_with?: string | null; // String
-    editedAt_gt?: string | null; // String
-    editedAt_gte?: string | null; // String
-    editedAt_in?: string[] | null; // [String!]
-    editedAt_lt?: string | null; // String
-    editedAt_lte?: string | null; // String
-    editedAt_not?: string | null; // String
-    editedAt_not_contains?: string | null; // String
-    editedAt_not_ends_with?: string | null; // String
-    editedAt_not_in?: string[] | null; // [String!]
-    editedAt_not_starts_with?: string | null; // String
-    editedAt_starts_with?: string | null; // String
+    DislikedBy_every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    DislikedBy_none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    DislikedBy_some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    editedAt?: any | null; // DateTime
+    editedAt_gt?: any | null; // DateTime
+    editedAt_gte?: any | null; // DateTime
+    editedAt_in?: any[] | null; // [DateTime!]
+    editedAt_lt?: any | null; // DateTime
+    editedAt_lte?: any | null; // DateTime
+    editedAt_not?: any | null; // DateTime
+    editedAt_not_in?: any[] | null; // [DateTime!]
     id?: string | null; // ID
     id_contains?: string | null; // ID
     id_ends_with?: string | null; // ID
@@ -663,32 +785,26 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    LikedBy_every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    LikedBy_none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    LikedBy_some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     NOT?: NexusGenInputs['ReviewWhereInput'][] | null; // [ReviewWhereInput!]
     OR?: NexusGenInputs['ReviewWhereInput'][] | null; // [ReviewWhereInput!]
-    rating?: number | null; // Float
-    rating_gt?: number | null; // Float
-    rating_gte?: number | null; // Float
-    rating_in?: number[] | null; // [Float!]
-    rating_lt?: number | null; // Float
-    rating_lte?: number | null; // Float
-    rating_not?: number | null; // Float
-    rating_not_in?: number[] | null; // [Float!]
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsDown_gt?: number | null; // Int
-    reviewThumbsDown_gte?: number | null; // Int
-    reviewThumbsDown_in?: number[] | null; // [Int!]
-    reviewThumbsDown_lt?: number | null; // Int
-    reviewThumbsDown_lte?: number | null; // Int
-    reviewThumbsDown_not?: number | null; // Int
-    reviewThumbsDown_not_in?: number[] | null; // [Int!]
-    reviewThumbsUp?: number | null; // Int
-    reviewThumbsUp_gt?: number | null; // Int
-    reviewThumbsUp_gte?: number | null; // Int
-    reviewThumbsUp_in?: number[] | null; // [Int!]
-    reviewThumbsUp_lt?: number | null; // Int
-    reviewThumbsUp_lte?: number | null; // Int
-    reviewThumbsUp_not?: number | null; // Int
-    reviewThumbsUp_not_in?: number[] | null; // [Int!]
+    ProjectReviewed?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    rKey?: string | null; // String
+    rKey_contains?: string | null; // String
+    rKey_ends_with?: string | null; // String
+    rKey_gt?: string | null; // String
+    rKey_gte?: string | null; // String
+    rKey_in?: string[] | null; // [String!]
+    rKey_lt?: string | null; // String
+    rKey_lte?: string | null; // String
+    rKey_not?: string | null; // String
+    rKey_not_contains?: string | null; // String
+    rKey_not_ends_with?: string | null; // String
+    rKey_not_in?: string[] | null; // [String!]
+    rKey_not_starts_with?: string | null; // String
+    rKey_starts_with?: string | null; // String
     text?: string | null; // String
     text_contains?: string | null; // String
     text_ends_with?: string | null; // String
@@ -703,6 +819,22 @@ export interface NexusGenInputs {
     text_not_in?: string[] | null; // [String!]
     text_not_starts_with?: string | null; // String
     text_starts_with?: string | null; // String
+    thumbsDown?: number | null; // Int
+    thumbsDown_gt?: number | null; // Int
+    thumbsDown_gte?: number | null; // Int
+    thumbsDown_in?: number[] | null; // [Int!]
+    thumbsDown_lt?: number | null; // Int
+    thumbsDown_lte?: number | null; // Int
+    thumbsDown_not?: number | null; // Int
+    thumbsDown_not_in?: number[] | null; // [Int!]
+    thumbsUp?: number | null; // Int
+    thumbsUp_gt?: number | null; // Int
+    thumbsUp_gte?: number | null; // Int
+    thumbsUp_in?: number[] | null; // [Int!]
+    thumbsUp_lt?: number | null; // Int
+    thumbsUp_lte?: number | null; // Int
+    thumbsUp_not?: number | null; // Int
+    thumbsUp_not_in?: number[] | null; // [Int!]
     title?: string | null; // String
     title_contains?: string | null; // String
     title_ends_with?: string | null; // String
@@ -720,130 +852,98 @@ export interface NexusGenInputs {
   }
   ReviewWhereUniqueInput: { // input type
     id?: string | null; // ID
-  }
-  StepArrayCreateInput: { // input type
-    imgUrls?: string | null; // String
-    textBlurbs?: string | null; // String
-  }
-  StepArrayCreateManyInput: { // input type
-    create?: NexusGenInputs['StepArrayCreateInput'][] | null; // [StepArrayCreateInput!]
-  }
-  StepArrayScalarWhereInput: { // input type
-    AND?: NexusGenInputs['StepArrayScalarWhereInput'][] | null; // [StepArrayScalarWhereInput!]
-    imgUrls?: string | null; // String
-    imgUrls_contains?: string | null; // String
-    imgUrls_ends_with?: string | null; // String
-    imgUrls_gt?: string | null; // String
-    imgUrls_gte?: string | null; // String
-    imgUrls_in?: string[] | null; // [String!]
-    imgUrls_lt?: string | null; // String
-    imgUrls_lte?: string | null; // String
-    imgUrls_not?: string | null; // String
-    imgUrls_not_contains?: string | null; // String
-    imgUrls_not_ends_with?: string | null; // String
-    imgUrls_not_in?: string[] | null; // [String!]
-    imgUrls_not_starts_with?: string | null; // String
-    imgUrls_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['StepArrayScalarWhereInput'][] | null; // [StepArrayScalarWhereInput!]
-    OR?: NexusGenInputs['StepArrayScalarWhereInput'][] | null; // [StepArrayScalarWhereInput!]
-    textBlurbs?: string | null; // String
-    textBlurbs_contains?: string | null; // String
-    textBlurbs_ends_with?: string | null; // String
-    textBlurbs_gt?: string | null; // String
-    textBlurbs_gte?: string | null; // String
-    textBlurbs_in?: string[] | null; // [String!]
-    textBlurbs_lt?: string | null; // String
-    textBlurbs_lte?: string | null; // String
-    textBlurbs_not?: string | null; // String
-    textBlurbs_not_contains?: string | null; // String
-    textBlurbs_not_ends_with?: string | null; // String
-    textBlurbs_not_in?: string[] | null; // [String!]
-    textBlurbs_not_starts_with?: string | null; // String
-    textBlurbs_starts_with?: string | null; // String
-  }
-  StepArrayUpdateManyDataInput: { // input type
-    imgUrls?: string | null; // String
-    textBlurbs?: string | null; // String
-  }
-  StepArrayUpdateManyInput: { // input type
-    create?: NexusGenInputs['StepArrayCreateInput'][] | null; // [StepArrayCreateInput!]
-    deleteMany?: NexusGenInputs['StepArrayScalarWhereInput'][] | null; // [StepArrayScalarWhereInput!]
-    updateMany?: NexusGenInputs['StepArrayUpdateManyWithWhereNestedInput'][] | null; // [StepArrayUpdateManyWithWhereNestedInput!]
-  }
-  StepArrayUpdateManyMutationInput: { // input type
-    imgUrls?: string | null; // String
-    textBlurbs?: string | null; // String
-  }
-  StepArrayUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['StepArrayUpdateManyDataInput']; // StepArrayUpdateManyDataInput!
-    where: NexusGenInputs['StepArrayScalarWhereInput']; // StepArrayScalarWhereInput!
-  }
-  StepArrayWhereInput: { // input type
-    AND?: NexusGenInputs['StepArrayWhereInput'][] | null; // [StepArrayWhereInput!]
-    imgUrls?: string | null; // String
-    imgUrls_contains?: string | null; // String
-    imgUrls_ends_with?: string | null; // String
-    imgUrls_gt?: string | null; // String
-    imgUrls_gte?: string | null; // String
-    imgUrls_in?: string[] | null; // [String!]
-    imgUrls_lt?: string | null; // String
-    imgUrls_lte?: string | null; // String
-    imgUrls_not?: string | null; // String
-    imgUrls_not_contains?: string | null; // String
-    imgUrls_not_ends_with?: string | null; // String
-    imgUrls_not_in?: string[] | null; // [String!]
-    imgUrls_not_starts_with?: string | null; // String
-    imgUrls_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['StepArrayWhereInput'][] | null; // [StepArrayWhereInput!]
-    OR?: NexusGenInputs['StepArrayWhereInput'][] | null; // [StepArrayWhereInput!]
-    textBlurbs?: string | null; // String
-    textBlurbs_contains?: string | null; // String
-    textBlurbs_ends_with?: string | null; // String
-    textBlurbs_gt?: string | null; // String
-    textBlurbs_gte?: string | null; // String
-    textBlurbs_in?: string[] | null; // [String!]
-    textBlurbs_lt?: string | null; // String
-    textBlurbs_lte?: string | null; // String
-    textBlurbs_not?: string | null; // String
-    textBlurbs_not_contains?: string | null; // String
-    textBlurbs_not_ends_with?: string | null; // String
-    textBlurbs_not_in?: string[] | null; // [String!]
-    textBlurbs_not_starts_with?: string | null; // String
-    textBlurbs_starts_with?: string | null; // String
+    rKey?: string | null; // String
   }
   UserCreateInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'] | null; // ReviewCreateManyWithoutDislikedByInput
     email: string; // String!
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'] | null; // ReviewCreateManyWithoutLikedByInput
     password: string; // String!
-    privilege: string; // String!
+    privilege?: string | null; // String
     Projects?: NexusGenInputs['ProjectCreateManyWithoutUserInput'] | null; // ProjectCreateManyWithoutUserInput
-    reviewerThumbs?: number | null; // Int
+    RatedProjects?: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'] | null; // ProjectCreateManyWithoutRatedByInput
     ReviewList?: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'] | null; // ReviewCreateManyWithoutAuthorInput
     stripeId?: string | null; // String
     url?: string | null; // String
     username: string; // String!
     userProfileImage?: string | null; // String
   }
-  UserCreateManyWithoutProjectsInput: { // input type
+  UserCreateManyWithoutDislikedReviewsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
-    create?: NexusGenInputs['UserCreateWithoutProjectsInput'][] | null; // [UserCreateWithoutProjectsInput!]
+    create?: NexusGenInputs['UserCreateWithoutDislikedReviewsInput'][] | null; // [UserCreateWithoutDislikedReviewsInput!]
   }
-  UserCreateOneInput: { // input type
+  UserCreateManyWithoutLikedReviewsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutLikedReviewsInput'][] | null; // [UserCreateWithoutLikedReviewsInput!]
+  }
+  UserCreateManyWithoutRatedProjectsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutRatedProjectsInput'][] | null; // [UserCreateWithoutRatedProjectsInput!]
+  }
+  UserCreateOneWithoutProjectsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
+    create?: NexusGenInputs['UserCreateWithoutProjectsInput'] | null; // UserCreateWithoutProjectsInput
   }
   UserCreateOneWithoutReviewListInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
     create?: NexusGenInputs['UserCreateWithoutReviewListInput'] | null; // UserCreateWithoutReviewListInput
   }
+  UserCreateWithoutDislikedReviewsInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    email: string; // String!
+    LikedReviews?: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'] | null; // ReviewCreateManyWithoutLikedByInput
+    password: string; // String!
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectCreateManyWithoutUserInput'] | null; // ProjectCreateManyWithoutUserInput
+    RatedProjects?: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'] | null; // ProjectCreateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'] | null; // ReviewCreateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username: string; // String!
+    userProfileImage?: string | null; // String
+  }
+  UserCreateWithoutLikedReviewsInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'] | null; // ReviewCreateManyWithoutDislikedByInput
+    email: string; // String!
+    password: string; // String!
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectCreateManyWithoutUserInput'] | null; // ProjectCreateManyWithoutUserInput
+    RatedProjects?: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'] | null; // ProjectCreateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'] | null; // ReviewCreateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username: string; // String!
+    userProfileImage?: string | null; // String
+  }
   UserCreateWithoutProjectsInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'] | null; // ReviewCreateManyWithoutDislikedByInput
     email: string; // String!
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'] | null; // ReviewCreateManyWithoutLikedByInput
     password: string; // String!
-    privilege: string; // String!
-    reviewerThumbs?: number | null; // Int
+    privilege?: string | null; // String
+    RatedProjects?: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'] | null; // ProjectCreateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'] | null; // ReviewCreateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username: string; // String!
+    userProfileImage?: string | null; // String
+  }
+  UserCreateWithoutRatedProjectsInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'] | null; // ReviewCreateManyWithoutDislikedByInput
+    email: string; // String!
+    LikedReviews?: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'] | null; // ReviewCreateManyWithoutLikedByInput
+    password: string; // String!
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectCreateManyWithoutUserInput'] | null; // ProjectCreateManyWithoutUserInput
     ReviewList?: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'] | null; // ReviewCreateManyWithoutAuthorInput
     stripeId?: string | null; // String
     url?: string | null; // String
@@ -852,12 +952,14 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutReviewListInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'] | null; // ReviewCreateManyWithoutDislikedByInput
     email: string; // String!
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'] | null; // ReviewCreateManyWithoutLikedByInput
     password: string; // String!
-    privilege: string; // String!
+    privilege?: string | null; // String
     Projects?: NexusGenInputs['ProjectCreateManyWithoutUserInput'] | null; // ProjectCreateManyWithoutUserInput
-    reviewerThumbs?: number | null; // Int
+    RatedProjects?: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'] | null; // ProjectCreateManyWithoutRatedByInput
     stripeId?: string | null; // String
     url?: string | null; // String
     username: string; // String!
@@ -879,6 +981,20 @@ export interface NexusGenInputs {
     accountType_not_starts_with?: string | null; // String
     accountType_starts_with?: string | null; // String
     AND?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    bio?: string | null; // String
+    bio_contains?: string | null; // String
+    bio_ends_with?: string | null; // String
+    bio_gt?: string | null; // String
+    bio_gte?: string | null; // String
+    bio_in?: string[] | null; // [String!]
+    bio_lt?: string | null; // String
+    bio_lte?: string | null; // String
+    bio_not?: string | null; // String
+    bio_not_contains?: string | null; // String
+    bio_not_ends_with?: string | null; // String
+    bio_not_in?: string[] | null; // [String!]
+    bio_not_starts_with?: string | null; // String
+    bio_starts_with?: string | null; // String
     email?: string | null; // String
     email_contains?: string | null; // String
     email_ends_with?: string | null; // String
@@ -907,14 +1023,6 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
-    makerRating?: number | null; // Float
-    makerRating_gt?: number | null; // Float
-    makerRating_gte?: number | null; // Float
-    makerRating_in?: number[] | null; // [Float!]
-    makerRating_lt?: number | null; // Float
-    makerRating_lte?: number | null; // Float
-    makerRating_not?: number | null; // Float
-    makerRating_not_in?: number[] | null; // [Float!]
     NOT?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
     OR?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
     password?: string | null; // String
@@ -945,14 +1053,6 @@ export interface NexusGenInputs {
     privilege_not_in?: string[] | null; // [String!]
     privilege_not_starts_with?: string | null; // String
     privilege_starts_with?: string | null; // String
-    reviewerThumbs?: number | null; // Int
-    reviewerThumbs_gt?: number | null; // Int
-    reviewerThumbs_gte?: number | null; // Int
-    reviewerThumbs_in?: number[] | null; // [Int!]
-    reviewerThumbs_lt?: number | null; // Int
-    reviewerThumbs_lte?: number | null; // Int
-    reviewerThumbs_not?: number | null; // Int
-    reviewerThumbs_not_in?: number[] | null; // [Int!]
     stripeId?: string | null; // String
     stripeId_contains?: string | null; // String
     stripeId_ends_with?: string | null; // String
@@ -1010,28 +1110,16 @@ export interface NexusGenInputs {
     userProfileImage_not_starts_with?: string | null; // String
     userProfileImage_starts_with?: string | null; // String
   }
-  UserUpdateDataInput: { // input type
-    accountType?: string | null; // String
-    email?: string | null; // String
-    makerRating?: number | null; // Float
-    password?: string | null; // String
-    privilege?: string | null; // String
-    Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
-    reviewerThumbs?: number | null; // Int
-    ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
-    stripeId?: string | null; // String
-    url?: string | null; // String
-    username?: string | null; // String
-    userProfileImage?: string | null; // String
-  }
   UserUpdateInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'] | null; // ReviewUpdateManyWithoutDislikedByInput
     email?: string | null; // String
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'] | null; // ReviewUpdateManyWithoutLikedByInput
     password?: string | null; // String
     privilege?: string | null; // String
     Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
-    reviewerThumbs?: number | null; // Int
+    RatedProjects?: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'] | null; // ProjectUpdateManyWithoutRatedByInput
     ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
     stripeId?: string | null; // String
     url?: string | null; // String
@@ -1040,11 +1128,10 @@ export interface NexusGenInputs {
   }
   UserUpdateManyDataInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
     email?: string | null; // String
-    makerRating?: number | null; // Float
     password?: string | null; // String
     privilege?: string | null; // String
-    reviewerThumbs?: number | null; // Int
     stripeId?: string | null; // String
     url?: string | null; // String
     username?: string | null; // String
@@ -1052,11 +1139,10 @@ export interface NexusGenInputs {
   }
   UserUpdateManyMutationInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
     email?: string | null; // String
-    makerRating?: number | null; // Float
     password?: string | null; // String
     privilege?: string | null; // String
-    reviewerThumbs?: number | null; // Int
     stripeId?: string | null; // String
     url?: string | null; // String
     username?: string | null; // String
@@ -1066,22 +1152,44 @@ export interface NexusGenInputs {
     data: NexusGenInputs['UserUpdateManyDataInput']; // UserUpdateManyDataInput!
     where: NexusGenInputs['UserScalarWhereInput']; // UserScalarWhereInput!
   }
-  UserUpdateManyWithoutProjectsInput: { // input type
+  UserUpdateManyWithoutDislikedReviewsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
-    create?: NexusGenInputs['UserCreateWithoutProjectsInput'][] | null; // [UserCreateWithoutProjectsInput!]
+    create?: NexusGenInputs['UserCreateWithoutDislikedReviewsInput'][] | null; // [UserCreateWithoutDislikedReviewsInput!]
     delete?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
     deleteMany?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
     disconnect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
     set?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
-    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutProjectsInput'][] | null; // [UserUpdateWithWhereUniqueWithoutProjectsInput!]
+    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutDislikedReviewsInput'][] | null; // [UserUpdateWithWhereUniqueWithoutDislikedReviewsInput!]
     updateMany?: NexusGenInputs['UserUpdateManyWithWhereNestedInput'][] | null; // [UserUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutProjectsInput'][] | null; // [UserUpsertWithWhereUniqueWithoutProjectsInput!]
+    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutDislikedReviewsInput'][] | null; // [UserUpsertWithWhereUniqueWithoutDislikedReviewsInput!]
   }
-  UserUpdateOneRequiredInput: { // input type
+  UserUpdateManyWithoutLikedReviewsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutLikedReviewsInput'][] | null; // [UserCreateWithoutLikedReviewsInput!]
+    delete?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    disconnect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    set?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutLikedReviewsInput'][] | null; // [UserUpdateWithWhereUniqueWithoutLikedReviewsInput!]
+    updateMany?: NexusGenInputs['UserUpdateManyWithWhereNestedInput'][] | null; // [UserUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutLikedReviewsInput'][] | null; // [UserUpsertWithWhereUniqueWithoutLikedReviewsInput!]
+  }
+  UserUpdateManyWithoutRatedProjectsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutRatedProjectsInput'][] | null; // [UserCreateWithoutRatedProjectsInput!]
+    delete?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['UserScalarWhereInput'][] | null; // [UserScalarWhereInput!]
+    disconnect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    set?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    update?: NexusGenInputs['UserUpdateWithWhereUniqueWithoutRatedProjectsInput'][] | null; // [UserUpdateWithWhereUniqueWithoutRatedProjectsInput!]
+    updateMany?: NexusGenInputs['UserUpdateManyWithWhereNestedInput'][] | null; // [UserUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['UserUpsertWithWhereUniqueWithoutRatedProjectsInput'][] | null; // [UserUpsertWithWhereUniqueWithoutRatedProjectsInput!]
+  }
+  UserUpdateOneRequiredWithoutProjectsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
-    update?: NexusGenInputs['UserUpdateDataInput'] | null; // UserUpdateDataInput
-    upsert?: NexusGenInputs['UserUpsertNestedInput'] | null; // UserUpsertNestedInput
+    create?: NexusGenInputs['UserCreateWithoutProjectsInput'] | null; // UserCreateWithoutProjectsInput
+    update?: NexusGenInputs['UserUpdateWithoutProjectsDataInput'] | null; // UserUpdateWithoutProjectsDataInput
+    upsert?: NexusGenInputs['UserUpsertWithoutProjectsInput'] | null; // UserUpsertWithoutProjectsInput
   }
   UserUpdateOneRequiredWithoutReviewListInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -1089,17 +1197,72 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['UserUpdateWithoutReviewListDataInput'] | null; // UserUpdateWithoutReviewListDataInput
     upsert?: NexusGenInputs['UserUpsertWithoutReviewListInput'] | null; // UserUpsertWithoutReviewListInput
   }
-  UserUpdateWithWhereUniqueWithoutProjectsInput: { // input type
-    data: NexusGenInputs['UserUpdateWithoutProjectsDataInput']; // UserUpdateWithoutProjectsDataInput!
+  UserUpdateWithWhereUniqueWithoutDislikedReviewsInput: { // input type
+    data: NexusGenInputs['UserUpdateWithoutDislikedReviewsDataInput']; // UserUpdateWithoutDislikedReviewsDataInput!
     where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpdateWithWhereUniqueWithoutLikedReviewsInput: { // input type
+    data: NexusGenInputs['UserUpdateWithoutLikedReviewsDataInput']; // UserUpdateWithoutLikedReviewsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpdateWithWhereUniqueWithoutRatedProjectsInput: { // input type
+    data: NexusGenInputs['UserUpdateWithoutRatedProjectsDataInput']; // UserUpdateWithoutRatedProjectsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpdateWithoutDislikedReviewsDataInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    email?: string | null; // String
+    LikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'] | null; // ReviewUpdateManyWithoutLikedByInput
+    password?: string | null; // String
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
+    RatedProjects?: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'] | null; // ProjectUpdateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username?: string | null; // String
+    userProfileImage?: string | null; // String
+  }
+  UserUpdateWithoutLikedReviewsDataInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'] | null; // ReviewUpdateManyWithoutDislikedByInput
+    email?: string | null; // String
+    password?: string | null; // String
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
+    RatedProjects?: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'] | null; // ProjectUpdateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username?: string | null; // String
+    userProfileImage?: string | null; // String
   }
   UserUpdateWithoutProjectsDataInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'] | null; // ReviewUpdateManyWithoutDislikedByInput
     email?: string | null; // String
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'] | null; // ReviewUpdateManyWithoutLikedByInput
     password?: string | null; // String
     privilege?: string | null; // String
-    reviewerThumbs?: number | null; // Int
+    RatedProjects?: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'] | null; // ProjectUpdateManyWithoutRatedByInput
+    ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
+    stripeId?: string | null; // String
+    url?: string | null; // String
+    username?: string | null; // String
+    userProfileImage?: string | null; // String
+  }
+  UserUpdateWithoutRatedProjectsDataInput: { // input type
+    accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'] | null; // ReviewUpdateManyWithoutDislikedByInput
+    email?: string | null; // String
+    LikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'] | null; // ReviewUpdateManyWithoutLikedByInput
+    password?: string | null; // String
+    privilege?: string | null; // String
+    Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
     ReviewList?: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'] | null; // ReviewUpdateManyWithoutAuthorInput
     stripeId?: string | null; // String
     url?: string | null; // String
@@ -1108,25 +1271,37 @@ export interface NexusGenInputs {
   }
   UserUpdateWithoutReviewListDataInput: { // input type
     accountType?: string | null; // String
+    bio?: string | null; // String
+    DislikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'] | null; // ReviewUpdateManyWithoutDislikedByInput
     email?: string | null; // String
-    makerRating?: number | null; // Float
+    LikedReviews?: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'] | null; // ReviewUpdateManyWithoutLikedByInput
     password?: string | null; // String
     privilege?: string | null; // String
     Projects?: NexusGenInputs['ProjectUpdateManyWithoutUserInput'] | null; // ProjectUpdateManyWithoutUserInput
-    reviewerThumbs?: number | null; // Int
+    RatedProjects?: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'] | null; // ProjectUpdateManyWithoutRatedByInput
     stripeId?: string | null; // String
     url?: string | null; // String
     username?: string | null; // String
     userProfileImage?: string | null; // String
   }
-  UserUpsertNestedInput: { // input type
-    create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
-    update: NexusGenInputs['UserUpdateDataInput']; // UserUpdateDataInput!
+  UserUpsertWithWhereUniqueWithoutDislikedReviewsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutDislikedReviewsInput']; // UserCreateWithoutDislikedReviewsInput!
+    update: NexusGenInputs['UserUpdateWithoutDislikedReviewsDataInput']; // UserUpdateWithoutDislikedReviewsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
   }
-  UserUpsertWithWhereUniqueWithoutProjectsInput: { // input type
+  UserUpsertWithWhereUniqueWithoutLikedReviewsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutLikedReviewsInput']; // UserCreateWithoutLikedReviewsInput!
+    update: NexusGenInputs['UserUpdateWithoutLikedReviewsDataInput']; // UserUpdateWithoutLikedReviewsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpsertWithWhereUniqueWithoutRatedProjectsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutRatedProjectsInput']; // UserCreateWithoutRatedProjectsInput!
+    update: NexusGenInputs['UserUpdateWithoutRatedProjectsDataInput']; // UserUpdateWithoutRatedProjectsDataInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserUpsertWithoutProjectsInput: { // input type
     create: NexusGenInputs['UserCreateWithoutProjectsInput']; // UserCreateWithoutProjectsInput!
     update: NexusGenInputs['UserUpdateWithoutProjectsDataInput']; // UserUpdateWithoutProjectsDataInput!
-    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
   }
   UserUpsertWithoutReviewListInput: { // input type
     create: NexusGenInputs['UserCreateWithoutReviewListInput']; // UserCreateWithoutReviewListInput!
@@ -1148,6 +1323,23 @@ export interface NexusGenInputs {
     accountType_not_starts_with?: string | null; // String
     accountType_starts_with?: string | null; // String
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    bio?: string | null; // String
+    bio_contains?: string | null; // String
+    bio_ends_with?: string | null; // String
+    bio_gt?: string | null; // String
+    bio_gte?: string | null; // String
+    bio_in?: string[] | null; // [String!]
+    bio_lt?: string | null; // String
+    bio_lte?: string | null; // String
+    bio_not?: string | null; // String
+    bio_not_contains?: string | null; // String
+    bio_not_ends_with?: string | null; // String
+    bio_not_in?: string[] | null; // [String!]
+    bio_not_starts_with?: string | null; // String
+    bio_starts_with?: string | null; // String
+    DislikedReviews_every?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    DislikedReviews_none?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    DislikedReviews_some?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     email?: string | null; // String
     email_contains?: string | null; // String
     email_ends_with?: string | null; // String
@@ -1176,14 +1368,9 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
-    makerRating?: number | null; // Float
-    makerRating_gt?: number | null; // Float
-    makerRating_gte?: number | null; // Float
-    makerRating_in?: number[] | null; // [Float!]
-    makerRating_lt?: number | null; // Float
-    makerRating_lte?: number | null; // Float
-    makerRating_not?: number | null; // Float
-    makerRating_not_in?: number[] | null; // [Float!]
+    LikedReviews_every?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    LikedReviews_none?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    LikedReviews_some?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     password?: string | null; // String
@@ -1217,14 +1404,9 @@ export interface NexusGenInputs {
     Projects_every?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
     Projects_none?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
     Projects_some?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
-    reviewerThumbs?: number | null; // Int
-    reviewerThumbs_gt?: number | null; // Int
-    reviewerThumbs_gte?: number | null; // Int
-    reviewerThumbs_in?: number[] | null; // [Int!]
-    reviewerThumbs_lt?: number | null; // Int
-    reviewerThumbs_lte?: number | null; // Int
-    reviewerThumbs_not?: number | null; // Int
-    reviewerThumbs_not_in?: number[] | null; // [Int!]
+    RatedProjects_every?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    RatedProjects_none?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    RatedProjects_some?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
     ReviewList_every?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     ReviewList_none?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     ReviewList_some?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
@@ -1293,24 +1475,16 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  CommentOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "editedAt_ASC" | "editedAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  ProjectOrderByInput: "category_ASC" | "category_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "rating_ASC" | "rating_DESC" | "timestamp_ASC" | "timestamp_DESC" | "titleBlurb_ASC" | "titleBlurb_DESC" | "titleImg_ASC" | "titleImg_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  ReviewOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "editedAt_ASC" | "editedAt_DESC" | "id_ASC" | "id_DESC" | "rating_ASC" | "rating_DESC" | "reviewThumbsDown_ASC" | "reviewThumbsDown_DESC" | "reviewThumbsUp_ASC" | "reviewThumbsUp_DESC" | "text_ASC" | "text_DESC" | "title_ASC" | "title_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  StepArrayOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "imgUrls_ASC" | "imgUrls_DESC" | "textBlurbs_ASC" | "textBlurbs_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  UserOrderByInput: "accountType_ASC" | "accountType_DESC" | "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "id_ASC" | "id_DESC" | "makerRating_ASC" | "makerRating_DESC" | "password_ASC" | "password_DESC" | "privilege_ASC" | "privilege_DESC" | "reviewerThumbs_ASC" | "reviewerThumbs_DESC" | "stripeId_ASC" | "stripeId_DESC" | "updatedAt_ASC" | "updatedAt_DESC" | "url_ASC" | "url_DESC" | "username_ASC" | "username_DESC" | "userProfileImage_ASC" | "userProfileImage_DESC"
+  ProjectOrderByInput: "category_ASC" | "category_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "key_ASC" | "key_DESC" | "name_ASC" | "name_DESC" | "rating_ASC" | "rating_DESC" | "steps_ASC" | "steps_DESC" | "timestamp_ASC" | "timestamp_DESC" | "titleBlurb_ASC" | "titleBlurb_DESC" | "titleImg_ASC" | "titleImg_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  ReviewOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "editedAt_ASC" | "editedAt_DESC" | "id_ASC" | "id_DESC" | "rKey_ASC" | "rKey_DESC" | "text_ASC" | "text_DESC" | "thumbsDown_ASC" | "thumbsDown_DESC" | "thumbsUp_ASC" | "thumbsUp_DESC" | "title_ASC" | "title_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  UserOrderByInput: "accountType_ASC" | "accountType_DESC" | "bio_ASC" | "bio_DESC" | "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "id_ASC" | "id_DESC" | "password_ASC" | "password_DESC" | "privilege_ASC" | "privilege_DESC" | "stripeId_ASC" | "stripeId_DESC" | "updatedAt_ASC" | "updatedAt_DESC" | "url_ASC" | "url_DESC" | "username_ASC" | "username_DESC" | "userProfileImage_ASC" | "userProfileImage_DESC"
 }
 
 export interface NexusGenRootTypes {
-  AggregateComment: { // root type
-    count: number; // Int!
-  }
   AggregateProject: { // root type
     count: number; // Int!
   }
   AggregateReview: { // root type
-    count: number; // Int!
-  }
-  AggregateStepArray: { // root type
     count: number; // Int!
   }
   AggregateUser: { // root type
@@ -1318,19 +1492,6 @@ export interface NexusGenRootTypes {
   }
   BatchPayload: { // root type
     count: any; // Long!
-  }
-  Comment: { // root type
-    editedAt: any; // DateTime!
-    id: string; // ID!
-    text: string; // String!
-  }
-  CommentConnection: { // root type
-    edges: NexusGenRootTypes['CommentEdge'][]; // [CommentEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  CommentEdge: { // root type
-    cursor: string; // String!
-    node: NexusGenRootTypes['Comment']; // Comment!
   }
   Mutation: {};
   PageInfo: { // root type
@@ -1342,8 +1503,10 @@ export interface NexusGenRootTypes {
   Project: { // root type
     category: string; // String!
     id: string; // ID!
+    key?: string | null; // String
     name: string; // String!
     rating: number; // Float!
+    steps: string; // String!
     timestamp: any; // DateTime!
     titleBlurb: string; // String!
     titleImg: string; // String!
@@ -1358,12 +1521,12 @@ export interface NexusGenRootTypes {
   }
   Query: {};
   Review: { // root type
-    editedAt: string; // String!
+    editedAt: any; // DateTime!
     id: string; // ID!
-    rating: number; // Float!
-    reviewThumbsDown?: number | null; // Int
-    reviewThumbsUp?: number | null; // Int
+    rKey?: string | null; // String
     text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp: number; // Int!
     title: string; // String!
   }
   ReviewConnection: { // root type
@@ -1374,26 +1537,13 @@ export interface NexusGenRootTypes {
     cursor: string; // String!
     node: NexusGenRootTypes['Review']; // Review!
   }
-  StepArray: { // root type
-    imgUrls?: string | null; // String
-    textBlurbs?: string | null; // String
-  }
-  StepArrayConnection: { // root type
-    edges: NexusGenRootTypes['StepArrayEdge'][]; // [StepArrayEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  StepArrayEdge: { // root type
-    cursor: string; // String!
-    node: NexusGenRootTypes['StepArray']; // StepArray!
-  }
   User: { // root type
     accountType: string; // String!
+    bio: string; // String!
     email: string; // String!
     id: string; // ID!
-    makerRating?: number | null; // Float
     password: string; // String!
     privilege: string; // String!
-    reviewerThumbs?: number | null; // Int
     stripeId?: string | null; // String
     url?: string | null; // String
     username: string; // String!
@@ -1417,101 +1567,109 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  CommentCreateInput: NexusGenInputs['CommentCreateInput'];
-  CommentCreateManyInput: NexusGenInputs['CommentCreateManyInput'];
-  CommentScalarWhereInput: NexusGenInputs['CommentScalarWhereInput'];
-  CommentUpdateDataInput: NexusGenInputs['CommentUpdateDataInput'];
-  CommentUpdateInput: NexusGenInputs['CommentUpdateInput'];
-  CommentUpdateManyDataInput: NexusGenInputs['CommentUpdateManyDataInput'];
-  CommentUpdateManyInput: NexusGenInputs['CommentUpdateManyInput'];
-  CommentUpdateManyMutationInput: NexusGenInputs['CommentUpdateManyMutationInput'];
-  CommentUpdateManyWithWhereNestedInput: NexusGenInputs['CommentUpdateManyWithWhereNestedInput'];
-  CommentUpdateWithWhereUniqueNestedInput: NexusGenInputs['CommentUpdateWithWhereUniqueNestedInput'];
-  CommentUpsertWithWhereUniqueNestedInput: NexusGenInputs['CommentUpsertWithWhereUniqueNestedInput'];
-  CommentWhereInput: NexusGenInputs['CommentWhereInput'];
-  CommentWhereUniqueInput: NexusGenInputs['CommentWhereUniqueInput'];
   ProjectCreateInput: NexusGenInputs['ProjectCreateInput'];
+  ProjectCreateManyWithoutRatedByInput: NexusGenInputs['ProjectCreateManyWithoutRatedByInput'];
   ProjectCreateManyWithoutUserInput: NexusGenInputs['ProjectCreateManyWithoutUserInput'];
+  ProjectCreateOneWithoutReviewsInput: NexusGenInputs['ProjectCreateOneWithoutReviewsInput'];
+  ProjectCreateWithoutRatedByInput: NexusGenInputs['ProjectCreateWithoutRatedByInput'];
+  ProjectCreateWithoutReviewsInput: NexusGenInputs['ProjectCreateWithoutReviewsInput'];
   ProjectCreateWithoutUserInput: NexusGenInputs['ProjectCreateWithoutUserInput'];
   ProjectScalarWhereInput: NexusGenInputs['ProjectScalarWhereInput'];
   ProjectUpdateInput: NexusGenInputs['ProjectUpdateInput'];
   ProjectUpdateManyDataInput: NexusGenInputs['ProjectUpdateManyDataInput'];
   ProjectUpdateManyMutationInput: NexusGenInputs['ProjectUpdateManyMutationInput'];
   ProjectUpdateManyWithWhereNestedInput: NexusGenInputs['ProjectUpdateManyWithWhereNestedInput'];
+  ProjectUpdateManyWithoutRatedByInput: NexusGenInputs['ProjectUpdateManyWithoutRatedByInput'];
   ProjectUpdateManyWithoutUserInput: NexusGenInputs['ProjectUpdateManyWithoutUserInput'];
+  ProjectUpdateOneRequiredWithoutReviewsInput: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'];
+  ProjectUpdateWithWhereUniqueWithoutRatedByInput: NexusGenInputs['ProjectUpdateWithWhereUniqueWithoutRatedByInput'];
   ProjectUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['ProjectUpdateWithWhereUniqueWithoutUserInput'];
+  ProjectUpdateWithoutRatedByDataInput: NexusGenInputs['ProjectUpdateWithoutRatedByDataInput'];
+  ProjectUpdateWithoutReviewsDataInput: NexusGenInputs['ProjectUpdateWithoutReviewsDataInput'];
   ProjectUpdateWithoutUserDataInput: NexusGenInputs['ProjectUpdateWithoutUserDataInput'];
+  ProjectUpsertWithWhereUniqueWithoutRatedByInput: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutRatedByInput'];
   ProjectUpsertWithWhereUniqueWithoutUserInput: NexusGenInputs['ProjectUpsertWithWhereUniqueWithoutUserInput'];
+  ProjectUpsertWithoutReviewsInput: NexusGenInputs['ProjectUpsertWithoutReviewsInput'];
   ProjectWhereInput: NexusGenInputs['ProjectWhereInput'];
   ProjectWhereUniqueInput: NexusGenInputs['ProjectWhereUniqueInput'];
   ReviewCreateInput: NexusGenInputs['ReviewCreateInput'];
-  ReviewCreateManyInput: NexusGenInputs['ReviewCreateManyInput'];
   ReviewCreateManyWithoutAuthorInput: NexusGenInputs['ReviewCreateManyWithoutAuthorInput'];
+  ReviewCreateManyWithoutDislikedByInput: NexusGenInputs['ReviewCreateManyWithoutDislikedByInput'];
+  ReviewCreateManyWithoutLikedByInput: NexusGenInputs['ReviewCreateManyWithoutLikedByInput'];
+  ReviewCreateManyWithoutProjectReviewedInput: NexusGenInputs['ReviewCreateManyWithoutProjectReviewedInput'];
   ReviewCreateWithoutAuthorInput: NexusGenInputs['ReviewCreateWithoutAuthorInput'];
+  ReviewCreateWithoutDislikedByInput: NexusGenInputs['ReviewCreateWithoutDislikedByInput'];
+  ReviewCreateWithoutLikedByInput: NexusGenInputs['ReviewCreateWithoutLikedByInput'];
+  ReviewCreateWithoutProjectReviewedInput: NexusGenInputs['ReviewCreateWithoutProjectReviewedInput'];
   ReviewScalarWhereInput: NexusGenInputs['ReviewScalarWhereInput'];
-  ReviewUpdateDataInput: NexusGenInputs['ReviewUpdateDataInput'];
   ReviewUpdateInput: NexusGenInputs['ReviewUpdateInput'];
   ReviewUpdateManyDataInput: NexusGenInputs['ReviewUpdateManyDataInput'];
-  ReviewUpdateManyInput: NexusGenInputs['ReviewUpdateManyInput'];
   ReviewUpdateManyMutationInput: NexusGenInputs['ReviewUpdateManyMutationInput'];
   ReviewUpdateManyWithWhereNestedInput: NexusGenInputs['ReviewUpdateManyWithWhereNestedInput'];
   ReviewUpdateManyWithoutAuthorInput: NexusGenInputs['ReviewUpdateManyWithoutAuthorInput'];
-  ReviewUpdateWithWhereUniqueNestedInput: NexusGenInputs['ReviewUpdateWithWhereUniqueNestedInput'];
+  ReviewUpdateManyWithoutDislikedByInput: NexusGenInputs['ReviewUpdateManyWithoutDislikedByInput'];
+  ReviewUpdateManyWithoutLikedByInput: NexusGenInputs['ReviewUpdateManyWithoutLikedByInput'];
+  ReviewUpdateManyWithoutProjectReviewedInput: NexusGenInputs['ReviewUpdateManyWithoutProjectReviewedInput'];
   ReviewUpdateWithWhereUniqueWithoutAuthorInput: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutAuthorInput'];
+  ReviewUpdateWithWhereUniqueWithoutDislikedByInput: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutDislikedByInput'];
+  ReviewUpdateWithWhereUniqueWithoutLikedByInput: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutLikedByInput'];
+  ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput: NexusGenInputs['ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput'];
   ReviewUpdateWithoutAuthorDataInput: NexusGenInputs['ReviewUpdateWithoutAuthorDataInput'];
-  ReviewUpsertWithWhereUniqueNestedInput: NexusGenInputs['ReviewUpsertWithWhereUniqueNestedInput'];
+  ReviewUpdateWithoutDislikedByDataInput: NexusGenInputs['ReviewUpdateWithoutDislikedByDataInput'];
+  ReviewUpdateWithoutLikedByDataInput: NexusGenInputs['ReviewUpdateWithoutLikedByDataInput'];
+  ReviewUpdateWithoutProjectReviewedDataInput: NexusGenInputs['ReviewUpdateWithoutProjectReviewedDataInput'];
   ReviewUpsertWithWhereUniqueWithoutAuthorInput: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutAuthorInput'];
+  ReviewUpsertWithWhereUniqueWithoutDislikedByInput: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutDislikedByInput'];
+  ReviewUpsertWithWhereUniqueWithoutLikedByInput: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutLikedByInput'];
+  ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput: NexusGenInputs['ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput'];
   ReviewWhereInput: NexusGenInputs['ReviewWhereInput'];
   ReviewWhereUniqueInput: NexusGenInputs['ReviewWhereUniqueInput'];
-  StepArrayCreateInput: NexusGenInputs['StepArrayCreateInput'];
-  StepArrayCreateManyInput: NexusGenInputs['StepArrayCreateManyInput'];
-  StepArrayScalarWhereInput: NexusGenInputs['StepArrayScalarWhereInput'];
-  StepArrayUpdateManyDataInput: NexusGenInputs['StepArrayUpdateManyDataInput'];
-  StepArrayUpdateManyInput: NexusGenInputs['StepArrayUpdateManyInput'];
-  StepArrayUpdateManyMutationInput: NexusGenInputs['StepArrayUpdateManyMutationInput'];
-  StepArrayUpdateManyWithWhereNestedInput: NexusGenInputs['StepArrayUpdateManyWithWhereNestedInput'];
-  StepArrayWhereInput: NexusGenInputs['StepArrayWhereInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
-  UserCreateManyWithoutProjectsInput: NexusGenInputs['UserCreateManyWithoutProjectsInput'];
-  UserCreateOneInput: NexusGenInputs['UserCreateOneInput'];
+  UserCreateManyWithoutDislikedReviewsInput: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'];
+  UserCreateManyWithoutLikedReviewsInput: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'];
+  UserCreateManyWithoutRatedProjectsInput: NexusGenInputs['UserCreateManyWithoutRatedProjectsInput'];
+  UserCreateOneWithoutProjectsInput: NexusGenInputs['UserCreateOneWithoutProjectsInput'];
   UserCreateOneWithoutReviewListInput: NexusGenInputs['UserCreateOneWithoutReviewListInput'];
+  UserCreateWithoutDislikedReviewsInput: NexusGenInputs['UserCreateWithoutDislikedReviewsInput'];
+  UserCreateWithoutLikedReviewsInput: NexusGenInputs['UserCreateWithoutLikedReviewsInput'];
   UserCreateWithoutProjectsInput: NexusGenInputs['UserCreateWithoutProjectsInput'];
+  UserCreateWithoutRatedProjectsInput: NexusGenInputs['UserCreateWithoutRatedProjectsInput'];
   UserCreateWithoutReviewListInput: NexusGenInputs['UserCreateWithoutReviewListInput'];
   UserScalarWhereInput: NexusGenInputs['UserScalarWhereInput'];
-  UserUpdateDataInput: NexusGenInputs['UserUpdateDataInput'];
   UserUpdateInput: NexusGenInputs['UserUpdateInput'];
   UserUpdateManyDataInput: NexusGenInputs['UserUpdateManyDataInput'];
   UserUpdateManyMutationInput: NexusGenInputs['UserUpdateManyMutationInput'];
   UserUpdateManyWithWhereNestedInput: NexusGenInputs['UserUpdateManyWithWhereNestedInput'];
-  UserUpdateManyWithoutProjectsInput: NexusGenInputs['UserUpdateManyWithoutProjectsInput'];
-  UserUpdateOneRequiredInput: NexusGenInputs['UserUpdateOneRequiredInput'];
+  UserUpdateManyWithoutDislikedReviewsInput: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'];
+  UserUpdateManyWithoutLikedReviewsInput: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'];
+  UserUpdateManyWithoutRatedProjectsInput: NexusGenInputs['UserUpdateManyWithoutRatedProjectsInput'];
+  UserUpdateOneRequiredWithoutProjectsInput: NexusGenInputs['UserUpdateOneRequiredWithoutProjectsInput'];
   UserUpdateOneRequiredWithoutReviewListInput: NexusGenInputs['UserUpdateOneRequiredWithoutReviewListInput'];
-  UserUpdateWithWhereUniqueWithoutProjectsInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutProjectsInput'];
+  UserUpdateWithWhereUniqueWithoutDislikedReviewsInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutDislikedReviewsInput'];
+  UserUpdateWithWhereUniqueWithoutLikedReviewsInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutLikedReviewsInput'];
+  UserUpdateWithWhereUniqueWithoutRatedProjectsInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutRatedProjectsInput'];
+  UserUpdateWithoutDislikedReviewsDataInput: NexusGenInputs['UserUpdateWithoutDislikedReviewsDataInput'];
+  UserUpdateWithoutLikedReviewsDataInput: NexusGenInputs['UserUpdateWithoutLikedReviewsDataInput'];
   UserUpdateWithoutProjectsDataInput: NexusGenInputs['UserUpdateWithoutProjectsDataInput'];
+  UserUpdateWithoutRatedProjectsDataInput: NexusGenInputs['UserUpdateWithoutRatedProjectsDataInput'];
   UserUpdateWithoutReviewListDataInput: NexusGenInputs['UserUpdateWithoutReviewListDataInput'];
-  UserUpsertNestedInput: NexusGenInputs['UserUpsertNestedInput'];
-  UserUpsertWithWhereUniqueWithoutProjectsInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutProjectsInput'];
+  UserUpsertWithWhereUniqueWithoutDislikedReviewsInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutDislikedReviewsInput'];
+  UserUpsertWithWhereUniqueWithoutLikedReviewsInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutLikedReviewsInput'];
+  UserUpsertWithWhereUniqueWithoutRatedProjectsInput: NexusGenInputs['UserUpsertWithWhereUniqueWithoutRatedProjectsInput'];
+  UserUpsertWithoutProjectsInput: NexusGenInputs['UserUpsertWithoutProjectsInput'];
   UserUpsertWithoutReviewListInput: NexusGenInputs['UserUpsertWithoutReviewListInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
-  CommentOrderByInput: NexusGenEnums['CommentOrderByInput'];
   ProjectOrderByInput: NexusGenEnums['ProjectOrderByInput'];
   ReviewOrderByInput: NexusGenEnums['ReviewOrderByInput'];
-  StepArrayOrderByInput: NexusGenEnums['StepArrayOrderByInput'];
   UserOrderByInput: NexusGenEnums['UserOrderByInput'];
 }
 
 export interface NexusGenFieldTypes {
-  AggregateComment: { // field return type
-    count: number; // Int!
-  }
   AggregateProject: { // field return type
     count: number; // Int!
   }
   AggregateReview: { // field return type
-    count: number; // Int!
-  }
-  AggregateStepArray: { // field return type
     count: number; // Int!
   }
   AggregateUser: { // field return type
@@ -1520,47 +1678,23 @@ export interface NexusGenFieldTypes {
   BatchPayload: { // field return type
     count: any; // Long!
   }
-  Comment: { // field return type
-    editedAt: any; // DateTime!
-    id: string; // ID!
-    text: string; // String!
-    User: NexusGenRootTypes['User']; // User!
-  }
-  CommentConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateComment']; // AggregateComment!
-    edges: NexusGenRootTypes['CommentEdge'][]; // [CommentEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  CommentEdge: { // field return type
-    cursor: string; // String!
-    node: NexusGenRootTypes['Comment']; // Comment!
-  }
   Mutation: { // field return type
-    createComment: NexusGenRootTypes['Comment']; // Comment!
     createProject: NexusGenRootTypes['Project']; // Project!
     createReview: NexusGenRootTypes['Review']; // Review!
-    createStepArray: NexusGenRootTypes['StepArray']; // StepArray!
     createSubscription: NexusGenRootTypes['User']; // User!
     createUser: NexusGenRootTypes['User']; // User!
-    deleteComment: NexusGenRootTypes['Comment'] | null; // Comment
-    deleteManyComments: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyProjects: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyReviews: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteManyStepArrays: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteProject: NexusGenRootTypes['Project'] | null; // Project
     deleteReview: NexusGenRootTypes['Review'] | null; // Review
     deleteUser: NexusGenRootTypes['User'] | null; // User
-    updateComment: NexusGenRootTypes['Comment'] | null; // Comment
-    updateManyComments: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyProjects: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyReviews: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyStepArrays: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateProject: NexusGenRootTypes['Project'] | null; // Project
     updateReview: NexusGenRootTypes['Review'] | null; // Review
     updateUser: NexusGenRootTypes['User'] | null; // User
-    upsertComment: NexusGenRootTypes['Comment']; // Comment!
     upsertProject: NexusGenRootTypes['Project']; // Project!
     upsertReview: NexusGenRootTypes['Review']; // Review!
     upsertUser: NexusGenRootTypes['User']; // User!
@@ -1574,14 +1708,16 @@ export interface NexusGenFieldTypes {
   Project: { // field return type
     category: string; // String!
     id: string; // ID!
+    key: string | null; // String
     name: string; // String!
+    RatedBy: NexusGenRootTypes['User'][] | null; // [User!]
     rating: number; // Float!
     Reviews: NexusGenRootTypes['Review'][] | null; // [Review!]
-    Steps: NexusGenRootTypes['StepArray'][] | null; // [StepArray!]
+    steps: string; // String!
     timestamp: any; // DateTime!
     titleBlurb: string; // String!
     titleImg: string; // String!
-    User: NexusGenRootTypes['User'][] | null; // [User!]
+    User: NexusGenRootTypes['User']; // User!
   }
   ProjectConnection: { // field return type
     aggregate: NexusGenRootTypes['AggregateProject']; // AggregateProject!
@@ -1593,30 +1729,27 @@ export interface NexusGenFieldTypes {
     node: NexusGenRootTypes['Project']; // Project!
   }
   Query: { // field return type
-    comment: NexusGenRootTypes['Comment'] | null; // Comment
-    comments: NexusGenRootTypes['Comment'][]; // [Comment!]!
-    commentsConnection: NexusGenRootTypes['CommentConnection']; // CommentConnection!
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
     projectsConnection: NexusGenRootTypes['ProjectConnection']; // ProjectConnection!
     review: NexusGenRootTypes['Review'] | null; // Review
     reviews: NexusGenRootTypes['Review'][]; // [Review!]!
     reviewsConnection: NexusGenRootTypes['ReviewConnection']; // ReviewConnection!
-    stepArrays: NexusGenRootTypes['StepArray'][]; // [StepArray!]!
-    stepArraysConnection: NexusGenRootTypes['StepArrayConnection']; // StepArrayConnection!
     user: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
     usersConnection: NexusGenRootTypes['UserConnection']; // UserConnection!
   }
   Review: { // field return type
     Author: NexusGenRootTypes['User']; // User!
-    Comments: NexusGenRootTypes['Comment'][] | null; // [Comment!]
-    editedAt: string; // String!
+    DislikedBy: NexusGenRootTypes['User'][] | null; // [User!]
+    editedAt: any; // DateTime!
     id: string; // ID!
-    rating: number; // Float!
-    reviewThumbsDown: number | null; // Int
-    reviewThumbsUp: number | null; // Int
+    LikedBy: NexusGenRootTypes['User'][] | null; // [User!]
+    ProjectReviewed: NexusGenRootTypes['Project']; // Project!
+    rKey: string | null; // String
     text: string; // String!
+    thumbsDown: number; // Int!
+    thumbsUp: number; // Int!
     title: string; // String!
   }
   ReviewConnection: { // field return type
@@ -1628,28 +1761,17 @@ export interface NexusGenFieldTypes {
     cursor: string; // String!
     node: NexusGenRootTypes['Review']; // Review!
   }
-  StepArray: { // field return type
-    imgUrls: string | null; // String
-    textBlurbs: string | null; // String
-  }
-  StepArrayConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateStepArray']; // AggregateStepArray!
-    edges: NexusGenRootTypes['StepArrayEdge'][]; // [StepArrayEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  StepArrayEdge: { // field return type
-    cursor: string; // String!
-    node: NexusGenRootTypes['StepArray']; // StepArray!
-  }
   User: { // field return type
     accountType: string; // String!
+    bio: string; // String!
+    DislikedReviews: NexusGenRootTypes['Review'][] | null; // [Review!]
     email: string; // String!
     id: string; // ID!
-    makerRating: number | null; // Float
+    LikedReviews: NexusGenRootTypes['Review'][] | null; // [Review!]
     password: string; // String!
     privilege: string; // String!
     Projects: NexusGenRootTypes['Project'][] | null; // [Project!]
-    reviewerThumbs: number | null; // Int
+    RatedProjects: NexusGenRootTypes['Project'][] | null; // [Project!]
     ReviewList: NexusGenRootTypes['Review'][] | null; // [Review!]
     stripeId: string | null; // String
     url: string | null; // String
@@ -1669,17 +1791,11 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createComment: { // args
-      data: NexusGenInputs['CommentCreateInput']; // CommentCreateInput!
-    }
     createProject: { // args
       data: NexusGenInputs['ProjectCreateInput']; // ProjectCreateInput!
     }
     createReview: { // args
       data: NexusGenInputs['ReviewCreateInput']; // ReviewCreateInput!
-    }
-    createStepArray: { // args
-      data: NexusGenInputs['StepArrayCreateInput']; // StepArrayCreateInput!
     }
     createSubscription: { // args
       source?: string | null; // String
@@ -1687,20 +1803,11 @@ export interface NexusGenArgTypes {
     createUser: { // args
       data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
-    deleteComment: { // args
-      where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
-    }
-    deleteManyComments: { // args
-      where?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    }
     deleteManyProjects: { // args
       where?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
     }
     deleteManyReviews: { // args
       where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
-    }
-    deleteManyStepArrays: { // args
-      where?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
     }
     deleteManyUsers: { // args
       where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
@@ -1714,14 +1821,6 @@ export interface NexusGenArgTypes {
     deleteUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
-    updateComment: { // args
-      data: NexusGenInputs['CommentUpdateInput']; // CommentUpdateInput!
-      where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
-    }
-    updateManyComments: { // args
-      data: NexusGenInputs['CommentUpdateManyMutationInput']; // CommentUpdateManyMutationInput!
-      where?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    }
     updateManyProjects: { // args
       data: NexusGenInputs['ProjectUpdateManyMutationInput']; // ProjectUpdateManyMutationInput!
       where?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
@@ -1729,10 +1828,6 @@ export interface NexusGenArgTypes {
     updateManyReviews: { // args
       data: NexusGenInputs['ReviewUpdateManyMutationInput']; // ReviewUpdateManyMutationInput!
       where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
-    }
-    updateManyStepArrays: { // args
-      data: NexusGenInputs['StepArrayUpdateManyMutationInput']; // StepArrayUpdateManyMutationInput!
-      where?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
     }
     updateManyUsers: { // args
       data: NexusGenInputs['UserUpdateManyMutationInput']; // UserUpdateManyMutationInput!
@@ -1749,11 +1844,6 @@ export interface NexusGenArgTypes {
     updateUser: { // args
       data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
-    upsertComment: { // args
-      create: NexusGenInputs['CommentCreateInput']; // CommentCreateInput!
-      update: NexusGenInputs['CommentUpdateInput']; // CommentUpdateInput!
-      where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
     }
     upsertProject: { // args
       create: NexusGenInputs['ProjectCreateInput']; // ProjectCreateInput!
@@ -1772,6 +1862,15 @@ export interface NexusGenArgTypes {
     }
   }
   Project: {
+    RatedBy: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['UserOrderByInput'] | null; // UserOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
     Reviews: { // args
       after?: string | null; // String
       before?: string | null; // String
@@ -1781,47 +1880,8 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     }
-    Steps: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['StepArrayOrderByInput'] | null; // StepArrayOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
-    }
-    User: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['UserOrderByInput'] | null; // UserOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    }
   }
   Query: {
-    comment: { // args
-      where: NexusGenInputs['CommentWhereUniqueInput']; // CommentWhereUniqueInput!
-    }
-    comments: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['CommentOrderByInput'] | null; // CommentOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    }
-    commentsConnection: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['CommentOrderByInput'] | null; // CommentOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
-    }
     project: { // args
       where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
     }
@@ -1864,24 +1924,6 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
     }
-    stepArrays: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['StepArrayOrderByInput'] | null; // StepArrayOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
-    }
-    stepArraysConnection: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['StepArrayOrderByInput'] | null; // StepArrayOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['StepArrayWhereInput'] | null; // StepArrayWhereInput
-    }
     user: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
@@ -1905,18 +1947,54 @@ export interface NexusGenArgTypes {
     }
   }
   Review: {
-    Comments: { // args
+    DislikedBy: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenEnums['CommentOrderByInput'] | null; // CommentOrderByInput
+      orderBy?: NexusGenEnums['UserOrderByInput'] | null; // UserOrderByInput
       skip?: number | null; // Int
-      where?: NexusGenInputs['CommentWhereInput'] | null; // CommentWhereInput
+      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
+    LikedBy: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['UserOrderByInput'] | null; // UserOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     }
   }
   User: {
+    DislikedReviews: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['ReviewOrderByInput'] | null; // ReviewOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    }
+    LikedReviews: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['ReviewOrderByInput'] | null; // ReviewOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    }
     Projects: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['ProjectOrderByInput'] | null; // ProjectOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    }
+    RatedProjects: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
@@ -1942,11 +2020,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateComment" | "AggregateProject" | "AggregateReview" | "AggregateStepArray" | "AggregateUser" | "BatchPayload" | "Comment" | "CommentConnection" | "CommentEdge" | "Mutation" | "PageInfo" | "Project" | "ProjectConnection" | "ProjectEdge" | "Query" | "Review" | "ReviewConnection" | "ReviewEdge" | "StepArray" | "StepArrayConnection" | "StepArrayEdge" | "User" | "UserConnection" | "UserEdge";
+export type NexusGenObjectNames = "AggregateProject" | "AggregateReview" | "AggregateUser" | "BatchPayload" | "Mutation" | "PageInfo" | "Project" | "ProjectConnection" | "ProjectEdge" | "Query" | "Review" | "ReviewConnection" | "ReviewEdge" | "User" | "UserConnection" | "UserEdge";
 
-export type NexusGenInputNames = "CommentCreateInput" | "CommentCreateManyInput" | "CommentScalarWhereInput" | "CommentUpdateDataInput" | "CommentUpdateInput" | "CommentUpdateManyDataInput" | "CommentUpdateManyInput" | "CommentUpdateManyMutationInput" | "CommentUpdateManyWithWhereNestedInput" | "CommentUpdateWithWhereUniqueNestedInput" | "CommentUpsertWithWhereUniqueNestedInput" | "CommentWhereInput" | "CommentWhereUniqueInput" | "ProjectCreateInput" | "ProjectCreateManyWithoutUserInput" | "ProjectCreateWithoutUserInput" | "ProjectScalarWhereInput" | "ProjectUpdateInput" | "ProjectUpdateManyDataInput" | "ProjectUpdateManyMutationInput" | "ProjectUpdateManyWithWhereNestedInput" | "ProjectUpdateManyWithoutUserInput" | "ProjectUpdateWithWhereUniqueWithoutUserInput" | "ProjectUpdateWithoutUserDataInput" | "ProjectUpsertWithWhereUniqueWithoutUserInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "ReviewCreateInput" | "ReviewCreateManyInput" | "ReviewCreateManyWithoutAuthorInput" | "ReviewCreateWithoutAuthorInput" | "ReviewScalarWhereInput" | "ReviewUpdateDataInput" | "ReviewUpdateInput" | "ReviewUpdateManyDataInput" | "ReviewUpdateManyInput" | "ReviewUpdateManyMutationInput" | "ReviewUpdateManyWithWhereNestedInput" | "ReviewUpdateManyWithoutAuthorInput" | "ReviewUpdateWithWhereUniqueNestedInput" | "ReviewUpdateWithWhereUniqueWithoutAuthorInput" | "ReviewUpdateWithoutAuthorDataInput" | "ReviewUpsertWithWhereUniqueNestedInput" | "ReviewUpsertWithWhereUniqueWithoutAuthorInput" | "ReviewWhereInput" | "ReviewWhereUniqueInput" | "StepArrayCreateInput" | "StepArrayCreateManyInput" | "StepArrayScalarWhereInput" | "StepArrayUpdateManyDataInput" | "StepArrayUpdateManyInput" | "StepArrayUpdateManyMutationInput" | "StepArrayUpdateManyWithWhereNestedInput" | "StepArrayWhereInput" | "UserCreateInput" | "UserCreateManyWithoutProjectsInput" | "UserCreateOneInput" | "UserCreateOneWithoutReviewListInput" | "UserCreateWithoutProjectsInput" | "UserCreateWithoutReviewListInput" | "UserScalarWhereInput" | "UserUpdateDataInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyMutationInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutProjectsInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutReviewListInput" | "UserUpdateWithWhereUniqueWithoutProjectsInput" | "UserUpdateWithoutProjectsDataInput" | "UserUpdateWithoutReviewListDataInput" | "UserUpsertNestedInput" | "UserUpsertWithWhereUniqueWithoutProjectsInput" | "UserUpsertWithoutReviewListInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "ProjectCreateInput" | "ProjectCreateManyWithoutRatedByInput" | "ProjectCreateManyWithoutUserInput" | "ProjectCreateOneWithoutReviewsInput" | "ProjectCreateWithoutRatedByInput" | "ProjectCreateWithoutReviewsInput" | "ProjectCreateWithoutUserInput" | "ProjectScalarWhereInput" | "ProjectUpdateInput" | "ProjectUpdateManyDataInput" | "ProjectUpdateManyMutationInput" | "ProjectUpdateManyWithWhereNestedInput" | "ProjectUpdateManyWithoutRatedByInput" | "ProjectUpdateManyWithoutUserInput" | "ProjectUpdateOneRequiredWithoutReviewsInput" | "ProjectUpdateWithWhereUniqueWithoutRatedByInput" | "ProjectUpdateWithWhereUniqueWithoutUserInput" | "ProjectUpdateWithoutRatedByDataInput" | "ProjectUpdateWithoutReviewsDataInput" | "ProjectUpdateWithoutUserDataInput" | "ProjectUpsertWithWhereUniqueWithoutRatedByInput" | "ProjectUpsertWithWhereUniqueWithoutUserInput" | "ProjectUpsertWithoutReviewsInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "ReviewCreateInput" | "ReviewCreateManyWithoutAuthorInput" | "ReviewCreateManyWithoutDislikedByInput" | "ReviewCreateManyWithoutLikedByInput" | "ReviewCreateManyWithoutProjectReviewedInput" | "ReviewCreateWithoutAuthorInput" | "ReviewCreateWithoutDislikedByInput" | "ReviewCreateWithoutLikedByInput" | "ReviewCreateWithoutProjectReviewedInput" | "ReviewScalarWhereInput" | "ReviewUpdateInput" | "ReviewUpdateManyDataInput" | "ReviewUpdateManyMutationInput" | "ReviewUpdateManyWithWhereNestedInput" | "ReviewUpdateManyWithoutAuthorInput" | "ReviewUpdateManyWithoutDislikedByInput" | "ReviewUpdateManyWithoutLikedByInput" | "ReviewUpdateManyWithoutProjectReviewedInput" | "ReviewUpdateWithWhereUniqueWithoutAuthorInput" | "ReviewUpdateWithWhereUniqueWithoutDislikedByInput" | "ReviewUpdateWithWhereUniqueWithoutLikedByInput" | "ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput" | "ReviewUpdateWithoutAuthorDataInput" | "ReviewUpdateWithoutDislikedByDataInput" | "ReviewUpdateWithoutLikedByDataInput" | "ReviewUpdateWithoutProjectReviewedDataInput" | "ReviewUpsertWithWhereUniqueWithoutAuthorInput" | "ReviewUpsertWithWhereUniqueWithoutDislikedByInput" | "ReviewUpsertWithWhereUniqueWithoutLikedByInput" | "ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput" | "ReviewWhereInput" | "ReviewWhereUniqueInput" | "UserCreateInput" | "UserCreateManyWithoutDislikedReviewsInput" | "UserCreateManyWithoutLikedReviewsInput" | "UserCreateManyWithoutRatedProjectsInput" | "UserCreateOneWithoutProjectsInput" | "UserCreateOneWithoutReviewListInput" | "UserCreateWithoutDislikedReviewsInput" | "UserCreateWithoutLikedReviewsInput" | "UserCreateWithoutProjectsInput" | "UserCreateWithoutRatedProjectsInput" | "UserCreateWithoutReviewListInput" | "UserScalarWhereInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyMutationInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutDislikedReviewsInput" | "UserUpdateManyWithoutLikedReviewsInput" | "UserUpdateManyWithoutRatedProjectsInput" | "UserUpdateOneRequiredWithoutProjectsInput" | "UserUpdateOneRequiredWithoutReviewListInput" | "UserUpdateWithWhereUniqueWithoutDislikedReviewsInput" | "UserUpdateWithWhereUniqueWithoutLikedReviewsInput" | "UserUpdateWithWhereUniqueWithoutRatedProjectsInput" | "UserUpdateWithoutDislikedReviewsDataInput" | "UserUpdateWithoutLikedReviewsDataInput" | "UserUpdateWithoutProjectsDataInput" | "UserUpdateWithoutRatedProjectsDataInput" | "UserUpdateWithoutReviewListDataInput" | "UserUpsertWithWhereUniqueWithoutDislikedReviewsInput" | "UserUpsertWithWhereUniqueWithoutLikedReviewsInput" | "UserUpsertWithWhereUniqueWithoutRatedProjectsInput" | "UserUpsertWithoutProjectsInput" | "UserUpsertWithoutReviewListInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
-export type NexusGenEnumNames = "CommentOrderByInput" | "ProjectOrderByInput" | "ReviewOrderByInput" | "StepArrayOrderByInput" | "UserOrderByInput";
+export type NexusGenEnumNames = "ProjectOrderByInput" | "ReviewOrderByInput" | "UserOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 

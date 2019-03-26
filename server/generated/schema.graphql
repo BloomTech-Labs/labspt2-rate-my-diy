@@ -2,19 +2,11 @@
 ### Do not make changes to this file directly
 
 
-type AggregateComment {
-  count: Int!
-}
-
 type AggregateProject {
   count: Int!
 }
 
 type AggregateReview {
-  count: Int!
-}
-
-type AggregateStepArray {
   count: Int!
 }
 
@@ -26,217 +18,27 @@ type BatchPayload {
   count: Long!
 }
 
-type Comment {
-  editedAt: DateTime!
-  id: ID!
-  text: String!
-  User: User!
-}
-
-type CommentConnection {
-  aggregate: AggregateComment!
-  edges: [CommentEdge!]!
-  pageInfo: PageInfo!
-}
-
-input CommentCreateInput {
-  editedAt: DateTime!
-  text: String!
-  User: UserCreateOneInput!
-}
-
-input CommentCreateManyInput {
-  connect: [CommentWhereUniqueInput!]
-  create: [CommentCreateInput!]
-}
-
-type CommentEdge {
-  cursor: String!
-  node: Comment!
-}
-
-enum CommentOrderByInput {
-  createdAt_ASC
-  createdAt_DESC
-  editedAt_ASC
-  editedAt_DESC
-  id_ASC
-  id_DESC
-  text_ASC
-  text_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-input CommentScalarWhereInput {
-  AND: [CommentScalarWhereInput!]
-  editedAt: DateTime
-  editedAt_gt: DateTime
-  editedAt_gte: DateTime
-  editedAt_in: [DateTime!]
-  editedAt_lt: DateTime
-  editedAt_lte: DateTime
-  editedAt_not: DateTime
-  editedAt_not_in: [DateTime!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
-  NOT: [CommentScalarWhereInput!]
-  OR: [CommentScalarWhereInput!]
-  text: String
-  text_contains: String
-  text_ends_with: String
-  text_gt: String
-  text_gte: String
-  text_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_not: String
-  text_not_contains: String
-  text_not_ends_with: String
-  text_not_in: [String!]
-  text_not_starts_with: String
-  text_starts_with: String
-}
-
-input CommentUpdateDataInput {
-  editedAt: DateTime
-  text: String
-  User: UserUpdateOneRequiredInput
-}
-
-input CommentUpdateInput {
-  editedAt: DateTime
-  text: String
-  User: UserUpdateOneRequiredInput
-}
-
-input CommentUpdateManyDataInput {
-  editedAt: DateTime
-  text: String
-}
-
-input CommentUpdateManyInput {
-  connect: [CommentWhereUniqueInput!]
-  create: [CommentCreateInput!]
-  delete: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueNestedInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-  upsert: [CommentUpsertWithWhereUniqueNestedInput!]
-}
-
-input CommentUpdateManyMutationInput {
-  editedAt: DateTime
-  text: String
-}
-
-input CommentUpdateManyWithWhereNestedInput {
-  data: CommentUpdateManyDataInput!
-  where: CommentScalarWhereInput!
-}
-
-input CommentUpdateWithWhereUniqueNestedInput {
-  data: CommentUpdateDataInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpsertWithWhereUniqueNestedInput {
-  create: CommentCreateInput!
-  update: CommentUpdateDataInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentWhereInput {
-  AND: [CommentWhereInput!]
-  editedAt: DateTime
-  editedAt_gt: DateTime
-  editedAt_gte: DateTime
-  editedAt_in: [DateTime!]
-  editedAt_lt: DateTime
-  editedAt_lte: DateTime
-  editedAt_not: DateTime
-  editedAt_not_in: [DateTime!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
-  NOT: [CommentWhereInput!]
-  OR: [CommentWhereInput!]
-  text: String
-  text_contains: String
-  text_ends_with: String
-  text_gt: String
-  text_gte: String
-  text_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_not: String
-  text_not_contains: String
-  text_not_ends_with: String
-  text_not_in: [String!]
-  text_not_starts_with: String
-  text_starts_with: String
-  User: UserWhereInput
-}
-
-input CommentWhereUniqueInput {
-  id: ID
-}
-
 scalar DateTime
 
 scalar Long
 
 type Mutation {
-  createComment(data: CommentCreateInput!): Comment!
   createProject(data: ProjectCreateInput!): Project!
   createReview(data: ReviewCreateInput!): Review!
-  createStepArray(data: StepArrayCreateInput!): StepArray!
   createSubscription(source: String): User!
   createUser(data: UserCreateInput!): User!
-  deleteComment(where: CommentWhereUniqueInput!): Comment
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyReviews(where: ReviewWhereInput): BatchPayload!
-  deleteManyStepArrays(where: StepArrayWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deleteReview(where: ReviewWhereUniqueInput!): Review
   deleteUser(where: UserWhereUniqueInput!): User
-  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
-  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
   updateManyReviews(data: ReviewUpdateManyMutationInput!, where: ReviewWhereInput): BatchPayload!
-  updateManyStepArrays(data: StepArrayUpdateManyMutationInput!, where: StepArrayWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updateReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  upsertComment(create: CommentCreateInput!, update: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment!
   upsertProject(create: ProjectCreateInput!, update: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project!
   upsertReview(create: ReviewCreateInput!, update: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review!
   upsertUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
@@ -252,14 +54,16 @@ type PageInfo {
 type Project {
   category: String!
   id: ID!
+  key: String
   name: String!
+  RatedBy(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]
   rating: Float!
   Reviews(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): [Review!]
-  Steps(after: String, before: String, first: Int, last: Int, orderBy: StepArrayOrderByInput, skip: Int, where: StepArrayWhereInput): [StepArray!]
+  steps: String!
   timestamp: DateTime!
   titleBlurb: String!
   titleImg: String!
-  User(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]
+  User: User!
 }
 
 type ProjectConnection {
@@ -270,14 +74,21 @@ type ProjectConnection {
 
 input ProjectCreateInput {
   category: String!
+  key: String
   name: String!
+  RatedBy: UserCreateManyWithoutRatedProjectsInput
   rating: Float
-  Reviews: ReviewCreateManyInput
-  Steps: StepArrayCreateManyInput
+  Reviews: ReviewCreateManyWithoutProjectReviewedInput
+  steps: String
   timestamp: DateTime!
-  titleBlurb: String!
-  titleImg: String!
-  User: UserCreateManyWithoutProjectsInput
+  titleBlurb: String
+  titleImg: String
+  User: UserCreateOneWithoutProjectsInput!
+}
+
+input ProjectCreateManyWithoutRatedByInput {
+  connect: [ProjectWhereUniqueInput!]
+  create: [ProjectCreateWithoutRatedByInput!]
 }
 
 input ProjectCreateManyWithoutUserInput {
@@ -285,15 +96,48 @@ input ProjectCreateManyWithoutUserInput {
   create: [ProjectCreateWithoutUserInput!]
 }
 
-input ProjectCreateWithoutUserInput {
+input ProjectCreateOneWithoutReviewsInput {
+  connect: ProjectWhereUniqueInput
+  create: ProjectCreateWithoutReviewsInput
+}
+
+input ProjectCreateWithoutRatedByInput {
   category: String!
+  key: String
   name: String!
   rating: Float
-  Reviews: ReviewCreateManyInput
-  Steps: StepArrayCreateManyInput
+  Reviews: ReviewCreateManyWithoutProjectReviewedInput
+  steps: String
   timestamp: DateTime!
-  titleBlurb: String!
-  titleImg: String!
+  titleBlurb: String
+  titleImg: String
+  User: UserCreateOneWithoutProjectsInput!
+}
+
+input ProjectCreateWithoutReviewsInput {
+  category: String!
+  key: String
+  name: String!
+  RatedBy: UserCreateManyWithoutRatedProjectsInput
+  rating: Float
+  steps: String
+  timestamp: DateTime!
+  titleBlurb: String
+  titleImg: String
+  User: UserCreateOneWithoutProjectsInput!
+}
+
+input ProjectCreateWithoutUserInput {
+  category: String!
+  key: String
+  name: String!
+  RatedBy: UserCreateManyWithoutRatedProjectsInput
+  rating: Float
+  Reviews: ReviewCreateManyWithoutProjectReviewedInput
+  steps: String
+  timestamp: DateTime!
+  titleBlurb: String
+  titleImg: String
 }
 
 type ProjectEdge {
@@ -308,10 +152,14 @@ enum ProjectOrderByInput {
   createdAt_DESC
   id_ASC
   id_DESC
+  key_ASC
+  key_DESC
   name_ASC
   name_DESC
   rating_ASC
   rating_DESC
+  steps_ASC
+  steps_DESC
   timestamp_ASC
   timestamp_DESC
   titleBlurb_ASC
@@ -352,6 +200,20 @@ input ProjectScalarWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
+  key: String
+  key_contains: String
+  key_ends_with: String
+  key_gt: String
+  key_gte: String
+  key_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_not: String
+  key_not_contains: String
+  key_not_ends_with: String
+  key_not_in: [String!]
+  key_not_starts_with: String
+  key_starts_with: String
   name: String
   name_contains: String
   name_ends_with: String
@@ -376,6 +238,20 @@ input ProjectScalarWhereInput {
   rating_lte: Float
   rating_not: Float
   rating_not_in: [Float!]
+  steps: String
+  steps_contains: String
+  steps_ends_with: String
+  steps_gt: String
+  steps_gte: String
+  steps_in: [String!]
+  steps_lt: String
+  steps_lte: String
+  steps_not: String
+  steps_not_contains: String
+  steps_not_ends_with: String
+  steps_not_in: [String!]
+  steps_not_starts_with: String
+  steps_starts_with: String
   timestamp: DateTime
   timestamp_gt: DateTime
   timestamp_gte: DateTime
@@ -416,20 +292,24 @@ input ProjectScalarWhereInput {
 
 input ProjectUpdateInput {
   category: String
+  key: String
   name: String
+  RatedBy: UserUpdateManyWithoutRatedProjectsInput
   rating: Float
-  Reviews: ReviewUpdateManyInput
-  Steps: StepArrayUpdateManyInput
+  Reviews: ReviewUpdateManyWithoutProjectReviewedInput
+  steps: String
   timestamp: DateTime
   titleBlurb: String
   titleImg: String
-  User: UserUpdateManyWithoutProjectsInput
+  User: UserUpdateOneRequiredWithoutProjectsInput
 }
 
 input ProjectUpdateManyDataInput {
   category: String
+  key: String
   name: String
   rating: Float
+  steps: String
   timestamp: DateTime
   titleBlurb: String
   titleImg: String
@@ -437,11 +317,25 @@ input ProjectUpdateManyDataInput {
 
 input ProjectUpdateManyMutationInput {
   category: String
+  key: String
   name: String
   rating: Float
+  steps: String
   timestamp: DateTime
   titleBlurb: String
   titleImg: String
+}
+
+input ProjectUpdateManyWithoutRatedByInput {
+  connect: [ProjectWhereUniqueInput!]
+  create: [ProjectCreateWithoutRatedByInput!]
+  delete: [ProjectWhereUniqueInput!]
+  deleteMany: [ProjectScalarWhereInput!]
+  disconnect: [ProjectWhereUniqueInput!]
+  set: [ProjectWhereUniqueInput!]
+  update: [ProjectUpdateWithWhereUniqueWithoutRatedByInput!]
+  updateMany: [ProjectUpdateManyWithWhereNestedInput!]
+  upsert: [ProjectUpsertWithWhereUniqueWithoutRatedByInput!]
 }
 
 input ProjectUpdateManyWithoutUserInput {
@@ -461,19 +355,70 @@ input ProjectUpdateManyWithWhereNestedInput {
   where: ProjectScalarWhereInput!
 }
 
-input ProjectUpdateWithoutUserDataInput {
+input ProjectUpdateOneRequiredWithoutReviewsInput {
+  connect: ProjectWhereUniqueInput
+  create: ProjectCreateWithoutReviewsInput
+  update: ProjectUpdateWithoutReviewsDataInput
+  upsert: ProjectUpsertWithoutReviewsInput
+}
+
+input ProjectUpdateWithoutRatedByDataInput {
   category: String
+  key: String
   name: String
   rating: Float
-  Reviews: ReviewUpdateManyInput
-  Steps: StepArrayUpdateManyInput
+  Reviews: ReviewUpdateManyWithoutProjectReviewedInput
+  steps: String
+  timestamp: DateTime
+  titleBlurb: String
+  titleImg: String
+  User: UserUpdateOneRequiredWithoutProjectsInput
+}
+
+input ProjectUpdateWithoutReviewsDataInput {
+  category: String
+  key: String
+  name: String
+  RatedBy: UserUpdateManyWithoutRatedProjectsInput
+  rating: Float
+  steps: String
+  timestamp: DateTime
+  titleBlurb: String
+  titleImg: String
+  User: UserUpdateOneRequiredWithoutProjectsInput
+}
+
+input ProjectUpdateWithoutUserDataInput {
+  category: String
+  key: String
+  name: String
+  RatedBy: UserUpdateManyWithoutRatedProjectsInput
+  rating: Float
+  Reviews: ReviewUpdateManyWithoutProjectReviewedInput
+  steps: String
   timestamp: DateTime
   titleBlurb: String
   titleImg: String
 }
 
+input ProjectUpdateWithWhereUniqueWithoutRatedByInput {
+  data: ProjectUpdateWithoutRatedByDataInput!
+  where: ProjectWhereUniqueInput!
+}
+
 input ProjectUpdateWithWhereUniqueWithoutUserInput {
   data: ProjectUpdateWithoutUserDataInput!
+  where: ProjectWhereUniqueInput!
+}
+
+input ProjectUpsertWithoutReviewsInput {
+  create: ProjectCreateWithoutReviewsInput!
+  update: ProjectUpdateWithoutReviewsDataInput!
+}
+
+input ProjectUpsertWithWhereUniqueWithoutRatedByInput {
+  create: ProjectCreateWithoutRatedByInput!
+  update: ProjectUpdateWithoutRatedByDataInput!
   where: ProjectWhereUniqueInput!
 }
 
@@ -513,6 +458,20 @@ input ProjectWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
+  key: String
+  key_contains: String
+  key_ends_with: String
+  key_gt: String
+  key_gte: String
+  key_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_not: String
+  key_not_contains: String
+  key_not_ends_with: String
+  key_not_in: [String!]
+  key_not_starts_with: String
+  key_starts_with: String
   name: String
   name_contains: String
   name_ends_with: String
@@ -529,6 +488,9 @@ input ProjectWhereInput {
   name_starts_with: String
   NOT: [ProjectWhereInput!]
   OR: [ProjectWhereInput!]
+  RatedBy_every: UserWhereInput
+  RatedBy_none: UserWhereInput
+  RatedBy_some: UserWhereInput
   rating: Float
   rating_gt: Float
   rating_gte: Float
@@ -540,9 +502,20 @@ input ProjectWhereInput {
   Reviews_every: ReviewWhereInput
   Reviews_none: ReviewWhereInput
   Reviews_some: ReviewWhereInput
-  Steps_every: StepArrayWhereInput
-  Steps_none: StepArrayWhereInput
-  Steps_some: StepArrayWhereInput
+  steps: String
+  steps_contains: String
+  steps_ends_with: String
+  steps_gt: String
+  steps_gte: String
+  steps_in: [String!]
+  steps_lt: String
+  steps_lte: String
+  steps_not: String
+  steps_not_contains: String
+  steps_not_ends_with: String
+  steps_not_in: [String!]
+  steps_not_starts_with: String
+  steps_starts_with: String
   timestamp: DateTime
   timestamp_gt: DateTime
   timestamp_gte: DateTime
@@ -579,27 +552,21 @@ input ProjectWhereInput {
   titleImg_not_in: [String!]
   titleImg_not_starts_with: String
   titleImg_starts_with: String
-  User_every: UserWhereInput
-  User_none: UserWhereInput
-  User_some: UserWhereInput
+  User: UserWhereInput
 }
 
 input ProjectWhereUniqueInput {
   id: ID
+  key: String
 }
 
 type Query {
-  comment(where: CommentWhereUniqueInput!): Comment
-  comments(after: String, before: String, first: Int, last: Int, orderBy: CommentOrderByInput, skip: Int, where: CommentWhereInput): [Comment!]!
-  commentsConnection(after: String, before: String, first: Int, last: Int, orderBy: CommentOrderByInput, skip: Int, where: CommentWhereInput): CommentConnection!
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: String, before: String, first: Int, last: Int, orderBy: ProjectOrderByInput, skip: Int, where: ProjectWhereInput): [Project!]!
   projectsConnection(after: String, before: String, first: Int, last: Int, orderBy: ProjectOrderByInput, skip: Int, where: ProjectWhereInput): ProjectConnection!
   review(where: ReviewWhereUniqueInput!): Review
   reviews(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): [Review!]!
   reviewsConnection(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): ReviewConnection!
-  stepArrays(after: String, before: String, first: Int, last: Int, orderBy: StepArrayOrderByInput, skip: Int, where: StepArrayWhereInput): [StepArray!]!
-  stepArraysConnection(after: String, before: String, first: Int, last: Int, orderBy: StepArrayOrderByInput, skip: Int, where: StepArrayWhereInput): StepArrayConnection!
   user(where: UserWhereUniqueInput!): User
   users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
   usersConnection(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
@@ -607,13 +574,15 @@ type Query {
 
 type Review {
   Author: User!
-  Comments(after: String, before: String, first: Int, last: Int, orderBy: CommentOrderByInput, skip: Int, where: CommentWhereInput): [Comment!]
-  editedAt: String!
+  DislikedBy(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]
+  editedAt: DateTime!
   id: ID!
-  rating: Float!
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  LikedBy(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]
+  ProjectReviewed: Project!
+  rKey: String
   text: String!
+  thumbsDown: Int!
+  thumbsUp: Int!
   title: String!
 }
 
@@ -625,18 +594,15 @@ type ReviewConnection {
 
 input ReviewCreateInput {
   Author: UserCreateOneWithoutReviewListInput!
-  Comments: CommentCreateManyInput
-  editedAt: String!
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  DislikedBy: UserCreateManyWithoutDislikedReviewsInput
+  editedAt: DateTime!
+  LikedBy: UserCreateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  rKey: String
   text: String!
+  thumbsDown: Int!
+  thumbsUp: Int
   title: String!
-}
-
-input ReviewCreateManyInput {
-  connect: [ReviewWhereUniqueInput!]
-  create: [ReviewCreateInput!]
 }
 
 input ReviewCreateManyWithoutAuthorInput {
@@ -644,13 +610,66 @@ input ReviewCreateManyWithoutAuthorInput {
   create: [ReviewCreateWithoutAuthorInput!]
 }
 
+input ReviewCreateManyWithoutDislikedByInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutDislikedByInput!]
+}
+
+input ReviewCreateManyWithoutLikedByInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutLikedByInput!]
+}
+
+input ReviewCreateManyWithoutProjectReviewedInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutProjectReviewedInput!]
+}
+
 input ReviewCreateWithoutAuthorInput {
-  Comments: CommentCreateManyInput
-  editedAt: String!
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  DislikedBy: UserCreateManyWithoutDislikedReviewsInput
+  editedAt: DateTime!
+  LikedBy: UserCreateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  rKey: String
   text: String!
+  thumbsDown: Int!
+  thumbsUp: Int
+  title: String!
+}
+
+input ReviewCreateWithoutDislikedByInput {
+  Author: UserCreateOneWithoutReviewListInput!
+  editedAt: DateTime!
+  LikedBy: UserCreateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  rKey: String
+  text: String!
+  thumbsDown: Int!
+  thumbsUp: Int
+  title: String!
+}
+
+input ReviewCreateWithoutLikedByInput {
+  Author: UserCreateOneWithoutReviewListInput!
+  DislikedBy: UserCreateManyWithoutDislikedReviewsInput
+  editedAt: DateTime!
+  ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  rKey: String
+  text: String!
+  thumbsDown: Int!
+  thumbsUp: Int
+  title: String!
+}
+
+input ReviewCreateWithoutProjectReviewedInput {
+  Author: UserCreateOneWithoutReviewListInput!
+  DislikedBy: UserCreateManyWithoutDislikedReviewsInput
+  editedAt: DateTime!
+  LikedBy: UserCreateManyWithoutLikedReviewsInput
+  rKey: String
+  text: String!
+  thumbsDown: Int!
+  thumbsUp: Int
   title: String!
 }
 
@@ -666,14 +685,14 @@ enum ReviewOrderByInput {
   editedAt_DESC
   id_ASC
   id_DESC
-  rating_ASC
-  rating_DESC
-  reviewThumbsDown_ASC
-  reviewThumbsDown_DESC
-  reviewThumbsUp_ASC
-  reviewThumbsUp_DESC
+  rKey_ASC
+  rKey_DESC
   text_ASC
   text_DESC
+  thumbsDown_ASC
+  thumbsDown_DESC
+  thumbsUp_ASC
+  thumbsUp_DESC
   title_ASC
   title_DESC
   updatedAt_ASC
@@ -682,20 +701,14 @@ enum ReviewOrderByInput {
 
 input ReviewScalarWhereInput {
   AND: [ReviewScalarWhereInput!]
-  editedAt: String
-  editedAt_contains: String
-  editedAt_ends_with: String
-  editedAt_gt: String
-  editedAt_gte: String
-  editedAt_in: [String!]
-  editedAt_lt: String
-  editedAt_lte: String
-  editedAt_not: String
-  editedAt_not_contains: String
-  editedAt_not_ends_with: String
-  editedAt_not_in: [String!]
-  editedAt_not_starts_with: String
-  editedAt_starts_with: String
+  editedAt: DateTime
+  editedAt_gt: DateTime
+  editedAt_gte: DateTime
+  editedAt_in: [DateTime!]
+  editedAt_lt: DateTime
+  editedAt_lte: DateTime
+  editedAt_not: DateTime
+  editedAt_not_in: [DateTime!]
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -712,30 +725,20 @@ input ReviewScalarWhereInput {
   id_starts_with: ID
   NOT: [ReviewScalarWhereInput!]
   OR: [ReviewScalarWhereInput!]
-  rating: Float
-  rating_gt: Float
-  rating_gte: Float
-  rating_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_not: Float
-  rating_not_in: [Float!]
-  reviewThumbsDown: Int
-  reviewThumbsDown_gt: Int
-  reviewThumbsDown_gte: Int
-  reviewThumbsDown_in: [Int!]
-  reviewThumbsDown_lt: Int
-  reviewThumbsDown_lte: Int
-  reviewThumbsDown_not: Int
-  reviewThumbsDown_not_in: [Int!]
-  reviewThumbsUp: Int
-  reviewThumbsUp_gt: Int
-  reviewThumbsUp_gte: Int
-  reviewThumbsUp_in: [Int!]
-  reviewThumbsUp_lt: Int
-  reviewThumbsUp_lte: Int
-  reviewThumbsUp_not: Int
-  reviewThumbsUp_not_in: [Int!]
+  rKey: String
+  rKey_contains: String
+  rKey_ends_with: String
+  rKey_gt: String
+  rKey_gte: String
+  rKey_in: [String!]
+  rKey_lt: String
+  rKey_lte: String
+  rKey_not: String
+  rKey_not_contains: String
+  rKey_not_ends_with: String
+  rKey_not_in: [String!]
+  rKey_not_starts_with: String
+  rKey_starts_with: String
   text: String
   text_contains: String
   text_ends_with: String
@@ -750,6 +753,22 @@ input ReviewScalarWhereInput {
   text_not_in: [String!]
   text_not_starts_with: String
   text_starts_with: String
+  thumbsDown: Int
+  thumbsDown_gt: Int
+  thumbsDown_gte: Int
+  thumbsDown_in: [Int!]
+  thumbsDown_lt: Int
+  thumbsDown_lte: Int
+  thumbsDown_not: Int
+  thumbsDown_not_in: [Int!]
+  thumbsUp: Int
+  thumbsUp_gt: Int
+  thumbsUp_gte: Int
+  thumbsUp_in: [Int!]
+  thumbsUp_lt: Int
+  thumbsUp_lte: Int
+  thumbsUp_not: Int
+  thumbsUp_not_in: [Int!]
   title: String
   title_contains: String
   title_ends_with: String
@@ -766,55 +785,34 @@ input ReviewScalarWhereInput {
   title_starts_with: String
 }
 
-input ReviewUpdateDataInput {
-  Author: UserUpdateOneRequiredWithoutReviewListInput
-  Comments: CommentUpdateManyInput
-  editedAt: String
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
-  text: String
-  title: String
-}
-
 input ReviewUpdateInput {
   Author: UserUpdateOneRequiredWithoutReviewListInput
-  Comments: CommentUpdateManyInput
-  editedAt: String
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
+  editedAt: DateTime
+  LikedBy: UserUpdateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  rKey: String
   text: String
+  thumbsDown: Int
+  thumbsUp: Int
   title: String
 }
 
 input ReviewUpdateManyDataInput {
-  editedAt: String
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  editedAt: DateTime
+  rKey: String
   text: String
+  thumbsDown: Int
+  thumbsUp: Int
   title: String
 }
 
-input ReviewUpdateManyInput {
-  connect: [ReviewWhereUniqueInput!]
-  create: [ReviewCreateInput!]
-  delete: [ReviewWhereUniqueInput!]
-  deleteMany: [ReviewScalarWhereInput!]
-  disconnect: [ReviewWhereUniqueInput!]
-  set: [ReviewWhereUniqueInput!]
-  update: [ReviewUpdateWithWhereUniqueNestedInput!]
-  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
-  upsert: [ReviewUpsertWithWhereUniqueNestedInput!]
-}
-
 input ReviewUpdateManyMutationInput {
-  editedAt: String
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  editedAt: DateTime
+  rKey: String
   text: String
+  thumbsDown: Int
+  thumbsUp: Int
   title: String
 }
 
@@ -830,24 +828,93 @@ input ReviewUpdateManyWithoutAuthorInput {
   upsert: [ReviewUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
+input ReviewUpdateManyWithoutDislikedByInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutDislikedByInput!]
+  delete: [ReviewWhereUniqueInput!]
+  deleteMany: [ReviewScalarWhereInput!]
+  disconnect: [ReviewWhereUniqueInput!]
+  set: [ReviewWhereUniqueInput!]
+  update: [ReviewUpdateWithWhereUniqueWithoutDislikedByInput!]
+  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewUpsertWithWhereUniqueWithoutDislikedByInput!]
+}
+
+input ReviewUpdateManyWithoutLikedByInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutLikedByInput!]
+  delete: [ReviewWhereUniqueInput!]
+  deleteMany: [ReviewScalarWhereInput!]
+  disconnect: [ReviewWhereUniqueInput!]
+  set: [ReviewWhereUniqueInput!]
+  update: [ReviewUpdateWithWhereUniqueWithoutLikedByInput!]
+  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewUpsertWithWhereUniqueWithoutLikedByInput!]
+}
+
+input ReviewUpdateManyWithoutProjectReviewedInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutProjectReviewedInput!]
+  delete: [ReviewWhereUniqueInput!]
+  deleteMany: [ReviewScalarWhereInput!]
+  disconnect: [ReviewWhereUniqueInput!]
+  set: [ReviewWhereUniqueInput!]
+  update: [ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput!]
+  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput!]
+}
+
 input ReviewUpdateManyWithWhereNestedInput {
   data: ReviewUpdateManyDataInput!
   where: ReviewScalarWhereInput!
 }
 
 input ReviewUpdateWithoutAuthorDataInput {
-  Comments: CommentUpdateManyInput
-  editedAt: String
-  rating: Float
-  reviewThumbsDown: Int
-  reviewThumbsUp: Int
+  DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
+  editedAt: DateTime
+  LikedBy: UserUpdateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  rKey: String
   text: String
+  thumbsDown: Int
+  thumbsUp: Int
   title: String
 }
 
-input ReviewUpdateWithWhereUniqueNestedInput {
-  data: ReviewUpdateDataInput!
-  where: ReviewWhereUniqueInput!
+input ReviewUpdateWithoutDislikedByDataInput {
+  Author: UserUpdateOneRequiredWithoutReviewListInput
+  editedAt: DateTime
+  LikedBy: UserUpdateManyWithoutLikedReviewsInput
+  ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  rKey: String
+  text: String
+  thumbsDown: Int
+  thumbsUp: Int
+  title: String
+}
+
+input ReviewUpdateWithoutLikedByDataInput {
+  Author: UserUpdateOneRequiredWithoutReviewListInput
+  DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
+  editedAt: DateTime
+  ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  rKey: String
+  text: String
+  thumbsDown: Int
+  thumbsUp: Int
+  title: String
+}
+
+input ReviewUpdateWithoutProjectReviewedDataInput {
+  Author: UserUpdateOneRequiredWithoutReviewListInput
+  DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
+  editedAt: DateTime
+  LikedBy: UserUpdateManyWithoutLikedReviewsInput
+  rKey: String
+  text: String
+  thumbsDown: Int
+  thumbsUp: Int
+  title: String
 }
 
 input ReviewUpdateWithWhereUniqueWithoutAuthorInput {
@@ -855,9 +922,18 @@ input ReviewUpdateWithWhereUniqueWithoutAuthorInput {
   where: ReviewWhereUniqueInput!
 }
 
-input ReviewUpsertWithWhereUniqueNestedInput {
-  create: ReviewCreateInput!
-  update: ReviewUpdateDataInput!
+input ReviewUpdateWithWhereUniqueWithoutDislikedByInput {
+  data: ReviewUpdateWithoutDislikedByDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpdateWithWhereUniqueWithoutLikedByInput {
+  data: ReviewUpdateWithoutLikedByDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput {
+  data: ReviewUpdateWithoutProjectReviewedDataInput!
   where: ReviewWhereUniqueInput!
 }
 
@@ -867,26 +943,38 @@ input ReviewUpsertWithWhereUniqueWithoutAuthorInput {
   where: ReviewWhereUniqueInput!
 }
 
+input ReviewUpsertWithWhereUniqueWithoutDislikedByInput {
+  create: ReviewCreateWithoutDislikedByInput!
+  update: ReviewUpdateWithoutDislikedByDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpsertWithWhereUniqueWithoutLikedByInput {
+  create: ReviewCreateWithoutLikedByInput!
+  update: ReviewUpdateWithoutLikedByDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpsertWithWhereUniqueWithoutProjectReviewedInput {
+  create: ReviewCreateWithoutProjectReviewedInput!
+  update: ReviewUpdateWithoutProjectReviewedDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
 input ReviewWhereInput {
   AND: [ReviewWhereInput!]
   Author: UserWhereInput
-  Comments_every: CommentWhereInput
-  Comments_none: CommentWhereInput
-  Comments_some: CommentWhereInput
-  editedAt: String
-  editedAt_contains: String
-  editedAt_ends_with: String
-  editedAt_gt: String
-  editedAt_gte: String
-  editedAt_in: [String!]
-  editedAt_lt: String
-  editedAt_lte: String
-  editedAt_not: String
-  editedAt_not_contains: String
-  editedAt_not_ends_with: String
-  editedAt_not_in: [String!]
-  editedAt_not_starts_with: String
-  editedAt_starts_with: String
+  DislikedBy_every: UserWhereInput
+  DislikedBy_none: UserWhereInput
+  DislikedBy_some: UserWhereInput
+  editedAt: DateTime
+  editedAt_gt: DateTime
+  editedAt_gte: DateTime
+  editedAt_in: [DateTime!]
+  editedAt_lt: DateTime
+  editedAt_lte: DateTime
+  editedAt_not: DateTime
+  editedAt_not_in: [DateTime!]
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -901,32 +989,26 @@ input ReviewWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
+  LikedBy_every: UserWhereInput
+  LikedBy_none: UserWhereInput
+  LikedBy_some: UserWhereInput
   NOT: [ReviewWhereInput!]
   OR: [ReviewWhereInput!]
-  rating: Float
-  rating_gt: Float
-  rating_gte: Float
-  rating_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_not: Float
-  rating_not_in: [Float!]
-  reviewThumbsDown: Int
-  reviewThumbsDown_gt: Int
-  reviewThumbsDown_gte: Int
-  reviewThumbsDown_in: [Int!]
-  reviewThumbsDown_lt: Int
-  reviewThumbsDown_lte: Int
-  reviewThumbsDown_not: Int
-  reviewThumbsDown_not_in: [Int!]
-  reviewThumbsUp: Int
-  reviewThumbsUp_gt: Int
-  reviewThumbsUp_gte: Int
-  reviewThumbsUp_in: [Int!]
-  reviewThumbsUp_lt: Int
-  reviewThumbsUp_lte: Int
-  reviewThumbsUp_not: Int
-  reviewThumbsUp_not_in: [Int!]
+  ProjectReviewed: ProjectWhereInput
+  rKey: String
+  rKey_contains: String
+  rKey_ends_with: String
+  rKey_gt: String
+  rKey_gte: String
+  rKey_in: [String!]
+  rKey_lt: String
+  rKey_lte: String
+  rKey_not: String
+  rKey_not_contains: String
+  rKey_not_ends_with: String
+  rKey_not_in: [String!]
+  rKey_not_starts_with: String
+  rKey_starts_with: String
   text: String
   text_contains: String
   text_ends_with: String
@@ -941,6 +1023,22 @@ input ReviewWhereInput {
   text_not_in: [String!]
   text_not_starts_with: String
   text_starts_with: String
+  thumbsDown: Int
+  thumbsDown_gt: Int
+  thumbsDown_gte: Int
+  thumbsDown_in: [Int!]
+  thumbsDown_lt: Int
+  thumbsDown_lte: Int
+  thumbsDown_not: Int
+  thumbsDown_not_in: [Int!]
+  thumbsUp: Int
+  thumbsUp_gt: Int
+  thumbsUp_gte: Int
+  thumbsUp_in: [Int!]
+  thumbsUp_lt: Int
+  thumbsUp_lte: Int
+  thumbsUp_not: Int
+  thumbsUp_not_in: [Int!]
   title: String
   title_contains: String
   title_ends_with: String
@@ -959,144 +1057,20 @@ input ReviewWhereInput {
 
 input ReviewWhereUniqueInput {
   id: ID
-}
-
-type StepArray {
-  imgUrls: String
-  textBlurbs: String
-}
-
-type StepArrayConnection {
-  aggregate: AggregateStepArray!
-  edges: [StepArrayEdge!]!
-  pageInfo: PageInfo!
-}
-
-input StepArrayCreateInput {
-  imgUrls: String
-  textBlurbs: String
-}
-
-input StepArrayCreateManyInput {
-  create: [StepArrayCreateInput!]
-}
-
-type StepArrayEdge {
-  cursor: String!
-  node: StepArray!
-}
-
-enum StepArrayOrderByInput {
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  imgUrls_ASC
-  imgUrls_DESC
-  textBlurbs_ASC
-  textBlurbs_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-input StepArrayScalarWhereInput {
-  AND: [StepArrayScalarWhereInput!]
-  imgUrls: String
-  imgUrls_contains: String
-  imgUrls_ends_with: String
-  imgUrls_gt: String
-  imgUrls_gte: String
-  imgUrls_in: [String!]
-  imgUrls_lt: String
-  imgUrls_lte: String
-  imgUrls_not: String
-  imgUrls_not_contains: String
-  imgUrls_not_ends_with: String
-  imgUrls_not_in: [String!]
-  imgUrls_not_starts_with: String
-  imgUrls_starts_with: String
-  NOT: [StepArrayScalarWhereInput!]
-  OR: [StepArrayScalarWhereInput!]
-  textBlurbs: String
-  textBlurbs_contains: String
-  textBlurbs_ends_with: String
-  textBlurbs_gt: String
-  textBlurbs_gte: String
-  textBlurbs_in: [String!]
-  textBlurbs_lt: String
-  textBlurbs_lte: String
-  textBlurbs_not: String
-  textBlurbs_not_contains: String
-  textBlurbs_not_ends_with: String
-  textBlurbs_not_in: [String!]
-  textBlurbs_not_starts_with: String
-  textBlurbs_starts_with: String
-}
-
-input StepArrayUpdateManyDataInput {
-  imgUrls: String
-  textBlurbs: String
-}
-
-input StepArrayUpdateManyInput {
-  create: [StepArrayCreateInput!]
-  deleteMany: [StepArrayScalarWhereInput!]
-  updateMany: [StepArrayUpdateManyWithWhereNestedInput!]
-}
-
-input StepArrayUpdateManyMutationInput {
-  imgUrls: String
-  textBlurbs: String
-}
-
-input StepArrayUpdateManyWithWhereNestedInput {
-  data: StepArrayUpdateManyDataInput!
-  where: StepArrayScalarWhereInput!
-}
-
-input StepArrayWhereInput {
-  AND: [StepArrayWhereInput!]
-  imgUrls: String
-  imgUrls_contains: String
-  imgUrls_ends_with: String
-  imgUrls_gt: String
-  imgUrls_gte: String
-  imgUrls_in: [String!]
-  imgUrls_lt: String
-  imgUrls_lte: String
-  imgUrls_not: String
-  imgUrls_not_contains: String
-  imgUrls_not_ends_with: String
-  imgUrls_not_in: [String!]
-  imgUrls_not_starts_with: String
-  imgUrls_starts_with: String
-  NOT: [StepArrayWhereInput!]
-  OR: [StepArrayWhereInput!]
-  textBlurbs: String
-  textBlurbs_contains: String
-  textBlurbs_ends_with: String
-  textBlurbs_gt: String
-  textBlurbs_gte: String
-  textBlurbs_in: [String!]
-  textBlurbs_lt: String
-  textBlurbs_lte: String
-  textBlurbs_not: String
-  textBlurbs_not_contains: String
-  textBlurbs_not_ends_with: String
-  textBlurbs_not_in: [String!]
-  textBlurbs_not_starts_with: String
-  textBlurbs_starts_with: String
+  rKey: String
 }
 
 type User {
   accountType: String!
+  bio: String!
+  DislikedReviews(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): [Review!]
   email: String!
   id: ID!
-  makerRating: Float
+  LikedReviews(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): [Review!]
   password: String!
   privilege: String!
   Projects(after: String, before: String, first: Int, last: Int, orderBy: ProjectOrderByInput, skip: Int, where: ProjectWhereInput): [Project!]
-  reviewerThumbs: Int
+  RatedProjects(after: String, before: String, first: Int, last: Int, orderBy: ProjectOrderByInput, skip: Int, where: ProjectWhereInput): [Project!]
   ReviewList(after: String, before: String, first: Int, last: Int, orderBy: ReviewOrderByInput, skip: Int, where: ReviewWhereInput): [Review!]
   stripeId: String
   url: String
@@ -1112,12 +1086,14 @@ type UserConnection {
 
 input UserCreateInput {
   accountType: String
+  bio: String
+  DislikedReviews: ReviewCreateManyWithoutDislikedByInput
   email: String!
-  makerRating: Float
+  LikedReviews: ReviewCreateManyWithoutLikedByInput
   password: String!
-  privilege: String!
+  privilege: String
   Projects: ProjectCreateManyWithoutUserInput
-  reviewerThumbs: Int
+  RatedProjects: ProjectCreateManyWithoutRatedByInput
   ReviewList: ReviewCreateManyWithoutAuthorInput
   stripeId: String
   url: String
@@ -1125,14 +1101,24 @@ input UserCreateInput {
   userProfileImage: String
 }
 
-input UserCreateManyWithoutProjectsInput {
+input UserCreateManyWithoutDislikedReviewsInput {
   connect: [UserWhereUniqueInput!]
-  create: [UserCreateWithoutProjectsInput!]
+  create: [UserCreateWithoutDislikedReviewsInput!]
 }
 
-input UserCreateOneInput {
+input UserCreateManyWithoutLikedReviewsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutLikedReviewsInput!]
+}
+
+input UserCreateManyWithoutRatedProjectsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutRatedProjectsInput!]
+}
+
+input UserCreateOneWithoutProjectsInput {
   connect: UserWhereUniqueInput
-  create: UserCreateInput
+  create: UserCreateWithoutProjectsInput
 }
 
 input UserCreateOneWithoutReviewListInput {
@@ -1140,13 +1126,63 @@ input UserCreateOneWithoutReviewListInput {
   create: UserCreateWithoutReviewListInput
 }
 
+input UserCreateWithoutDislikedReviewsInput {
+  accountType: String
+  bio: String
+  email: String!
+  LikedReviews: ReviewCreateManyWithoutLikedByInput
+  password: String!
+  privilege: String
+  Projects: ProjectCreateManyWithoutUserInput
+  RatedProjects: ProjectCreateManyWithoutRatedByInput
+  ReviewList: ReviewCreateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String!
+  userProfileImage: String
+}
+
+input UserCreateWithoutLikedReviewsInput {
+  accountType: String
+  bio: String
+  DislikedReviews: ReviewCreateManyWithoutDislikedByInput
+  email: String!
+  password: String!
+  privilege: String
+  Projects: ProjectCreateManyWithoutUserInput
+  RatedProjects: ProjectCreateManyWithoutRatedByInput
+  ReviewList: ReviewCreateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String!
+  userProfileImage: String
+}
+
 input UserCreateWithoutProjectsInput {
   accountType: String
+  bio: String
+  DislikedReviews: ReviewCreateManyWithoutDislikedByInput
   email: String!
-  makerRating: Float
+  LikedReviews: ReviewCreateManyWithoutLikedByInput
   password: String!
-  privilege: String!
-  reviewerThumbs: Int
+  privilege: String
+  RatedProjects: ProjectCreateManyWithoutRatedByInput
+  ReviewList: ReviewCreateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String!
+  userProfileImage: String
+}
+
+input UserCreateWithoutRatedProjectsInput {
+  accountType: String
+  bio: String
+  DislikedReviews: ReviewCreateManyWithoutDislikedByInput
+  email: String!
+  LikedReviews: ReviewCreateManyWithoutLikedByInput
+  password: String!
+  privilege: String
+  Projects: ProjectCreateManyWithoutUserInput
   ReviewList: ReviewCreateManyWithoutAuthorInput
   stripeId: String
   url: String
@@ -1156,12 +1192,14 @@ input UserCreateWithoutProjectsInput {
 
 input UserCreateWithoutReviewListInput {
   accountType: String
+  bio: String
+  DislikedReviews: ReviewCreateManyWithoutDislikedByInput
   email: String!
-  makerRating: Float
+  LikedReviews: ReviewCreateManyWithoutLikedByInput
   password: String!
-  privilege: String!
+  privilege: String
   Projects: ProjectCreateManyWithoutUserInput
-  reviewerThumbs: Int
+  RatedProjects: ProjectCreateManyWithoutRatedByInput
   stripeId: String
   url: String
   username: String!
@@ -1176,20 +1214,18 @@ type UserEdge {
 enum UserOrderByInput {
   accountType_ASC
   accountType_DESC
+  bio_ASC
+  bio_DESC
   createdAt_ASC
   createdAt_DESC
   email_ASC
   email_DESC
   id_ASC
   id_DESC
-  makerRating_ASC
-  makerRating_DESC
   password_ASC
   password_DESC
   privilege_ASC
   privilege_DESC
-  reviewerThumbs_ASC
-  reviewerThumbs_DESC
   stripeId_ASC
   stripeId_DESC
   updatedAt_ASC
@@ -1218,6 +1254,20 @@ input UserScalarWhereInput {
   accountType_not_starts_with: String
   accountType_starts_with: String
   AND: [UserScalarWhereInput!]
+  bio: String
+  bio_contains: String
+  bio_ends_with: String
+  bio_gt: String
+  bio_gte: String
+  bio_in: [String!]
+  bio_lt: String
+  bio_lte: String
+  bio_not: String
+  bio_not_contains: String
+  bio_not_ends_with: String
+  bio_not_in: [String!]
+  bio_not_starts_with: String
+  bio_starts_with: String
   email: String
   email_contains: String
   email_ends_with: String
@@ -1246,14 +1296,6 @@ input UserScalarWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  makerRating: Float
-  makerRating_gt: Float
-  makerRating_gte: Float
-  makerRating_in: [Float!]
-  makerRating_lt: Float
-  makerRating_lte: Float
-  makerRating_not: Float
-  makerRating_not_in: [Float!]
   NOT: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   password: String
@@ -1284,14 +1326,6 @@ input UserScalarWhereInput {
   privilege_not_in: [String!]
   privilege_not_starts_with: String
   privilege_starts_with: String
-  reviewerThumbs: Int
-  reviewerThumbs_gt: Int
-  reviewerThumbs_gte: Int
-  reviewerThumbs_in: [Int!]
-  reviewerThumbs_lt: Int
-  reviewerThumbs_lte: Int
-  reviewerThumbs_not: Int
-  reviewerThumbs_not_in: [Int!]
   stripeId: String
   stripeId_contains: String
   stripeId_ends_with: String
@@ -1350,29 +1384,16 @@ input UserScalarWhereInput {
   userProfileImage_starts_with: String
 }
 
-input UserUpdateDataInput {
-  accountType: String
-  email: String
-  makerRating: Float
-  password: String
-  privilege: String
-  Projects: ProjectUpdateManyWithoutUserInput
-  reviewerThumbs: Int
-  ReviewList: ReviewUpdateManyWithoutAuthorInput
-  stripeId: String
-  url: String
-  username: String
-  userProfileImage: String
-}
-
 input UserUpdateInput {
   accountType: String
+  bio: String
+  DislikedReviews: ReviewUpdateManyWithoutDislikedByInput
   email: String
-  makerRating: Float
+  LikedReviews: ReviewUpdateManyWithoutLikedByInput
   password: String
   privilege: String
   Projects: ProjectUpdateManyWithoutUserInput
-  reviewerThumbs: Int
+  RatedProjects: ProjectUpdateManyWithoutRatedByInput
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   stripeId: String
   url: String
@@ -1382,11 +1403,10 @@ input UserUpdateInput {
 
 input UserUpdateManyDataInput {
   accountType: String
+  bio: String
   email: String
-  makerRating: Float
   password: String
   privilege: String
-  reviewerThumbs: Int
   stripeId: String
   url: String
   username: String
@@ -1395,27 +1415,50 @@ input UserUpdateManyDataInput {
 
 input UserUpdateManyMutationInput {
   accountType: String
+  bio: String
   email: String
-  makerRating: Float
   password: String
   privilege: String
-  reviewerThumbs: Int
   stripeId: String
   url: String
   username: String
   userProfileImage: String
 }
 
-input UserUpdateManyWithoutProjectsInput {
+input UserUpdateManyWithoutDislikedReviewsInput {
   connect: [UserWhereUniqueInput!]
-  create: [UserCreateWithoutProjectsInput!]
+  create: [UserCreateWithoutDislikedReviewsInput!]
   delete: [UserWhereUniqueInput!]
   deleteMany: [UserScalarWhereInput!]
   disconnect: [UserWhereUniqueInput!]
   set: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutProjectsInput!]
+  update: [UserUpdateWithWhereUniqueWithoutDislikedReviewsInput!]
   updateMany: [UserUpdateManyWithWhereNestedInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutProjectsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutDislikedReviewsInput!]
+}
+
+input UserUpdateManyWithoutLikedReviewsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutLikedReviewsInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutLikedReviewsInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutLikedReviewsInput!]
+}
+
+input UserUpdateManyWithoutRatedProjectsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutRatedProjectsInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutRatedProjectsInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutRatedProjectsInput!]
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -1423,11 +1466,11 @@ input UserUpdateManyWithWhereNestedInput {
   where: UserScalarWhereInput!
 }
 
-input UserUpdateOneRequiredInput {
+input UserUpdateOneRequiredWithoutProjectsInput {
   connect: UserWhereUniqueInput
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
+  create: UserCreateWithoutProjectsInput
+  update: UserUpdateWithoutProjectsDataInput
+  upsert: UserUpsertWithoutProjectsInput
 }
 
 input UserUpdateOneRequiredWithoutReviewListInput {
@@ -1437,13 +1480,63 @@ input UserUpdateOneRequiredWithoutReviewListInput {
   upsert: UserUpsertWithoutReviewListInput
 }
 
-input UserUpdateWithoutProjectsDataInput {
+input UserUpdateWithoutDislikedReviewsDataInput {
   accountType: String
+  bio: String
   email: String
-  makerRating: Float
+  LikedReviews: ReviewUpdateManyWithoutLikedByInput
   password: String
   privilege: String
-  reviewerThumbs: Int
+  Projects: ProjectUpdateManyWithoutUserInput
+  RatedProjects: ProjectUpdateManyWithoutRatedByInput
+  ReviewList: ReviewUpdateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String
+  userProfileImage: String
+}
+
+input UserUpdateWithoutLikedReviewsDataInput {
+  accountType: String
+  bio: String
+  DislikedReviews: ReviewUpdateManyWithoutDislikedByInput
+  email: String
+  password: String
+  privilege: String
+  Projects: ProjectUpdateManyWithoutUserInput
+  RatedProjects: ProjectUpdateManyWithoutRatedByInput
+  ReviewList: ReviewUpdateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String
+  userProfileImage: String
+}
+
+input UserUpdateWithoutProjectsDataInput {
+  accountType: String
+  bio: String
+  DislikedReviews: ReviewUpdateManyWithoutDislikedByInput
+  email: String
+  LikedReviews: ReviewUpdateManyWithoutLikedByInput
+  password: String
+  privilege: String
+  RatedProjects: ProjectUpdateManyWithoutRatedByInput
+  ReviewList: ReviewUpdateManyWithoutAuthorInput
+  stripeId: String
+  url: String
+  username: String
+  userProfileImage: String
+}
+
+input UserUpdateWithoutRatedProjectsDataInput {
+  accountType: String
+  bio: String
+  DislikedReviews: ReviewUpdateManyWithoutDislikedByInput
+  email: String
+  LikedReviews: ReviewUpdateManyWithoutLikedByInput
+  password: String
+  privilege: String
+  Projects: ProjectUpdateManyWithoutUserInput
   ReviewList: ReviewUpdateManyWithoutAuthorInput
   stripeId: String
   url: String
@@ -1453,26 +1546,38 @@ input UserUpdateWithoutProjectsDataInput {
 
 input UserUpdateWithoutReviewListDataInput {
   accountType: String
+  bio: String
+  DislikedReviews: ReviewUpdateManyWithoutDislikedByInput
   email: String
-  makerRating: Float
+  LikedReviews: ReviewUpdateManyWithoutLikedByInput
   password: String
   privilege: String
   Projects: ProjectUpdateManyWithoutUserInput
-  reviewerThumbs: Int
+  RatedProjects: ProjectUpdateManyWithoutRatedByInput
   stripeId: String
   url: String
   username: String
   userProfileImage: String
 }
 
-input UserUpdateWithWhereUniqueWithoutProjectsInput {
-  data: UserUpdateWithoutProjectsDataInput!
+input UserUpdateWithWhereUniqueWithoutDislikedReviewsInput {
+  data: UserUpdateWithoutDislikedReviewsDataInput!
   where: UserWhereUniqueInput!
 }
 
-input UserUpsertNestedInput {
-  create: UserCreateInput!
-  update: UserUpdateDataInput!
+input UserUpdateWithWhereUniqueWithoutLikedReviewsInput {
+  data: UserUpdateWithoutLikedReviewsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutRatedProjectsInput {
+  data: UserUpdateWithoutRatedProjectsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithoutProjectsInput {
+  create: UserCreateWithoutProjectsInput!
+  update: UserUpdateWithoutProjectsDataInput!
 }
 
 input UserUpsertWithoutReviewListInput {
@@ -1480,9 +1585,21 @@ input UserUpsertWithoutReviewListInput {
   update: UserUpdateWithoutReviewListDataInput!
 }
 
-input UserUpsertWithWhereUniqueWithoutProjectsInput {
-  create: UserCreateWithoutProjectsInput!
-  update: UserUpdateWithoutProjectsDataInput!
+input UserUpsertWithWhereUniqueWithoutDislikedReviewsInput {
+  create: UserCreateWithoutDislikedReviewsInput!
+  update: UserUpdateWithoutDislikedReviewsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutLikedReviewsInput {
+  create: UserCreateWithoutLikedReviewsInput!
+  update: UserUpdateWithoutLikedReviewsDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutRatedProjectsInput {
+  create: UserCreateWithoutRatedProjectsInput!
+  update: UserUpdateWithoutRatedProjectsDataInput!
   where: UserWhereUniqueInput!
 }
 
@@ -1502,6 +1619,23 @@ input UserWhereInput {
   accountType_not_starts_with: String
   accountType_starts_with: String
   AND: [UserWhereInput!]
+  bio: String
+  bio_contains: String
+  bio_ends_with: String
+  bio_gt: String
+  bio_gte: String
+  bio_in: [String!]
+  bio_lt: String
+  bio_lte: String
+  bio_not: String
+  bio_not_contains: String
+  bio_not_ends_with: String
+  bio_not_in: [String!]
+  bio_not_starts_with: String
+  bio_starts_with: String
+  DislikedReviews_every: ReviewWhereInput
+  DislikedReviews_none: ReviewWhereInput
+  DislikedReviews_some: ReviewWhereInput
   email: String
   email_contains: String
   email_ends_with: String
@@ -1530,14 +1664,9 @@ input UserWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  makerRating: Float
-  makerRating_gt: Float
-  makerRating_gte: Float
-  makerRating_in: [Float!]
-  makerRating_lt: Float
-  makerRating_lte: Float
-  makerRating_not: Float
-  makerRating_not_in: [Float!]
+  LikedReviews_every: ReviewWhereInput
+  LikedReviews_none: ReviewWhereInput
+  LikedReviews_some: ReviewWhereInput
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   password: String
@@ -1571,14 +1700,9 @@ input UserWhereInput {
   Projects_every: ProjectWhereInput
   Projects_none: ProjectWhereInput
   Projects_some: ProjectWhereInput
-  reviewerThumbs: Int
-  reviewerThumbs_gt: Int
-  reviewerThumbs_gte: Int
-  reviewerThumbs_in: [Int!]
-  reviewerThumbs_lt: Int
-  reviewerThumbs_lte: Int
-  reviewerThumbs_not: Int
-  reviewerThumbs_not_in: [Int!]
+  RatedProjects_every: ProjectWhereInput
+  RatedProjects_none: ProjectWhereInput
+  RatedProjects_some: ProjectWhereInput
   ReviewList_every: ReviewWhereInput
   ReviewList_none: ReviewWhereInput
   ReviewList_some: ReviewWhereInput

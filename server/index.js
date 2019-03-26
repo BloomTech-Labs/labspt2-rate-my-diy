@@ -11,6 +11,8 @@ const Query = prismaObjectType({
   name: 'Query',
   definition(t) {t.prismaFields(['*'])}
 })
+
+
 const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {

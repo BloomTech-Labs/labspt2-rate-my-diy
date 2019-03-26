@@ -4,6 +4,7 @@ import Navigation from "../../reactRouter/reactRouter";
 import LandingPage from '../../views/landingPage/landingPage'
 import SignInPage from "../signIn/signIn";
 import SignUpPage from "../signUp/signUp";
+import SearchPage from "../../views/searchPage/searchPage"
 import PasswordForget from "../../components/passwordForget/passwordForget";
 import HomePage from "../../views/homePage/homePage";
 import AccountPage from "../account/account";
@@ -14,7 +15,6 @@ import { withFirebase } from "../firebase/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import Footer from '../footer/footer';
-import Stripe from '../stripe/stripe'
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +48,7 @@ class App extends Component {
           <Route path={ROUTES.HOME} component={HomePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
+          <Route path={ROUTES.SEARCH} component={SearchPage} />
           <Route path={ROUTES.REVIEW_LIST} component={ReviewList} />
           <Route path={ROUTES.PROJECT_LIST} component={ProjectList} />
           <Route path={ROUTES.FOOTER} component={Footer} />
