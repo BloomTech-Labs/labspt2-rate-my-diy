@@ -146,12 +146,13 @@ class Home extends Component {
 							return (
 								<div className='card-container'>
 									{sortedMakers.map(
-										({ id, username, userProfileImage }) => (
+										({ id, username, userProfileImage, averageRating }) => (
 											<Featured
 												key={id}
 												username={username}
 												image={userProfileImage}
 												clickHandler={this.clickUserHandler}
+												rating={averageRating}
 											/>
 										)
 									)}
