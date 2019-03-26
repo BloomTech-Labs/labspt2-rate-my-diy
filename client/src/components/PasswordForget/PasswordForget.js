@@ -20,8 +20,8 @@ class PasswordForgetBase extends Component {
 		this.state = { ...INITIAL_STATE };
 	}
 	onSubmit = (e) => {
-    const { email } = this.state;
-    e.preventDefault();
+		const { email } = this.state;
+		e.preventDefault();
 		this.props.firebase
 			.doPasswordReset(email)
 			.then(() => {
@@ -30,7 +30,6 @@ class PasswordForgetBase extends Component {
 			.catch((error) => {
 				this.setState({ error });
 			});
-	
 	};
 
 	onChange = (event) => {
