@@ -17,11 +17,13 @@ class SearchBar extends Component {
 
   componentDidMount() {
     var options = {
-      keys: ['username'],
+      keys: ['Projects.name'],
     };
     var fuse = new Fuse(this.props.users, options)
+
+    console.log(this.props.users);
     
-  console.log(fuse.search('lucy'))
+  console.log(fuse.search('Melinda'))
   }
 
   componentWillReceiveProps(nextProps) {
