@@ -21,9 +21,8 @@ class SearchBar extends Component {
     };
     var fuse = new Fuse(this.props.users, options)
 
-    console.log(this.props.users);
     
-  console.log(fuse.search('Melinda'))
+    console.log(fuse.search('Melinda'))
   }
 
   componentWillReceiveProps(nextProps) {

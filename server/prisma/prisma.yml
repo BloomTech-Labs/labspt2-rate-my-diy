@@ -1,16 +1,22 @@
 # The HTTP endpoint for your Prisma API
 #endpoint: ''
 
-endpoint: https://ratemydiy-6af9c6a6b8.herokuapp.com/ratemydiy/dev
+#endpoint: ''
+endpoint: https://labspt2rmd-1b9679881a.herokuapp.com/labspt2rmd/dev
 
-
-# endpoint: https://labspt2-874e014ab3.herokuapp.com/RMDserver/dev
 
 
 # Add any other deployment links under here to keep it clean
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
+
+# disables required authentication
+disableAuth: true
+
+#database seeding
+seed:
+  import: seed.graphql
 
 # Specifies language & location for the generated Prisma client
 generate:

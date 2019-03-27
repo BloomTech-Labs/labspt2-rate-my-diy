@@ -1,0 +1,776 @@
+mutation {
+  user1: createUser(
+    data: {
+      username: "asdfsd"
+      password: "abc123"
+      email: "asldkf@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Sarah's 1st Project"
+            category: "random"
+            timestamp: "2019-02-01"
+            key: "1"
+            rating: 3.6
+          }
+          {
+            name: "Sarah's 2nd Project"
+            category: "home improvement"
+            timestamp: "2019-02-15"
+            key: "2"
+            rating: 2.3
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user2: createUser(
+    data: {
+      username: "sldfksd"
+      password: "abc123"
+      email: "lkjwe@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Joe's 1st Project"
+            category: "random"
+            timestamp: "2018-02-01"
+            key: "3"
+            rating: 4.1
+          }
+          {
+            name: "Joe's 2nd Project"
+            category: "kitchen"
+            timestamp: "2018-05-15"
+            key: "4"
+            rating: 4.7
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user3: createUser(
+    data: {
+      username: "slekrj"
+      password: "abc123"
+      email: "riowjw@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Mark's 1st Project"
+            category: "garage"
+            timestamp: "2018-07-01"
+            key: "5"
+            rating: 2.5
+          }
+          {
+            name: "Mark's 2nd Project"
+            category: "handicrafts"
+            timestamp: "2019-01-22"
+            key: "6"
+            rating: 4.3
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user4: createUser(
+    data: {
+      username: "lkrjawe"
+      password: "abc123"
+      email: "orije@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Bo's 1st Project"
+            category: "web development"
+            timestamp: "2018-01-17"
+            key: "7"
+            rating: 3.9
+          }
+          {
+            name: "Bo's 2nd Project"
+            category: "cocktails"
+            timestamp: "2018-03-18"
+            key: "8"
+            rating: 4.4
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user5: createUser(
+    data: {
+      username: "lkrwetir"
+      password: "abc123"
+      email: "toieja@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Timmy's 1st Project"
+            category: "self improvement"
+            timestamp: "2018-01-21"
+            key: "9"
+            rating: 1.2
+          }
+          {
+            name: "Timmy's 2nd Project"
+            category: "home improvement"
+            timestamp: "2018-02-12"
+            key: "10"
+            rating: 2.7
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user6: createUser(
+    data: {
+      username: "toigjewe"
+      password: "abc123"
+      email: "rtoijge@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Rhonda's 1st Project"
+            category: "kitchen"
+            timestamp: "2018-07-01"
+            key: "11"
+            rating: 4.2
+          }
+          {
+            name: "Rhonda's 2nd Project"
+            category: "handicrafts"
+            timestamp: "2019-01-15"
+            key: "12"
+            rating: 3.3
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user7: createUser(
+    data: {
+      username: "oiwjoeawd"
+      password: "abc123"
+      email: "rglklsajfeee@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Yanelli's 1st Project"
+            category: "music"
+            timestamp: "2018-06-04"
+            key: "13"
+            rating: 4.7
+
+          }
+          {
+            name: "Yanelli's 2nd Project"
+            category: "cocktails"
+            timestamp: "2018-07-02"
+            key: "14"
+            rating: 2.2
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user8: createUser(
+    data: {
+      username: "wlefjwe"
+      password: "abc123"
+      email: "lrkgjwaelw@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Ashley's 1st Project"
+            category: "kid crafts"
+            timestamp: "2019-01-01"
+            key: "15"
+            rating: 4.1
+          }
+          {
+            name: "Ashley's 2nd Project"
+            category: "home improvement"
+            timestamp: "2019-02-24"
+            key: "16"
+            rating: 4.5
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user9: createUser(
+    data: {
+      username: "askldfjewavvv"
+      password: "abc123"
+      email: "glrijad@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Elmer's 1st Project"
+            category: "random"
+            timestamp: "2019-01-09"
+            key: "17"
+            rating: 3.3
+          }
+          {
+            name: "Elmer's 2nd Project"
+            category: "kid crafts"
+            timestamp: "2019-03-01"
+            key: "18"
+            rating: 3.4
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user10: createUser(
+    data: {
+      username: "lgrjraweks"
+      password: "abc123"
+      email: "tlirjerss@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Eric's 1st Project"
+            category: "music"
+            timestamp: "2019-01-15"
+            key: "19"
+            rating: 1.7
+          }
+          {
+            name: "Eric's 2nd Project"
+            category: "sewing"
+            timestamp: "2019-03-04"
+            key: "20"
+            rating: 2.2
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user11: createUser(
+    data: {
+      username: "lrijfwwa"
+      password: "abc123"
+      email: "dlgiawefs@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Derek's 1st Project"
+            category: "music"
+            timestamp: "2018-06-01"
+            key: "21"
+            rating: 4.1
+          }
+          {
+            name: "Derek's 2nd Project"
+            category: "kitchen"
+            timestamp: "2018-08-13"
+            key: "22"
+            rating: 3.6
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user12: createUser(
+    data: {
+      username: "itbdsldvf"
+      password: "abc123"
+      email: "tijaecvvdsd@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Melinda's 1st Project"
+            category: "dance"
+            timestamp: "2019-03-01"
+            key: "23"
+            rating: 3.8
+          }
+          {
+            name: "Melinda's 2nd Project"
+            category: "kitchen"
+            timestamp: "2019-03-18"
+            key: "24"
+            rating: 3.9
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user13: createUser(
+    data: {
+      username: "dlgirassdweeww"
+      password: "abc123"
+      email: "adlkfsvvwket@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Elsa's 1st Project"
+            category: "music"
+            timestamp: "2019-02-05"
+            key: "25"
+            rating: 4.8
+          }
+          {
+            name: "Elsa's 2nd Project"
+            category: "home improvement"
+            timestamp: "2019-02-18"
+            key: "26"
+            rating: 3.7
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user14: createUser(
+    data: {
+      username: "dglawerwdfvvyeiwq"
+      password: "abc123"
+      email: "tgiasccvdew2@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Robert's 1st Project"
+            category: "random"
+            timestamp: "2018-05-08"
+            key: "27"
+            rating: 2.4
+          }
+          {
+            name: "Robert's 2nd Project"
+            category: "self improvement"
+            timestamp: "2018-09-11"
+            key: "28"
+            rating: 2.1
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  user15: createUser(
+    data: {
+      username: "yoirewowd"
+      password: "abc123"
+      email: "lgrakesl@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Amy's 1st Project"
+            category: "music"
+            timestamp: "2019-02-04"
+            key: "29"
+            rating: 2.9
+          }
+          {
+            name: "Amy's 2nd Project"
+            category: "dance"
+            timestamp: "2019-03-20"
+            key: "30"
+            rating: 3.3
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+  review1: createReview(
+    data: {
+      title: "Nice Job!"
+      rKey: "1"
+      text: "I really like how you did this."
+      editedAt: "2019-02-05"
+      thumbsUp: 4
+      thumbsDown: 1
+      Author: { connect: { username: "asdfsd" } }
+      ProjectReviewed: { connect: { key: "29" } }
+    }
+  ) {
+    id
+  }
+  review2: createReview(
+    data: {
+      title: "Wicked"
+      rKey: "2"
+      text: "You're a rockstar!"
+      editedAt: "2019-03-01"
+      thumbsUp: 8
+      thumbsDown: 2
+      Author: { connect: { username: "asdfsd" } }
+      ProjectReviewed: { connect: { key: "16" } }
+    }
+  ) {
+    id
+  }
+  review3: createReview(
+    data: {
+      title: "Well Done"
+      rKey: "3"
+      text: "I'm amazed - truly."
+      editedAt: "2019-03-19"
+      thumbsUp: 2
+      thumbsDown: 0
+      Author: { connect: { username: "sldfksd" } }
+      ProjectReviewed: { connect: { key: "24" } }
+    }
+  ) {
+    id
+  }
+  review4: createReview(
+    data: {
+      title: "DiS iS TrASSh"
+      rKey: "4"
+      text: "Thank u, next!"
+      editedAt: "2019-01-12"
+      thumbsUp: 1
+      thumbsDown: 6
+      Author: { connect: { username: "sldfksd" } }
+      ProjectReviewed: { connect: { key: "17" } }
+    }
+  ) {
+    id
+  }
+  review5: createReview(
+    data: {
+      title: "Teach Me How to Do This!"
+      rKey: "5"
+      text: "Notice me senpai"
+      editedAt: "2019-02-19"
+      thumbsUp: 2
+      thumbsDown: 3
+      Author: { connect: { username: "slekrj" } }
+      ProjectReviewed: { connect: { key: "25" } }
+    }
+  ) {
+    id
+  }
+  review6: createReview(
+    data: {
+      title: "This is nice"
+      rKey: "6"
+      text: "...real nice"
+      editedAt: "2019-01-11"
+      thumbsUp: 3
+      thumbsDown: 2
+      Author: { connect: { username: "slekrj" } }
+      ProjectReviewed: { connect: { key: "21" } }
+    }
+  ) {
+    id
+  }
+  review7: createReview(
+    data: {
+      title: "Noob"
+      rKey: "7"
+      text: "Why are you even posting a tutorial about something you know nothing about?"
+      editedAt: "2019-07-14"
+      thumbsUp: 4
+      thumbsDown: 6
+      Author: { connect: { username: "lkrjawe" } }
+      ProjectReviewed: { connect: { key: "14" } }
+    }
+  ) {
+    id
+  }
+  review8: createReview(
+    data: {
+      title: "Wow"
+      rKey: "8"
+      text: "You gotta create more of these."
+      editedAt: "2019-04-01"
+      thumbsUp: 6
+      thumbsDown: 2
+      Author: { connect: { username: "lkrjawe" } }
+      ProjectReviewed: { connect: { key: "19" } }
+    }
+  ) {
+    id
+  }
+  updateUser1: updateUser(data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "3"}
+        {rKey: "4"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "5"}
+        {rKey: "8"}
+      ]
+    }
+    RatedProjects: {
+      connect: [
+        {key: "29"}
+        {key: "16"}
+      ]
+    }
+  }
+  where: {username: "asdfsd"}){
+    id
+  }
+  updateUser2: updateUser(data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "2"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "7"}
+        {rKey: "5"}
+      ]
+    }
+    RatedProjects: {
+      connect: [
+        {key: "24"}
+        {key: "17"}
+      ]
+    }
+    }
+  where: {username: "sldfksd"}){
+    id
+  }
+  updateUser3: updateUser(data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "2"}
+        {rKey: "1"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+        {rKey: "7"}
+      ]
+    }
+    RatedProjects: {
+      connect: [
+        {key: "25"}
+        {key: "21"}
+      ]
+    }
+  }
+  where: {username: "slekrj"}){
+    id
+  }
+  updateUser4: updateUser(data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "2"}
+        {rKey: "3"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+        {rKey: "1"}
+      ]
+    }
+    RatedProjects: {
+      connect: [
+        {key: "14"}
+        {key: "19"}
+      ]
+    }
+  }
+  where: {username: "lkrjawe"}){
+    id
+  }
+  updateUser5: updateUser(where: {username: "lkrwetir"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "2"}
+        {rKey: "8"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser6: updateUser(where: {username: "toigjewe"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "2"}
+      ]
+    }
+  }){
+    id
+  }
+updateUser7: updateUser(where: {username: "oiwjoeawd"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "1"}
+        {rKey: "7"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "2"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser8: updateUser(where: {username: "wlefjwe"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "1"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+        {rKey: "7"}
+        {rKey: "2"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser9: updateUser(where: {username: "askldfjewavvv"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "2"}
+        {rKey: "6"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "7"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser10: updateUser(where: {username: "lgrjraweks"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "2"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "7"}
+        {rKey: "6"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser11: updateUser(where: {username: "lrijfwwa"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "6"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "7"}
+        {rKey: "5"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser12: updateUser(where: {username: "itbdsldvf"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "7"}
+        {rKey: "2"}
+        {rKey: "6"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser13: updateUser(where: {username: "dlgirassdweeww"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "7"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "1"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser14: updateUser(where: {username: "dglawerwdfvvyeiwq"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "7"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "4"}
+      ]
+    }
+  }){
+    id
+  }
+  updateUser15: updateUser(where: {username: "yoirewowd"} data: {
+    LikedReviews: {
+      connect: [
+        {rKey: "8"}
+        {rKey: "5"}
+      ]
+    }
+    DislikedReviews: {
+      connect: [
+        {rKey: "6"}
+      ]
+    }
+  }){
+    id
+  }
+}
