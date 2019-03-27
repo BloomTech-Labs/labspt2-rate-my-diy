@@ -15,11 +15,9 @@ const withAuthentication = Component => {
                 authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
             });
         }
-        componentWillUnmount(){
-            this.listener();
-        }
+      
         render(){
-            return <Component {...this.props}/>
+            return <Component authUser={this.state}{...this.props}/>
         }
     }
     return withFirebase(WithAuthentication);
