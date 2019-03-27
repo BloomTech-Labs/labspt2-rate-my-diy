@@ -12,10 +12,10 @@ class Home extends Component {
 	constructor() {
 		super();
 		this.state = {
-			userClicked: null
+			userClicked: null,
 		};
 	}
-	
+
 	//This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
 	clickUserHandler = (username) => {
 		this.setState({ userClicked: username });
@@ -41,7 +41,32 @@ class Home extends Component {
 		return (
 			<div>
 				<Header />
-				<SearchBar userClicked={this.state.userClicked} />
+				<Query
+					query={gql`
+						{
+							users(orderBy: username_ASC) {
+								id
+								username
+								userProfileImage
+								Projects {
+      								name
+      								rating
+      								timestamp
+    							}
+							}
+						}
+					`}
+				>
+					{({ loading, error, data }) => {
+						if (loading) return <p>Loading...</p>;
+						if (error) return <p>Error :(</p>;
+
+						return (
+							<SearchBar userClicked={this.state.userClicked} users={data.users} />
+						)	
+					}}
+				</Query>
+				
 				<div id='home-container'>
 					<h1>Featured Projects</h1>
 					<Query

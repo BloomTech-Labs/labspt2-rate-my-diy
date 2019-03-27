@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from '../../LoginPopUp/LoginPopUp'
+import Fuse from 'fuse.js';
 import "./Searchbar.scss";
 
 class SearchBar extends Component {
@@ -14,10 +15,21 @@ class SearchBar extends Component {
     };
   }
 
+  componentDidMount() {
+    var options = {
+      keys: ['username'],
+    };
+    var fuse = new Fuse(this.props.users, options)
+    
+  console.log(fuse.search('lucy'))
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
     }
+
+    
   }
 
   changeHandler = e => {
