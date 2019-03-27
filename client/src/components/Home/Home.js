@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './Searchbar/Searchbar';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import {withAuthentication} from '../Session/session';
 
 import Featured from './Featured/Featured';
 import './Home.scss';
@@ -21,6 +22,7 @@ class Home extends Component {
 	}
 
 	render() {
+    console.log(this.props, 'home page props')
 		return (
 			<div>
 				<SearchBar userClicked={this.state.userClicked} />
@@ -165,4 +167,4 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default withAuthentication (Home);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import * as ROUTES from './constants/routes';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
@@ -9,13 +8,14 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import PasswordForget from './components/PasswordForget/PasswordForget';
 import Footer from './components/Footer/Footer';
-import Account from './components/Account/Account';
+import Account from './components/Account/Account'
 import PasswordChange from './components/PasswordChange/PasswordChange';
 import {withAuthentication} from './components/Session/session';
 
 class App extends Component {
 	render() {
-		return (
+    console.log('props', this.props)
+    return (
 			<Router>
 				<div>
 					<Navigation />

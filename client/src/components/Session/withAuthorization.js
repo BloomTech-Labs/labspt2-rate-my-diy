@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 import { withFirebase } from '../Firebase/Exports';
+import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 import AuthUserContext from './context';
-const withAuthorization = condition => (Component) => {
+
+const withAuthorization = (condition) => (Component) => {
 	class WithAuthorization extends React.Component {
 		componentDidMount() {
 			this.listener = this.props.firebase.auth.onAuthStateChanged((authUser) => {
@@ -13,9 +14,11 @@ const withAuthorization = condition => (Component) => {
 				}
 			});
 		}
+
 		componentWillUnmount() {
 			this.listener();
 		}
+
 		render() {
 			return (
 				<AuthUserContext.Consumer>
@@ -24,6 +27,8 @@ const withAuthorization = condition => (Component) => {
 			);
 		}
 	}
-	return compose(withRouter, withFirebase, WithAuthorization);
+
+	return compose(withRouter, withFirebase)(WithAuthorization);
 };
+
 export default withAuthorization;

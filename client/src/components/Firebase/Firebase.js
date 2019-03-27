@@ -60,8 +60,8 @@ class Firebase {
   //  })
   // }
 
-  onAuthListener = (next, fallback) =>
-    this.auth.onAuthStateChanged(authUser => {
+  onAuthStateChanged = (next, fallback) =>
+    this.auth.addAuthStateListener(authUser => {
       if (authUser) {
         this.user(authUser.uid)
           .get()
