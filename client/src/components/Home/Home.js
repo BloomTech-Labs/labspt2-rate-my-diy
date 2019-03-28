@@ -52,6 +52,8 @@ class Home extends Component {
       								name
       								rating
       								timestamp
+									category
+									id  
     							}
 							}
 						}
