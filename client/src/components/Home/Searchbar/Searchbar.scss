@@ -1,15 +1,15 @@
 .searchBar {
-	margin: auto;
 	display: flex;
-	justify-content: space-between;
-	width: 60%;
+	margin: 0 auto;
+	width: 20%;
+	padding: 50px 0;
 	.searchSpan {
-		border: 2px solid black;
+		border: 2px solid #bdc3c7;
 		border-radius: 25px;
-		padding: 2px;
-		margin-left: 4rem;
-		margin-top: 2rem;
-		width: 70%;
+		padding: 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
 	}
 	input {
 		border: none;
@@ -19,9 +19,10 @@
 		-moz-box-shadow: none;
 		box-shadow: none;
 	}
-	button {
-		width: 20%;
-		margin-right: 4rem;
-		margin-left: 2rem;
+
+	.searchButton {
+		border: 2px solid #bdc3c7;
+		border-radius: 25px;
 	}
+	
 }

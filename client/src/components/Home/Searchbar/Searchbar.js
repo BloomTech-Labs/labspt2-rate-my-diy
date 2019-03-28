@@ -37,19 +37,18 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchBar">
-        <form onSubmit={this.handleSubmit}>
+      <div>
+        <form onSubmit={this.handleSubmit} className="searchBar">
           <div className="searchSpan">
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faSearch} className="icon" />
             <input
               type="text"
               onChange={this.changeHandler}
               value={this.state.text}
             />
           </div>
-          <input type="submit" value="Search" />
+          <input className="searchButton" type="submit" value="Search" />
         </form>
-        {/* will need to be replaced with Button component/styling when that file is completed */}
 
         <LoginPopup
           show={this.state.displayPopUp}
