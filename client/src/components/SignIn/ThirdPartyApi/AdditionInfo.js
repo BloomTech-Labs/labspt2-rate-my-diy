@@ -5,13 +5,14 @@
 4. .then() send the users info to Prisma 
 */
 
+
 import React, { Component } from 'react'
 
  class AdditionInfo extends Component {
   render() {
     return (
       <div>
-        
+        <h1>WE NEED MORE INFO</h1>
       </div>
     )
   }

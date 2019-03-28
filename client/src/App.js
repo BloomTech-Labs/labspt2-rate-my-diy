@@ -15,7 +15,7 @@ import AdditionInfo from './components/SignIn/ThirdPartyApi/AdditionInfo';
 
 class App extends Component {
 	render() {
-    console.log('props', this.props)
+    // console.log('props', this.props)
     return (
 			<Router>
 				<div>

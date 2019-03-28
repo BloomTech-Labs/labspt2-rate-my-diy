@@ -21,16 +21,26 @@ class SignInGithubBase extends Component {
   }
   onSubmit = event => {
     this.props.firebase
-      .doSignInWithGithub()
+      .doSignInWithGithub()    
+      // console.log(this.props, 'home page props')
       .then(socialAuthUser => {
-        console.log(socialAuthUser, 'response from gitHub')
-        return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
+       console.log('response from gitHub:', socialAuthUser,)
+       var userBooleanValue = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser)
+       console.log('userBooleanValue', userBooleanValue)
+       while (userBooleanValue) {
+        /* userBooleanValue variable is set to the isNewUser key on the GH object,
+         if that value === true, then push the route to more info page?
+        */ 
+        // We could use if-else do-while or switch statement instead of while
+        this.props.history.push(ROUTES.MORE_INFO)
+       }
+         return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
           roles: []
-        });
-      })
-      .then(() => {
+         });
+        })
+        .then((socialAuthUser) => {
         return this.props.history.push(ROUTES.HOME);
       })
       .catch(err => {

@@ -39,7 +39,7 @@ class Home extends Component {
 	}
 
 	render() {
-    console.log(this.props, 'home page props')
+    // console.log(this.props, 'home page props')
 		return (
 			<div>
 				<Header />
