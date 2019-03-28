@@ -15,16 +15,6 @@ class SearchBar extends Component {
     };
   }
 
-  componentDidMount() {
-    var options = {
-      keys: ['Projects.name'],
-    };
-    var fuse = new Fuse(this.props.users, options)
-
-    
-    console.log(fuse.search('Melinda'))
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
