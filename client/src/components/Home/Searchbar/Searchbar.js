@@ -18,9 +18,7 @@ class SearchBar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
-  }
-
-    
+    }
   }
 
   changeHandler = e => {
@@ -55,6 +53,16 @@ class SearchBar extends Component {
     const options = {
       keys: [
         'username'
+      ]
+    }
+    const fuse = new Fuse(this.props.users, options);
+    return fuse.search(this.state.text);
+  }
+
+  searchProjectOrReview = (filter) => {
+    const options = {
+      keys: [
+        `${filter}.name`
       ]
     }
     const fuse = new Fuse(this.props.users, options);
