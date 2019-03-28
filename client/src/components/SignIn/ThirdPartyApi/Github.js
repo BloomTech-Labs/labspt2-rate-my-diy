@@ -23,7 +23,8 @@ class SignInGithubBase extends Component {
     this.props.firebase
       .doSignInWithGithub()
       .then(socialAuthUser => {
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
+        console.log(socialAuthUser, 'response from gitHub')
+        return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
           roles: []
