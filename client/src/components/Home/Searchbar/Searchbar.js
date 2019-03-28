@@ -28,7 +28,7 @@ class SearchBar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
-    }
+  }
 
     
   }
@@ -39,14 +39,25 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.state.isLoggedIn
-      ? this.setState({ displayPopUp: false })
-      : this.setState({ displayPopUp: true });
+    // this.state.isLoggedIn
+    //   ? this.setState({ displayPopUp: false })
+    //   : this.setState({ displayPopUp: true });
+    this.searchAll();
   };
 
   closePopUp = () => {
     this.setState({ displayPopUp: false });
   };
+
+  searchAll = () => {
+    const options = {
+      keys: ['Projects.name'],
+    };
+
+    const fuse = new Fuse(this.props.users, options);
+
+    console.log(fuse.search(this.state.text));
+  }
 
   render() {
     return (
