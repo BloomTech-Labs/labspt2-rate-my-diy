@@ -46,6 +46,9 @@ class SignInGithubBase extends Component {
      this.props.history.push(ROUTES.MORE_INFO)
      
     }
+    else {
+     this.props.history.push(ROUTES.HOME)
+    }
    })
    .then((socialAuthUser) => {
     // If user isn't new, userBooleanValue should evaluate to false on line 41, and then the code should skip to *here*,
@@ -55,9 +58,6 @@ class SignInGithubBase extends Component {
      email: socialAuthUser.additionalUserInfo.profile.email,
      roles: []
     });
-   })
-   .then((socialAuthUser) => {
-    return this.props.history.push(ROUTES.HOME);
    })
    .catch(err => {
     if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
