@@ -29,6 +29,12 @@ class SignInGithubBase extends Component {
    error: null
   };
  }
+
+ setError = (errVal) => {
+  this.setState({
+   errVal
+  })
+ }
  onSubmit = event => {
   this.props.firebase
    .doSignInWithGithub()
@@ -47,7 +53,7 @@ class SignInGithubBase extends Component {
      
     }
     else {
-     this.props.
+     this.props.history.push(ROUTES.HOME)
     }
    })
    .then((socialAuthUser) => {
@@ -66,9 +72,7 @@ class SignInGithubBase extends Component {
     if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
      err.message = ERROR_MSG_ACCOUNT_EXISTS;
     }
-    this.setState({
-     err
-    });
+    this.setError(err)
    });
   event.preventDefault();
  };
