@@ -11,7 +11,8 @@ class SearchBar extends Component {
     this.state = {
       text: " search",
       isLoggedIn: false,
-      displayPopUp: false
+      displayPopUp: false,
+      option: null
     };
   }
 
@@ -30,41 +31,38 @@ class SearchBar extends Component {
     // this.state.isLoggedIn
     //   ? this.setState({ displayPopUp: false })
     //   : this.setState({ displayPopUp: true });
-    this.searchAll()
+    console.log(this.search(this.state.option));
   };
 
   closePopUp = () => {
     this.setState({ displayPopUp: false });
   };
 
-  searchAll = () => {
-    const options = {
-      keys: [
-        'username',
-        'Projects.name',
-        'Projects.category'
-      ],
-    };
-    const fuse = new Fuse(this.props.users, options);
-    console.log(fuse.search(this.state.text));
-  }
+  search = (option) => {
+    let options = {}
 
-  searchByUser = () => {
-    const options = {
-      keys: [
-        'username'
-      ]
+    if(option === 'user') {
+      options = {
+        keys: [
+          'username'
+        ]
+      }
+    } else if (option === 'project' || option === 'review') {
+      options = {
+        keys: [
+          `${option}.name`
+        ]
+      }
+    } else {
+      options = {
+        keys: [
+          'username',
+          'Projects.name',
+          'Projects.category'
+        ],
+      };
     }
-    const fuse = new Fuse(this.props.users, options);
-    return fuse.search(this.state.text);
-  }
 
-  searchProjectOrReview = (filter) => {
-    const options = {
-      keys: [
-        `${filter}.name`
-      ]
-    }
     const fuse = new Fuse(this.props.users, options);
     return fuse.search(this.state.text);
   }
