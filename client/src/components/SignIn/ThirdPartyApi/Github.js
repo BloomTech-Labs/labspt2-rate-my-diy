@@ -47,7 +47,7 @@ class SignInGithubBase extends Component {
      
     }
     else {
-     this.props.history.push(ROUTES.HOME)
+     this.props.
     }
    })
    .then((socialAuthUser) => {
@@ -58,6 +58,9 @@ class SignInGithubBase extends Component {
      email: socialAuthUser.additionalUserInfo.profile.email,
      roles: []
     });
+   })
+   .then((socialAuthUser) => {
+    return this.props.history.push(ROUTES.HOME);
    })
    .catch(err => {
     if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -73,16 +76,11 @@ class SignInGithubBase extends Component {
   const {
    error
   } = this.state;
-  return ( <
-   form onSubmit = {
-    this.onSubmit
-   } >
-   <
-   button type = "submit" > Sign In with Github < /button> {
-    error && < p > {
-      error.message
-     } < /p>} <
-     /form>
+  return ( 
+  <form onSubmit = {this.onSubmit}>
+   <button type = "submit"> Sign In with Github </button> {
+    error && <p> {error.message} </p>} 
+     </form>
    );
   }
  }
