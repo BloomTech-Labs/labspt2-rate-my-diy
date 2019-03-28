@@ -51,7 +51,11 @@ class SearchBar extends Component {
 
   searchAll = () => {
     const options = {
-      keys: ['Projects.name'],
+      keys: [
+        'username',
+        'Projects.name',
+        'Projects.category'
+      ],
     };
 
     const fuse = new Fuse(this.props.users, options);
