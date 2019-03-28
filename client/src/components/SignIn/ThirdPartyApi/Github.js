@@ -34,7 +34,8 @@ class SignInGithubBase extends Component {
         // We could use if-else do-while or switch statement instead of while
         this.props.history.push(ROUTES.MORE_INFO)
        }
-         return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
+      })
+         .then ( (socialAuthUser)=> {return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
           roles: []
