@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Account from './components/Account/Account'
 import PasswordChange from './components/PasswordChange/PasswordChange';
 import {withAuthentication} from './components/Session/session';
+import AdditionInfo from './components/SignIn/ThirdPartyApi/AdditionInfo';
 
 class App extends Component {
 	render() {
@@ -25,7 +26,8 @@ class App extends Component {
 					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
 					<Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
 					<Route path={ROUTES.ACCOUNT} component={Account} />
-					<Route path={ROUTES.FOOTER} component={Footer} />
+          <Route path={ROUTES.FOOTER} component={Footer} />
+          <Route path={ROUTES.MORE_INFO} component={AdditionInfo}/>
 				</div>
 			</Router>
 		);

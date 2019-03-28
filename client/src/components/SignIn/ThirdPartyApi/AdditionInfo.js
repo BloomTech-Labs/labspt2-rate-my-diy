@@ -4,3 +4,17 @@
 3. .then() call the netlify function to run nodemailer
 4. .then() send the users info to Prisma 
 */
+
+import React, { Component } from 'react'
+
+ class AdditionInfo extends Component {
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+}
+
+export default AdditionInfo;
