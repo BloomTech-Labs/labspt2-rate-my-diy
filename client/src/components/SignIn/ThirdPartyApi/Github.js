@@ -38,12 +38,13 @@ class SignInGithubBase extends Component {
     console.log('response from gitHub:', socialAuthUser, )
     var userBooleanValue = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser)
     console.log('userBooleanValue', userBooleanValue)
-    while (userBooleanValue) { 
+    if (userBooleanValue) { 
      /* userBooleanValue variable is set to the isNewUser key on the GH object,
       if that value === true, then push the route to more info page?
      */
      // We could use if-else do-while or switch statement instead of while
      this.props.history.push(ROUTES.MORE_INFO)
+     
     }
    })
    .then((socialAuthUser) => {
