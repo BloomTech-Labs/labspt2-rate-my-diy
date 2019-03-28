@@ -30,7 +30,7 @@ class Home extends Component {
 		var year = currentTime.getFullYear()
 
 		const filteredData = data.map(item => {
-			if (item.timestamp.slice(0, 4) == year && item.timestamp.slice(5, 7) == month) { 
+			if (item.timestamp.slice(0, 4) === year && item.timestamp.slice(5, 7) === month) { 
 				return item;
 			}
 		});
