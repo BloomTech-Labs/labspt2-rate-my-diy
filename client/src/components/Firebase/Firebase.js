@@ -46,11 +46,11 @@ class Firebase {
   };
   doSignOut = () => this.auth.signOut();
 
-  doPassWordReset = email => {
+  doPasswordReset = email => {
     return this.auth.sendPasswordResetEmail(email);
   };
 
-  doPassWordUpdate = password => {
+  doPasswordUpdate = password => {
     return this.auth.currentUser.updatePassword(password);
   };
 
@@ -60,7 +60,7 @@ class Firebase {
   //  })
   // }
 
-  onAuthListener = (next, fallback) =>
+  onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.user(authUser.uid)
@@ -68,17 +68,20 @@ class Firebase {
           .then(snapshot => {
             const dbUser = snapshot.data();
 
+            // default empty roles
             if (!dbUser.roles) {
               dbUser.roles = [];
             }
 
+            // merge auth and db user
             authUser = {
               uid: authUser.uid,
               email: authUser.email,
               emailVerified: authUser.emailVerified,
               providerData: authUser.providerData,
-              ...dbUser
+              ...dbUser,
             };
+
             next(authUser);
           });
       } else {
