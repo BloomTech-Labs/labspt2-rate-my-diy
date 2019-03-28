@@ -34,6 +34,7 @@ class SignInGithubBase extends Component {
    .doSignInWithGithub()
    // console.log(this.props, 'home page props')
    .then(socialAuthUser => {
+    // 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
     console.log('response from gitHub:', socialAuthUser, )
     var userBooleanValue = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser)
     console.log('userBooleanValue', userBooleanValue)
@@ -46,6 +47,8 @@ class SignInGithubBase extends Component {
     }
    })
    .then((socialAuthUser) => {
+    // If user isn't new, userBooleanValue should evaluate to false on line 41, and then the code should skip to *here*,
+    // continuing the auth process.
     return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
      username: socialAuthUser.additionalUserInfo.profile.name,
      email: socialAuthUser.additionalUserInfo.profile.email,
