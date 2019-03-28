@@ -42,7 +42,7 @@ class SearchBar extends Component {
     // this.state.isLoggedIn
     //   ? this.setState({ displayPopUp: false })
     //   : this.setState({ displayPopUp: true });
-    this.searchAll();
+    this.searchAll()
   };
 
   closePopUp = () => {
@@ -57,10 +57,18 @@ class SearchBar extends Component {
         'Projects.category'
       ],
     };
-
     const fuse = new Fuse(this.props.users, options);
-
     console.log(fuse.search(this.state.text));
+  }
+
+  searchByUser = () => {
+    const options = {
+      keys: [
+        'username'
+      ]
+    }
+    const fuse = new Fuse(this.props.users, options);
+    return fuse.search(this.state.text);
   }
 
   render() {
