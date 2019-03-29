@@ -1,6 +1,7 @@
 const path = require('path');
 const { GraphQLServer } = require('graphql-yoga');
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
+const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./generated/nexus-prisma');
 const { stripe } = require('./src/stripe');

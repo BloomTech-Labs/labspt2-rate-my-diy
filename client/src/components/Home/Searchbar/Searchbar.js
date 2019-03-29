@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from '../../LoginPopUp/LoginPopUp'
 import Fuse from 'fuse.js';
+import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 import "./Searchbar.scss";
 
 class SearchBar extends Component {
@@ -12,8 +13,13 @@ class SearchBar extends Component {
       text: " search",
       isLoggedIn: false,
       displayPopUp: false,
-      option: null
+      options: ['project']
+
     };
+  }
+
+  componentDidMount = () => {
+    console.log(this.props.users)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,49 +34,83 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this.state.isLoggedIn
-    //   ? this.setState({ displayPopUp: false })
-    //   : this.setState({ displayPopUp: true });
-    console.log(this.search(this.state.option));
+    this.state.isLoggedIn
+      ? this.setState({ displayPopUp: false })
+      : this.setState({ displayPopUp: true });
+    // console.log(this.search(this.state.option));
+    let options = []
+    if (this.state.options.includes('user')) {
+      options.push('user')
+    }
+    if (this.state.options.includes('project')) {
+      options.push('project')
+    }
+    if (this.state.options.includes('review')) {
+      options.push('review')
+    }
+    if (this.state.options.includes('category')) {
+      options.push('category')
+    }
+    this.search(options)
   };
 
   closePopUp = () => {
     this.setState({ displayPopUp: false });
   };
 
-  search = (option) => {
-    let options = {}
+  optionsChanged = (options) => {
+    this.setState({
+      options: options
+    })
+  };
 
-    if(option === 'user') {
-      options = {
-        keys: [
-          'username'
-        ]
-      }
-    } else if (option === 'project' || option === 'review') {
-      options = {
-        keys: [
-          `${option}.name`
-        ]
-      }
+  search = (option) => {
+    let options = {
+      keys: []
+    }
+
+    if(option.includes('user')) {
+      options.keys.push('username')
+    } 
+    
+    if (option.includes('category')) {
+      options.keys.push('Projects.category')
+    }
+    if (option.includes('review')) {
+      options.keys.push('ReviewList.name')
+    }
+    // if (option.includes('stars')) {
+    //   options.keys.push('Projects.rating')
+    // }
+    if (option.includes('project')) {
+      options.keys.push('Projects.name')
     } else {
-      options = {
-        keys: [
-          'username',
-          'Projects.name',
-          'Projects.category'
-        ],
-      };
+      options.keys.push('Projects.name')
     }
 
     const fuse = new Fuse(this.props.users, options);
-    return fuse.search(this.state.text);
+    // return fuse.search(this.state.text);
+    console.log(fuse.search(this.state.text))
   }
+  
+
 
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="searchBar">
+        <div>Search By:</div>
+        <CheckboxGroup
+        checkboxDepth={2} // This is needed to optimize the checkbox group
+        name="options"
+        value={this.state.options}
+        onChange={this.optionsChanged}>
+ 
+        <label><Checkbox value="user"/> User</label>
+        <label><Checkbox value="project"/> Project</label>
+        <label><Checkbox value="review"/> Review</label>
+        <label><Checkbox value="category"/> Project Category</label>
+      </CheckboxGroup>
           <div className="searchSpan">
             <FontAwesomeIcon icon={faSearch} className="icon" />
             <input
@@ -88,7 +128,8 @@ class SearchBar extends Component {
         />
       </div>
     );
+    }
   }
-}
+
 
 export default SearchBar;

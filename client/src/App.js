@@ -6,6 +6,7 @@ import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+// import SearchPage from './components/searchPage/searchPage'
 import PasswordForget from './components/PasswordForget/PasswordForget';
 import Footer from './components/Footer/Footer';
 import Account from './components/Account/Account'
@@ -24,6 +25,7 @@ class App extends Component {
 					<Route path={ROUTES.SIGN_UP} component={SignUp} />
 					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
 					<Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+					{/* <Route path={ROUTES.SEARCH} component={SearchPage} /> */}
 					<Route path={ROUTES.ACCOUNT} component={Account} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
 				</div>

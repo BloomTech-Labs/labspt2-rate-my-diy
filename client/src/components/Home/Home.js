@@ -39,7 +39,7 @@ class Home extends Component {
 	}
 
 	render() {
-    console.log(this.props, 'home page props')
+    console.log("home props:", this.props)
 		return (
 			<div>
 				<Header />
@@ -64,7 +64,6 @@ class Home extends Component {
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error :(</p>;
-
 						return (
 							<SearchBar userClicked={this.state.userClicked} users={data.users} />
 						)	
