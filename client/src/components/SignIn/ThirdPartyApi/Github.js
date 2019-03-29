@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
 import AdditionalInfo from './AdditionInfo';
 import Modal from 'react-modal';
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/account-exists-with-different-credential';
 
@@ -24,10 +26,13 @@ class SignInGithubBase extends Component {
 			isNewUser: false,
 			email: '',
 			userName: '',
-      uid: '',
-      completedSignUp: false,
+			uid: '',
+			completedSignUp: false,
 		};
 	}
+	secondSubmit = (e) => {
+		e.preventDefault();
+	};
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -76,7 +81,7 @@ class SignInGithubBase extends Component {
 		const { error } = this.state;
 		return (
 			<React.Fragment>
-				<form onSubmit={this.onSubmit}>
+				<form onSubmit={this.secondSubmit}>
 					<button type='submit'> Sign In with Github </button> {error && <p> {error.message} </p>}
 				</form>
 				<Modal isOpen={this.state.isOpen} contentLabel='Example Modal'>
