@@ -44,20 +44,14 @@ class SignInGithubBase extends Component {
 				} else {
 					this.props.history.push(ROUTES.HOME);
 				}
-			})
-			.then((socialAuthUser) => {
-				// If user isn't new, userBooleanValue should evaluate to false on line 41, and then the code should skip to *here*,
-				// continuing the auth process.
 				return this.props.firebase.user(socialAuthUser.user.providerData.uid).set({
 					username: socialAuthUser.additionalUserInfo.profile.name,
 					email: socialAuthUser.additionalUserInfo.profile.email,
 					roles: [],
 				});
 			})
-			.then((socialAuthUser) => {
-				return this.props.history.push(ROUTES.HOME);
-			})
 			.catch((err) => {
+    console.log("err ", err)
 				if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
 					err.message = ERROR_MSG_ACCOUNT_EXISTS;
 				}
