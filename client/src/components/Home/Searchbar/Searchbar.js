@@ -10,11 +10,14 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: " search",
+      text: "",
       isLoggedIn: false,
       displayPopUp: false,
       options: ['project'],
-      stars: 0
+      stars: 0,
+      category: "",
+      categoryDisabled: false,
+      starsDisabled: false
 
     };
   }
@@ -60,6 +63,16 @@ class SearchBar extends Component {
   };
 
   optionsChanged = (options) => {
+    if(!options.includes('project')) {
+      this.setState({
+        categoryDisabled: true,
+        starsDisabled: true})
+    }
+    if(options.includes('project')) {
+      this.setState({
+        categoryDisabled: false,
+        starsDisabled: false})
+    }
     this.setState({
       options: options
     })
@@ -69,6 +82,13 @@ class SearchBar extends Component {
     const stars = parseInt(e.target.value)
     this.setState({
       stars: stars
+    })
+  }
+
+  categoryChange = e => {
+    this.setState({
+      category: e.target.value,
+      options: [...this.state.options, 'category']
     })
   }
 
@@ -105,15 +125,19 @@ class SearchBar extends Component {
     const projectSearch = projectsFuse.search(this.state.text);
     const reviewsFuse = new Fuse(this.props.reviews, options);
     const reviewSearch = reviewsFuse.search(this.state.text);
-    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
-    // return fuse.search(this.state.text);
+    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars);
+    const categorySearch = projectsFuse.search(this.state.category);
+    // return fuse.search(this.state.tex);
+    console.log({state: this.state})
     console.log({searchprops: this.props})
-    console.log({users: userSearch, projects: projectSearch, reviews: reviewSearch, stars: starsSearch});
+    console.log({users: userSearch, projects: projectSearch, reviews: reviewSearch, stars: starsSearch, projectsByCategory: categorySearch});
   }
   
 
 
   render() {
+    let categories = this.props.projects.map(project => project.category)
+    let filteredCategories = [...new Set(categories)]
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="searchBar">
@@ -127,14 +151,18 @@ class SearchBar extends Component {
         <label><Checkbox value="user"/> User</label>
         <label><Checkbox value="project"/> Project</label>
         <label><Checkbox value="review"/> Review</label>
-        <label><Checkbox value="category"/> Project Category</label>
       </CheckboxGroup>
-      <select name="stars" onChange={this.starChange} value={this.state.stars}>
+      <select name="stars" onChange={this.starChange} value={this.state.stars} disabled={this.state.starsDisabled}>
         <option value="1">1+ Stars</option>
         <option value="2">2+ Stars</option>
         <option value="3">3+ Stars</option>
         <option value="4">4+ Stars</option>
         <option value="5">5+ Stars</option>
+      </select>
+      <select name = "category" onChange={this.categoryChange} value={this.state.category} disabled={this.state.categoryDisabled}>
+        {filteredCategories.map(category => {
+          return <option value={category} key={category}>{`${category}`}</option>
+        })}
       </select>
           <div className="searchSpan">
             <FontAwesomeIcon icon={faSearch} className="icon" />
