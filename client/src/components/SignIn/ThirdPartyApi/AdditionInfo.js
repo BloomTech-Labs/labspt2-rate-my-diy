@@ -12,7 +12,8 @@ class AdditionInfo extends Component {
 		this.state = {
 			email: '',
 			username: '',
-			uid: '',
+      uid: '',
+     
 		};
 	}
 	onChange = (e) => {
