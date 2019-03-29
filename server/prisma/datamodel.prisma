@@ -38,7 +38,7 @@ type Project {
   
 type Review {
   id: ID! @unique 
-  title: String!
+  name: String!
   rKey: String @unique
   text: String!
   editedAt: DateTime!

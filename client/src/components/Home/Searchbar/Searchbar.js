@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from '../../LoginPopUp/LoginPopUp'
+import Fuse from 'fuse.js';
 import "./Searchbar.scss";
 
 class SearchBar extends Component {
@@ -10,7 +11,8 @@ class SearchBar extends Component {
     this.state = {
       text: " search",
       isLoggedIn: false,
-      displayPopUp: false
+      displayPopUp: false,
+      option: null
     };
   }
 
@@ -26,14 +28,44 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.state.isLoggedIn
-      ? this.setState({ displayPopUp: false })
-      : this.setState({ displayPopUp: true });
+    // this.state.isLoggedIn
+    //   ? this.setState({ displayPopUp: false })
+    //   : this.setState({ displayPopUp: true });
+    console.log(this.search(this.state.option));
   };
 
   closePopUp = () => {
     this.setState({ displayPopUp: false });
   };
+
+  search = (option) => {
+    let options = {}
+
+    if(option === 'user') {
+      options = {
+        keys: [
+          'username'
+        ]
+      }
+    } else if (option === 'project' || option === 'review') {
+      options = {
+        keys: [
+          `${option}.name`
+        ]
+      }
+    } else {
+      options = {
+        keys: [
+          'username',
+          'Projects.name',
+          'Projects.category'
+        ],
+      };
+    }
+
+    const fuse = new Fuse(this.props.users, options);
+    return fuse.search(this.state.text);
+  }
 
   render() {
     return (
