@@ -19,7 +19,7 @@ class SearchBar extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.users)
+    console.log(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,26 +71,36 @@ class SearchBar extends Component {
 
     if(option.includes('user')) {
       options.keys.push('username')
+
     } 
     
     if (option.includes('category')) {
-      options.keys.push('Projects.category')
+      options.keys.push('category')
+
     }
     if (option.includes('review')) {
-      options.keys.push('ReviewList.name')
+      options.keys.push('name')
     }
     // if (option.includes('stars')) {
     //   options.keys.push('Projects.rating')
     // }
     if (option.includes('project')) {
-      options.keys.push('Projects.name')
-    } else {
-      options.keys.push('Projects.name')
+      options.keys.push('name')
+    } 
+    
+    else {
+      options.keys.push('name')
     }
 
-    const fuse = new Fuse(this.props.users, options);
+    const usersFuse = new Fuse(this.props.users, options);
+    const userSearch = usersFuse.search(this.state.text);
+    const projectsFuse = new Fuse(this.props.projects, options);
+    const projectSearch = projectsFuse.search(this.state.text);
+    const reviewsFuse = new Fuse(this.props.reviews, options);
+    const reviewSearch = reviewsFuse.search(this.state.text);
     // return fuse.search(this.state.text);
-    console.log(fuse.search(this.state.text))
+    console.log({searchprops: this.props})
+    console.log({users: userSearch, projects: projectSearch, reviews: reviewSearch});
   }
   
 

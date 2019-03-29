@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './Searchbar/Searchbar';
-import { Query } from 'react-apollo';
+import { Query, compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import {withAuthentication} from '../Session/session';
 
@@ -39,27 +39,72 @@ class Home extends Component {
 	}
 
 	render() {
-    console.log("home props:", this.props)
+		
+			const getUsers = gql`
+				{
+					users{
+						id
+						username
+						userProfileImage
+					}
+				}
+			`
+			const getProjects = gql`
+				{
+					projects{
+						id
+						name
+						titleImg
+						category
+						rating
+					}
+				}
+			`
+			const getReviews = gql`
+				{
+					reviews{
+						id
+						name
+						text
+						Author{
+							id
+							username
+						}
+						ProjectReviewed{
+							id
+							name
+						}
+					}
+				}
+			`
+
+const SearchWithData = () => (
+  <Query query={getUsers}>
+    {({ loading: loadingUsers, data: userData }) => (
+      <Query query={getProjects}>
+        {({ loading: loadingProjects, data: projectData}) => (
+					<Query query={getReviews}>
+					{({ loading: loadingReviews, data: reviewData}) => {
+						if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
+						const userArray = Object.values(userData).flat()
+						const projectArray = Object.values(projectData).flat()
+						const reviewArray = Object.values(reviewData).flat()
+          	return (
+							<SearchBar userClicked={this.state.userClicked} users={userArray} projects={projectArray} reviews={reviewArray}/>
+						)	
+					}}</Query>
+          
+				)}
+      </Query>
+    )}
+  </Query>
+);
+		
 		return (
 			<div>
 				<Header />
-				<Query
-					query={gql`
-						{
-							users(orderBy: username_ASC) {
-								id
-								username
-								userProfileImage
-								Projects {
-      								name
-      								rating
-      								timestamp
-									category
-									id  
-    							}
-							}
-						}
-					`}
+				{/* <Query
+					query={}
 				>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
@@ -68,7 +113,8 @@ class Home extends Component {
 							<SearchBar userClicked={this.state.userClicked} users={data.users} />
 						)	
 					}}
-				</Query>
+				</Query> */}
+				<SearchWithData />
 				
 				<div id='home-container'>
 					<h1>Featured Projects</h1>
