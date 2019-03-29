@@ -4,18 +4,40 @@
 3. .then() call the netlify function to run nodemailer
 4. .then() send the users info to Prisma 
 */
+import React, { Component } from 'react';
 
+class AdditionInfo extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: '',
+			username: '',
+			uid: '',
+		};
+	}
+	onChange = (e) => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
-import React, { Component } from 'react'
+	onSubmit = (e) => {};
 
- class AdditionInfo extends Component {
-  render() {
-    return (
-      <div>
-        <h1>WE NEED MORE INFO</h1>
-      </div>
-    )
-  }
+	render() {
+		const { email, username } = this.state;
+		return (
+			<React.Fragment>
+				<h1>Complete Your Sign Up.</h1>
+				<form onSubmit={this.onSubmit}>
+					<input onChange={this.onChange} name='email' value={email}>
+						Email Address
+					</input>
+					<input onChange={this.onChange} name='username' value={username}>
+						Username
+					</input>
+					<button type='submit' />
+				</form>
+			</React.Fragment>
+		);
+	}
 }
 
 export default AdditionInfo;
