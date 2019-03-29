@@ -3,6 +3,7 @@ import * as ROUTES from '../../../constants/routes';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
+import AdditionalInfo from './AdditionInfo';
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/account-exists-with-different-credential';
 
@@ -23,7 +24,8 @@ class SignInGithubBase extends Component {
 
 	setError = (errVal) => {
 		this.setState({
-			errVal,
+      errVal,
+      isNewUser: false
 		});
 	};
 	onSubmit = (event) => {
@@ -39,8 +41,9 @@ class SignInGithubBase extends Component {
 					/* userBooleanValue variable is set to the isNewUser key on the GH object,
       if that value === true, then push the route to more info page?
      */
-					// We could use if-else do-while or switch statement instead of while
-					this.props.history.push(ROUTES.MORE_INFO);
+          // We could use if-else do-while or switch statement instead of while
+          this.setState({isNewUser: true})
+					// this.props.history.push(ROUTES.MORE_INFO);
 				} else {
 					this.props.history.push(ROUTES.HOME);
 				}
@@ -61,9 +64,12 @@ class SignInGithubBase extends Component {
 	render() {
 		const { error } = this.state;
 		return (
+      <>
 			<form onSubmit={this.onSubmit}>
 				<button type='submit'> Sign In with Github </button> {error && <p> {error.message} </p>}
-			</form>
+      </form>
+      {this.state.isNewUser === true  && <AdditionalInfo/>}
+      </>
 		);
 	}
 }
