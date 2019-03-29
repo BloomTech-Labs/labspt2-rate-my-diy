@@ -27,8 +27,8 @@ class AdditionInfo extends Component {
 			<div>
 				<h1>Complete Your Sign Up.</h1>
 				<form onSubmit={this.onSubmit}>
-					<input onChange={this.onChange} placeholder="email" name='email' value={email}/>
-          <input onChange={this.onChange} placeholder="username" name='username' value={username}/>
+					<input onChange={this.onChange} placeholder='email' name='email' value={email} />
+					<input onChange={this.onChange} placeholder='username' name='username' value={username} />
 					<button type='submit' />
 				</form>
 			</div>

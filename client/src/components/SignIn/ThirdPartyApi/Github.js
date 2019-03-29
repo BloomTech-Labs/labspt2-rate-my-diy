@@ -45,10 +45,8 @@ class SignInGithubBase extends Component {
 					this.props.history.push(ROUTES.HOME);
 				}
 				console.log(socialAuthUser.user.providerData['0'].uid);
-				return this.props.firebase.user(socialAuthUser.user.providerData['0'].email).set({
-					username: socialAuthUser.additionalUserInfo.profile.name,
+				return this.props.firebase.user(socialAuthUser.user.providerData['0'].uid).set({
 					email: socialAuthUser.user.email,
-					roles: [],
 				});
 			})
 			.catch((err) => {
