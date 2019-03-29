@@ -44,15 +44,15 @@ class SignInGithubBase extends Component {
 				} else {
 					this.props.history.push(ROUTES.HOME);
 				}
-    console.log(socialAuthUser.user.providerData["0"].uid)
-				return this.props.firebase.user(socialAuthUser.user.providerData["0"].email).set({
+				console.log(socialAuthUser.user.providerData['0'].uid);
+				return this.props.firebase.user(socialAuthUser.user.providerData['0'].email).set({
 					username: socialAuthUser.additionalUserInfo.profile.name,
 					email: socialAuthUser.user.email,
 					roles: [],
 				});
 			})
 			.catch((err) => {
-    console.log("err ", err)
+				console.log('err ', err);
 				if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
 					err.message = ERROR_MSG_ACCOUNT_EXISTS;
 				}
