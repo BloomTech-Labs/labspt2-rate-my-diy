@@ -13,7 +13,8 @@ class SearchBar extends Component {
       text: " search",
       isLoggedIn: false,
       displayPopUp: false,
-      options: ['project']
+      options: ['project'],
+      stars: 0
 
     };
   }
@@ -64,6 +65,13 @@ class SearchBar extends Component {
     })
   };
 
+  starChange = e => {
+    const stars = parseInt(e.target.value)
+    this.setState({
+      stars: stars
+    })
+  }
+
   search = (option) => {
     let options = {
       keys: []
@@ -91,16 +99,16 @@ class SearchBar extends Component {
     else {
       options.keys.push('name')
     }
-
     const usersFuse = new Fuse(this.props.users, options);
     const userSearch = usersFuse.search(this.state.text);
     const projectsFuse = new Fuse(this.props.projects, options);
     const projectSearch = projectsFuse.search(this.state.text);
     const reviewsFuse = new Fuse(this.props.reviews, options);
     const reviewSearch = reviewsFuse.search(this.state.text);
+    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
     // return fuse.search(this.state.text);
     console.log({searchprops: this.props})
-    console.log({users: userSearch, projects: projectSearch, reviews: reviewSearch});
+    console.log({users: userSearch, projects: projectSearch, reviews: reviewSearch, stars: starsSearch});
   }
   
 
@@ -121,6 +129,13 @@ class SearchBar extends Component {
         <label><Checkbox value="review"/> Review</label>
         <label><Checkbox value="category"/> Project Category</label>
       </CheckboxGroup>
+      <select name="stars" onChange={this.starChange} value={this.state.stars}>
+        <option value="1">1+ Stars</option>
+        <option value="2">2+ Stars</option>
+        <option value="3">3+ Stars</option>
+        <option value="4">4+ Stars</option>
+        <option value="5">5+ Stars</option>
+      </select>
           <div className="searchSpan">
             <FontAwesomeIcon icon={faSearch} className="icon" />
             <input
