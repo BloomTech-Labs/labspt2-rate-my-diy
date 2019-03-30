@@ -187,9 +187,39 @@ class SearchBar extends Component {
     const userSearch = usersFuse.search(this.state.text);
     const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
     const categorySearch = projectsFuse.search(this.state.category);
+    const projectCategoryStarsSearch = categorySearch.filter(project => project.rating >= this.state.stars)
     const justStarsSearch = this.props.projects.filter(
       project => project.rating >= this.state.stars
     );
+
+    if (this.state.options.includes('user')) {
+      this.props.searchHandler(userSearch)
+    }
+
+    if (this.state.options.includes('project' && 'category')) {
+      this.props.searchHandler(categorySearch)
+    }
+
+    if (this.state.options.includes('project') && !this.state.options.includes('category')) {
+      this.props.searchHandler(projectSearch)
+    }
+
+    if (this.state.options.includes('project') && !this.state.options.includes('category') && this.state.stars > 0) {
+      this.props.searchHandler(starsSearch)
+    }
+
+    if (this.state.options.includes('project') && this.state.options.includes('category') && this.state.stars > 0) {
+      this.props.searchHandler(projectCategoryStarsSearch)
+    }
+
+    if (!this.state.options.includes('project') && !this.state.options.includes('category') && this.state.stars > 0) {
+      this.props.searchHandler(justStarsSearch)
+    }
+
+    if (this.state.options.includes('review')) {
+      this.props.searchHandler(reviewSearch)
+    }
+    
     // if(this.state.userSort !== "") {
     //   if(this.state.userSort === alphabetical) {
     //     this.setState
