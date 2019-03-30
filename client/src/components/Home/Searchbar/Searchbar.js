@@ -133,23 +133,21 @@ class SearchBar extends Component {
   
   }
     
-    
-
-    projectSortChange = option => {
-      this.setState({
-        projectSort: option
-      })
-      console.log({stateAfterSort: this.state, sortOption: option})
+  projectSortChange = option => {
+    this.setState({
+      projectSort: option
+    })
+    console.log({stateAfterSort: this.state, sortOption: option})
   
-    }
+  }
 
-    reviewSortChange = option => {
-      this.setState({
-        projectSort: option
-      })
-      console.log({stateAfterSort: this.state, sortOption: option})
+  reviewSortChange = option => {
+    this.setState({
+      projectSort: option
+    })
+    console.log({stateAfterSort: this.state, sortOption: option})
   
-    }
+  }
     
     
     // console.log({stateAfterSort: this.state, sortOption: option})
@@ -164,6 +162,18 @@ class SearchBar extends Component {
 
     if (option.includes("user")) {
       options.keys.push("username");
+
+      const usersFuse = new Fuse(this.props.users, options);
+    
+
+      if(this.state.userSort === 'alphabetical') {
+        const userSearch = usersFuse.search(this.state.text);
+        console.log(userSearch.sort(function (a, b) { return a.username - b.username }))
+      } else if(this.state.userSort === 'reverseAlpha') {
+        //sort reverseAlphabetical
+      } else {
+        const userSearch = usersFuse.search(this.state.text);
+      }
     }
 
     if (option.includes("category")) {
@@ -178,16 +188,21 @@ class SearchBar extends Component {
     } else {
       options.keys.push("name");
     }
-    const usersFuse = new Fuse(this.props.users, options);
-    const userSearch = usersFuse.search(this.state.text);
+   
+
     const projectsFuse = new Fuse(this.props.projects, options);
     const projectSearch = projectsFuse.search(this.state.text);
+
+
     const reviewsFuse = new Fuse(this.props.reviews, options);
     const reviewSearch = reviewsFuse.search(this.state.text);
+
+
     const justStarsSearch = this.props.projects.filter(
       project => project.rating >= this.state.stars
     );
-    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
+    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars);
+
     const categorySearch = projectsFuse.search(this.state.category);
 
     // if(this.state.userSort !== "") {
