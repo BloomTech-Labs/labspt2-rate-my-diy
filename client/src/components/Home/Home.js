@@ -40,26 +40,38 @@ class Home extends Component {
 
 	render() {
 		const SearchWithData = () => (
-		<Query query={this.props.getUsers}>
+			<Query query={this.props.getUsers}>
+
 			{({ loading: loadingUsers, data: userData }) => (
-			<Query query={this.props.getProjects}>
-				{({ loading: loadingProjects, data: projectData}) => (
-							<Query query={this.props.getReviews}>
-							{({ loading: loadingReviews, data: reviewData}) => {
-								if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-								const userArray = Object.values(userData).flat()
-								const projectArray = Object.values(projectData).flat()
-								const reviewArray = Object.values(reviewData).flat()
-					return (
-									<SearchBar {...this.props} userClicked={this.state.userClicked} users={userArray} projects={projectArray} reviews={reviewArray} searchHandler={this.props.searchHandler}/>
-								)	
-							}}</Query>
-				
-						)}
-			</Query>
+
+					<Query query={this.props.getProjects}>
+
+					{({ loading: loadingProjects, data: projectData}) => (
+
+						<Query query={this.props.getReviews}>
+
+						{({ loading: loadingReviews, data: reviewData}) => {
+
+							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
+							const userArray = Object.values(userData).flat()
+							const projectArray = Object.values(projectData).flat()
+							const reviewArray = Object.values(reviewData).flat()
+							return (
+								<SearchBar 
+									{...this.props} 
+									userClicked={this.state.userClicked} 
+									users={userArray} 
+									projects={projectArray} 
+									reviews={reviewArray} 
+									searchHandler={this.props.searchHandler}/>
+							)	
+						}}</Query>
+					
+					)}
+					</Query>
 			)}
-		</Query>
-);
+			</Query>
+		);
 		
 		return (
 			<div>
