@@ -4,6 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from "../../LoginPopUp/LoginPopUp";
 import Fuse from "fuse.js";
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";
+import {RadioGroup, Radio} from 'react-radio-group'
 import "./Searchbar.scss";
 
 class SearchBar extends Component {
@@ -123,29 +124,41 @@ class SearchBar extends Component {
     });
   };
 
-  sortChange = option => {
-    if(this.state.options.includes('user')) {
+  userSortChange = option => {
+    
       this.setState({
-        userSort: option[0]
+        userSort: option
       })
+      console.log({stateAfterSort: this.state, sortOption: option})
+  
+  }
+    
+    
+
+    projectSortChange = option => {
+      this.setState({
+        projectSort: option
+      })
+      console.log({stateAfterSort: this.state, sortOption: option})
+  
     }
-    if(this.state.options.includes('project')) {
-      console.log({option: [...option]})
+
+    reviewSortChange = option => {
       this.setState({
-        projectSort: option[0]
+        projectSort: option
       })
-    }
-    if(this.state.options.includes('review')) {
-      this.setState({
-        reviewSort: option[0]
-      })
+      console.log({stateAfterSort: this.state, sortOption: option})
+  
     }
     
-    console.log({stateAfterSort: this.state, sortOption: option[0]})
-  }
+    
+    // console.log({stateAfterSort: this.state, sortOption: option})
+  
 
   search = option => {
     let options = {
+      shouldSort: true,
+      threshold: 0.4,
       keys: []
     };
 
@@ -171,10 +184,17 @@ class SearchBar extends Component {
     const projectSearch = projectsFuse.search(this.state.text);
     const reviewsFuse = new Fuse(this.props.reviews, options);
     const reviewSearch = reviewsFuse.search(this.state.text);
-    const starsSearch = this.props.projects.filter(
+    const justStarsSearch = this.props.projects.filter(
       project => project.rating >= this.state.stars
     );
+    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
     const categorySearch = projectsFuse.search(this.state.category);
+
+    // if(this.state.userSort !== "") {
+    //   if(this.state.userSort === alphabetical) {
+    //     this.setState
+    //   }
+    // }
     // return fuse.search(this.state.tex);
     console.log({ state: this.state });
     console.log({ searchprops: this.props });
@@ -182,7 +202,8 @@ class SearchBar extends Component {
       users: userSearch,
       projects: projectSearch,
       reviews: reviewSearch,
-      stars: starsSearch,
+      justStars: justStarsSearch,
+      projectsByStars: starsSearch,
       projectsByCategory: categorySearch
     });
   };
@@ -248,59 +269,55 @@ class SearchBar extends Component {
           
           
           <div>Sort Users:</div>
-            <CheckboxGroup
-            checkboxDepth={2}
+            <RadioGroup
+            
             name="userSort"
-            value={this.state.userSort}
-            onChange={this.sortChange}
+            selectedValue={this.state.userSort}
+            onChange={this.userSortChange}
             >
-            <label>
-              <Checkbox value="user_alphabetical" disabled={this.state.userSortDisabled}/> alphabetical
-            </label>
-            <label>
-              <Checkbox value="user_alphabetical_reverse" disabled={this.state.userSortDisabled}/> reverse alphabetical
-            </label>
-            </CheckboxGroup>
+            
+              <Radio value="user_alphabetical" disabled={this.state.userSortDisabled}/> alphabetical
+            
+           
+              <Radio value="user_alphabetical_reverse" disabled={this.state.userSortDisabled}/> reverse alphabetical
+            
+            </RadioGroup>
             <div>Sort Projects:</div>
-            <CheckboxGroup
-            checkboxDepth={2}
+            <RadioGroup
             name="projectSort"
-            value={this.state.projectSort}
-            onChange={this.sortChange}
+            selectedValue={this.state.projectSort}
+            onChange={this.projectSortChange}
             >
-            <label>
-              <Checkbox value="project_alphabetical" disabled={this.state.projectSortDisabled}/> alphabetical
-            </label>
-            <label>
-              <Checkbox value="project_alphabetical_reverse" disabled={this.state.projectSortDisabled}/> reverse alphabetical
-            </label>
-            <label>
-              <Checkbox value="project_highest_rated" disabled={this.state.projectSortDisabled}/> highest rated
-            </label>
-            <label>
-              <Checkbox value="project_lowest_rated" disabled={this.state.projectSortDisabled}/> lowest rated
-            </label>
-            </CheckboxGroup>
+            
+              <Radio value="project_alphabetical" disabled={this.state.projectSortDisabled}/> alphabetical
+            
+           
+              <Radio value="project_alphabetical_reverse" disabled={this.state.projectSortDisabled}/> reverse alphabetical
+            
+            
+              <Radio value="project_highest_rated" disabled={this.state.projectSortDisabled}/> highest rated
+            
+              <Radio value="project_lowest_rated" disabled={this.state.projectSortDisabled}/> lowest rated
+            
+            </RadioGroup>
             <div>Sort Reviews:</div>
-            <CheckboxGroup
-            checkboxDepth={2}
+            <RadioGroup
             name="reviewSort"
-            value={this.state.reviewSort}
-            onChange={this.sortChanged}
+            selectedValue={this.state.reviewSort}
+            onChange={this.reviewSortChange}
             >
-            <label>
-              <Checkbox value="review_alphabetical" disabled={this.state.reviewSortDisabled}/> alphabetical
-            </label>
-            <label>
-              <Checkbox value="review_reverse_alphabetical" disabled={this.state.reviewSortDisabled}/> reverse alphabetical
-            </label>
-            <label>
-              <Checkbox value="review_newest" disabled={this.state.reviewSortDisabled}/> newest
-            </label>
-            <label>
-              <Checkbox value="review_oldest" disabled={this.state.reviewSortDisabled}/> oldest
-            </label>
-            </CheckboxGroup>
+            
+              <Radio value="review_alphabetical" disabled={this.state.reviewSortDisabled}/> alphabetical
+            
+            
+              <Radio value="review_reverse_alphabetical" disabled={this.state.reviewSortDisabled}/> reverse alphabetical
+            
+            
+              <Radio value="review_newest" disabled={this.state.reviewSortDisabled}/> newest
+            
+              <Radio value="review_oldest" disabled={this.state.reviewSortDisabled}/> oldest
+            
+            </RadioGroup>
         </form>
 
         <LoginPopup
