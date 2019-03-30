@@ -160,23 +160,27 @@ class SearchBar extends Component {
       keys: []
     };
 
+    let userSearch = []
+
     if (option.includes("user")) {
       options.keys.push("username");
 
       const usersFuse = new Fuse(this.props.users, options);
-      const userSearch;
-    
 
       if(this.state.userSort === 'alpha') {
         userSearch = usersFuse.search(this.state.text);
-        userSearch = userSearch.sort(function (a, b) { return a.username - b.username }))
+        userSearch = userSearch.sort(function (a, b) { return a.username - b.username });
       } else if(this.state.userSort === 'revAlpha') {
         userSearch = usersFuse.search(this.state.text);
-        userSearch = userSearch.sort(function (a, b) { return b.username - a.username }))
+        userSearch = userSearch.sort(function (a, b) { return a.username - b.username }).reverse();
       } else {
         userSearch = usersFuse.search(this.state.text);
       }
+
+      console.log(userSearch);
     }
+
+    
 
     if (option.includes("category")) {
       options.keys.push("category");
@@ -214,16 +218,16 @@ class SearchBar extends Component {
     //   }
     // }
 
-    console.log({ state: this.state });
-    console.log({ searchprops: this.props });
-    console.log({
-      users: userSearch,
-      projects: projectSearch,
-      reviews: reviewSearch,
-      justStars: justStarsSearch,
-      projectsByStars: starsSearch,
-      projectsByCategory: categorySearch
-    });
+    // console.log({ state: this.state });
+    // console.log({ searchprops: this.props });
+    // console.log({
+    //   users: userSearch,
+    //   projects: projectSearch,
+    //   reviews: reviewSearch,
+    //   justStars: justStarsSearch,
+    //   projectsByStars: starsSearch,
+    //   projectsByCategory: categorySearch
+    // });
   };
 
   render() {
