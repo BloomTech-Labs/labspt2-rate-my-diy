@@ -18,53 +18,13 @@ class SearchPage extends Component {
   }
 
   render() {
-    const getUsers = gql`
-      {
-        users {
-          id
-          username
-          userProfileImage
-        }
-      }
-    `;
-    const getProjects = gql`
-      {
-        projects {
-          id
-          name
-          titleImg
-          category
-          rating
-          User{
-              username
-          }
-        }
-      }
-    `;
-    const getReviews = gql`
-      {
-        reviews {
-          id
-          name
-          text
-          editedAt
-          Author {
-            id
-            username
-          }
-          ProjectReviewed {
-            id
-            name
-          }
-        }
-      }
-    `;
+    
     const SearchWithData = () => (
-      <Query query={getUsers}>
+      <Query query={this.props.getUsers}>
         {({ loading: loadingUsers, data: userData }) => (
-          <Query query={getProjects}>
+          <Query query={this.props.getProjects}>
             {({ loading: loadingProjects, data: projectData }) => (
-              <Query query={getReviews}>
+              <Query query={this.props.getReviews}>
                 {({ loading: loadingReviews, data: reviewData }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
