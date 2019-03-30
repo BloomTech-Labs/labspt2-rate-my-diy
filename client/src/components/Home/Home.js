@@ -204,6 +204,11 @@ class Home extends Component {
 									id
 									username
 									userProfileImage
+									ReviewList {
+     									name
+      									thumbsUp
+      									editedAt
+    								}
 								}
 							}
 						`}
