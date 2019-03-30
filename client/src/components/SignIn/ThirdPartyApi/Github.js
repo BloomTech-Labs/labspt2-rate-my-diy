@@ -87,7 +87,7 @@ class SignInGithubBase extends Component {
 				<Modal isOpen={this.state.isOpen} contentLabel='Example Modal'>
 					<div>
 						<h1>Complete Your Sign Up.</h1>
-						<form onSubmit={this.onSubmit}>
+						<form onSubmit={this.secondSubmit}>
 							<input
 								onChange={this.onChange}
 								defaultValue={this.state.email}
