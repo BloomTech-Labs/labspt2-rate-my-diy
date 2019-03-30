@@ -237,7 +237,7 @@ class SearchBar extends Component {
             value={this.state.stars}
             disabled={this.state.starsDisabled}
           >
-            <option>Stars</option>
+            <option value="0">Stars</option>
             <option value="1">1+ Stars</option>
             <option value="2">2+ Stars</option>
             <option value="3">3+ Stars</option>
