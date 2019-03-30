@@ -143,7 +143,7 @@ class SearchBar extends Component {
 
   reviewSortChange = option => {
     this.setState({
-      projectSort: option
+      reviewSort: option
     })
     console.log({stateAfterSort: this.state, sortOption: option})
   
@@ -205,8 +205,23 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'lowest') projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function (a, b) { return a.rating - b.rating });
       this.props.searchHandler(projectCategoryStarsSearch)
     }
+
+
     if (option.includes("review")) {
       options.keys.push("name");
+
+      const reviewsFuse = new Fuse(this.props.reviews, options);
+      let reviewSearch = reviewsFuse.search(this.state.text);
+      console.log(reviewSearch[0].name);
+      if(this.state.reviewSort === 'alpha') reviewSearch = reviewSearch.sort(function (a, b) { return a.name - b.name }).reverse();
+      
+      if(this.state.reviewSort === 'revAlpha') reviewSearch = reviewSearch.sort(function (a, b) { return a.name - b.name });
+
+      if(this.state.reviewSort === 'newest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date) });
+
+      if(this.state.reviewSort === 'oldest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date)}).reverse();
+
+      console.log(reviewSearch);
     }
 
     if (option.includes("project")) {
@@ -259,9 +274,7 @@ class SearchBar extends Component {
       options.keys.push("name");
     }
 
-    const reviewsFuse = new Fuse(this.props.reviews, options);
     
-    const reviewSearch = reviewsFuse.search(this.state.text);
 
     if (this.state.options.includes('review')) {
       this.props.searchHandler(reviewSearch)
