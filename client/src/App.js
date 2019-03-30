@@ -14,13 +14,13 @@ import PasswordChange from './components/PasswordChange/PasswordChange';
 import {withAuthentication} from './components/Session/session';
 
 class App extends Component {
+	
 	render() {
-    console.log('props', this.props)
     return (
 			<Router>
 				<div>
 					<Navigation />
-					<Route exact path={ROUTES.HOME} component={Home} />
+					<Route exact path={ROUTES.HOME} render={props => <Home {...props} />} />
 					<Route path={ROUTES.SIGN_IN} component={SignIn} />
 					<Route path={ROUTES.SIGN_UP} component={SignUp} />
 					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />

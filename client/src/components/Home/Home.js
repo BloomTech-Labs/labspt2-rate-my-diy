@@ -91,7 +91,7 @@ const SearchWithData = () => (
 						const projectArray = Object.values(projectData).flat()
 						const reviewArray = Object.values(reviewData).flat()
           	return (
-							<SearchBar userClicked={this.state.userClicked} users={userArray} projects={projectArray} reviews={reviewArray}/>
+							<SearchBar {...this.props} userClicked={this.state.userClicked} users={userArray} projects={projectArray} reviews={reviewArray}/>
 						)	
 					}}</Query>
           

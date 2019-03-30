@@ -171,6 +171,8 @@ class SearchBar extends Component {
       if(this.state.userSort === 'revAlpha') userSearch = userSearch.sort(function (a, b) { return a.username - b.username }).reverse();
 
       this.props.searchHandler(userSearch)
+
+      this.props.history.push('/search');
     }
 
     
@@ -188,7 +190,9 @@ class SearchBar extends Component {
       
       if(this.state.projectSort === 'lowest') categorySearch = categorySearch.sort(function (a, b) { return a.rating - b.rating });
 
-      this.props.searchHandler(categorySearch)
+      this.props.searchHandler(categorySearch);
+
+      this.props.history.push('/search');
     }
 
     if (!option.includes("category") && this.state.stars > 0) {
@@ -206,6 +210,8 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'lowest') projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function (a, b) { return a.rating - b.rating });
 
       this.props.searchHandler(projectCategoryStarsSearch)
+
+      this.props.history.push('/search');
     }
 
 
@@ -224,6 +230,8 @@ class SearchBar extends Component {
       if(this.state.reviewSort === 'oldest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date)}).reverse();
 
       this.props.searchHandler(reviewSearch);
+
+      this.props.history.push('/search');
     }
 
     if (option.includes("project")) {
@@ -241,8 +249,9 @@ class SearchBar extends Component {
       
       if(this.state.projectSort === 'lowest') projectSearch = projectSearch.sort(function (a, b) { return a.rating - b.rating });
 
-      console.log(projectSearch);
       this.props.searchHandler(projectSearch)
+
+      this.props.history.push('/search');
     } 
     if(this.state.stars > 0 && option.includes('project')){
       const projectsFuse = new Fuse(this.props.projects, options);
@@ -258,6 +267,8 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'lowest') starsSearch = starsSearch.sort(function (a, b) { return a.rating - b.rating });
 
       this.props.searchHandler(starsSearch)
+
+      this.props.history.push('/search');
     }
 
     if (this.state.stars > 0 && !option.includes('project')) {
@@ -273,6 +284,8 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'lowest') justStarsSearch = justStarsSearch.sort(function (a, b) { return a.rating - b.rating });
       
       this.props.searchHandler(justStarsSearch)
+
+      this.props.history.push('/search');
     }
     else {
       options.keys.push("name");
