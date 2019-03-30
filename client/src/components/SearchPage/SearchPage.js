@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { withAuthentication } from "../Session/session";
 
-import Featured from "../Home/Featured/Featured";
+// import Featured from "../Home/Featured/Featured";
 import Header from "../Home/Header/Header";
 import "../Home/Home.scss";
 import "./SearchPage.scss";
@@ -113,36 +113,31 @@ class SearchPage extends Component {
         <div className="card-container">
           {this.state.projects
             .map(({ id, name, titleImg, rating, User }) => (
-              <Featured
-                key={id}
-                image={titleImg}
-                rating={rating}
-                title={name}
-                // below might need to be edited
-                username={User.username}
-                // clickHandler={this.clickUserHandler}
-              />
+              <div>
+                  <img src={`${titleImg}`} alt="project"/>
+                  <div>{`${name}`}</div>
+                  <div>{`${rating}`}</div>
+                  <div>{`${User.username}`}</div>
+              </div>
             ))
             .concat(
-              this.state.users.map(({ id, username, userProfileImage, averageRating }) => (
-                <Featured
-                  key={id}
-                  username={username}
-                  image={userProfileImage}
-                  // clickHandler={this.clickUserHandler}
-                  rating={averageRating}
-                />
+              this.state.users.map(({ id, username, userProfileImage }) => (
+                <div>
+                    <img src={`${userProfileImage}`} alt="user"/>
+                    <div>{`${username}`}</div>
+                </div>
               ))
             )
             .concat(
               this.state.reviews.map(
                 ({ id, name, text, editedAt, Author, ProjectReviewed }) => (
-                  <Featured
-                    key={id}
-                    title={name}
-                    username={Author.username}
-                    project={ProjectReviewed.name}
-                  />
+                <div>
+                    <div>{`${name}`}</div>
+                    <div>{`${text}`}</div>
+                    <div>{`${editedAt}`}</div>
+                    <div>{`${Author.username}`}</div>
+                    <div>{`${ProjectReviewed.name}`}</div>
+                </div>
                 )
               )
             )}
