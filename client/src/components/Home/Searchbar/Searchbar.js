@@ -164,15 +164,17 @@ class SearchBar extends Component {
       options.keys.push("username");
 
       const usersFuse = new Fuse(this.props.users, options);
+      const userSearch;
     
 
-      if(this.state.userSort === 'alphabetical') {
-        const userSearch = usersFuse.search(this.state.text);
-        console.log(userSearch.sort(function (a, b) { return a.username - b.username }))
-      } else if(this.state.userSort === 'reverseAlpha') {
-        //sort reverseAlphabetical
+      if(this.state.userSort === 'alpha') {
+        userSearch = usersFuse.search(this.state.text);
+        userSearch = userSearch.sort(function (a, b) { return a.username - b.username }))
+      } else if(this.state.userSort === 'revAlpha') {
+        userSearch = usersFuse.search(this.state.text);
+        userSearch = userSearch.sort(function (a, b) { return b.username - a.username }))
       } else {
-        const userSearch = usersFuse.search(this.state.text);
+        userSearch = usersFuse.search(this.state.text);
       }
     }
 
@@ -195,6 +197,7 @@ class SearchBar extends Component {
 
 
     const reviewsFuse = new Fuse(this.props.reviews, options);
+    
     const reviewSearch = reviewsFuse.search(this.state.text);
 
 
@@ -210,7 +213,7 @@ class SearchBar extends Component {
     //     this.setState
     //   }
     // }
-    // return fuse.search(this.state.tex);
+
     console.log({ state: this.state });
     console.log({ searchprops: this.props });
     console.log({
@@ -291,10 +294,10 @@ class SearchBar extends Component {
             onChange={this.userSortChange}
             >
             
-              <Radio value="user_alphabetical" disabled={this.state.userSortDisabled}/> alphabetical
+              <Radio value="alpha" disabled={this.state.userSortDisabled}/> alphabetical
             
            
-              <Radio value="user_alphabetical_reverse" disabled={this.state.userSortDisabled}/> reverse alphabetical
+              <Radio value="revAlpha" disabled={this.state.userSortDisabled}/> reverse alphabetical
             
             </RadioGroup>
             <div>Sort Projects:</div>
@@ -304,15 +307,15 @@ class SearchBar extends Component {
             onChange={this.projectSortChange}
             >
             
-              <Radio value="project_alphabetical" disabled={this.state.projectSortDisabled}/> alphabetical
+              <Radio value="alpha" disabled={this.state.projectSortDisabled}/> alphabetical
             
            
-              <Radio value="project_alphabetical_reverse" disabled={this.state.projectSortDisabled}/> reverse alphabetical
+              <Radio value="revAlpha" disabled={this.state.projectSortDisabled}/> reverse alphabetical
             
             
-              <Radio value="project_highest_rated" disabled={this.state.projectSortDisabled}/> highest rated
+              <Radio value="highest" disabled={this.state.projectSortDisabled}/> highest rated
             
-              <Radio value="project_lowest_rated" disabled={this.state.projectSortDisabled}/> lowest rated
+              <Radio value="lowest" disabled={this.state.projectSortDisabled}/> lowest rated
             
             </RadioGroup>
             <div>Sort Reviews:</div>
@@ -322,15 +325,15 @@ class SearchBar extends Component {
             onChange={this.reviewSortChange}
             >
             
-              <Radio value="review_alphabetical" disabled={this.state.reviewSortDisabled}/> alphabetical
+              <Radio value="alpha" disabled={this.state.reviewSortDisabled}/> alphabetical
             
             
-              <Radio value="review_reverse_alphabetical" disabled={this.state.reviewSortDisabled}/> reverse alphabetical
+              <Radio value="revAlpha" disabled={this.state.reviewSortDisabled}/> reverse alphabetical
             
             
-              <Radio value="review_newest" disabled={this.state.reviewSortDisabled}/> newest
+              <Radio value="newest" disabled={this.state.reviewSortDisabled}/> newest
             
-              <Radio value="review_oldest" disabled={this.state.reviewSortDisabled}/> oldest
+              <Radio value="oldest" disabled={this.state.reviewSortDisabled}/> oldest
             
             </RadioGroup>
         </form>
