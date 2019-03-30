@@ -14,25 +14,8 @@ class SearchPage extends Component {
     super();
     this.state = {
       userClicked: null,
-      users: [],
-      projects: [],
-      reviews: []
     };
   }
-
-  searchHandler = (users, reviews, projects) => {
-    if (users) {
-      this.setState({ users });
-    }
-    if (reviews) {
-      this.setState({ reviews });
-    }
-    if (projects) {
-      this.setState({ projects });
-    }
-
-    console.log({users, projects, reviews})
-  };
 
   render() {
     const getUsers = gql`
@@ -94,7 +77,7 @@ class SearchPage extends Component {
                       users={userArray}
                       projects={projectArray}
                       reviews={reviewArray}
-                      searchHandler={this.searchHandler}
+                      searchHandler={this.props.searchHandler}
                     />
                   );
                 }}
@@ -111,7 +94,7 @@ class SearchPage extends Component {
         <SearchWithData />
         <h1>Results:</h1>
         {/* <div className="card-container"> */}
-          {this.state.projects
+          {this.props.projects
             .map(({ id, name, titleImg, rating, User }) => (
               <div key={id} className="card-container">
                   <img src={`${titleImg}`} alt="project"/>
@@ -121,7 +104,7 @@ class SearchPage extends Component {
               </div>
             ))
             .concat(
-              this.state.users.map(({ id, username, userProfileImage }) => (
+              this.props.users.map(({ id, username, userProfileImage }) => (
                 <div id={id} className="card-container">
                     <img src={`${userProfileImage}`} alt="user"/>
                     <div>{`${username}`}</div>
@@ -129,7 +112,7 @@ class SearchPage extends Component {
               ))
             )
             .concat(
-              this.state.reviews.map(
+              this.props.reviews.map(
                 ({ id, name, text, editedAt, Author, ProjectReviewed }) => (
                 <div key={id} className="card-container">
                     <div>{`${name}`}</div>
