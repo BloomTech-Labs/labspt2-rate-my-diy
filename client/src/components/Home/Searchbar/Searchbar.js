@@ -170,7 +170,6 @@ class SearchBar extends Component {
       
       if(this.state.userSort === 'revAlpha') userSearch = userSearch.sort(function (a, b) { return a.username - b.username }).reverse();
 
-
       console.log(userSearch);
     }
 
@@ -185,14 +184,26 @@ class SearchBar extends Component {
 
     if (option.includes("project")) {
       options.keys.push("name");
+
       const projectsFuse = new Fuse(this.props.projects, options);
+      let projectSearch = projectsFuse.search(this.state.text);
+
+      if(this.state.projectSort === 'alpha') projectSearch = projectSearch.sort(function (a, b) { return a.name - b.name });
+      
+      if(this.state.projectSort === 'revAlpha') projectSearch = projectSearch.sort(function (a, b) { return a.name - b.name }).reverse();
+
+      if(this.state.projectSort === 'highest') projectSearch = projectSearch.sort(function (a, b) { return b.rating - a.rating });
+      
+      if(this.state.projectSort === 'lowest') projectSearch = projectSearch.sort(function (a, b) { return a.rating - b.rating });
+
+      console.log(projectSearch);
     } else {
       options.keys.push("name");
     }
    
 
     
-    const projectSearch = projectsFuse.search(this.state.text);
+    
 
 
     const reviewsFuse = new Fuse(this.props.reviews, options);
@@ -203,9 +214,9 @@ class SearchBar extends Component {
     const justStarsSearch = this.props.projects.filter(
       project => project.rating >= this.state.stars
     );
-    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars);
+    // const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars);
 
-    const categorySearch = projectsFuse.search(this.state.category);
+    // const categorySearch = projectsFuse.search(this.state.category);
 
     // if(this.state.userSort !== "") {
     //   if(this.state.userSort === alphabetical) {
