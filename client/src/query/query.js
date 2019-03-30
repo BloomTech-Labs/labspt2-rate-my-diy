@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const getUsers = gql`
+export const getUsers = gql`
 	{
 	    users {
 		    id
@@ -9,7 +9,7 @@ const getUsers = gql`
 		  }
 	}
 `;
-const getProjects = gql`
+export const getProjects = gql`
     {
 		projects {
 			id
@@ -24,7 +24,7 @@ const getProjects = gql`
 	}
 `;
 
-const getReviews = gql`
+export const getReviews = gql`
 	{
 		reviews {
 			id
@@ -43,4 +43,3 @@ const getReviews = gql`
 	}
 `;
 
-module.exports = {getUsers, getProjects, getReviews}
