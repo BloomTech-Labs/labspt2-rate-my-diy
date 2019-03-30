@@ -179,23 +179,23 @@ class SearchBar extends Component {
       options.keys.push("name");
     }
     const usersFuse = new Fuse(this.props.users, options);
-    const userSearch = usersFuse.search(this.state.text);
     const projectsFuse = new Fuse(this.props.projects, options);
-    const projectSearch = projectsFuse.search(this.state.text);
     const reviewsFuse = new Fuse(this.props.reviews, options);
+    
     const reviewSearch = reviewsFuse.search(this.state.text);
+    const projectSearch = projectsFuse.search(this.state.text);
+    const userSearch = usersFuse.search(this.state.text);
+    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
+    const categorySearch = projectsFuse.search(this.state.category);
     const justStarsSearch = this.props.projects.filter(
       project => project.rating >= this.state.stars
     );
-    const starsSearch = projectSearch.filter(project => project.rating >= this.state.stars)
-    const categorySearch = projectsFuse.search(this.state.category);
-
     // if(this.state.userSort !== "") {
     //   if(this.state.userSort === alphabetical) {
     //     this.setState
     //   }
     // }
-    // return fuse.search(this.state.tex);
+
     console.log({ state: this.state });
     console.log({ searchprops: this.props });
     console.log({

@@ -66,6 +66,7 @@ class Home extends Component {
 						id
 						name
 						text
+						editedAt
 						Author{
 							id
 							username
