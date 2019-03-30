@@ -160,22 +160,16 @@ class SearchBar extends Component {
       keys: []
     };
 
-    let userSearch = []
-
     if (option.includes("user")) {
       options.keys.push("username");
 
       const usersFuse = new Fuse(this.props.users, options);
+      let userSearch = usersFuse.search(this.state.text);
 
-      if(this.state.userSort === 'alpha') {
-        userSearch = usersFuse.search(this.state.text);
-        userSearch = userSearch.sort(function (a, b) { return a.username - b.username });
-      } else if(this.state.userSort === 'revAlpha') {
-        userSearch = usersFuse.search(this.state.text);
-        userSearch = userSearch.sort(function (a, b) { return a.username - b.username }).reverse();
-      } else {
-        userSearch = usersFuse.search(this.state.text);
-      }
+      if(this.state.userSort === 'alpha') userSearch = userSearch.sort(function (a, b) { return a.username - b.username });
+      
+      if(this.state.userSort === 'revAlpha') userSearch = userSearch.sort(function (a, b) { return a.username - b.username }).reverse();
+
 
       console.log(userSearch);
     }
@@ -191,12 +185,13 @@ class SearchBar extends Component {
 
     if (option.includes("project")) {
       options.keys.push("name");
+      const projectsFuse = new Fuse(this.props.projects, options);
     } else {
       options.keys.push("name");
     }
    
 
-    const projectsFuse = new Fuse(this.props.projects, options);
+    
     const projectSearch = projectsFuse.search(this.state.text);
 
 
