@@ -38,6 +38,25 @@ class Home extends Component {
 		return filteredData.filter(function(e){return e});
 	}
 
+	filterByCurrentMonthReviewer = (data) => {
+		console.log(data);
+		const currentTime = new Date()
+
+		var month = currentTime.getMonth() + 1
+							
+		var year = currentTime.getFullYear()
+
+		const filteredData = data.map(item => {
+		
+			if (item.editedAt.slice(0, 4) == year && item.editedAt.slice(5, 7) == month) { 
+				return item;
+			}
+			
+		});
+
+		return filteredData.filter(function(e){return e});
+	}
+
 	render() {
 		const SearchWithData = () => (
 			<Query query={this.props.getUsers}>
@@ -200,14 +219,16 @@ class Home extends Component {
 					<Query
 						query={gql`
 							{
-								users(orderBy: username_ASC) {
+								reviews(orderBy: thumbsUp_DESC) {
 									id
-									username
-									userProfileImage
-									ReviewList {
-     									name
-      									thumbsUp
-      									editedAt
+									name
+									thumbsUp
+    								editedAt
+									Author {		
+										id
+      									username
+										email
+										userProfileImage  
     								}
 								}
 							}
@@ -216,15 +237,18 @@ class Home extends Component {
 						{({ loading, error, data }) => {
 							if (loading) return <p>Loading...</p>;
 							if (error) return <p>Error :(</p>;
+							
+							const reviews = this.filterByCurrentMonthReviewer(data.reviews).slice(0, 8);
 
 							return (
 								<div className='card-container'>
-									{data.users.map(
-										({ id, username, userProfileImage }) => (
+									{reviews.map(
+										({ id, name, Author }) => (
 											<Featured
 												key={id}
-												username={username}
-												image={userProfileImage}
+												title={name}
+												username={Author.username}
+												image={Author.userProfileImage}
 												clickHandler={this.clickUserHandler}
 											/>
 										)
