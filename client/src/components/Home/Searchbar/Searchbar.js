@@ -180,6 +180,19 @@ class SearchBar extends Component {
     }
     if (option.includes("review")) {
       options.keys.push("name");
+
+      const reviewsFuse = new Fuse(this.props.reviews, options);
+      let reviewSearch = reviewsFuse.search(this.state.text);
+
+      if(this.state.reviewSort === 'alpha') reviewSearch = reviewSearch.sort(function (a, b) { return a.name - b.name });
+      
+      if(this.state.reviewSort === 'revAlpha') reviewSearch = reviewSearch.sort(function (a, b) { return a.name - b.name }).reverse();
+
+      if(this.state.reviewSort === 'newest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date) });
+
+      if(this.state.reviewSort === 'oldest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date)}).reverse();
+
+      console.log(reviewSearch);
     }
 
     if (option.includes("project")) {
@@ -206,9 +219,7 @@ class SearchBar extends Component {
     
 
 
-    const reviewsFuse = new Fuse(this.props.reviews, options);
     
-    const reviewSearch = reviewsFuse.search(this.state.text);
 
 
     const justStarsSearch = this.props.projects.filter(
