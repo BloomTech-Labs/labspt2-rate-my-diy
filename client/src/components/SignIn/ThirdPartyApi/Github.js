@@ -81,7 +81,7 @@ class SignInGithubBase extends Component {
 		const { error } = this.state;
 		return (
 			<React.Fragment>
-				<form onSubmit={this.secondSubmit}>
+				<form onSubmit={this.onSubmit}>
 					<button type='submit'> Sign In with Github </button> {error && <p> {error.message} </p>}
 				</form>
 				<Modal isOpen={this.state.isOpen} contentLabel='Example Modal'>
@@ -107,4 +107,5 @@ class SignInGithubBase extends Component {
 
 const SignInGithub = compose(withRouter, withFirebase)(SignInGithubBase);
 Modal.setAppElement('body');
+
 export default SignInGithub;
