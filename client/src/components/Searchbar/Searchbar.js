@@ -187,6 +187,7 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'highest') categorySearch = categorySearch.sort(function (a, b) { return b.rating - a.rating });
       
       if(this.state.projectSort === 'lowest') categorySearch = categorySearch.sort(function (a, b) { return a.rating - b.rating });
+
       this.props.searchHandler(categorySearch)
     }
 
@@ -203,6 +204,7 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'highest') projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function (a, b) { return b.rating - a.rating });
       
       if(this.state.projectSort === 'lowest') projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function (a, b) { return a.rating - b.rating });
+
       this.props.searchHandler(projectCategoryStarsSearch)
     }
 
@@ -221,7 +223,7 @@ class SearchBar extends Component {
 
       if(this.state.reviewSort === 'oldest') reviewSearch = reviewSearch.sort(function (a, b) { return new Date(b.date) - new Date(a.date)}).reverse();
 
-      console.log(reviewSearch);
+      this.props.searchHandler(reviewSearch);
     }
 
     if (option.includes("project")) {
@@ -254,6 +256,7 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'highest') starsSearch = starsSearch.sort(function (a, b) { return b.rating - a.rating });
       
       if(this.state.projectSort === 'lowest') starsSearch = starsSearch.sort(function (a, b) { return a.rating - b.rating });
+
       this.props.searchHandler(starsSearch)
     }
 
@@ -268,6 +271,7 @@ class SearchBar extends Component {
       if(this.state.projectSort === 'highest') justStarsSearch = justStarsSearch.sort(function (a, b) { return b.rating - a.rating });
       
       if(this.state.projectSort === 'lowest') justStarsSearch = justStarsSearch.sort(function (a, b) { return a.rating - b.rating });
+      
       this.props.searchHandler(justStarsSearch)
     }
     else {
