@@ -110,10 +110,10 @@ class SearchPage extends Component {
         <Header />
         <SearchWithData />
         <h1>Results:</h1>
-        <div className="card-container">
+        {/* <div className="card-container"> */}
           {this.state.projects
             .map(({ id, name, titleImg, rating, User }) => (
-              <div>
+              <div key={id} className="card-container">
                   <img src={`${titleImg}`} alt="project"/>
                   <div>{`${name}`}</div>
                   <div>{`${rating}`}</div>
@@ -122,7 +122,7 @@ class SearchPage extends Component {
             ))
             .concat(
               this.state.users.map(({ id, username, userProfileImage }) => (
-                <div>
+                <div id={id} className="card-container">
                     <img src={`${userProfileImage}`} alt="user"/>
                     <div>{`${username}`}</div>
                 </div>
@@ -131,7 +131,7 @@ class SearchPage extends Component {
             .concat(
               this.state.reviews.map(
                 ({ id, name, text, editedAt, Author, ProjectReviewed }) => (
-                <div>
+                <div key={id} className="card-container">
                     <div>{`${name}`}</div>
                     <div>{`${text}`}</div>
                     <div>{`${editedAt}`}</div>
@@ -141,7 +141,7 @@ class SearchPage extends Component {
                 )
               )
             )}
-        </div>
+        {/* </div> */}
       </div>
     );
   }

@@ -273,12 +273,6 @@ class SearchBar extends Component {
     else {
       options.keys.push("name");
     }
-
-    
-
-    if (this.state.options.includes('review')) {
-      this.props.searchHandler(reviewSearch)
-    }
     
     // if(this.state.userSort !== "") {
     //   if(this.state.userSort === alphabetical) {
