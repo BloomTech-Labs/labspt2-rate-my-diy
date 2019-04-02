@@ -25,19 +25,26 @@ class App extends Component {
 		};
 	}
 
-	searchHandler = (users, reviews, projects) => {
-		if (users) {
-		  this.setState({ users });
-		}
-		if (reviews) {
-		  this.setState({ reviews });
-		}
-		if (projects) {
+	projectSearchHandler = (projects) => {
 		  this.setState({ projects });
-		}
+		
 	
-		console.log({users, projects, reviews})
+		console.log({projects: this.state.projects})
 	};
+
+	userSearchHandler = (users) => {
+		this.setState({ users });
+	
+
+	console.log(this.state.users)
+};
+
+reviewSearchHandler = (reviews) => {
+	this.setState({ reviews });
+
+
+console.log(this.state.reviews)
+};
 
 	render() {
     return (
@@ -49,7 +56,9 @@ class App extends Component {
 							props => (
 							<Home 
 								{...props} 
-								searchHandler={this.searchHandler} 
+								projectSearchHandler={this.projectSearchHandler} 
+								userSearchHandler={this.userSearchHandler}
+								reviewSearchHandler={this.reviewSearchHandler}
 								getUsers={getUsers} 
 								getProjects={getProjects} 
 								getReviews={getReviews} 
@@ -68,7 +77,9 @@ class App extends Component {
 									users={this.state.users} 
 									projects={this.state.projects} 
 									reviews={this.state.reviews} 
-									searchHandler={this.searchHandler} 
+									projectSearchHandler={this.projectSearchHandler} 
+									userSearchHandler={this.userSearchHandler}
+									reviewSearchHandler={this.reviewSearchHandler}
 									getUsers={getUsers} 
 									getProjects={getProjects} 
 									getReviews={getReviews}
