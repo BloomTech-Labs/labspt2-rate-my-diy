@@ -298,7 +298,7 @@ class SearchBar extends Component {
 
   render() {
 
-    let categories = this.props.projects.map(project => project.category);
+    let categories = this.props.projects /*.map(project => project.category);*/
     let filteredCategories = [...new Set(categories)];
 
     return (

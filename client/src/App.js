@@ -40,11 +40,6 @@ class App extends Component {
 	};
 
 	render() {
-<<<<<<< HEAD
-    // console.log('props', this.props)
-=======
-
->>>>>>> 3dde8926a53b31fb5344dcc2ccdf00aeeec17a48
     return (
 			<Router>
 				<div>
