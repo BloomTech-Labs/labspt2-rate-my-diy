@@ -21,7 +21,7 @@ seed:
 # Specifies language & location for the generated Prisma client
 generate:
   - generator: graphql-schema
-    output: ./generated/prisma-client
+    output: ./generated/prisma-client/prisma.graphql
   - generator: javascript-client
     output: ./generated/prisma-client
 
