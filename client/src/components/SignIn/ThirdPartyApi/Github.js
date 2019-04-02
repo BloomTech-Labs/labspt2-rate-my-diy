@@ -111,23 +111,6 @@ class SignInGithubBase extends Component {
         <Modal isOpen={this.state.isOpen} contentLabel="Example Modal">
           <div>
             <h1>Complete Your Sign Up.</h1>
-            <form onSubmit={this.secondSubmit}>
-              <input
-                onChange={this.onChange}
-                defaultValue={this.state.email}
-                placeholder="email"
-                name="email"
-                value={this.state.email}
-              />
-              <input
-                onChange={this.onChange}
-                placeholder="username"
-                name="username"
-                value={this.state.username}
-              />
-              <button type="submit">Submit</button>
-            </form>
-
             <Mutation
               mutation={firebaseSignUp}
               variables={{
