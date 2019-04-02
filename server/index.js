@@ -43,7 +43,7 @@ const Mutation = prismaObjectType({
 				thirdPartyUID: stringArg()
 			},
 			resolve: (parent, {username, email, thirdPartyUID}, ctx, info) => {
-				return ctx.prisma.createUser({
+				return prisma.createUser({
 					username,
 					email,
 					thirdPartyUID
