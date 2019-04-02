@@ -3,10 +3,9 @@ import * as ROUTES from '../../../constants/routes';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
-import AdditionalInfo from './AdditionInfo';
 import Modal from 'react-modal';
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/account-exists-with-different-credential';
 
@@ -49,15 +48,13 @@ class SignInGithubBase extends Component {
 			// console.log(this.props, 'home page props')
 			.then((socialAuthUser) => {
 				// 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
-				console.log('response from gitHub:', socialAuthUser);
 				var userBooleanValue = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser);
-				console.log('userBooleanValue', userBooleanValue);
 				if (userBooleanValue) {
 					const email = socialAuthUser.user.providerData['0'].email;
 					const uid = socialAuthUser.user.providerData['0'].uid;
 					/* userBooleanValue variable is set to the isNewUser key on the GH object,
-      if that value === true, then push the route to more info page?
-     */
+          if that value === true, then push the route to more info page?
+          */
 					// We could use if-else do-while or switch statement instead of while
 					this.setState({ isNewUser: true, isOpen: true, email: email, uid: uid });
 					// this.props.history.push(ROUTES.MORE_INFO);
@@ -70,7 +67,6 @@ class SignInGithubBase extends Component {
 				});
 			})
 			.catch((err) => {
-				console.log('err ', err);
 				if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
 					err.message = ERROR_MSG_ACCOUNT_EXISTS;
 				}
