@@ -35,6 +35,21 @@ const Mutation = prismaObjectType({
 	name: 'Mutation',
 	definition(t) {
 		t.prismaFields([ '*' ]);
+		t.field('firebaseSignUp', {
+			type: 'User',
+			args: {
+				username: stringArg(),
+				email: stringArg(),
+				thirdPartyUID: stringArg()
+			},
+			resolve: (parent, {username, email, thirdPartyUID}, ctx, info) => {
+				return ctx.prisma.createUser({
+					username,
+					email,
+					thirdPartyUID
+				})
+			}
+		})
 		t.field('createSubscription', {
 			type: 'User',
 			args: {

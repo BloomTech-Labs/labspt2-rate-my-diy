@@ -17,6 +17,21 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   your personal account page.
 `;
 
+const firebaseSignUp = gql`
+      mutation firebaseSignUp(
+        $username: String!
+        $thirdPartyUID: String!
+        $email: String!
+      ) {
+        firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
+          id
+          username
+          email
+          thirdPartyUID
+        }
+      } 
+    `;
+
 class SignInGithubBase extends Component {
   constructor(props) {
     super(props);
@@ -84,22 +99,6 @@ class SignInGithubBase extends Component {
   };
 
   render() {
-    const firebaseSignUp = gql`
-      mutation SignUpMutation(
-        $username: String!
-        $thirdPartyUID: String!
-        $email: String!
-      ) {
-        createUser(
-          username: $username
-          thirdPartyUID: $thirdPartyUID
-          email: $email
-        ) {
-          id
-          username
-        }
-      }
-    `;
 
     const { error } = this.state;
     return (
