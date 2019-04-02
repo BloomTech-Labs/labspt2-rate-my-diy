@@ -67,11 +67,7 @@ class Firebase {
           .get()
           .then(snapshot => {
             const dbUser = snapshot.data();
-
-            // default empty roles
-            if (!dbUser.roles) {
-              dbUser.roles = [];
-            }
+          
 
             // merge auth and db user
             authUser = {
@@ -99,3 +95,13 @@ class Firebase {
 }
 
 export default Firebase;
+
+
+/*
+1. Click Sign In with oAuth Provider.
+2. UID from 3rd party is checked in fireBase to see if it exists.
+3 If it exists, send user to homePage if not send user to more info page to collect the username and email.
+4. Send username, 3rd party uID and email to firebase.
+5. Send out welcome email to the email.
+6. Send uID + email + username to Prisma
+*/

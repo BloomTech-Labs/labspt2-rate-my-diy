@@ -44,7 +44,7 @@ type Review {
   timestamp: DateTime!
   thumbsUp: Int! @default(value: 0)
   LikedBy: [User!] @relation(name: "UserLikedReviews")
-  thumbsDown: Int! @fefault(value: 0)
+  thumbsDown: Int! @default(value: 0)
   DislikedBy: [User!] @relation(name: "UserDislikedReviews")
   Author: User! @relation(name: "UserReviews")
   ProjectReviewed: Project! @relation(name: "ProjectReviews")

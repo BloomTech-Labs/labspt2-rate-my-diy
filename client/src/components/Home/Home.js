@@ -53,9 +53,9 @@ class Home extends Component {
 						{({ loading: loadingReviews, data: reviewData}) => {
 
 							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-							const userArray = Object.values(userData).flat()
-							const projectArray = Object.values(projectData).flat()
-							const reviewArray = Object.values(reviewData).flat()
+							const userArray = /*Object.values(userData).flat()*/ userData
+							const projectArray = /*Object.values(projectData).flat()*/ projectData
+							const reviewArray = /*Object.values(reviewData).flat()*/ reviewData
 							return (
 								<SearchBar 
 									{...this.props} 

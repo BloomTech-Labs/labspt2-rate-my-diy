@@ -30,7 +30,7 @@ export const getReviews = gql`
 			id
 			name
 			text
-			editedAt
+			timestamp
 			Author {
 			  id
 			  username

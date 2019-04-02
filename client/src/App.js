@@ -14,6 +14,7 @@ import Account from './components/Account/Account'
 import PasswordChange from './components/PasswordChange/PasswordChange';
 import {withAuthentication} from './components/Session/session';
 
+
 class App extends Component {
 	constructor() {
 		super();
@@ -39,7 +40,6 @@ class App extends Component {
 	};
 
 	render() {
-
     return (
 			<Router>
 				<div>
@@ -76,7 +76,7 @@ class App extends Component {
 						} 
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
-					<Route path={ROUTES.FOOTER} component={Footer} />
+          <Route path={ROUTES.FOOTER} component={Footer} />
 				</div>
 			</Router>
 		);

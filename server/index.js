@@ -3,7 +3,7 @@ const { GraphQLServer } = require('graphql-yoga');
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
 const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
-const datamodelInfo = require('./generated/nexus-prisma');
+const datamodelInfo = require('./src/generated/nexus-prisma');
 const { stripe } = require('./src/stripe');
 const { stringArg } = require('nexus/dist/definitions/args');
 const nodemailer = require('nodemailer');
@@ -35,6 +35,21 @@ const Mutation = prismaObjectType({
 	name: 'Mutation',
 	definition(t) {
 		t.prismaFields([ '*' ]);
+		t.field('firebaseSignUp', {
+			type: 'User',
+			args: {
+				username: stringArg(),
+				email: stringArg(),
+				thirdPartyUID: stringArg()
+			},
+			resolve: (parent, {username, email, thirdPartyUID}, ctx, info) => {
+				return prisma.createUser({
+					username,
+					email,
+					thirdPartyUID
+				})
+			}
+		})
 		t.field('createSubscription', {
 			type: 'User',
 			args: {
@@ -125,8 +140,8 @@ const schema = makePrismaSchema({
 	},
 
 	outputs: {
-		schema: path.join(__dirname, './generated/schema.graphql'),
-		typegen: path.join(__dirname, './generated/nexus.js'),
+		schema: path.join(__dirname, './src/generated/prisma-client/schema.graphql'),
+		typegen: path.join(__dirname, './src/generated/nexus.js'),
 	},
 });
 
