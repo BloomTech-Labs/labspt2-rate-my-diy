@@ -25,7 +25,7 @@ class SignInGithubBase extends Component {
       isOpen: false,
       isNewUser: false,
       email: "",
-      userName: "",
+      username: "",
       uid: "",
     };
   }
