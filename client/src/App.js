@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
@@ -15,18 +16,70 @@ import {withAuthentication} from './components/Session/session';
 
 
 class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+		  users: [],
+		  projects: [],
+		  reviews: []
+		};
+	}
+
+	searchHandler = (users, reviews, projects) => {
+		if (users) {
+		  this.setState({ users });
+		}
+		if (reviews) {
+		  this.setState({ reviews });
+		}
+		if (projects) {
+		  this.setState({ projects });
+		}
+	
+		console.log({users, projects, reviews})
+	};
+
 	render() {
+<<<<<<< HEAD
     // console.log('props', this.props)
+=======
+
+>>>>>>> 3dde8926a53b31fb5344dcc2ccdf00aeeec17a48
     return (
 			<Router>
 				<div>
 					<Navigation />
-					<Route exact path={ROUTES.HOME} component={Home} />
+					<Route exact path={ROUTES.HOME} render=
+						{
+							props => (
+							<Home 
+								{...props} 
+								searchHandler={this.searchHandler} 
+								getUsers={getUsers} 
+								getProjects={getProjects} 
+								getReviews={getReviews} 
+							/>)
+						} 
+					/>
 					<Route path={ROUTES.SIGN_IN} component={SignIn} />
 					<Route path={ROUTES.SIGN_UP} component={SignUp} />
 					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
 					<Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-					<Route path={ROUTES.SEARCH} component={SearchPage} />
+					<Route path={ROUTES.SEARCH} render=
+						{
+							props => (
+								<SearchPage 
+									{...props} 
+									users={this.state.users} 
+									projects={this.state.projects} 
+									reviews={this.state.reviews} 
+									searchHandler={this.searchHandler} 
+									getUsers={getUsers} 
+									getProjects={getProjects} 
+									getReviews={getReviews}
+								/>)
+						} 
+					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.FOOTER} component={Footer} />
 				</div>

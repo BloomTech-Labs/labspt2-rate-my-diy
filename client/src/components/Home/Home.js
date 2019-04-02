@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchBar from './Searchbar/Searchbar';
+import SearchBar from '../Searchbar/Searchbar';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import {withAuthentication} from '../Session/session';
@@ -39,82 +39,43 @@ class Home extends Component {
 	}
 
 	render() {
-		
-			const getUsers = gql`
-				{
-					users{
-						id
-						username
-						userProfileImage
-					}
-				}
-			`
-			const getProjects = gql`
-				{
-					projects{
-						id
-						name
-						titleImg
-						category
-						rating
-					}
-				}
-			`
-			const getReviews = gql`
-				{
-					reviews{
-						id
-						name
-						text
-						editedAt
-						Author{
-							id
-							username
-						}
-						ProjectReviewed{
-							id
-							name
-						}
-					}
-				}
-			`
+		const SearchWithData = () => (
+			<Query query={this.props.getUsers}>
 
-const SearchWithData = () => (
-  <Query query={getUsers}>
-    {({ loading: loadingUsers, data: userData }) => (
-      <Query query={getProjects}>
-        {({ loading: loadingProjects, data: projectData}) => (
-					<Query query={getReviews}>
-					{({ loading: loadingReviews, data: reviewData}) => {
-						if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-						const userArray = Object.values(userData).flat()
-						const projectArray = Object.values(projectData).flat()
-						const reviewArray = Object.values(reviewData).flat()
-          	return (
-							<SearchBar userClicked={this.state.userClicked} users={userArray} projects={projectArray} reviews={reviewArray}/>
-						)	
-					}}</Query>
-          
-				)}
-      </Query>
-    )}
-  </Query>
-);
+			{({ loading: loadingUsers, data: userData }) => (
+
+					<Query query={this.props.getProjects}>
+
+					{({ loading: loadingProjects, data: projectData}) => (
+
+						<Query query={this.props.getReviews}>
+
+						{({ loading: loadingReviews, data: reviewData}) => {
+
+							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
+							const userArray = Object.values(userData).flat()
+							const projectArray = Object.values(projectData).flat()
+							const reviewArray = Object.values(reviewData).flat()
+							return (
+								<SearchBar 
+									{...this.props} 
+									userClicked={this.state.userClicked} 
+									users={userArray} 
+									projects={projectArray} 
+									reviews={reviewArray} 
+									searchHandler={this.props.searchHandler}/>
+							)	
+						}}</Query>
+					
+					)}
+					</Query>
+			)}
+			</Query>
+		);
 		
 		return (
 			<div>
 				<Header />
-				{/* <Query
-					query={}
-				>
-					{({ loading, error, data }) => {
-						if (loading) return <p>Loading...</p>;
-						if (error) return <p>Error :(</p>;
-						return (
-							<SearchBar userClicked={this.state.userClicked} users={data.users} />
-						)	
-					}}
-				</Query> */}
 				<SearchWithData />
 				
 				<div id='home-container'>
