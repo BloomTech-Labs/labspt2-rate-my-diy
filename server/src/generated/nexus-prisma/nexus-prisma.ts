@@ -5,7 +5,7 @@
 
 import { core } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
-import * as prisma from '../prisma-client'
+import * as prisma from '../../../../src/generated/prisma-client'
 
 declare global {
   interface NexusPrismaGen extends NexusPrismaTypes {}
@@ -3140,7 +3140,7 @@ export interface ReviewCreateWithoutAuthorInput {
   timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
@@ -3212,7 +3212,7 @@ export interface ReviewCreateWithoutDislikedByInput {
   timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
@@ -3283,7 +3283,7 @@ export interface ReviewCreateWithoutLikedByInput {
   text?: string
   timestamp?: string
   thumbsUp?: number | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
@@ -3390,7 +3390,7 @@ export interface ReviewCreateWithoutProjectReviewedInput {
   timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
 }
@@ -5256,7 +5256,7 @@ export interface ReviewCreateInput {
   timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
