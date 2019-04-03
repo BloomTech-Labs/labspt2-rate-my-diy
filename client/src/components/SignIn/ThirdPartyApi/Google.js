@@ -15,6 +15,20 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   this account instead and associate your social accounts on
   your personal account page.
 `;
+const firebaseSignUp = gql`
+      mutation firebaseSignUp(
+        $username: String!
+        $thirdPartyUID: String!
+        $email: String!
+      ) {
+        firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
+          id
+          username
+          email
+          thirdPartyUID
+        }
+      } 
+    `;
 
 class SignInGoogleBase extends Component {
 	constructor(props) {
@@ -24,6 +38,18 @@ class SignInGoogleBase extends Component {
 			error: null,
 		};
 	}
+
+	secondSubmit = (e, signUpMutation, data) => {
+		e.preventDefault();
+		console.log(data);
+		signUpMutation({
+			variables: {
+				username: this.state.username,
+				thirdPartyUID: this.state.uid,
+				email: this.state.email,
+			},
+		});
+	};
 
 	onSubmit = (event) => {
 		this.props.firebase
@@ -70,17 +96,19 @@ class SignInGoogleBase extends Component {
 				<Modal isOpen={this.state.isOpen} contentLabel='Example Modal'>
 					<div>
 						<h1>Complete Your Sign Up.</h1>
-						<form onSubmit={this.secondSubmit}>
-							<input
-								onChange={this.onChange}
-								defaultValue={this.state.email}
-								placeholder='email'
-								name='email'
-								value={this.state.email}
-							/>
-							<input onChange={this.onChange} placeholder='username' name='username' value={this.state.username} />
-							<button type='submit'>Submit</button>
-						</form>
+						<Mutation mutation={firebaseSignUp}>
+							<form onSubmit={this.secondSubmit}>
+								<input
+									onChange={this.onChange}
+									defaultValue={this.state.email}
+									placeholder='email'
+									name='email'
+									value={this.state.email}
+								/>
+								<input onChange={this.onChange} placeholder='username' name='username' value={this.state.username} />
+								<button type='submit'>Submit</button>
+							</form>
+						</Mutation>
 					</div>
 				</Modal>
 			</React.Fragment>
