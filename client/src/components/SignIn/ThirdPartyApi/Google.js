@@ -16,40 +16,40 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   your personal account page.
 `;
 const firebaseSignUp = gql`
-      mutation firebaseSignUp(
-        $username: String!
-        $thirdPartyUID: String!
-        $email: String!
-      ) {
-        firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
-          id
-          username
-          email
-          thirdPartyUID
-        }
-      } 
-    `;
+	mutation firebaseSignUp($username: String!, $thirdPartyUID: String!, $email: String!) {
+		firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
+			id
+			username
+			email
+			thirdPartyUID
+		}
+	}
+`;
 
 class SignInGoogleBase extends Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			error: null,
-		};
+      this.state = {
+      error: null,
+      isOpen: false,
+      isNewUser: false,
+      email:'',
+      username:'',
+      uid:'',
+    };
 	}
 
-	secondSubmit = (e, signUpMutation, data) => {
-		e.preventDefault();
-		console.log(data);
-		signUpMutation({
-			variables: {
-				username: this.state.username,
-				thirdPartyUID: this.state.uid,
-				email: this.state.email,
-			},
-		});
-	};
+	// secondSubmit = (e, signUpMutation, data) => {
+	// 	e.preventDefault();
+	// 	console.log(data);
+	// 	signUpMutation({
+	// 		variables: {
+	// 			username: this.state.username,
+	// 			thirdPartyUID: this.state.uid,
+	// 			email: this.state.email,
+	// 		},
+	// 	});
+	// };
 
 	onSubmit = (event) => {
 		this.props.firebase
@@ -97,17 +97,38 @@ class SignInGoogleBase extends Component {
 					<div>
 						<h1>Complete Your Sign Up.</h1>
 						<Mutation mutation={firebaseSignUp}>
-							<form onSubmit={this.secondSubmit}>
-								<input
-									onChange={this.onChange}
-									defaultValue={this.state.email}
-									placeholder='email'
-									name='email'
-									value={this.state.email}
-								/>
-								<input onChange={this.onChange} placeholder='username' name='username' value={this.state.username} />
-								<button type='submit'>Submit</button>
-							</form>
+							{(signUpMutation, { data }) => {
+								console.log({ state: this.state, data: data });
+								return (
+									<form
+										onSubmit={(e) => {
+											e.preventDefault();
+											signUpMutation({
+												variables: {
+													username: this.state.username,
+													thirdPartyUID: this.state.uid,
+													email: this.state.email,
+												},
+                      })
+                      this.props.history.push(ROUTES.HOME);
+										}}>
+										<input
+											onChange={this.onChange}
+											defaultValue={this.state.email}
+											placeholder='email'
+											name='email'
+											value={this.state.email}
+										/>
+										<input
+											onChange={this.onChange}
+											placeholder='username'
+											name='username'
+											value={this.state.username}
+										/>
+										<button type='submit'>Submit</button>
+									</form>
+								);
+							}}
 						</Mutation>
 					</div>
 				</Modal>
