@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { withFirebase } from "../Firebase/Exports";
 import LoginPopup from "../LoginPopUp/LoginPopUp";
 import Fuse from "fuse.js";
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";
@@ -12,7 +13,7 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       text: "",
-      isLoggedIn: true,
+      isLoggedIn: false,
       displayPopUp: false,
       options: ["project"],
       userSort: "",
@@ -42,11 +43,23 @@ class SearchBar extends Component {
     e.preventDefault();
     console.log({props: this.props})
 
+   
+    
+    console.log(this.props.firebase)
 
-    this.state.isLoggedIn
-      ? this.setState({ displayPopUp: false })
-      : this.setState({ displayPopUp: true });
+    // if (user) {
+    //   this.setState({isLoggedIn: true})
+    // } else {
+    //   this.setState({isLoggedIn: false})
+    // }
 
+    if (this.state.isLoggedIn) {
+      this.setState({displayPopUp: false})
+    } else if (!this.state.isLoggedIn) {
+      this.setState({displayPopUp: true})
+    }
+
+    console.log({state: this.state})
     let options = [];
 
     if (this.state.options.includes("user")) {
@@ -769,4 +782,4 @@ let projectSearch = projectsFuse.search(this.state.text);
   }
 }
 
-export default SearchBar;
+export default withFirebase(SearchBar);

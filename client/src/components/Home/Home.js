@@ -66,7 +66,7 @@ class Home extends Component {
 				
 							return (
 								<SearchBar 
-									{...this.props} 
+									{...this.props}
 									userClicked={this.state.userClicked} 
 									users={userArray} 
 									projects={projectArray} 
