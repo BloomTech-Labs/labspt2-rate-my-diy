@@ -58,7 +58,7 @@ class Home extends Component {
 							const reviewArray = Object.values(reviewData).flat()
 							return (
 								<SearchBar 
-									{...this.props} 
+									{...this.props}
 									userClicked={this.state.userClicked} 
 									users={userArray} 
 									projects={projectArray} 
