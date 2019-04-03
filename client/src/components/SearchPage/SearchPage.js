@@ -32,9 +32,17 @@ class SearchPage extends Component {
 						{({ loading: loadingReviews, data: reviewData}) => {
 
 							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-							const userArray = Object.values(userData).flat()
-							const projectArray = Object.values(projectData).flat()
-							const reviewArray = Object.values(reviewData).flat()
+              
+              let userArray = [];
+							let projectArray = [];
+              let reviewArray = [];
+
+							if (userData !== undefined) userArray = Object.values(userData).flat();
+
+							if (projectData !== undefined) projectArray = Object.values(projectData).flat()
+							
+							if (reviewData !== undefined) reviewArray = Object.values(reviewData).flat()
+
 							return (
 								<SearchBar 
 									{...this.props} 
