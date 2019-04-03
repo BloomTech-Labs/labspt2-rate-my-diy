@@ -32,9 +32,17 @@ class SearchPage extends Component {
 						{({ loading: loadingReviews, data: reviewData}) => {
 
 							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-							const userArray = Object.values(userData).flat()
-							const projectArray = Object.values(projectData).flat()
-							const reviewArray = Object.values(reviewData).flat()
+              
+              let userArray = [];
+							let projectArray = [];
+              let reviewArray = [];
+
+							if (userData !== undefined) userArray = Object.values(userData).flat();
+
+							if (projectData !== undefined) projectArray = Object.values(projectData).flat()
+							
+							if (reviewData !== undefined) reviewArray = Object.values(reviewData).flat()
+
 							return (
 								<SearchBar 
 									{...this.props} 
@@ -42,7 +50,9 @@ class SearchPage extends Component {
 									users={userArray} 
 									projects={projectArray} 
 									reviews={reviewArray} 
-									searchHandler={this.props.searchHandler}/>
+									projectSearchHandler={this.props.projectSearchHandler} 
+									userSearchHandler={this.props.userSearchHandler}
+									reviewSearchHandler={this.props.reviewSearchHandler}/>
 							)	
 						}}</Query>
 					
@@ -59,17 +69,18 @@ class SearchPage extends Component {
         <h1>Results:</h1>
         {/* <div className="card-container"> */}
           {this.props.projects
-            .map(({ id, name, titleImg, rating, User }) => (
+            .map(({ id, name, titleImg, rating, User, category }) => (
               <div key={id} className="card-container">
                   <img src={`${titleImg}`} alt="project"/>
                   <div>{`${name}`}</div>
                   <div>{`${rating}`}</div>
+                  <div>{`${category}`}</div>
                   <div>{`${User.username}`}</div>
               </div>
             ))
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div id={id} className="card-container">
+                <div key={id} className="card-container">
                     <img src={`${userProfileImage}`} alt="user"/>
                     <div>{`${username}`}</div>
                 </div>
@@ -77,11 +88,11 @@ class SearchPage extends Component {
             )
             .concat(
               this.props.reviews.map(
-                ({ id, name, text, editedAt, Author, ProjectReviewed }) => (
+                ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
                 <div key={id} className="card-container">
                     <div>{`${name}`}</div>
                     <div>{`${text}`}</div>
-                    <div>{`${editedAt}`}</div>
+                    <div>{`${timestamp}`}</div>
                     <div>{`${Author.username}`}</div>
                     <div>{`${ProjectReviewed.name}`}</div>
                 </div>

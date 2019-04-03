@@ -5,6 +5,7 @@ import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
+import Stripe from './components/Stripe/Stripe'
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import SearchPage from './components/SearchPage/SearchPage'
@@ -21,23 +22,35 @@ class App extends Component {
 		this.state = {
 		  users: [],
 		  projects: [],
-		  reviews: []
+			reviews: [],
+			user: ""
 		};
 	}
 
-	searchHandler = (users, reviews, projects) => {
-		if (users) {
-		  this.setState({ users });
-		}
-		if (reviews) {
-		  this.setState({ reviews });
-		}
-		if (projects) {
+	componentDidMount(){
+		console.log({app_props: this.props})
+	}
+
+	projectSearchHandler = (projects) => {
 		  this.setState({ projects });
-		}
+		
 	
-		console.log({users, projects, reviews})
+		console.log({projects: this.state.projects})
 	};
+
+	userSearchHandler = (users) => {
+		this.setState({ users });
+	
+
+	console.log(this.state.users)
+};
+
+reviewSearchHandler = (reviews) => {
+	this.setState({ reviews });
+
+
+console.log(this.state.reviews)
+};
 
 	render() {
     return (
@@ -49,7 +62,9 @@ class App extends Component {
 							props => (
 							<Home 
 								{...props} 
-								searchHandler={this.searchHandler} 
+								projectSearchHandler={this.projectSearchHandler} 
+								userSearchHandler={this.userSearchHandler}
+								reviewSearchHandler={this.reviewSearchHandler}
 								getUsers={getUsers} 
 								getProjects={getProjects} 
 								getReviews={getReviews} 
@@ -68,7 +83,9 @@ class App extends Component {
 									users={this.state.users} 
 									projects={this.state.projects} 
 									reviews={this.state.reviews} 
-									searchHandler={this.searchHandler} 
+									projectSearchHandler={this.projectSearchHandler} 
+									userSearchHandler={this.userSearchHandler}
+									reviewSearchHandler={this.reviewSearchHandler}
 									getUsers={getUsers} 
 									getProjects={getProjects} 
 									getReviews={getReviews}
@@ -76,6 +93,7 @@ class App extends Component {
 						} 
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
+					<Route path={ROUTES.STRIPE} component={Stripe} />
           <Route path={ROUTES.FOOTER} component={Footer} />
 				</div>
 			</Router>

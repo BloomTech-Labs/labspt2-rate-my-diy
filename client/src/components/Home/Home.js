@@ -25,7 +25,7 @@ class Home extends Component {
 	filterByCurrentMonth = (data) => {
 		const currentTime = new Date()
 
-		var month = currentTime.getMonth() - 1
+		var month = currentTime.getMonth() + 1
 							
 		var year = currentTime.getFullYear()
 
@@ -54,16 +54,18 @@ class Home extends Component {
 
 							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
 							const userArray = Object.values(userData).flat()
-							const projectArray = Object.values(projectData).flat() 
+							const projectArray = Object.values(projectData).flat()
 							const reviewArray = Object.values(reviewData).flat()
 							return (
 								<SearchBar 
-									{...this.props} 
+									{...this.props}
 									userClicked={this.state.userClicked} 
 									users={userArray} 
 									projects={projectArray} 
 									reviews={reviewArray} 
-									searchHandler={this.props.searchHandler}/>
+									projectSearchHandler={this.props.projectSearchHandler} 
+									userSearchHandler={this.props.userSearchHandler}
+									reviewSearchHandler={this.props.reviewSearchHandler}/>
 							)	
 						}}</Query>
 					

@@ -73,13 +73,11 @@ const Mutation = prismaObjectType({
 				const userName = makeid(8);
 				const emailFront = makeid(5);
 				const email = `${emailFront}@gmail.com`;
-				const password = makeid(7);
+				
 
 				const newUser = await prisma.createUser({
 					username: userName,
 					email: email,
-					password: password,
-					privilege: 'basic',
 				});
 				const user = await prisma.user({ username: userName });
 				const customer = await stripe.customers.create({
@@ -113,7 +111,7 @@ const Subscription = prismaObjectType({
     };
       welcomeEmail = {
       subscribe: newWelcomeEmail,
-      resolve: (args) => {
+      resolve: (parent, args, ctx, info) => {
         email = args.email;
         const mailOptions = {
           from: 'ratemydiyproject@gmail.com', // sender address

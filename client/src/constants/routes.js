@@ -9,4 +9,5 @@ export const PASSWORD_CHANGE='/pwchange'
 export const CREATE_PROJECT='/createproject';
 export const REVIEW_LIST='/reviews';
 export const PROJECT_LIST='/projects';
-export const MORE_INFO='/register'
+export const MORE_INFO='/register';
+export const STRIPE = '/stripe';
