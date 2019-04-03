@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from "../LoginPopUp/LoginPopUp";
 import Fuse from "fuse.js";
+import { withFirebase } from '../Firebase/Exports'
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";
 import {RadioGroup, Radio} from 'react-radio-group'
 import "./Searchbar.scss";
 
 class SearchBar extends Component {
+ 
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +26,8 @@ class SearchBar extends Component {
       starsDisabled: false,
       userSortDisabled: true,
       projectSortDisabled: false,
-      reviewSortDisabled: true
+      reviewSortDisabled: true,
+      experimentTho: ""
     };
   }
 
@@ -32,6 +35,24 @@ class SearchBar extends Component {
     if (nextProps.userClicked !== null) {
       this.setState({ text: nextProps.userClicked });
     }
+  }
+
+  componentDidMount(){
+   const user = this.props.firebase.auth.currentUser !== null
+ 
+   if (user){
+    this.setState({
+     isLoggedIn: true,
+     experimentTho: "Hello, world!"
+    })
+   }
+   else if (!user) {
+    this.setState({
+     isLoggedIn: false,
+     experimentTho: "Hello, world!" 
+    })
+   }
+
   }
 
   changeHandler = e => {
@@ -297,8 +318,10 @@ class SearchBar extends Component {
   };
 
   render() {
-
-    let categories = this.props.projects /*.map(project => project.category);*/
+   // this.props.firebase.auth.b.currentUser = true 
+   console.log(this.props.firebase.auth.currentUser)
+   console.log("State: ",this.state)
+    let categories = this.props.projects.map(project => project.category);
     let filteredCategories = [...new Set(categories)];
 
     return (
@@ -414,4 +437,4 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+export default withFirebase(SearchBar);
