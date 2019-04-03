@@ -26,6 +26,7 @@ const firebaseSignUp = gql`
 	}
 `;
 
+
 class SignInGoogleBase extends Component {
 	constructor(props) {
 		super(props);
@@ -37,19 +38,29 @@ class SignInGoogleBase extends Component {
       username:'',
       uid:'',
     };
-	}
+  }
+  
+  setError = (err) => {
+    this.setState({err: err})
+  }
 
-	// secondSubmit = (e, signUpMutation, data) => {
-	// 	e.preventDefault();
-	// 	console.log(data);
-	// 	signUpMutation({
-	// 		variables: {
-	// 			username: this.state.username,
-	// 			thirdPartyUID: this.state.uid,
-	// 			email: this.state.email,
-	// 		},
-	// 	});
-	// };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  
+
+	secondSubmit = (e, signUpMutation, data) => {
+		e.preventDefault();
+		console.log(data);
+		signUpMutation({
+			variables: {
+				username: this.state.username,
+				thirdPartyUID: this.state.uid,
+				email: this.state.email,
+			},
+		});
+	};
 
 	onSubmit = (event) => {
 		this.props.firebase
@@ -96,40 +107,41 @@ class SignInGoogleBase extends Component {
 				<Modal isOpen={this.state.isOpen} contentLabel='Example Modal'>
 					<div>
 						<h1>Complete Your Sign Up.</h1>
-						<Mutation mutation={firebaseSignUp}>
-							{(signUpMutation, { data }) => {
-								console.log({ state: this.state, data: data });
-								return (
-									<form
-										onSubmit={(e) => {
-											e.preventDefault();
-											signUpMutation({
-												variables: {
-													username: this.state.username,
-													thirdPartyUID: this.state.uid,
-													email: this.state.email,
-												},
-                      })
-                      this.props.history.push(ROUTES.HOME);
-										}}>
-										<input
-											onChange={this.onChange}
-											defaultValue={this.state.email}
-											placeholder='email'
-											name='email'
-											value={this.state.email}
-										/>
-										<input
-											onChange={this.onChange}
-											placeholder='username'
-											name='username'
-											value={this.state.username}
-										/>
-										<button type='submit'>Submit</button>
-									</form>
-								);
-							}}
-						</Mutation>
+            <Mutation
+              mutation={firebaseSignUp}
+            >
+              {(signUpMutation, { data }) => {
+                console.log({ state: this.state, data: data })
+                return (
+                  <form onSubmit={e => {
+                    e.preventDefault()
+                    signUpMutation({
+                      variables: {
+                        username: this.state.username,
+                        thirdPartyUID: this.state.uid,
+                        email: this.state.email
+                      }
+                    });
+                    this.props.history.push(ROUTES.HOME);
+                  }}>
+                    <input
+                      onChange={this.onChange}
+                      defaultValue={this.state.email}
+                      placeholder="email"
+                      name="email"
+                      value={this.state.email}
+                    />
+                    <input
+                      onChange={this.onChange}
+                      placeholder="username"
+                      name="username"
+                      value={this.state.username}
+                    />
+                    <button type="submit">Submit</button>
+                  </form>
+                );
+              }}
+            </Mutation>
 					</div>
 				</Modal>
 			</React.Fragment>
