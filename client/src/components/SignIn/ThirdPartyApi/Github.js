@@ -82,7 +82,7 @@ class SignInGithubBase extends Component {
         } else {
           this.props.history.push(ROUTES.HOME);
         }
-        console.log(socialAuthUser.user.providerData["0"].uid);
+        // console.log(socialAuthUser.user.providerData["0"].uid);
         return this.props.firebase
           .user(socialAuthUser.user.providerData["0"].uid)
           .set({
@@ -114,7 +114,7 @@ class SignInGithubBase extends Component {
               mutation={firebaseSignUp}
             >
               {(signUpMutation, { data }) => {
-                console.log({state: this.state, data: data})
+                // console.log({state: this.state, data: data})
                 return (
                   <form onSubmit={e => {
                     e.preventDefault()

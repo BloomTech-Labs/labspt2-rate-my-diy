@@ -13,7 +13,8 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       text: "",
-      isLoggedIn: false,
+      isLoggedIn: this.props.loggedIn,
+      user: this.props.user,
       displayPopUp: false,
       options: ["project"],
       userSort: "",
@@ -25,15 +26,13 @@ class SearchBar extends Component {
       starsDisabled: false,
       userSortDisabled: true,
       projectSortDisabled: false,
-      reviewSortDisabled: true
+      reviewSortDisabled: true,
+      users: [],
+      projects: [],
+      reviews: []
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.userClicked !== null) {
-      this.setState({ text: nextProps.userClicked });
-    }
-  }
 
   changeHandler = e => {
     this.setState({ text: e.target.value });
@@ -41,26 +40,17 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log({props: this.props})
+    // console.log({props: this.props})
 
-   
-    
-    console.log(this.props.firebase)
-
-    // if (user) {
-    //   this.setState({isLoggedIn: true})
-    // } else {
-    //   this.setState({isLoggedIn: false})
+    // if (this.state.isLoggedIn) {
+    //   this.setState({displayPopUp: false})
+    // } else if (!this.state.isLoggedIn) {
+    //   this.setState({displayPopUp: true})
     // }
 
+    // console.log({state: this.state})
     if (this.state.isLoggedIn) {
-      this.setState({displayPopUp: false})
-    } else if (!this.state.isLoggedIn) {
-      this.setState({displayPopUp: true})
-    }
-
-    console.log({state: this.state})
-    let options = [];
+      let options = [];
 
     if (this.state.options.includes("user")) {
       options.push("user");
@@ -79,6 +69,12 @@ class SearchBar extends Component {
     }
 
     this.search(options);
+    }
+
+    else {
+      this.setState({displayPopUp: true})
+    }
+    
   };
 
   closePopUp = () => {
@@ -130,7 +126,7 @@ class SearchBar extends Component {
       options: [...options]
     });
 
-    console.log({ state: this.state });
+    // console.log({ state: this.state });
   };
 
   starChange = e => {
@@ -151,25 +147,25 @@ class SearchBar extends Component {
     this.setState({
       userSort: option
     });
-    console.log({ stateAfterSort: this.state, sortOption: option });
+    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   projectSortChange = option => {
     this.setState({
       projectSort: option
     });
-    console.log({ stateAfterSort: this.state, sortOption: option });
+    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   reviewSortChange = option => {
     this.setState({
       reviewSort: option
     });
-    console.log({ stateAfterSort: this.state, sortOption: option });
+    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   search = option => {
-    console.log(this.state)
+    // console.log(this.state)
     let options = {
       shouldSort: true,
       threshold: 0.3,
@@ -199,7 +195,7 @@ class SearchBar extends Component {
         this.props.userSearchHandler(userSearch);
 
         this.props.history.push("/search");
-        console.log(option);
+        // console.log(option);
       } else {
         let userSearch = this.props.users;
         if (this.state.userSort === "alpha")
@@ -224,16 +220,17 @@ class SearchBar extends Component {
     if (option.includes("category") && this.state.stars === 0) {
       options.keys.push("category");
       const projectsFuse = new Fuse(this.props.projects, options);
+      const categorySearch = projectsFuse.search(this.state.text);
 
-      if(this.state.projectSort === 'alpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name });
+      // if(this.state.projectSort === 'alpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name });
       
-      if(this.state.projectSort === 'revAlpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name }).reverse();
+      // if(this.state.projectSort === 'revAlpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name }).reverse();
 
-      if(this.state.projectSort === 'highest') categorySearch = categorySearch.sort(function (a, b) { return b.rating - a.rating });
+      // if(this.state.projectSort === 'highest') categorySearch = categorySearch.sort(function (a, b) { return b.rating - a.rating });
       
-      if(this.state.projectSort === 'lowest') categorySearch = categorySearch.sort(function (a, b) { return a.rating - b.rating });
+      // if(this.state.projectSort === 'lowest') categorySearch = categorySearch.sort(function (a, b) { return a.rating - b.rating });
 
-      this.props.projectSearchHandler(categorySearch);
+      // this.props.projectSearchHandler(categorySearch);
 
       if (this.state.text) {
         let categoryFuse = new Fuse(categorySearch, {
@@ -310,11 +307,11 @@ class SearchBar extends Component {
           keys: ["name"]
         });
 
-        console.log({categoryS: categorySearch})
+        // console.log({categoryS: categorySearch})
 
         let catSearch = categoryFuse.search(this.state.text);
 
-        console.log({catS: catSearch})
+        // console.log({catS: catSearch})
 
         if (this.state.projectSort === "alpha")
           catSearch = catSearch.sort(function(a, b) {
@@ -341,7 +338,7 @@ class SearchBar extends Component {
         let projectCategoryStarsSearch = catSearch.filter(
           project => project.rating >= this.state.stars
         );
-        console.log({projectCategoryStarsSearch})
+        // console.log({projectCategoryStarsSearch})
         this.props.projectSearchHandler(projectCategoryStarsSearch);
 
         this.props.history.push("/search");
@@ -350,7 +347,7 @@ class SearchBar extends Component {
           project => project.rating >= this.state.stars
         );
 
-        console.log({gonna_filter: categorySearch})
+        // console.log({gonna_filter: categorySearch})
 
         if (this.state.projectSort === "alpha")
           projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function(
@@ -653,10 +650,45 @@ let projectSearch = projectsFuse.search(this.state.text);
 
       this.props.projectSearchHandler(projectSearch);
 
+      
+
       this.props.history.push("/search");
-      console.log(option);
+      // console.log(option);
+
+      
     }
+
+    // console.log({currentUser: this.props.firebase.auth.currentUser.uid})
+
+    // let user = this.props.firebase.auth.currentUser !== undefined
+
+    // console.log({user: user})
+
+    //  if (user === true) {
+    //   this.setState({isLoggedIn: true})
+    // } else if (user === false) {
+    //   this.setState({isLoggedIn: false})
+    // }
+
+    // console.log({loggedIn: this.state.isLoggedIn})
   };
+
+  popUp = () => {
+    this.state.isLoggedIn
+    ? this.setState({displayPopUp: false})
+    : this.setState({displayPopUp: true})
+  }
+  // componentDidMount() {
+    
+  //   let user = this.props.firebase.auth.currentUser !== undefined
+  //   if (user === true) {
+  //     this.setState({isLoggedIn: true})
+  //   } else if (user === false) {
+  //     this.setState({isLoggedIn: false})
+  //   }
+
+  //   console.log({loggedIn: this.state.isLoggedIn, user: user})
+  // }
 
   render() {
     let categories = this.props.projects.map(project => project.category);
@@ -791,4 +823,4 @@ let projectSearch = projectsFuse.search(this.state.text);
   }
 }
 
-export default withFirebase(SearchBar);
+export default SearchBar;

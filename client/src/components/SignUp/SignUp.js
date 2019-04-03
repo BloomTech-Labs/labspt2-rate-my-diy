@@ -35,7 +35,7 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        console.log(authUser);
+        // console.log(authUser);
         return this.props.firebase.user(authUser.user.uid).set(
           {
             username,
@@ -56,7 +56,7 @@ class SignUpFormBase extends Component {
         }
 
         this.setState({ err });
-        console.log(err);
+        // console.log(err);
       });
     event.preventDefault();
   };

@@ -18,6 +18,7 @@ export const getProjects = gql`
 			category
 			rating
 			User{
+				id
 				username
 			}
 		}

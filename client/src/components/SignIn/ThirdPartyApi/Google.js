@@ -52,7 +52,7 @@ class SignInGoogleBase extends Component {
 
 	secondSubmit = (e, signUpMutation, data) => {
 		e.preventDefault();
-		console.log(data);
+		// console.log(data);
 		signUpMutation({
 			variables: {
 				username: this.state.username,
@@ -68,9 +68,9 @@ class SignInGoogleBase extends Component {
 			// console.log(this.props, 'home page props')
 			.then((socialAuthUser) => {
 				// 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
-				console.log('response from Google:', socialAuthUser);
+				// console.log('response from Google:', socialAuthUser);
 				var userBooleanValue = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser);
-				console.log('userBooleanValue', userBooleanValue);
+				// console.log('userBooleanValue', userBooleanValue);
 				if (userBooleanValue) {
 					const email = socialAuthUser.user.providerData['0'].email;
 					const uid = socialAuthUser.user.providerData['0'].uid;
@@ -83,13 +83,13 @@ class SignInGoogleBase extends Component {
 				} else {
 					this.props.history.push(ROUTES.HOME);
 				}
-				console.log(socialAuthUser.user.providerData['0'].uid);
+				// console.log(socialAuthUser.user.providerData['0'].uid);
 				return this.props.firebase.user(socialAuthUser.user.providerData['0'].uid).set({
 					email: socialAuthUser.user.email,
 				});
 			})
 			.catch((err) => {
-				console.log('err ', err);
+				// console.log('err ', err);
 				if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
 					err.message = ERROR_MSG_ACCOUNT_EXISTS;
 				}
@@ -111,7 +111,7 @@ class SignInGoogleBase extends Component {
               mutation={firebaseSignUp}
             >
               {(signUpMutation, { data }) => {
-                console.log({ state: this.state, data: data })
+                // console.log({ state: this.state, data: data })
                 return (
                   <form onSubmit={e => {
                     e.preventDefault()

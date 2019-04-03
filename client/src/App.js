@@ -22,34 +22,33 @@ class App extends Component {
 		this.state = {
 		  users: [],
 		  projects: [],
-			reviews: [],
-			user: ""
+			reviews: []
 		};
 	}
 
-	componentDidMount(){
-		console.log({app_props: this.props})
-	}
+	// componentDidMount(){
+	// 	console.log({app_props: this.props})
+	// }
 
 	projectSearchHandler = (projects) => {
 		  this.setState({ projects });
 		
 	
-		console.log({projects: this.state.projects})
+		// console.log({projects: this.state.projects})
 	};
 
 	userSearchHandler = (users) => {
 		this.setState({ users });
 	
 
-	console.log(this.state.users)
+	// console.log(this.state.users)
 };
 
 reviewSearchHandler = (reviews) => {
 	this.setState({ reviews });
 
 
-console.log(this.state.reviews)
+// console.log(this.state.reviews)
 };
 
 	render() {
