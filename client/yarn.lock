@@ -8713,6 +8713,15 @@ react-radio-group@^3.0.3:
   dependencies:
     prop-types "^15.5.8"
 
+react-redux-firebase@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/react-redux-firebase/-/react-redux-firebase-2.2.6.tgz#af72ff7be29c543c42139545619fbb66c564f5d1"
+  integrity sha512-PJzcwZOisRuS9yoHj6Fidwvl8rdKTbjr14U6DOqdSfxJkz1CkpL8GDXjck1pXCdZ/TgijxWMCiveRGAzq+w6gA==
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+
 react-router-dom@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"

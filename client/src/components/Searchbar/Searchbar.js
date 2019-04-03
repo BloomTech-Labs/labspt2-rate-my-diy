@@ -321,8 +321,10 @@ class SearchBar extends Component {
    // this.props.firebase.auth.b.currentUser = true 
    console.log(this.props.firebase.auth.currentUser)
    console.log("State: ",this.state)
-    let categories = this.props.projects.map(project => project.category);
-    let filteredCategories = [...new Set(categories)];
+   console.log(this.props.projects)
+   let categories = this.props.projects.map(project => project.category);
+   let filteredCategories = [...new Set(categories)];
+   console.log(categories)
 
     return (
       <div>
