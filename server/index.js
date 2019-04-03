@@ -61,9 +61,6 @@ const Mutation = prismaObjectType({
 				// }/k
 				// const user = await prisma.user({id: 1})
 
-				const user = localStorage.getItem("authUser")
-				console.log({authUser: user})
-
 				const makeid = (length) => {
 					let text = '';
 					const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -81,7 +78,6 @@ const Mutation = prismaObjectType({
 				const newUser = await prisma.createUser({
 					username: userName,
 					email: email,
-					privilege: 'basic',
 				});
 				const user = await prisma.user({ username: userName });
 				const customer = await stripe.customers.create({
@@ -115,7 +111,7 @@ const Subscription = prismaObjectType({
     };
       welcomeEmail = {
       subscribe: newWelcomeEmail,
-      resolve: (args) => {
+      resolve: (parent, args, ctx, info) => {
         email = args.email;
         const mailOptions = {
           from: 'ratemydiyproject@gmail.com', // sender address
