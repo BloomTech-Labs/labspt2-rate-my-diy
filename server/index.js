@@ -61,6 +61,9 @@ const Mutation = prismaObjectType({
 				// }/k
 				// const user = await prisma.user({id: 1})
 
+				const user = localStorage.getItem("authUser")
+				console.log({authUser: user})
+
 				const makeid = (length) => {
 					let text = '';
 					const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -73,12 +76,11 @@ const Mutation = prismaObjectType({
 				const userName = makeid(8);
 				const emailFront = makeid(5);
 				const email = `${emailFront}@gmail.com`;
-				const password = makeid(7);
+				
 
 				const newUser = await prisma.createUser({
 					username: userName,
 					email: email,
-					password: password,
 					privilege: 'basic',
 				});
 				const user = await prisma.user({ username: userName });

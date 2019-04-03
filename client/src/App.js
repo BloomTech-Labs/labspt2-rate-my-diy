@@ -5,6 +5,7 @@ import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
+import Stripe from './components/Stripe/Stripe'
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import SearchPage from './components/SearchPage/SearchPage'
@@ -21,8 +22,13 @@ class App extends Component {
 		this.state = {
 		  users: [],
 		  projects: [],
-		  reviews: []
+			reviews: [],
+			user: ""
 		};
+	}
+
+	componentDidMount(){
+		console.log({app_props: this.props})
 	}
 
 	projectSearchHandler = (projects) => {
@@ -87,6 +93,7 @@ console.log(this.state.reviews)
 						} 
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
+					<Route path={ROUTES.STRIPE} component={Stripe} />
           <Route path={ROUTES.FOOTER} component={Footer} />
 				</div>
 			</Router>

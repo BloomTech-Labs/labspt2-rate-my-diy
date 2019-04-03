@@ -40,6 +40,8 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log({props: this.props})
+
 
     this.state.isLoggedIn
       ? this.setState({ displayPopUp: false })
