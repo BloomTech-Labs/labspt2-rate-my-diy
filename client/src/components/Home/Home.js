@@ -25,9 +25,9 @@ class Home extends Component {
 	filterByCurrentMonth = (data) => {
 		const currentTime = new Date()
 
-		var month = currentTime.getMonth() + 1
+		const month = currentTime.getMonth() + 1
 							
-		var year = currentTime.getFullYear()
+		const year = currentTime.getFullYear()
 
 		const filteredData = data.map(item => {
 			if (item.timestamp.slice(0, 4) == year && item.timestamp.slice(5, 7) == month) { 
@@ -36,6 +36,22 @@ class Home extends Component {
 		});
 
 		return filteredData.filter(function(e){return e});
+	}
+
+	filterByCurrentMonthReviews = (data) => {
+		const currentTime = new Date();
+
+		const month = currentTime.getMonth() + 1;
+							
+		const year = currentTime.getFullYear();
+
+		const eliminateEmptyReviews = data.filter(item => {
+			if(item.ReviewList[0] !== undefined) {
+				return item;
+			}
+		});
+
+		console.log(eliminateEmptyReviews);
 	}
 
 	render() {
@@ -200,16 +216,17 @@ class Home extends Component {
 					<Query
 						query={gql`
 							{
-								reviews(orderBy: thumbsUp_DESC) {
+								users(orderBy: username_ASC) {
 									id
-									name
-									thumbsUp
-    								timestamp
-									Author {		
-										id
-      									username
-										email
-										userProfileImage  
+    								username
+    								email
+    								thirdPartyUID
+    								firebaseUID
+    								ReviewList {
+      									id
+										name
+										thumbsUp
+    									timestamp
     								}
 								}
 							}
@@ -219,7 +236,7 @@ class Home extends Component {
 							if (loading) return <p>Loading...</p>;
 							if (error) return <p>Error :(</p>;
 							
-							const reviews = this.filterByCurrentMonth(data.reviews);
+							const reviews = this.filterByCurrentMonthReviews(data.users);
 
 							return (
 								<div className='card-container'>
