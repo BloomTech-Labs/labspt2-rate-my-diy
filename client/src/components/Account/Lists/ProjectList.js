@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function List() {
+export default function ProjectList() {
   return (
     <div>
-      <p>My List</p>
+      <h1>My Projects</h1>
     </div>
   );
 }

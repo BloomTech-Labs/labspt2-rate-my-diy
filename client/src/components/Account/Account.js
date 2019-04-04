@@ -3,6 +3,9 @@ import { Link, Route } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { withAuthorization } from "../Session/session";
 import ProjectList from "./Lists/ProjectList"
+import ReviewList from "./Lists/ReviewList"
+import Stripe from "../Stripe/Stripe"
+import Settings from "../Account/Settings/Settings"
 
 class Account extends Component {
   render() {
@@ -26,6 +29,9 @@ class Account extends Component {
         </div>
 
         <Route path={ROUTES.MY_PROJECTS} component={ProjectList}/>
+        <Route path={ROUTES.MY_REVIEWS} component={ReviewList}/>
+        <Route path={ROUTES.STRIPE} render={props => <Stripe {...props} firebase={this.props.firebase}/>}/>
+        <Route path={ROUTES.SETTINGS} component={Settings}/>
       </div>
     );
   }

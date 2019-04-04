@@ -18,12 +18,12 @@ const Navigation = () => (
 const NavigationAuth = () => {
   return (
     <>
-      <div class="overlay">
-        <label for="toggle" />
+      <div className="overlay">
+        <label htmlFor="toggle" />
       </div>
 
       <input type="checkbox" id="toggle" name="toggle" />
-      <div class="verticalNav">
+      <div className="verticalNav">
         <ul>
           <li>
             <Link to={ROUTES.SIGN_IN}>Sign In</Link>
@@ -43,12 +43,12 @@ const NavigationAuth = () => {
 const NavigationNonAuth = () => {
   return (
     <>
-      <div class="overlay">
-        <label for="toggle" />
+      <div className="overlay">
+        <label htmlFor="toggle" />
       </div>
 
       <input type="checkbox" id="toggle" name="toggle" />
-      <div class="verticalNav">
+      <div className="verticalNav">
         <ul>
           
           <li>
