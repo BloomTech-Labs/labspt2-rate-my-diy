@@ -23,6 +23,7 @@ const Stripe = (props) => {
     <StripeCheckout
       token={async token => {
         console.log({token: token});
+        console.log({stripeProps: props})
         const response = await props.mutate({ variables: { source: token.id, email: user.email } });
         console.log({ response: response });
       }}
