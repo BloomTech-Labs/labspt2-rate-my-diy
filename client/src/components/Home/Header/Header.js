@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './Header.scss'
+import React, { Component } from "react";
+import "./Header.scss";
 
 class Header extends Component {
   render() {
@@ -7,7 +7,7 @@ class Header extends Component {
       <div className="header">
         <h1>Hot Code</h1>
       </div>
-    )
+    );
   }
 }
 

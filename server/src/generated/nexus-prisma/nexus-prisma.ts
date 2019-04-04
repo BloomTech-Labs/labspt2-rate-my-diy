@@ -5,7 +5,7 @@
 
 import { core } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
-import * as prisma from '../prisma-client'
+import * as prisma from '../../../../src/generated/prisma-client'
 
 declare global {
   interface NexusPrismaGen extends NexusPrismaTypes {}
@@ -380,9 +380,9 @@ export interface QueryFieldDetails {
 type UserObject =
   | UserFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'url', args?: [] | false, alias?: string  } 
+  | { name: 'thirdPartyUID', args?: [] | false, alias?: string  } 
+  | { name: 'firebaseUID', args?: [] | false, alias?: string  } 
   | { name: 'username', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
   | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
   | { name: 'bio', args?: [] | false, alias?: string  } 
@@ -397,9 +397,9 @@ type UserObject =
 
 type UserFields =
   | 'id'
-  | 'url'
+  | 'thirdPartyUID'
+  | 'firebaseUID'
   | 'username'
-  | 'password'
   | 'email'
   | 'userProfileImage'
   | 'bio'
@@ -464,7 +464,15 @@ export interface UserFieldDetails {
     nullable: false
     resolve: undefined
   }
-  url: {
+  thirdPartyUID: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  firebaseUID: {
     type: 'String'
     args: {}
     description: string
@@ -473,14 +481,6 @@ export interface UserFieldDetails {
     resolve: undefined
   }
   username: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  password: {
     type: 'String'
     args: {}
     description: string
@@ -609,10 +609,10 @@ export interface UserFieldDetails {
 type ReviewObject =
   | ReviewFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
-  | { name: 'editedAt', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'LikedBy', args?: ReviewLikedByArgs[] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
@@ -622,10 +622,10 @@ type ReviewObject =
 
 type ReviewFields =
   | 'id'
-  | 'title'
+  | 'name'
   | 'rKey'
   | 'text'
-  | 'editedAt'
+  | 'timestamp'
   | 'thumbsUp'
   | 'LikedBy'
   | 'thumbsDown'
@@ -661,7 +661,7 @@ export interface ReviewFieldDetails {
     nullable: false
     resolve: undefined
   }
-  title: {
+  name: {
     type: 'String'
     args: {}
     description: string
@@ -685,7 +685,7 @@ export interface ReviewFieldDetails {
     nullable: false
     resolve: undefined
   }
-  editedAt: {
+  timestamp: {
     type: 'DateTime'
     args: {}
     description: string
@@ -1856,9 +1856,9 @@ export interface UserSubscriptionPayloadFieldDetails {
 type UserPreviousValuesObject =
   | UserPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'url', args?: [] | false, alias?: string  } 
+  | { name: 'thirdPartyUID', args?: [] | false, alias?: string  } 
+  | { name: 'firebaseUID', args?: [] | false, alias?: string  } 
   | { name: 'username', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
   | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
   | { name: 'bio', args?: [] | false, alias?: string  } 
@@ -1868,9 +1868,9 @@ type UserPreviousValuesObject =
 
 type UserPreviousValuesFields =
   | 'id'
-  | 'url'
+  | 'thirdPartyUID'
+  | 'firebaseUID'
   | 'username'
-  | 'password'
   | 'email'
   | 'userProfileImage'
   | 'bio'
@@ -1891,7 +1891,15 @@ export interface UserPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  url: {
+  thirdPartyUID: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  firebaseUID: {
     type: 'String'
     args: {}
     description: string
@@ -1900,14 +1908,6 @@ export interface UserPreviousValuesFieldDetails {
     resolve: undefined
   }
   username: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  password: {
     type: 'String'
     args: {}
     description: string
@@ -2216,19 +2216,19 @@ export interface ReviewSubscriptionPayloadFieldDetails {
 type ReviewPreviousValuesObject =
   | ReviewPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
-  | { name: 'editedAt', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
 
 type ReviewPreviousValuesFields =
   | 'id'
-  | 'title'
+  | 'name'
   | 'rKey'
   | 'text'
-  | 'editedAt'
+  | 'timestamp'
   | 'thumbsUp'
   | 'thumbsDown'
 
@@ -2245,7 +2245,7 @@ export interface ReviewPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  title: {
+  name: {
     type: 'String'
     args: {}
     description: string
@@ -2269,7 +2269,7 @@ export interface ReviewPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  editedAt: {
+  timestamp: {
     type: 'DateTime'
     args: {}
     description: string
@@ -2299,12 +2299,16 @@ export interface ReviewPreviousValuesFieldDetails {
 
 export interface UserWhereUniqueInput {
   id?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
   email?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
   | { name: 'email', alias?: string  } 
   
@@ -2323,20 +2327,20 @@ export interface ReviewWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  title?: string | null
-  title_not?: string | null
-  title_in?: string[]
-  title_not_in?: string[]
-  title_lt?: string | null
-  title_lte?: string | null
-  title_gt?: string | null
-  title_gte?: string | null
-  title_contains?: string | null
-  title_not_contains?: string | null
-  title_starts_with?: string | null
-  title_not_starts_with?: string | null
-  title_ends_with?: string | null
-  title_not_ends_with?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
   rKey?: string | null
   rKey_not?: string | null
   rKey_in?: string[]
@@ -2365,14 +2369,14 @@ export interface ReviewWhereInput {
   text_not_starts_with?: string | null
   text_ends_with?: string | null
   text_not_ends_with?: string | null
-  editedAt?: string | null
-  editedAt_not?: string | null
-  editedAt_in?: string[]
-  editedAt_not_in?: string[]
-  editedAt_lt?: string | null
-  editedAt_lte?: string | null
-  editedAt_gt?: string | null
-  editedAt_gte?: string | null
+  timestamp?: string | null
+  timestamp_not?: string | null
+  timestamp_in?: string[]
+  timestamp_not_in?: string[]
+  timestamp_lt?: string | null
+  timestamp_lte?: string | null
+  timestamp_gt?: string | null
+  timestamp_gte?: string | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -2417,20 +2421,20 @@ export type ReviewWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'title_not', alias?: string  } 
-  | { name: 'title_in', alias?: string  } 
-  | { name: 'title_not_in', alias?: string  } 
-  | { name: 'title_lt', alias?: string  } 
-  | { name: 'title_lte', alias?: string  } 
-  | { name: 'title_gt', alias?: string  } 
-  | { name: 'title_gte', alias?: string  } 
-  | { name: 'title_contains', alias?: string  } 
-  | { name: 'title_not_contains', alias?: string  } 
-  | { name: 'title_starts_with', alias?: string  } 
-  | { name: 'title_not_starts_with', alias?: string  } 
-  | { name: 'title_ends_with', alias?: string  } 
-  | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'rKey_not', alias?: string  } 
   | { name: 'rKey_in', alias?: string  } 
@@ -2459,14 +2463,14 @@ export type ReviewWhereInputInputObject =
   | { name: 'text_not_starts_with', alias?: string  } 
   | { name: 'text_ends_with', alias?: string  } 
   | { name: 'text_not_ends_with', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
-  | { name: 'editedAt_not', alias?: string  } 
-  | { name: 'editedAt_in', alias?: string  } 
-  | { name: 'editedAt_not_in', alias?: string  } 
-  | { name: 'editedAt_lt', alias?: string  } 
-  | { name: 'editedAt_lte', alias?: string  } 
-  | { name: 'editedAt_gt', alias?: string  } 
-  | { name: 'editedAt_gte', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'timestamp_not', alias?: string  } 
+  | { name: 'timestamp_in', alias?: string  } 
+  | { name: 'timestamp_not_in', alias?: string  } 
+  | { name: 'timestamp_lt', alias?: string  } 
+  | { name: 'timestamp_lte', alias?: string  } 
+  | { name: 'timestamp_gt', alias?: string  } 
+  | { name: 'timestamp_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -2510,20 +2514,34 @@ export interface UserWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  url?: string | null
-  url_not?: string | null
-  url_in?: string[]
-  url_not_in?: string[]
-  url_lt?: string | null
-  url_lte?: string | null
-  url_gt?: string | null
-  url_gte?: string | null
-  url_contains?: string | null
-  url_not_contains?: string | null
-  url_starts_with?: string | null
-  url_not_starts_with?: string | null
-  url_ends_with?: string | null
-  url_not_ends_with?: string | null
+  thirdPartyUID?: string | null
+  thirdPartyUID_not?: string | null
+  thirdPartyUID_in?: string[]
+  thirdPartyUID_not_in?: string[]
+  thirdPartyUID_lt?: string | null
+  thirdPartyUID_lte?: string | null
+  thirdPartyUID_gt?: string | null
+  thirdPartyUID_gte?: string | null
+  thirdPartyUID_contains?: string | null
+  thirdPartyUID_not_contains?: string | null
+  thirdPartyUID_starts_with?: string | null
+  thirdPartyUID_not_starts_with?: string | null
+  thirdPartyUID_ends_with?: string | null
+  thirdPartyUID_not_ends_with?: string | null
+  firebaseUID?: string | null
+  firebaseUID_not?: string | null
+  firebaseUID_in?: string[]
+  firebaseUID_not_in?: string[]
+  firebaseUID_lt?: string | null
+  firebaseUID_lte?: string | null
+  firebaseUID_gt?: string | null
+  firebaseUID_gte?: string | null
+  firebaseUID_contains?: string | null
+  firebaseUID_not_contains?: string | null
+  firebaseUID_starts_with?: string | null
+  firebaseUID_not_starts_with?: string | null
+  firebaseUID_ends_with?: string | null
+  firebaseUID_not_ends_with?: string | null
   username?: string | null
   username_not?: string | null
   username_in?: string[]
@@ -2538,20 +2556,6 @@ export interface UserWhereInput {
   username_not_starts_with?: string | null
   username_ends_with?: string | null
   username_not_ends_with?: string | null
-  password?: string | null
-  password_not?: string | null
-  password_in?: string[]
-  password_not_in?: string[]
-  password_lt?: string | null
-  password_lte?: string | null
-  password_gt?: string | null
-  password_gte?: string | null
-  password_contains?: string | null
-  password_not_contains?: string | null
-  password_starts_with?: string | null
-  password_not_starts_with?: string | null
-  password_ends_with?: string | null
-  password_not_ends_with?: string | null
   email?: string | null
   email_not?: string | null
   email_in?: string[]
@@ -2671,20 +2675,34 @@ export type UserWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'url', alias?: string  } 
-  | { name: 'url_not', alias?: string  } 
-  | { name: 'url_in', alias?: string  } 
-  | { name: 'url_not_in', alias?: string  } 
-  | { name: 'url_lt', alias?: string  } 
-  | { name: 'url_lte', alias?: string  } 
-  | { name: 'url_gt', alias?: string  } 
-  | { name: 'url_gte', alias?: string  } 
-  | { name: 'url_contains', alias?: string  } 
-  | { name: 'url_not_contains', alias?: string  } 
-  | { name: 'url_starts_with', alias?: string  } 
-  | { name: 'url_not_starts_with', alias?: string  } 
-  | { name: 'url_ends_with', alias?: string  } 
-  | { name: 'url_not_ends_with', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'thirdPartyUID_not', alias?: string  } 
+  | { name: 'thirdPartyUID_in', alias?: string  } 
+  | { name: 'thirdPartyUID_not_in', alias?: string  } 
+  | { name: 'thirdPartyUID_lt', alias?: string  } 
+  | { name: 'thirdPartyUID_lte', alias?: string  } 
+  | { name: 'thirdPartyUID_gt', alias?: string  } 
+  | { name: 'thirdPartyUID_gte', alias?: string  } 
+  | { name: 'thirdPartyUID_contains', alias?: string  } 
+  | { name: 'thirdPartyUID_not_contains', alias?: string  } 
+  | { name: 'thirdPartyUID_starts_with', alias?: string  } 
+  | { name: 'thirdPartyUID_not_starts_with', alias?: string  } 
+  | { name: 'thirdPartyUID_ends_with', alias?: string  } 
+  | { name: 'thirdPartyUID_not_ends_with', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
+  | { name: 'firebaseUID_not', alias?: string  } 
+  | { name: 'firebaseUID_in', alias?: string  } 
+  | { name: 'firebaseUID_not_in', alias?: string  } 
+  | { name: 'firebaseUID_lt', alias?: string  } 
+  | { name: 'firebaseUID_lte', alias?: string  } 
+  | { name: 'firebaseUID_gt', alias?: string  } 
+  | { name: 'firebaseUID_gte', alias?: string  } 
+  | { name: 'firebaseUID_contains', alias?: string  } 
+  | { name: 'firebaseUID_not_contains', alias?: string  } 
+  | { name: 'firebaseUID_starts_with', alias?: string  } 
+  | { name: 'firebaseUID_not_starts_with', alias?: string  } 
+  | { name: 'firebaseUID_ends_with', alias?: string  } 
+  | { name: 'firebaseUID_not_ends_with', alias?: string  } 
   | { name: 'username', alias?: string  } 
   | { name: 'username_not', alias?: string  } 
   | { name: 'username_in', alias?: string  } 
@@ -2699,20 +2717,6 @@ export type UserWhereInputInputObject =
   | { name: 'username_not_starts_with', alias?: string  } 
   | { name: 'username_ends_with', alias?: string  } 
   | { name: 'username_not_ends_with', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'password_not', alias?: string  } 
-  | { name: 'password_in', alias?: string  } 
-  | { name: 'password_not_in', alias?: string  } 
-  | { name: 'password_lt', alias?: string  } 
-  | { name: 'password_lte', alias?: string  } 
-  | { name: 'password_gt', alias?: string  } 
-  | { name: 'password_gte', alias?: string  } 
-  | { name: 'password_contains', alias?: string  } 
-  | { name: 'password_not_contains', alias?: string  } 
-  | { name: 'password_starts_with', alias?: string  } 
-  | { name: 'password_not_starts_with', alias?: string  } 
-  | { name: 'password_ends_with', alias?: string  } 
-  | { name: 'password_not_ends_with', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'email_not', alias?: string  } 
   | { name: 'email_in', alias?: string  } 
@@ -3088,9 +3092,9 @@ export type ReviewWhereUniqueInputInputObject =
   | { name: 'rKey', alias?: string  } 
   
 export interface UserCreateInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3105,9 +3109,9 @@ export interface UserCreateInput {
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3130,22 +3134,22 @@ export type ReviewCreateManyWithoutAuthorInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ReviewCreateWithoutAuthorInput {
-  title?: string
+  name?: string
   rKey?: string | null
   text?: string
-  editedAt?: string
+  timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
 export type ReviewCreateWithoutAuthorInputInputObject =
   | Extract<keyof ReviewCreateWithoutAuthorInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3162,9 +3166,9 @@ export type UserCreateManyWithoutLikedReviewsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutLikedReviewsInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3178,9 +3182,9 @@ export interface UserCreateWithoutLikedReviewsInput {
 }
 export type UserCreateWithoutLikedReviewsInputInputObject =
   | Extract<keyof UserCreateWithoutLikedReviewsInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3202,22 +3206,22 @@ export type ReviewCreateManyWithoutDislikedByInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ReviewCreateWithoutDislikedByInput {
-  title?: string
+  name?: string
   rKey?: string | null
   text?: string
-  editedAt?: string
+  timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
 export type ReviewCreateWithoutDislikedByInputInputObject =
   | Extract<keyof ReviewCreateWithoutDislikedByInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3234,9 +3238,9 @@ export type UserCreateOneWithoutReviewListInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutReviewListInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3250,9 +3254,9 @@ export interface UserCreateWithoutReviewListInput {
 }
 export type UserCreateWithoutReviewListInputInputObject =
   | Extract<keyof UserCreateWithoutReviewListInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3274,22 +3278,22 @@ export type ReviewCreateManyWithoutLikedByInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ReviewCreateWithoutLikedByInput {
-  title?: string
+  name?: string
   rKey?: string | null
   text?: string
-  editedAt?: string
+  timestamp?: string
   thumbsUp?: number | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
 export type ReviewCreateWithoutLikedByInputInputObject =
   | Extract<keyof ReviewCreateWithoutLikedByInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -3306,9 +3310,9 @@ export type UserCreateManyWithoutDislikedReviewsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutDislikedReviewsInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3322,9 +3326,9 @@ export interface UserCreateWithoutDislikedReviewsInput {
 }
 export type UserCreateWithoutDislikedReviewsInputInputObject =
   | Extract<keyof UserCreateWithoutDislikedReviewsInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3380,22 +3384,22 @@ export type ReviewCreateManyWithoutProjectReviewedInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ReviewCreateWithoutProjectReviewedInput {
-  title?: string
+  name?: string
   rKey?: string | null
   text?: string
-  editedAt?: string
+  timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
 }
 export type ReviewCreateWithoutProjectReviewedInputInputObject =
   | Extract<keyof ReviewCreateWithoutProjectReviewedInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3412,9 +3416,9 @@ export type UserCreateManyWithoutRatedProjectsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutRatedProjectsInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3428,9 +3432,9 @@ export interface UserCreateWithoutRatedProjectsInput {
 }
 export type UserCreateWithoutRatedProjectsInputInputObject =
   | Extract<keyof UserCreateWithoutRatedProjectsInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3486,9 +3490,9 @@ export type UserCreateOneWithoutProjectsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutProjectsInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string
-  password?: string
   email?: string
   userProfileImage?: string | null
   bio?: string | null
@@ -3502,9 +3506,9 @@ export interface UserCreateWithoutProjectsInput {
 }
 export type UserCreateWithoutProjectsInputInputObject =
   | Extract<keyof UserCreateWithoutProjectsInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3551,9 +3555,9 @@ export type ProjectCreateWithoutReviewsInputInputObject =
   | { name: 'RatedBy', alias?: string  } 
   
 export interface UserUpdateInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -3568,9 +3572,9 @@ export interface UserUpdateInput {
 }
 export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3616,10 +3620,10 @@ export type ReviewUpdateWithWhereUniqueWithoutAuthorInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ReviewUpdateWithoutAuthorDataInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3628,10 +3632,10 @@ export interface ReviewUpdateWithoutAuthorDataInput {
 }
 export type ReviewUpdateWithoutAuthorDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutAuthorDataInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3671,9 +3675,9 @@ export type UserUpdateWithWhereUniqueWithoutLikedReviewsInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface UserUpdateWithoutLikedReviewsDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -3687,9 +3691,9 @@ export interface UserUpdateWithoutLikedReviewsDataInput {
 }
 export type UserUpdateWithoutLikedReviewsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutLikedReviewsDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3734,10 +3738,10 @@ export type ReviewUpdateWithWhereUniqueWithoutDislikedByInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ReviewUpdateWithoutDislikedByDataInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3746,10 +3750,10 @@ export interface ReviewUpdateWithoutDislikedByDataInput {
 }
 export type ReviewUpdateWithoutDislikedByDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutDislikedByDataInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3770,9 +3774,9 @@ export type UserUpdateOneRequiredWithoutReviewListInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserUpdateWithoutReviewListDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -3786,9 +3790,9 @@ export interface UserUpdateWithoutReviewListDataInput {
 }
 export type UserUpdateWithoutReviewListDataInputInputObject =
   | Extract<keyof UserUpdateWithoutReviewListDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -3833,10 +3837,10 @@ export type ReviewUpdateWithWhereUniqueWithoutLikedByInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ReviewUpdateWithoutLikedByDataInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   thumbsDown?: number | null
   DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
@@ -3845,10 +3849,10 @@ export interface ReviewUpdateWithoutLikedByDataInput {
 }
 export type ReviewUpdateWithoutLikedByDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutLikedByDataInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -3888,9 +3892,9 @@ export type UserUpdateWithWhereUniqueWithoutDislikedReviewsInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface UserUpdateWithoutDislikedReviewsDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -3904,9 +3908,9 @@ export interface UserUpdateWithoutDislikedReviewsDataInput {
 }
 export type UserUpdateWithoutDislikedReviewsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutDislikedReviewsDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -4008,10 +4012,10 @@ export type ReviewUpdateWithWhereUniqueWithoutProjectReviewedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ReviewUpdateWithoutProjectReviewedDataInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -4020,10 +4024,10 @@ export interface ReviewUpdateWithoutProjectReviewedDataInput {
 }
 export type ReviewUpdateWithoutProjectReviewedDataInputInputObject =
   | Extract<keyof ReviewUpdateWithoutProjectReviewedDataInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -4056,20 +4060,20 @@ export interface ReviewScalarWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  title?: string | null
-  title_not?: string | null
-  title_in?: string[]
-  title_not_in?: string[]
-  title_lt?: string | null
-  title_lte?: string | null
-  title_gt?: string | null
-  title_gte?: string | null
-  title_contains?: string | null
-  title_not_contains?: string | null
-  title_starts_with?: string | null
-  title_not_starts_with?: string | null
-  title_ends_with?: string | null
-  title_not_ends_with?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
   rKey?: string | null
   rKey_not?: string | null
   rKey_in?: string[]
@@ -4098,14 +4102,14 @@ export interface ReviewScalarWhereInput {
   text_not_starts_with?: string | null
   text_ends_with?: string | null
   text_not_ends_with?: string | null
-  editedAt?: string | null
-  editedAt_not?: string | null
-  editedAt_in?: string[]
-  editedAt_not_in?: string[]
-  editedAt_lt?: string | null
-  editedAt_lte?: string | null
-  editedAt_gt?: string | null
-  editedAt_gte?: string | null
+  timestamp?: string | null
+  timestamp_not?: string | null
+  timestamp_in?: string[]
+  timestamp_not_in?: string[]
+  timestamp_lt?: string | null
+  timestamp_lte?: string | null
+  timestamp_gt?: string | null
+  timestamp_gte?: string | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -4142,20 +4146,20 @@ export type ReviewScalarWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'title_not', alias?: string  } 
-  | { name: 'title_in', alias?: string  } 
-  | { name: 'title_not_in', alias?: string  } 
-  | { name: 'title_lt', alias?: string  } 
-  | { name: 'title_lte', alias?: string  } 
-  | { name: 'title_gt', alias?: string  } 
-  | { name: 'title_gte', alias?: string  } 
-  | { name: 'title_contains', alias?: string  } 
-  | { name: 'title_not_contains', alias?: string  } 
-  | { name: 'title_starts_with', alias?: string  } 
-  | { name: 'title_not_starts_with', alias?: string  } 
-  | { name: 'title_ends_with', alias?: string  } 
-  | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'rKey_not', alias?: string  } 
   | { name: 'rKey_in', alias?: string  } 
@@ -4184,14 +4188,14 @@ export type ReviewScalarWhereInputInputObject =
   | { name: 'text_not_starts_with', alias?: string  } 
   | { name: 'text_ends_with', alias?: string  } 
   | { name: 'text_not_ends_with', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
-  | { name: 'editedAt_not', alias?: string  } 
-  | { name: 'editedAt_in', alias?: string  } 
-  | { name: 'editedAt_not_in', alias?: string  } 
-  | { name: 'editedAt_lt', alias?: string  } 
-  | { name: 'editedAt_lte', alias?: string  } 
-  | { name: 'editedAt_gt', alias?: string  } 
-  | { name: 'editedAt_gte', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
+  | { name: 'timestamp_not', alias?: string  } 
+  | { name: 'timestamp_in', alias?: string  } 
+  | { name: 'timestamp_not_in', alias?: string  } 
+  | { name: 'timestamp_lt', alias?: string  } 
+  | { name: 'timestamp_lte', alias?: string  } 
+  | { name: 'timestamp_gt', alias?: string  } 
+  | { name: 'timestamp_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -4222,19 +4226,19 @@ export type ReviewUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ReviewUpdateManyDataInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
 export type ReviewUpdateManyDataInputInputObject =
   | Extract<keyof ReviewUpdateManyDataInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -4271,9 +4275,9 @@ export type UserUpdateWithWhereUniqueWithoutRatedProjectsInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface UserUpdateWithoutRatedProjectsDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -4287,9 +4291,9 @@ export interface UserUpdateWithoutRatedProjectsDataInput {
 }
 export type UserUpdateWithoutRatedProjectsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutRatedProjectsDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -4327,20 +4331,34 @@ export interface UserScalarWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  url?: string | null
-  url_not?: string | null
-  url_in?: string[]
-  url_not_in?: string[]
-  url_lt?: string | null
-  url_lte?: string | null
-  url_gt?: string | null
-  url_gte?: string | null
-  url_contains?: string | null
-  url_not_contains?: string | null
-  url_starts_with?: string | null
-  url_not_starts_with?: string | null
-  url_ends_with?: string | null
-  url_not_ends_with?: string | null
+  thirdPartyUID?: string | null
+  thirdPartyUID_not?: string | null
+  thirdPartyUID_in?: string[]
+  thirdPartyUID_not_in?: string[]
+  thirdPartyUID_lt?: string | null
+  thirdPartyUID_lte?: string | null
+  thirdPartyUID_gt?: string | null
+  thirdPartyUID_gte?: string | null
+  thirdPartyUID_contains?: string | null
+  thirdPartyUID_not_contains?: string | null
+  thirdPartyUID_starts_with?: string | null
+  thirdPartyUID_not_starts_with?: string | null
+  thirdPartyUID_ends_with?: string | null
+  thirdPartyUID_not_ends_with?: string | null
+  firebaseUID?: string | null
+  firebaseUID_not?: string | null
+  firebaseUID_in?: string[]
+  firebaseUID_not_in?: string[]
+  firebaseUID_lt?: string | null
+  firebaseUID_lte?: string | null
+  firebaseUID_gt?: string | null
+  firebaseUID_gte?: string | null
+  firebaseUID_contains?: string | null
+  firebaseUID_not_contains?: string | null
+  firebaseUID_starts_with?: string | null
+  firebaseUID_not_starts_with?: string | null
+  firebaseUID_ends_with?: string | null
+  firebaseUID_not_ends_with?: string | null
   username?: string | null
   username_not?: string | null
   username_in?: string[]
@@ -4355,20 +4373,6 @@ export interface UserScalarWhereInput {
   username_not_starts_with?: string | null
   username_ends_with?: string | null
   username_not_ends_with?: string | null
-  password?: string | null
-  password_not?: string | null
-  password_in?: string[]
-  password_not_in?: string[]
-  password_lt?: string | null
-  password_lte?: string | null
-  password_gt?: string | null
-  password_gte?: string | null
-  password_contains?: string | null
-  password_not_contains?: string | null
-  password_starts_with?: string | null
-  password_not_starts_with?: string | null
-  password_ends_with?: string | null
-  password_not_ends_with?: string | null
   email?: string | null
   email_not?: string | null
   email_in?: string[]
@@ -4473,20 +4477,34 @@ export type UserScalarWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'url', alias?: string  } 
-  | { name: 'url_not', alias?: string  } 
-  | { name: 'url_in', alias?: string  } 
-  | { name: 'url_not_in', alias?: string  } 
-  | { name: 'url_lt', alias?: string  } 
-  | { name: 'url_lte', alias?: string  } 
-  | { name: 'url_gt', alias?: string  } 
-  | { name: 'url_gte', alias?: string  } 
-  | { name: 'url_contains', alias?: string  } 
-  | { name: 'url_not_contains', alias?: string  } 
-  | { name: 'url_starts_with', alias?: string  } 
-  | { name: 'url_not_starts_with', alias?: string  } 
-  | { name: 'url_ends_with', alias?: string  } 
-  | { name: 'url_not_ends_with', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'thirdPartyUID_not', alias?: string  } 
+  | { name: 'thirdPartyUID_in', alias?: string  } 
+  | { name: 'thirdPartyUID_not_in', alias?: string  } 
+  | { name: 'thirdPartyUID_lt', alias?: string  } 
+  | { name: 'thirdPartyUID_lte', alias?: string  } 
+  | { name: 'thirdPartyUID_gt', alias?: string  } 
+  | { name: 'thirdPartyUID_gte', alias?: string  } 
+  | { name: 'thirdPartyUID_contains', alias?: string  } 
+  | { name: 'thirdPartyUID_not_contains', alias?: string  } 
+  | { name: 'thirdPartyUID_starts_with', alias?: string  } 
+  | { name: 'thirdPartyUID_not_starts_with', alias?: string  } 
+  | { name: 'thirdPartyUID_ends_with', alias?: string  } 
+  | { name: 'thirdPartyUID_not_ends_with', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
+  | { name: 'firebaseUID_not', alias?: string  } 
+  | { name: 'firebaseUID_in', alias?: string  } 
+  | { name: 'firebaseUID_not_in', alias?: string  } 
+  | { name: 'firebaseUID_lt', alias?: string  } 
+  | { name: 'firebaseUID_lte', alias?: string  } 
+  | { name: 'firebaseUID_gt', alias?: string  } 
+  | { name: 'firebaseUID_gte', alias?: string  } 
+  | { name: 'firebaseUID_contains', alias?: string  } 
+  | { name: 'firebaseUID_not_contains', alias?: string  } 
+  | { name: 'firebaseUID_starts_with', alias?: string  } 
+  | { name: 'firebaseUID_not_starts_with', alias?: string  } 
+  | { name: 'firebaseUID_ends_with', alias?: string  } 
+  | { name: 'firebaseUID_not_ends_with', alias?: string  } 
   | { name: 'username', alias?: string  } 
   | { name: 'username_not', alias?: string  } 
   | { name: 'username_in', alias?: string  } 
@@ -4501,20 +4519,6 @@ export type UserScalarWhereInputInputObject =
   | { name: 'username_not_starts_with', alias?: string  } 
   | { name: 'username_ends_with', alias?: string  } 
   | { name: 'username_not_ends_with', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'password_not', alias?: string  } 
-  | { name: 'password_in', alias?: string  } 
-  | { name: 'password_not_in', alias?: string  } 
-  | { name: 'password_lt', alias?: string  } 
-  | { name: 'password_lte', alias?: string  } 
-  | { name: 'password_gt', alias?: string  } 
-  | { name: 'password_gte', alias?: string  } 
-  | { name: 'password_contains', alias?: string  } 
-  | { name: 'password_not_contains', alias?: string  } 
-  | { name: 'password_starts_with', alias?: string  } 
-  | { name: 'password_not_starts_with', alias?: string  } 
-  | { name: 'password_ends_with', alias?: string  } 
-  | { name: 'password_not_ends_with', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'email_not', alias?: string  } 
   | { name: 'email_in', alias?: string  } 
@@ -4613,9 +4617,9 @@ export type UserUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface UserUpdateManyDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -4625,9 +4629,9 @@ export interface UserUpdateManyDataInput {
 }
 export type UserUpdateManyDataInputInputObject =
   | Extract<keyof UserUpdateManyDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -4986,9 +4990,9 @@ export type UserUpdateOneRequiredWithoutProjectsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserUpdateWithoutProjectsDataInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -5002,9 +5006,9 @@ export interface UserUpdateWithoutProjectsDataInput {
 }
 export type UserUpdateWithoutProjectsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutProjectsDataInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -5148,9 +5152,9 @@ export type ReviewUpsertWithWhereUniqueWithoutAuthorInputInputObject =
   | { name: 'create', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
-  url?: string | null
+  thirdPartyUID?: string | null
+  firebaseUID?: string | null
   username?: string | null
-  password?: string | null
   email?: string | null
   userProfileImage?: string | null
   bio?: string | null
@@ -5160,9 +5164,9 @@ export interface UserUpdateManyMutationInput {
 }
 export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
-  | { name: 'url', alias?: string  } 
+  | { name: 'thirdPartyUID', alias?: string  } 
+  | { name: 'firebaseUID', alias?: string  } 
   | { name: 'username', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'userProfileImage', alias?: string  } 
   | { name: 'bio', alias?: string  } 
@@ -5246,23 +5250,23 @@ export type ProjectUpdateManyMutationInputInputObject =
   | { name: 'steps', alias?: string  } 
   
 export interface ReviewCreateInput {
-  title?: string
+  name?: string
   rKey?: string | null
   text?: string
-  editedAt?: string
+  timestamp?: string
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
-  thumbsDown?: number
+  thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
   Author?: UserCreateOneWithoutReviewListInput
   ProjectReviewed?: ProjectCreateOneWithoutReviewsInput
 }
 export type ReviewCreateInputInputObject =
   | Extract<keyof ReviewCreateInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5271,10 +5275,10 @@ export type ReviewCreateInputInputObject =
   | { name: 'ProjectReviewed', alias?: string  } 
   
 export interface ReviewUpdateInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -5284,10 +5288,10 @@ export interface ReviewUpdateInput {
 }
 export type ReviewUpdateInputInputObject =
   | Extract<keyof ReviewUpdateInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5296,19 +5300,19 @@ export type ReviewUpdateInputInputObject =
   | { name: 'ProjectReviewed', alias?: string  } 
   
 export interface ReviewUpdateManyMutationInput {
-  title?: string | null
+  name?: string | null
   rKey?: string | null
   text?: string | null
-  editedAt?: string | null
+  timestamp?: string | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
 export type ReviewUpdateManyMutationInputInputObject =
   | Extract<keyof ReviewUpdateManyMutationInput, string>
-  | { name: 'title', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
-  | { name: 'editedAt', alias?: string  } 
+  | { name: 'timestamp', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -5379,14 +5383,14 @@ export type ReviewSubscriptionWhereInputInputObject =
 export type ReviewOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
   | 'rKey_ASC'
   | 'rKey_DESC'
   | 'text_ASC'
   | 'text_DESC'
-  | 'editedAt_ASC'
-  | 'editedAt_DESC'
+  | 'timestamp_ASC'
+  | 'timestamp_DESC'
   | 'thumbsUp_ASC'
   | 'thumbsUp_DESC'
   | 'thumbsDown_ASC'
@@ -5399,12 +5403,12 @@ export type ReviewOrderByInputValues =
 export type UserOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
-  | 'url_ASC'
-  | 'url_DESC'
+  | 'thirdPartyUID_ASC'
+  | 'thirdPartyUID_DESC'
+  | 'firebaseUID_ASC'
+  | 'firebaseUID_DESC'
   | 'username_ASC'
   | 'username_DESC'
-  | 'password_ASC'
-  | 'password_DESC'
   | 'email_ASC'
   | 'email_DESC'
   | 'userProfileImage_ASC'

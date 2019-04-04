@@ -5,12 +5,12 @@
 
 module.exports = {
   uniqueFieldsByModel: {
-    User: ['id', 'username', 'email'],
+    User: ['id', 'thirdPartyUID', 'firebaseUID', 'username', 'email'],
     Project: ['id', 'key'],
     Review: ['id', 'rKey']
   },
   embeddedTypes: [],
-  clientPath: 'generated/prisma-client',
+  clientPath: '../src/generated/prisma-client',
   schema: {
   "__schema": {
     "queryType": {
@@ -693,6 +693,26 @@ module.exports = {
             "defaultValue": null
           },
           {
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "username",
             "description": null,
             "type": {
@@ -759,7 +779,19 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "args": [],
             "type": {
@@ -772,22 +804,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "password",
             "description": null,
             "args": [],
             "type": {
@@ -1518,7 +1534,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1528,7 +1544,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not",
+            "name": "name_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1538,7 +1554,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_in",
+            "name": "name_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -1556,7 +1572,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_in",
+            "name": "name_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -1574,7 +1590,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_lt",
+            "name": "name_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1584,7 +1600,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_lte",
+            "name": "name_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1594,7 +1610,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_gt",
+            "name": "name_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1604,7 +1620,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_gte",
+            "name": "name_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1614,7 +1630,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_contains",
+            "name": "name_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1624,7 +1640,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_contains",
+            "name": "name_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1634,7 +1650,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_starts_with",
+            "name": "name_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1644,7 +1660,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_starts_with",
+            "name": "name_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1654,7 +1670,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_ends_with",
+            "name": "name_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1664,7 +1680,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_ends_with",
+            "name": "name_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1986,7 +2002,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1996,7 +2012,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_not",
+            "name": "timestamp_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2006,7 +2022,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_in",
+            "name": "timestamp_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -2024,7 +2040,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_not_in",
+            "name": "timestamp_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -2042,7 +2058,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_lt",
+            "name": "timestamp_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2052,7 +2068,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_lte",
+            "name": "timestamp_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2062,7 +2078,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_gt",
+            "name": "timestamp_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2072,7 +2088,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_gte",
+            "name": "timestamp_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2595,7 +2611,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url",
+            "name": "thirdPartyUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2605,7 +2621,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not",
+            "name": "thirdPartyUID_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2615,7 +2631,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_in",
+            "name": "thirdPartyUID_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -2633,7 +2649,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_in",
+            "name": "thirdPartyUID_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -2651,7 +2667,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_lt",
+            "name": "thirdPartyUID_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2661,7 +2677,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_lte",
+            "name": "thirdPartyUID_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2671,7 +2687,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_gt",
+            "name": "thirdPartyUID_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2681,7 +2697,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_gte",
+            "name": "thirdPartyUID_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2691,7 +2707,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_contains",
+            "name": "thirdPartyUID_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2701,7 +2717,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_contains",
+            "name": "thirdPartyUID_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2711,7 +2727,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_starts_with",
+            "name": "thirdPartyUID_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2721,7 +2737,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_starts_with",
+            "name": "thirdPartyUID_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2731,7 +2747,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_ends_with",
+            "name": "thirdPartyUID_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2741,7 +2757,163 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_ends_with",
+            "name": "thirdPartyUID_not_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2898,162 +3070,6 @@ module.exports = {
           },
           {
             "name": "username_not_ends_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_contains",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_contains",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_starts_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_starts_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_ends_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -5657,13 +5673,13 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "title_ASC",
+            "name": "name_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "title_DESC",
+            "name": "name_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -5693,13 +5709,13 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "editedAt_ASC",
+            "name": "timestamp_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "editedAt_DESC",
+            "name": "timestamp_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -5777,7 +5793,7 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -5821,7 +5837,7 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "args": [],
             "type": {
@@ -6109,13 +6125,25 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "url_ASC",
+            "name": "thirdPartyUID_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "url_DESC",
+            "name": "thirdPartyUID_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firebaseUID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firebaseUID_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -6128,18 +6156,6 @@ module.exports = {
           },
           {
             "name": "username_DESC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "password_ASC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "password_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7996,7 +8012,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8007,20 +8033,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8206,7 +8218,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8244,7 +8256,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8281,13 +8293,9 @@ module.exports = {
             "name": "thumbsDown",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -8374,7 +8382,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8385,20 +8403,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8574,7 +8578,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8612,7 +8616,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8649,13 +8653,9 @@ module.exports = {
             "name": "thumbsDown",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -8730,7 +8730,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8741,20 +8751,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8930,7 +8926,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8968,7 +8964,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -8995,13 +8991,9 @@ module.exports = {
             "name": "thumbsDown",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -9102,7 +9094,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9113,20 +9115,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -9472,7 +9460,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -9510,7 +9498,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -9547,13 +9535,9 @@ module.exports = {
             "name": "thumbsDown",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -9640,7 +9624,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9651,20 +9645,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -9998,7 +9978,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10009,20 +9999,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -10309,7 +10285,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10320,16 +10306,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10672,7 +10648,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10702,7 +10678,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10985,7 +10961,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -10996,16 +10982,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11338,7 +11314,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11368,7 +11344,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11490,7 +11466,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11501,16 +11487,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11843,7 +11819,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11873,7 +11849,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12156,7 +12132,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12167,16 +12153,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12832,7 +12808,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12862,7 +12838,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13142,7 +13118,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13152,7 +13128,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not",
+            "name": "name_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13162,7 +13138,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_in",
+            "name": "name_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13180,7 +13156,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_in",
+            "name": "name_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13198,7 +13174,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_lt",
+            "name": "name_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13208,7 +13184,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_lte",
+            "name": "name_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13218,7 +13194,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_gt",
+            "name": "name_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13228,7 +13204,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_gte",
+            "name": "name_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13238,7 +13214,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_contains",
+            "name": "name_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13248,7 +13224,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_contains",
+            "name": "name_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13258,7 +13234,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_starts_with",
+            "name": "name_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13268,7 +13244,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_starts_with",
+            "name": "name_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13278,7 +13254,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_ends_with",
+            "name": "name_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13288,7 +13264,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "title_not_ends_with",
+            "name": "name_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13610,7 +13586,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13620,7 +13596,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_not",
+            "name": "timestamp_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13630,7 +13606,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_in",
+            "name": "timestamp_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13648,7 +13624,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_not_in",
+            "name": "timestamp_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13666,7 +13642,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_lt",
+            "name": "timestamp_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13676,7 +13652,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_lte",
+            "name": "timestamp_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13686,7 +13662,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_gt",
+            "name": "timestamp_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13696,7 +13672,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt_gte",
+            "name": "timestamp_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14002,7 +13978,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14032,7 +14008,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14285,7 +14261,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14296,16 +14282,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14635,7 +14611,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url",
+            "name": "thirdPartyUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14645,7 +14621,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not",
+            "name": "thirdPartyUID_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14655,7 +14631,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_in",
+            "name": "thirdPartyUID_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -14673,7 +14649,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_in",
+            "name": "thirdPartyUID_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -14691,7 +14667,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_lt",
+            "name": "thirdPartyUID_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14701,7 +14677,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_lte",
+            "name": "thirdPartyUID_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14711,7 +14687,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_gt",
+            "name": "thirdPartyUID_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14721,7 +14697,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_gte",
+            "name": "thirdPartyUID_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14731,7 +14707,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_contains",
+            "name": "thirdPartyUID_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14741,7 +14717,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_contains",
+            "name": "thirdPartyUID_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14751,7 +14727,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_starts_with",
+            "name": "thirdPartyUID_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14761,7 +14737,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_starts_with",
+            "name": "thirdPartyUID_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14771,7 +14747,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_ends_with",
+            "name": "thirdPartyUID_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14781,7 +14757,163 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "url_not_ends_with",
+            "name": "thirdPartyUID_not_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -14938,162 +15070,6 @@ module.exports = {
           },
           {
             "name": "username_not_ends_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_contains",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_contains",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_starts_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_starts_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_ends_with",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -16143,7 +16119,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -16154,16 +16140,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -18150,7 +18126,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -18161,16 +18147,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -18888,7 +18864,17 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -18899,16 +18885,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "password",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19375,7 +19351,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -19413,7 +19389,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -19450,13 +19426,9 @@ module.exports = {
             "name": "thumbsDown",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -19510,7 +19482,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19540,7 +19512,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19621,7 +19593,7 @@ module.exports = {
         "fields": null,
         "inputFields": [
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19651,7 +19623,7 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -20026,7 +19998,19 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "url",
+            "name": "thirdPartyUID",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firebaseUID",
             "description": null,
             "args": [],
             "type": {
@@ -20039,22 +20023,6 @@ module.exports = {
           },
           {
             "name": "username",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "password",
             "description": null,
             "args": [],
             "type": {
@@ -20760,7 +20728,7 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "title",
+            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -20804,7 +20772,7 @@ module.exports = {
             "deprecationReason": null
           },
           {
-            "name": "editedAt",
+            "name": "timestamp",
             "description": null,
             "args": [],
             "type": {
