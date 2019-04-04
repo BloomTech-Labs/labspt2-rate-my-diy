@@ -223,7 +223,7 @@ class Home extends Component {
 									id
 									name
 									thumbsUp
-    								editedAt
+    								timestamp
 									Author {		
 										id
       									username
