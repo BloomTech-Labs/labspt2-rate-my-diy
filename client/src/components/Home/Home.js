@@ -1,43 +1,66 @@
-import React, { Component } from 'react';
-import SearchBar from '../Searchbar/Searchbar';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import {withAuthentication} from '../Session/session';
+import React, { Component } from "react";
+import SearchBar from "../Searchbar/Searchbar";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import { withAuthentication } from "../Session/session";
 
-import Featured from './Featured/Featured';
-import Header from './Header/Header';
-import './Home.scss';
-
+import Featured from "./Featured/Featured";
+import Header from "./Header/Header";
+import "./Home.scss";
 
 class Home extends Component {
-	constructor() {
-		super();
-		this.state = {
-			userClicked: null,
-		};
-	}
+  constructor() {
+    super();
+    this.state = {
+      userClicked: null,
+      isLoggedIn: false,
+      user: ""
+    };
+  }
 
-	//This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
-	clickUserHandler = (username) => {
-		this.setState({ userClicked: username });
-	}
+  componentWillMount() {
+    let user = this.props.firebase.auth.currentUser !== null;
+    if (user) {
+      this.setState({ isLoggedIn: true, user: user });
+    } else {
+      this.setState({ isLoggedIn: false });
+    }
+  }
 
-	filterByCurrentMonth = (data) => {
-		const currentTime = new Date()
+  componentWillReceiveProps(nextProps) {
+    let user = nextProps.firebase.auth.currentUser !== null;
+    if (user) {
+      this.setState({ isLoggedIn: true, user: user });
+    } else {
+      this.setState({ isLoggedIn: false, user: "" });
+    }
+  }
 
-		const month = currentTime.getMonth() + 1
-							
-		const year = currentTime.getFullYear()
+  //This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
+  clickUserHandler = username => {
+    this.setState({ userClicked: username });
+  };
 
-		const filteredData = data.map(item => {
-			if (item.timestamp.slice(0, 4) == year && item.timestamp.slice(5, 7) == month) { 
-				return item;
-			}
-		});
+  filterByCurrentMonth = data => {
+    const currentTime = new Date();
 
-		return filteredData.filter(function(e){return e});
-	}
+    const month = currentTime.getMonth() + 1;
 
+    const year = currentTime.getFullYear();
+
+    const filteredData = data.map(item => {
+      if (
+        item.timestamp.slice(0, 4) == year &&
+        item.timestamp.slice(5, 7) == month
+      ) {
+        return item;
+      }
+    });
+
+    return filteredData.filter(function(e) {
+      return e;
+	});
+	
 	filterByCurrentMonthReviews = (data) => {
 		const currentTime = new Date();
 
@@ -53,212 +76,241 @@ class Home extends Component {
 
 		console.log(eliminateEmptyReviews);
 	}
+  };
 
-	render() {
-		const SearchWithData = () => (
-			<Query query={this.props.getUsers}>
+  render() {
+    const SearchWithData = () => (
+      <Query query={this.props.getUsers}>
+        {({ loading: loadingUsers, data: userData, error: userError }) => (
+          <Query query={this.props.getProjects}>
+            {({
+              loading: loadingProjects,
+              data: projectData,
+              error: projectError
+            }) => (
+              <Query query={this.props.getReviews}>
+                {({
+                  loading: loadingReviews,
+                  data: reviewData,
+                  error: reviewError
+                }) => {
+                  if (loadingUsers || loadingProjects || loadingReviews)
+                    return <span>loading...</span>;
+                  if (userError) return <span>{`${userError}`}</span>;
+                  if (projectError) return <span>{`${projectError}`}</span>;
+                  if (reviewError) return <span>{`${reviewError}`}</span>;
+                  let userArray = [];
+                  let projectArray = [];
+                  let reviewArray = [];
 
-			{({ loading: loadingUsers, data: userData }) => (
+                  if (userData !== undefined)
+                    userArray = Object.values(userData).flat();
 
-					<Query query={this.props.getProjects}>
+                  if (projectData !== undefined)
+                    projectArray = Object.values(projectData).flat();
 
-					{({ loading: loadingProjects, data: projectData}) => (
+                  if (reviewData !== undefined)
+                    reviewArray = Object.values(reviewData).flat();
 
-						<Query query={this.props.getReviews}>
+                  console.log({
+                    users: userData,
+                    projects: projectData,
+                    reviews: reviewData
+                  });
+                  return (
+                    <SearchBar
+                      {...this.props}
+                      userClicked={this.state.userClicked}
+                      user={this.state.user}
+                      loggedIn={this.state.isLoggedIn}
+                      users={userArray}
+                      projects={projectArray}
+                      reviews={reviewArray}
+                      projectSearchHandler={this.props.projectSearchHandler}
+                      userSearchHandler={this.props.userSearchHandler}
+                      reviewSearchHandler={this.props.reviewSearchHandler}
+                    />
+                  );
+                }}
+              </Query>
+            )}
+          </Query>
+        )}
+      </Query>
+    );
+    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
-						{({ loading: loadingReviews, data: reviewData}) => {
+    return (
+      <div>
+        <Header />
+        <SearchWithData />
 
-							if (loadingUsers || loadingProjects || loadingReviews) return <span>loading...</span>
-							const userArray = Object.values(userData).flat()
-							const projectArray = Object.values(projectData).flat()
-							const reviewArray = Object.values(reviewData).flat()
-							return (
-								<SearchBar 
-									{...this.props} 
-									userClicked={this.state.userClicked} 
-									users={userArray} 
-									projects={projectArray} 
-									reviews={reviewArray} 
-									searchHandler={this.props.searchHandler}/>
-							)	
-						}}</Query>
-					
-					)}
-					</Query>
-			)}
-			</Query>
-		);
-		
-		return (
-			<div>
-				<Header />
-				<SearchWithData />
+        <div id="home-container">
+          <h2>Featured Projects</h2>
+          <Query
+            query={gql`
+              {
+                projects(orderBy: rating_DESC) {
+                  id
+                  name
+                  titleImg
+                  rating
+                  User {
+                    id
+                    username
+                    email
+                  }
+                  timestamp
+                }
+              }
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error :(</p>;
+
+              const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
+
+              return (
+                <div className="card-container">
+                  {projects.map(({ id, name, titleImg, rating, User }) => (
+                    <Featured
+                      key={id}
+                      image={titleImg}
+                      rating={rating}
+                      title={name}
+                      username={User.username}
+                      clickHandler={this.clickUserHandler}
+                    />
+                  ))}
+                </div>
+              );
+            }}
+          </Query>
+
+          <h2>Popular Makers</h2>
+          <Query
+            query={gql`
+              {
+                users(orderBy: username_ASC) {
+                  id
+                  username
+                  userProfileImage
+                  Projects {
+                    rating
+                    timestamp
+                  }
+                }
+              }
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error :(</p>;
+
+              const currentMakers = data.users
+                .map(user => {
+                  const currentProject = this.filterByCurrentMonth(
+                    user.Projects
+                  );
+
+                  if (currentProject.length === 0) {
+                    return null;
+                  }
+
+                  const rating = currentProject.map(project => {
+                    return project.rating;
+                  });
+
+                  ///Checks for the mode average
+
+                  let frequency = {}; // array of frequency.
+                  let max = 0; // holds the max frequency.
+                  let average; // holds the max frequency element.
+                  for (let v in rating) {
+                    frequency[rating[v]] = (frequency[rating[v]] || 0) + 1; // increment frequency.
+                    if (frequency[rating[v]] > max) {
+                      // is this frequency > max so far ?
+                      max = frequency[rating[v]]; // update max.
+                      average = rating[v]; // update result.
+                    }
+                  }
+
+                  return {
+                    id: user.id,
+                    username: user.username,
+                    userProfileImage: user.userProfileImage,
+                    averageRating: average
+                  };
+                })
+                .filter(e => e !== undefined && e !== null);
+
+              const sortedMakers = currentMakers
+                .sort(function(a, b) {
+                  return b.averageRating - a.averageRating;
+                })
+                .slice(0, 8);
+
+              return (
+                <div className="card-container">
+                  {sortedMakers.map(
+                    ({ id, username, userProfileImage, averageRating }) => (
+                      <Featured
+                        key={id}
+                        username={username}
+                        image={userProfileImage}
+                        clickHandler={this.clickUserHandler}
+                        rating={averageRating}
+                      />
+                    )
+                  )}
+                </div>
+              );
+            }}
+          </Query>
+          <h2>Popular Reviewers</h2>
+          <Query
+            query={gql`
+              {
+                users(orderBy: username_ASC) {
+					id
+    				username
+    				email
+    				userProfileImage
+    				ReviewList {
+      					id
+						name
+						thumbsUp
+    					timestamp
+    				}
+                }
+              }
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+			  if (error) return <p>Error :(</p>;
 				
-				<div id='home-container'>
-					<h1>Featured Projects</h1>
-					<Query
-						query={gql`
-							{
-								projects(orderBy: rating_DESC) {
-									id
-									name
-									titleImg
-									rating
-									User
-										{
-											id
-											username
-											email  
-										}
-									timestamp
-								}
-							}
-						`}
-					>
-						{({ loading, error, data }) => {
-							if (loading) return <p>Loading...</p>;
-							if (error) return <p>Error :(</p>;
-							
-							const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
+			  const reviews = this.filterByCurrentMonthReviews(data.users);
 
-							return (
-								<div className='card-container'>
-									{projects.map(
-										({ id, name, titleImg, rating, User }) => (
-											<Featured
-												key={id}
-												image={titleImg}
-												rating={rating}
-												title={name}
-												// below might need to be edited
-												username={User.username}
-												clickHandler={this.clickUserHandler}
-											/>
-										)
-									)}
-								</div>
-							)
-						}}
-					</Query>
-				
-					<h1>Popular Makers</h1>
-					<Query
-						query={gql`
-							{
-								users(orderBy: username_ASC) {
-									id
-									username
-									userProfileImage
-									Projects {
-										rating
-										timestamp
-									}
-								}
-							}
-						`}
-					>
-						{({ loading, error, data }) => {
-							if (loading) return <p>Loading...</p>;
-							if (error) return <p>Error :(</p>;
-							
-							const currentMakers = data.users.map(user => {
-								const currentProject = this.filterByCurrentMonth(user.Projects);
-
-								if(currentProject.length === 0) {
-									return null;
-								}
-
-								const rating = currentProject.map(project => {
-									return project.rating;
-								});
-
-								///Checks for the mode average
-
-								let frequency = {};  // array of frequency.
-								let max = 0;  // holds the max frequency.
-								let average;   // holds the max frequency element.
-								for(let v in rating) {
-        							frequency[rating[v]]=(frequency[rating[v]] || 0)+1; // increment frequency.
-        							if(frequency[rating[v]] > max) { // is this frequency > max so far ?
-                							max = frequency[rating[v]];  // update max.
-                							average = rating[v];          // update result.
-									}
-								}
-
-								return {
-									"id": user.id,
-									"username": user.username,
-									"userProfileImage": user.userProfileImage,
-									"averageRating": average
-								}
-							}).filter(e => (e!==undefined) && (e!==null));
-
-							const sortedMakers = currentMakers.sort(function(a, b){return b.averageRating - a.averageRating}).slice(0, 8);
-
-							return (
-								<div className='card-container'>
-									{sortedMakers.map(
-										({ id, username, userProfileImage, averageRating }) => (
-											<Featured
-												key={id}
-												username={username}
-												image={userProfileImage}
-												clickHandler={this.clickUserHandler}
-												rating={averageRating}
-											/>
-										)
-									)}
-								</div>
-							)
-						}}
-					</Query>
-					<h1>Popular Reviewers</h1>
-					<Query
-						query={gql`
-							{
-								users(orderBy: username_ASC) {
-									id
-    								username
-    								email
-    								thirdPartyUID
-    								firebaseUID
-    								ReviewList {
-      									id
-										name
-										thumbsUp
-    									timestamp
-    								}
-								}
-							}
-						`}
-					>
-						{({ loading, error, data }) => {
-							if (loading) return <p>Loading...</p>;
-							if (error) return <p>Error :(</p>;
-							
-							const reviews = this.filterByCurrentMonthReviews(data.users);
-
-							return (
-								<div className='card-container'>
-									{reviews.map(
-										({ id, name, Author }) => (
-											<Featured
-												key={id}
-												title={name}
-												username={Author.username}
-												image={Author.userProfileImage}
-												clickHandler={this.clickUserHandler}
-											/>
-										)
-									)}
-								</div>
-							)
-						}}
-					</Query>	
-				</div>
-			</div>
-		);
-	}
+              return (
+                <div className="card-container">
+                  {data.users.map(({ id, username, userProfileImage }) => (
+                    <Featured
+                      key={id}
+                      username={username}
+                      image={userProfileImage}
+                      clickHandler={this.clickUserHandler}
+                    />
+                  ))}
+                </div>
+              );
+            }}
+          </Query>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default withAuthentication (Home);
+export default withAuthentication(Home);

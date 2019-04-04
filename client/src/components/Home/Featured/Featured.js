@@ -1,11 +1,11 @@
 import React from "react";
 import "../../../styles/card.scss";
-import star from '../../../img/star.png';
+import star from "../../../img/star.png";
 
 function Featured(props) {
   const stars = [];
 
-  for(let i = 0; i < Math.round(props.rating); i++) {
+  for (let i = 0; i < Math.round(props.rating); i++) {
     stars.push(<img src={star} alt="star" key={i} />);
   }
   return (
@@ -20,7 +20,6 @@ function Featured(props) {
           })}
         </div>
       </div>
-      
     </div>
   );
 }

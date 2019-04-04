@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { SignUpLink } from "../SignUp/SignUp";
-import { withFirebase } from '../Firebase/Exports'
+import { withFirebase } from "../Firebase/Exports";
 import * as ROUTES from "../../constants/routes";
 import SignInGithub from "./ThirdPartyApi/Github";
 import SignInGoogle from "./ThirdPartyApi/Google";
 import SignInTwitter from "./ThirdPartyApi/Twitter";
-import {PasswordForgetLink} from '../PasswordForget/PasswordForget';
-import {PasswordChangeLink} from '../PasswordChange/PasswordChange'
+import { PasswordForgetLink } from "../PasswordForget/PasswordForget";
+import { PasswordChangeLink } from "../PasswordChange/PasswordChange";
 
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
-    <PasswordForgetLink/>
-    <PasswordChangeLink/>
+    <PasswordForgetLink />
+    <PasswordChangeLink />
     <SignInGithub />
     <SignInGoogle />
     <SignInTwitter />
@@ -38,8 +38,8 @@ class signInFormBase extends Component {
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then((loggedInUser) => {
-        console.log(loggedInUser);
+      .then(loggedInUser => {
+        // console.log(loggedInUser);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })

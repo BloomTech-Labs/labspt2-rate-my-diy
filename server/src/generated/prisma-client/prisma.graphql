@@ -610,10 +610,10 @@ type Query {
 
 type Review {
   id: ID!
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int!
   LikedBy(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   thumbsDown: Int!
@@ -629,13 +629,13 @@ type ReviewConnection {
 }
 
 input ReviewCreateInput {
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
-  thumbsDown: Int!
+  thumbsDown: Int
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   Author: UserCreateOneWithoutReviewListInput!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
@@ -662,49 +662,49 @@ input ReviewCreateManyWithoutProjectReviewedInput {
 }
 
 input ReviewCreateWithoutAuthorInput {
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
-  thumbsDown: Int!
+  thumbsDown: Int
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
 }
 
 input ReviewCreateWithoutDislikedByInput {
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
-  thumbsDown: Int!
+  thumbsDown: Int
   Author: UserCreateOneWithoutReviewListInput!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
 }
 
 input ReviewCreateWithoutLikedByInput {
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int
-  thumbsDown: Int!
+  thumbsDown: Int
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   Author: UserCreateOneWithoutReviewListInput!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
 }
 
 input ReviewCreateWithoutProjectReviewedInput {
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int
   LikedBy: UserCreateManyWithoutLikedReviewsInput
-  thumbsDown: Int!
+  thumbsDown: Int
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   Author: UserCreateOneWithoutReviewListInput!
 }
@@ -717,14 +717,14 @@ type ReviewEdge {
 enum ReviewOrderByInput {
   id_ASC
   id_DESC
-  title_ASC
-  title_DESC
+  name_ASC
+  name_DESC
   rKey_ASC
   rKey_DESC
   text_ASC
   text_DESC
-  editedAt_ASC
-  editedAt_DESC
+  timestamp_ASC
+  timestamp_DESC
   thumbsUp_ASC
   thumbsUp_DESC
   thumbsDown_ASC
@@ -737,10 +737,10 @@ enum ReviewOrderByInput {
 
 type ReviewPreviousValues {
   id: ID!
-  title: String!
+  name: String!
   rKey: String
   text: String!
-  editedAt: DateTime!
+  timestamp: DateTime!
   thumbsUp: Int!
   thumbsDown: Int!
 }
@@ -760,20 +760,20 @@ input ReviewScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   rKey: String
   rKey_not: String
   rKey_in: [String!]
@@ -802,14 +802,14 @@ input ReviewScalarWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  editedAt: DateTime
-  editedAt_not: DateTime
-  editedAt_in: [DateTime!]
-  editedAt_not_in: [DateTime!]
-  editedAt_lt: DateTime
-  editedAt_lte: DateTime
-  editedAt_gt: DateTime
-  editedAt_gte: DateTime
+  timestamp: DateTime
+  timestamp_not: DateTime
+  timestamp_in: [DateTime!]
+  timestamp_not_in: [DateTime!]
+  timestamp_lt: DateTime
+  timestamp_lte: DateTime
+  timestamp_gt: DateTime
+  timestamp_gte: DateTime
   thumbsUp: Int
   thumbsUp_not: Int
   thumbsUp_in: [Int!]
@@ -850,10 +850,10 @@ input ReviewSubscriptionWhereInput {
 }
 
 input ReviewUpdateInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -863,19 +863,19 @@ input ReviewUpdateInput {
 }
 
 input ReviewUpdateManyDataInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   thumbsDown: Int
 }
 
 input ReviewUpdateManyMutationInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   thumbsDown: Int
 }
@@ -934,10 +934,10 @@ input ReviewUpdateManyWithWhereNestedInput {
 }
 
 input ReviewUpdateWithoutAuthorDataInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -946,10 +946,10 @@ input ReviewUpdateWithoutAuthorDataInput {
 }
 
 input ReviewUpdateWithoutDislikedByDataInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -958,10 +958,10 @@ input ReviewUpdateWithoutDislikedByDataInput {
 }
 
 input ReviewUpdateWithoutLikedByDataInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   thumbsDown: Int
   DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
@@ -970,10 +970,10 @@ input ReviewUpdateWithoutLikedByDataInput {
 }
 
 input ReviewUpdateWithoutProjectReviewedDataInput {
-  title: String
+  name: String
   rKey: String
   text: String
-  editedAt: DateTime
+  timestamp: DateTime
   thumbsUp: Int
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   thumbsDown: Int
@@ -1040,20 +1040,20 @@ input ReviewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   rKey: String
   rKey_not: String
   rKey_in: [String!]
@@ -1082,14 +1082,14 @@ input ReviewWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  editedAt: DateTime
-  editedAt_not: DateTime
-  editedAt_in: [DateTime!]
-  editedAt_not_in: [DateTime!]
-  editedAt_lt: DateTime
-  editedAt_lte: DateTime
-  editedAt_gt: DateTime
-  editedAt_gte: DateTime
+  timestamp: DateTime
+  timestamp_not: DateTime
+  timestamp_in: [DateTime!]
+  timestamp_not_in: [DateTime!]
+  timestamp_lt: DateTime
+  timestamp_lte: DateTime
+  timestamp_gt: DateTime
+  timestamp_gte: DateTime
   thumbsUp: Int
   thumbsUp_not: Int
   thumbsUp_in: [Int!]
@@ -1132,9 +1132,9 @@ type Subscription {
 
 type User {
   id: ID!
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String!
   bio: String!
@@ -1155,9 +1155,9 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1197,9 +1197,9 @@ input UserCreateOneWithoutReviewListInput {
 }
 
 input UserCreateWithoutDislikedReviewsInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1213,9 +1213,9 @@ input UserCreateWithoutDislikedReviewsInput {
 }
 
 input UserCreateWithoutLikedReviewsInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1229,9 +1229,9 @@ input UserCreateWithoutLikedReviewsInput {
 }
 
 input UserCreateWithoutProjectsInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1245,9 +1245,9 @@ input UserCreateWithoutProjectsInput {
 }
 
 input UserCreateWithoutRatedProjectsInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1261,9 +1261,9 @@ input UserCreateWithoutRatedProjectsInput {
 }
 
 input UserCreateWithoutReviewListInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String
   bio: String
@@ -1284,12 +1284,12 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  url_ASC
-  url_DESC
+  thirdPartyUID_ASC
+  thirdPartyUID_DESC
+  firebaseUID_ASC
+  firebaseUID_DESC
   username_ASC
   username_DESC
-  password_ASC
-  password_DESC
   email_ASC
   email_DESC
   userProfileImage_ASC
@@ -1310,9 +1310,9 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String!
-  password: String!
   email: String!
   userProfileImage: String!
   bio: String!
@@ -1336,20 +1336,34 @@ input UserScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
+  thirdPartyUID: String
+  thirdPartyUID_not: String
+  thirdPartyUID_in: [String!]
+  thirdPartyUID_not_in: [String!]
+  thirdPartyUID_lt: String
+  thirdPartyUID_lte: String
+  thirdPartyUID_gt: String
+  thirdPartyUID_gte: String
+  thirdPartyUID_contains: String
+  thirdPartyUID_not_contains: String
+  thirdPartyUID_starts_with: String
+  thirdPartyUID_not_starts_with: String
+  thirdPartyUID_ends_with: String
+  thirdPartyUID_not_ends_with: String
+  firebaseUID: String
+  firebaseUID_not: String
+  firebaseUID_in: [String!]
+  firebaseUID_not_in: [String!]
+  firebaseUID_lt: String
+  firebaseUID_lte: String
+  firebaseUID_gt: String
+  firebaseUID_gte: String
+  firebaseUID_contains: String
+  firebaseUID_not_contains: String
+  firebaseUID_starts_with: String
+  firebaseUID_not_starts_with: String
+  firebaseUID_ends_with: String
+  firebaseUID_not_ends_with: String
   username: String
   username_not: String
   username_in: [String!]
@@ -1364,20 +1378,6 @@ input UserScalarWhereInput {
   username_not_starts_with: String
   username_ends_with: String
   username_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -1486,9 +1486,9 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1503,9 +1503,9 @@ input UserUpdateInput {
 }
 
 input UserUpdateManyDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1515,9 +1515,9 @@ input UserUpdateManyDataInput {
 }
 
 input UserUpdateManyMutationInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1582,9 +1582,9 @@ input UserUpdateOneRequiredWithoutReviewListInput {
 }
 
 input UserUpdateWithoutDislikedReviewsDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1598,9 +1598,9 @@ input UserUpdateWithoutDislikedReviewsDataInput {
 }
 
 input UserUpdateWithoutLikedReviewsDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1614,9 +1614,9 @@ input UserUpdateWithoutLikedReviewsDataInput {
 }
 
 input UserUpdateWithoutProjectsDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1630,9 +1630,9 @@ input UserUpdateWithoutProjectsDataInput {
 }
 
 input UserUpdateWithoutRatedProjectsDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1646,9 +1646,9 @@ input UserUpdateWithoutRatedProjectsDataInput {
 }
 
 input UserUpdateWithoutReviewListDataInput {
-  url: String
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
-  password: String
   email: String
   userProfileImage: String
   bio: String
@@ -1719,20 +1719,34 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
+  thirdPartyUID: String
+  thirdPartyUID_not: String
+  thirdPartyUID_in: [String!]
+  thirdPartyUID_not_in: [String!]
+  thirdPartyUID_lt: String
+  thirdPartyUID_lte: String
+  thirdPartyUID_gt: String
+  thirdPartyUID_gte: String
+  thirdPartyUID_contains: String
+  thirdPartyUID_not_contains: String
+  thirdPartyUID_starts_with: String
+  thirdPartyUID_not_starts_with: String
+  thirdPartyUID_ends_with: String
+  thirdPartyUID_not_ends_with: String
+  firebaseUID: String
+  firebaseUID_not: String
+  firebaseUID_in: [String!]
+  firebaseUID_not_in: [String!]
+  firebaseUID_lt: String
+  firebaseUID_lte: String
+  firebaseUID_gt: String
+  firebaseUID_gte: String
+  firebaseUID_contains: String
+  firebaseUID_not_contains: String
+  firebaseUID_starts_with: String
+  firebaseUID_not_starts_with: String
+  firebaseUID_ends_with: String
+  firebaseUID_not_ends_with: String
   username: String
   username_not: String
   username_in: [String!]
@@ -1747,20 +1761,6 @@ input UserWhereInput {
   username_not_starts_with: String
   username_ends_with: String
   username_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -1867,6 +1867,8 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  thirdPartyUID: String
+  firebaseUID: String
   username: String
   email: String
 }

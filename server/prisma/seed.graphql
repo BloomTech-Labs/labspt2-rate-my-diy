@@ -2,7 +2,6 @@ mutation {
   user1: createUser(
     data: {
       username: "asdfsd"
-      password: "abc123"
       email: "asldkf@gmail.com"
       Projects: {
         create: [
@@ -29,7 +28,6 @@ mutation {
   user2: createUser(
     data: {
       username: "sldfksd"
-      password: "abc123"
       email: "lkjwe@gmail.com"
       Projects: {
         create: [
@@ -56,7 +54,6 @@ mutation {
   user3: createUser(
     data: {
       username: "slekrj"
-      password: "abc123"
       email: "riowjw@gmail.com"
       Projects: {
         create: [
@@ -83,7 +80,6 @@ mutation {
   user4: createUser(
     data: {
       username: "lkrjawe"
-      password: "abc123"
       email: "orije@gmail.com"
       Projects: {
         create: [
@@ -110,7 +106,6 @@ mutation {
   user5: createUser(
     data: {
       username: "lkrwetir"
-      password: "abc123"
       email: "toieja@gmail.com"
       Projects: {
         create: [
@@ -137,7 +132,6 @@ mutation {
   user6: createUser(
     data: {
       username: "toigjewe"
-      password: "abc123"
       email: "rtoijge@gmail.com"
       Projects: {
         create: [
@@ -164,7 +158,6 @@ mutation {
   user7: createUser(
     data: {
       username: "oiwjoeawd"
-      password: "abc123"
       email: "rglklsajfeee@gmail.com"
       Projects: {
         create: [
@@ -192,7 +185,6 @@ mutation {
   user8: createUser(
     data: {
       username: "wlefjwe"
-      password: "abc123"
       email: "lrkgjwaelw@gmail.com"
       Projects: {
         create: [
@@ -219,7 +211,6 @@ mutation {
   user9: createUser(
     data: {
       username: "askldfjewavvv"
-      password: "abc123"
       email: "glrijad@gmail.com"
       Projects: {
         create: [
@@ -246,7 +237,6 @@ mutation {
   user10: createUser(
     data: {
       username: "lgrjraweks"
-      password: "abc123"
       email: "tlirjerss@gmail.com"
       Projects: {
         create: [
@@ -273,7 +263,6 @@ mutation {
   user11: createUser(
     data: {
       username: "lrijfwwa"
-      password: "abc123"
       email: "dlgiawefs@gmail.com"
       Projects: {
         create: [
@@ -300,7 +289,6 @@ mutation {
   user12: createUser(
     data: {
       username: "itbdsldvf"
-      password: "abc123"
       email: "tijaecvvdsd@gmail.com"
       Projects: {
         create: [
@@ -327,7 +315,6 @@ mutation {
   user13: createUser(
     data: {
       username: "dlgirassdweeww"
-      password: "abc123"
       email: "adlkfsvvwket@gmail.com"
       Projects: {
         create: [
@@ -354,7 +341,6 @@ mutation {
   user14: createUser(
     data: {
       username: "dglawerwdfvvyeiwq"
-      password: "abc123"
       email: "tgiasccvdew2@gmail.com"
       Projects: {
         create: [
@@ -381,7 +367,6 @@ mutation {
   user15: createUser(
     data: {
       username: "yoirewowd"
-      password: "abc123"
       email: "lgrakesl@gmail.com"
       Projects: {
         create: [
@@ -405,12 +390,14 @@ mutation {
   ) {
     id
   }
+
+
   review1: createReview(
     data: {
-      title: "Nice Job!"
+      name: "Nice Job!"
       rKey: "1"
       text: "I really like how you did this."
-      editedAt: "2019-02-05"
+      timestamp: "2019-02-05"
       thumbsUp: 4
       thumbsDown: 1
       Author: { connect: { username: "asdfsd" } }
@@ -421,10 +408,10 @@ mutation {
   }
   review2: createReview(
     data: {
-      title: "Wicked"
+      name: "Wicked"
       rKey: "2"
       text: "You're a rockstar!"
-      editedAt: "2019-03-01"
+      timestamp: "2019-03-01"
       thumbsUp: 8
       thumbsDown: 2
       Author: { connect: { username: "asdfsd" } }
@@ -435,10 +422,10 @@ mutation {
   }
   review3: createReview(
     data: {
-      title: "Well Done"
+      name: "Well Done"
       rKey: "3"
       text: "I'm amazed - truly."
-      editedAt: "2019-03-19"
+      timestamp: "2019-03-19"
       thumbsUp: 2
       thumbsDown: 0
       Author: { connect: { username: "sldfksd" } }
@@ -449,10 +436,10 @@ mutation {
   }
   review4: createReview(
     data: {
-      title: "DiS iS TrASSh"
+      name: "DiS iS TrASSh"
       rKey: "4"
       text: "Thank u, next!"
-      editedAt: "2019-01-12"
+      timestamp: "2019-01-12"
       thumbsUp: 1
       thumbsDown: 6
       Author: { connect: { username: "sldfksd" } }
@@ -463,10 +450,10 @@ mutation {
   }
   review5: createReview(
     data: {
-      title: "Teach Me How to Do This!"
+      name: "Teach Me How to Do This!"
       rKey: "5"
       text: "Notice me senpai"
-      editedAt: "2019-02-19"
+      timestamp: "2019-02-19"
       thumbsUp: 2
       thumbsDown: 3
       Author: { connect: { username: "slekrj" } }
@@ -477,10 +464,10 @@ mutation {
   }
   review6: createReview(
     data: {
-      title: "This is nice"
+      name: "This is nice"
       rKey: "6"
       text: "...real nice"
-      editedAt: "2019-01-11"
+      timestamp: "2019-01-11"
       thumbsUp: 3
       thumbsDown: 2
       Author: { connect: { username: "slekrj" } }
@@ -491,10 +478,10 @@ mutation {
   }
   review7: createReview(
     data: {
-      title: "Noob"
+      name: "Noob"
       rKey: "7"
       text: "Why are you even posting a tutorial about something you know nothing about?"
-      editedAt: "2019-07-14"
+      timestamp: "2019-07-14"
       thumbsUp: 4
       thumbsDown: 6
       Author: { connect: { username: "lkrjawe" } }
@@ -505,10 +492,10 @@ mutation {
   }
   review8: createReview(
     data: {
-      title: "Wow"
+      name: "Wow"
       rKey: "8"
       text: "You gotta create more of these."
-      editedAt: "2019-04-01"
+      timestamp: "2019-04-01"
       thumbsUp: 6
       thumbsDown: 2
       Author: { connect: { username: "lkrjawe" } }
@@ -517,6 +504,7 @@ mutation {
   ) {
     id
   }
+# 
   updateUser1: updateUser(data: {
     LikedReviews: {
       connect: [

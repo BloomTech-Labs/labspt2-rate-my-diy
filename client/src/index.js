@@ -7,7 +7,7 @@ import { ApolloProvider } from "react-apollo";
 import { FirebaseContext, Firebase } from "./components/Firebase/Exports";
 
 const client = new ApolloClient({
-  uri: "https://stark-meadow-13883.herokuapp.com/"
+  uri: "https://strawberry-surprise-32108.herokuapp.com/"
 });
 
 ReactDOM.render(

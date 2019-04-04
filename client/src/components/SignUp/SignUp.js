@@ -4,7 +4,6 @@ import { compose } from "recompose";
 import { withFirebase } from "../../components/Firebase/Exports";
 import * as ROUTES from "../../constants/routes";
 
-
 const SignUpPage = () => {
   return (
     <div>
@@ -26,7 +25,7 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
   onSubmitHandler = event => {
-    const { username, email, passwordOne} = this.state;
+    const { username, email, passwordOne } = this.state;
     const roles = [];
     /*I don't think we've specified roles or isAdmin yet*/
     // if (isAdmin) {
@@ -35,7 +34,7 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        console.log(authUser);
+        // console.log(authUser);
         return this.props.firebase.user(authUser.user.uid).set(
           {
             username,
@@ -56,7 +55,7 @@ class SignUpFormBase extends Component {
         }
 
         this.setState({ err });
-        console.log(err);
+        // console.log(err);
       });
     event.preventDefault();
   };
