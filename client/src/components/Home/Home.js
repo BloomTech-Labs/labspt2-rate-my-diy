@@ -38,25 +38,6 @@ class Home extends Component {
 		return filteredData.filter(function(e){return e});
 	}
 
-	filterByCurrentMonthReviewer = (data) => {
-		console.log(data);
-		const currentTime = new Date()
-
-		var month = currentTime.getMonth() + 1
-							
-		var year = currentTime.getFullYear()
-
-		const filteredData = data.map(item => {
-		
-			if (item.editedAt.slice(0, 4) == year && item.editedAt.slice(5, 7) == month) { 
-				return item;
-			}
-			
-		});
-
-		return filteredData.filter(function(e){return e});
-	}
-
 	render() {
 		const SearchWithData = () => (
 			<Query query={this.props.getUsers}>
@@ -238,7 +219,7 @@ class Home extends Component {
 							if (loading) return <p>Loading...</p>;
 							if (error) return <p>Error :(</p>;
 							
-							const reviews = this.filterByCurrentMonthReviewer(data.reviews).slice(0, 8);
+							const reviews = this.filterByCurrentMonth(data.reviews);
 
 							return (
 								<div className='card-container'>
