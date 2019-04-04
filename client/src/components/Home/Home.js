@@ -19,6 +19,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    console.log({firebase: this.props.firebase})
     let user = this.props.firebase.auth.currentUser !== null;
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
