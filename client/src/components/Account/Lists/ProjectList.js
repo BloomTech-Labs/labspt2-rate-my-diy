@@ -23,6 +23,11 @@ query projects($email: String!){
     titleBlurb
     rating
     steps
+    User{
+      id
+      username
+    }
+
   }
 }`
 
@@ -35,7 +40,7 @@ const ProjectList = () => (
       if (data.projects[0]) 
       {return (
           <div>
-            <h1>My Projects</h1>
+            <h1>{`${data.projects[0].User.username}'s Projects`}</h1>
                 {data.projects.map(project => {
                   return (
                     <ProjectCard key={project.id} project={project}/>
@@ -45,7 +50,7 @@ const ProjectList = () => (
     );} else {
       return (
         <div>
-        <h1>My Projects</h1>
+        <h1>{`${data.projects[0].User.username}'s Projects`}</h1>
         <span>Add some projects</span>
       </div>
       )

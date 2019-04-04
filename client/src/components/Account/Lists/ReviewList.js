@@ -13,7 +13,7 @@ const email = "asldkf@gmail.com"
 
 const GET_REVIEWS = gql`
 query reviews($email: String!){
-  projects(where: {Author: {email: $email}} orderBy: timestamp_DESC){
+  reviews(where: {Author: {email: $email}} orderBy: timestamp_DESC){
   id
   name
   rKey
@@ -45,10 +45,10 @@ const ProjectList = () => (
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       if (data) console.log(data)
-      if (data.projects[0]) 
+      if (data.reviews[0]) 
       {return (
           <div>
-            <h1>My Reviews</h1>
+            <h1>{`${data.reviews[0].Author.username}'s Reviews`}</h1>
                 {data.reviews.map(review => {
                   return (
                     <ReviewCard key={review.id} review={review}/>
@@ -58,7 +58,7 @@ const ProjectList = () => (
     );} else {
       return (
         <div>
-        <h1>My Reviews</h1>
+        <h1>{`${data.reviews[0].Author.username}'s Reviews`}</h1>
         <span>Add some reviews</span>
       </div>
       )

@@ -27,24 +27,6 @@ const Query = prismaObjectType({
   name: "Query",
   definition(t) {
     t.prismaFields(["*"]);
-    t.field("getProjects", {
-      type: "Project",
-      args: {
-        email: stringArg()
-      },
-      resolve: (parent, {email}, ctx, info) => {
-        return ctx.prisma.projects({where: {User: {email: email}}, orderBy: timestamp_DESC})
-      }
-    }),
-    t.field("getReviews", {
-      type: "Review",
-      args: {
-        email: stringArg()
-      },
-      resolve: (parent, {email}, ctx, info) => {
-        return ctx.prisma.reviews({where: {Author: {email: email}}, orderBy: timestamp_DESC})
-      }
-    })
   }
 });
 const Mutation = prismaObjectType({
