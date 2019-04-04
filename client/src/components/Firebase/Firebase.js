@@ -2,7 +2,6 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-
 var config = {
   apiKey: "AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM",
   authDomain: "ratemydiy-9453b.firebaseapp.com",
@@ -67,7 +66,6 @@ class Firebase {
           .get()
           .then(snapshot => {
             const dbUser = snapshot.data();
-          
 
             // merge auth and db user
             authUser = {
@@ -75,7 +73,7 @@ class Firebase {
               email: authUser.email,
               emailVerified: authUser.emailVerified,
               providerData: authUser.providerData,
-              ...dbUser,
+              ...dbUser
             };
 
             next(authUser);
@@ -95,7 +93,6 @@ class Firebase {
 }
 
 export default Firebase;
-
 
 /*
 1. Click Sign In with oAuth Provider.

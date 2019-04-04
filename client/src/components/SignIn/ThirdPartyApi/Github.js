@@ -18,19 +18,23 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 `;
 
 const firebaseSignUp = gql`
-      mutation firebaseSignUp(
-        $username: String!
-        $thirdPartyUID: String!
-        $email: String!
-      ) {
-        firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
-          id
-          username
-          email
-          thirdPartyUID
-        }
-      } 
-    `;
+  mutation firebaseSignUp(
+    $username: String!
+    $thirdPartyUID: String!
+    $email: String!
+  ) {
+    firebaseSignUp(
+      username: $username
+      thirdPartyUID: $thirdPartyUID
+      email: $email
+    ) {
+      id
+      username
+      email
+      thirdPartyUID
+    }
+  }
+`;
 
 class SignInGithubBase extends Component {
   constructor(props) {
@@ -41,7 +45,7 @@ class SignInGithubBase extends Component {
       isNewUser: false,
       email: "",
       username: "",
-      uid: "",
+      uid: ""
     };
   }
   secondSubmit = e => {
@@ -99,7 +103,6 @@ class SignInGithubBase extends Component {
   };
 
   render() {
-
     const { error } = this.state;
     return (
       <React.Fragment>
@@ -110,19 +113,22 @@ class SignInGithubBase extends Component {
         <Modal isOpen={this.state.isOpen} contentLabel="Example Modal">
           <div>
             <h1>Complete Your Sign Up.</h1>
-            <Mutation
-              mutation={firebaseSignUp}
-            >
+            <Mutation mutation={firebaseSignUp}>
               {(signUpMutation, { data }) => {
                 // console.log({state: this.state, data: data})
                 return (
-                  <form onSubmit={e => {
-                    e.preventDefault()
-                    signUpMutation({variables:{
-                      username: this.state.username,
-                      thirdPartyUID: this.state.uid,
-                      email: this.state.email
-                    }})}}>
+                  <form
+                    onSubmit={e => {
+                      e.preventDefault();
+                      signUpMutation({
+                        variables: {
+                          username: this.state.username,
+                          thirdPartyUID: this.state.uid,
+                          email: this.state.email
+                        }
+                      });
+                    }}
+                  >
                     <input
                       onChange={this.onChange}
                       defaultValue={this.state.email}

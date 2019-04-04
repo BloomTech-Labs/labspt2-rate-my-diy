@@ -33,7 +33,6 @@ class SearchBar extends Component {
     };
   }
 
-
   changeHandler = e => {
     this.setState({ text: e.target.value });
   };
@@ -52,29 +51,26 @@ class SearchBar extends Component {
     if (this.state.isLoggedIn) {
       let options = [];
 
-    if (this.state.options.includes("user")) {
-      options.push("user");
-    }
+      if (this.state.options.includes("user")) {
+        options.push("user");
+      }
 
-    if (this.state.options.includes("project")) {
-      options.push("project");
-    }
+      if (this.state.options.includes("project")) {
+        options.push("project");
+      }
 
-    if (this.state.options.includes("review")) {
-      options.push("review");
-    }
+      if (this.state.options.includes("review")) {
+        options.push("review");
+      }
 
-    if (this.state.options.includes("category")) {
-      options.push("category");
-    }
+      if (this.state.options.includes("category")) {
+        options.push("category");
+      }
 
-    this.search(options);
+      this.search(options);
+    } else {
+      this.setState({ displayPopUp: true });
     }
-
-    else {
-      this.setState({displayPopUp: true})
-    }
-    
   };
 
   closePopUp = () => {
@@ -223,11 +219,11 @@ class SearchBar extends Component {
       const categorySearch = projectsFuse.search(this.state.text);
 
       // if(this.state.projectSort === 'alpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name });
-      
+
       // if(this.state.projectSort === 'revAlpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name }).reverse();
 
       // if(this.state.projectSort === 'highest') categorySearch = categorySearch.sort(function (a, b) { return b.rating - a.rating });
-      
+
       // if(this.state.projectSort === 'lowest') categorySearch = categorySearch.sort(function (a, b) { return a.rating - b.rating });
 
       // this.props.projectSearchHandler(categorySearch);
@@ -463,33 +459,33 @@ class SearchBar extends Component {
       const projectsFuse = new Fuse(this.props.projects, options);
 
       if (this.state.text) {
-let projectSearch = projectsFuse.search(this.state.text);
+        let projectSearch = projectsFuse.search(this.state.text);
 
-      if (this.state.projectSort === "alpha")
-        projectSearch = projectSearch.sort(function(a, b) {
-          return a.name - b.name;
-        });
-
-      if (this.state.projectSort === "revAlpha")
-        projectSearch = projectSearch
-          .sort(function(a, b) {
+        if (this.state.projectSort === "alpha")
+          projectSearch = projectSearch.sort(function(a, b) {
             return a.name - b.name;
-          })
-          .reverse();
+          });
 
-      if (this.state.projectSort === "highest")
-        projectSearch = projectSearch.sort(function(a, b) {
-          return b.rating - a.rating;
-        });
+        if (this.state.projectSort === "revAlpha")
+          projectSearch = projectSearch
+            .sort(function(a, b) {
+              return a.name - b.name;
+            })
+            .reverse();
 
-      if (this.state.projectSort === "lowest")
-        projectSearch = projectSearch.sort(function(a, b) {
-          return a.rating - b.rating;
-        });
+        if (this.state.projectSort === "highest")
+          projectSearch = projectSearch.sort(function(a, b) {
+            return b.rating - a.rating;
+          });
 
-      this.props.projectSearchHandler(projectSearch);
+        if (this.state.projectSort === "lowest")
+          projectSearch = projectSearch.sort(function(a, b) {
+            return a.rating - b.rating;
+          });
 
-      this.props.history.push("/search");
+        this.props.projectSearchHandler(projectSearch);
+
+        this.props.history.push("/search");
       } else {
         let projectSearch = this.props.projects;
 
@@ -497,97 +493,99 @@ let projectSearch = projectsFuse.search(this.state.text);
           projectSearch = projectSearch.sort(function(a, b) {
             return a.name - b.name;
           });
-  
+
         if (this.state.projectSort === "revAlpha")
           projectSearch = projectSearch
             .sort(function(a, b) {
               return a.name - b.name;
             })
             .reverse();
-  
+
         if (this.state.projectSort === "highest")
           projectSearch = projectSearch.sort(function(a, b) {
             return b.rating - a.rating;
           });
-  
+
         if (this.state.projectSort === "lowest")
           projectSearch = projectSearch.sort(function(a, b) {
             return a.rating - b.rating;
           });
-  
+
         this.props.projectSearchHandler(projectSearch);
-  
+
         this.props.history.push("/search");
       }
-      
     }
-    if (this.state.stars > 0 && option.includes("project") && !option.includes("category")) {
+    if (
+      this.state.stars > 0 &&
+      option.includes("project") &&
+      !option.includes("category")
+    ) {
       const projectsFuse = new Fuse(this.props.projects, options);
 
       if (this.state.text) {
-let projectSearch = projectsFuse.search(this.state.text);
-      let starsSearch = projectSearch.filter(
-        project => project.rating >= this.state.stars
-      );
-
-      if (this.state.projectSort === "alpha")
-        starsSearch = starsSearch.sort(function(a, b) {
-          return a.name - b.name;
-        });
-
-      if (this.state.projectSort === "revAlpha")
-        starsSearch = starsSearch
-          .sort(function(a, b) {
-            return a.name - b.name;
-          })
-          .reverse();
-
-      if (this.state.projectSort === "highest")
-        starsSearch = starsSearch.sort(function(a, b) {
-          return b.rating - a.rating;
-        });
-
-      if (this.state.projectSort === "lowest")
-        starsSearch = starsSearch.sort(function(a, b) {
-          return a.rating - b.rating;
-        });
-
-      this.props.projectSearchHandler(starsSearch);
-
-      this.props.history.push("/search");
-      } else {
-        let projectSearch = this.props.projects
+        let projectSearch = projectsFuse.search(this.state.text);
         let starsSearch = projectSearch.filter(
           project => project.rating >= this.state.stars
         );
-  
+
         if (this.state.projectSort === "alpha")
           starsSearch = starsSearch.sort(function(a, b) {
             return a.name - b.name;
           });
-  
+
         if (this.state.projectSort === "revAlpha")
           starsSearch = starsSearch
             .sort(function(a, b) {
               return a.name - b.name;
             })
             .reverse();
-  
+
         if (this.state.projectSort === "highest")
           starsSearch = starsSearch.sort(function(a, b) {
             return b.rating - a.rating;
           });
-  
+
         if (this.state.projectSort === "lowest")
           starsSearch = starsSearch.sort(function(a, b) {
             return a.rating - b.rating;
           });
-  
+
         this.props.projectSearchHandler(starsSearch);
-  
+
+        this.props.history.push("/search");
+      } else {
+        let projectSearch = this.props.projects;
+        let starsSearch = projectSearch.filter(
+          project => project.rating >= this.state.stars
+        );
+
+        if (this.state.projectSort === "alpha")
+          starsSearch = starsSearch.sort(function(a, b) {
+            return a.name - b.name;
+          });
+
+        if (this.state.projectSort === "revAlpha")
+          starsSearch = starsSearch
+            .sort(function(a, b) {
+              return a.name - b.name;
+            })
+            .reverse();
+
+        if (this.state.projectSort === "highest")
+          starsSearch = starsSearch.sort(function(a, b) {
+            return b.rating - a.rating;
+          });
+
+        if (this.state.projectSort === "lowest")
+          starsSearch = starsSearch.sort(function(a, b) {
+            return a.rating - b.rating;
+          });
+
+        this.props.projectSearchHandler(starsSearch);
+
         this.props.history.push("/search");
       }
-      
     }
 
     if (this.state.stars > 0 && !this.state.text) {
@@ -650,12 +648,8 @@ let projectSearch = projectsFuse.search(this.state.text);
 
       this.props.projectSearchHandler(projectSearch);
 
-      
-
       this.props.history.push("/search");
       // console.log(option);
-
-      
     }
 
     // console.log({currentUser: this.props.firebase.auth.currentUser.uid})
@@ -675,11 +669,11 @@ let projectSearch = projectsFuse.search(this.state.text);
 
   popUp = () => {
     this.state.isLoggedIn
-    ? this.setState({displayPopUp: false})
-    : this.setState({displayPopUp: true})
-  }
+      ? this.setState({ displayPopUp: false })
+      : this.setState({ displayPopUp: true });
+  };
   // componentDidMount() {
-    
+
   //   let user = this.props.firebase.auth.currentUser !== undefined
   //   if (user === true) {
   //     this.setState({isLoggedIn: true})

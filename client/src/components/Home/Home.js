@@ -28,12 +28,12 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-	let user = nextProps.firebase.auth.currentUser !== null
+    let user = nextProps.firebase.auth.currentUser !== null;
     if (user) {
-      this.setState({isLoggedIn: true, user: user})
+      this.setState({ isLoggedIn: true, user: user });
     } else {
-      this.setState({isLoggedIn: false, user: ""})
-	}
+      this.setState({ isLoggedIn: false, user: "" });
+    }
   }
 
   //This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
@@ -67,9 +67,17 @@ class Home extends Component {
       <Query query={this.props.getUsers}>
         {({ loading: loadingUsers, data: userData, error: userError }) => (
           <Query query={this.props.getProjects}>
-            {({ loading: loadingProjects, data: projectData, error: projectError }) => (
+            {({
+              loading: loadingProjects,
+              data: projectData,
+              error: projectError
+            }) => (
               <Query query={this.props.getReviews}>
-                {({ loading: loadingReviews, data: reviewData, error: reviewError }) => {
+                {({
+                  loading: loadingReviews,
+                  data: reviewData,
+                  error: reviewError
+                }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
                   if (userError) return <span>{`${userError}`}</span>;
@@ -114,8 +122,8 @@ class Home extends Component {
         )}
       </Query>
     );
-	console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
-	
+    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
+
     return (
       <div>
         <Header />

@@ -1,7 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { graphql } from "react-apollo";
-import {gql} from "apollo-boost";
+import { gql } from "apollo-boost";
 
 const createSubscriptionMutation = gql`
   mutation createSubscription($source: String!) {
