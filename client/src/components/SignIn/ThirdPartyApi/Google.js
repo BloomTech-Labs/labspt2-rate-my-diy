@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 
+
 const ERROR_CODE_ACCOUNT_EXISTS =
   "auth/account-exists-with-different-credential";
 
