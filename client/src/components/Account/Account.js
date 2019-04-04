@@ -1,12 +1,31 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 import { withAuthorization } from "../Session/session";
+import ProjectList from "./Lists/ProjectList"
 
 class Account extends Component {
   render() {
     return (
       <div>
-        <h3>Protected Page If Not Authenticated</h3>
-        <h1>Hello World</h1>
+        <div className="accountNav">
+        <ul>
+          <li>
+            <Link to={ROUTES.MY_PROJECTS}>My Projects</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.MY_REVIEWS}>My Reviews</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.STRIPE}>Billing</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.SETTINGS}>Settings</Link>
+          </li>
+        </ul>
+        </div>
+
+        <Route path={ROUTES.MY_PROJECTS} component={ProjectList}/>
       </div>
     );
   }
