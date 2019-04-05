@@ -5,7 +5,7 @@ const { unionType } = require("nexus");
 const { prisma } = require("./src/generated/prisma-client");
 const datamodelInfo = require("./src/generated/nexus-prisma");
 const { stripe } = require("./src/stripe");
-const { stringArg, idArg, intArg } = require("nexus/dist/nexus/args");
+const { stringArg, idArg, intArg } = require("nexus");
 const nodemailer = require("nodemailer");
 
 async function main() {
