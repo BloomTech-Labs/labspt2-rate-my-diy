@@ -58,7 +58,7 @@ class ProjectList extends React.Component {
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
                     {projectsData.projects.map(project => {
-                      let meanRating = math.mean(project.rating)
+                      let meanRating = parseFloat(math.mean(project.rating).toFixed(2))
                       project.rating = meanRating
                       return (
                       <ProjectCard key={project.id} project={project} />

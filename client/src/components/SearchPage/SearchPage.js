@@ -70,7 +70,7 @@ class SearchPage extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-                    projectArray = projectArray.map(project => project = {...project, rating: math.mean(project.rating)})
+                    projectArray = projectArray.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
@@ -109,7 +109,7 @@ class SearchPage extends Component {
         {/* <div className="card-container"> */}
         {this.props.projects
           .map(({ id, name, titleImg, rating, User, category }) => {
-            let meanRating = math.mean(rating)
+            let meanRating = parseFloat(math.mean(rating).toFixed(2))
             return (
             <div key={id} className="card-container">
               <img src={`${titleImg}`} alt="project" />

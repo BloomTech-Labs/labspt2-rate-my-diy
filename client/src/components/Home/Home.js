@@ -150,7 +150,7 @@ class Home extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-                    projectArray = projectArray.map(project => project = {...project, rating: math.mean(project.rating)})
+                    projectArray = projectArray.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
                     
                     
                   if (reviewData !== undefined)
@@ -205,7 +205,7 @@ class Home extends Component {
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>{`${error}`}</p>;
-              let projectArray = data.projects.map(project => project = {...project, rating: math.mean(project.rating)})
+              let projectArray = data.projects.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
               console.log({projectArray: projectArray})
               const projects = this.filterByCurrentMonth(projectArray).slice(0, 4).sort(function(a, b) {
                 return b.rating - a.rating;
@@ -214,7 +214,7 @@ class Home extends Component {
               return (
                 <div className="card-container">
                   {projects.map(({ id, name, titleImg, rating, User }) => {
-                    let meanRating = math.mean(rating)
+                    let meanRating = parseFloat(math.mean(rating).toFixed(2))
                     return (
                     
                     <Featured
@@ -262,7 +262,7 @@ class Home extends Component {
                   }
 
                   const rating = currentProject.map(project => {
-                    let meanRating = math.mean(project.rating)
+                    let meanRating = parseFloat(math.mean(project.rating).toFixed(2))
                     return meanRating
                   });
 
