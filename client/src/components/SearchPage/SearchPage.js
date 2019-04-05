@@ -61,7 +61,6 @@ class SearchPage extends Component {
                   if (projectError) console.log({ projectError: projectError });
                   if (reviewError) console.log({ projectError: reviewError });
                   let userArray = [];
-                  let projects = []
                   let projectArray = [];
                   let reviewArray = [];
 
@@ -70,11 +69,8 @@ class SearchPage extends Component {
                     
 
                   if (projectData !== undefined)
-                    projects = Object.values(projectData).flat();
-                    projectArray = projects.map(project => {
-                      let meanRating = math.mean(project.rating)
-                      project.rating = meanRating
-                    return project})
+                    projectArray = Object.values(projectData).flat();
+                    projectArray = projectArray.map(project => project = {...project, rating: math.mean(project.rating)})
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();

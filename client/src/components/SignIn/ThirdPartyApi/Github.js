@@ -115,7 +115,7 @@ class SignInGithubBase extends Component {
             <h1>Complete Your Sign Up.</h1>
             <Mutation mutation={firebaseSignUp}>
               {(signUpMutation, { data }) => {
-                // console.log({state: this.state, data: data})
+                console.log({state: this.state, data: data})
                 return (
                   <form
                     onSubmit={e => {

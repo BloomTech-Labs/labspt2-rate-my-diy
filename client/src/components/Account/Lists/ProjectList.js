@@ -50,7 +50,7 @@ class ProjectList extends React.Component {
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading: userLoading, data: userData, error: userError }) => {
               if (projectsLoading || userLoading) return "Loading...";
-              if (projectsError || userError) return `Error!`;
+              if (projectsError || userError) return <span>{`Error: ${userError}`}</span>;
               if (projectsData && userData) console.log({projectsData: projectsData, userData: userData});
               
               if (projectsData.projects[0]) {

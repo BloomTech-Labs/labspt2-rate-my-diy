@@ -45,7 +45,7 @@ class Home extends Component {
   filterByCurrentMonth = data => {
     const currentTime = new Date();
 
-    const month = currentTime.getMonth() + 1;
+    const month = currentTime.getMonth();
 
     const year = currentTime.getFullYear();
 
@@ -142,7 +142,6 @@ class Home extends Component {
                   if (projectError) return <span>{`${projectError}`}</span>;
                   if (reviewError) return <span>{`${reviewError}`}</span>;
                   let userArray = [];
-                  let projects = [];
                   let projectArray = []
                   let reviewArray = [];
 
@@ -150,11 +149,10 @@ class Home extends Component {
                     userArray = Object.values(userData).flat();
 
                   if (projectData !== undefined)
-                    projects = Object.values(projectData).flat();
-                    projectArray = projects.map(project => {
-                    let meanRating = math.mean(project.rating)
-                    project.rating = meanRating})
-
+                    projectArray = Object.values(projectData).flat();
+                    projectArray = projectArray.map(project => project = {...project, rating: math.mean(project.rating)})
+                    
+                    
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
                   return (
@@ -189,7 +187,7 @@ class Home extends Component {
           <Query
             query={gql`
               {
-                projects(orderBy: rating_DESC) {
+                projects {
                   id
                   name
                   titleImg
@@ -206,9 +204,12 @@ class Home extends Component {
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-
-              const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
+              if (error) return <p>{`${error}`}</p>;
+              let projectArray = data.projects.map(project => project = {...project, rating: math.mean(project.rating)})
+              console.log({projectArray: projectArray})
+              const projects = this.filterByCurrentMonth(projectArray).slice(0, 4).sort(function(a, b) {
+                return b.rating - a.rating;
+              });
 
               return (
                 <div className="card-container">
