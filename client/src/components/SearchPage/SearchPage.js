@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import { Query } from "react-apollo";
 import { withAuthentication } from "../Session/session";
+import ProjectList from "../Account/Lists/ProjectList";
+import ReviewList from "../Account/Lists/ReviewList"
 
 // import Featured from "../Home/Featured/Featured";
 import Header from "../Home/Header/Header";
@@ -14,7 +17,8 @@ class SearchPage extends Component {
     this.state = {
       userClicked: null,
       isLoggedIn: false,
-      user: ""
+      user: "",
+      userArray: []
     };
   }
 
@@ -73,6 +77,7 @@ class SearchPage extends Component {
 
                   if (userData !== undefined)
                     userArray = Object.values(userData).flat();
+                    
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
@@ -83,6 +88,7 @@ class SearchPage extends Component {
                   // const projectArray = Object.values(projectData).flat()
                   // const reviewArray = Object.values(reviewData).flat()
 
+                  
                   return (
                     <SearchBar
                       {...this.props}
@@ -96,7 +102,10 @@ class SearchPage extends Component {
                       userSearchHandler={this.props.userSearchHandler}
                       reviewSearchHandler={this.props.reviewSearchHandler}
                     />
-                  );
+
+                    );
+                    
+                  
                 }}
               </Query>
             )}
@@ -116,7 +125,8 @@ class SearchPage extends Component {
           .map(({ id, name, titleImg, rating, User, category }) => (
             <div key={id} className="card-container">
               <img src={`${titleImg}`} alt="project" />
-              <div>{`${name}`}</div>
+              <Link to={`/${User.username}/projects`}>{`${name}`}</Link>
+              {/* <div>{`${name}`}</div> */}
               <div>{`${rating}`}</div>
               <div>{`${category}`}</div>
               <div>{`${User.username}`}</div>
@@ -134,7 +144,8 @@ class SearchPage extends Component {
             this.props.reviews.map(
               ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
                 <div key={id} className="card-container">
-                  <div>{`${name}`}</div>
+                <Link to={`/${Author.username}/reviews`}>{`${name}`}</Link>
+                  {/* <div>{`${name}`}</div> */}
                   <div>{`${text}`}</div>
                   <div>{`${timestamp}`}</div>
                   <div>{`${Author.username}`}</div>
@@ -144,6 +155,7 @@ class SearchPage extends Component {
             )
           )}
         {/* </div> */}
+        
       </div>
     );
   }

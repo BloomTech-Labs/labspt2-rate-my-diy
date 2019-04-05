@@ -10,6 +10,7 @@ import SignInTwitter from "./ThirdPartyApi/Twitter";
 import { PasswordForgetLink } from "../PasswordForget/PasswordForget";
 import { PasswordChangeLink } from "../PasswordChange/PasswordChange";
 
+
 const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
@@ -25,7 +26,7 @@ const SignInPage = () => (
 const INITIAL_STATE = {
   email: "",
   password: "",
-  error: null
+  error: null,
 };
 
 class signInFormBase extends Component {
@@ -39,7 +40,8 @@ class signInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(loggedInUser => {
-        // console.log(loggedInUser);
+        console.log(loggedInUser, 'logged in User Object');
+        console.log(loggedInUser.user.uid)
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })

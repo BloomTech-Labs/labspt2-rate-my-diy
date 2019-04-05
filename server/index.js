@@ -51,50 +51,25 @@ const Mutation = prismaObjectType({
     t.field("createSubscription", {
       type: "User",
       args: {
-        source: stringArg()
+        source: stringArg(),
+        email: stringArg()
       },
-      resolve: async (parent, { source }, { req }, info) => {
-        // if (!req.session || !req.session.userId) {
-        //     throw new Error("not authenticated")
-        // }/k
-        // const user = await prisma.user({id: 1})
-
-        const makeid = length => {
-          let text = "";
-          const possible =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-          for (let i = 0; i < length; i++)
-            text += possible.charAt(
-              Math.floor(Math.random() * possible.length)
-            );
-
-          return text;
-        };
-
-        const userName = makeid(8);
-        const emailFront = makeid(5);
-        const email = `${emailFront}@gmail.com`;
-
-        const newUser = await prisma.createUser({
-          username: userName,
-          email: email
-        });
-        const user = await prisma.user({ username: userName });
+      resolve: async (parent, args, { req }, info) => {
+        
         const customer = await stripe.customers.create({
-          email: user.email,
-          source,
+          email: args.email,
+          source: args.source,
           plan: "plan_EgOcH41cdoNcdA"
         });
 
         const updatingUser = await prisma.updateUser({
-          where: { id: user.id },
+          where: { email: args.email },
           data: {
             stripeId: customer.id,
             accountType: "standard-tier"
           }
         });
-        const updatedUser = await prisma.user({ username: userName });
+        const updatedUser = await prisma.user({email: args.email });
 
         return updatedUser;
       }
@@ -133,7 +108,7 @@ const Subscription = prismaObjectType({
 });
 
 const schema = makePrismaSchema({
-  types: [Query, Mutation, Subscription],
+  types: [Query, Mutation],
 
   prisma: {
     datamodelInfo,
@@ -151,6 +126,7 @@ const schema = makePrismaSchema({
 
 const server = new GraphQLServer({
   schema,
-  context: { prisma }
+  context: { prisma },
+  debug: true
 });
 server.start(() => console.log(`Server is running on http://localhost:4000`));
