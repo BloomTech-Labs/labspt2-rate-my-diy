@@ -3,9 +3,10 @@ import { Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { getUsers, getProjects, getReviews } from "./query/query";
 import * as ROUTES from "./constants/routes";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 import Navigation from "./reactRouter/reactRouter";
 import Home from "./components/Home/Home";
-import Stripe from "./components/Stripe/Stripe";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import SearchPage from "./components/SearchPage/SearchPage";
@@ -14,6 +15,8 @@ import Footer from "./components/Footer/Footer";
 import Account from "./components/Account/Account";
 import PasswordChange from "./components/PasswordChange/PasswordChange";
 import { withAuthentication } from "./components/Session/session";
+import ProjectList from "./components/Account/Lists/ProjectList";
+import ReviewList from "./components/Account/Lists/ReviewList"
 
 class App extends Component {
   constructor() {
@@ -89,8 +92,56 @@ class App extends Component {
             )}
           />
           <Route path={ROUTES.ACCOUNT} component={Account} />
-          <Route path={ROUTES.STRIPE} component={Stripe} />
           <Route path={ROUTES.FOOTER} component={Footer} />
+          <Query
+            query={gql`
+              {
+                users{
+                  id
+                  username
+                  email
+                }
+              }
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading || !data[0]) console.log("loading user query");
+              if (error) console.log({ userQueryError: error });
+              let userArray = Object.values(data).flat()
+              console.log({data: userArray})
+
+              return (
+                userArray.map(user => {
+                  return (
+                    <>
+                      <Route
+                        exact
+                        path={`/${user.username}/projects`}
+                        key={user.email}
+                        render={props => {
+                          return <ProjectList {...props} email={user.email} />;
+                        }}
+                      />
+                      <Route
+                        exact
+                        path={`/${user.username}/reviews`}
+                        key={user.username}
+                        render={props => {
+                          return <ReviewList {...props} email={user.email} />;
+                        }}
+                      />
+                    </>
+                  );
+                })
+              )
+           
+                
+                
+              
+              }}
+            
+              
+          </Query>
         </div>
       </Router>
     );

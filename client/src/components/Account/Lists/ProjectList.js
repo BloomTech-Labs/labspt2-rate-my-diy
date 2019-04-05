@@ -1,0 +1,86 @@
+import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import ProjectCard from "../ProjectCard/ProjectCard";
+
+const GET_PROJECTS = gql`
+  query projects($email: String!) {
+    projects(where: { User: { email: $email } }, orderBy: timestamp_DESC) {
+      id
+      name
+      key
+      category
+      timestamp
+      titleImg
+      titleBlurb
+      rating
+      steps
+      User {
+        id
+        username
+      }
+    }
+  }
+`;
+
+const GET_USER = gql`
+  query user($email: String!) {
+    user(where: {email: $email}) {
+      id
+      username
+    }
+  }
+`;
+
+class ProjectList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const json = localStorage.getItem("authUser");
+    const user = JSON.parse(json);
+    const email = this.props.email || user.email || "asldkf@gmail.com"
+    
+    const ProjectListWithData = () => (
+<Query query={GET_PROJECTS} variables={{ email: email }}>
+        {({
+          loading: projectsLoading,
+          error: projectsError,
+          data: projectsData
+        }) => (
+          <Query query={GET_USER} variables={{ email: email }}>
+            {({ loading: userLoading, data: userData, error: userError }) => {
+              if (projectsLoading || userLoading) return "Loading...";
+              if (projectsError || userError) return `Error!`;
+              if (projectsData && userData) console.log({projectsData: projectsData, userData: userData});
+              
+              if (projectsData.projects[0]) {
+                return (
+                  <div>
+                    <h1>{`${userData.user.username}'s Projects`}</h1>
+                    {projectsData.projects.map(project => {
+                      return <ProjectCard key={project.id} project={project} />;
+                    })}
+                  </div>
+                  )
+            }  else {
+              console.log(userData)
+              return (
+                <div>
+                  <h1>{`${userData.user.username}'s Projects`}</h1>
+                  <span>Add some projects</span>
+                </div>
+              );
+            }
+          }}
+          </Query>
+    )}
+      </Query>
+    
+    )
+    return (
+      <ProjectListWithData/>
+    )
+}}
+
+export default ProjectList;
