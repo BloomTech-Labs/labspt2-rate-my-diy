@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@app-masters/react-cloudinary-uploader@^0.1.41":
+  version "0.1.41"
+  resolved "https://registry.yarnpkg.com/@app-masters/react-cloudinary-uploader/-/react-cloudinary-uploader-0.1.41.tgz#2757c733592fc8f93ced7d088708a31512996184"
+  integrity sha512-sqh3zY3SVjHWXiVNxvvRptxso22kRIHBgTBnktkVdHdSDEbUm6xk2NT+24fa6kAr5c0coUeYMnPuyGj+e8/XNw==
+
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
