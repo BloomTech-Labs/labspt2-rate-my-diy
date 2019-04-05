@@ -104,11 +104,10 @@ class App extends Component {
               return (
                 userArray.map(user => {
                   return (
-                    <>
+                    <div key={user.id}>
                       <Route
                         exact
                         path={`/${user.username}/projects`}
-                        key={user.email}
                         render={props => {
                           return <ProjectList {...props} email={user.email} />;
                         }}
@@ -116,12 +115,11 @@ class App extends Component {
                       <Route
                         exact
                         path={`/${user.username}/reviews`}
-                        key={user.username}
                         render={props => {
                           return <ReviewList {...props} email={user.email} />;
                         }}
                       />
-                    </>
+                    </div>
                   );
                 })
               )
