@@ -117,7 +117,7 @@ class Home extends Component {
         });
       }
     }
-    return popularReviewer;
+    return popularReviewer.sort((a, b) => b.thumbsUpTotal - a.thumbsUpTotal);
   }
 
   render() {
