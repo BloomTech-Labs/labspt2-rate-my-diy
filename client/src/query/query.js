@@ -6,6 +6,7 @@ export const getUsers = gql`
       id
       username
       userProfileImage
+      email
     }
   }
 `;
@@ -20,6 +21,7 @@ export const getProjects = gql`
       User {
         id
         username
+        email
       }
     }
   }
@@ -35,6 +37,7 @@ export const getReviews = gql`
       Author {
         id
         username
+        email
       }
       ProjectReviewed {
         id

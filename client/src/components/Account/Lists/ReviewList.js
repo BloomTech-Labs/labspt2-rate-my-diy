@@ -39,33 +39,64 @@ query reviews($email: String!){
   }
 }`
 
-const ProjectList = () => (
-  <Query query={GET_REVIEWS} variables={{email: email}}>
-    {({ loading, error, data }) => {
-      if (loading) return "Loading...";
-      if (error) return `Error! ${error.message}`;
-      if (data) console.log(data)
-      if (data.reviews[0]) 
-      {return (
-          <div>
-            <h1>{`${data.reviews[0].Author.username}'s Reviews`}</h1>
-                {data.reviews.map(review => {
-                  return (
-                    <ReviewCard key={review.id} review={review}/>
-                  )
-                })}
-          </div>
-    );} else {
-      return (
-        <div>
-        <h1>{`${data.reviews[0].Author.username}'s Reviews`}</h1>
-        <span>Add some reviews</span>
-      </div>
-      )
+const GET_USER = gql`
+  query user($email: String!) {
+    user(where: {email: $email}) {
+      id
+      username
     }
-    }}
-  </Query>
-);
+  }
+`;
 
-export default ProjectList
+class ReviewList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const json = localStorage.getItem("authUser");
+    const user = JSON.parse(json);
+    const email = this.props.email || user.email || "asldkf@gmail.com"
+    
+    const ReviewListWithData = () => (
+<Query query={GET_REVIEWS} variables={{ email: email }}>
+        {({
+          loading: reviewsLoading,
+          error: reviewsError,
+          data: reviewsData
+        }) => (
+          <Query query={GET_USER} variables={{ email: email }}>
+            {({ loading: userLoading, data: userData, error: userError }) => {
+              if (reviewsLoading || userLoading) return "Loading...";
+              if (reviewsError || userError) return `Error!`;
+              if (reviewsData && userData) console.log({reviewsData: reviewsData, userData: userData});
+              
+              if (reviewsData.reviews[0]) {
+                return (
+                  <div>
+                    <h1>{`${userData.user.username}'s Reviews`}</h1>
+                    {reviewsData.reviews.map(review => {
+                      return <ReviewCard key={review.id} review={review} />;
+                    })}
+                  </div>
+                  )
+            }  else {
+              console.log(userData)
+              return (
+                <div>
+                  <h1>{`${userData.user.username}'s Reviews`}</h1>
+                  <span>Add some Reviews</span>
+                </div>
+              );
+            }
+          }}
+          </Query>
+    )}
+      </Query>
+    
+    )
+    return (
+      <ReviewListWithData/>
+    )
+}}
 
+export default ReviewList;
