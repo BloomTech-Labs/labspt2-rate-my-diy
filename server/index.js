@@ -91,12 +91,13 @@ const Subscription = prismaObjectType({
       subscribe: newWelcomeEmail,
       resolve: (parent, args, ctx, info) => {
         email = args.email;
+        username = args.username ;
         const mailOptions = {
           from: "ratemydiyproject@gmail.com", // sender address
           to: email, // list of receivers
-          subject: "Welcome to Rate My DIY Community", // Subject line
+          subject: "Welcome to the Rate My DIY Community", // Subject line
           html:
-            "<p>Welcome to Rate My Diy. We hope you enjoy your visit here, if we can help you at all let us know!!</p>" // plain text body
+            `<p>Welcome to Rate My Diy, ${username}. We hope you enjoy your visit here, if we can help you at all let us know!!</p>` // plain text body
         };
         transporter.sendMail(mailOptions, function(err, info) {
           if (err) console.log(err);

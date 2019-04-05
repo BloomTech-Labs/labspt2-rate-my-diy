@@ -49,3 +49,7 @@ type Review {
   Author: User! @relation(name: "UserReviews")
   ProjectReviewed: Project! @relation(name: "ProjectReviews")
 }
+
+type Subscription {
+ sendEmail(username: String email: String!): User
+}
