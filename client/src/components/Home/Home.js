@@ -20,7 +20,6 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    console.log({firebase: this.props.firebase})
     let user = this.props.firebase.auth.currentUser !== null;
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
@@ -103,8 +102,6 @@ class Home extends Component {
       //This block of code just grabs the thumbs up total of the reviews and returns just that
       const thumbsUpTotal = 0;
 
-      console.log(eliminateEmptyReviews[i])
-
       eliminateEmptyReviews[i].ReviewList.map(review => {
         thumbsUpTotal += review.thumbsUp;
       });
@@ -120,7 +117,7 @@ class Home extends Component {
         });
       }
     }
-    console.log(popularReviewer)
+    return popularReviewer;
   }
 
   render() {
@@ -327,13 +324,13 @@ class Home extends Component {
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-			  if (error) return <p>Error :(</p>;
+			        if (error) return <p>Error :(</p>;
 				
-			  const reviews = this.filterByCurrentMonthReviews(data.users);
+			        const reviews = this.filterByCurrentMonthReviews(data.users).slice(0, 8);
 
               return (
                 <div className="card-container">
-                  {data.users.map(({ id, username, userProfileImage }) => (
+                  {reviews.map(({ id, username, userProfileImage }) => (
                     <Featured
                       key={id}
                       username={username}
