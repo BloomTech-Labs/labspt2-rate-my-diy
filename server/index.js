@@ -8,12 +8,7 @@ const { stripe } = require("./src/stripe");
 const { stringArg, idArg, intArg } = require("nexus");
 const nodemailer = require("nodemailer");
 
-async function main() {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let account = await nodemailer.createTestAccount();
 
-  // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -21,7 +16,7 @@ async function main() {
       pass: "lambda123" // generated ethereal password
     }
   });
-}
+
 
   const Query = prismaObjectType({
     name: "Query",
