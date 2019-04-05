@@ -36,16 +36,6 @@ class SearchPage extends Component {
     }
   }
 
-  // componentDidUpdate() {
-  // 	let user = this.props.firebase.auth.currentUser !== undefined
-  //   if (user) {
-  //     this.setState({isLoggedIn: true, user: user})
-  //   } else {
-  //     this.setState({isLoggedIn: false})
-  // }
-
-  // }
-
   render() {
     const SearchWithData = () => (
       <Query query={this.props.getUsers}>
@@ -79,9 +69,6 @@ class SearchPage extends Component {
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
-                  // const userArray = Object.values(userData).flat()
-                  // const projectArray = Object.values(projectData).flat()
-                  // const reviewArray = Object.values(reviewData).flat()
 
                   return (
                     <SearchBar
@@ -104,7 +91,6 @@ class SearchPage extends Component {
         )}
       </Query>
     );
-    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
     return (
       <div id="home-container">

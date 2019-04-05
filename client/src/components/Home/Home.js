@@ -7,6 +7,7 @@ import { withAuthentication } from "../Session/session";
 import Featured from "./Featured/Featured";
 import Header from "./Header/Header";
 import "./Home.scss";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 class Home extends Component {
   constructor() {
@@ -61,22 +62,65 @@ class Home extends Component {
       return e;
 	});
 	
-	filterByCurrentMonthReviews = (data) => {
-		const currentTime = new Date();
-
-		const month = currentTime.getMonth() + 1;
-							
-		const year = currentTime.getFullYear();
-
-		const eliminateEmptyReviews = data.filter(item => {
-			if(item.ReviewList[0] !== undefined) {
-				return item;
-			}
-		});
-
-		console.log(eliminateEmptyReviews);
-	}
+	
   };
+
+  filterByCurrentMonthReviews = (data) => {
+    const currentTime = new Date();
+
+    const month = currentTime.getMonth() + 1;
+              
+    const year = currentTime.getFullYear();
+
+    //We clean the data we got to get over by taking out users that have no reviews
+    const eliminateEmptyReviews = data.filter(item => {
+      if(item.ReviewList[0] !== undefined) {
+        return item;
+      }
+    });
+  
+    const popularReviewer = []
+
+    for(let i = 0; i < eliminateEmptyReviews.length; i++) {
+      //We get the reviews that are from the current month
+      let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(review => {
+        if (
+          review.timestamp.slice(0, 4) == year &&
+          review.timestamp.slice(5, 7) == month
+          ) {
+          return review;
+          }
+      });
+
+      /* 
+        This one is really good. We mutate the review list object array with the new array that has 
+        the reviews with the current date and replace the old with the new.
+      */
+
+      eliminateEmptyReviews[i].ReviewList = currentReviews;
+
+      //This block of code just grabs the thumbs up total of the reviews and returns just that
+      const thumbsUpTotal = 0;
+
+      console.log(eliminateEmptyReviews[i])
+
+      eliminateEmptyReviews[i].ReviewList.map(review => {
+        thumbsUpTotal += review.thumbsUp;
+      });
+
+      //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period
+      if(thumbsUpTotal !== 0) {
+        popularReviewer.push({
+          id: eliminateEmptyReviews[i].id,
+          username: eliminateEmptyReviews[i].username,
+          email: eliminateEmptyReviews[i].email,
+          userProfileImage: eliminateEmptyReviews[i].userProfileImage,
+          thumbsUpTotal
+        });
+      }
+    }
+    console.log(popularReviewer)
+  }
 
   render() {
     const SearchWithData = () => (
@@ -111,12 +155,6 @@ class Home extends Component {
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
-
-                  console.log({
-                    users: userData,
-                    projects: projectData,
-                    reviews: reviewData
-                  });
                   return (
                     <SearchBar
                       {...this.props}
@@ -138,7 +176,6 @@ class Home extends Component {
         )}
       </Query>
     );
-    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
     return (
       <div>
@@ -273,16 +310,16 @@ class Home extends Component {
             query={gql`
               {
                 users(orderBy: username_ASC) {
-					id
-    				username
-    				email
-    				userProfileImage
-    				ReviewList {
-      					id
-						name
-						thumbsUp
-    					timestamp
-    				}
+					        id
+                  username
+                  email
+                  userProfileImage
+    				      ReviewList {
+      					    id
+						        name
+						        thumbsUp
+    					      timestamp
+    				      }
                 }
               }
             `}
