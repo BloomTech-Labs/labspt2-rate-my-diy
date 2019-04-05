@@ -42,7 +42,7 @@ async function main() {
         resolve: async (parent, {id, username}, ctx, info) => {
           const review = await prisma.review({id: id})
           let thumbsDown = review.thumbsDown
-          thumbsDowm + 1
+          thumbsDown += 1
 
           const updatedReview = await prisma.updateReview({data: {thumbsDown}, where: {id: id}})
 
@@ -60,7 +60,7 @@ async function main() {
         resolve: async (parent, {id, username}, ctx, info) => {
           const review = await prisma.review({id: id})
           let thumbsUp = review.thumbsUp
-          thumbsUp + 1
+          thumbsUp += 1
 
           const updatedReview = await prisma.updateReview({data: {thumbsUp}, where: {id: id}})
 
