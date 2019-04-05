@@ -34,6 +34,7 @@ async function main() {
     definition(t) {
       t.prismaFields(["*"]);
       t.field("dislikeAReview", {
+        type: "Review",
         args: {
           id: idArg(),
           username: stringArg()
@@ -47,10 +48,11 @@ async function main() {
 
           const user = await prisma.updateUser({data: {DisLikedReviews: {connect: {id}}}, where: {username: username}})
 
-          return {review: updatedReview, user: user}
+          return updatedReview
         }
       })
       t.field("likeAReview", {
+        type: "Review",
         args: {
           id: idArg(),
           username: stringArg()
@@ -64,10 +66,11 @@ async function main() {
 
           const user = await prisma.updateUser({data: {LikedReviews: {connect: {id}}}, where: {username: username}})
 
-          return {review: updatedReview, user: user}
+          return updatedReview
         }
       })
       t.field("rateAProject", {
+        type: "Project",
         args: {
           rating: intArg(),
           id: idArg(),
@@ -83,10 +86,11 @@ async function main() {
 
             const user = await prisma.updateUser({data: {RatedProjects: {connect: {id}}}, where: {username}})
 
-            return {project: updatedProject, user: user}
+            return updatedProject
         }
       })
       t.field("newUser", {
+        type: "User",
         args:{
           username: stringArg(),
           email: stringArg(),
