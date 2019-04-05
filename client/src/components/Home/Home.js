@@ -7,6 +7,7 @@ import { withAuthentication } from "../Session/session";
 import Featured from "./Featured/Featured";
 import Header from "./Header/Header";
 import "./Home.scss";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 class Home extends Component {
   constructor() {
@@ -19,7 +20,6 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    console.log({firebase: this.props.firebase})
     let user = this.props.firebase.auth.currentUser !== null;
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
@@ -45,9 +45,9 @@ class Home extends Component {
   filterByCurrentMonth = data => {
     const currentTime = new Date();
 
-    var month = currentTime.getMonth() + 1;
+    const month = currentTime.getMonth() + 1;
 
-    var year = currentTime.getFullYear();
+    const year = currentTime.getFullYear();
 
     const filteredData = data.map(item => {
       if (
@@ -60,8 +60,65 @@ class Home extends Component {
 
     return filteredData.filter(function(e) {
       return e;
-    });
+	});
+	
+	
   };
+
+  filterByCurrentMonthReviews = (data) => {
+    const currentTime = new Date();
+
+    const month = currentTime.getMonth() + 1;
+              
+    const year = currentTime.getFullYear();
+
+    //We clean the data we got to get over by taking out users that have no reviews
+    const eliminateEmptyReviews = data.filter(item => {
+      if(item.ReviewList[0] !== undefined) {
+        return item;
+      }
+    });
+  
+    const popularReviewer = []
+
+    for(let i = 0; i < eliminateEmptyReviews.length; i++) {
+      //We get the reviews that are from the current month
+      let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(review => {
+        if (
+          review.timestamp.slice(0, 4) == year &&
+          review.timestamp.slice(5, 7) == month
+          ) {
+          return review;
+          }
+      });
+
+      /* 
+        This one is really good. We mutate the review list object array with the new array that has 
+        the reviews with the current date and replace the old with the new.
+      */
+
+      eliminateEmptyReviews[i].ReviewList = currentReviews;
+
+      //This block of code just grabs the thumbs up total of the reviews and returns just that
+      const thumbsUpTotal = 0;
+
+      eliminateEmptyReviews[i].ReviewList.map(review => {
+        thumbsUpTotal += review.thumbsUp;
+      });
+
+      //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period
+      if(thumbsUpTotal !== 0) {
+        popularReviewer.push({
+          id: eliminateEmptyReviews[i].id,
+          username: eliminateEmptyReviews[i].username,
+          email: eliminateEmptyReviews[i].email,
+          userProfileImage: eliminateEmptyReviews[i].userProfileImage,
+          thumbsUpTotal
+        });
+      }
+    }
+    return popularReviewer.sort((a, b) => b.thumbsUpTotal - a.thumbsUpTotal);
+  }
 
   render() {
     const SearchWithData = () => (
@@ -96,12 +153,6 @@ class Home extends Component {
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
-
-                  console.log({
-                    users: userData,
-                    projects: projectData,
-                    reviews: reviewData
-                  });
                   return (
                     <SearchBar
                       {...this.props}
@@ -123,7 +174,6 @@ class Home extends Component {
         )}
       </Query>
     );
-    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
     return (
       <div>
@@ -131,7 +181,7 @@ class Home extends Component {
         <SearchWithData />
 
         <div id="home-container">
-          <h1>Featured Projects</h1>
+          <h2>Featured Projects</h2>
           <Query
             query={gql`
               {
@@ -154,10 +204,7 @@ class Home extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error :(</p>;
 
-              const projects = this.filterByCurrentMonth(data.projects).slice(
-                0,
-                4
-              );
+              const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
 
               return (
                 <div className="card-container">
@@ -167,7 +214,6 @@ class Home extends Component {
                       image={titleImg}
                       rating={rating}
                       title={name}
-                      // below might need to be edited
                       username={User.username}
                       clickHandler={this.clickUserHandler}
                     />
@@ -177,7 +223,7 @@ class Home extends Component {
             }}
           </Query>
 
-          <h1>Popular Makers</h1>
+          <h2>Popular Makers</h2>
           <Query
             query={gql`
               {
@@ -257,25 +303,34 @@ class Home extends Component {
               );
             }}
           </Query>
-          <h1>Popular Reviewers</h1>
+          <h2>Popular Reviewers</h2>
           <Query
             query={gql`
               {
                 users(orderBy: username_ASC) {
-                  id
+					        id
                   username
+                  email
                   userProfileImage
+    				      ReviewList {
+      					    id
+						        name
+						        thumbsUp
+    					      timestamp
+    				      }
                 }
               }
             `}
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
+			        if (error) return <p>Error :(</p>;
+				
+			        const reviews = this.filterByCurrentMonthReviews(data.users).slice(0, 8);
 
               return (
                 <div className="card-container">
-                  {data.users.map(({ id, username, userProfileImage }) => (
+                  {reviews.map(({ id, username, userProfileImage }) => (
                     <Featured
                       key={id}
                       username={username}

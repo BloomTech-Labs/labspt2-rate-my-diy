@@ -28,26 +28,16 @@ class App extends Component {
     };
   }
 
-  // componentDidMount(){
-  // 	console.log({app_props: this.props})
-  // }
-
   projectSearchHandler = projects => {
     this.setState({ projects });
-
-    // console.log({projects: this.state.projects})
   };
 
   userSearchHandler = users => {
     this.setState({ users });
-
-    // console.log(this.state.users)
   };
 
   reviewSearchHandler = reviews => {
     this.setState({ reviews });
-
-    // console.log(this.state.reviews)
   };
 
   render() {
@@ -108,7 +98,6 @@ class App extends Component {
               if (loading || !data[0]) console.log("loading user query");
               if (error) console.log({ userQueryError: error });
               let userArray = Object.values(data).flat()
-              console.log({data: userArray})
 
               return (
                 userArray.map(user => {

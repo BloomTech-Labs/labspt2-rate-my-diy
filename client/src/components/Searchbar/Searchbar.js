@@ -39,15 +39,6 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // console.log({props: this.props})
-
-    // if (this.state.isLoggedIn) {
-    //   this.setState({displayPopUp: false})
-    // } else if (!this.state.isLoggedIn) {
-    //   this.setState({displayPopUp: true})
-    // }
-
-    // console.log({state: this.state})
     if (this.state.isLoggedIn) {
       let options = [];
 
@@ -121,8 +112,6 @@ class SearchBar extends Component {
     this.setState({
       options: [...options]
     });
-
-    // console.log({ state: this.state });
   };
 
   starChange = e => {
@@ -143,25 +132,21 @@ class SearchBar extends Component {
     this.setState({
       userSort: option
     });
-    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   projectSortChange = option => {
     this.setState({
       projectSort: option
     });
-    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   reviewSortChange = option => {
     this.setState({
       reviewSort: option
     });
-    // console.log({ stateAfterSort: this.state, sortOption: option });
   };
 
   search = option => {
-    // console.log(this.state)
     let options = {
       shouldSort: true,
       threshold: 0.3,
@@ -191,7 +176,6 @@ class SearchBar extends Component {
         this.props.userSearchHandler(userSearch);
 
         this.props.history.push("/search");
-        // console.log(option);
       } else {
         let userSearch = this.props.users;
         if (this.state.userSort === "alpha")
@@ -209,14 +193,13 @@ class SearchBar extends Component {
         this.props.userSearchHandler(userSearch);
 
         this.props.history.push("/search");
-        console.log(option);
       }
     }
 
     if (option.includes("category") && this.state.stars === 0) {
       options.keys.push("category");
       const projectsFuse = new Fuse(this.props.projects, options);
-      const categorySearch = projectsFuse.search(this.state.text);
+      let categorySearch = projectsFuse.search(this.state.text);
 
       // if(this.state.projectSort === 'alpha') categorySearch = categorySearch.sort(function (a, b) { return a.name - b.name });
 
@@ -294,7 +277,7 @@ class SearchBar extends Component {
     if (option.includes("category") && this.state.stars > 0) {
       options.keys.push("category");
       const projectsFuse = new Fuse(this.props.projects, options);
-      const categorySearch = projectsFuse.search(this.state.category);
+      let categorySearch = projectsFuse.search(this.state.category);
 
       if (this.state.text) {
         let categoryFuse = new Fuse(categorySearch, {
@@ -303,11 +286,8 @@ class SearchBar extends Component {
           keys: ["name"]
         });
 
-        // console.log({categoryS: categorySearch})
-
         let catSearch = categoryFuse.search(this.state.text);
 
-        // console.log({catS: catSearch})
 
         if (this.state.projectSort === "alpha")
           catSearch = catSearch.sort(function(a, b) {
@@ -334,7 +314,7 @@ class SearchBar extends Component {
         let projectCategoryStarsSearch = catSearch.filter(
           project => project.rating >= this.state.stars
         );
-        // console.log({projectCategoryStarsSearch})
+
         this.props.projectSearchHandler(projectCategoryStarsSearch);
 
         this.props.history.push("/search");
@@ -342,8 +322,6 @@ class SearchBar extends Component {
         let projectCategoryStarsSearch = categorySearch.filter(
           project => project.rating >= this.state.stars
         );
-
-        // console.log({gonna_filter: categorySearch})
 
         if (this.state.projectSort === "alpha")
           projectCategoryStarsSearch = projectCategoryStarsSearch.sort(function(
@@ -649,22 +627,7 @@ class SearchBar extends Component {
       this.props.projectSearchHandler(projectSearch);
 
       this.props.history.push("/search");
-      // console.log(option);
     }
-
-    // console.log({currentUser: this.props.firebase.auth.currentUser.uid})
-
-    // let user = this.props.firebase.auth.currentUser !== undefined
-
-    // console.log({user: user})
-
-    //  if (user === true) {
-    //   this.setState({isLoggedIn: true})
-    // } else if (user === false) {
-    //   this.setState({isLoggedIn: false})
-    // }
-
-    // console.log({loggedIn: this.state.isLoggedIn})
   };
 
   popUp = () => {
@@ -672,17 +635,6 @@ class SearchBar extends Component {
       ? this.setState({ displayPopUp: false })
       : this.setState({ displayPopUp: true });
   };
-  // componentDidMount() {
-
-  //   let user = this.props.firebase.auth.currentUser !== undefined
-  //   if (user === true) {
-  //     this.setState({isLoggedIn: true})
-  //   } else if (user === false) {
-  //     this.setState({isLoggedIn: false})
-  //   }
-
-  //   console.log({loggedIn: this.state.isLoggedIn, user: user})
-  // }
 
   render() {
     let categories = this.props.projects.map(project => project.category);
