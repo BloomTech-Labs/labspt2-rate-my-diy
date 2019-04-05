@@ -5,7 +5,7 @@ const { unionType } = require("nexus");
 const { prisma } = require("./src/generated/prisma-client");
 const datamodelInfo = require("./src/generated/nexus-prisma");
 const { stripe } = require("./src/stripe");
-const { stringArg } = require("nexus/dist/definitions/args");
+const { stringArg, idArg, intArg } = require("nexus/dist/definitions/args");
 const nodemailer = require("nodemailer");
 
 async function main() {
@@ -21,91 +21,219 @@ async function main() {
       pass: "lambda123" // generated ethereal password
     }
   });
-}
 
-const Query = prismaObjectType({
-  name: "Query",
-  definition(t) {
-    t.prismaFields(["*"]);
-  }
-});
-const Mutation = prismaObjectType({
-  name: "Mutation",
-  definition(t) {
-    t.prismaFields(["*"]);
-    t.field("firebaseSignUp", {
-      type: "User",
-      args: {
-        username: stringArg(),
-        email: stringArg(),
-        thirdPartyUID: stringArg()
-      },
-      resolve: (parent, { username, email, thirdPartyUID }, ctx, info) => {
-        return prisma.createUser({
-          username,
-          email,
-          thirdPartyUID
-        });
-      }
-    });
-    t.field("createSubscription", {
-      type: "User",
-      args: {
-        source: stringArg(),
-        email: stringArg()
-      },
-      resolve: async (parent, args, { req }, info) => {
-        
-        const customer = await stripe.customers.create({
-          email: args.email,
-          source: args.source,
-          plan: "plan_EgOcH41cdoNcdA"
-        });
+  // let key = 31
+  // let rkey = 9
 
-        const updatingUser = await prisma.updateUser({
-          where: { email: args.email },
-          data: {
-            stripeId: customer.id,
-            accountType: "standard-tier"
+  const Query = prismaObjectType({
+    name: "Query",
+    definition(t) {
+      t.prismaFields(["*"]);
+    }
+  });
+  const Mutation = prismaObjectType({
+    name: "Mutation",
+    definition(t) {
+      t.prismaFields(["*"]);
+      t.field("dislikeAReview", {
+        args: {
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {id, username}, ctx, info) => {
+          const review = await prisma.review({id: id})
+          let thumbsDown = review.thumbsDown
+          thumbsDowm + 1
+
+          const updatedReview = await prisma.updateReview({data: {thumbsDown}, where: {id: id}})
+
+          const user = await prisma.updateUser({data: {DisLikedReviews: {connect: {id}}}, where: {username: username}})
+
+          return {review: updatedReview, user: user}
+        }
+      })
+      t.field("likeAReview", {
+        args: {
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {id, username}, ctx, info) => {
+          const review = await prisma.review({id: id})
+          let thumbsUp = review.thumbsUp
+          thumbsUp + 1
+
+          const updatedReview = await prisma.updateReview({data: {thumbsUp}, where: {id: id}})
+
+          const user = await prisma.updateUser({data: {LikedReviews: {connect: {id}}}, where: {username: username}})
+
+          return {review: updatedReview, user: user}
+        }
+      })
+      t.field("rateAProject", {
+        args: {
+          rating: intArg(),
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {rating, id, username}, ctx, info) => {
+          
+            const project = await prisma.project({id: id})
+            let ratings = project.rating
+            ratings.push(rating)
+
+            const updatedProject = await prisma.updateProject({data: {rating: ratings}, where: {id}})
+
+            const user = await prisma.updateUser({data: {RatedProjects: {connect: {id}}}, where: {username}})
+
+            return {project: updatedProject, user: user}
+        }
+      })
+      t.field("newUser", {
+        args:{
+          username: stringArg(),
+          email: stringArg(),
+        },
+        resolve: (parent, {username, email}, ctx, info) => {
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Welcome to Rate My DIY!", // Subject line
+            html: "<p>Welcome, {`${username}`}! We hope you enjoy our site!</p>" // plain text body
           }
-        });
-        const updatedUser = await prisma.user({email: args.email });
+          return (
+            prisma.createUser({
+              username,
+              email
+            }),
+            transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+          )
+        }
+      })
+      t.field("newReview", {
+        type: "Review",
+        args: {
+          name: stringArg(),
+          text: stringArg(),
+          timestamp: stringArg(),
+          username: stringArg(),
+          email: stringArg(),
+          id: idArg()
+        },
+        resolve: (
+          parent,
+          { name, text, timestamp, username, email, id },
+          ctx,
+          info
+        ) => {
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Your project has a new review!", // Subject line
+            html: "<p>Your project, {`${name}`}, has a new review!</p>" // plain text body
+          };
+          return (
+            prisma.createReview({
+              name,
+              text,
+              timestamp,
+              Author: {
+                connect: {username}
+              },
+              ProjectReviewed: {
+                connect: {id}
+              }
+            }),
+            transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+          );
+        }
+      });
+      t.field("newProject", {
+        type: "Project",
+        args: {
+          name: stringArg(),
+          category: stringArg(),
+          timestamp: stringArg(),
+          titleImg: stringArg(),
+          titleBlurb: stringArg(),
+          steps: stringArg(),
+          User: {
+            username: stringArg()
+          }
+        },
+        resolve: (
+          parent,
+          {
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            User: { connect: {username}}
+          },
+          ctx,
+          info
+        ) => {
+          return prisma.createProject({
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            User: { connect: { username } }
+          });
+        }
+      });
+      t.field("firebaseSignUp", {
+        type: "User",
+        args: {
+          username: stringArg(),
+          email: stringArg(),
+          thirdPartyUID: stringArg()
+        },
+        resolve: (parent, { username, email, thirdPartyUID }, ctx, info) => {
+          return prisma.createUser({
+            username,
+            email,
+            thirdPartyUID
+          });
+        }
+      });
+      t.field("createSubscription", {
+        type: "User",
+        args: {
+          source: stringArg(),
+          email: stringArg()
+        },
+        resolve: async (parent, args, { req }, info) => {
+          const customer = await stripe.customers.create({
+            email: args.email,
+            source: args.source,
+            plan: "plan_EgOcH41cdoNcdA"
+          });
 
-        return updatedUser;
-      }
-    });
-  }
-});
-const Subscription = prismaObjectType({
-  name: "Subscription",
-  name: "User",
-  definition(t) {
-    t.prismaFields(["*"]);
+          const updatingUser = await prisma.updateUser({
+            where: { email: args.email },
+            data: {
+              stripeId: customer.id,
+              accountType: "standard-tier"
+            }
+          });
+          const updatedUser = await prisma.user({ email: args.email });
 
-    function newWelcomeEmail(parent, args, ctx, info) {
-      return ctx.prisma.$subscribe.createUser({
-        mutation_in: ["CREATED"].node()
+          return updatedUser;
+        }
       });
     }
-    welcomeEmail = {
-      subscribe: newWelcomeEmail,
-      resolve: (parent, args, ctx, info) => {
-        email = args.email;
-        const mailOptions = {
-          from: "ratemydiyproject@gmail.com", // sender address
-          to: email, // list of receivers
-          subject: "Welcome to Rate My DIY Community", // Subject line
-          html:
-            "<p>Welcome to Rate My Diy. We hope you enjoy your visit here, if we can help you at all let us know!!</p>" // plain text body
-        };
-        transporter.sendMail(mailOptions, function(err, info) {
-          if (err) console.log(err);
-          else console.log(info);
-        });
-      }
-    };
-  }
-});
+  });
+}
 
 const schema = makePrismaSchema({
   types: [Query, Mutation],

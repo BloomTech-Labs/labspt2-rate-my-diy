@@ -10,6 +10,10 @@
     "apollo-boost": "^0.3.1",
     "axios": "^0.18.0",
     "cloudinary-react": "^1.1.0",
+    "apollo-link": "^1.2.11",
+    "apollo-link-http": "^1.5.14",
+    "apollo-link-ws": "^1.0.17",
+    "apollo-utilities": "^1.2.1",
     "firebase": "^5.9.0",
     "fuse.js": "^3.4.4",
     "graphql": "^14.1.1",
@@ -28,7 +32,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "react-stripe-checkout": "^2.6.3",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "scripts": {
     "start": "react-scripts start",
