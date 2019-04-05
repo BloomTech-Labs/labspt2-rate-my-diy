@@ -65,6 +65,7 @@ class SignInGithubBase extends Component {
       .doSignInWithGithub()
       // console.log(this.props, 'home page props')
       .then(socialAuthUser => {
+          
         // 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
         var userBooleanValue = JSON.parse(
           socialAuthUser.additionalUserInfo.isNewUser
@@ -72,6 +73,10 @@ class SignInGithubBase extends Component {
         if (userBooleanValue) {
           const email = socialAuthUser.user.providerData["0"].email;
           const uid = socialAuthUser.user.providerData["0"].uid;
+          const user = email.split("@")
+          const username = user[0]
+          console.log({username: username})
+          
           /* userBooleanValue variable is set to the isNewUser key on the GH object,
           if that value === true, then push the route to more info page?
           */
@@ -80,7 +85,8 @@ class SignInGithubBase extends Component {
             isNewUser: true,
             isOpen: true,
             email: email,
-            uid: uid
+            uid: uid,
+            username: username
           });
           // this.props.history.push(ROUTES.MORE_INFO);
         } else {
@@ -90,7 +96,7 @@ class SignInGithubBase extends Component {
         return this.props.firebase
           .user(socialAuthUser.user.providerData["0"].uid)
           .set({
-            email: socialAuthUser.user.email
+            email: socialAuthUser.user.email,
           });
       })
       .catch(err => {
@@ -114,8 +120,8 @@ class SignInGithubBase extends Component {
           <div>
             <h1>Complete Your Sign Up.</h1>
             <Mutation mutation={firebaseSignUp}>
-              {(signUpMutation, { data }) => {
-                console.log({state: this.state, data: data})
+              {signUpMutation => {
+                console.log({state: this.state})
                 return (
                   <form
                     onSubmit={e => {
