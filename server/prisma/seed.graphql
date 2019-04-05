@@ -10,14 +10,14 @@ mutation {
             category: "random"
             timestamp: "2019-02-01"
             key: "1"
-            rating: 3.6
+            rating: {set: [5, 4, 3, 2, 5, 4]}
           }
           {
             name: "Sarah's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-15"
             key: "2"
-            rating: 2.3
+            rating: {set:[4, 3, 2, 1, 1, 1]}
           }
         ]
       }
@@ -36,14 +36,14 @@ mutation {
             category: "random"
             timestamp: "2018-02-01"
             key: "3"
-            rating: 4.1
+            rating: {set:[5, 4, 4, 3, 3]}
           }
           {
             name: "Joe's 2nd Project"
             category: "kitchen"
             timestamp: "2018-05-15"
             key: "4"
-            rating: 4.7
+            rating: {set:[5, 4, 5, 5, 3]}
           }
         ]
       }
@@ -62,14 +62,14 @@ mutation {
             category: "garage"
             timestamp: "2018-07-01"
             key: "5"
-            rating: 2.5
+            rating: {set:[1, 2, 1, 3, 4]}
           }
           {
             name: "Mark's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-22"
             key: "6"
-            rating: 4.3
+            rating: {set:[5, 5, 4, 4, 3, 5, 3]}
           }
         ]
       }
@@ -88,14 +88,14 @@ mutation {
             category: "web development"
             timestamp: "2018-01-17"
             key: "7"
-            rating: 3.9
+            rating: {set:[3, 2, 3, 2, 3, 3]}
           }
           {
             name: "Bo's 2nd Project"
             category: "cocktails"
             timestamp: "2018-03-18"
             key: "8"
-            rating: 4.4
+            rating: {set:[5, 5, 4, 4, 3]}
           }
         ]
       }
@@ -114,14 +114,14 @@ mutation {
             category: "self improvement"
             timestamp: "2018-01-21"
             key: "9"
-            rating: 1.2
+            rating: {set:[1, 1, 1, 3]}
           }
           {
             name: "Timmy's 2nd Project"
             category: "home improvement"
             timestamp: "2018-02-12"
             key: "10"
-            rating: 2.7
+            rating: {set:[2, 4, 4, 3, 4, 2]}
           }
         ]
       }
@@ -140,14 +140,14 @@ mutation {
             category: "kitchen"
             timestamp: "2018-07-01"
             key: "11"
-            rating: 4.2
+            rating: {set:[5, 4, 4, 4, 3, 4]}
           }
           {
             name: "Rhonda's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-15"
             key: "12"
-            rating: 3.3
+            rating: {set:[3, 2, 3, 3, 2, 1]}
           }
         ]
       }
@@ -166,7 +166,7 @@ mutation {
             category: "music"
             timestamp: "2018-06-04"
             key: "13"
-            rating: 4.7
+            rating: {set:[5, 4, 5, 5, 3, 5, 4]}
 
           }
           {
@@ -174,7 +174,7 @@ mutation {
             category: "cocktails"
             timestamp: "2018-07-02"
             key: "14"
-            rating: 2.2
+            rating: {set:[2, 1, 2, 1, 3, 2]}
           }
         ]
       }
@@ -193,14 +193,14 @@ mutation {
             category: "kid crafts"
             timestamp: "2019-01-01"
             key: "15"
-            rating: 4.1
+            rating: {set:[5, 4, 4, 3, 4, 3]}
           }
           {
             name: "Ashley's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-24"
             key: "16"
-            rating: 4.5
+            rating: {set:[5, 5, 4, 4, 3, 2]}
           }
         ]
       }
@@ -219,14 +219,14 @@ mutation {
             category: "random"
             timestamp: "2019-01-09"
             key: "17"
-            rating: 3.3
+            rating: {set:[2, 2, 3, 4, 5, 3]}
           }
           {
             name: "Elmer's 2nd Project"
             category: "kid crafts"
             timestamp: "2019-03-01"
             key: "18"
-            rating: 3.4
+            rating: {set:[3, 4, 5, 2, 4, 3]}
           }
         ]
       }
@@ -245,14 +245,14 @@ mutation {
             category: "music"
             timestamp: "2019-01-15"
             key: "19"
-            rating: 1.7
+            rating: {set:[1, 1, 1, 4, 2]}
           }
           {
             name: "Eric's 2nd Project"
             category: "sewing"
             timestamp: "2019-03-04"
             key: "20"
-            rating: 2.2
+            rating: {set:[3, 3, 2, 2, 1]}
           }
         ]
       }
@@ -271,14 +271,14 @@ mutation {
             category: "music"
             timestamp: "2018-06-01"
             key: "21"
-            rating: 4.1
+            rating: {set:[5, 5, 4, 3, 3, 2]}
           }
           {
             name: "Derek's 2nd Project"
             category: "kitchen"
             timestamp: "2018-08-13"
             key: "22"
-            rating: 3.6
+            rating: {set:[4, 3, 3, 2, 2, 1]}
           }
         ]
       }
@@ -297,14 +297,14 @@ mutation {
             category: "dance"
             timestamp: "2019-03-01"
             key: "23"
-            rating: 3.8
+            rating: {set:[5, 4, 4, 4, 3, 2]}
           }
           {
             name: "Melinda's 2nd Project"
             category: "kitchen"
             timestamp: "2019-03-18"
             key: "24"
-            rating: 3.9
+            rating: {set:[4, 4, 3, 3, 2, 1]}
           }
         ]
       }
@@ -323,14 +323,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-05"
             key: "25"
-            rating: 4.8
+            rating: {set:[5, 5, 5, 5, 4, 4]}
           }
           {
             name: "Elsa's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-18"
             key: "26"
-            rating: 3.7
+            rating: {set:[5, 4, 4, 4, 3, 3, 2]}
           }
         ]
       }
@@ -349,14 +349,14 @@ mutation {
             category: "random"
             timestamp: "2018-05-08"
             key: "27"
-            rating: 2.4
+            rating: {set:[1, 2, 2, 3, 3]}
           }
           {
             name: "Robert's 2nd Project"
             category: "self improvement"
             timestamp: "2018-09-11"
             key: "28"
-            rating: 2.1
+            rating: {set:[3, 3, 4, 2, 2, 2]}
           }
         ]
       }
@@ -375,14 +375,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-04"
             key: "29"
-            rating: 2.9
+            rating: {set:[2, 2, 3, 4, 3, 2, 1]}
           }
           {
             name: "Amy's 2nd Project"
             category: "dance"
             timestamp: "2019-03-20"
             key: "30"
-            rating: 3.3
+            rating: {set:[1, 2, 4, 4, 4]}
           }
         ]
       }
@@ -397,7 +397,7 @@ mutation {
       name: "Nice Job!"
       rKey: "1"
       text: "I really like how you did this."
-      timestamp: "2019-02-05"
+      timestamp: "2019-04-05"
       thumbsUp: 4
       thumbsDown: 1
       Author: { connect: { username: "asdfsd" } }
@@ -411,7 +411,7 @@ mutation {
       name: "Wicked"
       rKey: "2"
       text: "You're a rockstar!"
-      timestamp: "2019-03-01"
+      timestamp: "2019-04-01"
       thumbsUp: 8
       thumbsDown: 2
       Author: { connect: { username: "asdfsd" } }
@@ -481,7 +481,7 @@ mutation {
       name: "Noob"
       rKey: "7"
       text: "Why are you even posting a tutorial about something you know nothing about?"
-      timestamp: "2019-07-14"
+      timestamp: "2018-07-14"
       thumbsUp: 4
       thumbsDown: 6
       Author: { connect: { username: "lkrjawe" } }

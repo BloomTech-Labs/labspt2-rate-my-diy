@@ -3,7 +3,7 @@ import SearchBar from "../Searchbar/Searchbar";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { withAuthentication } from "../Session/session";
-
+import * as math from "mathjs";
 import Featured from "./Featured/Featured";
 import Header from "./Header/Header";
 import "./Home.scss";
@@ -100,7 +100,7 @@ class Home extends Component {
       eliminateEmptyReviews[i].ReviewList = currentReviews;
 
       //This block of code just grabs the thumbs up total of the reviews and returns just that
-      const thumbsUpTotal = 0;
+      let thumbsUpTotal = 0;
 
       eliminateEmptyReviews[i].ReviewList.map(review => {
         thumbsUpTotal += review.thumbsUp;
@@ -142,14 +142,18 @@ class Home extends Component {
                   if (projectError) return <span>{`${projectError}`}</span>;
                   if (reviewError) return <span>{`${reviewError}`}</span>;
                   let userArray = [];
-                  let projectArray = [];
+                  let projects = [];
+                  let projectArray = []
                   let reviewArray = [];
 
                   if (userData !== undefined)
                     userArray = Object.values(userData).flat();
 
                   if (projectData !== undefined)
-                    projectArray = Object.values(projectData).flat();
+                    projects = Object.values(projectData).flat();
+                    projectArray = projects.map(project => {
+                    let meanRating = math.mean(project.rating)
+                    project.rating = meanRating})
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
@@ -208,16 +212,19 @@ class Home extends Component {
 
               return (
                 <div className="card-container">
-                  {projects.map(({ id, name, titleImg, rating, User }) => (
+                  {projects.map(({ id, name, titleImg, rating, User }) => {
+                    let meanRating = math.mean(rating)
+                    return (
+                    
                     <Featured
                       key={id}
                       image={titleImg}
-                      rating={rating}
+                      rating={meanRating}
                       title={name}
                       username={User.username}
                       clickHandler={this.clickUserHandler}
                     />
-                  ))}
+                  )})}
                 </div>
               );
             }}
@@ -254,7 +261,8 @@ class Home extends Component {
                   }
 
                   const rating = currentProject.map(project => {
-                    return project.rating;
+                    let meanRating = math.mean(project.rating)
+                    return meanRating
                   });
 
                   ///Checks for the mode average

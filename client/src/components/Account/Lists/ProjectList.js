@@ -2,6 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ProjectCard from "../ProjectCard/ProjectCard";
+import * as math from "mathjs"
 
 const GET_PROJECTS = gql`
   query projects($email: String!) {
@@ -33,9 +34,7 @@ const GET_USER = gql`
 `;
 
 class ProjectList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     const json = localStorage.getItem("authUser");
     const user = JSON.parse(json);
@@ -59,8 +58,11 @@ class ProjectList extends React.Component {
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
                     {projectsData.projects.map(project => {
-                      return <ProjectCard key={project.id} project={project} />;
-                    })}
+                      let meanRating = math.mean(project.rating)
+                      project.rating = meanRating
+                      return (
+                      <ProjectCard key={project.id} project={project} />
+                    )})}
                   </div>
                   )
             }  else {

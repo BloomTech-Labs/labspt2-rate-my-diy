@@ -69,7 +69,7 @@ type Project {
   timestamp: DateTime!
   titleImg: String!
   titleBlurb: String!
-  rating: Float!
+  rating: [Int!]!
   steps: String!
   User: User!
   Reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
@@ -89,7 +89,7 @@ input ProjectCreateInput {
   timestamp: DateTime!
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectCreateratingInput
   steps: String
   User: UserCreateOneWithoutProjectsInput!
   Reviews: ReviewCreateManyWithoutProjectReviewedInput
@@ -111,6 +111,10 @@ input ProjectCreateOneWithoutReviewsInput {
   connect: ProjectWhereUniqueInput
 }
 
+input ProjectCreateratingInput {
+  set: [Int!]
+}
+
 input ProjectCreateWithoutRatedByInput {
   name: String!
   key: String
@@ -118,7 +122,7 @@ input ProjectCreateWithoutRatedByInput {
   timestamp: DateTime!
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectCreateratingInput
   steps: String
   User: UserCreateOneWithoutProjectsInput!
   Reviews: ReviewCreateManyWithoutProjectReviewedInput
@@ -131,7 +135,7 @@ input ProjectCreateWithoutReviewsInput {
   timestamp: DateTime!
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectCreateratingInput
   steps: String
   User: UserCreateOneWithoutProjectsInput!
   RatedBy: UserCreateManyWithoutRatedProjectsInput
@@ -144,7 +148,7 @@ input ProjectCreateWithoutUserInput {
   timestamp: DateTime!
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectCreateratingInput
   steps: String
   Reviews: ReviewCreateManyWithoutProjectReviewedInput
   RatedBy: UserCreateManyWithoutRatedProjectsInput
@@ -170,8 +174,6 @@ enum ProjectOrderByInput {
   titleImg_DESC
   titleBlurb_ASC
   titleBlurb_DESC
-  rating_ASC
-  rating_DESC
   steps_ASC
   steps_DESC
   createdAt_ASC
@@ -188,7 +190,7 @@ type ProjectPreviousValues {
   timestamp: DateTime!
   titleImg: String!
   titleBlurb: String!
-  rating: Float!
+  rating: [Int!]!
   steps: String!
 }
 
@@ -285,14 +287,6 @@ input ProjectScalarWhereInput {
   titleBlurb_not_starts_with: String
   titleBlurb_ends_with: String
   titleBlurb_not_ends_with: String
-  rating: Float
-  rating_not: Float
-  rating_in: [Float!]
-  rating_not_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_gt: Float
-  rating_gte: Float
   steps: String
   steps_not: String
   steps_in: [String!]
@@ -337,7 +331,7 @@ input ProjectUpdateInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
   User: UserUpdateOneRequiredWithoutProjectsInput
   Reviews: ReviewUpdateManyWithoutProjectReviewedInput
@@ -351,7 +345,7 @@ input ProjectUpdateManyDataInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
 }
 
@@ -362,7 +356,7 @@ input ProjectUpdateManyMutationInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
 }
 
@@ -402,6 +396,10 @@ input ProjectUpdateOneRequiredWithoutReviewsInput {
   connect: ProjectWhereUniqueInput
 }
 
+input ProjectUpdateratingInput {
+  set: [Int!]
+}
+
 input ProjectUpdateWithoutRatedByDataInput {
   name: String
   key: String
@@ -409,7 +407,7 @@ input ProjectUpdateWithoutRatedByDataInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
   User: UserUpdateOneRequiredWithoutProjectsInput
   Reviews: ReviewUpdateManyWithoutProjectReviewedInput
@@ -422,7 +420,7 @@ input ProjectUpdateWithoutReviewsDataInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
   User: UserUpdateOneRequiredWithoutProjectsInput
   RatedBy: UserUpdateManyWithoutRatedProjectsInput
@@ -435,7 +433,7 @@ input ProjectUpdateWithoutUserDataInput {
   timestamp: DateTime
   titleImg: String
   titleBlurb: String
-  rating: Float
+  rating: ProjectUpdateratingInput
   steps: String
   Reviews: ReviewUpdateManyWithoutProjectReviewedInput
   RatedBy: UserUpdateManyWithoutRatedProjectsInput
@@ -561,14 +559,6 @@ input ProjectWhereInput {
   titleBlurb_not_starts_with: String
   titleBlurb_ends_with: String
   titleBlurb_not_ends_with: String
-  rating: Float
-  rating_not: Float
-  rating_in: [Float!]
-  rating_not_in: [Float!]
-  rating_lt: Float
-  rating_lte: Float
-  rating_gt: Float
-  rating_gte: Float
   steps: String
   steps_not: String
   steps_in: [String!]

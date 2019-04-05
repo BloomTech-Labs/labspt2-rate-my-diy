@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import { Query } from "react-apollo";
 import { withAuthentication } from "../Session/session";
-import ProjectList from "../Account/Lists/ProjectList";
-import ReviewList from "../Account/Lists/ReviewList"
+import * as math from "mathjs"
 
 // import Featured from "../Home/Featured/Featured";
 import Header from "../Home/Header/Header";
@@ -62,6 +61,7 @@ class SearchPage extends Component {
                   if (projectError) console.log({ projectError: projectError });
                   if (reviewError) console.log({ projectError: reviewError });
                   let userArray = [];
+                  let projects = []
                   let projectArray = [];
                   let reviewArray = [];
 
@@ -70,7 +70,11 @@ class SearchPage extends Component {
                     
 
                   if (projectData !== undefined)
-                    projectArray = Object.values(projectData).flat();
+                    projects = Object.values(projectData).flat();
+                    projectArray = projects.map(project => {
+                      let meanRating = math.mean(project.rating)
+                      project.rating = meanRating
+                    return project})
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
@@ -108,16 +112,18 @@ class SearchPage extends Component {
         <h1>Results:</h1>
         {/* <div className="card-container"> */}
         {this.props.projects
-          .map(({ id, name, titleImg, rating, User, category }) => (
+          .map(({ id, name, titleImg, rating, User, category }) => {
+            let meanRating = math.mean(rating)
+            return (
             <div key={id} className="card-container">
               <img src={`${titleImg}`} alt="project" />
               <Link to={`/${User.username}/projects`}>{`${name}`}</Link>
               {/* <div>{`${name}`}</div> */}
-              <div>{`${rating}`}</div>
+              <div>{`${meanRating}`}</div>
               <div>{`${category}`}</div>
               <div>{`${User.username}`}</div>
             </div>
-          ))
+          )})
           .concat(
             this.props.users.map(({ id, username, userProfileImage }) => (
               <div key={id} className="card-container">

@@ -29,7 +29,7 @@ type Project {
  timestamp: DateTime!
  titleImg: String! @default(value: "http://lorempixel.com/400/400/")
  titleBlurb: String! @default(value: "I hope you like my project")
- rating: Float! @default(value: 0)
+ rating: [Int!] @default(value: [])
  steps: String! @default(value: "1. Put the lime in the coconut 2. Drink them both up 3. Call the doctor 4. Ask if there's anything you can take to relieve your bellyache")
  User: User! @relation(name: "UserProjects")
  Reviews:[Review!] @relation(name: "ProjectReviews" onDelete: CASCADE)

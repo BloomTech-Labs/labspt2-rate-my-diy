@@ -54,11 +54,11 @@ class CreateProject extends Component {
 			<div>
 				<div className='titleBar'>
 					<input />
-					// Stars Review Input Will Go Here
+					{/* { Stars Review Input Will Go Here} */}
 					<button>Reviews</button>
 				</div>
 				<div className='projectInfo'>
-					// input for image
+					{/* {input for image} */}
 					<textarea />
 					{steps}
 					<button onClick={this.addTextArea}>Add Text Field</button>
