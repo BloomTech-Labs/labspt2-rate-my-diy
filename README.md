@@ -51,7 +51,7 @@ While being on the root of the client folder run the following command
 yarn build
 ```
 
-[Production Front-End](https://rate-my-diy.netlify.com/)
+[Production Front-End](https://console.firebase.google.com/u/1/project/ratemydiy-9453b/hosting/main)
 
 ### Back End
 
