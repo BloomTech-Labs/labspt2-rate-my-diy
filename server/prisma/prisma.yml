@@ -1,8 +1,6 @@
 # The HTTP endpoint for your Prisma API
-#endpoint: ''
+endpoint: 'https://labspt2ratemydiy-4a16450ef9.herokuapp.com/ratemydiyprismaserver/dev'
 
-#endpoint: ''
-endpoint: https://labspt2rmd-1b9679881a.herokuapp.com/labspt2rmd/dev
 
 
 
