@@ -21,9 +21,7 @@ async function main() {
       pass: "lambda123" // generated ethereal password
     }
   });
-
-  // let key = 31
-  // let rkey = 9
+}
 
   const Query = prismaObjectType({
     name: "Query",
@@ -233,7 +231,7 @@ async function main() {
       });
     }
   });
-}
+
 
 const schema = makePrismaSchema({
   types: [Query, Mutation],

@@ -28,12 +28,15 @@ export interface NexusPrismaTypes {
       ReviewConnection: ReviewConnectionObject
       ReviewEdge: ReviewEdgeObject
       AggregateReview: AggregateReviewObject
-      Subscription: SubscriptionObject
-      SubscriptionConnection: SubscriptionConnectionObject
-      SubscriptionEdge: SubscriptionEdgeObject
-      AggregateSubscription: AggregateSubscriptionObject
       Mutation: MutationObject
       BatchPayload: BatchPayloadObject
+      Subscription: SubscriptionObject
+      UserSubscriptionPayload: UserSubscriptionPayloadObject
+      UserPreviousValues: UserPreviousValuesObject
+      ProjectSubscriptionPayload: ProjectSubscriptionPayloadObject
+      ProjectPreviousValues: ProjectPreviousValuesObject
+      ReviewSubscriptionPayload: ReviewSubscriptionPayloadObject
+      ReviewPreviousValues: ReviewPreviousValuesObject
     }
     fieldsDetails: {
       Query: QueryFieldDetails
@@ -50,12 +53,15 @@ export interface NexusPrismaTypes {
       ReviewConnection: ReviewConnectionFieldDetails
       ReviewEdge: ReviewEdgeFieldDetails
       AggregateReview: AggregateReviewFieldDetails
-      Subscription: SubscriptionFieldDetails
-      SubscriptionConnection: SubscriptionConnectionFieldDetails
-      SubscriptionEdge: SubscriptionEdgeFieldDetails
-      AggregateSubscription: AggregateSubscriptionFieldDetails
       Mutation: MutationFieldDetails
       BatchPayload: BatchPayloadFieldDetails
+      Subscription: SubscriptionFieldDetails
+      UserSubscriptionPayload: UserSubscriptionPayloadFieldDetails
+      UserPreviousValues: UserPreviousValuesFieldDetails
+      ProjectSubscriptionPayload: ProjectSubscriptionPayloadFieldDetails
+      ProjectPreviousValues: ProjectPreviousValuesFieldDetails
+      ReviewSubscriptionPayload: ReviewSubscriptionPayloadFieldDetails
+      ReviewPreviousValues: ReviewPreviousValuesFieldDetails
     }
   }
   inputTypes: {
@@ -66,7 +72,6 @@ export interface NexusPrismaTypes {
       ProjectWhereInput: ProjectWhereInputInputObject
       ProjectWhereUniqueInput: ProjectWhereUniqueInputInputObject
       ReviewWhereUniqueInput: ReviewWhereUniqueInputInputObject
-      SubscriptionWhereInput: SubscriptionWhereInputInputObject
       UserCreateInput: UserCreateInputInputObject
       ReviewCreateManyWithoutAuthorInput: ReviewCreateManyWithoutAuthorInputInputObject
       ReviewCreateWithoutAuthorInput: ReviewCreateWithoutAuthorInputInputObject
@@ -156,15 +161,16 @@ export interface NexusPrismaTypes {
       ReviewCreateInput: ReviewCreateInputInputObject
       ReviewUpdateInput: ReviewUpdateInputInputObject
       ReviewUpdateManyMutationInput: ReviewUpdateManyMutationInputInputObject
-      SubscriptionCreateInput: SubscriptionCreateInputInputObject
-      UserCreateOneInput: UserCreateOneInputInputObject
+      UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
+      ProjectSubscriptionWhereInput: ProjectSubscriptionWhereInputInputObject
+      ReviewSubscriptionWhereInput: ReviewSubscriptionWhereInputInputObject
     }
   }
   enumTypes: {
     ReviewOrderByInput: ReviewOrderByInputValues,
     UserOrderByInput: UserOrderByInputValues,
     ProjectOrderByInput: ProjectOrderByInputValues,
-    SubscriptionOrderByInput: SubscriptionOrderByInputValues,
+    MutationType: MutationTypeValues,
   }
 }
 
@@ -181,8 +187,6 @@ type QueryObject =
   | { name: 'review', args?: QueryReviewArgs[] | false, alias?: string  } 
   | { name: 'reviews', args?: QueryReviewsArgs[] | false, alias?: string  } 
   | { name: 'reviewsConnection', args?: QueryReviewsConnectionArgs[] | false, alias?: string  } 
-  | { name: 'subscriptions', args?: QuerySubscriptionsArgs[] | false, alias?: string  } 
-  | { name: 'subscriptionsConnection', args?: QuerySubscriptionsConnectionArgs[] | false, alias?: string  } 
 
 type QueryFields =
   | 'user'
@@ -194,8 +198,6 @@ type QueryFields =
   | 'review'
   | 'reviews'
   | 'reviewsConnection'
-  | 'subscriptions'
-  | 'subscriptionsConnection'
 
 
 type QueryUserArgs =
@@ -245,22 +247,6 @@ type QueryReviewsArgs =
   | 'first'
   | 'last'
 type QueryReviewsConnectionArgs =
-  | 'where'
-  | 'orderBy'
-  | 'skip'
-  | 'after'
-  | 'before'
-  | 'first'
-  | 'last'
-type QuerySubscriptionsArgs =
-  | 'where'
-  | 'orderBy'
-  | 'skip'
-  | 'after'
-  | 'before'
-  | 'first'
-  | 'last'
-type QuerySubscriptionsConnectionArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -387,32 +373,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.ReviewConnection> | prisma.ReviewConnection
-  }
-  subscriptions: {
-    type: 'Subscription'
-    args: Record<QuerySubscriptionsArgs, core.NexusArgDef<string>>
-    description: string
-    list: true
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: SubscriptionWhereInput | null, orderBy?: prisma.SubscriptionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Subscription[]> | prisma.Subscription[]
-  }
-  subscriptionsConnection: {
-    type: 'SubscriptionConnection'
-    args: Record<QuerySubscriptionsConnectionArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: SubscriptionWhereInput | null, orderBy?: prisma.SubscriptionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.SubscriptionConnection> | prisma.SubscriptionConnection
   }
 }
   
@@ -1401,161 +1361,6 @@ export interface AggregateReviewFieldDetails {
 }
   
 
-// Types for Subscription
-
-type SubscriptionObject =
-  | SubscriptionFields
-  | { name: 'sendEmail', args?: [] | false, alias?: string  } 
-
-type SubscriptionFields =
-  | 'sendEmail'
-
-
-
-  
-
-export interface SubscriptionFieldDetails {
-  sendEmail: {
-    type: 'User'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Subscription">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.User | null> | prisma.User | null
-  }
-}
-  
-
-// Types for SubscriptionConnection
-
-type SubscriptionConnectionObject =
-  | SubscriptionConnectionFields
-  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
-  | { name: 'edges', args?: [] | false, alias?: string  } 
-  | { name: 'aggregate', args?: [] | false, alias?: string  } 
-
-type SubscriptionConnectionFields =
-  | 'pageInfo'
-  | 'edges'
-  | 'aggregate'
-
-
-
-  
-
-export interface SubscriptionConnectionFieldDetails {
-  pageInfo: {
-    type: 'PageInfo'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"SubscriptionConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PageInfo> | prisma.PageInfo
-  }
-  edges: {
-    type: 'SubscriptionEdge'
-    args: {}
-    description: string
-    list: true
-    nullable: false
-    resolve: (
-      root: core.RootValue<"SubscriptionConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.SubscriptionEdge[]> | prisma.SubscriptionEdge[]
-  }
-  aggregate: {
-    type: 'AggregateSubscription'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"SubscriptionConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateSubscription> | prisma.AggregateSubscription
-  }
-}
-  
-
-// Types for SubscriptionEdge
-
-type SubscriptionEdgeObject =
-  | SubscriptionEdgeFields
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'cursor', args?: [] | false, alias?: string  } 
-
-type SubscriptionEdgeFields =
-  | 'node'
-  | 'cursor'
-
-
-
-  
-
-export interface SubscriptionEdgeFieldDetails {
-  node: {
-    type: 'Subscription'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"SubscriptionEdge">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Subscription> | prisma.Subscription
-  }
-  cursor: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-}
-  
-
-// Types for AggregateSubscription
-
-type AggregateSubscriptionObject =
-  | AggregateSubscriptionFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
-
-type AggregateSubscriptionFields =
-  | 'count'
-
-
-
-  
-
-export interface AggregateSubscriptionFieldDetails {
-  count: {
-    type: 'Int'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-}
-  
-
 // Types for Mutation
 
 type MutationObject =
@@ -1578,8 +1383,6 @@ type MutationObject =
   | { name: 'upsertReview', args?: MutationUpsertReviewArgs[] | false, alias?: string  } 
   | { name: 'deleteReview', args?: MutationDeleteReviewArgs[] | false, alias?: string  } 
   | { name: 'deleteManyReviews', args?: MutationDeleteManyReviewsArgs[] | false, alias?: string  } 
-  | { name: 'createSubscription', args?: MutationCreateSubscriptionArgs[] | false, alias?: string  } 
-  | { name: 'deleteManySubscriptions', args?: MutationDeleteManySubscriptionsArgs[] | false, alias?: string  } 
 
 type MutationFields =
   | 'createUser'
@@ -1600,8 +1403,6 @@ type MutationFields =
   | 'upsertReview'
   | 'deleteReview'
   | 'deleteManyReviews'
-  | 'createSubscription'
-  | 'deleteManySubscriptions'
 
 
 type MutationCreateUserArgs =
@@ -1651,10 +1452,6 @@ type MutationUpsertReviewArgs =
 type MutationDeleteReviewArgs =
   | 'where'
 type MutationDeleteManyReviewsArgs =
-  | 'where'
-type MutationCreateSubscriptionArgs =
-  | 'data'
-type MutationDeleteManySubscriptionsArgs =
   | 'where'
   
 
@@ -1893,32 +1690,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
-  createSubscription: {
-    type: 'Subscription'
-    args: Record<MutationCreateSubscriptionArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: SubscriptionCreateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Subscription> | prisma.Subscription
-  }
-  deleteManySubscriptions: {
-    type: 'BatchPayload'
-    args: Record<MutationDeleteManySubscriptionsArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: SubscriptionWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
-  }
 }
   
 
@@ -1938,6 +1709,586 @@ type BatchPayloadFields =
 export interface BatchPayloadFieldDetails {
   count: {
     type: 'Long'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for Subscription
+
+type SubscriptionObject =
+  | SubscriptionFields
+  | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
+  | { name: 'project', args?: SubscriptionProjectArgs[] | false, alias?: string  } 
+  | { name: 'review', args?: SubscriptionReviewArgs[] | false, alias?: string  } 
+
+type SubscriptionFields =
+  | 'user'
+  | 'project'
+  | 'review'
+
+
+type SubscriptionUserArgs =
+  | 'where'
+type SubscriptionProjectArgs =
+  | 'where'
+type SubscriptionReviewArgs =
+  | 'where'
+  
+
+export interface SubscriptionFieldDetails {
+  user: {
+    type: 'UserSubscriptionPayload'
+    args: Record<SubscriptionUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: UserSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.UserSubscriptionPayload | null> | prisma.UserSubscriptionPayload | null
+  }
+  project: {
+    type: 'ProjectSubscriptionPayload'
+    args: Record<SubscriptionProjectArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: ProjectSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ProjectSubscriptionPayload | null> | prisma.ProjectSubscriptionPayload | null
+  }
+  review: {
+    type: 'ReviewSubscriptionPayload'
+    args: Record<SubscriptionReviewArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: ReviewSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ReviewSubscriptionPayload | null> | prisma.ReviewSubscriptionPayload | null
+  }
+}
+  
+
+// Types for UserSubscriptionPayload
+
+type UserSubscriptionPayloadObject =
+  | UserSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type UserSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface UserSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"UserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"UserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.User | null> | prisma.User | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'UserPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"UserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.UserPreviousValues | null> | prisma.UserPreviousValues | null
+  }
+}
+  
+
+// Types for UserPreviousValues
+
+type UserPreviousValuesObject =
+  | UserPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'thirdPartyUID', args?: [] | false, alias?: string  } 
+  | { name: 'firebaseUID', args?: [] | false, alias?: string  } 
+  | { name: 'username', args?: [] | false, alias?: string  } 
+  | { name: 'email', args?: [] | false, alias?: string  } 
+  | { name: 'userProfileImage', args?: [] | false, alias?: string  } 
+  | { name: 'bio', args?: [] | false, alias?: string  } 
+  | { name: 'privilege', args?: [] | false, alias?: string  } 
+  | { name: 'stripeId', args?: [] | false, alias?: string  } 
+  | { name: 'accountType', args?: [] | false, alias?: string  } 
+
+type UserPreviousValuesFields =
+  | 'id'
+  | 'thirdPartyUID'
+  | 'firebaseUID'
+  | 'username'
+  | 'email'
+  | 'userProfileImage'
+  | 'bio'
+  | 'privilege'
+  | 'stripeId'
+  | 'accountType'
+
+
+
+  
+
+export interface UserPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thirdPartyUID: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  firebaseUID: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  username: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  email: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  userProfileImage: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  bio: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  privilege: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  stripeId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  accountType: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for ProjectSubscriptionPayload
+
+type ProjectSubscriptionPayloadObject =
+  | ProjectSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type ProjectSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface ProjectSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"ProjectSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'Project'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"ProjectSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Project | null> | prisma.Project | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'ProjectPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"ProjectSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ProjectPreviousValues | null> | prisma.ProjectPreviousValues | null
+  }
+}
+  
+
+// Types for ProjectPreviousValues
+
+type ProjectPreviousValuesObject =
+  | ProjectPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'key', args?: [] | false, alias?: string  } 
+  | { name: 'category', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'titleImg', args?: [] | false, alias?: string  } 
+  | { name: 'titleBlurb', args?: [] | false, alias?: string  } 
+  | { name: 'rating', args?: [] | false, alias?: string  } 
+  | { name: 'steps', args?: [] | false, alias?: string  } 
+
+type ProjectPreviousValuesFields =
+  | 'id'
+  | 'name'
+  | 'key'
+  | 'category'
+  | 'timestamp'
+  | 'titleImg'
+  | 'titleBlurb'
+  | 'rating'
+  | 'steps'
+
+
+
+  
+
+export interface ProjectPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  key: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  category: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  timestamp: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  titleImg: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  titleBlurb: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  rating: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  steps: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for ReviewSubscriptionPayload
+
+type ReviewSubscriptionPayloadObject =
+  | ReviewSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type ReviewSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface ReviewSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"ReviewSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'Review'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"ReviewSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Review | null> | prisma.Review | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'ReviewPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"ReviewSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ReviewPreviousValues | null> | prisma.ReviewPreviousValues | null
+  }
+}
+  
+
+// Types for ReviewPreviousValues
+
+type ReviewPreviousValuesObject =
+  | ReviewPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'rKey', args?: [] | false, alias?: string  } 
+  | { name: 'text', args?: [] | false, alias?: string  } 
+  | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
+  | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
+
+type ReviewPreviousValuesFields =
+  | 'id'
+  | 'name'
+  | 'rKey'
+  | 'text'
+  | 'timestamp'
+  | 'thumbsUp'
+  | 'thumbsDown'
+
+
+
+  
+
+export interface ReviewPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  rKey: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  text: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  timestamp: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thumbsUp: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  thumbsDown: {
+    type: 'Int'
     args: {}
     description: string
     list: undefined
@@ -2725,19 +3076,6 @@ export type ReviewWhereUniqueInputInputObject =
   | Extract<keyof ReviewWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'rKey', alias?: string  } 
-  
-export interface SubscriptionWhereInput {
-  sendEmail?: UserWhereInput | null
-  AND?: SubscriptionWhereInput[]
-  OR?: SubscriptionWhereInput[]
-  NOT?: SubscriptionWhereInput[]
-}
-export type SubscriptionWhereInputInputObject =
-  | Extract<keyof SubscriptionWhereInput, string>
-  | { name: 'sendEmail', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
   
 export interface UserCreateInput {
   thirdPartyUID?: string | null
@@ -4962,21 +5300,68 @@ export type ReviewUpdateManyMutationInputInputObject =
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
-export interface SubscriptionCreateInput {
-  sendEmail?: UserCreateOneInput | null
+export interface UserSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: UserWhereInput | null
+  AND?: UserSubscriptionWhereInput[]
+  OR?: UserSubscriptionWhereInput[]
+  NOT?: UserSubscriptionWhereInput[]
 }
-export type SubscriptionCreateInputInputObject =
-  | Extract<keyof SubscriptionCreateInput, string>
-  | { name: 'sendEmail', alias?: string  } 
+export type UserSubscriptionWhereInputInputObject =
+  | Extract<keyof UserSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
-export interface UserCreateOneInput {
-  create?: UserCreateInput | null
-  connect?: UserWhereUniqueInput | null
+export interface ProjectSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: ProjectWhereInput | null
+  AND?: ProjectSubscriptionWhereInput[]
+  OR?: ProjectSubscriptionWhereInput[]
+  NOT?: ProjectSubscriptionWhereInput[]
 }
-export type UserCreateOneInputInputObject =
-  | Extract<keyof UserCreateOneInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
+export type ProjectSubscriptionWhereInputInputObject =
+  | Extract<keyof ProjectSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: ReviewWhereInput | null
+  AND?: ReviewSubscriptionWhereInput[]
+  OR?: ReviewSubscriptionWhereInput[]
+  NOT?: ReviewSubscriptionWhereInput[]
+}
+export type ReviewSubscriptionWhereInputInputObject =
+  | Extract<keyof ReviewSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 
 export type ReviewOrderByInputValues =
@@ -5047,12 +5432,9 @@ export type ProjectOrderByInputValues =
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
   
-export type SubscriptionOrderByInputValues =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
+export type MutationTypeValues =
+  | 'CREATED'
+  | 'UPDATED'
+  | 'DELETED'
   
   
