@@ -90,23 +90,23 @@ const nodemailer = require("nodemailer");
           username: stringArg(),
           email: stringArg(),
         },
-        resolve: (parent, {username, email}, ctx, info) => {
+        resolve: async (parent, {username, email}, ctx, info) => {
           mailOptions = {
             from: "ratemydiyproject@gmail.com", // sender address
             to: email, // list of receivers
             subject: "Welcome to Rate My DIY!", // Subject line
             html: "<p>Welcome, {`${username}`}! We hope you enjoy our site!</p>" // plain text body
           }
-          return (
-            prisma.createUser({
+          
+            let user = await prisma.createUser({
               username,
               email
-            }),
+            })
             transporter.sendMail(mailOptions, function(err, info) {
               if (err) console.log(err);
               else console.log(info);
             })
-          )
+          return user
         }
       })
       t.field("newReview", {
@@ -119,7 +119,7 @@ const nodemailer = require("nodemailer");
           email: stringArg(),
           id: idArg()
         },
-        resolve: (
+        resolve: async (
           parent,
           { name, text, timestamp, username, email, id },
           ctx,
@@ -131,8 +131,8 @@ const nodemailer = require("nodemailer");
             subject: "Your project has a new review!", // Subject line
             html: "<p>Your project, {`${name}`}, has a new review!</p>" // plain text body
           };
-          return (
-            prisma.createReview({
+          
+            let review = await prisma.createReview({
               name,
               text,
               timestamp,
@@ -142,12 +142,13 @@ const nodemailer = require("nodemailer");
               ProjectReviewed: {
                 connect: {id}
               }
-            }),
+            })
             transporter.sendMail(mailOptions, function(err, info) {
               if (err) console.log(err);
               else console.log(info);
             })
-          );
+            return review
+          
         }
       });
       t.field("newProject", {
