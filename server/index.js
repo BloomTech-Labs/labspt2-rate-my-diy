@@ -102,7 +102,7 @@ const nodemailer = require("nodemailer");
               username,
               email
             })
-            transporter.sendMail(mailOptions, function(err, info) {
+            await transporter.sendMail(mailOptions, function(err, info) {
               if (err) console.log(err);
               else console.log(info);
             })
@@ -143,7 +143,7 @@ const nodemailer = require("nodemailer");
                 connect: {id}
               }
             })
-            transporter.sendMail(mailOptions, function(err, info) {
+            await transporter.sendMail(mailOptions, function(err, info) {
               if (err) console.log(err);
               else console.log(info);
             })
