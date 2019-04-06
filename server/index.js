@@ -207,7 +207,7 @@ const pug = require('pug');
           email: stringArg(),
           thirdPartyUID: stringArg()
         },
-        resolve: (parent, { username, email, thirdPartyUID }, ctx, info) => {
+        resolve: async (parent, { username, email, thirdPartyUID }, ctx, info) => {
           const compiledFunction = pug.compileFile('./templates/newUser.pug');
           const template = compiledFunction({
             name: username
