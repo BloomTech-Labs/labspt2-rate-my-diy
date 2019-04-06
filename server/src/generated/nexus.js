@@ -1846,7 +1846,6 @@ export interface NexusGenArgTypes {
       username?: string | null; // String
     }
     newReview: { // args
-      email?: string | null; // String
       id?: string | null; // ID
       name?: string | null; // String
       text?: string | null; // String

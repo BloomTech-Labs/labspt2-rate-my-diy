@@ -92,7 +92,7 @@ const pug = require('pug');
           email: stringArg(),
         },
         resolve: async (parent, {username, email}, ctx, info) => {
-          const compiledFunction = pug.compileFile('newUser.pug');
+          const compiledFunction = pug.compileFile('./templates/newUser.pug');
           const template = compiledFunction({
             name: username
           });
@@ -130,8 +130,9 @@ const pug = require('pug');
           info
         ) => {
 
-          let user = await prisma.user({username: username})
-          const compiledFunction = pug.compileFile('newReview.pug');
+          let project = await prisma.project({id: id})
+          let user = await prisma.user({username: project.User.username})
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
           const template = compiledFunction({
             name: user.username
           });
