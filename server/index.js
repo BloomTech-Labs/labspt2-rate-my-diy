@@ -116,18 +116,19 @@ const nodemailer = require("nodemailer");
           text: stringArg(),
           timestamp: stringArg(),
           username: stringArg(),
-          email: stringArg(),
           id: idArg()
         },
         resolve: async (
           parent,
-          { name, text, timestamp, username, email, id },
+          { name, text, timestamp, username, id },
           ctx,
           info
         ) => {
+
+          let user = await prisma.user({username: username})
           mailOptions = {
             from: "ratemydiyproject@gmail.com", // sender address
-            to: email, // list of receivers
+            to: user.email, // list of receivers
             subject: "Your project has a new review!", // Subject line
             html: "<p>Your project, {`${name}`}, has a new review!</p>" // plain text body
           };
