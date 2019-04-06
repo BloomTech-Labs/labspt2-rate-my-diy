@@ -171,8 +171,8 @@ const nodemailer = require("nodemailer");
             titleImg,
             titleBlurb,
             steps,
-            User: { connect: {username}}
-          },
+            username}
+          ,
           ctx,
           info
         ) => {
