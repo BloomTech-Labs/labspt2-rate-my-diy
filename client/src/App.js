@@ -96,10 +96,11 @@ class App extends Component {
 							}
 						`}>
 						{({ loading, error, data }) => {
-							if (loading || !data[0]) console.log('loading user query');
+							if (loading || !data) console.log('loading user query');
 							if (error) console.log({ userQueryError: error });
-							let userArray = Object.values(data).flat();
-
+							
+              if (data){
+              let userArray = Object.values(data).flat();
 							return userArray.map((user) => {
 								return (
 									<div key={user.id}>
@@ -118,8 +119,9 @@ class App extends Component {
 											}}
 										/>
 									</div>
-								);
-							});
+                )
+              })}
+              else return <h1>No Data</h1>;
 						}}
 					</Query>
 				</div>
