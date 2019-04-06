@@ -208,11 +208,27 @@ const pug = require('pug');
           thirdPartyUID: stringArg()
         },
         resolve: (parent, { username, email, thirdPartyUID }, ctx, info) => {
-          return prisma.createUser({
-            username,
-            email,
-            thirdPartyUID
+          const compiledFunction = pug.compileFile('./templates/newUser.pug');
+          const template = compiledFunction({
+            name: username
           });
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Welcome to Rate My DIY!", // Subject line
+            html: template // plain text body
+          }
+          
+            let user = await prisma.createUser({
+              username,
+              email,
+              thirdPartyUID
+            })
+            await transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+          return user
         }
       });
       t.field("createSubscription", {
