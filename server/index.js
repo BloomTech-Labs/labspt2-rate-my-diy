@@ -7,6 +7,7 @@ const datamodelInfo = require("./src/generated/nexus-prisma");
 const { stripe } = require("./src/stripe");
 const { stringArg, idArg, intArg } = require("nexus");
 const nodemailer = require("nodemailer");
+const pug = require('pug');
 
 
   let transporter = nodemailer.createTransport({
@@ -91,11 +92,15 @@ const nodemailer = require("nodemailer");
           email: stringArg(),
         },
         resolve: async (parent, {username, email}, ctx, info) => {
+          const compiledFunction = pug.compileFile('newUser.pug');
+          const template = compiledFunction({
+            name: username
+          });
           mailOptions = {
             from: "ratemydiyproject@gmail.com", // sender address
             to: email, // list of receivers
             subject: "Welcome to Rate My DIY!", // Subject line
-            html: "<p>Welcome, {`${username}`}! We hope you enjoy our site!</p>" // plain text body
+            html: template // plain text body
           }
           
             let user = await prisma.createUser({
@@ -126,11 +131,16 @@ const nodemailer = require("nodemailer");
         ) => {
 
           let user = await prisma.user({username: username})
+          const compiledFunction = pug.compileFile('newReview.pug');
+          const template = compiledFunction({
+            name: user.username
+          });
+
           mailOptions = {
             from: "ratemydiyproject@gmail.com", // sender address
             to: user.email, // list of receivers
             subject: "Your project has a new review!", // Subject line
-            html: "<p>Your project, {`${name}`}, has a new review!</p>" // plain text body
+            html: template // plain text body
           };
           
             let review = await prisma.createReview({
