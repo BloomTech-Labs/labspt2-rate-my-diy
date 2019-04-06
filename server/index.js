@@ -120,26 +120,27 @@ const pug = require('pug');
           name: stringArg(),
           text: stringArg(),
           timestamp: stringArg(),
+          user: stringArg(),
           username: stringArg(),
           id: idArg()
         },
         resolve: async (
           parent,
-          { name, text, timestamp, username, id },
+          { name, text, timestamp, username, user, id },
           ctx,
           info
         ) => {
 
           let project = await prisma.project({id: id})
-          let user = await prisma.user({username: project.User.username})
+          let projectAuthor = await prisma.user({username: user})
           const compiledFunction = pug.compileFile('./templates/newReview.pug');
           const template = compiledFunction({
-            name: user.username
+            name: project.name
           });
 
           mailOptions = {
             from: "ratemydiyproject@gmail.com", // sender address
-            to: user.email, // list of receivers
+            to: projectAuthor.email, // list of receivers
             subject: "Your project has a new review!", // Subject line
             html: template // plain text body
           };

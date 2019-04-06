@@ -391,6 +391,34 @@ mutation {
     id
   }
 
+  user16: createUser(
+    data: {
+      username: "alasalle"
+      email: "angela.lasalle91@gmail.com"
+      Projects: {
+        create: [
+          {
+            name: "Angela's 1st Project"
+            category: "music"
+            timestamp: "2019-02-04"
+            key: "31"
+            rating: {set:[2, 2, 3, 4, 3, 2, 1]}
+          }
+          {
+            name: "Angela's 2nd Project"
+            category: "dance"
+            timestamp: "2019-03-20"
+            key: "32"
+            rating: {set:[1, 2, 4, 4, 4]}
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+
+
 
   review1: createReview(
     data: {

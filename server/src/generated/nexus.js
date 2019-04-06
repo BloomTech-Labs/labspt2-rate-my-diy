@@ -1850,6 +1850,7 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
       text?: string | null; // String
       timestamp?: string | null; // String
+      user?: string | null; // String
       username?: string | null; // String
     }
     newUser: { // args

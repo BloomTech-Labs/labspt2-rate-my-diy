@@ -37,7 +37,7 @@ type Mutation {
   firebaseSignUp(email: String, thirdPartyUID: String, username: String): User!
   likeAReview(id: ID, username: String): Review!
   newProject(category: String, name: String, steps: String, timestamp: String, titleBlurb: String, titleImg: String, username: String): Project!
-  newReview(id: ID, name: String, text: String, timestamp: String, username: String): Review!
+  newReview(id: ID, name: String, text: String, timestamp: String, user: String, username: String): Review!
   newUser(email: String, username: String): User!
   rateAProject(id: ID, rating: Int, username: String): Project!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
