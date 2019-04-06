@@ -3,7 +3,7 @@ import SearchBar from "../Searchbar/Searchbar";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { withAuthentication } from "../Session/session";
-
+import * as math from "mathjs";
 import Featured from "./Featured/Featured";
 import Header from "./Header/Header";
 import "./Home.scss";
@@ -45,7 +45,7 @@ class Home extends Component {
   filterByCurrentMonth = data => {
     const currentTime = new Date();
 
-    const month = currentTime.getMonth() + 1;
+    const month = currentTime.getMonth();
 
     const year = currentTime.getFullYear();
 
@@ -100,7 +100,7 @@ class Home extends Component {
       eliminateEmptyReviews[i].ReviewList = currentReviews;
 
       //This block of code just grabs the thumbs up total of the reviews and returns just that
-      const thumbsUpTotal = 0;
+      let thumbsUpTotal = 0;
 
       eliminateEmptyReviews[i].ReviewList.map(review => {
         thumbsUpTotal += review.thumbsUp;
@@ -142,7 +142,7 @@ class Home extends Component {
                   if (projectError) return <span>{`${projectError}`}</span>;
                   if (reviewError) return <span>{`${reviewError}`}</span>;
                   let userArray = [];
-                  let projectArray = [];
+                  let projectArray = []
                   let reviewArray = [];
 
                   if (userData !== undefined)
@@ -150,7 +150,9 @@ class Home extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-
+                    projectArray = projectArray.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
+                    
+                    
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
                   return (
@@ -185,7 +187,7 @@ class Home extends Component {
           <Query
             query={gql`
               {
-                projects(orderBy: rating_DESC) {
+                projects {
                   id
                   name
                   titleImg
@@ -202,22 +204,28 @@ class Home extends Component {
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-
-              const projects = this.filterByCurrentMonth(data.projects).slice(0, 4);
+              if (error) return <p>{`${error}`}</p>;
+              let projectArray = data.projects.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
+              console.log({projectArray: projectArray})
+              const projects = this.filterByCurrentMonth(projectArray).slice(0, 4).sort(function(a, b) {
+                return b.rating - a.rating;
+              });
 
               return (
                 <div className="card-container">
-                  {projects.map(({ id, name, titleImg, rating, User }) => (
+                  {projects.map(({ id, name, titleImg, rating, User }) => {
+                    let meanRating = parseFloat(math.mean(rating).toFixed(2))
+                    return (
+                    
                     <Featured
                       key={id}
                       image={titleImg}
-                      rating={rating}
+                      rating={meanRating}
                       title={name}
                       username={User.username}
                       clickHandler={this.clickUserHandler}
                     />
-                  ))}
+                  )})}
                 </div>
               );
             }}
@@ -254,7 +262,8 @@ class Home extends Component {
                   }
 
                   const rating = currentProject.map(project => {
-                    return project.rating;
+                    let meanRating = parseFloat(math.mean(project.rating).toFixed(2))
+                    return meanRating
                   });
 
                   ///Checks for the mode average

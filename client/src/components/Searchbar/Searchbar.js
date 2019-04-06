@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { withFirebase } from "../Firebase/Exports";
 import LoginPopup from "../LoginPopUp/LoginPopUp";
 import Fuse from "fuse.js";
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";

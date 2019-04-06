@@ -87,6 +87,7 @@ export interface NexusPrismaTypes {
       UserCreateWithoutDislikedReviewsInput: UserCreateWithoutDislikedReviewsInputInputObject
       ProjectCreateManyWithoutUserInput: ProjectCreateManyWithoutUserInputInputObject
       ProjectCreateWithoutUserInput: ProjectCreateWithoutUserInputInputObject
+      ProjectCreateratingInput: ProjectCreateratingInputInputObject
       ReviewCreateManyWithoutProjectReviewedInput: ReviewCreateManyWithoutProjectReviewedInputInputObject
       ReviewCreateWithoutProjectReviewedInput: ReviewCreateWithoutProjectReviewedInputInputObject
       UserCreateManyWithoutRatedProjectsInput: UserCreateManyWithoutRatedProjectsInputInputObject
@@ -118,6 +119,7 @@ export interface NexusPrismaTypes {
       ProjectUpdateManyWithoutUserInput: ProjectUpdateManyWithoutUserInputInputObject
       ProjectUpdateWithWhereUniqueWithoutUserInput: ProjectUpdateWithWhereUniqueWithoutUserInputInputObject
       ProjectUpdateWithoutUserDataInput: ProjectUpdateWithoutUserDataInputInputObject
+      ProjectUpdateratingInput: ProjectUpdateratingInputInputObject
       ReviewUpdateManyWithoutProjectReviewedInput: ReviewUpdateManyWithoutProjectReviewedInputInputObject
       ReviewUpdateWithWhereUniqueWithoutProjectReviewedInput: ReviewUpdateWithWhereUniqueWithoutProjectReviewedInputInputObject
       ReviewUpdateWithoutProjectReviewedDataInput: ReviewUpdateWithoutProjectReviewedDataInputInputObject
@@ -872,10 +874,10 @@ export interface ProjectFieldDetails {
     resolve: undefined
   }
   rating: {
-    type: 'Float'
+    type: 'Int'
     args: {}
     description: string
-    list: undefined
+    list: true
     nullable: false
     resolve: undefined
   }
@@ -2123,10 +2125,10 @@ export interface ProjectPreviousValuesFieldDetails {
     resolve: undefined
   }
   rating: {
-    type: 'Float'
+    type: 'Int'
     args: {}
     description: string
-    list: undefined
+    list: true
     nullable: false
     resolve: undefined
   }
@@ -2913,14 +2915,6 @@ export interface ProjectWhereInput {
   titleBlurb_not_starts_with?: string | null
   titleBlurb_ends_with?: string | null
   titleBlurb_not_ends_with?: string | null
-  rating?: number | null
-  rating_not?: number | null
-  rating_in?: number[]
-  rating_not_in?: number[]
-  rating_lt?: number | null
-  rating_lte?: number | null
-  rating_gt?: number | null
-  rating_gte?: number | null
   steps?: string | null
   steps_not?: string | null
   steps_in?: string[]
@@ -3040,14 +3034,6 @@ export type ProjectWhereInputInputObject =
   | { name: 'titleBlurb_not_starts_with', alias?: string  } 
   | { name: 'titleBlurb_ends_with', alias?: string  } 
   | { name: 'titleBlurb_not_ends_with', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
-  | { name: 'rating_not', alias?: string  } 
-  | { name: 'rating_in', alias?: string  } 
-  | { name: 'rating_not_in', alias?: string  } 
-  | { name: 'rating_lt', alias?: string  } 
-  | { name: 'rating_lte', alias?: string  } 
-  | { name: 'rating_gt', alias?: string  } 
-  | { name: 'rating_gte', alias?: string  } 
   | { name: 'steps', alias?: string  } 
   | { name: 'steps_not', alias?: string  } 
   | { name: 'steps_in', alias?: string  } 
@@ -3356,7 +3342,7 @@ export interface ProjectCreateWithoutUserInput {
   timestamp?: string
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectCreateratingInput | null
   steps?: string | null
   Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
   RatedBy?: UserCreateManyWithoutRatedProjectsInput | null
@@ -3373,6 +3359,13 @@ export type ProjectCreateWithoutUserInputInputObject =
   | { name: 'steps', alias?: string  } 
   | { name: 'Reviews', alias?: string  } 
   | { name: 'RatedBy', alias?: string  } 
+  
+export interface ProjectCreateratingInput {
+  set?: number[]
+}
+export type ProjectCreateratingInputInputObject =
+  | Extract<keyof ProjectCreateratingInput, string>
+  | { name: 'set', alias?: string  } 
   
 export interface ReviewCreateManyWithoutProjectReviewedInput {
   create?: ReviewCreateWithoutProjectReviewedInput[]
@@ -3462,7 +3455,7 @@ export interface ProjectCreateWithoutRatedByInput {
   timestamp?: string
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectCreateratingInput | null
   steps?: string | null
   User?: UserCreateOneWithoutProjectsInput
   Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
@@ -3536,7 +3529,7 @@ export interface ProjectCreateWithoutReviewsInput {
   timestamp?: string
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectCreateratingInput | null
   steps?: string | null
   User?: UserCreateOneWithoutProjectsInput
   RatedBy?: UserCreateManyWithoutRatedProjectsInput | null
@@ -3961,7 +3954,7 @@ export interface ProjectUpdateWithoutUserDataInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
   Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
   RatedBy?: UserUpdateManyWithoutRatedProjectsInput | null
@@ -3978,6 +3971,13 @@ export type ProjectUpdateWithoutUserDataInputInputObject =
   | { name: 'steps', alias?: string  } 
   | { name: 'Reviews', alias?: string  } 
   | { name: 'RatedBy', alias?: string  } 
+  
+export interface ProjectUpdateratingInput {
+  set?: number[]
+}
+export type ProjectUpdateratingInputInputObject =
+  | Extract<keyof ProjectUpdateratingInput, string>
+  | { name: 'set', alias?: string  } 
   
 export interface ReviewUpdateManyWithoutProjectReviewedInput {
   create?: ReviewCreateWithoutProjectReviewedInput[]
@@ -4743,14 +4743,6 @@ export interface ProjectScalarWhereInput {
   titleBlurb_not_starts_with?: string | null
   titleBlurb_ends_with?: string | null
   titleBlurb_not_ends_with?: string | null
-  rating?: number | null
-  rating_not?: number | null
-  rating_in?: number[]
-  rating_not_in?: number[]
-  rating_lt?: number | null
-  rating_lte?: number | null
-  rating_gt?: number | null
-  rating_gte?: number | null
   steps?: string | null
   steps_not?: string | null
   steps_in?: string[]
@@ -4863,14 +4855,6 @@ export type ProjectScalarWhereInputInputObject =
   | { name: 'titleBlurb_not_starts_with', alias?: string  } 
   | { name: 'titleBlurb_ends_with', alias?: string  } 
   | { name: 'titleBlurb_not_ends_with', alias?: string  } 
-  | { name: 'rating', alias?: string  } 
-  | { name: 'rating_not', alias?: string  } 
-  | { name: 'rating_in', alias?: string  } 
-  | { name: 'rating_not_in', alias?: string  } 
-  | { name: 'rating_lt', alias?: string  } 
-  | { name: 'rating_lte', alias?: string  } 
-  | { name: 'rating_gt', alias?: string  } 
-  | { name: 'rating_gte', alias?: string  } 
   | { name: 'steps', alias?: string  } 
   | { name: 'steps_not', alias?: string  } 
   | { name: 'steps_in', alias?: string  } 
@@ -4905,7 +4889,7 @@ export interface ProjectUpdateManyDataInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
 }
 export type ProjectUpdateManyDataInputInputObject =
@@ -4958,7 +4942,7 @@ export interface ProjectUpdateWithoutRatedByDataInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
   User?: UserUpdateOneRequiredWithoutProjectsInput | null
   Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
@@ -5071,7 +5055,7 @@ export interface ProjectUpdateWithoutReviewsDataInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
   User?: UserUpdateOneRequiredWithoutProjectsInput | null
   RatedBy?: UserUpdateManyWithoutRatedProjectsInput | null
@@ -5181,7 +5165,7 @@ export interface ProjectCreateInput {
   timestamp?: string
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectCreateratingInput | null
   steps?: string | null
   User?: UserCreateOneWithoutProjectsInput
   Reviews?: ReviewCreateManyWithoutProjectReviewedInput | null
@@ -5208,7 +5192,7 @@ export interface ProjectUpdateInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
   User?: UserUpdateOneRequiredWithoutProjectsInput | null
   Reviews?: ReviewUpdateManyWithoutProjectReviewedInput | null
@@ -5235,7 +5219,7 @@ export interface ProjectUpdateManyMutationInput {
   timestamp?: string | null
   titleImg?: string | null
   titleBlurb?: string | null
-  rating?: number | null
+  rating?: ProjectUpdateratingInput | null
   steps?: string | null
 }
 export type ProjectUpdateManyMutationInputInputObject =
@@ -5441,8 +5425,6 @@ export type ProjectOrderByInputValues =
   | 'titleImg_DESC'
   | 'titleBlurb_ASC'
   | 'titleBlurb_DESC'
-  | 'rating_ASC'
-  | 'rating_DESC'
   | 'steps_ASC'
   | 'steps_DESC'
   | 'createdAt_ASC'

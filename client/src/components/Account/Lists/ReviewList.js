@@ -8,7 +8,7 @@ import ReviewCard from "../ReviewCard/ReviewCard"
 // const json = localStorage.getItem("authUser")
 // const user = JSON.parse(json)
 // const email = user.email
-const email = "asldkf@gmail.com"
+
 // console.log({user, email})
 
 const GET_REVIEWS = gql`
@@ -49,9 +49,7 @@ const GET_USER = gql`
 `;
 
 class ReviewList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     const json = localStorage.getItem("authUser");
     const user = JSON.parse(json);

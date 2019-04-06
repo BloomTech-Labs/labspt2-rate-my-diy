@@ -3,10 +3,51 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
-import Modal from 'react-modal';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { Mutation, Subscription } from 'react-apollo';
+import { WebSocketLink } from 'apollo-link-ws'
+import { split } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
+import { getMainDefinition } from 'apollo-utilities'
 
+// const wsLink = new WebSocketLink({
+//  uri: `ws://localhost:5000/`,
+//  options: {
+//   reconnect: true
+//  }
+// })
+
+// const httpLink = new HttpLink({
+//  uri: 'http://localhost:3000/graphql'
+// })
+
+// const link = split(
+//  ({ query }) => {
+//   const {kind, operation} = getMainDefinition(query)
+//   return kind === 'OperationDefinition' && operation === 'subscription'
+//  },
+//  wsLink,
+//  httpLink
+// )
+
+// const EMAIL_SUBSCRIPTION = gql `
+//  subscription onSendEmail($username: String $email: String!) {
+//   sendEmail(username: $username email: $email) {
+//    username,
+//    email
+//   }
+//  }
+// `
+// const subscribeHandler = ({ username, email}) => (
+//  <Subscription
+//   subscription={EMAIL_SUBSCRIPTION}
+//   variables={{ username, email}}
+//  >
+//  {({data: { sendEmail}, loading }) => 
+//  alert("An email has been sent")
+// }
+//  </Subscription>
+// );
 const firebaseSignUp = gql`
 	mutation firebaseSignUp($username: String!, $thirdPartyUID: String!, $email: String!) {
 		firebaseSignUp(username: $username, thirdPartyUID: $thirdPartyUID, email: $email) {
@@ -48,6 +89,7 @@ class SignUpFormBase extends Component {
 		const { username, email, passwordOne, passwordTwo, error } = this.state;
 		const isInvalid = passwordOne !== passwordTwo || passwordOne === '' || email === '' || username === '';
 		return (
+   	<React.Fragment>
 			<Mutation mutation={firebaseSignUp}>
 				{(signUpMutation, { data }) => {
 					return (
@@ -129,6 +171,7 @@ class SignUpFormBase extends Component {
 					);
 				}}
 			</Mutation>
+		</React.Fragment>
 		);
 	}
 }

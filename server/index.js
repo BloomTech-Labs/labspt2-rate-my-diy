@@ -5,15 +5,11 @@ const { unionType } = require("nexus");
 const { prisma } = require("./src/generated/prisma-client");
 const datamodelInfo = require("./src/generated/nexus-prisma");
 const { stripe } = require("./src/stripe");
-const { stringArg } = require("nexus/dist/definitions/args");
+const { stringArg, idArg, intArg } = require("nexus");
 const nodemailer = require("nodemailer");
+const pug = require('pug');
 
-async function main() {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let account = await nodemailer.createTestAccount();
 
-  // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -21,91 +17,248 @@ async function main() {
       pass: "lambda123" // generated ethereal password
     }
   });
-}
 
-const Query = prismaObjectType({
-  name: "Query",
-  definition(t) {
-    t.prismaFields(["*"]);
-  }
-});
-const Mutation = prismaObjectType({
-  name: "Mutation",
-  definition(t) {
-    t.prismaFields(["*"]);
-    t.field("firebaseSignUp", {
-      type: "User",
-      args: {
-        username: stringArg(),
-        email: stringArg(),
-        thirdPartyUID: stringArg()
-      },
-      resolve: (parent, { username, email, thirdPartyUID }, ctx, info) => {
-        return prisma.createUser({
-          username,
-          email,
-          thirdPartyUID
-        });
-      }
-    });
-    t.field("createSubscription", {
-      type: "User",
-      args: {
-        source: stringArg(),
-        email: stringArg()
-      },
-      resolve: async (parent, args, { req }, info) => {
-        
-        const customer = await stripe.customers.create({
-          email: args.email,
-          source: args.source,
-          plan: "plan_EgOcH41cdoNcdA"
-        });
 
-        const updatingUser = await prisma.updateUser({
-          where: { email: args.email },
-          data: {
-            stripeId: customer.id,
-            accountType: "standard-tier"
+  const Query = prismaObjectType({
+    name: "Query",
+    definition(t) {
+      t.prismaFields(["*"]);
+    }
+  });
+  const Mutation = prismaObjectType({
+    name: "Mutation",
+    definition(t) {
+      t.prismaFields(["*"]);
+      t.field("dislikeAReview", {
+        type: "Review",
+        args: {
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {id, username}, ctx, info) => {
+          const review = await prisma.review({id: id})
+          let thumbsDown = review.thumbsDown
+          thumbsDown += 1
+
+          const updatedReview = await prisma.updateReview({data: {thumbsDown}, where: {id: id}})
+
+          const user = await prisma.updateUser({data: {DisLikedReviews: {connect: {id}}}, where: {username: username}})
+
+          return updatedReview
+        }
+      })
+      t.field("likeAReview", {
+        type: "Review",
+        args: {
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {id, username}, ctx, info) => {
+          const review = await prisma.review({id: id})
+          let thumbsUp = review.thumbsUp
+          thumbsUp += 1
+
+          const updatedReview = await prisma.updateReview({data: {thumbsUp}, where: {id: id}})
+
+          const user = await prisma.updateUser({data: {LikedReviews: {connect: {id}}}, where: {username: username}})
+
+          return updatedReview
+        }
+      })
+      t.field("rateAProject", {
+        type: "Project",
+        args: {
+          rating: intArg(),
+          id: idArg(),
+          username: stringArg()
+        },
+        resolve: async (parent, {rating, id, username}, ctx, info) => {
+          
+            const project = await prisma.project({id: id})
+            let ratings = project.rating
+            ratings.push(rating)
+
+            const updatedProject = await prisma.updateProject({data: {rating: ratings}, where: {id}})
+
+            const user = await prisma.updateUser({data: {RatedProjects: {connect: {id}}}, where: {username}})
+
+            return updatedProject
+        }
+      })
+      t.field("newUser", {
+        type: "User",
+        args:{
+          username: stringArg(),
+          email: stringArg(),
+        },
+        resolve: async (parent, {username, email}, ctx, info) => {
+          const compiledFunction = pug.compileFile('./templates/newUser.pug');
+          const template = compiledFunction({
+            name: username
+          });
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Welcome to Rate My DIY!", // Subject line
+            html: template // plain text body
           }
-        });
-        const updatedUser = await prisma.user({email: args.email });
+          
+            let user = await prisma.createUser({
+              username,
+              email
+            })
+            await transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+          return user
+        }
+      })
+      t.field("newReview", {
+        type: "Review",
+        args: {
+          name: stringArg(),
+          text: stringArg(),
+          timestamp: stringArg(),
+          user: stringArg(),
+          username: stringArg(),
+          id: idArg()
+        },
+        resolve: async (
+          parent,
+          { name, text, timestamp, username, user, id },
+          ctx,
+          info
+        ) => {
 
-        return updatedUser;
-      }
-    });
-  }
-});
-const Subscription = prismaObjectType({
-  name: "Subscription",
-  name: "User",
-  definition(t) {
-    t.prismaFields(["*"]);
+          let project = await prisma.project({id: id})
+          let projectAuthor = await prisma.user({username: user})
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
+          const template = compiledFunction({
+            name: project.name
+          });
 
-    function newWelcomeEmail(parent, args, ctx, info) {
-      return ctx.prisma.$subscribe.createUser({
-        mutation_in: ["CREATED"].node()
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: projectAuthor.email, // list of receivers
+            subject: "Your project has a new review!", // Subject line
+            html: template // plain text body
+          };
+          
+            let review = await prisma.createReview({
+              name,
+              text,
+              timestamp,
+              Author: {
+                connect: {username}
+              },
+              ProjectReviewed: {
+                connect: {id}
+              }
+            })
+            await transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+            return review
+          
+        }
+      });
+      t.field("newProject", {
+        type: "Project",
+        args: {
+          name: stringArg(),
+          category: stringArg(),
+          timestamp: stringArg(),
+          titleImg: stringArg(),
+          titleBlurb: stringArg(),
+          steps: stringArg(),
+          username: stringArg()
+        },
+        resolve: (
+          parent,
+          {
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            username}
+          ,
+          ctx,
+          info
+        ) => {
+          return prisma.createProject({
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            User: { connect: { username } }
+          });
+        }
+      });
+      t.field("firebaseSignUp", {
+        type: "User",
+        args: {
+          username: stringArg(),
+          email: stringArg(),
+          thirdPartyUID: stringArg()
+        },
+        resolve: async (parent, { username, email, thirdPartyUID }, ctx, info) => {
+          const compiledFunction = pug.compileFile('./templates/newUser.pug');
+          const template = compiledFunction({
+            name: username
+          });
+          mailOptions = {
+            from: "ratemydiyproject@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Welcome to Rate My DIY!", // Subject line
+            html: template // plain text body
+          }
+          
+            let user = await prisma.createUser({
+              username,
+              email,
+              thirdPartyUID
+            })
+            await transporter.sendMail(mailOptions, function(err, info) {
+              if (err) console.log(err);
+              else console.log(info);
+            })
+          return user
+        }
+      });
+      t.field("createSubscription", {
+        type: "User",
+        args: {
+          source: stringArg(),
+          email: stringArg()
+        },
+        resolve: async (parent, args, { req }, info) => {
+          const customer = await stripe.customers.create({
+            email: args.email,
+            source: args.source,
+            plan: "plan_EgOcH41cdoNcdA"
+          });
+
+          const updatingUser = await prisma.updateUser({
+            where: { email: args.email },
+            data: {
+              stripeId: customer.id,
+              accountType: "standard-tier"
+            }
+          });
+          const updatedUser = await prisma.user({ email: args.email });
+
+          return updatedUser;
+        }
       });
     }
-    welcomeEmail = {
-      subscribe: newWelcomeEmail,
-      resolve: (parent, args, ctx, info) => {
-        email = args.email;
-        const mailOptions = {
-          from: "ratemydiyproject@gmail.com", // sender address
-          to: email, // list of receivers
-          subject: "Welcome to Rate My DIY Community", // Subject line
-          html:
-            "<p>Welcome to Rate My Diy. We hope you enjoy your visit here, if we can help you at all let us know!!</p>" // plain text body
-        };
-        transporter.sendMail(mailOptions, function(err, info) {
-          if (err) console.log(err);
-          else console.log(info);
-        });
-      }
-    };
-  }
-});
+  });
+
 
 const schema = makePrismaSchema({
   types: [Query, Mutation],

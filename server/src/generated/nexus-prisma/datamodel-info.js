@@ -5262,102 +5262,6 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "rating",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_not",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_not_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "steps",
             "description": null,
             "type": {
@@ -5638,16 +5542,6 @@ module.exports = {
             "defaultValue": null
           }
         ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Float",
-        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). ",
-        "fields": null,
-        "inputFields": null,
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
@@ -6380,9 +6274,17 @@ module.exports = {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -6696,18 +6598,6 @@ module.exports = {
           },
           {
             "name": "titleBlurb_DESC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rating_ASC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rating_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -9365,8 +9255,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -9398,6 +9288,35 @@ module.exports = {
               "kind": "INPUT_OBJECT",
               "name": "UserCreateManyWithoutRatedProjectsInput",
               "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ProjectCreateratingInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null
           }
@@ -9895,8 +9814,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -10233,8 +10152,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -12548,8 +12467,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -12581,6 +12500,35 @@ module.exports = {
               "kind": "INPUT_OBJECT",
               "name": "UserUpdateManyWithoutRatedProjectsInput",
               "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ProjectUpdateratingInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null
           }
@@ -17305,102 +17253,6 @@ module.exports = {
             "defaultValue": null
           },
           {
-            "name": "rating",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_not",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_not_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rating_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "steps",
             "description": null,
             "type": {
@@ -17724,8 +17576,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -18027,8 +17879,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -18526,8 +18378,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -19077,8 +18929,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectCreateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -19202,8 +19054,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -19323,8 +19175,8 @@ module.exports = {
             "name": "rating",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
+              "kind": "INPUT_OBJECT",
+              "name": "ProjectUpdateratingInput",
               "ofType": null
             },
             "defaultValue": null
@@ -20466,9 +20318,17 @@ module.exports = {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
