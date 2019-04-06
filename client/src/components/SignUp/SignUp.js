@@ -89,7 +89,7 @@ class SignUpFormBase extends Component {
 		const { username, email, passwordOne, passwordTwo, error } = this.state;
 		const isInvalid = passwordOne !== passwordTwo || passwordOne === '' || email === '' || username === '';
 		return (
-   <>
+   <React.Fragment>
 			<Mutation mutation={firebaseSignUp}>
 				{(signUpMutation, { data }) => {
 					return (
@@ -171,15 +171,15 @@ class SignUpFormBase extends Component {
 					);
 				}}
 			</Mutation>
-   <Subscription subscription={sendEmail}>
+        <Subscription subscription={EMAIL_SUBSCRIPTION}>
     {(sendEmail, { data }) => {
      return (
-      <>
-      </>
+      <React.Fragment>
+      </React.Fragment>
      )
     }}
    </Subscription>
-   </>
+   </React.Fragment>
 		);
 	}
 }
