@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withFirebase } from "../Firebase/Exports";
-import * as ROUTES from "../../constants/routes";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withFirebase } from '../Firebase/Exports';
+import * as ROUTES from '../../constants/routes';
 
 const PasswordForgetPage = () => (
   <div>
@@ -11,7 +11,7 @@ const PasswordForgetPage = () => (
 );
 
 const INITIAL_STATE = {
-  email: "",
+  email: '',
   error: null
 };
 class PasswordForgetBase extends Component {
@@ -19,7 +19,7 @@ class PasswordForgetBase extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-  onSubmit = e => {
+  onSubmit = (e) => {
     const { email } = this.state;
     e.preventDefault();
     this.props.firebase
@@ -27,17 +27,17 @@ class PasswordForgetBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
     const { email, error } = this.state;
-    const isInvalid = email === "";
+    const isInvalid = email === '';
     return (
       <form onSubmit={this.onSubmit}>
         <input

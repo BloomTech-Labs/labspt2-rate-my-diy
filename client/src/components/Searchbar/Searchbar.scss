@@ -1,28 +1,27 @@
 .searchBar {
-	display: flex;
-	margin: 0 auto;
-	width: 20%;
-	padding: 50px 0;
-	.searchSpan {
-		border: 2px solid #bdc3c7;
-		border-radius: 25px;
-		padding: 10px;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-	}
-	input {
-		border: none;
-		background-image: none;
-		background-color: transparent;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-	}
+  display: flex;
+  margin: 0 auto;
+  width: 20%;
+  padding: 50px 0;
+  .searchSpan {
+    border: 2px solid #bdc3c7;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  input {
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
 
-	.searchButton {
-		border: 2px solid #bdc3c7;
-		border-radius: 25px;
-	}
-	
+  .searchButton {
+    border: 2px solid #bdc3c7;
+    border-radius: 25px;
+  }
 }

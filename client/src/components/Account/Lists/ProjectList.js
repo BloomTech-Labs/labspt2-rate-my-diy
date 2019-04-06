@@ -1,8 +1,8 @@
-import React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import ProjectCard from "../ProjectCard/ProjectCard";
-import * as math from "mathjs"
+import React from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import ProjectCard from '../ProjectCard/ProjectCard';
+import * as math from 'mathjs';
 
 const GET_PROJECTS = gql`
   query projects($email: String!) {
@@ -26,7 +26,7 @@ const GET_PROJECTS = gql`
 
 const GET_USER = gql`
   query user($email: String!) {
-    user(where: {email: $email}) {
+    user(where: { email: $email }) {
       id
       username
     }
@@ -34,14 +34,13 @@ const GET_USER = gql`
 `;
 
 class ProjectList extends React.Component {
-
   render() {
-    const json = localStorage.getItem("authUser");
+    const json = localStorage.getItem('authUser');
     const user = JSON.parse(json);
-    const email = this.props.email || user.email || "asldkf@gmail.com"
-    
+    const email = this.props.email || user.email || 'asldkf@gmail.com';
+
     const ProjectListWithData = () => (
-<Query query={GET_PROJECTS} variables={{ email: email }}>
+      <Query query={GET_PROJECTS} variables={{ email: email }}>
         {({
           loading: projectsLoading,
           error: projectsError,
@@ -49,40 +48,41 @@ class ProjectList extends React.Component {
         }) => (
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading: userLoading, data: userData, error: userError }) => {
-              if (projectsLoading || userLoading) return "Loading...";
-              if (projectsError || userError) return <span>{`Error: ${userError}`}</span>;
-              if (projectsData && userData) console.log({projectsData: projectsData, userData: userData});
-              
+              if (projectsLoading || userLoading) return 'Loading...';
+              if (projectsError || userError)
+                return <span>{`Error: ${userError}`}</span>;
+              if (projectsData && userData)
+                console.log({ projectsData: projectsData, userData: userData });
+
               if (projectsData.projects[0]) {
                 return (
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
-                    {projectsData.projects.map(project => {
-                      let meanRating = parseFloat(math.mean(project.rating).toFixed(2))
-                      project.rating = meanRating
-                      return (
-                      <ProjectCard key={project.id} project={project} />
-                    )})}
+                    {projectsData.projects.map((project) => {
+                      let meanRating = parseFloat(
+                        math.mean(project.rating).toFixed(2)
+                      );
+                      project.rating = meanRating;
+                      return <ProjectCard key={project.id} project={project} />;
+                    })}
                   </div>
-                  )
-            }  else {
-              console.log(userData)
-              return (
-                <div>
-                  <h1>{`${userData.user.username}'s Projects`}</h1>
-                  <span>Add some projects</span>
-                </div>
-              );
-            }
-          }}
+                );
+              } else {
+                console.log(userData);
+                return (
+                  <div>
+                    <h1>{`${userData.user.username}'s Projects`}</h1>
+                    <span>Add some projects</span>
+                  </div>
+                );
+              }
+            }}
           </Query>
-    )}
+        )}
       </Query>
-    
-    )
-    return (
-      <ProjectListWithData/>
-    )
-}}
+    );
+    return <ProjectListWithData />;
+  }
+}
 
 export default ProjectList;

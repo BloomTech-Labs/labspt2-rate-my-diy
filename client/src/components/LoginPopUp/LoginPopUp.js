@@ -1,6 +1,6 @@
-import "./LoginPopUp.scss";
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import './LoginPopUp.scss';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class LoginPopup extends Component {
   constructor(props) {

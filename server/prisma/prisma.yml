@@ -1,9 +1,6 @@
 # The HTTP endpoint for your Prisma API
 endpoint: 'https://labspt2ratemydiy-4a16450ef9.herokuapp.com/ratemydiyprismaserver/dev'
 
-
-
-
 # Add any other deployment links under here to keep it clean
 
 # Points to the file that contains your datamodel
@@ -22,7 +19,6 @@ generate:
     output: ../src/generated/prisma-client/prisma.graphql
   - generator: javascript-client
     output: ../src/generated/prisma-client
-
 
 # Exposes CRUD operations to newly added models automatically
 

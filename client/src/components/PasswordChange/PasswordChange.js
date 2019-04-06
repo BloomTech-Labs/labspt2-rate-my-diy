@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
-import { withFirebase } from "../Firebase/Exports";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+import { withFirebase } from '../Firebase/Exports';
 
 const PasswordChangePage = () => (
   <div>
@@ -11,8 +11,8 @@ const PasswordChangePage = () => (
 );
 
 const INITIAL_STATE = {
-  passwordOne: "",
-  passwordTwo: "",
+  passwordOne: '',
+  passwordTwo: '',
   error: null
 };
 
@@ -21,30 +21,30 @@ class PasswordChangeBase extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { passwordOne } = this.state;
     this.props.firebase
       .doPasswordUpdate(passwordOne)
-      .then(response => {
+      .then((response) => {
         // console.log(response);
         this.setState({
           ...INITIAL_STATE
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
   render() {
     const { passwordOne, passwordTwo, error } = this.state;
-    const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
     return (
       <form onSubmit={this.onSubmit}>
         <input

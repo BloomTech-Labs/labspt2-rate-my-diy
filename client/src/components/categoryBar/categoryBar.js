@@ -1,5 +1,5 @@
-import React from "react";
-import SearchBar from "../searchbar/searchbar";
+import React from 'react';
+import SearchBar from '../searchbar/searchbar';
 
 const categoryBar = () => {
   return (

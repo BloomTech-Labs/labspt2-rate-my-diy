@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import * as ROUTES from "../../../constants/routes";
-import { compose } from "recompose";
-import { withRouter } from "react-router-dom";
-import { withFirebase } from "../../Firebase/Exports";
-import Modal from "react-modal";
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import React, { Component } from 'react';
+import * as ROUTES from '../../../constants/routes';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
+import { withFirebase } from '../../Firebase/Exports';
+import Modal from 'react-modal';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  "auth/account-exists-with-different-credential";
+  'auth/account-exists-with-different-credential';
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with an E-Mail address to
@@ -43,40 +43,39 @@ class SignInGithubBase extends Component {
       error: null,
       isOpen: false,
       isNewUser: false,
-      email: "",
-      username: "",
-      uid: ""
+      email: '',
+      username: '',
+      uid: ''
     };
   }
-  secondSubmit = e => {
+  secondSubmit = (e) => {
     e.preventDefault();
   };
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  setError = errVal => {
+  setError = (errVal) => {
     this.setState({
       errVal,
       isNewUser: false
     });
   };
-  onSubmit = event => {
+  onSubmit = (event) => {
     this.props.firebase
       .doSignInWithGithub()
       // console.log(this.props, 'home page props')
-      .then(socialAuthUser => {
-          
+      .then((socialAuthUser) => {
         // 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
         var userBooleanValue = JSON.parse(
           socialAuthUser.additionalUserInfo.isNewUser
         );
         if (userBooleanValue) {
-          const email = socialAuthUser.user.providerData["0"].email;
-          const uid = socialAuthUser.user.providerData["0"].uid;
-          const user = email.split("@")
-          const username = user[0]
-          console.log({username: username})
-          
+          const email = socialAuthUser.user.providerData['0'].email;
+          const uid = socialAuthUser.user.providerData['0'].uid;
+          const user = email.split('@');
+          const username = user[0];
+          console.log({ username: username });
+
           /* userBooleanValue variable is set to the isNewUser key on the GH object,
           if that value === true, then push the route to more info page?
           */
@@ -94,12 +93,12 @@ class SignInGithubBase extends Component {
         }
         // console.log(socialAuthUser.user.providerData["0"].uid);
         return this.props.firebase
-          .user(socialAuthUser.user.providerData["0"].uid)
+          .user(socialAuthUser.user.providerData['0'].uid)
           .set({
-            email: socialAuthUser.user.email,
+            email: socialAuthUser.user.email
           });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
           err.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
@@ -113,18 +112,18 @@ class SignInGithubBase extends Component {
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit}>
-          <button type="submit"> Sign In with Github </button>{" "}
+          <button type="submit"> Sign In with Github </button>{' '}
           {error && <p> {error.message} </p>}
         </form>
         <Modal isOpen={this.state.isOpen} contentLabel="Example Modal">
           <div>
             <h1>Complete Your Sign Up.</h1>
             <Mutation mutation={firebaseSignUp}>
-              {signUpMutation => {
-                console.log({state: this.state})
+              {(signUpMutation) => {
+                console.log({ state: this.state });
                 return (
                   <form
-                    onSubmit={e => {
+                    onSubmit={(e) => {
                       e.preventDefault();
                       signUpMutation({
                         variables: {
@@ -164,6 +163,6 @@ const SignInGithub = compose(
   withRouter,
   withFirebase
 )(SignInGithubBase);
-Modal.setAppElement("body");
+Modal.setAppElement('body');
 
 export default SignInGithub;
