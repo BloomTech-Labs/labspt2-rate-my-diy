@@ -1,28 +1,73 @@
 .searchBar {
 	display: flex;
-	margin: 0 auto;
-	width: 20%;
-	padding: 50px 0;
-	.searchSpan {
+	padding: 40px 10px;
+	flex-wrap: wrap;
+
+	.searchInput {
 		border: 2px solid #bdc3c7;
+		width: 70%;
 		border-radius: 25px;
 		padding: 10px;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-	}
-	input {
-		border: none;
-		background-image: none;
-		background-color: transparent;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
+
+		input {
+			border: none;
+			background-image: none;
+			background-color: transparent;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
 	}
 
 	.searchButton {
 		border: 2px solid #bdc3c7;
-		border-radius: 25px;
+		border-radius: 18px;
+		padding: 10px 0;
+		width: 15%;
+		background-color: #2980b9;
+		color: white;
 	}
 	
+	@media (max-width: 600px) {
+		flex-direction: column;
+		padding: 30px 10px;
+		
+		.searchInput {
+			border: 2px solid #bdc3c7;
+			width: 100%;
+			border-radius: 25px;
+			padding: 10px;
+		}
+
+		.searchButton {
+			width: 100%;
+			margin: 20px 0;
+		}
+	}
+}
+
+.filterContainer {
+	padding: 0 10px 30px 10px;
+
+	h4 {
+		padding: 0 10px;
+	}
+	.searchByContainer {
+		margin-top: 20px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		select, button {
+			width: 20%;
+			padding: 10px 0;
+			border: 2px solid #bdc3c7;
+			background-color: #2980b9;
+			color: white;
+		}
+
+		label {
+			margin: 0 10px;
+		}
+	}
 }
