@@ -660,14 +660,12 @@ class SearchBar extends Component {
             <input className="searchButton" type="submit" value="Search" />
           </div>
           <div className='filterContainer'>
-            <div>
-              <h4>Search By:</h4>
-            </div>
             <div className='searchByContainer'>
               <>
                 <CheckboxGroup
                   checkboxDepth={2} // This is needed to optimize the checkbox group
                   name="options"
+                  className="checkboxGroup"
                   value={this.state.options}
                   onChange={this.optionsChanged}
                 >
@@ -717,67 +715,94 @@ class SearchBar extends Component {
             </div>
             { !this.state.filterDisabled ? (
                 <div className='filter-options'>
-                  <div>Sort Users:</div>
+                  <h4>Sort Users:</h4>
                   <RadioGroup
                     name="userSort"
+                    className='radioGroup'
                     selectedValue={this.state.userSort}
                     onChange={this.userSortChange}
                   >
-                    <Radio value="alpha" disabled={this.state.userSortDisabled} />{" "}
-                    alphabetical
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.userSortDisabled}
-                    />{" "}
-                    reverse alphabetical
+                    <div className='radio'>
+                      <Radio 
+                        value="alpha" 
+                        disabled={this.state.userSortDisabled} 
+                      />{" "}
+                      <p>alphabetical</p>
+                    </div>
+                    <div className='radio'>
+                      <Radio
+                        value="revAlpha"
+                        disabled={this.state.userSortDisabled}
+                      />{" "}
+                      <p>reverse alphabetical</p> 
+                    </div>
+                    
                   </RadioGroup>
-                  <div>Sort Projects:</div>
+                  <h4>Sort Projects:</h4>
                   <RadioGroup
                     name="projectSort"
+                    className='radioGroup'
                     selectedValue={this.state.projectSort}
                     onChange={this.projectSortChange}
                   >
-                    <Radio value="alpha" disabled={this.state.projectSortDisabled} />{" "}
-                    alphabetical
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.projectSortDisabled}
-                    />{" "}
-                    reverse alphabetical
-                    <Radio
-                      value="highest"
-                      disabled={this.state.projectSortDisabled}
-                    />{" "}
-                    highest rated
-                    <Radio
-                      value="lowest"
-                      disabled={this.state.projectSortDisabled}
-                    />{" "}
-                    lowest rated
+                      <div className='radio'>
+                        <Radio value="alpha" disabled={this.state.projectSortDisabled} />{""}
+                        <p>alphabetical</p>
+                      </div>
+                      <div className='radio'>
+                        <Radio
+                          value="revAlpha"
+                          disabled={this.state.projectSortDisabled}
+                        />{" "}
+                        <p>reverse alphabetical</p>
+                      </div>
+                      <div className='radio'>
+                        <Radio
+                          value="highest"
+                          disabled={this.state.projectSortDisabled}
+                        />{" "}
+                        <p>highest rated</p>
+                      </div>
+                      <div className='radio'>
+                        <Radio
+                          value="lowest"
+                          disabled={this.state.projectSortDisabled}
+                        />{" "}
+                        <p>lowest rated</p>
+                      </div>
                   </RadioGroup>
-                  <div>Sort Reviews:</div>
+                  <h4>Sort Reviews:</h4>
                   <RadioGroup
                     name="reviewSort"
+                    className='radioGroup'
                     selectedValue={this.state.reviewSort}
                     onChange={this.reviewSortChange}
                   >
-                    <Radio value="alpha" disabled={this.state.reviewSortDisabled} />{" "}
-                    alphabetical
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.reviewSortDisabled}
-                    />{" "}
-                    reverse alphabetical
-                    <Radio
-                      value="newest"
-                      disabled={this.state.reviewSortDisabled}
-                    />{" "}
-                    newest
-                    <Radio
-                      value="oldest"
-                      disabled={this.state.reviewSortDisabled}
-                    />{" "}
-                    oldest
+                    <div className='radio'>
+                      <Radio value="alpha" disabled={this.state.reviewSortDisabled} />{" "}
+                      <p>alphabetical</p>
+                    </div>
+                    <div className='radio'>
+                      <Radio
+                        value="revAlpha"
+                        disabled={this.state.reviewSortDisabled}
+                      />{" "}
+                      <p>reverse alphabetical</p>
+                    </div>
+                    <div className='radio'>
+                      <Radio
+                        value="newest"
+                        disabled={this.state.reviewSortDisabled}
+                      />{" "}
+                      <p>newest</p>
+                    </div>
+                    <div className='radio'>
+                      <Radio
+                        value="oldest"
+                        disabled={this.state.reviewSortDisabled}
+                      />{" "}
+                      <p>oldest</p>
+                    </div>
                   </RadioGroup>
                   <button onClick={this.filterOnClick}>Close</button>
                 </div>
