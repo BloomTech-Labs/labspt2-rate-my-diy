@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import SearchBar from "../Searchbar/Searchbar";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { withAuthentication } from "../Session/session";
-import * as math from "mathjs";
-import Featured from "./Featured/Featured";
-import Header from "./Header/Header";
-import "./Home.scss";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from 'react';
+import SearchBar from '../Searchbar/Searchbar';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { withAuthentication } from '../Session/session';
+import * as math from 'mathjs';
+import Featured from './Featured/Featured';
+import Header from './Header/Header';
+import './Home.scss';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class Home extends Component {
     this.state = {
       userClicked: null,
       isLoggedIn: false,
-      user: ""
+      user: ''
     };
   }
 
@@ -33,23 +33,23 @@ class Home extends Component {
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
     } else {
-      this.setState({ isLoggedIn: false, user: "" });
+      this.setState({ isLoggedIn: false, user: '' });
     }
   }
 
   //This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
-  clickUserHandler = username => {
+  clickUserHandler = (username) => {
     this.setState({ userClicked: username });
   };
 
-  filterByCurrentMonth = data => {
+  filterByCurrentMonth = (data) => {
     const currentTime = new Date();
 
     const month = currentTime.getMonth();
 
     const year = currentTime.getFullYear();
 
-    const filteredData = data.map(item => {
+    const filteredData = data.map((item) => {
       if (
         item.timestamp.slice(0, 4) == year &&
         item.timestamp.slice(5, 7) == month
@@ -60,37 +60,37 @@ class Home extends Component {
 
     return filteredData.filter(function(e) {
       return e;
-	});
-	
-	
+    });
   };
 
   filterByCurrentMonthReviews = (data) => {
     const currentTime = new Date();
 
     const month = currentTime.getMonth() + 1;
-              
+
     const year = currentTime.getFullYear();
 
     //We clean the data we got to get over by taking out users that have no reviews
-    const eliminateEmptyReviews = data.filter(item => {
-      if(item.ReviewList[0] !== undefined) {
+    const eliminateEmptyReviews = data.filter((item) => {
+      if (item.ReviewList[0] !== undefined) {
         return item;
       }
     });
-  
-    const popularReviewer = []
 
-    for(let i = 0; i < eliminateEmptyReviews.length; i++) {
+    const popularReviewer = [];
+
+    for (let i = 0; i < eliminateEmptyReviews.length; i++) {
       //We get the reviews that are from the current month
-      let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(review => {
-        if (
-          review.timestamp.slice(0, 4) == year &&
-          review.timestamp.slice(5, 7) == month
+      let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
+        (review) => {
+          if (
+            review.timestamp.slice(0, 4) == year &&
+            review.timestamp.slice(5, 7) == month
           ) {
-          return review;
+            return review;
           }
-      });
+        }
+      );
 
       /* 
         This one is really good. We mutate the review list object array with the new array that has 
@@ -102,12 +102,12 @@ class Home extends Component {
       //This block of code just grabs the thumbs up total of the reviews and returns just that
       let thumbsUpTotal = 0;
 
-      eliminateEmptyReviews[i].ReviewList.map(review => {
+      eliminateEmptyReviews[i].ReviewList.map((review) => {
         thumbsUpTotal += review.thumbsUp;
       });
 
       //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period
-      if(thumbsUpTotal !== 0) {
+      if (thumbsUpTotal !== 0) {
         popularReviewer.push({
           id: eliminateEmptyReviews[i].id,
           username: eliminateEmptyReviews[i].username,
@@ -118,7 +118,7 @@ class Home extends Component {
       }
     }
     return popularReviewer.sort((a, b) => b.thumbsUpTotal - a.thumbsUpTotal);
-  }
+  };
 
   render() {
     const SearchWithData = () => (
@@ -142,7 +142,7 @@ class Home extends Component {
                   if (projectError) return <span>{`${projectError}`}</span>;
                   if (reviewError) return <span>{`${reviewError}`}</span>;
                   let userArray = [];
-                  let projectArray = []
+                  let projectArray = [];
                   let reviewArray = [];
 
                   if (userData !== undefined)
@@ -150,9 +150,14 @@ class Home extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-                    projectArray = projectArray.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
-                    
-                    
+                  projectArray = projectArray.map(
+                    (project) =>
+                      (project = {
+                        ...project,
+                        rating: parseFloat(math.mean(project.rating).toFixed(2))
+                      })
+                  );
+
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
                   return (
@@ -205,27 +210,35 @@ class Home extends Component {
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>{`${error}`}</p>;
-              let projectArray = data.projects.map(project => project = {...project, rating: parseFloat(math.mean(project.rating).toFixed(2))})
-              console.log({projectArray: projectArray})
-              const projects = this.filterByCurrentMonth(projectArray).slice(0, 4).sort(function(a, b) {
-                return b.rating - a.rating;
-              });
+              let projectArray = data.projects.map(
+                (project) =>
+                  (project = {
+                    ...project,
+                    rating: parseFloat(math.mean(project.rating).toFixed(2))
+                  })
+              );
+              console.log({ projectArray: projectArray });
+              const projects = this.filterByCurrentMonth(projectArray)
+                .slice(0, 4)
+                .sort(function(a, b) {
+                  return b.rating - a.rating;
+                });
 
               return (
                 <div className="card-container">
                   {projects.map(({ id, name, titleImg, rating, User }) => {
-                    let meanRating = parseFloat(math.mean(rating).toFixed(2))
+                    let meanRating = parseFloat(math.mean(rating).toFixed(2));
                     return (
-                    
-                    <Featured
-                      key={id}
-                      image={titleImg}
-                      rating={meanRating}
-                      title={name}
-                      username={User.username}
-                      clickHandler={this.clickUserHandler}
-                    />
-                  )})}
+                      <Featured
+                        key={id}
+                        image={titleImg}
+                        rating={meanRating}
+                        title={name}
+                        username={User.username}
+                        clickHandler={this.clickUserHandler}
+                      />
+                    );
+                  })}
                 </div>
               );
             }}
@@ -252,7 +265,7 @@ class Home extends Component {
               if (error) return <p>Error :(</p>;
 
               const currentMakers = data.users
-                .map(user => {
+                .map((user) => {
                   const currentProject = this.filterByCurrentMonth(
                     user.Projects
                   );
@@ -261,9 +274,11 @@ class Home extends Component {
                     return null;
                   }
 
-                  const rating = currentProject.map(project => {
-                    let meanRating = parseFloat(math.mean(project.rating).toFixed(2))
-                    return meanRating
+                  const rating = currentProject.map((project) => {
+                    let meanRating = parseFloat(
+                      math.mean(project.rating).toFixed(2)
+                    );
+                    return meanRating;
                   });
 
                   ///Checks for the mode average
@@ -287,7 +302,7 @@ class Home extends Component {
                     averageRating: average
                   };
                 })
-                .filter(e => e !== undefined && e !== null);
+                .filter((e) => e !== undefined && e !== null);
 
               const sortedMakers = currentMakers
                 .sort(function(a, b) {
@@ -317,25 +332,27 @@ class Home extends Component {
             query={gql`
               {
                 users(orderBy: username_ASC) {
-					        id
+                  id
                   username
                   email
                   userProfileImage
-    				      ReviewList {
-      					    id
-						        name
-						        thumbsUp
-    					      timestamp
-    				      }
+                  ReviewList {
+                    id
+                    name
+                    thumbsUp
+                    timestamp
+                  }
                 }
               }
             `}
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-			        if (error) return <p>Error :(</p>;
-				
-			        const reviews = this.filterByCurrentMonthReviews(data.users).slice(0, 8);
+              if (error) return <p>Error :(</p>;
+
+              const reviews = this.filterByCurrentMonthReviews(
+                data.users
+              ).slice(0, 8);
 
               return (
                 <div className="card-container">

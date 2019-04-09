@@ -1,14 +1,14 @@
-import app from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 var config = {
-  apiKey: "AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM",
-  authDomain: "ratemydiy-9453b.firebaseapp.com",
-  databaseURL: "https://ratemydiy-9453b.firebaseio.com",
-  projectId: "ratemydiy-9453b",
-  storageBucket: "ratemydiy-9453b.appspot.com",
-  messagingSenderId: "714087561173"
+  apiKey: 'AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM',
+  authDomain: 'ratemydiy-9453b.firebaseapp.com',
+  databaseURL: 'https://ratemydiy-9453b.firebaseio.com',
+  projectId: 'ratemydiy-9453b',
+  storageBucket: 'ratemydiy-9453b.appspot.com',
+  messagingSenderId: '714087561173'
 };
 
 class Firebase {
@@ -45,11 +45,11 @@ class Firebase {
   };
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = email => {
+  doPasswordReset = (email) => {
     return this.auth.sendPasswordResetEmail(email);
   };
 
-  doPasswordUpdate = password => {
+  doPasswordUpdate = (password) => {
     return this.auth.currentUser.updatePassword(password);
   };
 
@@ -60,11 +60,11 @@ class Firebase {
   // }
 
   onAuthUserListener = (next, fallback) =>
-    this.auth.onAuthStateChanged(authUser => {
+    this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         this.user(authUser.uid)
           .get()
-          .then(snapshot => {
+          .then((snapshot) => {
             const dbUser = snapshot.data();
 
             // merge auth and db user
@@ -84,12 +84,12 @@ class Firebase {
     });
 
   // User API
-  user = uid => this.db.doc(`users/${uid}`);
-  users = () => this.db.collection("users");
+  user = (uid) => this.db.doc(`users/${uid}`);
+  users = () => this.db.collection('users');
 
   // Message API
-  message = uid => this.db.doc(`messages/${uid}`);
-  message = () => this.db.collection("messages");
+  message = (uid) => this.db.doc(`messages/${uid}`);
+  message = () => this.db.collection('messages');
 }
 
 export default Firebase;

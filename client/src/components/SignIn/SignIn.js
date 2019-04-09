@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { compose } from "recompose";
-import { SignUpLink } from "../SignUp/SignUp";
-import { withFirebase } from "../Firebase/Exports";
-import * as ROUTES from "../../constants/routes";
-import SignInGithub from "./ThirdPartyApi/Github";
-import SignInGoogle from "./ThirdPartyApi/Google";
-import SignInTwitter from "./ThirdPartyApi/Twitter";
-import { PasswordForgetLink } from "../PasswordForget/PasswordForget";
-import { PasswordChangeLink } from "../PasswordChange/PasswordChange";
-
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { SignUpLink } from '../SignUp/SignUp';
+import { withFirebase } from '../Firebase/Exports';
+import * as ROUTES from '../../constants/routes';
+import SignInGithub from './ThirdPartyApi/Github';
+import SignInGoogle from './ThirdPartyApi/Google';
+import SignInTwitter from './ThirdPartyApi/Twitter';
+import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
+import { PasswordChangeLink } from '../PasswordChange/PasswordChange';
 
 const SignInPage = () => (
   <div>
@@ -24,9 +23,9 @@ const SignInPage = () => (
   </div>
 );
 const INITIAL_STATE = {
-  email: "",
-  password: "",
-  error: null,
+  email: '',
+  password: '',
+  error: null
 };
 
 class signInFormBase extends Component {
@@ -34,30 +33,30 @@ class signInFormBase extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-  onSubmit = event => {
+  onSubmit = (event) => {
     const { email, password } = this.state;
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(loggedInUser => {
+      .then((loggedInUser) => {
         console.log(loggedInUser, 'logged in User Object');
-        console.log(loggedInUser.user.uid)
+        console.log(loggedInUser.user.uid);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
     event.preventDefault();
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
     const { email, password, error } = this.state;
-    const isInvalid = password === "" || email === "";
+    const isInvalid = password === '' || email === '';
     return (
       <form>
         <input
