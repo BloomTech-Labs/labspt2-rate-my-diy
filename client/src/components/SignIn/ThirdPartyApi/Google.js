@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { compose } from "recompose";
-import * as ROUTES from "../../../constants/routes";
-import { withRouter } from "react-router-dom";
-import { withFirebase } from "../../Firebase/Exports";
-import Modal from "react-modal";
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
-
+import React, { Component } from 'react';
+import { compose } from 'recompose';
+import * as ROUTES from '../../../constants/routes';
+import { withRouter } from 'react-router-dom';
+import { withFirebase } from '../../Firebase/Exports';
+import Modal from 'react-modal';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  "auth/account-exists-with-different-credential";
+  'auth/account-exists-with-different-credential';
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with an E-Mail address to
@@ -43,17 +42,17 @@ class SignInGoogleBase extends Component {
       error: null,
       isOpen: false,
       isNewUser: false,
-      email: "",
-      username: "",
-      uid: ""
+      email: '',
+      username: '',
+      uid: ''
     };
   }
 
-  setError = err => {
+  setError = (err) => {
     this.setState({ err: err });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -69,11 +68,11 @@ class SignInGoogleBase extends Component {
     });
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     this.props.firebase
       .doSignInWithGoogle()
       // console.log(this.props, 'home page props')
-      .then(socialAuthUser => {
+      .then((socialAuthUser) => {
         // 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
         // console.log('response from Google:', socialAuthUser);
         var userBooleanValue = JSON.parse(
@@ -81,8 +80,8 @@ class SignInGoogleBase extends Component {
         );
         // console.log('userBooleanValue', userBooleanValue);
         if (userBooleanValue) {
-          const email = socialAuthUser.user.providerData["0"].email;
-          const uid = socialAuthUser.user.providerData["0"].uid;
+          const email = socialAuthUser.user.providerData['0'].email;
+          const uid = socialAuthUser.user.providerData['0'].uid;
           /* userBooleanValue variable is set to the isNewUser key on the GH object,
       if that value === true, then push the route to more info page?
      */
@@ -99,12 +98,12 @@ class SignInGoogleBase extends Component {
         }
         // console.log(socialAuthUser.user.providerData['0'].uid);
         return this.props.firebase
-          .user(socialAuthUser.user.providerData["0"].uid)
+          .user(socialAuthUser.user.providerData['0'].uid)
           .set({
             email: socialAuthUser.user.email
           });
       })
-      .catch(err => {
+      .catch((err) => {
         // console.log('err ', err);
         if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
           err.message = ERROR_MSG_ACCOUNT_EXISTS;
@@ -118,7 +117,7 @@ class SignInGoogleBase extends Component {
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit}>
-          <button type="submit"> Sign In with Google </button>{" "}
+          <button type="submit"> Sign In with Google </button>{' '}
           {error && <p> {error.message} </p>}
         </form>
         <Modal isOpen={this.state.isOpen} contentLabel="Example Modal">
@@ -129,7 +128,7 @@ class SignInGoogleBase extends Component {
                 // console.log({ state: this.state, data: data })
                 return (
                   <form
-                    onSubmit={e => {
+                    onSubmit={(e) => {
                       e.preventDefault();
                       signUpMutation({
                         variables: {
@@ -170,6 +169,6 @@ const GoogleBase = compose(
   withRouter,
   withFirebase
 )(SignInGoogleBase);
-Modal.setAppElement("body");
+Modal.setAppElement('body');
 
 export default GoogleBase;
