@@ -1,24 +1,9 @@
 import './ReviewModal.scss';
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import React, {Component} from 'react';
+import { getReviews } from '../../query/query'
 
-const GET_REVIEWS = gql `
-{
-    reviews {
-      id
-      name
-      rKey
-      text
-      timestamp
-      thumbsUp
-      LikedBy
-      thumbsDown
-      DislikedBy
-      Author
-      ProjectReviewed
-    }
-}`;
+
 
  class ReviewModal extends Component {
   constructor(props) {
@@ -59,7 +44,30 @@ render() {
 
 const Reviews = ({Review}) => (
   <Query 
-  query={GET_REVIEWS}>
+  query={getReviews}>
+  
+ {({ loading, error, data }) => {
+     if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+     return (
+       <div className="card-container">
+         {data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) => (
+           <div key={id}>
+             <p>
+             {`${ Author.username} `}
+              </p>
+           </div>
+         ))}
+       </div>
+     );
+   }}
+
+
+
+
+
+
   </Query>
 )
 
