@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import ProjectCard from '../ProjectCard/ProjectCard';
+import { Link } from 'react-router-dom';
 import * as math from 'mathjs';
 
 const GET_PROJECTS = gql`
@@ -63,7 +63,16 @@ class ProjectList extends React.Component {
                         math.mean(project.rating).toFixed(2)
                       );
                       project.rating = meanRating;
-                      return <ProjectCard key={project.id} project={project} />;
+                      return (
+                        <div>
+                          <Link to={`/projects/${project.id}`}>{`${
+                            project.name
+                          }`}</Link>
+                          <div>{`${project.rating}`}</div>
+                          <img src={`${project.titleImg}`} alt="project" />
+                          <div>{`${project.timestamp}`}</div>
+                        </div>
+                      );
                     })}
                   </div>
                 );
