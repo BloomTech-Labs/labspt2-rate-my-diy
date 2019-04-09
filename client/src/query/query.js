@@ -19,6 +19,7 @@ export const getProjects = gql`
       category
       rating
       timestamp
+      steps
       User {
         id
         username
