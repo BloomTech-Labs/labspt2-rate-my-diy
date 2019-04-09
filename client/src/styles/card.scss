@@ -3,24 +3,26 @@
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden ;
-  text-overflow: clip ;
   width: 100%;
   max-width: 23% ;
   margin: 20px 0;
   height: 100% ;
   border: 2px solid #ecf0f1;
   text-align: center;
+  border: 1px solid black
+  
+}
 
-  .info-container {
-    display: inline-block ;
+.info-container {
+    display: block ;
     height: 40px;
-    min-width: 40% ;
     width: 100% ;
+    direction: ltr ;
+    text-align: left ;
     white-space: nowrap ;
     text-overflow: ellipsis;
     overflow: hidden ;
   }
-}
 
 .profileImg {
  height: 60%;

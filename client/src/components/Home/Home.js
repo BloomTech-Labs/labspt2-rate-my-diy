@@ -51,8 +51,8 @@ class Home extends Component {
 
     const filteredData = data.map(item => {
       if (
-        item.timestamp.slice(0, 4) == year &&
-        item.timestamp.slice(5, 7) == month
+        item.timestamp.slice(0, 4) === year &&
+        item.timestamp.slice(5, 7) === month
       ) {
         return item;
       }

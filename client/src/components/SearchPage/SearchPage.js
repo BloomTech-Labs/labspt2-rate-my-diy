@@ -39,17 +39,7 @@ class SearchPage extends Component {
       this.setState({ isLoggedIn: false, user: "" });
     }
   }
-
-  // componentDidUpdate() {
-  // 	let user = this.props.firebase.auth.currentUser !== undefined
-  //   if (user) {
-  //     this.setState({isLoggedIn: true, user: user})
-  //   } else {
-  //     this.setState({isLoggedIn: false})
-  // }
-
-  // }
-
+  
   render() {
     const SearchWithData = () => (
       <Query query={this.props.getUsers}>

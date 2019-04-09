@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
-import Modal from 'react-modal';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 

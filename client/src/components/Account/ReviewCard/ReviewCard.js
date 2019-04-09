@@ -5,7 +5,7 @@ const ReviewCard = ({review}) => {
         <div>
             <div>{`@${review.ProjectReviewed.User.username}`}</div>
             <div>{`${review.ProjectReviewed.name}`}</div>
-            <img src={`${review.ProjectReviewed.titleImg}`}/>
+            <img alt="Reviewed Project title." src={`${review.ProjectReviewed.titleImg}`}/>
             <div>{`${review.ProjectReviewed.timestamp}`}</div>
         </div>
     )

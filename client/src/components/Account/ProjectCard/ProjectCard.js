@@ -5,7 +5,7 @@ const ProjectCard = ({project}) => {
         <div>
             <div>{`${project.name}`}</div>
             <div>{`${project.rating}`}</div>
-            <img src={`${project.titleImg}`}/>
+            <img alt="Project title." src={`${project.titleImg}`}/>
             <div>{`${project.timestamp}`}</div>
         </div>
     )
