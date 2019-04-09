@@ -3,6 +3,7 @@
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden ;
+  text-overflow: clip ;
   width: 100%;
   max-width: 23% ;
   margin: 20px 0;
@@ -11,14 +12,13 @@
   text-align: center;
 
   .info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: inline-block ;
     height: 40px;
     min-width: 40% ;
     width: 100% ;
     white-space: nowrap ;
     text-overflow: ellipsis;
+    overflow: hidden ;
     border: 3px solid green ;
   }
 }

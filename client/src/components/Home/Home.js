@@ -65,6 +65,7 @@ class Home extends Component {
 
   render() {
     const SearchWithData = () => (
+     <>
       <Query query={this.props.getUsers}>
         {({ loading: loadingUsers, data: userData, error: userError }) => (
           <Query query={this.props.getProjects}>
@@ -122,6 +123,7 @@ class Home extends Component {
           </Query>
         )}
       </Query>
+      </>
     );
     console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
