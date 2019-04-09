@@ -30,14 +30,17 @@ class App extends Component {
   }
 
   projectSearchHandler = (projects) => {
+    console.log({ projects: projects });
     this.setState({ projects });
   };
 
   userSearchHandler = (users) => {
+    console.log({ users: users });
     this.setState({ users });
   };
 
   reviewSearchHandler = (reviews) => {
+    console.log({ reviews: reviews });
     this.setState({ reviews });
   };
 
