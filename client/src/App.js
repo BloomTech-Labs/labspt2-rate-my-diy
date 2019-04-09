@@ -18,6 +18,8 @@ import { withAuthentication } from "./components/Session/session";
 import ProjectList from "./components/Account/Lists/ProjectList";
 import ReviewList from "./components/Account/Lists/ReviewList"
 import CreateProject from "./components/CreateProject/CreateProject"
+import ProjectCard from "./components/Account/ProjectCard/ProjectCard"
+import ReviewCard from "./components/Account/ReviewCard/ReviewCard"
 
 class App extends Component {
   constructor() {
@@ -112,6 +114,17 @@ class App extends Component {
                           return <ProjectList {...props} email={user.email} />;
                         }}
                       />
+                      {user.Projects.map(project => {
+                        return (
+                        <Route
+                        key={project.id}
+                        exact
+                        path={`/${user.username}/projects/${project.id}`}
+                        render={props => {
+                          return <ProjectCard {...props} project={project} />;
+                        }}
+                      />)
+                      })}
                       <Route
                         exact
                         path={`/${user.username}/reviews`}
@@ -119,6 +132,17 @@ class App extends Component {
                           return <ReviewList {...props} email={user.email} />;
                         }}
                       />
+                      {user.ReviewList.map(review => {
+                        return (
+                        <Route
+                        key={review.id}
+                        exact
+                        path={`/${user.username}/reviews/${review.id}`}
+                        render={props => {
+                          return <ReviewCard {...props} review={review} />;
+                        }}
+                      />)
+                      })}
                     </div>
                   );
                 })
