@@ -20,6 +20,7 @@ import ReviewList from './components/Account/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
 import ProjectCard from './components/Account/ProjectCard/ProjectCard';
 import ReviewCard from './components/Account/ReviewCard/ReviewCard';
+import * as math from 'mathjs';
 
 class App extends Component {
   constructor() {
@@ -47,6 +48,107 @@ class App extends Component {
   };
 
   render() {
+    const RoutesWithData = () => (
+      <Query query={getUsers}>
+        {({ loading: loadingUsers, data: userData, error: userError }) => (
+          <Query query={getProjects}>
+            {({
+              loading: loadingProjects,
+              data: projectData,
+              error: projectError
+            }) => (
+              <Query query={getReviews}>
+                {({
+                  loading: loadingReviews,
+                  data: reviewData,
+                  error: reviewError
+                }) => {
+                  if (loadingUsers || loadingProjects || loadingReviews)
+                    return <span>loading...</span>;
+                  if (userError) return <span>{`${userError}`}</span>;
+                  if (projectError) return <span>{`${projectError}`}</span>;
+                  if (reviewError) return <span>{`${reviewError}`}</span>;
+                  let userArray = [];
+                  let projectArray = [];
+                  let reviewArray = [];
+
+                  if (userData !== undefined)
+                    userArray = Object.values(userData).flat();
+
+                  if (projectData !== undefined)
+                    projectArray = Object.values(projectData).flat();
+                  projectArray = projectArray.map(
+                    (project) =>
+                      (project = {
+                        ...project,
+                        rating: parseFloat(math.mean(project.rating).toFixed(2))
+                      })
+                  );
+
+                  if (reviewData !== undefined)
+                    reviewArray = Object.values(reviewData).flat();
+                  return (
+                    <div>
+                      {userArray.map((user) => {
+                        return (
+                          <div key={user.id}>
+                            <Route
+                              exact
+                              path={`/${user.username}/projects`}
+                              render={(props) => {
+                                return (
+                                  <ProjectList {...props} email={user.email} />
+                                );
+                              }}
+                            />
+                            <Route
+                              exact
+                              path={`/${user.username}/reviews`}
+                              render={(props) => {
+                                return (
+                                  <ReviewList {...props} email={user.email} />
+                                );
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
+                      {projectArray.map((project) => {
+                        return (
+                          <Route
+                            key={project.id}
+                            exact
+                            path={`/projects/${project.id}`}
+                            render={(props) => {
+                              return (
+                                <ProjectCard {...props} project={project} />
+                              );
+                            }}
+                          />
+                        );
+                      })}
+                      {reviewArray.map((review) => {
+                        return (
+                          <Route
+                            key={review.id}
+                            exact
+                            path={`/reviews/${review.id}`}
+                            render={(props) => {
+                              return <ReviewCard {...props} review={review} />;
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }}
+              </Query>
+            )}
+          </Query>
+        )}
+      </Query>
+    );
+
     return (
       <Router>
         <div>
@@ -90,72 +192,7 @@ class App extends Component {
           <Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
           <Route path={ROUTES.FOOTER} component={Footer} />
-          <Query
-            query={gql`
-              {
-                users {
-                  id
-                  username
-                  email
-                }
-              }
-            `}
-          >
-            {({ loading, error, data }) => {
-              if (loading || !data) console.log('loading user query');
-              if (error) console.log({ userQueryError: error });
-
-              if (data) {
-                let userArray = Object.values(data).flat();
-                return userArray.map((user) => {
-                  return (
-                    <div key={user.id}>
-                      <Route
-                        exact
-                        path={`/${user.username}/projects`}
-                        render={(props) => {
-                          return <ProjectList {...props} email={user.email} />;
-                        }}
-                      />
-                      {user.Projects.map((project) => {
-                        return (
-                          <Route
-                            key={project.id}
-                            exact
-                            path={`/${user.username}/projects/${project.id}`}
-                            render={(props) => {
-                              return (
-                                <ProjectCard {...props} project={project} />
-                              );
-                            }}
-                          />
-                        );
-                      })}
-                      <Route
-                        exact
-                        path={`/${user.username}/reviews`}
-                        render={(props) => {
-                          return <ReviewList {...props} email={user.email} />;
-                        }}
-                      />
-                      {user.ReviewList.map((review) => {
-                        return (
-                          <Route
-                            key={review.id}
-                            exact
-                            path={`/${user.username}/reviews/${review.id}`}
-                            render={(props) => {
-                              return <ReviewCard {...props} review={review} />;
-                            }}
-                          />
-                        );
-                      })}
-                    </div>
-                  );
-                });
-              } else return <h1>No Data</h1>;
-            }}
-          </Query>
+          <RoutesWithData />
         </div>
       </Router>
     );

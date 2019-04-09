@@ -18,6 +18,7 @@ export const getProjects = gql`
       titleImg
       category
       rating
+      timestamp
       User {
         id
         username
