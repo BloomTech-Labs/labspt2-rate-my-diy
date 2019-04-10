@@ -85,10 +85,10 @@ class App extends Component {
 						)}
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
-          <Route exact path={ROUTES.REVIEWS} render={(props) => (
+          <Route exact path={ROUTES.REVIEW} render={(props) => (
             <Review {...props}  />
           )} />
-          <Route exact path={ROUTES.REVIEW} component={Review}/>
+          <Route exact path={ROUTES.REVIEWS} component={ReviewModal}/>
 					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
 					<Query
