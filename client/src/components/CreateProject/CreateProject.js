@@ -26,35 +26,38 @@ class CreateProject extends Component {
     const user = localStorage.getItem('authUser');
     const json = JSON.parse(user);
 
-    if (
-      this.props.location.state.User &&
-      this.props.location.state.User.email === json.email
-    ) {
-      const project = this.props.location.state;
-      const steps = JSON.parse(project.steps);
-      console.log({ steps: steps });
+    if (this.props.location.state !== undefined) {
+      if (
+        this.props.location.state.User &&
+        this.props.location.state.User.email === json.email
+      ) {
+        const project = this.props.location.state;
+        const steps = JSON.parse(project.steps);
+        console.log({ steps: steps });
 
-      this.setState({
-        project: {
-          name: project.name,
-          steps: steps,
-          category: project.category,
-          timestamp: project.timestamp,
-          titleImg: project.titleImg,
-          User: {
-            username: project.User.username,
-            email: project.User.email
+        this.setState({
+          project: {
+            name: project.name,
+            steps: steps,
+            category: project.category,
+            timestamp: project.timestamp,
+            titleImg: project.titleImg,
+            User: {
+              username: project.User.username,
+              email: project.User.email
+            }
           }
-        }
-      });
+        });
+      } else {
+        this.setState({
+          project: {
+            User: {
+              email: json.email
+            }
+          }
+        });
+      }
     } else {
-      this.setState({
-        project: {
-          User: {
-            email: json.email
-          }
-        }
-      });
     }
   }
 
@@ -125,7 +128,9 @@ class CreateProject extends Component {
     let options = {
       cloud_name: 'dv1rhurfd',
       upload_preset: 'korisbak',
-      returnJustUrl: true
+      returnJustUrl: true,
+      maxImageWidth: 400,
+      maxImageHeight: 500
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
