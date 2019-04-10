@@ -46,7 +46,6 @@ class CreateProject extends Component {
 	}
 
 	removeStep = (i) => {
-		console.log(i)
 		const steps = this.state.steps;
 		const removedStep = steps.filter(step => {
 			if(step !== steps[i]) {
@@ -54,14 +53,12 @@ class CreateProject extends Component {
 			}
 		});
 
-		console.log(removedStep)
 		this.setState({
 			steps: removedStep
 		});
 	}
 
 	render() {
-		console.log(this.state.steps)
 		return (
 			<div>
 				<div className='titleBar'>
