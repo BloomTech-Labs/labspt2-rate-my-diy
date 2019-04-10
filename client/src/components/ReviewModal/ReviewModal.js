@@ -12,27 +12,7 @@ class ReviewModal extends Component {
 
 	onReviewSelected = (review) => {};
 
-	// render() {
-	//  return (
-	//   <div>
-	//    const Reviews = ({ Review }) => ({
-	//     <Query query={GET_REVIEWS}>
-	//      {({ loading, error, data }) => {
-	//      if (loading) return "Loading...";
-	//      if (error) return `Error! ${error.message}`;
-	//      console.log(data);
 
-	//      return (
-
-	//      <div>
-
-	//      </div>
-	//     );
-	//      }}
-	//     </Query>
-	//    })
-	//   </div>
-	//  )}
 
 	render() {
 		const Reviews = ({ Review }) => (
