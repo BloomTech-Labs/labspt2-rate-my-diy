@@ -2,7 +2,7 @@ import './ReviewModal.scss';
 import { Query } from 'react-apollo';
 import React, { Component } from 'react';
 import { getReviews } from '../../query/query';
-
+import { Link } from 'react-router-dom'
 class ReviewModal extends Component {
 	constructor(props) {
 		super(props);
