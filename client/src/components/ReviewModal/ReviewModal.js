@@ -59,12 +59,13 @@ const Reviews = ({Review}) => (
              {`${ Author.username} `}
               </p>
               <p>
-               {`${name}`}
+               {`${ProjectReviewed.name}`}
               </p>
               <img
                className="review-img"
                src={`${ProjectReviewed.titleImg}`}
               />
+
               <p>{`${name}`}</p>
            </div>
          ))}
