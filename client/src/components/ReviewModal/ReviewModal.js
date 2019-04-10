@@ -54,9 +54,13 @@ const Reviews = ({Review}) => (
        <div className="card-container">
          {data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) => (
            <div key={id}>
-             <p>
+             <p className="review-name">
              {`${ Author.username} `}
               </p>
+              <p>
+               {`${ProjectReviewed.timestamp}`}
+              </p>
+              <p>{`${name}`}</p>
            </div>
          ))}
        </div>
