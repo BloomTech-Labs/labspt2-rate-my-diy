@@ -85,7 +85,7 @@ class App extends Component {
 						)}
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
-          <Route path={ROUTES.REVIEWS} component={ReviewModal} />
+          <Route exact path={ROUTES.REVIEWS} component={ReviewModal} />
           <Route exact path={ROUTES.REVIEW} component={Review}/>
 					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
