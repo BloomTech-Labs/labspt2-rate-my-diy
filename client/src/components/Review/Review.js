@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { getReviews } from '../../query/query.js';
+class Review extends Component {
+	constructor(props) {
+		super(props);
 
- class Review extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello World</h1>
-      </div>
-    )
-  }
+		this.state = {};
+	}
+
+	render() {
+		console.log(this.props, 'review state');
+		console.log(getReviews);
+		return (
+			<div>
+				<h1>Hello World</h1>
+			</div>
+		);
+	}
 }
 
-export default Review
+export default Review;
