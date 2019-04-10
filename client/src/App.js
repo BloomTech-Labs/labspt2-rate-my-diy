@@ -20,6 +20,7 @@ import ReviewList from './components/Account/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
 import ProjectCard from './components/Account/ProjectCard/ProjectCard';
 import ReviewCard from './components/Account/ReviewCard/ReviewCard';
+import Profile from './components/Profile/Profile';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -92,6 +93,15 @@ class App extends Component {
                       {userArray.map((user) => {
                         return (
                           <div key={user.id}>
+                            <Route
+                              exact
+                              path={`/${user.username}/profile`}
+                              render={(props) => {
+                                return (
+                                  <Profile {...props} email={user.email} />
+                                );
+                              }}
+                            />
                             <Route
                               exact
                               path={`/${user.username}/projects`}

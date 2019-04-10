@@ -20,6 +20,7 @@ export const getProjects = gql`
       rating
       timestamp
       steps
+      titleBlurb
       User {
         id
         username

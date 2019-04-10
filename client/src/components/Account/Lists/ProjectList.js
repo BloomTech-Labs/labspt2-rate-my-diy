@@ -19,6 +19,7 @@ const GET_PROJECTS = gql`
       User {
         id
         username
+        email
       }
     }
   }
@@ -64,7 +65,7 @@ class ProjectList extends React.Component {
                       );
                       project.rating = meanRating;
                       return (
-                        <div>
+                        <div key={project.id}>
                           <Link to={`/projects/${project.id}`}>{`${
                             project.name
                           }`}</Link>

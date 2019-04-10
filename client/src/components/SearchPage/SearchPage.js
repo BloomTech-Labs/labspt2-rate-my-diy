@@ -118,7 +118,7 @@ class SearchPage extends Component {
                 {/* <div>{`${name}`}</div> */}
                 <div>{`${meanRating}`}</div>
                 <div>{`${category}`}</div>
-                <Link to={`/${User.username}/projects`}>
+                <Link to={`/${User.username}/profile`}>
                   <div>{`${User.username}`}</div>
                 </Link>
               </div>
@@ -128,7 +128,9 @@ class SearchPage extends Component {
             this.props.users.map(({ id, username, userProfileImage }) => (
               <div key={id} className="card-container">
                 <img src={`${userProfileImage}`} alt="user" />
-                <div>{`${username}`}</div>
+                <Link to={`/${username}/profile`}>
+                  <div>{`${username}`}</div>
+                </Link>
               </div>
             ))
           )
@@ -140,7 +142,9 @@ class SearchPage extends Component {
                   {/* <div>{`${name}`}</div> */}
                   <div>{`${text}`}</div>
                   <div>{`${timestamp}`}</div>
-                  <div>{`${Author.username}`}</div>
+                  <Link to={`/${Author.username}/profile`}>
+                    <div>{`${Author.username}`}</div>
+                  </Link>
                   <div>{`${ProjectReviewed.name}`}</div>
                 </div>
               )
