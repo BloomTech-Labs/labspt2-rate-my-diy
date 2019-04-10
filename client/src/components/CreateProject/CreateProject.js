@@ -130,12 +130,21 @@ class CreateProject extends Component {
     console.log({ steps: this.state.project.steps });
   };
 
-  handleSubmit = (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
     const steps = this.state.project.steps;
 
     const filter = steps.filter((step) => step.type !== '' && step.body !== '');
-    console.log({ filterAll: filter });
+
+    await this.setState({
+      ...this.state,
+      project: {
+        ...this.state.project,
+        steps: filter
+      }
+    });
+
+    console.log({ state: this.state });
   };
 
   openCloudinary = (e) => {
