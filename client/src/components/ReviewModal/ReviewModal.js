@@ -42,6 +42,8 @@ class ReviewModal extends Component {
 					if (error) return <p>Error :(</p>;
 
 					return (
+            <React.Fragment>
+            <h1 className="headerReview">Reviews</h1>
 						<div className='card-container'>
 							{data.reviews.map(
 								({ id, text, name, timestamp, Author, ProjectReviewed }) => (
@@ -60,7 +62,8 @@ class ReviewModal extends Component {
 									)
 								),
 							)}
-						</div>
+            </div>
+            </React.Fragment>
 					);
 				}}
 			</Query>
