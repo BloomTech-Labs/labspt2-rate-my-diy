@@ -50,16 +50,17 @@ const Reviews = ({Review}) => (
      if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-     return (
-       <div className="card-container">
+   return (
+    <div className="card-container">
          {data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) => (
+    `${console.log(ProjectReviewed)}`,
            <div key={id}>
              <p className="review-name">
              {`${ Author.username} `}
               </p>
-              <p>
-               {`${ProjectReviewed.timestamp}`}
-              </p>
+              <img
+               src={`${ProjectReviewed.titleImg}`}
+              />
               <p>{`${name}`}</p>
            </div>
          ))}
