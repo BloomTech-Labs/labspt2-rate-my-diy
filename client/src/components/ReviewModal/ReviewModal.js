@@ -55,18 +55,21 @@ const Reviews = ({Review}) => (
          {data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) => (
     `${console.log(ProjectReviewed)}`,
            <div key={id}>
+           <div className="review-card">
              <p className="review-name">
              {`${ Author.username} `}
               </p>
-              <p className="project-name">
+              <h2 className="project-name">
                {`${ProjectReviewed.name}`}
-              </p>
+              </h2>
               <img
                className="review-img"
                src={`${ProjectReviewed.titleImg}`}
               />
 
+              <p className="review-text">{`${text}`}</p>
               <p>{`${name}`}</p>
+              </div>
            </div>
          ))}
        </div>
