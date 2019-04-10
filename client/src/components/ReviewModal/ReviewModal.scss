@@ -11,6 +11,7 @@
 .review-name {
  margin: 6px 1.2em  ;
  font-size: 2rem ;
+ // border: 3px solid red ;
 }
 
 .review-img {
@@ -19,7 +20,7 @@
 
 .project-name {
  // border: 4px solid pink ;
-
+ // order: 3px solid red ;
  text-align: center ;
 }
 
@@ -30,4 +31,9 @@
 .review-text {
  // border: 3px solid black ;
  text-align: center ;
+}
+
+.project-extra {
+ border: 4px solid green ;
+ margin: 0px 10px ;
 }

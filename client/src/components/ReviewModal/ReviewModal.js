@@ -52,23 +52,28 @@ const Reviews = ({Review}) => (
 
    return (
     <div className="card-container">
-         {data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) => (
+         {data.reviews.map(({ id, 
+         text, 
+         name, 
+         timestamp, 
+         Author, 
+         ProjectReviewed }) => (
     `${console.log(ProjectReviewed)}`,
            <div key={id}>
            <div className="review-card">
              <p className="review-name">
-             {`${ Author.username} `}
+             Reviewer: {`${ Author.username} `}
               </p>
               <h2 className="project-name">
-               {`${ProjectReviewed.name}`}
+              Project: {`${ProjectReviewed.name}`}
               </h2>
               <img
                className="review-img"
                src={`${ProjectReviewed.titleImg}`}
               />
 
-              <p className="review-text">{`${text}`}</p>
-              <p>{`${name}`}</p>
+              <p className="review-text">Text: {`${text}`}</p>
+              <p className="project-extra">{`${name}`}</p>
               </div>
            </div>
          ))}
