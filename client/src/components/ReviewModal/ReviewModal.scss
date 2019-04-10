@@ -29,8 +29,11 @@
 }
 
 .review-card {
- border: 1px solid gray ;
- margin: 5px 5px 
+ border: 2px solid gray ;
+ border-radius: 5px;
+ margin: 5px 5px;
+ width: 25%;
+ height: 500px;
 }
 
 .review-text {
