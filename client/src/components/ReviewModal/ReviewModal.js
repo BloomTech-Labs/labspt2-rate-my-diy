@@ -58,6 +58,9 @@ const Reviews = ({Review}) => (
              <p className="review-name">
              {`${ Author.username} `}
               </p>
+              <p>
+               {`${name}`}
+              </p>
               <img
                className="review-img"
                src={`${ProjectReviewed.titleImg}`}
