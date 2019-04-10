@@ -10,20 +10,23 @@ class Review extends Component {
 	}
 
 	render() {
-		const Reviews = ({ Review }) => (
+		var Reviews = ({ Review }) => (
 			<Query query={getReviews}>
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
 
 					const id = this.props.match.params;
+					const exampleVariable = data.length;
+					console.log(exampleVariable);
+
+					console.log(data.reviews[0], 'targeted review');
+					console.log(data, 'data');
 					console.log(id, 'id');
-					console.log(data.reviews, 'reviews');
-					console.log(data.reviews, 'reviews');
-					const currentReview = data.reviews.find((review) => {
-						return review.id[0] === id[0];
-					});
-					console.log(currentReview, 'current Review');
+					// const currentReview = data.reviews.find((review) => {
+					// 	return review.id === id;
+					// });
+
 					return (
 						<React.Fragment>
 							<h1 className='headerReview'>Reviews</h1>
