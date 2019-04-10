@@ -45,7 +45,23 @@ class CreateProject extends Component {
 			});
 	}
 
+	removeStep = (i) => {
+		console.log(i)
+		const steps = this.state.steps;
+		const removedStep = steps.filter(step => {
+			if(step !== steps[i]) {
+				return step;
+			}
+		});
+
+		console.log(removedStep)
+		this.setState({
+			steps: removedStep
+		});
+	}
+
 	render() {
+		console.log(this.state.steps)
 		return (
 			<div>
 				<div className='titleBar'>
@@ -58,6 +74,7 @@ class CreateProject extends Component {
 					{this.state.steps.map((step, i) => (
 						<div key={i}>
 							{step}
+							<button onClick={() => this.removeStep(i)}>Remove</button>
 						</div>
 					))}
 					<button onClick={this.addTextArea}>Add Text Field</button>
