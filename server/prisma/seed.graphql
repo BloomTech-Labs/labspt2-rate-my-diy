@@ -10,14 +10,14 @@ mutation {
             category: "random"
             timestamp: "2019-02-01"
             key: "1"
-            rating: {set: [5, 4, 3, 2, 5, 4]}
+            rating: { set: [5, 4, 3, 2, 5, 4] }
           }
           {
             name: "Sarah's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-15"
             key: "2"
-            rating: {set:[4, 3, 2, 1, 1, 1]}
+            rating: { set: [4, 3, 2, 1, 1, 1] }
           }
         ]
       }
@@ -36,14 +36,14 @@ mutation {
             category: "random"
             timestamp: "2018-02-01"
             key: "3"
-            rating: {set:[5, 4, 4, 3, 3]}
+            rating: { set: [5, 4, 4, 3, 3] }
           }
           {
             name: "Joe's 2nd Project"
             category: "kitchen"
             timestamp: "2018-05-15"
             key: "4"
-            rating: {set:[5, 4, 5, 5, 3]}
+            rating: { set: [5, 4, 5, 5, 3] }
           }
         ]
       }
@@ -62,14 +62,14 @@ mutation {
             category: "garage"
             timestamp: "2018-07-01"
             key: "5"
-            rating: {set:[1, 2, 1, 3, 4]}
+            rating: { set: [1, 2, 1, 3, 4] }
           }
           {
             name: "Mark's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-22"
             key: "6"
-            rating: {set:[5, 5, 4, 4, 3, 5, 3]}
+            rating: { set: [5, 5, 4, 4, 3, 5, 3] }
           }
         ]
       }
@@ -88,14 +88,14 @@ mutation {
             category: "web development"
             timestamp: "2018-01-17"
             key: "7"
-            rating: {set:[3, 2, 3, 2, 3, 3]}
+            rating: { set: [3, 2, 3, 2, 3, 3] }
           }
           {
             name: "Bo's 2nd Project"
             category: "cocktails"
             timestamp: "2018-03-18"
             key: "8"
-            rating: {set:[5, 5, 4, 4, 3]}
+            rating: { set: [5, 5, 4, 4, 3] }
           }
         ]
       }
@@ -114,14 +114,14 @@ mutation {
             category: "self improvement"
             timestamp: "2018-01-21"
             key: "9"
-            rating: {set:[1, 1, 1, 3]}
+            rating: { set: [1, 1, 1, 3] }
           }
           {
             name: "Timmy's 2nd Project"
             category: "home improvement"
             timestamp: "2018-02-12"
             key: "10"
-            rating: {set:[2, 4, 4, 3, 4, 2]}
+            rating: { set: [2, 4, 4, 3, 4, 2] }
           }
         ]
       }
@@ -140,14 +140,14 @@ mutation {
             category: "kitchen"
             timestamp: "2018-07-01"
             key: "11"
-            rating: {set:[5, 4, 4, 4, 3, 4]}
+            rating: { set: [5, 4, 4, 4, 3, 4] }
           }
           {
             name: "Rhonda's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-15"
             key: "12"
-            rating: {set:[3, 2, 3, 3, 2, 1]}
+            rating: { set: [3, 2, 3, 3, 2, 1] }
           }
         ]
       }
@@ -166,15 +166,14 @@ mutation {
             category: "music"
             timestamp: "2018-06-04"
             key: "13"
-            rating: {set:[5, 4, 5, 5, 3, 5, 4]}
-
+            rating: { set: [5, 4, 5, 5, 3, 5, 4] }
           }
           {
             name: "Yanelli's 2nd Project"
             category: "cocktails"
             timestamp: "2018-07-02"
             key: "14"
-            rating: {set:[2, 1, 2, 1, 3, 2]}
+            rating: { set: [2, 1, 2, 1, 3, 2] }
           }
         ]
       }
@@ -193,14 +192,14 @@ mutation {
             category: "kid crafts"
             timestamp: "2019-01-01"
             key: "15"
-            rating: {set:[5, 4, 4, 3, 4, 3]}
+            rating: { set: [5, 4, 4, 3, 4, 3] }
           }
           {
             name: "Ashley's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-24"
             key: "16"
-            rating: {set:[5, 5, 4, 4, 3, 2]}
+            rating: { set: [5, 5, 4, 4, 3, 2] }
           }
         ]
       }
@@ -219,14 +218,14 @@ mutation {
             category: "random"
             timestamp: "2019-01-09"
             key: "17"
-            rating: {set:[2, 2, 3, 4, 5, 3]}
+            rating: { set: [2, 2, 3, 4, 5, 3] }
           }
           {
             name: "Elmer's 2nd Project"
             category: "kid crafts"
             timestamp: "2019-03-01"
             key: "18"
-            rating: {set:[3, 4, 5, 2, 4, 3]}
+            rating: { set: [3, 4, 5, 2, 4, 3] }
           }
         ]
       }
@@ -245,14 +244,14 @@ mutation {
             category: "music"
             timestamp: "2019-01-15"
             key: "19"
-            rating: {set:[1, 1, 1, 4, 2]}
+            rating: { set: [1, 1, 1, 4, 2] }
           }
           {
             name: "Eric's 2nd Project"
             category: "sewing"
             timestamp: "2019-03-04"
             key: "20"
-            rating: {set:[3, 3, 2, 2, 1]}
+            rating: { set: [3, 3, 2, 2, 1] }
           }
         ]
       }
@@ -271,14 +270,14 @@ mutation {
             category: "music"
             timestamp: "2018-06-01"
             key: "21"
-            rating: {set:[5, 5, 4, 3, 3, 2]}
+            rating: { set: [5, 5, 4, 3, 3, 2] }
           }
           {
             name: "Derek's 2nd Project"
             category: "kitchen"
             timestamp: "2018-08-13"
             key: "22"
-            rating: {set:[4, 3, 3, 2, 2, 1]}
+            rating: { set: [4, 3, 3, 2, 2, 1] }
           }
         ]
       }
@@ -297,14 +296,14 @@ mutation {
             category: "dance"
             timestamp: "2019-03-01"
             key: "23"
-            rating: {set:[5, 4, 4, 4, 3, 2]}
+            rating: { set: [5, 4, 4, 4, 3, 2] }
           }
           {
             name: "Melinda's 2nd Project"
             category: "kitchen"
             timestamp: "2019-03-18"
             key: "24"
-            rating: {set:[4, 4, 3, 3, 2, 1]}
+            rating: { set: [4, 4, 3, 3, 2, 1] }
           }
         ]
       }
@@ -323,14 +322,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-05"
             key: "25"
-            rating: {set:[5, 5, 5, 5, 4, 4]}
+            rating: { set: [5, 5, 5, 5, 4, 4] }
           }
           {
             name: "Elsa's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-18"
             key: "26"
-            rating: {set:[5, 4, 4, 4, 3, 3, 2]}
+            rating: { set: [5, 4, 4, 4, 3, 3, 2] }
           }
         ]
       }
@@ -349,14 +348,14 @@ mutation {
             category: "random"
             timestamp: "2018-05-08"
             key: "27"
-            rating: {set:[1, 2, 2, 3, 3]}
+            rating: { set: [1, 2, 2, 3, 3] }
           }
           {
             name: "Robert's 2nd Project"
             category: "self improvement"
             timestamp: "2018-09-11"
             key: "28"
-            rating: {set:[3, 3, 4, 2, 2, 2]}
+            rating: { set: [3, 3, 4, 2, 2, 2] }
           }
         ]
       }
@@ -375,14 +374,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-04"
             key: "29"
-            rating: {set:[2, 2, 3, 4, 3, 2, 1]}
+            rating: { set: [2, 2, 3, 4, 3, 2, 1] }
           }
           {
             name: "Amy's 2nd Project"
             category: "dance"
             timestamp: "2019-03-20"
             key: "30"
-            rating: {set:[1, 2, 4, 4, 4]}
+            rating: { set: [1, 2, 4, 4, 4] }
           }
         ]
       }
@@ -402,14 +401,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-04"
             key: "31"
-            rating: {set:[2, 2, 3, 4, 3, 2, 1]}
+            rating: { set: [2, 2, 3, 4, 3, 2, 1] }
           }
           {
             name: "Angela's 2nd Project"
             category: "dance"
             timestamp: "2019-03-20"
             key: "32"
-            rating: {set:[1, 2, 4, 4, 4]}
+            rating: { set: [1, 2, 4, 4, 4] }
           }
         ]
       }
@@ -417,8 +416,6 @@ mutation {
   ) {
     id
   }
-
-
 
   review1: createReview(
     data: {
@@ -532,261 +529,143 @@ mutation {
   ) {
     id
   }
-# 
-  updateUser1: updateUser(data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "3"}
-        {rKey: "4"}
-      ]
+  #
+  updateUser1: updateUser(
+    data: {
+      LikedReviews: { connect: [{ rKey: "3" }, { rKey: "4" }] }
+      DislikedReviews: { connect: [{ rKey: "5" }, { rKey: "8" }] }
+      RatedProjects: { connect: [{ key: "29" }, { key: "16" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "5"}
-        {rKey: "8"}
-      ]
-    }
-    RatedProjects: {
-      connect: [
-        {key: "29"}
-        {key: "16"}
-      ]
-    }
-  }
-  where: {username: "asdfsd"}){
+    where: { username: "asdfsd" }
+  ) {
     id
   }
-  updateUser2: updateUser(data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "2"}
-      ]
+  updateUser2: updateUser(
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "2" }] }
+      DislikedReviews: { connect: [{ rKey: "7" }, { rKey: "5" }] }
+      RatedProjects: { connect: [{ key: "24" }, { key: "17" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "7"}
-        {rKey: "5"}
-      ]
-    }
-    RatedProjects: {
-      connect: [
-        {key: "24"}
-        {key: "17"}
-      ]
-    }
-    }
-  where: {username: "sldfksd"}){
+    where: { username: "sldfksd" }
+  ) {
     id
   }
-  updateUser3: updateUser(data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "2"}
-        {rKey: "1"}
-      ]
+  updateUser3: updateUser(
+    data: {
+      LikedReviews: { connect: [{ rKey: "2" }, { rKey: "1" }] }
+      DislikedReviews: { connect: [{ rKey: "4" }, { rKey: "7" }] }
+      RatedProjects: { connect: [{ key: "25" }, { key: "21" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-        {rKey: "7"}
-      ]
-    }
-    RatedProjects: {
-      connect: [
-        {key: "25"}
-        {key: "21"}
-      ]
-    }
-  }
-  where: {username: "slekrj"}){
+    where: { username: "slekrj" }
+  ) {
     id
   }
-  updateUser4: updateUser(data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "2"}
-        {rKey: "3"}
-      ]
+  updateUser4: updateUser(
+    data: {
+      LikedReviews: { connect: [{ rKey: "2" }, { rKey: "3" }] }
+      DislikedReviews: { connect: [{ rKey: "4" }, { rKey: "1" }] }
+      RatedProjects: { connect: [{ key: "14" }, { key: "19" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-        {rKey: "1"}
-      ]
-    }
-    RatedProjects: {
-      connect: [
-        {key: "14"}
-        {key: "19"}
-      ]
-    }
-  }
-  where: {username: "lkrjawe"}){
+    where: { username: "lkrjawe" }
+  ) {
     id
   }
-  updateUser5: updateUser(where: {username: "lkrwetir"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "2"}
-        {rKey: "8"}
-      ]
+  updateUser5: updateUser(
+    where: { username: "lkrwetir" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "2" }, { rKey: "8" }] }
+      DislikedReviews: { connect: [{ rKey: "4" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser6: updateUser(where: {username: "toigjewe"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "2"}
-      ]
-    }
-  }){
+  updateUser6: updateUser(
+    where: { username: "toigjewe" }
+    data: { LikedReviews: { connect: [{ rKey: "8" }, { rKey: "2" }] } }
+  ) {
     id
   }
-updateUser7: updateUser(where: {username: "oiwjoeawd"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "1"}
-        {rKey: "7"}
-      ]
+  updateUser7: updateUser(
+    where: { username: "oiwjoeawd" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "1" }, { rKey: "7" }] }
+      DislikedReviews: { connect: [{ rKey: "2" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "2"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser8: updateUser(where: {username: "wlefjwe"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "1"}
-      ]
+  updateUser8: updateUser(
+    where: { username: "wlefjwe" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "1" }] }
+      DislikedReviews: {
+        connect: [{ rKey: "4" }, { rKey: "7" }, { rKey: "2" }]
+      }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-        {rKey: "7"}
-        {rKey: "2"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser9: updateUser(where: {username: "askldfjewavvv"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "2"}
-        {rKey: "6"}
-      ]
+  updateUser9: updateUser(
+    where: { username: "askldfjewavvv" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "2" }, { rKey: "6" }] }
+      DislikedReviews: { connect: [{ rKey: "7" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "7"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser10: updateUser(where: {username: "lgrjraweks"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "2"}
-      ]
+  updateUser10: updateUser(
+    where: { username: "lgrjraweks" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "2" }] }
+      DislikedReviews: { connect: [{ rKey: "7" }, { rKey: "6" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "7"}
-        {rKey: "6"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser11: updateUser(where: {username: "lrijfwwa"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "6"}
-      ]
+  updateUser11: updateUser(
+    where: { username: "lrijfwwa" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "6" }] }
+      DislikedReviews: { connect: [{ rKey: "7" }, { rKey: "5" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "7"}
-        {rKey: "5"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser12: updateUser(where: {username: "itbdsldvf"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "7"}
-        {rKey: "2"}
-        {rKey: "6"}
-      ]
+  updateUser12: updateUser(
+    where: { username: "itbdsldvf" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "7" }, { rKey: "2" }, { rKey: "6" }] }
+      DislikedReviews: { connect: [{ rKey: "4" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser13: updateUser(where: {username: "dlgirassdweeww"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "7"}
-      ]
+  updateUser13: updateUser(
+    where: { username: "dlgirassdweeww" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "7" }] }
+      DislikedReviews: { connect: [{ rKey: "1" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "1"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser14: updateUser(where: {username: "dglawerwdfvvyeiwq"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "7"}
-      ]
+  updateUser14: updateUser(
+    where: { username: "dglawerwdfvvyeiwq" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "7" }] }
+      DislikedReviews: { connect: [{ rKey: "4" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "4"}
-      ]
-    }
-  }){
+  ) {
     id
   }
-  updateUser15: updateUser(where: {username: "yoirewowd"} data: {
-    LikedReviews: {
-      connect: [
-        {rKey: "8"}
-        {rKey: "5"}
-      ]
+  updateUser15: updateUser(
+    where: { username: "yoirewowd" }
+    data: {
+      LikedReviews: { connect: [{ rKey: "8" }, { rKey: "5" }] }
+      DislikedReviews: { connect: [{ rKey: "6" }] }
     }
-    DislikedReviews: {
-      connect: [
-        {rKey: "6"}
-      ]
-    }
-  }){
+  ) {
     id
   }
 }

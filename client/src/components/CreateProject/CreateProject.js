@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactCloudinaryUploader from "@app-masters/react-cloudinary-uploader"
+import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
 
 class CreateProject extends Component {
 	constructor(props) {

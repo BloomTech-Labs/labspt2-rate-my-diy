@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const getUsers = gql`
   {
@@ -18,6 +18,8 @@ export const getProjects = gql`
       titleImg
       category
       rating
+      timestamp
+      steps
       User {
         id
         username

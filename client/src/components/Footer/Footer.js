@@ -1,5 +1,5 @@
-import React from "react";
-import "./Footer.scss";
+import React from 'react';
+import './Footer.scss';
 
 function Footer() {
   return (
@@ -10,7 +10,7 @@ function Footer() {
         <a href="/subscribe">Support Us</a>
       </nav>
       <p>
-        2019 Copyright <a href="/">Rate My DIY</a>{" "}
+        2019 Copyright <a href="/">Rate My DIY</a>{' '}
       </p>
     </div>
   );
