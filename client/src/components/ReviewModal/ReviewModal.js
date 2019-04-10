@@ -22,29 +22,23 @@ class ReviewModal extends Component {
 					if (error) return <p>Error :(</p>;
 
 					return (
-            <React.Fragment>
-            <h1 className="headerReview">Reviews</h1>
-						<div className='card-container'>
-							{data.reviews.map(
-        ({ id, text, name, timestamp, Author, ProjectReviewed }) => (
-         `${console.log(Author)}`,
-									(
-          <div key={id} className='review-card'>
-												<p className='review-name'>Reviewer: {`${Author.username} `}</p>
-      <Link to={id}>
-                        <h2 className='project-name'>Project: {`${ProjectReviewed.name}`}</h2>
-       </Link>
-												<img className='review-img' src={`${ProjectReviewed.titleImg}`} />
+						<React.Fragment>
+							<h1 className='headerReview'>Reviews</h1>
+							<div className='card-container'>
+								{data.reviews.map(({ id, text, name, timestamp, Author, ProjectReviewed }) =>
+									`${console.log(ProjectReviewed)}`(
+										<div key={id} className='review-card'>
+											<p className='review-name'>Reviewer: {`${Author.username} `}</p>
+											<h2 className='project-name'>Project: {`${ProjectReviewed.name}`}</h2>
+											<img alt={'project'} className='review-img' src={`${ProjectReviewed.titleImg}`} />
 
-												<p className='review-text'>Text: {`${text}`}</p>
-												<p className='project-extra'>{`${name}`}</p>
-
-											</div>
-									)
-								),
-							)}
-            </div>
-            </React.Fragment>
+											<p className='review-text'>Text: {`${text}`}</p>
+											<p className='project-extra'>{`${name}`}</p>
+										</div>,
+									),
+								)}
+							</div>
+						</React.Fragment>
 					);
 				}}
 			</Query>

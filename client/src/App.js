@@ -84,7 +84,8 @@ class App extends Component {
 						)}
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
-     <Route path={ROUTES.REVIEW} component={ReviewModal} />
+          <Route path={ROUTES.REVIEWS} component={ReviewModal} />
+          <Route path={ROUTES.REVIEW} component={ReviewModal}/>
 					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
 					<Query
