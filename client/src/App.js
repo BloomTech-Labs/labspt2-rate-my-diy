@@ -19,6 +19,7 @@ import ProjectList from './components/Account/Lists/ProjectList';
 import ReviewList from './components/Account/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
 import ReviewModal from './components/ReviewModal/ReviewModal'
+import Review from './components/Review/Review';
 
 class App extends Component {
 	constructor() {
@@ -85,7 +86,7 @@ class App extends Component {
 					/>
 					<Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.REVIEWS} component={ReviewModal} />
-          <Route path={ROUTES.REVIEW} component={ReviewModal}/>
+          <Route path={ROUTES.REVIEW} component={Review}/>
 					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
 					<Route path={ROUTES.FOOTER} component={Footer} />
 					<Query
