@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import * as ROUTES from "../constants/routes";
-import SignOutButton from "../components/SignOut/SignOut";
-import { withAuthentication } from "../components/Session/session";
-import { AuthUserContext } from "../components/Session/session";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
+import SignOutButton from '../components/SignOut/SignOut';
+import { withAuthentication } from '../components/Session/session';
+import { AuthUserContext } from '../components/Session/session';
 
-import './reactRouter.scss'
+import './reactRouter.scss';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser =>
+    {(authUser) =>
       authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
     }
   </AuthUserContext.Consumer>
@@ -50,7 +50,6 @@ const NavigationNonAuth = () => {
       <input type="checkbox" id="toggle" name="toggle" />
       <div className="verticalNav">
         <ul>
-          
           <li>
             <Link to={ROUTES.HOME}>Home</Link>
           </li>

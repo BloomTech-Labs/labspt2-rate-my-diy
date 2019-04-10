@@ -20,114 +20,118 @@ import ReviewList from './components/Account/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
 
 class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			users: [],
-			projects: [],
-			reviews: [],
-		};
-	}
+  constructor() {
+    super();
+    this.state = {
+      users: [],
+      projects: [],
+      reviews: []
+    };
+  }
 
-	projectSearchHandler = (projects) => {
-		this.setState({ projects });
-	};
+  projectSearchHandler = (projects) => {
+    console.log({ projects: projects });
+    this.setState({ projects });
+  };
 
-	userSearchHandler = (users) => {
-		this.setState({ users });
-	};
+  userSearchHandler = (users) => {
+    console.log({ users: users });
+    this.setState({ users });
+  };
 
-	reviewSearchHandler = (reviews) => {
-		this.setState({ reviews });
-	};
+  reviewSearchHandler = (reviews) => {
+    console.log({ reviews: reviews });
+    this.setState({ reviews });
+  };
 
-	render() {
-		return (
-			<Router>
-				<div>
-					<Navigation />
-					<Route
-						exact
-						path={ROUTES.HOME}
-						render={(props) => (
-							<Home
-								{...props}
-								projectSearchHandler={this.projectSearchHandler}
-								userSearchHandler={this.userSearchHandler}
-								reviewSearchHandler={this.reviewSearchHandler}
-								getUsers={getUsers}
-								getProjects={getProjects}
-								getReviews={getReviews}
-							/>
-						)}
-					/>
-					<Route path={ROUTES.SIGN_IN} component={SignIn} />
-					<Route path={ROUTES.SIGN_UP} component={SignUp} />
-					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-					<Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-					<Route
-						path={ROUTES.SEARCH}
-						render={(props) => (
-							<SearchPage
-								{...props}
-								users={this.state.users}
-								projects={this.state.projects}
-								reviews={this.state.reviews}
-								projectSearchHandler={this.projectSearchHandler}
-								userSearchHandler={this.userSearchHandler}
-								reviewSearchHandler={this.reviewSearchHandler}
-								getUsers={getUsers}
-								getProjects={getProjects}
-								getReviews={getReviews}
-							/>
-						)}
-					/>
-					<Route path={ROUTES.ACCOUNT} component={Account} />
-					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
-					<Route path={ROUTES.FOOTER} component={Footer} />
-					<Query
-						query={gql`
-							{
-								users {
-									id
-									username
-									email
-								}
-							}
-						`}>
-						{({ loading, error, data }) => {
-							if (loading || !data) console.log('loading user query');
-							if (error) console.log({ userQueryError: error });
-							
-              if (data){
-              let userArray = Object.values(data).flat();
-							return userArray.map((user) => {
-								return (
-									<div key={user.id}>
-										<Route
-											exact
-											path={`/${user.username}/projects`}
-											render={(props) => {
-												return <ProjectList {...props} email={user.email} />;
-											}}
-										/>
-										<Route
-											exact
-											path={`/${user.username}/reviews`}
-											render={(props) => {
-												return <ReviewList {...props} email={user.email} />;
-											}}
-										/>
-									</div>
-                )
-              })}
-              else return <h1>No Data</h1>;
-						}}
-					</Query>
-				</div>
-			</Router>
-		);
-	}
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navigation />
+          <Route
+            exact
+            path={ROUTES.HOME}
+            render={(props) => (
+              <Home
+                {...props}
+                projectSearchHandler={this.projectSearchHandler}
+                userSearchHandler={this.userSearchHandler}
+                reviewSearchHandler={this.reviewSearchHandler}
+                getUsers={getUsers}
+                getProjects={getProjects}
+                getReviews={getReviews}
+              />
+            )}
+          />
+          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+          <Route path={ROUTES.SIGN_UP} component={SignUp} />
+          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+          <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+          <Route
+            path={ROUTES.SEARCH}
+            render={(props) => (
+              <SearchPage
+                {...props}
+                users={this.state.users}
+                projects={this.state.projects}
+                reviews={this.state.reviews}
+                projectSearchHandler={this.projectSearchHandler}
+                userSearchHandler={this.userSearchHandler}
+                reviewSearchHandler={this.reviewSearchHandler}
+                getUsers={getUsers}
+                getProjects={getProjects}
+                getReviews={getReviews}
+              />
+            )}
+          />
+          <Route path={ROUTES.ACCOUNT} component={Account} />
+          <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
+          <Route path={ROUTES.FOOTER} component={Footer} />
+          <Query
+            query={gql`
+              {
+                users {
+                  id
+                  username
+                  email
+                }
+              }
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading || !data) console.log('loading user query');
+              if (error) console.log({ userQueryError: error });
+
+              if (data) {
+                let userArray = Object.values(data).flat();
+                return userArray.map((user) => {
+                  return (
+                    <div key={user.id}>
+                      <Route
+                        exact
+                        path={`/${user.username}/projects`}
+                        render={(props) => {
+                          return <ProjectList {...props} email={user.email} />;
+                        }}
+                      />
+                      <Route
+                        exact
+                        path={`/${user.username}/reviews`}
+                        render={(props) => {
+                          return <ReviewList {...props} email={user.email} />;
+                        }}
+                      />
+                    </div>
+                  );
+                });
+              } else return <h1>No Data</h1>;
+            }}
+          </Query>
+        </div>
+      </Router>
+    );
+  }
 }
 
 // please update your components and Routes as needed
