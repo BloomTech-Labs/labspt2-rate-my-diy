@@ -90,6 +90,19 @@ class App extends Component {
                     reviewArray = Object.values(reviewData).flat();
                   return (
                     <div>
+                      <Route
+                        exact
+                        path={ROUTES.CREATE_PROJECT}
+                        render={(props) => {
+                          return (
+                            <CreateProject
+                              {...props}
+                              projects={projectArray}
+                              users={userArray}
+                            />
+                          );
+                        }}
+                      />
                       {userArray.map((user) => {
                         return (
                           <div key={user.id}>
@@ -200,9 +213,9 @@ class App extends Component {
             )}
           />
           <Route path={ROUTES.ACCOUNT} component={Account} />
-          <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
-          <Route path={ROUTES.FOOTER} component={Footer} />
+          {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
           <RoutesWithData />
+          <Route path={ROUTES.FOOTER} component={Footer} />
         </div>
       </Router>
     );
