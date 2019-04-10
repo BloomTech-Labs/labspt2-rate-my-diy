@@ -58,7 +58,7 @@ const Reviews = ({Review}) => (
              <p className="review-name">
              {`${ Author.username} `}
               </p>
-              <p>
+              <p className="project-name">
                {`${ProjectReviewed.name}`}
               </p>
               <img
