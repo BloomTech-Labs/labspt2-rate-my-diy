@@ -7,6 +7,7 @@ import * as math from 'mathjs';
 import Featured from './Featured/Featured';
 import Header from './Header/Header';
 import './Home.scss';
+import '../../styles/card.scss';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
