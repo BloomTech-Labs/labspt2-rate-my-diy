@@ -13,6 +13,12 @@ class Review extends Component {
   };
  }
  
+singleReview = (id) => this.state.reviews.filter(review => {
+ if (review.id === id) {
+  console.log(review)
+  return review
+ }
+})
 
 	render() {
   console.log(this.state.reviews)
@@ -21,13 +27,14 @@ class Review extends Component {
     {({ loading, error, data }) => {
      if (loading) return <p>Loading...</p>;
      if (error) return <p>Error :(</p>;
- 
-     const id = this.props.match.params;
-     const length = data.reviews.length, i = 0;
-     
+      
+      var id = this.props.match.params;
+      var length = data.reviews.length, i = 0;
+      
       for (let i = 0; i < data.reviews.length; i++) {
        reviewArray.push(data.reviews[i])
       }
+      console.log(this.singleReview())
      console.log(data.reviews[0], 'targeted review');
      console.log(id, 'id');
      // const currentReview = data.reviews.find((review) => {
