@@ -16,7 +16,7 @@ class ReviewModal extends Component {
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
-
+ 
 					return (
 						<React.Fragment>
 							<h1 className='headerReview'>Reviews</h1>
