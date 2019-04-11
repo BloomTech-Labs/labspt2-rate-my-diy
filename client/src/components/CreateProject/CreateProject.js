@@ -4,6 +4,56 @@ import CreatableSelect from 'react-select/lib/Creatable';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
+const CREATE_PROJECT = gql`
+  mutation newProject(
+    $name: String!
+    $category: String!
+    $timestamp: String!
+    $titleImg: String!
+    $titleBlurb: String!
+    $steps: String!
+    $username: String!
+  ) {
+    newProject(
+      name: $name
+      category: $category
+      timestamp: $timestamp
+      titleImg: $titleImg
+      titleBlurb: $titleBlurb
+      steps: $steps
+      username: $username
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+const UPDATE_PROJECT = gql`
+  mutation editProject(
+    $name: String!
+    $category: String!
+    $timestamp: String!
+    $titleImg: String!
+    $titleBlurb: String!
+    $steps: String!
+    $username: String!
+  ) {
+    newProject(
+      name: $name
+      category: $category
+      timestamp: $timestamp
+      titleImg: $titleImg
+      titleBlurb: $titleBlurb
+      steps: $steps
+      username: $username
+    ) {
+      id
+      name
+    }
+  }
+`;
+
 class CreateProject extends Component {
   constructor(props) {
     super(props);
@@ -235,159 +285,175 @@ class CreateProject extends Component {
       const project = this.props.location.state;
       const steps = JSON.parse(project.steps);
 
-      return (
-        <div>
-          <div className="projectInfo">
-            <form onSubmit={this.handleSubmit}>
-              <h1>{`Edit ${project.name}`}</h1>
-              <h2>project name:</h2>
-              <input
-                type="text"
-                name="name"
-                value={this.state.project.name}
-                onChange={this.textChange}
-              />
-              <h2>main image:</h2>
+      const Create = () => {
+        return (
+          <Mutation mutation={CREATE_PROJECT}>
+            {(newProject, { data }) => (
               <div>
-                <img src={this.state.project.titleImg} />
-                {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                <div className="projectInfo">
+                  <form onSubmit={this.handleSubmit}>
+                    <h1>{`Edit ${project.name}`}</h1>
+                    <h2>project name:</h2>
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.project.name}
+                      onChange={this.textChange}
+                    />
+                    <h2>main image:</h2>
+                    <div>
+                      <img src={this.state.project.titleImg} />
+                      {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                    </div>
+                    <button onClick={this.mainImage}>Set Main Image</button>
+                    <h2>project description:</h2>
+                    <textarea
+                      rows="6"
+                      cols="75"
+                      name="titleBlurb"
+                      value={this.state.project.titleBlurb}
+                      onChange={this.textChange}
+                    />
+                    <h2>category:</h2>
+                    <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange}
+                      onInputChange={this.handleInputChange}
+                      options={cats}
+                    />
+                    <h2>Steps:</h2>
+                    {this.state.project.steps.map((step, idx) => {
+                      if (step.type === 'img') {
+                        return (
+                          <div key={idx}>
+                            <img src={step.body} />
+                            <button onClick={this.deletePhoto(idx)}>
+                              Delete Photo
+                            </button>
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <div key={idx}>
+                            <input
+                              type="text"
+                              value={step.body}
+                              onChange={this.textChangeHandler(idx)}
+                            />
+                            <button
+                              type="button"
+                              onClick={this.removeTextStep(idx)}
+                              className="small"
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={this.handleAddStep}
+                              className="small"
+                            >
+                              +
+                            </button>
+                            <button onClick={this.openCloudinary}>
+                              Add Picture
+                            </button>
+                          </div>
+                        );
+                      }
+                    })}
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
               </div>
-              <button onClick={this.mainImage}>Set Main Image</button>
-              <h2>project description:</h2>
-              <textarea
-                rows="6"
-                cols="75"
-                name="titleBlurb"
-                value={this.state.project.titleBlurb}
-                onChange={this.textChange}
-              />
-              <h2>category:</h2>
-              <CreatableSelect
-                isClearable
-                onChange={this.handleChange}
-                onInputChange={this.handleInputChange}
-                options={cats}
-              />
-              <h2>Steps:</h2>
-              {this.state.project.steps.map((step, idx) => {
-                if (step.type === 'img') {
-                  return (
-                    <div key={idx}>
-                      <img src={step.body} />
-                      <button onClick={this.deletePhoto(idx)}>
-                        Delete Photo
-                      </button>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div key={idx}>
-                      <input
-                        type="text"
-                        value={step.body}
-                        onChange={this.textChangeHandler(idx)}
-                      />
-                      <button
-                        type="button"
-                        onClick={this.removeTextStep(idx)}
-                        className="small"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        onClick={this.handleAddStep}
-                        className="small"
-                      >
-                        +
-                      </button>
-                      <button onClick={this.openCloudinary}>Add Picture</button>
-                    </div>
-                  );
-                }
-              })}
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-      );
+            )}
+          </Mutation>
+        );
+      };
     } else {
-      return (
-        <div>
-          <div className="projectInfo">
-            <form onSubmit={this.handleSubmit}>
-              <h1>Create a Project</h1>
-              <h2>project name:</h2>
-              <input
-                type="text"
-                name="name"
-                value={this.state.project.name}
-                onChange={this.textChange}
-              />
-              <h2>main image:</h2>
+      const Update = () => {
+        return (
+          <Mutation mutation={UPDATE_PROJECT}>
+            {(editProject, { data }) => (
               <div>
-                <img src={this.state.project.titleImg} />
-                {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                <div className="projectInfo">
+                  <form onSubmit={this.handleSubmit}>
+                    <h1>Create a Project</h1>
+                    <h2>project name:</h2>
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.project.name}
+                      onChange={this.textChange}
+                    />
+                    <h2>main image:</h2>
+                    <div>
+                      <img src={this.state.project.titleImg} />
+                      {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                    </div>
+                    <button onClick={this.mainImage}>Set Main Image</button>
+                    <h2>project description:</h2>
+                    <textarea
+                      rows="6"
+                      cols="75"
+                      name="titleBlurb"
+                      value={this.state.project.titleBlurb}
+                      onChange={this.textChange}
+                    />
+                    <h2>category:</h2>
+                    <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange}
+                      onInputChange={this.handleInputChange}
+                      options={cats}
+                    />
+                    <h2>Steps:</h2>
+                    {this.state.project.steps.map((step, idx) => {
+                      if (step.type === 'img') {
+                        return (
+                          <div key={idx}>
+                            <img src={step.body} />
+                            <button onClick={this.deletePhoto(idx)}>
+                              Delete Photo
+                            </button>
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <div key={idx}>
+                            <input
+                              type="text"
+                              value={step.body}
+                              onChange={this.textChangeHandler(idx)}
+                            />
+                            <button
+                              type="button"
+                              onClick={this.removeTextStep(idx)}
+                              className="small"
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={this.handleAddStep}
+                              className="small"
+                            >
+                              +
+                            </button>
+                            <button onClick={this.openCloudinary}>
+                              Add Picture
+                            </button>
+                          </div>
+                        );
+                      }
+                    })}
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
               </div>
-              <button onClick={this.mainImage}>Set Main Image</button>
-              <h2>project description:</h2>
-              <textarea
-                rows="6"
-                cols="75"
-                name="titleBlurb"
-                value={this.state.project.titleBlurb}
-                onChange={this.textChange}
-              />
-              <h2>category:</h2>
-              <CreatableSelect
-                isClearable
-                onChange={this.handleChange}
-                onInputChange={this.handleInputChange}
-                options={cats}
-              />
-              <h2>Steps:</h2>
-              {this.state.project.steps.map((step, idx) => {
-                if (step.type === 'img') {
-                  return (
-                    <div key={idx}>
-                      <img src={step.body} />
-                      <button onClick={this.deletePhoto(idx)}>
-                        Delete Photo
-                      </button>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div key={idx}>
-                      <input
-                        type="text"
-                        value={step.body}
-                        onChange={this.textChangeHandler(idx)}
-                      />
-                      <button
-                        type="button"
-                        onClick={this.removeTextStep(idx)}
-                        className="small"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        onClick={this.handleAddStep}
-                        className="small"
-                      >
-                        +
-                      </button>
-                      <button onClick={this.openCloudinary}>Add Picture</button>
-                    </div>
-                  );
-                }
-              })}
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-      );
+            )}
+          </Mutation>
+        );
+      };
     }
   }
 }

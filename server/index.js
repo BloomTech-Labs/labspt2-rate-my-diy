@@ -205,6 +205,34 @@ const Mutation = prismaObjectType({
         });
       }
     });
+    t.field('editProject', {
+      type: 'Project',
+      args: {
+        name: stringArg(),
+        category: stringArg(),
+        timestamp: stringArg(),
+        titleImg: stringArg(),
+        titleBlurb: stringArg(),
+        steps: stringArg(),
+        username: stringArg()
+      },
+      resolve: (
+        parent,
+        { name, category, timestamp, titleImg, titleBlurb, steps, username },
+        ctx,
+        info
+      ) => {
+        return prisma.updateProject({
+          name,
+          category,
+          timestamp,
+          titleImg,
+          titleBlurb,
+          steps,
+          User: { connect: { username } }
+        });
+      }
+    });
     t.field('firebaseSignUp', {
       type: 'User',
       args: {
