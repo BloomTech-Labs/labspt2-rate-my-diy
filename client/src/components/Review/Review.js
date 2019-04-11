@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getReviews } from '../../query/query.js';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
+import "./Review.scss"
 const GET_SPECIFIC_REVIEW = gql`
 	query review($id: ID!) {
 		review(where: { id: $id }) {
@@ -55,7 +55,19 @@ class Review extends Component {
 
 					return (
 						<React.Fragment>
-							<h1 className='headerReview'>Reviews</h1>
+							<h1 className='headerReview'>Review</h1>
+       <div className="single-review-card">
+       <p>
+       {data.review.ProjectReviewed.name}
+       </p>
+       <span>
+
+       {data.review.ProjectReviewed.category}
+       </span>
+       <img alt="project" className="review-img" src={data.review.ProjectReviewed.titleImg}/>
+       {data.review.name}
+       {data.review.text}
+       </div>
 							<div className='card-container' />
 						</React.Fragment>
 					);
