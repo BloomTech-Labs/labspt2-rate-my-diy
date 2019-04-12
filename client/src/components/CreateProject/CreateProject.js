@@ -1,68 +1,32 @@
 import React, { Component } from 'react';
 import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { Redirect } from 'react-router';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import { Redirect } from 'react-router';
+import { CREATE_PROJECT } from '../../query/query';
 
-const CREATE_PROJECT = gql`
-  mutation newProject(
-    $name: String!
-    $category: String!
-    $timestamp: String!
-    $titleImg: String!
-    $titleBlurb: String!
-    $steps: String!
-    $username: String!
-  ) {
-    newProject(
-      name: $name
-      category: $category
-      timestamp: $timestamp
-      titleImg: $titleImg
-      titleBlurb: $titleBlurb
-      steps: $steps
-      username: $username
-    ) {
-      id
-      name
-    }
-  }
-`;
-
-const UPDATE_PROJECT = gql`
-  mutation editProject(
-    $name: String!
-    $category: String!
-    $timestamp: String!
-    $titleImg: String!
-    $titleBlurb: String!
-    $steps: String!
-    $username: String!
-  ) {
-    newProject(
-      name: $name
-      category: $category
-      timestamp: $timestamp
-      titleImg: $titleImg
-      titleBlurb: $titleBlurb
-      steps: $steps
-      username: $username
-    ) {
-      id
-      name
-    }
-  }
-`;
+import Header from '../Home/Header/Header';
 
 class CreateProject extends Component {
   constructor(props) {
     super(props);
+
+    const user = localStorage.getItem('authUser');
+    const json = JSON.parse(user);
+    const userPull = this.props.users.filter(
+      (user) => user.email === json.email
+    );
+    const { username, email } = userPull[0];
+
+    const categories = this.props.projects.map((project) => project.category);
+    let filteredCategories = [...new Set(categories)];
+
     this.state = {
-      categories: [],
+      imgDeleteDisabled: true,
+      categories: filteredCategories,
+      username: username,
+      email: email,
       submitDisabled: true,
-      username: '',
-      email: '',
       project: {
         name: '',
         category: '',
@@ -74,48 +38,55 @@ class CreateProject extends Component {
     };
   }
 
+  componentWillUnmount = () => {
+    console.log({ unMountState: this.state }, 'unmounting');
+  };
+
+  // componentWillMount = () => {
+  //   console.log({newMountState: this.state})
+  // }
   componentDidMount = () => {
-    const user = localStorage.getItem('authUser');
-    const json = JSON.parse(user);
-    const userPull = this.props.users.filter(
-      (user) => user.email === json.email
-    );
-    const { username, email } = userPull[0];
+    console.log({ newMountState: this.state });
 
-    const categories = this.props.projects.map((project) => project.category);
-    let filteredCategories = [...new Set(categories)];
-
-    if (this.props.location.state !== undefined) {
-      const project = this.props.location.state;
-      const steps = JSON.parse(project.steps);
-      console.log({ steps: steps });
-
+    if (typeof this.state.project.steps === 'string') {
+      let steps = this.state.project.steps;
+      let array = JSON.parse(steps);
       this.setState({
         ...this.state,
-        imgDeleteDisabled: false,
-        categories: filteredCategories,
-        username: username,
-        email: email,
-        project: {
-          name: project.name,
-          steps: steps,
-          category: project.category,
-          timestamp: project.timestamp,
-          titleImg: project.titleImg,
-          titleBlurb: project.titleBlurb
-        }
+        project: { ...this.state.project, steps: array }
       });
-    } else {
-      this.setState({
-        imgDeleteDisabled: true,
-        categories: filteredCategories,
-        username: username,
-        email: email
-      });
-
-      console.log({ state: this.state });
     }
   };
+  // componentDidMount = async () => {
+
+  //   try {
+  //     const user = await localStorage.getItem('authUser');
+  //     const json = await JSON.parse(user);
+  //     const userPull = await this.props.users.filter(
+  //       (user) => user.email === json.email
+  //     );
+  //     const { username, email } = await userPull[0];
+
+  //     const categories = await this.props.projects.map((project) => project.category);
+  //     let filteredCategories = await [...new Set(categories)];
+  //     let steps = await this.state.project.steps
+
+  //     // steps = JSON.parse(this.state.project.steps)
+
+  //     await this.setState({
+  //       ...this.state,
+  //       imgDeleteDisabled: true,
+  //       categories: filteredCategories,
+  //       username: username,
+  //       email: email,
+  //     });
+
+  //     await console.log({mountState: this.state})
+  //   }
+  //  catch(err) {
+  //    console.log({mountError: err})
+  //  }
+  // };
 
   textChange = async (e) => {
     let value = e.target.value;
@@ -148,7 +119,9 @@ class CreateProject extends Component {
 
   handleAddStep = () => {
     this.setState({
+      ...this.state,
       project: {
+        ...this.state.project,
         steps: this.state.project.steps.concat([{ type: '', body: '' }])
       }
     });
@@ -191,74 +164,6 @@ class CreateProject extends Component {
       project: { steps: steps }
     });
     console.log({ steps: this.state.project.steps });
-  };
-
-  handleSubmit = async (newProject) => async (evt) => {
-    evt.preventDefault();
-    const steps = this.state.project.steps;
-
-    const filter = steps.filter((step) => step.type !== '' && step.body !== '');
-
-    const string = JSON.stringify(filter);
-
-    const date = new Date(Date.now());
-
-    await this.setState({
-      ...this.state,
-      project: {
-        ...this.state.project,
-        steps: string,
-        timestamp: date
-      }
-    });
-
-    await newProject({
-      variables: {
-        name: this.state.project.name,
-        category: this.state.project.category,
-        timestamp: date,
-        titleImg: this.state.project.titleImg,
-        titleBlurb: this.state.project.titleBlurb,
-        steps: this.state.project.steps,
-        username: this.state.username
-      }
-    });
-
-    console.log({ state: this.state });
-  };
-
-  handleEditSubmit = async (editProject) => async (evt) => {
-    evt.preventDefault();
-    const steps = this.state.project.steps;
-
-    const filter = steps.filter((step) => step.type !== '' && step.body !== '');
-
-    const string = JSON.stringify(filter);
-
-    const date = new Date(Date.now());
-
-    await this.setState({
-      ...this.state,
-      project: {
-        ...this.state.project,
-        steps: string,
-        timestamp: date
-      }
-    });
-
-    await editProject({
-      variables: {
-        name: this.state.project.name,
-        category: this.state.project.category,
-        timestamp: date,
-        titleImg: this.state.project.titleImg,
-        titleBlurb: this.state.project.titleBlurb,
-        steps: this.state.project.steps,
-        username: this.state.username
-      }
-    });
-
-    console.log({ state: this.state });
   };
 
   openCloudinary = (e) => {
@@ -316,25 +221,82 @@ class CreateProject extends Component {
     });
   };
 
-  handleChange = (newValue, actionMeta) => {
+  handleChange = async (newValue, actionMeta) => {
     console.group('Value Changed');
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
-  };
-  handleInputChange = (inputValue, actionMeta) => {
-    this.setState({
+
+    let value = '';
+
+    if (newValue !== null) value = await newValue.value;
+
+    await this.setState({
+      ...this.state,
       project: {
         ...this.state.project,
-        category: inputValue
+        category: value
       }
     });
+    await console.log({ category: this.state.project.category });
+  };
+  // handleInputChange = (inputValue, actionMeta) => {
+  //   this.setState({
+  //     project: {
+  //       ...this.state.project,
+  //       category: inputValue
+  //     }
+  //   });
 
-    console.group('Input Changed');
-    console.log(inputValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.log(`state: ${this.state.project.category}`);
-    console.groupEnd();
+  //   console.group('Input Changed');
+  //   console.log(inputValue);
+  //   console.log(`action: ${actionMeta.action}`);
+  //   console.log(`state: ${this.state.project.category}`);
+  //   console.groupEnd();
+  // };
+
+  finalize = async (e) => {
+    e.preventDefault();
+    let steps = this.state.project.steps.map((step) => {
+      return step.body;
+    });
+    try {
+      const steps = await this.state.project['steps'];
+
+      const filter = await steps.filter(
+        (step) => step.type !== '' && step.body !== ''
+      );
+
+      const string = await JSON.stringify(filter);
+
+      const date = await new Date(Date.now());
+
+      const { name, category, titleImg, titleBlurb } = await this.state.project;
+
+      await console.log({
+        b4name: name,
+        b4cat: category,
+        b4titleImg: titleImg,
+        b4titleBlurb: titleBlurb
+      });
+
+      await this.setState({
+        ...this.state,
+        submitDisabled: false,
+        project: {
+          name: name,
+          category: category,
+          titleImg: titleImg,
+          titleBlurb: titleBlurb,
+          steps: string,
+          timestamp: date
+        }
+      });
+
+      await console.log({ finalizeState: this.state });
+    } catch (err) {
+      console.log({ error: err });
+    }
   };
 
   render() {
@@ -354,48 +316,118 @@ class CreateProject extends Component {
       }
     };
 
-    const isEnabled = projCheck() && userCheck();
+    // const isEnabled = projCheck() && userCheck();
 
-    const categories = this.props.projects.map((project) => project.category);
-    let filteredCategories = [...new Set(categories)];
-    const cats = filteredCategories.map((cat) => {
+    const cats = this.state.categories.map((cat) => {
       return { value: cat, label: cat };
     });
 
-    if (this.props.location.state) {
-      const project = this.props.location.state;
-      const steps = JSON.parse(project.steps);
-      let filter = this.state.project.steps.filter(
-        (step) => step.type !== '' && step.body !== ''
+    // const steps = JSON.parse(this.state.project.steps)
+
+    if (
+      this.state.project.steps != null &&
+      typeof this.state.project.steps === 'object'
+    ) {
+      let type = typeof this.state.project.steps;
+      console.log({ steps: this.state.project.steps, stepArray: type });
+      return (
+        <div className="projectInfo">
+          <form>
+            <h1>Create Project</h1>
+            <h2>project name:</h2>
+            <input
+              type="text"
+              name="name"
+              value={this.state.project.name}
+              onChange={this.textChange}
+            />
+            <h2>main image:</h2>
+            <div>
+              <img src={this.state.project.titleImg} />
+              {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+            </div>
+            <button onClick={this.mainImage}>Set Main Image</button>
+            <h2>project description:</h2>
+            <textarea
+              rows="6"
+              cols="75"
+              name="titleBlurb"
+              value={this.state.project.titleBlurb}
+              onChange={this.textChange}
+            />
+            <h2>category:</h2>
+            <CreatableSelect
+              isClearable
+              onChange={this.handleChange}
+              onInputChange={this.handleInputChange}
+              options={cats}
+              value={{
+                value: this.state.project.category,
+                label: this.state.project.category
+              }}
+            />
+
+            <h2>Steps:</h2>
+            <div>
+              {this.state.project['steps'].map((step, idx) => {
+                if (step.type === 'img') {
+                  return (
+                    <div key={idx}>
+                      <img src={step.body} />
+                      <button onClick={this.deletePhoto(idx)}>
+                        Delete Photo
+                      </button>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={step[idx]}>
+                      <input
+                        type="text"
+                        value={step.body}
+                        onChange={this.textChangeHandler(idx)}
+                      />
+                      <button
+                        type="button"
+                        onClick={this.removeTextStep(idx)}
+                        className="small"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        onClick={this.handleAddStep}
+                        className="small"
+                      >
+                        +
+                      </button>
+                      <button onClick={this.openCloudinary}>Add Picture</button>
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            <button onClick={this.finalize}>Finalize</button>
+            <button disabled={this.state.submitDisabled}>Submit</button>
+          </form>
+        </div>
       );
-      let string = JSON.stringify(filter);
+    } else {
+      let type = typeof this.state.project.steps;
+      console.log({ steps: this.state.project.steps, stepArray: type });
+      let steps = JSON.parse(this.state.project.steps);
+
       return (
         <Mutation mutation={CREATE_PROJECT}>
-          {(newProject, { data }) => (
-            <div>
+          {(newProject, { loading, error, data }) => {
+            if (loading) return <span>Submitting your project...</span>;
+            if (error) return <span>{`Error: ${error}`}</span>;
+            if (data) return <span>{`Nice Project: ${data.newProject}`}</span>;
+            return (
               <div className="projectInfo">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-                    e.stopPropagation();
-                    const steps = this.state.project.steps;
-
-                    const filter = steps.filter(
-                      (step) => step.type !== '' && step.body !== ''
-                    );
-
-                    const string = JSON.stringify(filter);
-
-                    const date = new Date(Date.now());
-
-                    this.setState({
-                      ...this.state,
-                      project: {
-                        ...this.state.project,
-                        steps: string,
-                        timestamp: date
-                      }
-                    });
 
                     newProject({
                       variables: {
@@ -408,10 +440,10 @@ class CreateProject extends Component {
                         username: this.state.username
                       }
                     });
-                    console.log({ data: data });
+                    console.log({ data: this.props.data });
                   }}
                 >
-                  <h1>{`Edit ${project.name}`}</h1>
+                  <h1>Create Project</h1>
                   <h2>project name:</h2>
                   <input
                     type="text"
@@ -441,170 +473,58 @@ class CreateProject extends Component {
                     options={cats}
                   />
                   <h2>Steps:</h2>
-                  {this.state.project.steps.map((step, idx) => {
-                    if (step.type === 'img') {
-                      return (
-                        <div key={idx}>
-                          <img src={step.body} />
-                          <button onClick={this.deletePhoto(idx)}>
-                            Delete Photo
-                          </button>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div key={idx}>
-                          <input
-                            type="text"
-                            value={step.body}
-                            onChange={this.textChangeHandler(idx)}
-                          />
-                          <button
-                            type="button"
-                            onClick={this.removeTextStep(idx)}
-                            className="small"
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={this.handleAddStep}
-                            className="small"
-                          >
-                            +
-                          </button>
-                          <button onClick={this.openCloudinary}>
-                            Add Picture
-                          </button>
-                        </div>
-                      );
-                    }
-                  })}
-                  <button type="submit">Submit</button>
-                </form>
-              </div>
-            </div>
-          )}
-        </Mutation>
-      );
-    } else {
-      return (
-        <Mutation mutation={UPDATE_PROJECT}>
-          {(editProject, { data }) => (
-            <div>
-              <div className="projectInfo">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const steps = this.state.project.steps;
-
-                    const filter = steps.filter(
-                      (step) => step.type !== '' && step.body !== ''
-                    );
-
-                    const string = JSON.stringify(filter);
-
-                    const date = new Date(Date.now());
-
-                    this.setState({
-                      ...this.state,
-                      project: {
-                        ...this.state.project,
-                        steps: string,
-                        timestamp: date
-                      }
-                    });
-
-                    editProject({
-                      variables: {
-                        name: this.state.project.name,
-                        category: this.state.project.category,
-                        timestamp: this.state.project.timestamp,
-                        titleImg: this.state.project.titleImg,
-                        titleBlurb: this.state.project.titleBlurb,
-                        steps: this.state.project.steps,
-                        username: this.state.username
-                      }
-                    });
-                    console.log({ data: data });
-                  }}
-                >
-                  <h1>Create a Project</h1>
-                  <h2>project name:</h2>
-                  <input
-                    type="text"
-                    name="name"
-                    value={this.state.project.name}
-                    onChange={this.textChange}
-                  />
-                  <h2>main image:</h2>
                   <div>
-                    <img src={this.state.project.titleImg} />
-                    {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                    {steps.map((step, idx) => {
+                      if (step.type === 'img') {
+                        return (
+                          <div key={idx}>
+                            <img src={step.body} />
+                            <button onClick={this.deletePhoto(idx)}>
+                              Delete Photo
+                            </button>
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <div key={idx}>
+                            <input
+                              type="text"
+                              value={step.body}
+                              onChange={this.textChangeHandler(idx)}
+                            />
+                            <button
+                              type="button"
+                              onClick={this.removeTextStep(idx)}
+                              className="small"
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={this.handleAddStep}
+                              className="small"
+                            >
+                              +
+                            </button>
+                            <button onClick={this.openCloudinary}>
+                              Add Picture
+                            </button>
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
-                  <button onClick={this.mainImage}>Set Main Image</button>
-                  <h2>project description:</h2>
-                  <textarea
-                    rows="6"
-                    cols="75"
-                    name="titleBlurb"
-                    value={this.state.project.titleBlurb}
-                    onChange={this.textChange}
-                  />
-                  <h2>category:</h2>
-                  <CreatableSelect
-                    isClearable
-                    onChange={this.handleChange}
-                    onInputChange={this.handleInputChange}
-                    options={cats}
-                  />
-                  <h2>Steps:</h2>
-                  {this.state.project.steps.map((step, idx) => {
-                    if (step.type === 'img') {
-                      return (
-                        <div key={idx}>
-                          <img src={step.body} />
-                          <button onClick={this.deletePhoto(idx)}>
-                            Delete Photo
-                          </button>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div key={idx}>
-                          <input
-                            type="text"
-                            value={step.body}
-                            name="body"
-                            onChange={this.textChangeHandler(idx)}
-                          />
-                          <button
-                            type="button"
-                            onClick={this.removeTextStep(idx)}
-                            className="small"
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={this.handleAddStep}
-                            className="small"
-                          >
-                            +
-                          </button>
-                          <button onClick={this.openCloudinary}>
-                            Add Picture
-                          </button>
-                        </div>
-                      );
-                    }
-                  })}
-                  <button type="submit">Submit</button>
+
+                  <button type="button" onClick={this.finalize}>
+                    Finalize
+                  </button>
+                  <button type="submit" disabled={this.state.submitDisabled}>
+                    Submit
+                  </button>
                 </form>
               </div>
-            </div>
-          )}
+            );
+          }}
         </Mutation>
       );
     }

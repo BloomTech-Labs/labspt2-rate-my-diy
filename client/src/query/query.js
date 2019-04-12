@@ -49,3 +49,28 @@ export const getReviews = gql`
     }
   }
 `;
+
+export const CREATE_PROJECT = gql`
+  mutation newProject(
+    $name: String!
+    $category: String!
+    $timestamp: String!
+    $titleImg: String!
+    $titleBlurb: String!
+    $steps: String!
+    $username: String!
+  ) {
+    newProject(
+      name: $name
+      category: $category
+      timestamp: $timestamp
+      titleImg: $titleImg
+      titleBlurb: $titleBlurb
+      steps: $steps
+      username: $username
+    ) {
+      id
+      name
+    }
+  }
+`;

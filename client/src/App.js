@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { getUsers, getProjects, getReviews } from './query/query';
+import {
+  getUsers,
+  getProjects,
+  getReviews,
+  CREATE_PROJECT
+} from './query/query';
 import * as ROUTES from './constants/routes';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -21,6 +26,7 @@ import CreateProject from './components/CreateProject/CreateProject';
 import ProjectCard from './components/Account/ProjectCard/ProjectCard';
 import ReviewCard from './components/Account/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
+import EditProject from './components/CreateProject/EditProject';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -66,9 +72,13 @@ class App extends Component {
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
-                  if (userError) return <span>{`${userError}`}</span>;
-                  if (projectError) return <span>{`${projectError}`}</span>;
-                  if (reviewError) return <span>{`${reviewError}`}</span>;
+                  if (userError)
+                    return <span>{`userError: ${userError}`}</span>;
+                  if (projectError)
+                    return <span>{`projectError: ${projectError}`}</span>;
+                  if (reviewError)
+                    return <span>{`reviewError: ${reviewError}`}</span>;
+                  // if (createProjectError) return <span>{`createProjectError: ${createProjectError}`}</span>
                   let userArray = [];
                   let projectArray = [];
                   let reviewArray = [];
@@ -103,6 +113,7 @@ class App extends Component {
                           );
                         }}
                       />
+
                       {userArray.map((user) => {
                         return (
                           <div key={user.id}>
@@ -138,18 +149,56 @@ class App extends Component {
                       })}
                       {projectArray.map((project) => {
                         return (
-                          <Route
-                            key={project.id}
-                            exact
-                            path={`/projects/${project.id}`}
-                            render={(props) => {
-                              return (
-                                <ProjectCard {...props} project={project} />
-                              );
-                            }}
-                          />
+                          <div key={project.id}>
+                            <Route
+                              exact
+                              path={`/projects/${project.id}`}
+                              render={(props) => {
+                                return (
+                                  <ProjectCard {...props} project={project} />
+                                );
+                              }}
+                            />
+                            {/* <Route
+                                key={project.id}
+                                exact
+                                path={`/projects/${project.id}/edit`}
+                                render={(props) => {
+                                  return (
+                                    <EditProject
+                                      {...props}
+                                      project={project}
+                                      projects={projectArray}
+                                      users={userArray}
+                                    />
+                                  );
+                                }}
+                              /> */}
+                          </div>
                         );
                       })}
+                      {/* {projectArray.map((project) => {
+                          return (
+                            // <div>
+                        
+                              <Route
+                                key={project.name}
+                                exact
+                                path={`/projects/${project.name}/edit`}
+                                render={(props) => {
+                                  return (
+                                    <EditProject
+                                      {...props}
+                                      project={project}
+                                      projects={projectArray}
+                                      users={userArray}
+                                    />
+                                  );
+                                }}
+                              />
+                            // </div>
+                          );
+                        })} */}
                       {reviewArray.map((review) => {
                         return (
                           <Route

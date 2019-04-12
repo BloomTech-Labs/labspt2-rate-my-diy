@@ -201,6 +201,7 @@ const Mutation = prismaObjectType({
           titleImg,
           titleBlurb,
           steps,
+          rating: [1],
           User: { connect: { username } }
         });
       }

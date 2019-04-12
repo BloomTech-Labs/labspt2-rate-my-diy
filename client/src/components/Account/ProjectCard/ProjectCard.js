@@ -16,14 +16,7 @@ class ProjectCard extends React.Component {
     const user = JSON.parse(json);
 
     if (this.state.edit) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/createproject',
-            state: project
-          }}
-        />
-      );
+      return <Redirect to={`/projects/${project.name}/edit`} />;
     }
 
     if (project.User.email === user.email) {
