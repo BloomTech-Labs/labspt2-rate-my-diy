@@ -88,13 +88,21 @@ class App extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-                  projectArray = projectArray.map(
-                    (project) =>
-                      (project = {
+                  projectArray = projectArray.map((project) => {
+                    if (project.length > 1) {
+                      return (project = {
+                        ...project,
+                        rating: parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
+                        )
+                      });
+                    } else {
+                      return (project = {
                         ...project,
                         rating: parseFloat(math.mean(project.rating).toFixed(2))
-                      })
-                  );
+                      });
+                    }
+                  });
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();

@@ -69,13 +69,21 @@ class SearchPage extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
-                  projectArray = projectArray.map(
-                    (project) =>
-                      (project = {
+                  projectArray = projectArray.map((project) => {
+                    if (project.rating.length > 1) {
+                      return (project = {
+                        ...project,
+                        rating: parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
+                        )
+                      });
+                    } else {
+                      return (project = {
                         ...project,
                         rating: parseFloat(math.mean(project.rating).toFixed(2))
-                      })
-                  );
+                      });
+                    }
+                  });
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
@@ -110,7 +118,11 @@ class SearchPage extends Component {
         {/* <div className="card-container"> */}
         {this.props.projects
           .map(({ id, name, titleImg, rating, User, category }) => {
-            let meanRating = parseFloat(math.mean(rating).toFixed(2));
+            let meanRating = rating;
+            if (rating.length > 1)
+              meanRating = parseFloat(math.mean(rating.slice(1)).toFixed(2));
+            if (rating.length === 1)
+              meanRating = parseFloat(math.mean(rating).toFixed(2));
             return (
               <div key={id} className="card-container">
                 <img src={`${titleImg}`} alt="project" />

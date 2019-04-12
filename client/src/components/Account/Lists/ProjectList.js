@@ -60,9 +60,16 @@ class ProjectList extends React.Component {
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
                     {projectsData.projects.map((project) => {
-                      let meanRating = parseFloat(
-                        math.mean(project.rating).toFixed(2)
-                      );
+                      let meanRating = project.rating;
+                      if (project.rating.length > 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
+                        );
+                      if (project.rating.length === 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating).toFixed(2)
+                        );
+
                       project.rating = meanRating;
                       return (
                         <div key={project.id}>

@@ -137,9 +137,16 @@ class Profile extends React.Component {
               <div>
                 <h2>{`${username}'s Projects`}</h2>
                 {Projects.map((project) => {
-                  let meanRating = parseFloat(
-                    math.mean(project.rating).toFixed(2)
-                  );
+                  let meanRating = project.rating;
+                  if (project.rating.length > 1)
+                    meanRating = parseFloat(
+                      math.mean(project.rating.slice(1)).toFixed(2)
+                    );
+                  if (project.rating.length === 1)
+                    meanRating = parseFloat(
+                      math.mean(project.rating).toFixed(2)
+                    );
+
                   project.rating = meanRating;
                   return <ProjectCard key={project.id} project={project} />;
                 })}
@@ -159,9 +166,16 @@ class Profile extends React.Component {
               <div>
                 <h2>{`Projects Rated By ${username}`}</h2>
                 {RatedProjects.map((project) => {
-                  let meanRating = parseFloat(
-                    math.mean(project.rating).toFixed(2)
-                  );
+                  let meanRating = project.rating;
+                  if (project.rating.length > 1)
+                    meanRating = parseFloat(
+                      math.mean(project.rating.slice(1)).toFixed(2)
+                    );
+                  if (project.rating.length === 1)
+                    meanRating = parseFloat(
+                      math.mean(project.rating).toFixed(2)
+                    );
+
                   project.rating = meanRating;
                   return <ProjectCard key={project.id} project={project} />;
                 })}
