@@ -20,6 +20,7 @@ import ReviewList from './components/Account/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
 import ReviewModal from './components/ReviewModal/ReviewModal'
 import Review from './components/Review/Review';
+import CreateReview from './components/CreateReview/CreateReview';
 
 class App extends Component {
 	constructor() {
@@ -88,6 +89,7 @@ class App extends Component {
           <Route exact path={ROUTES.REVIEW} render={(props) => (
             <Review {...props}  />
           )} />
+          <Route path={ROUTES.CREATE_REVIEW} component={CreateReview}/>
           <Route exact path={ROUTES.REVIEWS} component={ReviewModal}/>
 					<Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
 					<Route path={ROUTES.FOOTER} component={Footer} />

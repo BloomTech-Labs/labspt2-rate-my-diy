@@ -16,3 +16,4 @@ export const MORE_INFO = "/register";
 export const STRIPE = "/account/stripe";
 export const REVIEWS="/reviews"
 export const REVIEW="/reviews/:id"
+export const CREATE_REVIEW="/createreview"
