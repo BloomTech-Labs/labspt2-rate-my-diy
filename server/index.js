@@ -219,18 +219,30 @@ const Mutation = prismaObjectType({
       },
       resolve: (
         parent,
-        { name, category, timestamp, titleImg, titleBlurb, steps, username },
-        ctx,
-        info
-      ) => {
-        return prisma.updateProject({
+        {
           name,
           category,
           timestamp,
           titleImg,
           titleBlurb,
           steps,
-          User: { connect: { username } }
+          username,
+          id
+        },
+        ctx,
+        info
+      ) => {
+        return prisma.updateProject({
+          data: {
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            User: { connect: { username } }
+          },
+          where: { id }
         });
       }
     });

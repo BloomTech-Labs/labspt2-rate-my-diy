@@ -216,7 +216,7 @@ class CreateProject extends Component {
       imgDeleteDisabled: true,
       project: {
         ...this.state.project,
-        category: ''
+        titleImg: ''
       }
     });
   };
@@ -422,7 +422,8 @@ class CreateProject extends Component {
           {(newProject, { loading, error, data }) => {
             if (loading) return <span>Submitting your project...</span>;
             if (error) return <span>{`Error: ${error}`}</span>;
-            if (data) return <span>{`Nice Project: ${data.newProject}`}</span>;
+            if (data)
+              return <Redirect to={`/${this.state.username}/projects`} />;
             return (
               <div className="projectInfo">
                 <form

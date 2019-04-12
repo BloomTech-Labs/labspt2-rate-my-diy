@@ -167,21 +167,21 @@ class App extends Component {
                                 );
                               }}
                             />
-                            {/* <Route
-                                key={project.id}
-                                exact
-                                path={`/projects/${project.id}/edit`}
-                                render={(props) => {
-                                  return (
-                                    <EditProject
-                                      {...props}
-                                      project={project}
-                                      projects={projectArray}
-                                      users={userArray}
-                                    />
-                                  );
-                                }}
-                              /> */}
+                            <Route
+                              key={project.id}
+                              exact
+                              path={`/projects/${project.id}/edit`}
+                              render={(props) => {
+                                return (
+                                  <EditProject
+                                    {...props}
+                                    project={project}
+                                    projects={projectArray}
+                                    users={userArray}
+                                  />
+                                );
+                              }}
+                            />
                           </div>
                         );
                       })}

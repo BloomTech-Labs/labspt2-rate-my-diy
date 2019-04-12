@@ -74,3 +74,28 @@ export const CREATE_PROJECT = gql`
     }
   }
 `;
+
+export const UPDATE_PROJECT = gql`
+  mutation editProject(
+    $name: String!
+    $category: String!
+    $timestamp: String!
+    $titleImg: String!
+    $titleBlurb: String!
+    $steps: String!
+    $username: String!
+  ) {
+    editProject(
+      name: $name
+      category: $category
+      timestamp: $timestamp
+      titleImg: $titleImg
+      titleBlurb: $titleBlurb
+      steps: $steps
+      username: $username
+    ) {
+      id
+      name
+    }
+  }
+`;
