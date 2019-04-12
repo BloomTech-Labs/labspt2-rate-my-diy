@@ -216,7 +216,7 @@ const Mutation = prismaObjectType({
         titleBlurb: stringArg(),
         steps: stringArg(),
         username: stringArg(),
-        id: stringArg()
+        id: idArg()
       },
       resolve: (
         parent,

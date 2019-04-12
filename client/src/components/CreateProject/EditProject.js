@@ -30,6 +30,7 @@ class EditProject extends Component {
       steps,
       id
     } = this.props.project;
+    console.log({ state1st: this.props.project });
     let newSteps = [];
     if (typeof steps === 'string')
       newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
