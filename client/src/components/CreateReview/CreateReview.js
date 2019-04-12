@@ -8,7 +8,13 @@ class CreateReview extends Component {
 			title: '',
 			reviewText: '',
 		};
-	}
+  }
+  
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
 
 	render() {
@@ -17,9 +23,9 @@ class CreateReview extends Component {
       <h1>Create New Review</h1>
         <form>
           <h3>Title Of Your Review</h3>
-          <input name='title' value={this.state.title} />
+          <input onChange={this.onChange} name='title' value={this.state.title} />
           <h3>Your Review</h3>
-					<textarea name='reviewText' value={this.state.reviewText} />
+					<textarea onChange={this.onChange} name='reviewText' value={this.state.reviewText} />
 				</form>
 			</div>
 		);
