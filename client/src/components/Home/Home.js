@@ -202,7 +202,8 @@ class Home extends Component {
 										return (
 											
 												<Featured
-													key={id}
+                          key={id}
+                          id={id}
 													image={titleImg}
 													rating={meanRating}
 													title={name}

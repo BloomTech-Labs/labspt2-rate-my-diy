@@ -22,8 +22,6 @@ const GET_SPECIFIC_PROJECT = gql`
     }
   }
 }
-
-
 `;
 class Project extends Component {
 	constructor(props) {
@@ -36,8 +34,7 @@ class Project extends Component {
 		};
 	}
 	componentDidMount() {
-		const id = this.props.match.params;
-		this.setState({ id: id });
+	
 	}
 
 	render() {
@@ -49,7 +46,11 @@ class Project extends Component {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
 					console.log('data from query', data);
-					return <div />;
+					return(
+            <div>
+            <h1>{data.project.name}</h1>
+            </div>
+          );
 				}}
 			</Query>
 		);
