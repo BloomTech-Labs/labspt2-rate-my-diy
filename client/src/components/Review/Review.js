@@ -36,8 +36,6 @@ class Review extends Component {
 
 	componentDidMount() {
 		const id = this.props.match.params;
-		this.setState({ id: id });
-		this.reviewFinder(this.state.id);
 	}
 
 	render() {
@@ -51,9 +49,8 @@ class Review extends Component {
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
-					console.log('data from query', data);
-
-					return (
+          console.log('data from query', data);
+          return (
 						<React.Fragment>
 							<h1 className='headerReview'>Reviews</h1>
 							<div className='card-container' />
