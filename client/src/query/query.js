@@ -7,6 +7,9 @@ export const getUsers = gql`
       username
       userProfileImage
       email
+      RatedProjects {
+        id
+      }
     }
   }
 `;
@@ -69,6 +72,15 @@ export const CREATE_PROJECT = gql`
       steps: $steps
       username: $username
     ) {
+      id
+      name
+    }
+  }
+`;
+
+export const RATE_PROJECT = gql`
+  mutation rateAProject($rating: Int!, $id: ID!, $username: String!) {
+    rateAProject(rating: $rating, id: $id, username: $username) {
       id
       name
     }

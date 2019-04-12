@@ -163,7 +163,11 @@ class App extends Component {
                               path={`/projects/${project.id}`}
                               render={(props) => {
                                 return (
-                                  <ProjectCard {...props} project={project} />
+                                  <ProjectCard
+                                    {...props}
+                                    project={project}
+                                    users={userArray}
+                                  />
                                 );
                               }}
                             />

@@ -88,7 +88,7 @@ const Mutation = prismaObjectType({
         ratings.push(rating);
 
         const updatedProject = await prisma.updateProject({
-          data: { rating: ratings },
+          data: { rating: { set: ratings } },
           where: { id }
         });
 
