@@ -4,38 +4,32 @@ import gql from 'graphql-tag';
 import './Project.scss';
 
 const GET_SPECIFIC_PROJECT = gql`
- 
-  query project($id: ID!) {
+	query project($id: ID!) {
 		project(where: { id: $id }) {
-    id
-    name
-    key
-    category
-    timestamp
-    titleImg
-    titleBlurb
-    rating
-    steps
-    User {
-      id
-      username
-    }
-  }
-}
+			id
+			name
+			key
+			category
+			timestamp
+			titleImg
+			titleBlurb
+			rating
+			steps
+			User {
+				id
+				username
+			}
+		}
+	}
 `;
 class Project extends Component {
-	constructor(props) {
-		super(props);
+	state = {
+		reviews: '',
+		review: '',
+		id: '',
+	};
 
-		this.state = {
-			reviews: '',
-			review: '',
-			id: '',
-		};
-	}
-	componentDidMount() {
-	
-	}
+	componentDidMount() {}
 
 	render() {
 		const id = this.props.match.params;
@@ -46,11 +40,11 @@ class Project extends Component {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>Error :(</p>;
 					console.log('data from query', data);
-					return(
-            <div>
-            <h1>{data.project.name}</h1>
-            </div>
-          );
+					return (
+						<div>
+							<h1>{data.project.name}</h1>
+						</div>
+					);
 				}}
 			</Query>
 		);
