@@ -17,7 +17,7 @@ const Navigation = () => (
 
 const NavigationAuth = () => {
   return (
-    <>
+    <React.Fragment>
       <div className="overlay">
         <label htmlFor="toggle" />
       </div>
@@ -37,12 +37,12 @@ const NavigationAuth = () => {
         </ul>
         <SignOutButton />
       </div>
-    </>
+    </React.Fragment>
   );
 };
 const NavigationNonAuth = () => {
   return (
-    <>
+    <React.Fragment>
       <div className="overlay">
         <label htmlFor="toggle" />
       </div>
@@ -59,7 +59,7 @@ const NavigationNonAuth = () => {
           </li>
         </ul>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
