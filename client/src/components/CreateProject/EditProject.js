@@ -493,6 +493,10 @@ class EditProject extends Component {
                     onChange={this.handleChange}
                     onInputChange={this.handleInputChange}
                     options={cats}
+                    value={{
+                      value: this.state.project.category,
+                      label: this.state.project.category
+                    }}
                   />
                   <h2>Steps:</h2>
                   <div>

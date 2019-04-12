@@ -84,15 +84,19 @@ export const UPDATE_PROJECT = gql`
     $titleBlurb: String!
     $steps: String!
     $username: String!
+    $id: String!
   ) {
     editProject(
-      name: $name
-      category: $category
-      timestamp: $timestamp
-      titleImg: $titleImg
-      titleBlurb: $titleBlurb
-      steps: $steps
-      username: $username
+      data: {
+        name: $name
+        category: $category
+        timestamp: $timestamp
+        titleImg: $titleImg
+        titleBlurb: $titleBlurb
+        steps: $steps
+        username: $username
+      }
+      where: { id: $id }
     ) {
       id
       name
