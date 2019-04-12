@@ -5,6 +5,7 @@ import App from "./App";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { FirebaseContext, Firebase } from "./components/Firebase/Exports";
+import './styles/_globals.scss';
 
 const client = new ApolloClient({
   uri: "https://strawberry-surprise-32108.herokuapp.com/"
