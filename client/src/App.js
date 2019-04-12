@@ -21,6 +21,7 @@ import CreateProject from './components/CreateProject/CreateProject';
 import ReviewModal from './components/ReviewModal/ReviewModal'
 import Review from './components/Review/Review';
 import CreateReview from './components/CreateReview/CreateReview';
+import Project from './components/Project/Project';
 
 class App extends Component {
 	constructor() {
@@ -88,6 +89,9 @@ class App extends Component {
 					<Route path={ROUTES.ACCOUNT} component={Account} />
           <Route exact path={ROUTES.REVIEW} render={(props) => (
             <Review {...props}  />
+          )} />
+          <Route exact path={ROUTES.PROJECT} render={(props) => (
+            <Project {...props} />
           )} />
           <Route path={ROUTES.CREATE_REVIEW} component={CreateReview}/>
           <Route exact path={ROUTES.REVIEWS} component={ReviewModal}/>

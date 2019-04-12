@@ -96,14 +96,18 @@ class SearchPage extends Component {
 					.map(({ id, name, titleImg, rating, User, category }) => {
 						let meanRating = parseFloat(math.mean(rating).toFixed(2));
 						return (
-							<div key={id} className='card-container'>
-								<img src={`${titleImg}`} alt='project' />
-								<Link to={`/${User.username}/projects`}>{`${name}`}</Link>
-								{/* <div>{`${name}`}</div> */}
-								<div>{`${meanRating}`}</div>
-								<div>{`${category}`}</div>
-								<div>{`${User.username}`}</div>
-							</div>
+							
+                <div key={id} className='card-container'>
+                <Link to={`/projects/${id}`}>
+									<img src={`${titleImg}`} alt='project' />
+									<Link to={`/${User.username}/projects`}>{`${name}`}</Link>
+									{/* <div>{`${name}`}</div> */}
+									<div>{`${meanRating}`}</div>
+									<div>{`${category}`}</div>
+                  <div>{`${User.username}`}</div>
+                  </Link>
+								</div>
+							
 						);
 					})
 					.concat(
@@ -117,7 +121,7 @@ class SearchPage extends Component {
 					.concat(
 						this.props.reviews.map(({ id, name, text, timestamp, Author, ProjectReviewed }) => (
 							<div key={id} className='card-container'>
-                <Link to={`/reviews/${id}`}>
+								<Link to={`/reviews/${id}`}>
 									<Link to={`/${Author.username}/reviews`}>{`${name}`}</Link>
 									{/* <div>{`${name}`}</div> */}
 									<div>{`${text}`}</div>
