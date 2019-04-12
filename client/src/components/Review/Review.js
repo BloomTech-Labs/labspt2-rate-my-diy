@@ -18,15 +18,13 @@ const GET_SPECIFIC_REVIEW = gql`
 	}
 `;
 class Review extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
+	
+    state = {
 			reviews: '',
 			review: '',
 			id: '',
-		};
-	}
+    };
+    
 	reviewFinder = (id) => {
 		const reviews = this.state.reviews;
 		// console.log(reviews["0"].id, 'reviews inside function')
