@@ -288,7 +288,8 @@ class EditProject extends Component {
 
       const date = await new Date(Date.now());
 
-      const { name, category, titleImg, titleBlurb } = await this.state.project;
+      const { name, category, titleImg, titleBlurb, id } = await this.state
+        .project;
 
       await console.log({
         b4name: name,
@@ -306,7 +307,8 @@ class EditProject extends Component {
           titleImg: titleImg,
           titleBlurb: titleBlurb,
           steps: string,
-          timestamp: date
+          timestamp: date,
+          id: id
         }
       });
 
@@ -463,7 +465,6 @@ class EditProject extends Component {
                         id: this.state.project.id
                       }
                     });
-                    console.log({ data: this.props.data });
                   }}
                 >
                   <h1>{`Edit ${this.state.project.name}`}</h1>
