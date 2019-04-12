@@ -27,7 +27,8 @@ class EditProject extends Component {
       timestamp,
       titleImg,
       titleBlurb,
-      steps
+      steps,
+      id
     } = this.props.project;
     let newSteps = [];
     if (typeof steps === 'string')
@@ -47,7 +48,8 @@ class EditProject extends Component {
         timestamp: timestamp,
         titleImg: titleImg,
         titleBlurb: titleBlurb,
-        steps: newSteps
+        steps: newSteps,
+        id: id
       }
     };
   }
@@ -457,7 +459,7 @@ class EditProject extends Component {
                         titleBlurb: this.state.project.titleBlurb,
                         steps: this.state.project.steps,
                         username: this.state.username,
-                        id: this.props.project.id
+                        id: this.state.project.id
                       }
                     });
                     console.log({ data: this.props.data });

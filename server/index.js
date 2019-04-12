@@ -242,7 +242,7 @@ const Mutation = prismaObjectType({
             steps,
             User: { connect: { username } }
           },
-          where: { id }
+          where: { id: id }
         });
       }
     });
