@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import SearchBar from '../Searchbar/Searchbar';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import { withAuthentication } from '../Session/session';
-import * as math from 'mathjs';
-import Featured from './Featured/Featured';
-import Header from './Header/Header';
-import './Home.scss';
-import '../../styles/card.scss';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+
+import React, { Component } from "react";
+import SearchBar from "../Searchbar/Searchbar";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import { withAuthentication } from "../Session/session";
+import * as math from "mathjs";
+import Featured from "./Featured/Featured";
+import Header from "./Header/Header";
+import "./Home.scss";
+import ReviewModal from '../ReviewModal/ReviewModal'
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 class Home extends Component {
   constructor() {
