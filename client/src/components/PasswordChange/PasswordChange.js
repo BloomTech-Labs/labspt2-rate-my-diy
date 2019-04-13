@@ -5,7 +5,7 @@ import { withFirebase } from '../Firebase/Exports';
 
 const PasswordChangePage = () => (
   <div>
-    <h1>Password Change</h1>
+    <h2>Password Change</h2>
     <PasswordChangeForm />
   </div>
 );

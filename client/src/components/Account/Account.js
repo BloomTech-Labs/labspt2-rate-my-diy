@@ -5,7 +5,7 @@ import { withAuthorization } from '../Session/session';
 import ProjectList from './Lists/ProjectList';
 import ReviewList from './Lists/ReviewList';
 import Stripe from '../Stripe/Stripe';
-import Settings from '../Account/Settings/Settings';
+import PasswordChange from '../PasswordChange/PasswordChange';
 
 class Account extends Component {
   render() {
@@ -22,10 +22,10 @@ class Account extends Component {
             <li>
               <Link to={ROUTES.STRIPE}>Billing</Link>
             </li>
-            <li>
-              <Link to={ROUTES.SETTINGS}>Settings</Link>
-            </li>
           </ul>
+        </div>
+        <div>
+          <PasswordChange />
         </div>
 
         <Route path={ROUTES.MY_PROJECTS} component={ProjectList} />
@@ -36,7 +36,6 @@ class Account extends Component {
             <Stripe {...props} firebase={this.props.firebase} />
           )}
         />
-        <Route path={ROUTES.SETTINGS} component={Settings} />
       </div>
     );
   }
