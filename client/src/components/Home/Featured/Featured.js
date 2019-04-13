@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../styles/card.scss';
 import star from '../../../img/star.png';
+import { Link } from 'react-router-dom';
 
 function Featured(props) {
   const stars = [];
@@ -14,6 +15,9 @@ function Featured(props) {
       <div className="info-container">
         <h2>{props.title}</h2>
         <p>@{props.username}</p>
+        <Link to={`/projects/${props.id}`}>
+          <button>View This Project</button>
+        </Link>
         <div className="rating-container">
           {stars.map((star) => {
             return star;

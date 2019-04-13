@@ -5,7 +5,6 @@ import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-
 const firebaseSignUp = gql`
   mutation firebaseSignUp(
     $username: String!

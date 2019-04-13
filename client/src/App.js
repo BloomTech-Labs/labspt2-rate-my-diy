@@ -189,28 +189,7 @@ class App extends Component {
                           </div>
                         );
                       })}
-                      {/* {projectArray.map((project) => {
-                          return (
-                            // <div>
-                        
-                              <Route
-                                key={project.name}
-                                exact
-                                path={`/projects/${project.name}/edit`}
-                                render={(props) => {
-                                  return (
-                                    <EditProject
-                                      {...props}
-                                      project={project}
-                                      projects={projectArray}
-                                      users={userArray}
-                                    />
-                                  );
-                                }}
-                              />
-                            // </div>
-                          );
-                        })} */}
+
                       {reviewArray.map((review) => {
                         return (
                           <Route
