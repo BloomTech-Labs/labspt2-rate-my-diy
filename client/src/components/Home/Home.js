@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import SearchBar from "../Searchbar/Searchbar";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { withAuthentication } from "../Session/session";
-
-import Featured from "./Featured/Featured";
-import Header from "./Header/Header";
-import "./Home.scss";
+import React, { Component } from 'react';
+import SearchBar from '../Searchbar/Searchbar';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { withAuthentication } from '../Session/session';
+import * as math from 'mathjs';
+import Featured from './Featured/Featured';
+import Header from './Header/Header';
+import './Home.scss';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
   constructor() {
@@ -14,12 +15,11 @@ class Home extends Component {
     this.state = {
       userClicked: null,
       isLoggedIn: false,
-      user: ""
+      user: ''
     };
   }
 
   componentWillMount() {
-    console.log({firebase: this.props.firebase})
     let user = this.props.firebase.auth.currentUser !== null;
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
@@ -33,23 +33,23 @@ class Home extends Component {
     if (user) {
       this.setState({ isLoggedIn: true, user: user });
     } else {
-      this.setState({ isLoggedIn: false, user: "" });
+      this.setState({ isLoggedIn: false, user: '' });
     }
   }
 
   //This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
-  clickUserHandler = username => {
+  clickUserHandler = (username) => {
     this.setState({ userClicked: username });
   };
 
-  filterByCurrentMonth = data => {
+  filterByCurrentMonth = (data) => {
     const currentTime = new Date();
 
-    var month = currentTime.getMonth() + 1;
+    const month = currentTime.getMonth();
 
-    var year = currentTime.getFullYear();
+    const year = currentTime.getFullYear();
 
-    const filteredData = data.map(item => {
+    const filteredData = data.map((item) => {
       if (
         item.timestamp.slice(0, 4) === year &&
         item.timestamp.slice(5, 7) === month
@@ -61,6 +61,63 @@ class Home extends Component {
     return filteredData.filter(function(e) {
       return e;
     });
+  };
+
+  filterByCurrentMonthReviews = (data) => {
+    const currentTime = new Date();
+
+    const month = currentTime.getMonth() + 1;
+
+    const year = currentTime.getFullYear();
+
+    //We clean the data we got to get over by taking out users that have no reviews
+    const eliminateEmptyReviews = data.filter((item) => {
+      if (item.ReviewList[0] !== undefined) {
+        return item;
+      }
+    });
+
+    const popularReviewer = [];
+
+    for (let i = 0; i < eliminateEmptyReviews.length; i++) {
+      //We get the reviews that are from the current month
+      let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
+        (review) => {
+          if (
+            review.timestamp.slice(0, 4) == year &&
+            review.timestamp.slice(5, 7) == month
+          ) {
+            return review;
+          }
+        }
+      );
+
+      /* 
+        This one is really good. We mutate the review list object array with the new array that has 
+        the reviews with the current date and replace the old with the new.
+      */
+
+      eliminateEmptyReviews[i].ReviewList = currentReviews;
+
+      //This block of code just grabs the thumbs up total of the reviews and returns just that
+      let thumbsUpTotal = 0;
+
+      eliminateEmptyReviews[i].ReviewList.map((review) => {
+        thumbsUpTotal += review.thumbsUp;
+      });
+
+      //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period
+      if (thumbsUpTotal !== 0) {
+        popularReviewer.push({
+          id: eliminateEmptyReviews[i].id,
+          username: eliminateEmptyReviews[i].username,
+          email: eliminateEmptyReviews[i].email,
+          userProfileImage: eliminateEmptyReviews[i].userProfileImage,
+          thumbsUpTotal
+        });
+      }
+    }
+    return popularReviewer.sort((a, b) => b.thumbsUpTotal - a.thumbsUpTotal);
   };
 
   render() {
@@ -94,15 +151,16 @@ class Home extends Component {
 
                   if (projectData !== undefined)
                     projectArray = Object.values(projectData).flat();
+                  projectArray = projectArray.map(
+                    (project) =>
+                      (project = {
+                        ...project,
+                        rating: parseFloat(math.mean(project.rating).toFixed(2))
+                      })
+                  );
 
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
-
-                  console.log({
-                    users: userData,
-                    projects: projectData,
-                    reviews: reviewData
-                  });
                   return (
                     <SearchBar
                       {...this.props}
@@ -125,7 +183,6 @@ class Home extends Component {
       </Query>
       </>
     );
-    console.log({ loggedIn: this.state.isLoggedIn, user: this.state.user });
 
     return (
       <div>
@@ -133,11 +190,11 @@ class Home extends Component {
         <SearchWithData />
 
         <div id="home-container">
-          <h1>Featured Projects</h1>
+          <h2>Featured Projects</h2>
           <Query
             query={gql`
               {
-                projects(orderBy: rating_DESC) {
+                projects {
                   id
                   name
                   titleImg
@@ -154,32 +211,42 @@ class Home extends Component {
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-
-              const projects = this.filterByCurrentMonth(data.projects).slice(
-                0,
-                4
+              if (error) return <p>{`${error}`}</p>;
+              let projectArray = data.projects.map(
+                (project) =>
+                  (project = {
+                    ...project,
+                    rating: parseFloat(math.mean(project.rating).toFixed(2))
+                  })
               );
+              console.log({ projectArray: projectArray });
+              const projects = this.filterByCurrentMonth(projectArray)
+                .slice(0, 4)
+                .sort(function(a, b) {
+                  return b.rating - a.rating;
+                });
 
               return (
                 <div className="card-container">
-                  {projects.map(({ id, name, titleImg, rating, User }) => (
-                    <Featured
-                      key={id}
-                      image={titleImg}
-                      rating={rating}
-                      title={name}
-                      // below might need to be edited
-                      username={User.username}
-                      clickHandler={this.clickUserHandler}
-                    />
-                  ))}
+                  {projects.map(({ id, name, titleImg, rating, User }) => {
+                    let meanRating = parseFloat(math.mean(rating).toFixed(2));
+                    return (
+                      <Featured
+                        key={id}
+                        image={titleImg}
+                        rating={meanRating}
+                        title={name}
+                        username={User.username}
+                        clickHandler={this.clickUserHandler}
+                      />
+                    );
+                  })}
                 </div>
               );
             }}
           </Query>
 
-          <h1>Popular Makers</h1>
+          <h2>Popular Makers</h2>
           <Query
             query={gql`
               {
@@ -200,7 +267,7 @@ class Home extends Component {
               if (error) return <p>Error :(</p>;
 
               const currentMakers = data.users
-                .map(user => {
+                .map((user) => {
                   const currentProject = this.filterByCurrentMonth(
                     user.Projects
                   );
@@ -209,8 +276,11 @@ class Home extends Component {
                     return null;
                   }
 
-                  const rating = currentProject.map(project => {
-                    return project.rating;
+                  const rating = currentProject.map((project) => {
+                    let meanRating = parseFloat(
+                      math.mean(project.rating).toFixed(2)
+                    );
+                    return meanRating;
                   });
 
                   ///Checks for the mode average
@@ -234,7 +304,7 @@ class Home extends Component {
                     averageRating: average
                   };
                 })
-                .filter(e => e !== undefined && e !== null);
+                .filter((e) => e !== undefined && e !== null);
 
               const sortedMakers = currentMakers
                 .sort(function(a, b) {
@@ -259,14 +329,21 @@ class Home extends Component {
               );
             }}
           </Query>
-          <h1>Popular Reviewers</h1>
+          <h2>Popular Reviewers</h2>
           <Query
             query={gql`
               {
                 users(orderBy: username_ASC) {
                   id
                   username
+                  email
                   userProfileImage
+                  ReviewList {
+                    id
+                    name
+                    thumbsUp
+                    timestamp
+                  }
                 }
               }
             `}
@@ -275,9 +352,13 @@ class Home extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error :(</p>;
 
+              const reviews = this.filterByCurrentMonthReviews(
+                data.users
+              ).slice(0, 8);
+
               return (
                 <div className="card-container">
-                  {data.users.map(({ id, username, userProfileImage }) => (
+                  {reviews.map(({ id, username, userProfileImage }) => (
                     <Featured
                       key={id}
                       username={username}

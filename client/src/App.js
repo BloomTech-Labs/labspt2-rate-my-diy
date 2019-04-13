@@ -1,22 +1,23 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import { getUsers, getProjects, getReviews } from "./query/query";
-import * as ROUTES from "./constants/routes";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import Navigation from "./reactRouter/reactRouter";
-import Home from "./components/Home/Home";
-import SignIn from "./components/SignIn/SignIn";
-import SignUp from "./components/SignUp/SignUp";
-import SearchPage from "./components/SearchPage/SearchPage";
-import PasswordForget from "./components/PasswordForget/PasswordForget";
-import Footer from "./components/Footer/Footer";
-import Account from "./components/Account/Account";
-import PasswordChange from "./components/PasswordChange/PasswordChange";
-import { withAuthentication } from "./components/Session/session";
-import ProjectList from "./components/Account/Lists/ProjectList";
-import ReviewList from "./components/Account/Lists/ReviewList"
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { getUsers, getProjects, getReviews } from './query/query';
+import * as ROUTES from './constants/routes';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Navigation from './reactRouter/reactRouter';
+import Home from './components/Home/Home';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
+import SearchPage from './components/SearchPage/SearchPage';
+import PasswordForget from './components/PasswordForget/PasswordForget';
+import Footer from './components/Footer/Footer';
+import Account from './components/Account/Account';
+import PasswordChange from './components/PasswordChange/PasswordChange';
+import { withAuthentication } from './components/Session/session';
+import ProjectList from './components/Account/Lists/ProjectList';
+import ReviewList from './components/Account/Lists/ReviewList';
+import CreateProject from './components/CreateProject/CreateProject';
 
 class App extends Component {
   constructor() {
@@ -28,26 +29,19 @@ class App extends Component {
     };
   }
 
-  // componentDidMount(){
-  // 	console.log({app_props: this.props})
-  // }
-
-  projectSearchHandler = projects => {
+  projectSearchHandler = (projects) => {
+    console.log({ projects: projects });
     this.setState({ projects });
-
-    // console.log({projects: this.state.projects})
   };
 
-  userSearchHandler = users => {
+  userSearchHandler = (users) => {
+    console.log({ users: users });
     this.setState({ users });
-
-    // console.log(this.state.users)
   };
 
-  reviewSearchHandler = reviews => {
+  reviewSearchHandler = (reviews) => {
+    console.log({ reviews: reviews });
     this.setState({ reviews });
-
-    // console.log(this.state.reviews)
   };
 
   render() {
@@ -58,7 +52,7 @@ class App extends Component {
           <Route
             exact
             path={ROUTES.HOME}
-            render={props => (
+            render={(props) => (
               <Home
                 {...props}
                 projectSearchHandler={this.projectSearchHandler}
@@ -76,7 +70,7 @@ class App extends Component {
           <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
           <Route
             path={ROUTES.SEARCH}
-            render={props => (
+            render={(props) => (
               <SearchPage
                 {...props}
                 users={this.state.users}
@@ -92,11 +86,12 @@ class App extends Component {
             )}
           />
           <Route path={ROUTES.ACCOUNT} component={Account} />
+          <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
           <Route path={ROUTES.FOOTER} component={Footer} />
           <Query
             query={gql`
               {
-                users{
+                users {
                   id
                   username
                   email
@@ -105,42 +100,33 @@ class App extends Component {
             `}
           >
             {({ loading, error, data }) => {
-              if (loading || !data[0]) console.log("loading user query");
+              if (loading || !data) console.log('loading user query');
               if (error) console.log({ userQueryError: error });
-              let userArray = Object.values(data).flat()
-              console.log({data: userArray})
 
-              return (
-                userArray.map(user => {
+              if (data) {
+                let userArray = Object.values(data).flat();
+                return userArray.map((user) => {
                   return (
-                    <>
+                    <div key={user.id}>
                       <Route
                         exact
                         path={`/${user.username}/projects`}
-                        key={user.email}
-                        render={props => {
+                        render={(props) => {
                           return <ProjectList {...props} email={user.email} />;
                         }}
                       />
                       <Route
                         exact
                         path={`/${user.username}/reviews`}
-                        key={user.username}
-                        render={props => {
+                        render={(props) => {
                           return <ReviewList {...props} email={user.email} />;
                         }}
                       />
-                    </>
+                    </div>
                   );
-                })
-              )
-           
-                
-                
-              
-              }}
-            
-              
+                });
+              } else return <h1>No Data</h1>;
+            }}
           </Query>
         </div>
       </Router>

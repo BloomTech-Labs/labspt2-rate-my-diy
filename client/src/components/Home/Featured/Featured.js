@@ -1,6 +1,6 @@
-import React from "react";
-import "../../../styles/card.scss";
-import star from "../../../img/star.png";
+import React from 'react';
+import '../../../styles/card.scss';
+import star from '../../../img/star.png';
 
 function Featured(props) {
   const stars = [];
@@ -15,7 +15,7 @@ function Featured(props) {
         <h2>{props.title}</h2>
         <p>@{props.username}</p>
         <div className="rating-container">
-          {stars.map(star => {
+          {stars.map((star) => {
             return star;
           })}
         </div>

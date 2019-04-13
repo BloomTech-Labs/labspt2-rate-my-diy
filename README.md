@@ -1,6 +1,6 @@
 # Rate my DIY
 
-This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top.
+This web app will target people who want to get up and get productive and learn different skills to do projects themselves. There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top.
 
 ## Getting Started
 
@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* [node](https://nodejs.org/en/)
-* [yarn](https://yarnpkg.com/en/)
+- [node](https://nodejs.org/en/)
+- [yarn](https://yarnpkg.com/en/)
 
 ### Installing
 
@@ -51,7 +51,7 @@ While being on the root of the client folder run the following command
 yarn build
 ```
 
-[Production Front-End](https://rate-my-diy.netlify.com/)
+[Production Front-End](https://console.firebase.google.com/u/1/project/ratemydiy-9453b/hosting/main)
 
 ### Back End
 
@@ -65,24 +65,24 @@ yarn server
 
 ## Built with
 
-* [React](https://reactjs.org/)
-* [GraphQL](https://graphql.org/)
-* [Apollo Client](https://www.apollographql.com/docs/react/)
-* [GraphQL Yoga](https://github.com/prisma/graphql-yoga)
-* [Prisma](https://www.prisma.io/)
-* [PostgreSQL](https://www.postgresql.org/)
+- [React](https://reactjs.org/)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+- [GraphQL Yoga](https://github.com/prisma/graphql-yoga)
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ## Authors
 
-* **Angela La Salle** - [alasalle](https://github.com/alasalle)
-* **Christopher Ferrell** - [cferrell2](https://github.com/cferrell2)
-* **James Bierly** - [jbierly1](https://github.com/jbierly1)
-* **Lorenzo Evans** - [LorenzoEvans](https://github.com/LorenzoEvans)
-* **Luis Alvarez** - [TheGameFreak720](https://github.com/TheGameFreak720)
-* **Michael Trew** - [mtrew2015](https://github.com/mtrew2015)
+- **Angela La Salle** - [alasalle](https://github.com/alasalle)
+- **Christopher Ferrell** - [cferrell2](https://github.com/cferrell2)
+- **James Bierly** - [jbierly1](https://github.com/jbierly1)
+- **Lorenzo Evans** - [LorenzoEvans](https://github.com/LorenzoEvans)
+- **Luis Alvarez** - [TheGameFreak720](https://github.com/TheGameFreak720)
+- **Michael Trew** - [mtrew2015](https://github.com/mtrew2015)
 
 ## Acknowledgements
 
-* Julian Kohlman who is our PM and has helped us get this project started.
-* F.J. Lennon for being our instructor and giving us great advise through the process
-* Hat tip to anyone whose code was used
+- Julian Kohlman who is our PM and has helped us get this project started.
+- F.J. Lennon for being our instructor and giving us great advise through the process
+- Hat tip to anyone whose code was used

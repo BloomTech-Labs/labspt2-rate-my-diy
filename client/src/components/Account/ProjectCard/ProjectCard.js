@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react';
 
+<<<<<<< HEAD
 const ProjectCard = ({project}) => {
     return (
         <div>
@@ -10,5 +11,17 @@ const ProjectCard = ({project}) => {
         </div>
     )
 }
+=======
+const ProjectCard = ({ project }) => {
+  return (
+    <div>
+      <div>{`${project.name}`}</div>
+      <div>{`${project.rating}`}</div>
+      <img src={`${project.titleImg}`} alt="project" />
+      <div>{`${project.timestamp}`}</div>
+    </div>
+  );
+};
+>>>>>>> 756c6a9a7cc074cb44442952bfd2f36d70332a27
 
-export default ProjectCard
+export default ProjectCard;
