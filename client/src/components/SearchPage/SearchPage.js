@@ -5,10 +5,10 @@ import { Query } from 'react-apollo';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
 
-// import Featured from "../Home/Featured/Featured";
 import Header from '../Home/Header/Header';
-import '../Home/Home.scss';
+import '../../styles/card.scss'
 import './SearchPage.scss';
+import star from '../../img/star.png';
 
 class SearchPage extends Component {
   constructor() {
@@ -107,24 +107,34 @@ class SearchPage extends Component {
         <Header />
         <SearchWithData />
         <h1>Results:</h1>
-        {/* <div className="card-container"> */}
+        <div className="card-container"> 
         {this.props.projects
           .map(({ id, name, titleImg, rating, User, category }) => {
             let meanRating = parseFloat(math.mean(rating).toFixed(2));
+
+            const stars = [];
+
+            for (let i = 0; i < Math.round(meanRating); i++) {
+              stars.push(<img src={star} alt="star" key={i} />);
+            }
+
             return (
-              <div key={id} className="card-container">
+              <div key={id} className="card">
                 <img src={`${titleImg}`} alt="project" />
-                <Link to={`/${User.username}/projects`}>{`${name}`}</Link>
-                {/* <div>{`${name}`}</div> */}
-                <div>{`${meanRating}`}</div>
-                <div>{`${category}`}</div>
-                <div>{`${User.username}`}</div>
+                <Link to={`/${User.username}/projects`}><h2>{name}</h2></Link>
+                <div className="rating-container">
+                  {stars.map((star) => {
+                      return star;
+                  })}
+                </div>
+                <p>{category}</p>
+                <p>@{User.username}</p>
               </div>
             );
           })
           .concat(
             this.props.users.map(({ id, username, userProfileImage }) => (
-              <div key={id} className="card-container">
+              <div key={id} className="card">
                 <img src={`${userProfileImage}`} alt="user" />
                 <div>{`${username}`}</div>
               </div>
@@ -133,7 +143,7 @@ class SearchPage extends Component {
           .concat(
             this.props.reviews.map(
               ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
-                <div key={id} className="card-container">
+                <div key={id} className="card">
                   <Link to={`/${Author.username}/reviews`}>{`${name}`}</Link>
                   {/* <div>{`${name}`}</div> */}
                   <div>{`${text}`}</div>
@@ -144,7 +154,7 @@ class SearchPage extends Component {
               )
             )
           )}
-        {/* </div> */}
+        </div> 
       </div>
     );
   }
