@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import SearchBar from "../Searchbar/Searchbar";
 import { Query } from "react-apollo";
