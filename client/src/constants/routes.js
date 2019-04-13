@@ -14,3 +14,4 @@ export const REVIEW_LIST = '/:user/reviews';
 export const SETTINGS = '/account/settings';
 export const MORE_INFO = '/register';
 export const STRIPE = '/account/stripe';
+export const REVIEWS= '/reviews';
