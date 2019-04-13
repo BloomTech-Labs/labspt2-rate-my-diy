@@ -1,12 +1,15 @@
 import React from 'react';
 
 const ReviewCard = ({ review }) => {
+  console.log({ reviewCard: review });
   return (
     <div>
-      <div>{`@${review.ProjectReviewed.User.username}`}</div>
-      <div>{`${review.ProjectReviewed.name}`}</div>
-      <img src={`${review.ProjectReviewed.titleImg}`} alt="review" />
-      <div>{`${review.ProjectReviewed.timestamp}`}</div>
+      <div>{`@${review.Author.username}`}</div>
+      <div>{`${review.timestamp}`}</div>
+      <img src={`${review.name}`} alt="review" />
+      <div>{`${review.text}`}</div>
+      <span>{`Thumbs Up: ${review.thumbsUp}`}</span>
+      <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
     </div>
   );
 };

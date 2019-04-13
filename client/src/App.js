@@ -167,6 +167,7 @@ class App extends Component {
                                     {...props}
                                     project={project}
                                     users={userArray}
+                                    reviews={reviewArray}
                                   />
                                 );
                               }}

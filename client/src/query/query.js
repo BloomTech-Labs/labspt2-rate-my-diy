@@ -40,6 +40,8 @@ export const getReviews = gql`
       name
       text
       timestamp
+      thumbsUp
+      thumbsDown
       Author {
         id
         username
