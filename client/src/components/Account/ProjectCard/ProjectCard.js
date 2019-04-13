@@ -7,10 +7,18 @@ import { RATE_PROJECT } from '../../../query/query';
 class ProjectCard extends React.Component {
   constructor(props) {
     super(props);
+    const { users } = this.props;
+
+    const json = localStorage.getItem('authUser');
+    const user = JSON.parse(json);
+
+    const visitor = users.filter((u) => u.email === user.email);
     this.state = {
       edit: false,
       stars: 0,
-      starsDisabled: true
+      starsDisabled: true,
+      authUser: user,
+      visitor: visitor
     };
   }
 
@@ -31,21 +39,17 @@ class ProjectCard extends React.Component {
   };
 
   render() {
-    const { project, users } = this.props;
+    const { project } = this.props;
 
     let steps = JSON.parse(project.steps);
-    const json = localStorage.getItem('authUser');
-    const user = JSON.parse(json);
 
-    const visitor = users.filter((u) => u.email === user.email);
-
-    console.log({ visitor });
+    console.log({ visitor: this.state.visitor });
 
     if (this.state.edit) {
       return <Redirect to={`/projects/${project.id}/edit`} />;
     }
 
-    if (project.User.email === user.email) {
+    if (project.User.email === this.state.user.email) {
       return (
         <>
           <div>
@@ -91,7 +95,7 @@ class ProjectCard extends React.Component {
         </>
       );
     } else {
-      if (visitor.RatedProjects) {
+      if (this.state.visitor.RatedProjects) {
         return (
           <>
             <div>
@@ -122,7 +126,7 @@ class ProjectCard extends React.Component {
                       }
                     })}
 
-                    {visitor.RatedProjects.map((proj) => {
+                    {this.state.visitor.RatedProjects.map((proj) => {
                       if (proj.id === project.id) return null;
                       else
                         return (
@@ -132,10 +136,7 @@ class ProjectCard extends React.Component {
                                 return <span>Submitting your rating...</span>;
                               if (error)
                                 return <span>{`Error: ${error}`}</span>;
-                              if (data)
-                                return (
-                                  <Redirect to={`/projects/${project.id}`} />
-                                );
+                              if (data) return <Redirect to={`/`} />;
                               return (
                                 <form
                                   onSubmit={(e) => {
@@ -144,7 +145,7 @@ class ProjectCard extends React.Component {
                                       variables: {
                                         rating: this.state.stars,
                                         id: project.id,
-                                        username: visitor[0].username
+                                        username: this.state.visitor[0].username
                                       }
                                     });
                                   }}
@@ -226,7 +227,7 @@ class ProjectCard extends React.Component {
                                 variables: {
                                   rating: this.state.stars,
                                   id: project.id,
-                                  username: visitor[0].username
+                                  username: this.state.visitor[0].username
                                 }
                               });
                             }}
@@ -253,7 +254,7 @@ class ProjectCard extends React.Component {
                         );
                       }}
                     </Mutation>
-                    )<button onClick={handleClose}>Close</button>
+                    <button onClick={handleClose}>Close</button>
                   </div>
                 )}
               />
