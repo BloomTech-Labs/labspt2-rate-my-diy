@@ -68,7 +68,8 @@ class App extends Component {
                 {({
                   loading: loadingReviews,
                   data: reviewData,
-                  error: reviewError
+                  error: reviewError,
+                  refetch
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
@@ -168,6 +169,7 @@ class App extends Component {
                                     project={project}
                                     users={userArray}
                                     reviews={reviewArray}
+                                    refetch={refetch}
                                   />
                                 );
                               }}

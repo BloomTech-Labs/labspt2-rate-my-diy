@@ -2,7 +2,7 @@ import React from 'react';
 import MicroModal from 'react-micro-modal';
 import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { RATE_PROJECT, NEW_REVIEW } from '../../../query/query';
+import { RATE_PROJECT, NEW_REVIEW, getReviews } from '../../../query/query';
 import ReviewCard from '../ReviewCard/ReviewCard';
 
 class ProjectCard extends React.Component {
@@ -267,8 +267,20 @@ class ProjectCard extends React.Component {
                                           .username,
                                         id: project.id
                                       }
+                                      // refetchQueries: [ { query: getReviews}]
                                     });
-                                    // await this.setState({...this.state, newReview: false})
+
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
                                   }}
                                 >
                                   <h2>New Review</h2>
@@ -453,8 +465,19 @@ class ProjectCard extends React.Component {
                                           .username,
                                         id: project.id
                                       }
+                                      // refetchQueries: [ { query: getReviews}]
                                     });
-                                    // await this.setState({...this.state, newReview: false})
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
                                   }}
                                 >
                                   <h2>New Review</h2>
@@ -647,8 +670,19 @@ class ProjectCard extends React.Component {
                                       username: this.state.visitor[0].username,
                                       id: project.id
                                     }
+                                    // refetchQueries: [ { query: getReviews}]
                                   });
-                                  // await this.setState({...this.state, newReview: false})
+                                  await this.props.refetch();
+                                  const { reviews } = await this.props;
+                                  let revs = await reviews.filter(
+                                    (rev) =>
+                                      rev.ProjectReviewed.id === project.id
+                                  );
+                                  await this.setState({
+                                    ...this.state,
+                                    newReview: false,
+                                    reviews: revs
+                                  });
                                 }}
                               >
                                 <h2>New Review</h2>
@@ -1117,8 +1151,19 @@ class ProjectCard extends React.Component {
                                           .username,
                                         id: project.id
                                       }
+                                      // refetchQueries: [ { query: getReviews}]
                                     });
-                                    // await this.setState({...this.state, newReview: false})
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
                                   }}
                                 >
                                   <h2>New Review</h2>
@@ -1307,9 +1352,20 @@ class ProjectCard extends React.Component {
                                         username: this.state.visitor[0]
                                           .username,
                                         id: project.id
-                                      }
+                                      },
+                                      refetchQueries: [{ query: getReviews }]
                                     });
-                                    // await this.setState({...this.state, newReview: false})
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
                                   }}
                                 >
                                   <h2>New Review</h2>
@@ -1497,8 +1553,19 @@ class ProjectCard extends React.Component {
                                       username: this.state.visitor[0].username,
                                       id: project.id
                                     }
+                                    // refetchQueries: [ { query: getReviews}]
                                   });
-                                  // await this.setState({...this.state, newReview: false})
+                                  await this.props.refetch();
+                                  const { reviews } = await this.props;
+                                  let revs = await reviews.filter(
+                                    (rev) =>
+                                      rev.ProjectReviewed.id === project.id
+                                  );
+                                  await this.setState({
+                                    ...this.state,
+                                    newReview: false,
+                                    reviews: revs
+                                  });
                                 }}
                               >
                                 <h2>New Review</h2>
