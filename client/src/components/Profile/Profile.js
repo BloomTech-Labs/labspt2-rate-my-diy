@@ -20,6 +20,12 @@ const GET_USER = gql`
         name
         text
         timestamp
+        thumbsUp
+        thumbsDown
+        Author {
+          id
+          username
+        }
         ProjectReviewed {
           id
           name
@@ -44,6 +50,7 @@ const GET_USER = gql`
         User {
           id
           username
+          email
         }
       }
       LikedReviews {
@@ -148,7 +155,14 @@ class Profile extends React.Component {
                     );
 
                   project.rating = meanRating;
-                  return <ProjectCard key={project.id} project={project} />;
+                  return (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      reviews={ReviewList}
+                      users={data}
+                    />
+                  );
                 })}
               </div>
               <div>
@@ -177,7 +191,14 @@ class Profile extends React.Component {
                     );
 
                   project.rating = meanRating;
-                  return <ProjectCard key={project.id} project={project} />;
+                  return (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      reviews={ReviewList}
+                      users={data}
+                    />
+                  );
                 })}
               </div>
             </div>
