@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 125px;
+  height: 80px;
   background-color: #fff;
 }
 
@@ -29,9 +29,9 @@
 .verticalNav {
   color: #333;
   position: relative;
-  top: -55px;
-  height: 180px;
-  padding-top: 34px;
+  top: -70px;
+  height: 150px;
+  padding-top: 5px;
   padding-right: 20px;
   padding-left: 130px;
   font-size: 22px;
@@ -39,6 +39,7 @@
   background-color: #ddd;
   transition: top 600ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
   opacity: 0.9;
+  margin-bottom: -80px;
 }
 
 .verticalNav a {
@@ -58,5 +59,5 @@
 }
 
 #toggle:checked ~ .verticalNav {
-  top: 100px;
+  top: 80px;
 }

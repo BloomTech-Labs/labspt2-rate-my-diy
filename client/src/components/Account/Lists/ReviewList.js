@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import ReviewCard from '../ReviewCard/ReviewCard';
+import { Link } from 'react-router-dom';
 
 // const json = localStorage.getItem("authUser")
 // const user = JSON.parse(json)
@@ -74,6 +75,7 @@ class ReviewList extends React.Component {
                     {reviewsData.reviews.map((review) => {
                       return <ReviewCard key={review.id} review={review} />;
                     })}
+                    <Link to={'/search'}>Go Review a New Project</Link>
                   </div>
                 );
               } else {
@@ -81,7 +83,8 @@ class ReviewList extends React.Component {
                 return (
                   <div>
                     <h1>{`${userData.user.username}'s Reviews`}</h1>
-                    <span>Add some Reviews</span>
+                    <p>You haven't reviewed any projects.</p>
+                    <Link to={'/search'}>Go Review a New Project</Link>
                   </div>
                 );
               }
