@@ -138,39 +138,27 @@ const Mutation = prismaObjectType({
         user: stringArg(),
         username: stringArg(),
         id: idArg(),
-        projRating: intArg(),
-        projId: idArg(),
-        raterUser: stringArg()
+        projRating: intArg()
       },
       resolve: async (
         parent,
-        {
-          name,
-          text,
-          timestamp,
-          username,
-          user,
-          id,
-          projRating,
-          projId,
-          raterUser
-        },
+        { name, text, timestamp, username, user, id, projRating },
         ctx,
         info
       ) => {
-        if (projRating > 0 && projId && raterUser) {
-          const ratingProject = await prisma.project({ id: projId });
+        if (projRating > 0) {
+          const ratingProject = await prisma.project({ id: id });
           let ratings = ratingProject.rating;
           ratings.push(projRating);
 
           const updateProj = await prisma.updateProject({
             data: { rating: { set: ratings } },
-            where: { projId }
+            where: { id }
           });
 
           const user = await prisma.updateUser({
-            data: { RatedProjects: { connect: { projId } } },
-            where: { raterUser }
+            data: { RatedProjects: { connect: { id } } },
+            where: { username }
           });
 
           let project = await prisma.project({ id: id });
