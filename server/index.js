@@ -130,7 +130,7 @@ const Mutation = prismaObjectType({
       }
     });
     t.field('newReview', {
-      type: 'Project',
+      type: 'Review',
       args: {
         name: stringArg(),
         text: stringArg(),
@@ -235,8 +235,7 @@ const Mutation = prismaObjectType({
           });
         }
 
-        let updatedProject = await prisma.project({ id: id });
-        return updatedProject;
+        return review;
       }
     });
     t.field('newProject', {

@@ -220,12 +220,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -244,7 +239,8 @@ class ProjectCard extends React.Component {
                                   <span>Submitting your review...</span>
                                 </form>
                               );
-                            if (error)
+                            if (error) {
+                              console.log({ revError: error });
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -262,12 +258,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -286,11 +277,14 @@ class ProjectCard extends React.Component {
                                   <span>
                                     There was an error submitting your review.
                                   </span>
-                                  <button onClick={window.location.reload()}>
+                                  <button
+                                    onClick={() => window.location.reload()}
+                                  >
                                     Go Back
                                   </button>
                                 </form>
                               );
+                            }
                             if (data)
                               console.log({
                                 data: data
@@ -343,12 +337,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -419,12 +408,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -443,7 +427,8 @@ class ProjectCard extends React.Component {
                                   <span>Submitting your review...</span>
                                 </form>
                               );
-                            if (error)
+                            if (error) {
+                              console.log({ revError: error });
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -461,12 +446,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -485,11 +465,14 @@ class ProjectCard extends React.Component {
                                   <span>
                                     There was an error submitting your review.
                                   </span>
-                                  <button onClick={window.location.reload()}>
+                                  <button
+                                    onClick={() => window.location.reload()}
+                                  >
                                     Go Back
                                   </button>
                                 </form>
                               );
+                            }
                             if (data) console.log({ data: data });
                             return (
                               <form
@@ -537,12 +520,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -639,7 +617,8 @@ class ProjectCard extends React.Component {
                                 <span>Submitting your review...</span>
                               </form>
                             );
-                          if (error)
+                          if (error) {
+                            console.log({ revError: error });
                             return (
                               <form>
                                 <h2>New Review</h2>
@@ -657,12 +636,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -681,11 +655,14 @@ class ProjectCard extends React.Component {
                                 <span>
                                   There was an error submitting your review.
                                 </span>
-                                <button onClick={window.location.reload()}>
+                                <button
+                                  onClick={() => window.location.reload()}
+                                >
                                   Go Back
                                 </button>
                               </form>
                             );
+                          }
                           if (data)
                             console.log({
                               data: data
@@ -735,12 +712,7 @@ class ProjectCard extends React.Component {
                                 <option value="4">4 stars</option>
                                 <option value="5">5 stars</option>
                               </select>
-                              <button
-                                type="submit"
-                                disabled={this.state.starsDisabled}
-                              >
-                                Submit Rating
-                              </button>
+
                               <h3>Title:</h3>
                               <input
                                 type="text"
@@ -996,12 +968,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -1020,7 +987,8 @@ class ProjectCard extends React.Component {
                                   <span>Submitting your review...</span>
                                 </form>
                               );
-                            if (error)
+                            if (error) {
+                              console.log({ revError: error });
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -1038,12 +1006,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -1062,11 +1025,14 @@ class ProjectCard extends React.Component {
                                   <span>
                                     There was an error submitting your review.
                                   </span>
-                                  <button onClick={window.location.reload()}>
+                                  <button
+                                    onClick={() => window.location.reload()}
+                                  >
                                     Go Back
                                   </button>
                                 </form>
                               );
+                            }
                             if (data)
                               console.log({
                                 data: data
@@ -1117,12 +1083,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -1198,12 +1159,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -1222,7 +1178,8 @@ class ProjectCard extends React.Component {
                                   <span>Submitting your review...</span>
                                 </form>
                               );
-                            if (error)
+                            if (error) {
+                              console.log({ revError: error });
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -1240,12 +1197,7 @@ class ProjectCard extends React.Component {
                                     <option value="4">4 stars</option>
                                     <option value="5">5 stars</option>
                                   </select>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.starsDisabled}
-                                  >
-                                    Submit Rating
-                                  </button>
+
                                   <h3>Title:</h3>
                                   <input
                                     type="text"
@@ -1264,11 +1216,14 @@ class ProjectCard extends React.Component {
                                   <span>
                                     There was an error submitting your review.
                                   </span>
-                                  <button onClick={window.location.reload()}>
+                                  <button
+                                    onClick={() => window.location.reload()}
+                                  >
                                     Go Back
                                   </button>
                                 </form>
                               );
+                            }
                             if (data) console.log({ data: data });
                             return (
                               <form
@@ -1316,12 +1271,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -1398,12 +1348,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -1422,7 +1367,8 @@ class ProjectCard extends React.Component {
                                 <span>Submitting your review...</span>
                               </form>
                             );
-                          if (error)
+                          if (error) {
+                            console.log({ revError: error });
                             return (
                               <form>
                                 <h2>New Review</h2>
@@ -1440,12 +1386,7 @@ class ProjectCard extends React.Component {
                                   <option value="4">4 stars</option>
                                   <option value="5">5 stars</option>
                                 </select>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.starsDisabled}
-                                >
-                                  Submit Rating
-                                </button>
+
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -1464,11 +1405,14 @@ class ProjectCard extends React.Component {
                                 <span>
                                   There was an error submitting your review.
                                 </span>
-                                <button onClick={window.location.reload()}>
+                                <button
+                                  onClick={() => window.location.reload()}
+                                >
                                   Go Back
                                 </button>
                               </form>
                             );
+                          }
                           if (data) console.log({ data: data });
                           return (
                             <form
@@ -1515,12 +1459,7 @@ class ProjectCard extends React.Component {
                                 <option value="4">4 stars</option>
                                 <option value="5">5 stars</option>
                               </select>
-                              <button
-                                type="submit"
-                                disabled={this.state.starsDisabled}
-                              >
-                                Submit Rating
-                              </button>
+
                               <h3>Title:</h3>
                               <input
                                 type="text"
