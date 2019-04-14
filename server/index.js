@@ -174,7 +174,8 @@ const Mutation = prismaObjectType({
           if (err) console.log(err);
           else console.log(info);
         });
-        return review;
+        let updatedProject = await prisma.project({ id: id });
+        return updatedProject;
       }
     });
     t.field('newProject', {

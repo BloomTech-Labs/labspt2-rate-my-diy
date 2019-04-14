@@ -63,8 +63,28 @@ class SearchBar extends Component {
     }
   };
 
-  closePopUp = () => {
-    this.setState({ displayPopUp: false });
+  closePopUp = async () => {
+    await this.setState({ displayPopUp: false });
+
+    let options = [];
+
+    if (this.state.options.includes('user')) {
+      await options.push('user');
+    }
+
+    if (this.state.options.includes('project')) {
+      await options.push('project');
+    }
+
+    if (this.state.options.includes('review')) {
+      await options.push('review');
+    }
+
+    if (this.state.options.includes('category')) {
+      await options.push('category');
+    }
+    console.log(options);
+    await this.search(options);
   };
 
   optionsChanged = async (options) => {

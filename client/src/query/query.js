@@ -116,3 +116,40 @@ export const UPDATE_PROJECT = gql`
     }
   }
 `;
+
+export const NEW_REVIEW = gql`
+  mutation newReview(
+    $name: String!
+    $text: String!
+    $timestamp: String!
+    $user: String!
+    $username: String!
+    $id: ID!
+  ) {
+    newReview(
+      name: $name
+      text: $text
+      timestamp: $timestamp
+      user: $user
+      username: $username
+      id: $id
+    ) {
+      id
+      name
+      text
+      timestamp
+      thumbsUp
+      thumbsDown
+      Author {
+        id
+        username
+        email
+      }
+      ProjectReviewed {
+        id
+        name
+        titleImg
+      }
+    }
+  }
+`;

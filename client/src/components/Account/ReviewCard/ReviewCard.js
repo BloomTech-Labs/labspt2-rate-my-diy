@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ReviewCard = ({ review }) => {
-  console.log({ reviewCard: review });
   return (
     <div>
       <div>{`@${review.Author.username}`}</div>
