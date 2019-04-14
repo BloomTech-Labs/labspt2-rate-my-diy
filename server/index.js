@@ -156,7 +156,7 @@ const Mutation = prismaObjectType({
             where: { id }
           });
 
-          const user = await prisma.updateUser({
+          const updateUser = await prisma.updateUser({
             data: { RatedProjects: { connect: { id } } },
             where: { username: username }
           });
