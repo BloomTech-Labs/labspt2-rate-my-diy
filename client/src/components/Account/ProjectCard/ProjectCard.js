@@ -303,9 +303,7 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.visitor[0].username,
                                       id: project.id,
-                                      projRating: this.state.stars,
-                                      projId: project.id,
-                                      raterUser: this.state.visitor[0].username
+                                      projRating: this.state.stars
                                     }
                                     // refetchQueries: [ { query: getReviews}]
                                   });
@@ -487,9 +485,7 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.visitor[0].username,
                                       id: project.id,
-                                      projRating: this.state.stars,
-                                      projId: project.id,
-                                      raterUser: this.state.visitor[0].username
+                                      projRating: this.state.stars
                                     }
                                     // refetchQueries: [ { query: getReviews}]
                                   });
@@ -680,9 +676,7 @@ class ProjectCard extends React.Component {
                                     user: project.User.username,
                                     username: this.state.visitor[0].username,
                                     id: project.id,
-                                    projRating: this.state.stars,
-                                    projId: project.id,
-                                    raterUser: this.state.visitor[0].username
+                                    projRating: this.state.stars
                                   }
                                   // refetchQueries: [ { query: getReviews}]
                                 });
@@ -1050,9 +1044,7 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.visitor[0].username,
                                       id: project.id,
-                                      projRating: this.state.stars,
-                                      projId: project.id,
-                                      raterUser: this.state.visitor[0].username
+                                      projRating: this.state.stars
                                     }
                                     // refetchQueries: [ { query: getReviews}]
                                   });
@@ -1238,9 +1230,7 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.visitor[0].username,
                                       id: project.id,
-                                      projRating: this.state.stars,
-                                      projId: project.id,
-                                      raterUser: this.state.visitor[0].username
+                                      projRating: this.state.stars
                                     },
                                     refetchQueries: [{ query: getReviews }]
                                   });
@@ -1427,9 +1417,7 @@ class ProjectCard extends React.Component {
                                     user: project.User.username,
                                     username: this.state.visitor[0].username,
                                     id: project.id,
-                                    projRating: this.state.stars,
-                                    projId: project.id,
-                                    raterUser: this.state.visitor[0].username
+                                    projRating: this.state.stars
                                   }
                                   // refetchQueries: [ { query: getReviews}]
                                 });
