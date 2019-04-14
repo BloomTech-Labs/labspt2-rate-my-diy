@@ -137,43 +137,104 @@ const Mutation = prismaObjectType({
         timestamp: stringArg(),
         user: stringArg(),
         username: stringArg(),
-        id: idArg()
+        id: idArg(),
+        projRating: intArg(),
+        projId: idArg(),
+        raterUser: stringArg()
       },
       resolve: async (
         parent,
-        { name, text, timestamp, username, user, id },
-        ctx,
-        info
-      ) => {
-        let project = await prisma.project({ id: id });
-        let projectAuthor = await prisma.user({ username: user });
-        const compiledFunction = pug.compileFile('./templates/newReview.pug');
-        const template = compiledFunction({
-          name: project.name
-        });
-
-        mailOptions = {
-          from: 'ratemydiyproject@gmail.com', // sender address
-          to: projectAuthor.email, // list of receivers
-          subject: 'Your project has a new review!', // Subject line
-          html: template // plain text body
-        };
-
-        let review = await prisma.createReview({
+        {
           name,
           text,
           timestamp,
-          Author: {
-            connect: { username }
-          },
-          ProjectReviewed: {
-            connect: { id }
-          }
-        });
-        await transporter.sendMail(mailOptions, function(err, info) {
-          if (err) console.log(err);
-          else console.log(info);
-        });
+          username,
+          user,
+          id,
+          projRating,
+          projId,
+          raterUser
+        },
+        ctx,
+        info
+      ) => {
+        if (projRating > 0 && projId && raterUser) {
+          const ratingProject = await prisma.project({ id: projId });
+          let ratings = ratingProject.rating;
+          ratings.push(projRating);
+
+          const updateProj = await prisma.updateProject({
+            data: { rating: { set: ratings } },
+            where: { projId }
+          });
+
+          const user = await prisma.updateUser({
+            data: { RatedProjects: { connect: { projId } } },
+            where: { raterUser }
+          });
+
+          let project = await prisma.project({ id: id });
+          let projectAuthor = await prisma.user({ username: user });
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
+          const template = compiledFunction({
+            name: project.name
+          });
+
+          mailOptions = {
+            from: 'ratemydiyproject@gmail.com', // sender address
+            to: projectAuthor.email, // list of receivers
+            subject: 'Your project has a new review!', // Subject line
+            html: template // plain text body
+          };
+
+          let review = await prisma.createReview({
+            name,
+            text,
+            timestamp,
+            projRating,
+            Author: {
+              connect: { username }
+            },
+            ProjectReviewed: {
+              connect: { id }
+            }
+          });
+          await transporter.sendMail(mailOptions, function(err, info) {
+            if (err) console.log(err);
+            else console.log(info);
+          });
+        } else {
+          let project = await prisma.project({ id: id });
+          let projectAuthor = await prisma.user({ username: user });
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
+          const template = compiledFunction({
+            name: project.name
+          });
+
+          mailOptions = {
+            from: 'ratemydiyproject@gmail.com', // sender address
+            to: projectAuthor.email, // list of receivers
+            subject: 'Your project has a new review!', // Subject line
+            html: template // plain text body
+          };
+
+          let review = await prisma.createReview({
+            name,
+            text,
+            timestamp,
+            Author: {
+              connect: { username }
+            },
+            ProjectReviewed: {
+              connect: { id }
+            }
+          });
+          await transporter.sendMail(mailOptions, function(err, info) {
+            if (err) console.log(err);
+            else console.log(info);
+          });
+        }
+
         let updatedProject = await prisma.project({ id: id });
         return updatedProject;
       }

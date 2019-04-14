@@ -125,6 +125,9 @@ export const NEW_REVIEW = gql`
     $user: String!
     $username: String!
     $id: ID!
+    $projRating: Int
+    $projId: ID
+    $raterUser: String
   ) {
     newReview(
       name: $name
@@ -133,6 +136,9 @@ export const NEW_REVIEW = gql`
       user: $user
       username: $username
       id: $id
+      projRating: $projRating
+      projId: $projId
+      raterUser: $raterUser
     ) {
       id
       name

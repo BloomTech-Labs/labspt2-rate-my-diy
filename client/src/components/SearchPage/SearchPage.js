@@ -4,6 +4,7 @@ import SearchBar from '../Searchbar/Searchbar';
 import { Query } from 'react-apollo';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
+import ReviewCard from '../Account/ReviewCard/ReviewCard';
 
 // import Featured from "../Home/Featured/Featured";
 import Header from '../Home/Header/Header';
@@ -147,20 +148,19 @@ class SearchPage extends Component {
             ))
           )
           .concat(
-            this.props.reviews.map(
-              ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
-                <div key={id} className="card-container">
-                  <Link to={`/${Author.username}/reviews`}>{`${name}`}</Link>
-                  {/* <div>{`${name}`}</div> */}
+            this.props.reviews.map((review) => (
+              <div key={review.id} className="card-container">
+                {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
+                  
                   <div>{`${text}`}</div>
                   <div>{`${timestamp}`}</div>
                   <Link to={`/${Author.username}/profile`}>
                     <div>{`${Author.username}`}</div>
                   </Link>
-                  <div>{`${ProjectReviewed.name}`}</div>
-                </div>
-              )
-            )
+                  <div>{`${ProjectReviewed.name}`}</div> */}
+                <ReviewCard review={review} />
+              </div>
+            ))
           )}
         {/* </div> */}
       </div>

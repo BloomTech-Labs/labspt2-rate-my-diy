@@ -42,6 +42,7 @@ type Review {
   rKey: String @unique
   text: String!
   timestamp: DateTime!
+  projRating: Int
   thumbsUp: Int! @default(value: 0)
   LikedBy: [User!] @relation(name: "UserLikedReviews")
   thumbsDown: Int! @default(value: 0)
