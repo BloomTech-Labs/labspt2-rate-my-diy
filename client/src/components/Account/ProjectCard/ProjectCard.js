@@ -294,14 +294,15 @@ class ProjectCard extends React.Component {
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
-
+                                  const { username } = await this.state
+                                    .visitor[0];
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: this.state.visitor[0].username,
+                                      username: username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -477,13 +478,18 @@ class ProjectCard extends React.Component {
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
+                                  console.log({
+                                    username: this.state.visitor[0].username
+                                  });
+                                  const username = await this.state.visitor[0]
+                                    .username;
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: this.state.visitor[0].username,
+                                      username: username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -668,13 +674,18 @@ class ProjectCard extends React.Component {
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 const date = await new Date(Date.now());
+                                console.log({
+                                  username: this.state.visitor[0].username
+                                });
+                                const username = await this.state.visitor[0]
+                                  .username;
                                 await newReview({
                                   variables: {
                                     name: this.state.name,
                                     text: this.state.text,
                                     timestamp: date,
                                     user: project.User.username,
-                                    username: this.state.visitor[0].username,
+                                    username: username,
                                     id: project.id,
                                     projRating: this.state.stars
                                   }
@@ -1036,13 +1047,18 @@ class ProjectCard extends React.Component {
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
+                                  console.log({
+                                    username: this.state.visitor[0].username
+                                  });
+                                  const username = await this.state.visitor[0]
+                                    .username;
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: this.state.visitor[0].username,
+                                      username: username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -1222,13 +1238,18 @@ class ProjectCard extends React.Component {
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
+                                  console.log({
+                                    username: this.state.visitor[0].username
+                                  });
+                                  const username = await this.state.visitor[0]
+                                    .username;
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: this.state.visitor[0].username,
+                                      username: username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     },
@@ -1409,13 +1430,18 @@ class ProjectCard extends React.Component {
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 const date = await new Date(Date.now());
+                                console.log({
+                                  username: this.state.visitor[0].username
+                                });
+                                const username = await this.state.visitor[0]
+                                  .username;
                                 await newReview({
                                   variables: {
                                     name: this.state.name,
                                     text: this.state.text,
                                     timestamp: date,
                                     user: project.User.username,
-                                    username: this.state.visitor[0].username,
+                                    username: username,
                                     id: project.id,
                                     projRating: this.state.stars
                                   }

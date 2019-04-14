@@ -81,15 +81,6 @@ export const CREATE_PROJECT = gql`
   }
 `;
 
-export const RATE_PROJECT = gql`
-  mutation rateAProject($rating: Int!, $id: ID!, $username: String!) {
-    rateAProject(rating: $rating, id: $id, username: $username) {
-      id
-      name
-    }
-  }
-`;
-
 export const UPDATE_PROJECT = gql`
   mutation editProject(
     $name: String!
@@ -126,8 +117,6 @@ export const NEW_REVIEW = gql`
     $username: String!
     $id: ID!
     $projRating: Int
-    $projId: ID
-    $raterUser: String
   ) {
     newReview(
       name: $name
@@ -137,8 +126,6 @@ export const NEW_REVIEW = gql`
       username: $username
       id: $id
       projRating: $projRating
-      projId: $projId
-      raterUser: $raterUser
     ) {
       id
       name
@@ -146,6 +133,7 @@ export const NEW_REVIEW = gql`
       timestamp
       thumbsUp
       thumbsDown
+      projRating
       Author {
         id
         username
