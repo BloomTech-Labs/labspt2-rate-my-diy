@@ -191,6 +191,8 @@ const Mutation = prismaObjectType({
             if (err) console.log(err);
             else console.log(info);
           });
+
+          return review;
         } else {
           let project = await prisma.project({ id: id });
           let projectAuthor = await prisma.user({ username: user });
@@ -221,9 +223,8 @@ const Mutation = prismaObjectType({
             if (err) console.log(err);
             else console.log(info);
           });
+          return review;
         }
-
-        return review;
       }
     });
     t.field('newProject', {
