@@ -19,12 +19,14 @@ class ProjectCard extends React.Component {
     if (user !== null)
       visitor = users.filter((u) => u.email === authUser.email);
     // if (!visitor[0]) visitor = user
+
+    const username = visitor[0].username;
     console.log({
       users: users,
       reviews: reviews,
       project: project,
       visitor: visitor,
-      user: user
+      user: authUser
     });
 
     this.state = {
@@ -38,12 +40,13 @@ class ProjectCard extends React.Component {
       name: '',
       text: '',
       reviews: revs,
-      showMore: false
+      showMore: false,
+      username: username
     };
   }
 
   componentDidMount = () => {
-    console.log({ visitor: this.state.visitor });
+    console.log({ visitor: this.state.visitor, username: this.state.username });
     if (this.state.authUser != null) {
       this.setState({ ...this.state, loggedIn: true });
     } else {
@@ -294,15 +297,13 @@ class ProjectCard extends React.Component {
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
-                                  const { username } = await this.state
-                                    .visitor[0];
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: username,
+                                      username: this.state.username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -481,15 +482,13 @@ class ProjectCard extends React.Component {
                                   console.log({
                                     username: this.state.visitor[0].username
                                   });
-                                  const username = await this.state.visitor[0]
-                                    .username;
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: username,
+                                      username: this.state.username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -677,15 +676,14 @@ class ProjectCard extends React.Component {
                                 console.log({
                                   username: this.state.visitor[0].username
                                 });
-                                const username = await this.state.visitor[0]
-                                  .username;
+
                                 await newReview({
                                   variables: {
                                     name: this.state.name,
                                     text: this.state.text,
                                     timestamp: date,
                                     user: project.User.username,
-                                    username: username,
+                                    username: this.state.username,
                                     id: project.id,
                                     projRating: this.state.stars
                                   }
@@ -1050,15 +1048,13 @@ class ProjectCard extends React.Component {
                                   console.log({
                                     username: this.state.visitor[0].username
                                   });
-                                  const username = await this.state.visitor[0]
-                                    .username;
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: username,
+                                      username: this.state.username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
@@ -1241,15 +1237,14 @@ class ProjectCard extends React.Component {
                                   console.log({
                                     username: this.state.visitor[0].username
                                   });
-                                  const username = await this.state.visitor[0]
-                                    .username;
+
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
                                       text: this.state.text,
                                       timestamp: date,
                                       user: project.User.username,
-                                      username: username,
+                                      username: this.state.username,
                                       id: project.id,
                                       projRating: this.state.stars
                                     },
@@ -1433,15 +1428,13 @@ class ProjectCard extends React.Component {
                                 console.log({
                                   username: this.state.visitor[0].username
                                 });
-                                const username = await this.state.visitor[0]
-                                  .username;
                                 await newReview({
                                   variables: {
                                     name: this.state.name,
                                     text: this.state.text,
                                     timestamp: date,
                                     user: project.User.username,
-                                    username: username,
+                                    username: this.state.username,
                                     id: project.id,
                                     projRating: this.state.stars
                                   }
