@@ -130,7 +130,7 @@ const Mutation = prismaObjectType({
       }
     });
     t.field('newReview', {
-      type: 'Review',
+      type: 'Project',
       args: {
         name: stringArg(),
         text: stringArg(),
