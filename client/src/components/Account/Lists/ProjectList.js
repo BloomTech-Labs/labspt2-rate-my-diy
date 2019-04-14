@@ -82,6 +82,7 @@ class ProjectList extends React.Component {
                         </div>
                       );
                     })}
+                    <Link to={'/createproject'}>Add a New Project</Link>
                   </div>
                 );
               } else {
@@ -89,7 +90,8 @@ class ProjectList extends React.Component {
                 return (
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
-                    <span>Add some projects</span>
+                    <p>You don't have any projects yet.</p>
+                    <Link to={'/createproject'}>Add a New Project</Link>
                   </div>
                 );
               }
