@@ -475,6 +475,7 @@ const Mutation = prismaObjectType({
           if (err) console.log(err);
           else console.log(info);
         });
+        console.log({ newUser: user });
         return user;
       }
     });
