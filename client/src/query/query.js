@@ -109,6 +109,44 @@ export const UPDATE_PROJECT = gql`
   }
 `;
 
+export const editReview = gql`
+  mutation editReview(
+    $name: String!
+    $text: String!
+    $timestamp: string!
+    $projId: ID!
+    $revId: ID!
+    $projRating: Int
+  ) {
+    editReview(
+      name: $name
+      text: $text
+      timestamp: $timestamp
+      projId: $projId
+      revId: $revId
+      projRating: $projRating
+    ) {
+      id
+      name
+      text
+      timestamp
+      thumbsUp
+      thumbsDown
+      projRating
+      Author {
+        id
+        username
+        email
+      }
+      ProjectReviewed {
+        id
+        name
+        titleImg
+      }
+    }
+  }
+`;
+
 export const NEW_REVIEW = gql`
   mutation newReview(
     $name: String!
@@ -128,6 +166,54 @@ export const NEW_REVIEW = gql`
       id: $id
       projRating: $projRating
     ) {
+      id
+      name
+      text
+      timestamp
+      thumbsUp
+      thumbsDown
+      projRating
+      Author {
+        id
+        username
+        email
+      }
+      ProjectReviewed {
+        id
+        name
+        titleImg
+      }
+    }
+  }
+`;
+
+export const dislikeAReview = gql`
+  mutation dislikeAReview($id: ID!, $username: String!) {
+    dislikeAReview(id: $id, username: $username) {
+      id
+      name
+      text
+      timestamp
+      thumbsUp
+      thumbsDown
+      projRating
+      Author {
+        id
+        username
+        email
+      }
+      ProjectReviewed {
+        id
+        name
+        titleImg
+      }
+    }
+  }
+`;
+
+export const likeAReview = gql`
+  mutation likeAReview($id: ID!, $username: String!) {
+    likeAReview(id: $id, username: $username) {
       id
       name
       text

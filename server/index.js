@@ -129,6 +129,59 @@ const Mutation = prismaObjectType({
         return user;
       }
     });
+    t.field('editReview', {
+      type: 'Review',
+      args: {
+        name: stringArg(),
+        text: stringArg(),
+        timestamp: stringArg(),
+        projId: idArg(),
+        revId: idArg(),
+        projRating: intArg()
+      },
+      resolve: async (
+        parent,
+        { name, text, timestamp, projId, revId, projRating },
+        ctx,
+        info
+      ) => {
+        if (projRating > 0) {
+          const ratingProject = await prisma.project({ id: id });
+          let ratings = ratingProject.rating;
+          ratings.push(projRating);
+
+          const updateProj = await prisma.updateProject({
+            data: { rating: { set: ratings } },
+            where: { projId }
+          });
+
+          let review = await prisma.updateReview({
+            data: {
+              name,
+              text,
+              timestamp,
+              projRating
+            },
+            where: { revId }
+          });
+
+          return review;
+        } else {
+          let review = await prisma.updateReview({
+            data: {
+              name,
+              text,
+              timestamp,
+              projRating
+            },
+            where: { revId }
+          });
+
+          return review;
+        }
+      }
+    });
+
     t.field('newReview', {
       type: 'Review',
       args: {

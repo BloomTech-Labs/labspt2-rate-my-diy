@@ -252,12 +252,18 @@ class Profile extends React.Component {
     console.log({ email: email });
     const UserWithData = () => (
       <Query query={GET_USER} variables={{ email: email }}>
-        {({ loading: userLoading, data: userData, error: userError }) => (
+        {({
+          loading: userLoading,
+          data: userData,
+          error: userError,
+          refetch: userRefetch
+        }) => (
           <Query query={GET_USERS}>
             {({
               loading: usersLoading,
               data: usersData,
-              error: usersError
+              error: usersError,
+              refetch: usersRefetch
             }) => {
               if (userLoading || usersLoading) return <span>Loading...</span>;
               if (userError || usersError)
@@ -297,6 +303,7 @@ class Profile extends React.Component {
                           review={review}
                           users={users}
                           user={user}
+                          refetch={usersRefetch}
                         />
                       );
                     })}
@@ -335,6 +342,7 @@ class Profile extends React.Component {
                           review={review}
                           users={users}
                           user={user}
+                          refetch={usersRefetch}
                         />
                       );
                     })}
@@ -348,6 +356,7 @@ class Profile extends React.Component {
                           review={review}
                           users={users}
                           user={user}
+                          refetch={usersRefetch}
                         />
                       );
                     })}

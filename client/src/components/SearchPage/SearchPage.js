@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
 import ReviewCard from '../Account/ReviewCard/ReviewCard';
+import { getUsers } from '../../query/query';
 
 // import Featured from "../Home/Featured/Featured";
 import Header from '../Home/Header/Header';
@@ -148,19 +149,40 @@ class SearchPage extends Component {
             ))
           )
           .concat(
-            this.props.reviews.map((review) => (
-              <div key={review.id} className="card-container">
-                {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
-                  
-                  <div>{`${text}`}</div>
-                  <div>{`${timestamp}`}</div>
-                  <Link to={`/${Author.username}/profile`}>
-                    <div>{`${Author.username}`}</div>
-                  </Link>
-                  <div>{`${ProjectReviewed.name}`}</div> */}
-                <ReviewCard review={review} />
-              </div>
-            ))
+            this.props.reviews.map((review) => {
+              return (
+                <Query query={getUsers} key={review.id}>
+                  {({ loading, data, error, refetch }) => {
+                    if (loading) return null;
+                    if (error) return null;
+                    if (data) {
+                      let user = data.users.filter(
+                        (user) => user.email === review.Author.email
+                      );
+
+                      return (
+                        <div key={review.id} className="card-container">
+                          {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
+                    
+                    <div>{`${text}`}</div>
+                    <div>{`${timestamp}`}</div>
+                    <Link to={`/${Author.username}/profile`}>
+                      <div>{`${Author.username}`}</div>
+                    </Link>
+                    <div>{`${ProjectReviewed.name}`}</div> */}
+                          <ReviewCard
+                            review={review}
+                            refetch={refetch}
+                            users={data.users}
+                            user={user}
+                          />
+                        </div>
+                      );
+                    }
+                  }}
+                </Query>
+              );
+            })
           )}
         {/* </div> */}
       </div>
