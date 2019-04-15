@@ -22,9 +22,11 @@ const GET_USERS = gql`
         timestamp
         thumbsUp
         thumbsDown
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -58,9 +60,13 @@ const GET_USERS = gql`
         name
         text
         timestamp
+        thumbsDown
+        thumbsUp
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -80,9 +86,13 @@ const GET_USERS = gql`
         name
         text
         timestamp
+        thumbsUp
+        thumbsDown
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -129,9 +139,11 @@ const GET_USER = gql`
         timestamp
         thumbsUp
         thumbsDown
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -165,9 +177,13 @@ const GET_USER = gql`
         name
         text
         timestamp
+        thumbsDown
+        thumbsUp
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -187,9 +203,13 @@ const GET_USER = gql`
         name
         text
         timestamp
+        thumbsDown
+        thumbsUp
+        projRating
         Author {
           id
           username
+          email
         }
         ProjectReviewed {
           id
@@ -271,7 +291,14 @@ class Profile extends React.Component {
                   <div>
                     <h2>{`${username}'s Reviews`}</h2>
                     {ReviewList.map((review) => {
-                      return <ReviewCard key={review.id} review={review} />;
+                      return (
+                        <ReviewCard
+                          key={review.id}
+                          review={review}
+                          users={users}
+                          user={user}
+                        />
+                      );
                     })}
                   </div>
                   <div>
@@ -302,13 +329,27 @@ class Profile extends React.Component {
                   <div>
                     <h2>{`Reviews Liked By ${username}`}</h2>
                     {LikedReviews.map((review) => {
-                      return <ReviewCard key={review.id} review={review} />;
+                      return (
+                        <ReviewCard
+                          key={review.id}
+                          review={review}
+                          users={users}
+                          user={user}
+                        />
+                      );
                     })}
                   </div>
                   <div>
                     <h2>{`Reviews Disliked By ${username}`}</h2>
                     {DislikedReviews.map((review) => {
-                      return <ReviewCard key={review.id} review={review} />;
+                      return (
+                        <ReviewCard
+                          key={review.id}
+                          review={review}
+                          users={users}
+                          user={user}
+                        />
+                      );
                     })}
                   </div>
                   <div>

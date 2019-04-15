@@ -42,6 +42,7 @@ export const getReviews = gql`
       timestamp
       thumbsUp
       thumbsDown
+      projRating
       Author {
         id
         username
