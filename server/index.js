@@ -31,7 +31,6 @@ const Mutation = prismaObjectType({
       type: 'Review',
       args: {
         revId: idArg(),
-        id: idArg(),
         username: stringArg(),
         didThumbDown: booleanArg()
       },
