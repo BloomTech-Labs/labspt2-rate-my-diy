@@ -458,7 +458,7 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: this.state.visitor.id,
+                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -530,7 +530,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: this.state.visitor.id,
+                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -646,8 +646,8 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await likeAReview({
                                 variables: {
-                                  revId: review.id,
-                                  raterId: this.state.visitor.id,
+                                  revId: this.state.review.id,
+                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -720,7 +720,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: rev.id,
-                                  raterId: this.state.visitor.id,
+                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
