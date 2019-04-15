@@ -137,6 +137,21 @@ const Mutation = prismaObjectType({
         return updatedProject;
       }
     });
+    t.field('editUser', {
+      type: 'User',
+      args: {
+        userProfileImage: stringArg(),
+        bio: stringArg(),
+        email: stringArg()
+      },
+      resolve: async (parent, { userProfileImage, bio, email }, ctx, info) => {
+        const updatedUser = await prisma.updateUser({
+          data: { userProfileImage, bio },
+          where: { email }
+        });
+        return updatedUser;
+      }
+    });
     t.field('newUser', {
       type: 'User',
       args: {

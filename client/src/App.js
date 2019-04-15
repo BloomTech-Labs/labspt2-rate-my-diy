@@ -136,7 +136,11 @@ class App extends Component {
                               path={`/${user.username}/profile`}
                               render={(props) => {
                                 return (
-                                  <Profile {...props} email={user.email} />
+                                  <Profile
+                                    {...props}
+                                    email={user.email}
+                                    user={user}
+                                  />
                                 );
                               }}
                             />
@@ -145,7 +149,11 @@ class App extends Component {
                               path={`/${user.username}/projects`}
                               render={(props) => {
                                 return (
-                                  <ProjectList {...props} email={user.email} />
+                                  <ProjectList
+                                    {...props}
+                                    email={user.email}
+                                    user={user}
+                                  />
                                 );
                               }}
                             />
