@@ -15,8 +15,8 @@ function Featured(props) {
       <div className="info-container">
         <h2>{props.title}</h2>
         <p>@{props.username}</p>
-        <Link to={`/projects/${props.id}`}>
-          <button>View This Project</button>
+        <Link to={`/${props.username}/profile`}>
+          <button>See More</button>
         </Link>
         <div className="rating-container">
           {stars.map((star) => {
