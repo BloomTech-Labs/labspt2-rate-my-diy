@@ -464,7 +464,6 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: review.id,
-                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -474,7 +473,7 @@ class ReviewCard extends React.Component {
                               await this.setState({
                                 ...this.state,
                                 review: review,
-                                thumbsUp: this.state.thumbsUp
+                                thumbsUp: review.thumbsUp
                               });
                             }}
                           >
@@ -537,7 +536,6 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: review.id,
-                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -547,7 +545,7 @@ class ReviewCard extends React.Component {
                               await this.setState({
                                 ...this.state,
                                 review: review,
-                                thumbsDown: this.state.thumbsDown
+                                thumbsDown: review.thumbsDown
                               });
                             }}
                           >
@@ -655,7 +653,6 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: this.state.review.id,
-                                  id: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -723,13 +720,10 @@ class ReviewCard extends React.Component {
                         return (
                           <form
                             onSubmit={async (e) => {
-                              const rev = this.props.review;
-                              console.log({ wheretheRev: rev });
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
-                                  revId: rev.id,
-                                  id: this.state.visitor.id,
+                                  revId: review.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -739,7 +733,7 @@ class ReviewCard extends React.Component {
                               await this.setState({
                                 ...this.state,
                                 review: review,
-                                thumbsDown: this.state.thumbsDown
+                                thumbsDown: review.thumbsDown
                               });
                             }}
                           >

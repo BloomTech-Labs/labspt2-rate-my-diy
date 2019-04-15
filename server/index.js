@@ -45,7 +45,7 @@ const Mutation = prismaObjectType({
         });
 
         const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { revId } } },
+          data: { LikedReviews: { connect: { id: revId } } },
           where: { username: username }
         });
 
@@ -56,7 +56,6 @@ const Mutation = prismaObjectType({
       type: 'Review',
       args: {
         revId: idArg(),
-        id: idArg(),
         username: stringArg()
       },
       resolve: async (parent, { revId, id, username }, ctx, info) => {
@@ -70,7 +69,7 @@ const Mutation = prismaObjectType({
         });
 
         const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { revId } } },
+          data: { LikedReviews: { connect: { id: revId } } },
           where: { username: username }
         });
 
