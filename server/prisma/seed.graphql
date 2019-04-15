@@ -1,8 +1,10 @@
+# import avatars
 mutation {
   user1: createUser(
     data: {
       username: "asdfsd"
       email: "asldkf@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png"
       Projects: {
         create: [
           {
@@ -29,6 +31,7 @@ mutation {
     data: {
       username: "sldfksd"
       email: "lkjwe@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png"
       Projects: {
         create: [
           {
@@ -55,6 +58,7 @@ mutation {
     data: {
       username: "slekrj"
       email: "riowjw@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-14.png"
       Projects: {
         create: [
           {
@@ -81,6 +85,7 @@ mutation {
     data: {
       username: "lkrjawe"
       email: "orije@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-15.png"
       Projects: {
         create: [
           {
@@ -107,6 +112,7 @@ mutation {
     data: {
       username: "lkrwetir"
       email: "toieja@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-5.png"
       Projects: {
         create: [
           {
@@ -133,6 +139,7 @@ mutation {
     data: {
       username: "toigjewe"
       email: "rtoijge@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-3.png"
       Projects: {
         create: [
           {
@@ -159,6 +166,7 @@ mutation {
     data: {
       username: "oiwjoeawd"
       email: "rglklsajfeee@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-12.png"
       Projects: {
         create: [
           {
@@ -185,6 +193,7 @@ mutation {
     data: {
       username: "wlefjwe"
       email: "lrkgjwaelw@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-13.png"
       Projects: {
         create: [
           {
@@ -211,6 +220,7 @@ mutation {
     data: {
       username: "askldfjewavvv"
       email: "glrijad@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-11.png"
       Projects: {
         create: [
           {
@@ -237,6 +247,7 @@ mutation {
     data: {
       username: "lgrjraweks"
       email: "tlirjerss@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-4.png"
       Projects: {
         create: [
           {
@@ -263,6 +274,7 @@ mutation {
     data: {
       username: "lrijfwwa"
       email: "dlgiawefs@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar.png"
       Projects: {
         create: [
           {
@@ -289,6 +301,7 @@ mutation {
     data: {
       username: "itbdsldvf"
       email: "tijaecvvdsd@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-2.png"
       Projects: {
         create: [
           {
@@ -315,6 +328,7 @@ mutation {
     data: {
       username: "dlgirassdweeww"
       email: "adlkfsvvwket@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-8.png"
       Projects: {
         create: [
           {
@@ -341,6 +355,7 @@ mutation {
     data: {
       username: "dglawerwdfvvyeiwq"
       email: "tgiasccvdew2@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-10.png"
       Projects: {
         create: [
           {
@@ -367,6 +382,7 @@ mutation {
     data: {
       username: "yoirewowd"
       email: "lgrakesl@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-1.png"
       Projects: {
         create: [
           {
@@ -381,33 +397,6 @@ mutation {
             category: "dance"
             timestamp: "2019-03-20"
             key: "30"
-            rating: { set: [1, 1, 2, 4, 4, 4] }
-          }
-        ]
-      }
-    }
-  ) {
-    id
-  }
-
-  user16: createUser(
-    data: {
-      username: "alasalle"
-      email: "angela.lasalle91@gmail.com"
-      Projects: {
-        create: [
-          {
-            name: "Angela's 1st Project"
-            category: "music"
-            timestamp: "2019-02-04"
-            key: "31"
-            rating: { set: [1, 2, 2, 3, 4, 3, 2, 1] }
-          }
-          {
-            name: "Angela's 2nd Project"
-            category: "dance"
-            timestamp: "2019-03-20"
-            key: "32"
             rating: { set: [1, 1, 2, 4, 4, 4] }
           }
         ]
