@@ -415,7 +415,7 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: visitor.id,
+                                  raterId: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -447,7 +447,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: visitor.id,
+                                  raterId: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -523,7 +523,7 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: visitor.id,
+                                  raterId: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
@@ -554,7 +554,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: review.id,
-                                  raterId: visitor.id,
+                                  raterId: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });

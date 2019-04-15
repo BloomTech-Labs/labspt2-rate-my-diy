@@ -162,8 +162,8 @@ class SearchPage extends Component {
                       console.log({ searchuser: user });
                       let rev = user[0].ReviewList.filter(
                         (r) => r.id === review.id
-                      );
-
+                      )[0];
+                      console.log({ rev: rev, review: review });
                       return (
                         <div key={review.id} className="card-container">
                           {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
@@ -175,7 +175,7 @@ class SearchPage extends Component {
                     </Link>
                     <div>{`${ProjectReviewed.name}`}</div> */}
                           <ReviewCard
-                            review={review}
+                            review={rev}
                             refetch={refetch}
                             users={data.users}
                             user={user}
