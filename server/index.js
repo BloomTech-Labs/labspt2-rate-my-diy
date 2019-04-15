@@ -45,7 +45,7 @@ const Mutation = prismaObjectType({
         });
 
         const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id } } },
+          data: { LikedReviews: { connect: { revId } } },
           where: { username: username }
         });
 
@@ -70,7 +70,7 @@ const Mutation = prismaObjectType({
         });
 
         const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id } } },
+          data: { LikedReviews: { connect: { revId } } },
           where: { username: username }
         });
 

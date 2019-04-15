@@ -153,8 +153,11 @@ class ReviewCard extends React.Component {
                                 onChange={this.textChange}
                                 disabled
                               />
-                              <span>{`Thumbs Up: ${review.thumbsUp}`}</span>|
-                              <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                              |
+                              <span>{`Thumbs Down: ${
+                                this.state.thumbsDown
+                              }`}</span>
                               <div>
                                 <button type="submit">Submit</button>
                                 <button onClick={handleClose}>Close</button>
@@ -199,8 +202,8 @@ class ReviewCard extends React.Component {
                       <div>{`Rating of Project: ${review.projRating}`}</div>
                       <div>{`${review.name}`}</div>
                       <div>{`${review.text}`}</div>
-                      <span>{`Thumbs Up: ${review.thumbsUp}`}</span>|
-                      <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
+                      <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                       <div>
                         <button
                           onClick={() =>
@@ -301,8 +304,11 @@ class ReviewCard extends React.Component {
                                 onChange={this.textChange}
                                 disabled
                               />
-                              <span>{`Thumbs Up: ${review.thumbsUp}`}</span>|
-                              <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                              |
+                              <span>{`Thumbs Down: ${
+                                this.state.thumbsDown
+                              }`}</span>
                               <div>
                                 <button type="submit">Submit</button>
                                 <button onClick={handleClose}>Close</button>
@@ -346,8 +352,8 @@ class ReviewCard extends React.Component {
                       />
                       <div>{`${review.name}`}</div>
                       <div>{`${review.text}`}</div>
-                      <span>{`Thumbs Up: ${review.thumbsUp}`}</span>|
-                      <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
+                      <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                       <div>
                         <button
                           onClick={() =>
@@ -416,7 +422,7 @@ class ReviewCard extends React.Component {
                                 <button disable={this.state.thumbsUpDisabled}>
                                   +
                                 </button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                             </form>
@@ -427,7 +433,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>+</button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                               <span>
@@ -446,7 +452,7 @@ class ReviewCard extends React.Component {
                                 >
                                   +
                                 </button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                             </form>
@@ -467,7 +473,8 @@ class ReviewCard extends React.Component {
                               await this.thumbsUp();
                               await this.setState({
                                 ...this.state,
-                                review: review
+                                review: review,
+                                thumbsUp: this.state.thumbsUp
                               });
                             }}
                           >
@@ -478,7 +485,7 @@ class ReviewCard extends React.Component {
                               >
                                 +
                               </button>
-                              {`Thumbs Up: ${review.thumbsUp}`}
+                              {`Thumbs Up: ${this.state.thumbsUp}`}
                             </span>
                             |
                           </form>
@@ -493,7 +500,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>-</button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
                           );
@@ -503,7 +510,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>-</button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                               <div>There was an error logging your rating.</div>
                             </form>
@@ -519,7 +526,7 @@ class ReviewCard extends React.Component {
                                 >
                                   -
                                 </button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
                           );
@@ -539,7 +546,8 @@ class ReviewCard extends React.Component {
                               await this.thumbsDown();
                               await this.setState({
                                 ...this.state,
-                                review: review
+                                review: review,
+                                thumbsDown: this.state.thumbsDown
                               });
                             }}
                           >
@@ -550,7 +558,7 @@ class ReviewCard extends React.Component {
                               >
                                 -
                               </button>
-                              {`Thumbs Down: ${review.thumbsDown}`}
+                              {`Thumbs Down: ${this.state.thumbsDown}`}
                             </span>
                           </form>
                         );
@@ -608,7 +616,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>+</button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                             </form>
@@ -619,7 +627,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>+</button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                             </form>
@@ -635,7 +643,7 @@ class ReviewCard extends React.Component {
                                 >
                                   +
                                 </button>
-                                {`Thumbs Up: ${review.thumbsUp}`}
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
                             </form>
@@ -656,7 +664,8 @@ class ReviewCard extends React.Component {
                               await this.thumbsUp();
                               await this.setState({
                                 ...this.state,
-                                review: review
+                                review: review,
+                                thumbsUp: review.thumbsUp
                               });
                             }}
                           >
@@ -667,7 +676,7 @@ class ReviewCard extends React.Component {
                               >
                                 +
                               </button>
-                              {`Thumbs Up: ${review.thumbsUp}`}
+                              {`Thumbs Up: ${this.state.thumbsUp}`}
                             </span>
                             |
                           </form>
@@ -681,7 +690,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>-</button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
                           );
@@ -691,7 +700,7 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled>-</button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                               <div>There was an error logging your rating.</div>
                             </form>
@@ -707,7 +716,7 @@ class ReviewCard extends React.Component {
                                 >
                                   -
                                 </button>
-                                {`Thumbs Down: ${review.thumbsDown}`}
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
                           );
@@ -729,7 +738,8 @@ class ReviewCard extends React.Component {
                               await this.thumbsDown();
                               await this.setState({
                                 ...this.state,
-                                review: review
+                                review: review,
+                                thumbsDown: this.state.thumbsDown
                               });
                             }}
                           >
@@ -740,7 +750,7 @@ class ReviewCard extends React.Component {
                               >
                                 -
                               </button>
-                              {`Thumbs Down: ${review.thumbsDown}`}
+                              {`Thumbs Down: ${this.state.thumbsDown}`}
                             </span>
                           </form>
                         );
@@ -788,8 +798,8 @@ class ReviewCard extends React.Component {
                   <div>{`Rating of Project: ${review.projRating}`}</div>
                   <div>{`${review.name}`}</div>
                   <div>{`${review.text}`}</div>
-                  <span>{`Thumbs Up: ${review.thumbsUp}`}</span>
-                  <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                  <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                  <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                   <button onClick={handleClose}>Close</button>
                 </div>
               )}
@@ -826,8 +836,8 @@ class ReviewCard extends React.Component {
                   />
                   <div>{`${review.name}`}</div>
                   <div>{`${review.text}`}</div>
-                  <span>{`Thumbs Up: ${review.thumbsUp}`}</span>
-                  <span>{`Thumbs Down: ${review.thumbsDown}`}</span>
+                  <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                  <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                   <button onClick={handleClose}>Close</button>
                 </div>
               )}
