@@ -26,9 +26,9 @@ const NavigationAuth = ({ authUser }) => {
       }
     }
   `;
-  // const json = localStorage.getItem('authUser');
-  //     const user = JSON.parse(json);
-  const email = authUser.email;
+  const json = localStorage.getItem('authUser');
+  const user = JSON.parse(json);
+  const email = user.email;
   return (
     <React.Fragment>
       <div className="overlay">
