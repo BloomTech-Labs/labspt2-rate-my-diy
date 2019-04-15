@@ -1,5 +1,6 @@
 import React from 'react';
 import MicroModal from 'react-micro-modal';
+import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editReview, likeAReview, dislikeAReview } from '../../../query/query';
 
@@ -124,10 +125,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`${review.name}`}</div>
                       <button onClick={handleOpen}>View More</button>
                     </div>
@@ -144,10 +147,14 @@ class ReviewCard extends React.Component {
                                   review.Author.username
                                 }`}</div>
                                 <div>{`${review.timestamp}`}</div>
-                                <img
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
+                                <Link
+                                  to={`/projects/${review.ProjectReviewed.id}`}
+                                >
+                                  <img
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
                                 <div>{`Rating of Project: ${
                                   review.projRating
                                 }`}</div>
@@ -190,10 +197,14 @@ class ReviewCard extends React.Component {
                                   review.Author.username
                                 }`}</div>
                                 <div>{`${review.timestamp}`}</div>
-                                <img
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
+                                <Link
+                                  to={`/projects/${review.ProjectReviewed.id}`}
+                                >
+                                  <img
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
                                 <div>{`Rating of Project: ${
                                   review.projRating
                                 }`}</div>
@@ -237,10 +248,14 @@ class ReviewCard extends React.Component {
                                 review.Author.username
                               }`}</div>
                               <div>{`${review.timestamp}`}</div>
-                              <img
-                                src={`${review.ProjectReviewed.titleImg}`}
-                                alt="project"
-                              />
+                              <Link
+                                to={`/projects/${review.ProjectReviewed.id}`}
+                              >
+                                <img
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                              </Link>
                               <div>{`${review.name}`}</div>
                               <div>{`${review.text}`}</div>
                               <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
@@ -280,10 +295,14 @@ class ReviewCard extends React.Component {
                                 review.Author.username
                               }`}</div>
                               <div>{`${review.timestamp}`}</div>
-                              <img
-                                src={`${review.ProjectReviewed.titleImg}`}
-                                alt="project"
-                              />
+                              <Link
+                                to={`/projects/${review.ProjectReviewed.id}`}
+                              >
+                                <img
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                              </Link>
                               <div>{`Rating of Project: ${
                                 review.projRating
                               }`}</div>
@@ -329,10 +348,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`${review.name}`}</div>
                       <button onClick={handleOpen}>View More</button>
                     </div>
@@ -342,10 +363,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`Rating of Project: ${review.projRating}`}</div>
                       <div>{`${review.name}`}</div>
                       <div>{`${review.text}`}</div>
@@ -380,10 +403,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`${review.name}`}</div>
                       <button onClick={handleOpen}>View More</button>
                     </div>
@@ -400,10 +425,14 @@ class ReviewCard extends React.Component {
                                   review.Author.username
                                 }`}</div>
                                 <div>{`${review.timestamp}`}</div>
-                                <img
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
+                                <Link
+                                  to={`/projects/${review.ProjectReviewed.id}`}
+                                >
+                                  <img
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
                                 <div>Rating of Project:</div>
                                 <select
                                   name="stars"
@@ -456,10 +485,14 @@ class ReviewCard extends React.Component {
                                 review.Author.username
                               }`}</div>
                               <div>{`${review.timestamp}`}</div>
-                              <img
-                                src={`${review.ProjectReviewed.titleImg}`}
-                                alt="project"
-                              />
+                              <Link
+                                to={`/projects/${review.ProjectReviewed.id}`}
+                              >
+                                <img
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                              </Link>
                               <div>Rating of Project:</div>
                               <select
                                 name="stars"
@@ -511,10 +544,14 @@ class ReviewCard extends React.Component {
                                 review.Author.username
                               }`}</div>
                               <div>{`${review.timestamp}`}</div>
-                              <img
-                                src={`${review.ProjectReviewed.titleImg}`}
-                                alt="project"
-                              />
+                              <Link
+                                to={`/projects/${review.ProjectReviewed.id}`}
+                              >
+                                <img
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                              </Link>
                               <div>{`${review.name}`}</div>
                               <div>{`${review.text}`}</div>
                               <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
@@ -557,10 +594,14 @@ class ReviewCard extends React.Component {
                                 review.Author.username
                               }`}</div>
                               <div>{`${review.timestamp}`}</div>
-                              <img
-                                src={`${review.ProjectReviewed.titleImg}`}
-                                alt="project"
-                              />
+                              <Link
+                                to={`/projects/${review.ProjectReviewed.id}`}
+                              >
+                                <img
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                              </Link>
                               <div>Rating of Project:</div>
                               <select
                                 name="stars"
@@ -616,10 +657,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`${review.name}`}</div>
                       <button onClick={handleOpen}>View More</button>
                     </div>
@@ -629,10 +672,12 @@ class ReviewCard extends React.Component {
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
                       <div>{`${review.name}`}</div>
                       <div>{`${review.text}`}</div>
                       <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
@@ -676,10 +721,12 @@ class ReviewCard extends React.Component {
                     <div>{`${review.ProjectReviewed.name}`}</div>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
+                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                      <img
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                    </Link>
                     <div>{`${review.name}`}</div>
                     <button onClick={handleOpen}>View More</button>
                   </div>
@@ -689,10 +736,12 @@ class ReviewCard extends React.Component {
                     <div>{`${review.ProjectReviewed.name}`}</div>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
+                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                      <img
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                    </Link>
                     <div>{`Rating of Project: ${review.projRating}`}</div>
                     <div>{`${review.name}`}</div>
                     <div>{`${review.text}`}</div>
@@ -910,10 +959,12 @@ class ReviewCard extends React.Component {
                     <div>{`${review.ProjectReviewed.name}`}</div>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
+                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                      <img
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                    </Link>
                     <div>{`${review.name}`}</div>
                     <button onClick={handleOpen}>View More</button>
                   </div>
@@ -923,10 +974,12 @@ class ReviewCard extends React.Component {
                     <div>{`${review.ProjectReviewed.name}`}</div>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
+                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                      <img
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                    </Link>
                     <div>{`${review.name}`}</div>
                     <div>{`${review.text}`}</div>
 
@@ -1136,10 +1189,12 @@ class ReviewCard extends React.Component {
                   <div>{`${review.ProjectReviewed.name}`}</div>
                   <div>{`Review By: @${review.Author.username}`}</div>
                   <div>{`${review.timestamp}`}</div>
-                  <img
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
+                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                    <img
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                  </Link>
                   <div>{`${review.name}`}</div>
                   <button onClick={handleOpen}>View More</button>
                 </div>
@@ -1149,10 +1204,12 @@ class ReviewCard extends React.Component {
                   <div>{`${review.ProjectReviewed.name}`}</div>
                   <div>{`Review By: @${review.Author.username}`}</div>
                   <div>{`${review.timestamp}`}</div>
-                  <img
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
+                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                    <img
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                  </Link>
                   <div>{`Rating of Project: ${review.projRating}`}</div>
                   <div>{`${review.name}`}</div>
                   <div>{`${review.text}`}</div>
@@ -1175,10 +1232,12 @@ class ReviewCard extends React.Component {
                   <div>{`${review.ProjectReviewed.name}`}</div>
                   <div>{`Review By: @${review.Author.username}`}</div>
                   <div>{`${review.timestamp}`}</div>
-                  <img
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
+                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                    <img
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                  </Link>
                   <div>{`${review.name}`}</div>
                   <button onClick={handleOpen}>View More</button>
                 </div>
@@ -1188,10 +1247,12 @@ class ReviewCard extends React.Component {
                   <div>{`${review.ProjectReviewed.name}`}</div>
                   <div>{`Review By: @${review.Author.username}`}</div>
                   <div>{`${review.timestamp}`}</div>
-                  <img
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
+                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                    <img
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                  </Link>
                   <div>{`${review.name}`}</div>
                   <div>{`${review.text}`}</div>
                   <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
