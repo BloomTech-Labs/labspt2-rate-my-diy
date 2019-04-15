@@ -7,9 +7,9 @@ function Footer() {
     <div className="footer">
       <nav className="bottomNav">
         <Link to="/">Home</Link>
-        <Link to="https://github.com/Lambda-School-Labs/labspt2-rate-my-diy">
+        <a href="https://github.com/Lambda-School-Labs/labspt2-rate-my-diy">
           About the Team
-        </Link>
+        </a>
         <Link to="/subscribe">Support Us</Link>
       </nav>
       <p>
