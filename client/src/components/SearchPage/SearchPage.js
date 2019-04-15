@@ -7,10 +7,10 @@ import * as math from 'mathjs';
 import ReviewCard from '../Account/ReviewCard/ReviewCard';
 import { getUsers } from '../../query/query';
 
-// import Featured from "../Home/Featured/Featured";
 import Header from '../Home/Header/Header';
-import '../Home/Home.scss';
+import '../../styles/card.scss';
 import './SearchPage.scss';
+import star from '../../img/star.png';
 
 class SearchPage extends Component {
   constructor() {
@@ -117,56 +117,67 @@ class SearchPage extends Component {
         <Header />
         <SearchWithData />
         <h1>Results:</h1>
-        {/* <div className="card-container"> */}
-        {this.props.projects
-          .map(({ id, name, titleImg, rating, User, category }) => {
-            let meanRating = rating;
-            if (rating.length > 1)
-              meanRating = parseFloat(math.mean(rating.slice(1)).toFixed(2));
-            if (rating.length === 1)
-              meanRating = parseFloat(math.mean(rating).toFixed(2));
-            return (
-              <div key={id} className="card-container">
-                <img src={`${titleImg}`} alt="project" />
-                <Link to={`/projects/${id}`}>{`${name}`}</Link>
-                {/* <div>{`${name}`}</div> */}
-                <div>{`${meanRating}`}</div>
-                <div>{`${category}`}</div>
-                <Link to={`/${User.username}/profile`}>
-                  <div>{`${User.username}`}</div>
-                </Link>
-              </div>
-            );
-          })
-          .concat(
-            this.props.users.map(({ id, username, userProfileImage }) => (
-              <div key={id} className="card-container">
-                <img src={`${userProfileImage}`} alt="user" />
-                <Link to={`/${username}/profile`}>
-                  <div>{`${username}`}</div>
-                </Link>
-              </div>
-            ))
-          )
-          .concat(
-            this.props.reviews.map((review) => {
+        <div className="card-container">
+          {this.props.projects
+            .map(({ id, name, titleImg, rating, User, category }) => {
+              let meanRating = rating;
+              if (rating.length > 1)
+                meanRating = parseFloat(math.mean(rating.slice(1)).toFixed(2));
+              if (rating.length === 1)
+                meanRating = parseFloat(math.mean(rating).toFixed(2));
+
+              const stars = [];
+
+              for (let i = 0; i < Math.round(meanRating); i++) {
+                stars.push(<img src={star} alt="star" key={i} />);
+              }
+
               return (
-                <Query query={getUsers} key={review.id}>
-                  {({ loading, data, error, refetch }) => {
-                    if (loading) return null;
-                    if (error) return null;
-                    if (data) {
-                      let user = data.users.filter(
-                        (user) => user.email === review.Author.email
-                      );
-                      console.log({ searchuser: user });
-                      let rev = user[0].ReviewList.filter(
-                        (r) => r.id === review.id
-                      )[0];
-                      console.log({ rev: rev, review: review });
-                      return (
-                        <div key={review.id} className="card-container">
-                          {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
+                <div key={id} className="card">
+                  <img src={`${titleImg}`} alt="project" />
+                  <Link to={`/projects/${id}`}>{`${name}`}</Link>
+                  {/* <div>{`${name}`}</div> */}
+                  <div className="rating-container">
+                    {stars.map((star) => {
+                      return star;
+                    })}
+                  </div>
+                  <div>{`${category}`}</div>
+                  <Link to={`/${User.username}/profile`}>
+                    <div>{`${User.username}`}</div>
+                  </Link>
+                </div>
+              );
+            })
+            .concat(
+              this.props.users.map(({ id, username, userProfileImage }) => (
+                <div key={id} className="card">
+                  <img src={`${userProfileImage}`} alt="user" />
+                  <Link to={`/${username}/profile`}>
+                    <div>{`${username}`}</div>
+                  </Link>
+                </div>
+              ))
+            )
+            .concat(
+              this.props.reviews.map((review) => {
+                return (
+                  <Query query={getUsers} key={review.id}>
+                    {({ loading, data, error, refetch }) => {
+                      if (loading) return null;
+                      if (error) return null;
+                      if (data) {
+                        let user = data.users.filter(
+                          (user) => user.email === review.Author.email
+                        );
+                        console.log({ searchuser: user });
+                        let rev = user[0].ReviewList.filter(
+                          (r) => r.id === review.id
+                        )[0];
+                        console.log({ rev: rev, review: review });
+                        return (
+                          <div key={review.id} className="card-container">
+                            {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
                     
                     <div>{`${text}`}</div>
                     <div>{`${timestamp}`}</div>
@@ -174,22 +185,22 @@ class SearchPage extends Component {
                       <div>{`${Author.username}`}</div>
                     </Link>
                     <div>{`${ProjectReviewed.name}`}</div> */}
-                          <ReviewCard
-                            review={rev}
-                            refetch={refetch}
-                            users={data.users}
-                            user={user}
-                            refetch={refetch}
-                          />
-                        </div>
-                      );
-                    }
-                  }}
-                </Query>
-              );
-            })
-          )}
-        {/* </div> */}
+                            <ReviewCard
+                              review={rev}
+                              refetch={refetch}
+                              users={data.users}
+                              user={user}
+                              refetch={refetch}
+                            />
+                          </div>
+                        );
+                      }
+                    }}
+                  </Query>
+                );
+              })
+            )}
+        </div>
       </div>
     );
   }
