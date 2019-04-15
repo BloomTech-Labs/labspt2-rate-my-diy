@@ -207,8 +207,16 @@ export const NEW_REVIEW = gql`
 `;
 
 export const dislikeAReview = gql`
-  mutation dislikeAReview($revId: ID!, $username: String!) {
-    dislikeAReview(revId: $revId, username: $username) {
+  mutation dislikeAReview(
+    $revId: ID!
+    $username: String!
+    $didThumbDown: Boolean!
+  ) {
+    dislikeAReview(
+      revId: $revId
+      username: $username
+      didThumbDown: $didThumbDown
+    ) {
       id
       name
       text
@@ -231,8 +239,8 @@ export const dislikeAReview = gql`
 `;
 
 export const likeAReview = gql`
-  mutation likeAReview($revId: ID!, $username: String!) {
-    likeAReview(revId: $revId, username: $username) {
+  mutation likeAReview($revId: ID!, $username: String!, $didThumbUp: Boolean!) {
+    likeAReview(revId: $revId, username: $username, didThumbUp: $didThumbUp) {
       id
       name
       text

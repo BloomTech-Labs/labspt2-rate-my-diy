@@ -5,7 +5,7 @@ const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
 const { stripe } = require('./src/stripe');
-const { stringArg, idArg, intArg } = require('nexus');
+const { stringArg, idArg, intArg, booleanArg } = require('nexus');
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 
@@ -32,48 +32,85 @@ const Mutation = prismaObjectType({
       args: {
         revId: idArg(),
         id: idArg(),
-        username: stringArg()
+        username: stringArg(),
+        didThumbDown: booleanArg()
       },
       resolve: async (parent, { revId, id, username }, ctx, info) => {
-        const review = await prisma.review({ id: revId });
-        let thumbsDown = review.thumbsDown;
-        thumbsDown += 1;
+        if (didThumbDown) {
+          const review = await prisma.review({ id: revId });
+          let thumbsDown = review.thumbsDown;
+          thumbsDown -= 1;
 
-        const updatedReview = await prisma.updateReview({
-          data: { thumbsDown },
-          where: { id: revId }
-        });
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsDown },
+            where: { id: revId }
+          });
 
-        const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id: revId } } },
-          where: { username: username }
-        });
+          const updateUser = await prisma.updateUser({
+            data: { LikedReviews: { disconnect: { id: revId } } },
+            where: { username: username }
+          });
 
-        return updatedReview;
+          return updatedReview;
+        } else {
+          const review = await prisma.review({ id: revId });
+          let thumbsDown = review.thumbsDown;
+          thumbsDown += 1;
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsDown },
+            where: { id: revId }
+          });
+
+          const updateUser = await prisma.updateUser({
+            data: { LikedReviews: { connect: { id: revId } } },
+            where: { username: username }
+          });
+
+          return updatedReview;
+        }
       }
     });
     t.field('likeAReview', {
       type: 'Review',
       args: {
         revId: idArg(),
-        username: stringArg()
+        username: stringArg(),
+        didThumbUp: booleanArg()
       },
       resolve: async (parent, { revId, id, username }, ctx, info) => {
-        const review = await prisma.review({ id: revId });
-        let thumbsUp = review.thumbsUp;
-        thumbsUp += 1;
+        if (didThumbUp) {
+          const review = await prisma.review({ id: revId });
+          let thumbsUp = review.thumbsUp;
+          thumbsUp -= 1;
 
-        const updatedReview = await prisma.updateReview({
-          data: { thumbsUp },
-          where: { id: revId }
-        });
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsUp },
+            where: { id: revId }
+          });
 
-        const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id: revId } } },
-          where: { username: username }
-        });
+          const user = await prisma.updateUser({
+            data: { LikedReviews: { disconnect: { id: revId } } },
+            where: { username: username }
+          });
 
-        return updatedReview;
+          return updatedReview;
+        } else {
+          const review = await prisma.review({ id: revId });
+          let thumbsUp = review.thumbsUp;
+          thumbsUp += 1;
+
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsUp },
+            where: { id: revId }
+          });
+
+          const user = await prisma.updateUser({
+            data: { LikedReviews: { connect: { id: revId } } },
+            where: { username: username }
+          });
+
+          return updatedReview;
+        }
       }
     });
     t.field('rateAProject', {

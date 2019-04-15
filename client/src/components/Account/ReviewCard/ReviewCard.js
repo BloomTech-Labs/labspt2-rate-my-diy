@@ -76,8 +76,9 @@ class ReviewCard extends React.Component {
 
   render() {
     const { loggedIn, authUser } = this.state;
-    const { review } = this.props;
+
     if (loggedIn) {
+      const { review } = this.props;
       // logged in
       if (review.Author.email === authUser.email) {
         // logged in, your review
@@ -446,12 +447,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsUpDisabled}
-                                >
-                                  +
-                                </button>
+                                <button disabled>+</button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
@@ -464,7 +460,8 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: review.id,
-                                  username: this.state.visitor.username
+                                  username: this.state.visitor.username,
+                                  didThumbUp: this.state.didThumbUp
                                 }
                               });
                               await this.props.refetch();
@@ -519,12 +516,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsDownDisabled}
-                                >
-                                  -
-                                </button>
+                                <button disabled>-</button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
@@ -536,7 +528,8 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   revId: review.id,
-                                  username: this.state.visitor.username
+                                  username: this.state.visitor.username,
+                                  didThumbDown: this.state.didThumbDown
                                 }
                               });
                               await this.props.refetch();
@@ -635,12 +628,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsUpDisabled}
-                                >
-                                  +
-                                </button>
+                                <button disabled>+</button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
@@ -653,7 +641,8 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   revId: this.state.review.id,
-                                  username: this.state.visitor.username
+                                  username: this.state.visitor.username,
+                                  didThumbUp: this.state.didThumbUp
                                 }
                               });
                               await this.props.refetch();
@@ -707,12 +696,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsDownDisabled}
-                                >
-                                  -
-                                </button>
+                                <button disabled>-</button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
@@ -723,8 +707,9 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
-                                  revId: review.id,
-                                  username: this.state.visitor.username
+                                  revId: this.props.review.id,
+                                  username: this.state.visitor.username,
+                                  didThumbDown: this.state.didThumbDown
                                 }
                               });
                               await this.props.refetch();
@@ -760,6 +745,7 @@ class ReviewCard extends React.Component {
       }
     } else {
       // not logged in
+      const { review } = this.props;
 
       if (review.projRating !== null || undefined) {
         // logged in, review includes rating, return
