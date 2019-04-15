@@ -29,6 +29,44 @@ export const getUsers = gql`
           titleImg
         }
       }
+      LikedReviews {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        projRating
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
+      DislikedReviews {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        projRating
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
     }
   }
 `;

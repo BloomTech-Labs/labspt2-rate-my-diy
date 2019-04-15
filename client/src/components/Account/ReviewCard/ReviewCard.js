@@ -36,7 +36,28 @@ class ReviewCard extends React.Component {
 
   componentDidMount() {
     if (this.state.authUser != null) {
-      this.setState({ ...this.state, loggedIn: true });
+      let disFilter = this.state.visitor.DislikedReviews.filter(
+        (r) => r.id === this.state.review.id
+      );
+      let likeFilter = this.state.visitor.LikedReviews.filter(
+        (r) => r.id === this.state.review.id
+      );
+      if (disFilter[0]) {
+        this.setState({
+          ...this.state,
+          didThumbDown: true,
+          thumbsUpDisabled: true,
+          loggedIn: true
+        });
+      }
+      if (likeFilter[0]) {
+        this.setState({
+          ...this.state,
+          didThumbUp: true,
+          thumbsDownDisabled: true,
+          loggedIn: true
+        });
+      }
     } else {
       this.setState({ loggedIn: false });
     }

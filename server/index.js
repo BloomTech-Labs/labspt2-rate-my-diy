@@ -34,7 +34,7 @@ const Mutation = prismaObjectType({
         username: stringArg(),
         didThumbDown: booleanArg()
       },
-      resolve: async (parent, { revId, id, username }, ctx, info) => {
+      resolve: async (parent, { revId, username, didThumbDown }, ctx, info) => {
         if (didThumbDown) {
           const review = await prisma.review({ id: revId });
           let thumbsDown = review.thumbsDown;
@@ -76,7 +76,7 @@ const Mutation = prismaObjectType({
         username: stringArg(),
         didThumbUp: booleanArg()
       },
-      resolve: async (parent, { revId, id, username }, ctx, info) => {
+      resolve: async (parent, { revId, username, didThumbUp }, ctx, info) => {
         if (didThumbUp) {
           const review = await prisma.review({ id: revId });
           let thumbsUp = review.thumbsUp;
