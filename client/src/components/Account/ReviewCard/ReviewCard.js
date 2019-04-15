@@ -59,27 +59,17 @@ class ReviewCard extends React.Component {
   };
 
   thumbsUp = () => {
-    let thumbsUp = this.state.thumbsUp;
-    this.state.thumbsUp === this.props.review.thumbsUp
-      ? (thumbsUp = thumbsUp + 1)
-      : (thumbsUp = thumbsUp - 1);
     this.setState({
       ...this.state,
       didThumbUp: !this.state.didThumbUp,
-      thumbsUp: thumbsUp,
       thumbsDownDisabled: !this.state.thumbsDownDisabled
     });
   };
 
   thumbsDown = () => {
-    let thumbsDown = this.state.thumbsDown;
-    this.state.thumbsDown === this.props.review.thumbsDown
-      ? (thumbsDown = thumbsDown + 1)
-      : (thumbsDown = thumbsDown - 1);
     this.setState({
       ...this.state,
       didThumbDown: !this.state.didThumbDown,
-      thumbsDown: thumbsDown,
       thumbsUpDisabled: !this.state.thumbsUpDisabled
     });
   };
@@ -424,10 +414,12 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await likeAReview({
                                 variables: {
-                                  id: review.id,
+                                  revId: review.id,
+                                  raterId: visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
+                              await this.props.refetch();
                               await this.thumbsUp();
                             }}
                           >
@@ -454,10 +446,12 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
-                                  id: review.id,
+                                  revId: review.id,
+                                  raterId: visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
+                              await this.props.refetch();
                               await this.thumbsDown();
                             }}
                           >
@@ -528,10 +522,12 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await likeAReview({
                                 variables: {
-                                  id: review.id,
+                                  revId: review.id,
+                                  raterId: visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
+                              await this.props.refetch();
                               await this.thumbsUp();
                             }}
                           >
@@ -557,10 +553,12 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
-                                  id: review.id,
+                                  revId: review.id,
+                                  raterId: visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
+                              await this.props.refetch();
                               await this.thumbsDown();
                             }}
                           >

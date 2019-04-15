@@ -10,6 +10,25 @@ export const getUsers = gql`
       RatedProjects {
         id
       }
+      ReviewList {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        projRating
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
     }
   }
 `;
@@ -188,8 +207,8 @@ export const NEW_REVIEW = gql`
 `;
 
 export const dislikeAReview = gql`
-  mutation dislikeAReview($id: ID!, $username: String!) {
-    dislikeAReview(id: $id, username: $username) {
+  mutation dislikeAReview($revId: ID!, $raterId: ID!, $username: String!) {
+    dislikeAReview(revId: $revId, raterId: $raterId, username: $username) {
       id
       name
       text
@@ -212,8 +231,8 @@ export const dislikeAReview = gql`
 `;
 
 export const likeAReview = gql`
-  mutation likeAReview($id: ID!, $username: String!) {
-    likeAReview(id: $id, username: $username) {
+  mutation likeAReview($revId: ID!, $raterId: ID!, $username: String!) {
+    likeAReview(revId: $revId, raterId: $raterId, username: $username) {
       id
       name
       text

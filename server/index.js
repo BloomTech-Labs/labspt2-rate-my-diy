@@ -30,21 +30,22 @@ const Mutation = prismaObjectType({
     t.field('dislikeAReview', {
       type: 'Review',
       args: {
-        id: idArg(),
+        revId: idArg(),
+        raterId: idArg(),
         username: stringArg()
       },
       resolve: async (parent, { id, username }, ctx, info) => {
-        const review = await prisma.review({ id: id });
+        const review = await prisma.review({ id: revId });
         let thumbsDown = review.thumbsDown;
         thumbsDown += 1;
 
         const updatedReview = await prisma.updateReview({
           data: { thumbsDown },
-          where: { id: id }
+          where: { id: revId }
         });
 
         const user = await prisma.updateUser({
-          data: { DisLikedReviews: { connect: { id } } },
+          data: { DisLikedReviews: { connect: { id: raterId } } },
           where: { username: username }
         });
 
@@ -54,21 +55,22 @@ const Mutation = prismaObjectType({
     t.field('likeAReview', {
       type: 'Review',
       args: {
-        id: idArg(),
+        revId: idArg(),
+        raterId: idArg(),
         username: stringArg()
       },
       resolve: async (parent, { id, username }, ctx, info) => {
-        const review = await prisma.review({ id: id });
+        const review = await prisma.review({ id: revId });
         let thumbsUp = review.thumbsUp;
         thumbsUp += 1;
 
         const updatedReview = await prisma.updateReview({
           data: { thumbsUp },
-          where: { id: id }
+          where: { id: revId }
         });
 
         const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id } } },
+          data: { LikedReviews: { connect: { id: raterId } } },
           where: { username: username }
         });
 

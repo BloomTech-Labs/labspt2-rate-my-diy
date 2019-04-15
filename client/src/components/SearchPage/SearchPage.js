@@ -159,6 +159,10 @@ class SearchPage extends Component {
                       let user = data.users.filter(
                         (user) => user.email === review.Author.email
                       );
+                      console.log({ searchuser: user });
+                      let rev = user[0].ReviewList.filter(
+                        (r) => r.id === review.id
+                      );
 
                       return (
                         <div key={review.id} className="card-container">
@@ -175,6 +179,7 @@ class SearchPage extends Component {
                             refetch={refetch}
                             users={data.users}
                             user={user}
+                            refetch={refetch}
                           />
                         </div>
                       );
