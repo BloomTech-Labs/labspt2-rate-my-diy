@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Review from './components/Review/Review';
+import ReviewModal from './components/ReviewModal/ReviewModal';
 import {
   getUsers,
   getProjects,

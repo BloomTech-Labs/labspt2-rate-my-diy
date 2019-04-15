@@ -126,8 +126,6 @@ class SearchPage extends Component {
               if (rating.length === 1)
                 meanRating = parseFloat(math.mean(rating).toFixed(2));
 
-              let meanRating = parseFloat(math.mean(rating).toFixed(2));
-
               const stars = [];
 
               for (let i = 0; i < Math.round(meanRating); i++) {
@@ -177,11 +175,19 @@ class SearchPage extends Component {
             )
             .concat(
               this.props.reviews.map(
-                ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
+                ({
+                  id,
+                  name,
+                  text,
+                  timestamp,
+                  Author,
+                  ProjectReviewed,
+                  userProfileImage
+                }) => (
                   <div key={id} className="card">
                     <img src={`${userProfileImage}`} alt="user" />
-                    <Link to={`/${username}/profile`}>
-                      <div>{`${username}`}</div>
+                    <Link to={`/${Author.username}/profile`}>
+                      <div>{`${Author.username}`}</div>
                     </Link>
                   </div>
                 )
