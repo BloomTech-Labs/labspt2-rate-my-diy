@@ -14,13 +14,13 @@ class ProjectCard extends React.Component {
     let revs = reviews.filter((rev) => rev.ProjectReviewed.id === project.id);
 
     const authUser = JSON.parse(json);
+
     let visitor = [];
     let loggedIn = false;
-    if (user !== null)
+    if (authUser !== null)
       visitor = users.filter((u) => u.email === authUser.email);
     // if (!visitor[0]) visitor = user
 
-    const username = visitor[0].username;
     console.log({
       users: users,
       reviews: reviews,
@@ -40,8 +40,7 @@ class ProjectCard extends React.Component {
       name: '',
       text: '',
       reviews: revs,
-      showMore: false,
-      username: username
+      showMore: false
     };
   }
 

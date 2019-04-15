@@ -27,7 +27,7 @@ type Project {
  key: String @unique
  category: String!
  timestamp: DateTime!
- titleImg: String! @default(value: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555355210/project%20images/doodle-3644073_640.png")
+ titleImg: String! @default(value: "https://res.cloudinary.com/dv1rhurfd/image/upload/c_scale,w_400/v1555355210/project%20images/doodle-3644073_640.png")
  titleBlurb: String! @default(value: "I hope you like my project")
  rating: [Int!] @default(value: [])
  steps: String! @default(value: "[{\"type\":\"img\",\"body\":\"https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png\"},{\"type\":\"text\",\"body\":\"Bender is great\"}]")
