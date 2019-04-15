@@ -1,3 +1,11 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -8,6 +16,10 @@
   height: 500px;
   border: 2px solid #ecf0f1;
   text-align: center;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 
   img {
     height: 60%;

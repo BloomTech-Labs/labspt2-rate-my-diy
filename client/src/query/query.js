@@ -48,6 +48,7 @@ export const getReviews = gql`
       ProjectReviewed {
         id
         name
+        titleImg
       }
     }
   }
