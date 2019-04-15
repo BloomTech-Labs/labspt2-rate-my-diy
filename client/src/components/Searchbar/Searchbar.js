@@ -717,7 +717,7 @@ class SearchBar extends Component {
                   })}
                 </select>
                 {this.state.filterDisabled ? (
-                  <button onClick={this.filterOnClick}>Filter</button>
+                  <button onClick={this.filterOnClick}>Sort</button>
                 ) : null}
               </>
             </div>
