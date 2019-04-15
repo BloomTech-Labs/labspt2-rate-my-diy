@@ -126,6 +126,8 @@ class SearchPage extends Component {
               if (rating.length === 1)
                 meanRating = parseFloat(math.mean(rating).toFixed(2));
 
+              let meanRating = parseFloat(math.mean(rating).toFixed(2));
+
               const stars = [];
 
               for (let i = 0; i < Math.round(meanRating); i++) {
@@ -133,19 +135,33 @@ class SearchPage extends Component {
               }
 
               return (
-                <div key={id} className="card">
-                  <img src={`${titleImg}`} alt="project" />
-                  <Link to={`/projects/${id}`}>{`${name}`}</Link>
-                  {/* <div>{`${name}`}</div> */}
-                  <div className="rating-container">
-                    {stars.map((star) => {
-                      return star;
-                    })}
+                <div>
+                  <div key={id} className="card">
+                    <img src={`${titleImg}`} alt="project" />
+
+                    <Link to={`/projects/${id}`}>{`${name}`}</Link>
+                    {/* <div>{`${name}`}</div> */}
+                    <div>{`${meanRating}`}</div>
+                    <div>{`${category}`}</div>
+                    <Link to={`/${User.username}/profile`}>
+                      <div>{`${User.username}`}</div>
+                    </Link>
+
+                    <Link to={`/${User.username}/projects`}>
+                      <h2>{name}</h2>
+                    </Link>
+                    <div className="rating-container">
+                      {stars.map((star) => {
+                        return star;
+                      })}
+                    </div>
+                    <div>{`${category}`}</div>
+                    <Link to={`/${User.username}/profile`}>
+                      <div>{`${User.username}`}</div>
+                    </Link>
                   </div>
-                  <div>{`${category}`}</div>
-                  <Link to={`/${User.username}/profile`}>
-                    <div>{`${User.username}`}</div>
-                  </Link>
+                  <p>{category}</p>
+                  <p>@{User.username}</p>
                 </div>
               );
             })
@@ -158,6 +174,18 @@ class SearchPage extends Component {
                   </Link>
                 </div>
               ))
+            )
+            .concat(
+              this.props.reviews.map(
+                ({ id, name, text, timestamp, Author, ProjectReviewed }) => (
+                  <div key={id} className="card">
+                    <img src={`${userProfileImage}`} alt="user" />
+                    <Link to={`/${username}/profile`}>
+                      <div>{`${username}`}</div>
+                    </Link>
+                  </div>
+                )
+              )
             )
             .concat(
               this.props.reviews.map((review) => {

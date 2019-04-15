@@ -8985,10 +8985,16 @@ react-dev-utils@^8.0.0:
     text-table "0.2.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-dom@^16.4.0:
 =======
 react-dom@^16.4.1:
 >>>>>>> 71095c712042563bf4b9d8cc1e94941580c61296
+=======
+
+react-dom@^16.4.1:
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
@@ -9014,18 +9020,30 @@ react-error-overlay@^5.1.4:
   integrity sha512-fp+U98OMZcnduQ+NSEiQa4s/XMsbp+5KlydmkbESOw4P69iWZ68ZMFM5a2BuE0FgqPBKApJyRuYHR95jM8lAmg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
 react-flip-move@^2.9.1:
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.10.2.tgz#efd70dafb11594deac1827d9cf26ea2e773810d6"
   integrity sha512-pKhP+gtq7LQj5D/PvKGejLLOHy4Hk0G6rPLESUOsUsPB3czjvjPs44uSiomlZu+PFIDru0AgmTsD2m3PCuilaw==
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
 react-fontawesome@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-fontawesome/-/react-fontawesome-1.6.1.tgz#eddce17e7dc731aa09fd4a186688a61793a16c5c"
   integrity sha1-7dzhfn3HMaoJ/UoYZoimF5OhbFw=
   dependencies:
     prop-types "^15.5.6"
+<<<<<<< HEAD
 >>>>>>> 71095c712042563bf4b9d8cc1e94941580c61296
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
 
 react-fuzzy@^0.5.2:
   version "0.5.2"
@@ -9183,6 +9201,10 @@ react-stripe-checkout@^2.6.3:
   integrity sha1-MXOocLBOWjwyGgbSTNU8YDARHEU=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
 react-transition-group@^2.2.1:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
@@ -9194,7 +9216,11 @@ react-transition-group@^2.2.1:
     react-lifecycles-compat "^3.0.4"
 
 react@^16.4.0:
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
 react-ui-cards@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-ui-cards/-/react-ui-cards-1.5.0.tgz#2b5d0c5f793e45ce350d4bcef7ff1c56c5277736"
@@ -9207,7 +9233,11 @@ react-ui-cards@^1.5.0:
     react-fontawesome "^1.6.1"
 
 react@^16.4.1:
+<<<<<<< HEAD
 >>>>>>> 71095c712042563bf4b9d8cc1e94941580c61296
+=======
+
+>>>>>>> 049b8f9e849e1be6980e9b5395e5d0e516e98e4e
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
