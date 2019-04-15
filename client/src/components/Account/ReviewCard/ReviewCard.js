@@ -466,9 +466,33 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <form>
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await likeAReview({
+                                  variables: {
+                                    revId: review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbUp: this.state.didThumbUp
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsUp();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsUp: review.thumbsUp
+                                });
+                              }}
+                            >
                               <span>
-                                <button disabled>+</button>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
@@ -535,9 +559,33 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <form>
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await dislikeAReview({
+                                  variables: {
+                                    revId: review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbDown: this.state.didThumbDown
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsDown();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsDown: review.thumbsDown
+                                });
+                              }}
+                            >
                               <span>
-                                <button disabled>-</button>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
@@ -647,9 +695,33 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <form>
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await likeAReview({
+                                  variables: {
+                                    revId: this.state.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbUp: this.state.didThumbUp
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsUp();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsUp: review.thumbsUp
+                                });
+                              }}
+                            >
                               <span>
-                                <button disabled>+</button>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
                               |
@@ -715,9 +787,33 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <form>
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await dislikeAReview({
+                                  variables: {
+                                    revId: this.props.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbDown: this.state.didThumbDown
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsDown();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsDown: review.thumbsDown
+                                });
+                              }}
+                            >
                               <span>
-                                <button disabled>-</button>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
