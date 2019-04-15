@@ -170,7 +170,7 @@ export const editReview = gql`
   mutation editReview(
     $name: String!
     $text: String!
-    $timestamp: string!
+    $timestamp: String!
     $projId: ID!
     $revId: ID!
     $projRating: Int

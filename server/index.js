@@ -183,13 +183,13 @@ const Mutation = prismaObjectType({
         info
       ) => {
         if (projRating > 0) {
-          const ratingProject = await prisma.project({ id: id });
+          const ratingProject = await prisma.project({ id: projId });
           let ratings = ratingProject.rating;
           ratings.push(projRating);
 
           const updateProj = await prisma.updateProject({
             data: { rating: { set: ratings } },
-            where: { projId }
+            where: { id: projId }
           });
 
           let review = await prisma.updateReview({
@@ -199,7 +199,7 @@ const Mutation = prismaObjectType({
               timestamp,
               projRating
             },
-            where: { revId }
+            where: { id: revId }
           });
 
           return review;
@@ -211,7 +211,7 @@ const Mutation = prismaObjectType({
               timestamp,
               projRating
             },
-            where: { revId }
+            where: { id: revId }
           });
 
           return review;

@@ -57,7 +57,12 @@ class App extends Component {
   render() {
     const RoutesWithData = () => (
       <Query query={getUsers}>
-        {({ loading: loadingUsers, data: userData, error: userError }) => (
+        {({
+          loading: loadingUsers,
+          data: userData,
+          error: userError,
+          refetch: userRefetch
+        }) => (
           <Query query={getProjects}>
             {({
               loading: loadingProjects,
@@ -149,7 +154,12 @@ class App extends Component {
                               path={`/${user.username}/reviews`}
                               render={(props) => {
                                 return (
-                                  <ReviewList {...props} email={user.email} />
+                                  <ReviewList
+                                    {...props}
+                                    email={user.email}
+                                    users={userArray}
+                                    user={user}
+                                  />
                                 );
                               }}
                             />
@@ -194,13 +204,24 @@ class App extends Component {
                       })}
 
                       {reviewArray.map((review) => {
+                        let user = userArray.filter(
+                          (user) => user.email === review.Author.email
+                        );
                         return (
                           <Route
                             key={review.id}
                             exact
                             path={`/reviews/${review.id}`}
                             render={(props) => {
-                              return <ReviewCard {...props} review={review} />;
+                              return (
+                                <ReviewCard
+                                  {...props}
+                                  review={review}
+                                  users={userArray}
+                                  user={user}
+                                  refetch={userRefetch}
+                                />
+                              );
                             }}
                           />
                         );
