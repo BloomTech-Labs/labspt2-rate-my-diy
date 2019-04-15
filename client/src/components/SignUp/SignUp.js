@@ -60,7 +60,7 @@ class SignUpFormBase extends Component {
     return (
       <React.Fragment>
         <Mutation mutation={firebaseSignUp}>
-          {(signUpMutation, { data }) => {
+          {(firebaseSignUp, { data }) => {
             return (
               <form
                 onSubmit={(e) => {
@@ -82,7 +82,7 @@ class SignUpFormBase extends Component {
                       );
                     })
                     .then(() => {
-                      signUpMutation({
+                      firebaseSignUp({
                         variables: {
                           username: this.state.username,
                           thirdPartyUID: this.state.uid,

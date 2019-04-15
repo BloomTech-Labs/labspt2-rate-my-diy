@@ -55,7 +55,7 @@ const NavigationAuth = ({ authUser }) => {
                 return null;
               }
               if (data) {
-                console.log({ profData: data });
+                console.log({ profData: data, email: email });
                 return (
                   <li>
                     <Link to={`/${data.user.username}/profile`}>
