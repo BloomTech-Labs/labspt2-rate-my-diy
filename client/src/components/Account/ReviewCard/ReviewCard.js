@@ -75,7 +75,8 @@ class ReviewCard extends React.Component {
   };
 
   render() {
-    const { review, loggedIn, authUser } = this.state;
+    const { loggedIn, authUser } = this.state;
+    const { review } = this.props;
     if (loggedIn) {
       // logged in
       if (review.Author.email === authUser.email) {
@@ -408,6 +409,48 @@ class ReviewCard extends React.Component {
                     <div>{`${review.text}`}</div>
                     <Mutation mutation={likeAReview}>
                       {(likeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disable={this.state.thumbsUpDisabled}>
+                                  +
+                                </button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ likeError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>+</button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                              <span>
+                                There was an error submitting your rating.
+                              </span>
+                            </form>
+                          );
+                        }
+                        if (data)
+                          return (
+                            <form>
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
                         return (
                           <form
                             onSubmit={async (e) => {
@@ -420,7 +463,12 @@ class ReviewCard extends React.Component {
                                 }
                               });
                               await this.props.refetch();
+                              const { review } = await this.props;
                               await this.thumbsUp();
+                              await this.setState({
+                                ...this.state,
+                                review: review
+                              });
                             }}
                           >
                             <span>
@@ -440,6 +488,41 @@ class ReviewCard extends React.Component {
 
                     <Mutation mutation={dislikeAReview}>
                       {(dislikeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ disError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                              <div>There was an error logging your rating.</div>
+                            </form>
+                          );
+                        }
+                        if (data)
+                          return (
+                            <form>
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
                         return (
                           <form
                             onSubmit={async (e) => {
@@ -452,7 +535,12 @@ class ReviewCard extends React.Component {
                                 }
                               });
                               await this.props.refetch();
+                              const { review } = await this.props;
                               await this.thumbsDown();
+                              await this.setState({
+                                ...this.state,
+                                review: review
+                              });
                             }}
                           >
                             <span>
@@ -464,7 +552,6 @@ class ReviewCard extends React.Component {
                               </button>
                               {`Thumbs Down: ${review.thumbsDown}`}
                             </span>
-                            |
                           </form>
                         );
                       }}
@@ -516,6 +603,43 @@ class ReviewCard extends React.Component {
 
                     <Mutation mutation={likeAReview}>
                       {(likeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>+</button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ likeError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>+</button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        }
+                        if (data)
+                          return (
+                            <form>
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
+                                {`Thumbs Up: ${review.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
                         return (
                           <form
                             onSubmit={async (e) => {
@@ -528,7 +652,12 @@ class ReviewCard extends React.Component {
                                 }
                               });
                               await this.props.refetch();
+                              const { review } = await this.props;
                               await this.thumbsUp();
+                              await this.setState({
+                                ...this.state,
+                                review: review
+                              });
                             }}
                           >
                             <span>
@@ -547,19 +676,61 @@ class ReviewCard extends React.Component {
                     </Mutation>
                     <Mutation mutation={dislikeAReview}>
                       {(dislikeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ disError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                              <div>There was an error logging your rating.</div>
+                            </form>
+                          );
+                        }
+                        if (data)
+                          return (
+                            <form>
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
+                                {`Thumbs Down: ${review.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
                         return (
                           <form
                             onSubmit={async (e) => {
+                              const rev = this.props.review;
+                              console.log({ wheretheRev: rev });
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
-                                  revId: review.id,
+                                  revId: rev.id,
                                   raterId: this.state.visitor.id,
                                   username: this.state.visitor.username
                                 }
                               });
                               await this.props.refetch();
+                              const { review } = await this.props;
                               await this.thumbsDown();
+                              await this.setState({
+                                ...this.state,
+                                review: review
+                              });
                             }}
                           >
                             <span>
@@ -571,7 +742,6 @@ class ReviewCard extends React.Component {
                               </button>
                               {`Thumbs Down: ${review.thumbsDown}`}
                             </span>
-                            |
                           </form>
                         );
                       }}

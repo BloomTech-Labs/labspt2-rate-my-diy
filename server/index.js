@@ -34,7 +34,7 @@ const Mutation = prismaObjectType({
         raterId: idArg(),
         username: stringArg()
       },
-      resolve: async (parent, { id, username }, ctx, info) => {
+      resolve: async (parent, { revId, raterId, username }, ctx, info) => {
         const review = await prisma.review({ id: revId });
         let thumbsDown = review.thumbsDown;
         thumbsDown += 1;
@@ -59,7 +59,7 @@ const Mutation = prismaObjectType({
         raterId: idArg(),
         username: stringArg()
       },
-      resolve: async (parent, { id, username }, ctx, info) => {
+      resolve: async (parent, { revId, raterId, username }, ctx, info) => {
         const review = await prisma.review({ id: revId });
         let thumbsUp = review.thumbsUp;
         thumbsUp += 1;
