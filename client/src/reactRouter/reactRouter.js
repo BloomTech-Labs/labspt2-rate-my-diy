@@ -37,50 +37,48 @@ const NavigationAuth = ({ authUser }) => {
 
       <input type="checkbox" id="toggle" name="toggle" />
       <div className="verticalNav">
-        <ul>
-          <li>
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
+        <Query query={GET_USER} variables={{ email: email }}>
+          {({ loading, error, data }) => {
+            if (loading) {
+              console.log({ profLoading: loading });
+              return null;
+            }
+            if (error) {
+              console.log({ profError: error });
+              return null;
+            }
+            if (data) {
+              console.log({ profData: data, email: email });
+              return (
+                <ul>
+                  <li>
+                    <Link to={ROUTES.HOME}>Home</Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/account`}>
+                      My Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/profile`}>
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={ROUTES.CREATE_PROJECT}>Create Project</Link>
+                  </li>
+                </ul>
+              );
+            }
+          }
+          // (
+          //   <li>
+          //     <Link to={`/${user.username}/profile`}>My Profile</Link>
+          //   </li>
+          // )
+          }
+        </Query>
 
-          <Query query={GET_USER} variables={{ email: email }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                console.log({ profLoading: loading });
-                return null;
-              }
-              if (error) {
-                console.log({ profError: error });
-                return null;
-              }
-              if (data) {
-                console.log({ profData: data, email: email });
-                return (
-                  <>
-                    <li>
-                      <Link to={`/${data.user.username}/account`}>
-                        My Account
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={`/${data.user.username}/profile`}>
-                        My Profile
-                      </Link>
-                    </li>
-                  </>
-                );
-              }
-            }
-            // (
-            //   <li>
-            //     <Link to={`/${user.username}/profile`}>My Profile</Link>
-            //   </li>
-            // )
-            }
-          </Query>
-          <li>
-            <Link to={ROUTES.CREATE_PROJECT}>Create Project</Link>
-          </li>
-        </ul>
         <SignOutButton />
       </div>
     </React.Fragment>
