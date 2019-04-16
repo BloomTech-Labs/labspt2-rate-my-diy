@@ -30,7 +30,7 @@ type Project {
  titleImg: String! @default(value: "http://lorempixel.com/400/400/")
  titleBlurb: String! @default(value: "I hope you like my project")
  rating: [Int!] @default(value: [])
- steps: String! @default(value: "1. Put the lime in the coconut 2. Drink them both up 3. Call the doctor 4. Ask if there's anything you can take to relieve your bellyache")
+ steps: String! @default(value: "[{\"type\":\"img\",\"body\":\"https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png\"},{\"type\":\"text\",\"body\":\"Bender is great\"}]")
  User: User! @relation(name: "UserProjects")
  Reviews:[Review!] @relation(name: "ProjectReviews" onDelete: CASCADE)
  RatedBy: [User!] @relation(name: "UserRatedProjects")
@@ -42,6 +42,7 @@ type Review {
   rKey: String @unique
   text: String!
   timestamp: DateTime!
+  projRating: Int
   thumbsUp: Int! @default(value: 0)
   LikedBy: [User!] @relation(name: "UserLikedReviews")
   thumbsDown: Int! @default(value: 0)

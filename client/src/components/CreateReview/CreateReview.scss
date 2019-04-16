@@ -1,0 +1,32 @@
+.createReview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 2px solid blue;
+  h1 {
+    margin: 10px;
+  }
+  form {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid crimson;
+  }
+  h3 {
+    font-size: 2.4rem;
+  }
+  input {
+    width: 70%;
+    height: 36px;
+    margin: 10px;
+  }
+  textarea {
+    border: 2px solid red;
+    width: 70%;
+    height: 30vh;
+    margin: 10px;
+  }
+}

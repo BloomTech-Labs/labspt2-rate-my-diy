@@ -5,7 +5,7 @@ const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
 const { stripe } = require('./src/stripe');
-const { stringArg, idArg, intArg } = require('nexus');
+const { stringArg, idArg, intArg, booleanArg } = require('nexus');
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 
@@ -30,49 +30,86 @@ const Mutation = prismaObjectType({
     t.field('dislikeAReview', {
       type: 'Review',
       args: {
-        id: idArg(),
-        username: stringArg()
+        revId: idArg(),
+        username: stringArg(),
+        didThumbDown: booleanArg()
       },
-      resolve: async (parent, { id, username }, ctx, info) => {
-        const review = await prisma.review({ id: id });
-        let thumbsDown = review.thumbsDown;
-        thumbsDown += 1;
+      resolve: async (parent, { revId, username, didThumbDown }, ctx, info) => {
+        if (didThumbDown) {
+          const review = await prisma.review({ id: revId });
+          let thumbsDown = review.thumbsDown;
+          thumbsDown -= 1;
 
-        const updatedReview = await prisma.updateReview({
-          data: { thumbsDown },
-          where: { id: id }
-        });
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsDown },
+            where: { id: revId }
+          });
 
-        const user = await prisma.updateUser({
-          data: { DisLikedReviews: { connect: { id } } },
-          where: { username: username }
-        });
+          const updateUser = await prisma.updateUser({
+            data: { LikedReviews: { disconnect: { id: revId } } },
+            where: { username: username }
+          });
 
-        return updatedReview;
+          return updatedReview;
+        } else {
+          const review = await prisma.review({ id: revId });
+          let thumbsDown = review.thumbsDown;
+          thumbsDown += 1;
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsDown },
+            where: { id: revId }
+          });
+
+          const updateUser = await prisma.updateUser({
+            data: { LikedReviews: { connect: { id: revId } } },
+            where: { username: username }
+          });
+
+          return updatedReview;
+        }
       }
     });
     t.field('likeAReview', {
       type: 'Review',
       args: {
-        id: idArg(),
-        username: stringArg()
+        revId: idArg(),
+        username: stringArg(),
+        didThumbUp: booleanArg()
       },
-      resolve: async (parent, { id, username }, ctx, info) => {
-        const review = await prisma.review({ id: id });
-        let thumbsUp = review.thumbsUp;
-        thumbsUp += 1;
+      resolve: async (parent, { revId, username, didThumbUp }, ctx, info) => {
+        if (didThumbUp) {
+          const review = await prisma.review({ id: revId });
+          let thumbsUp = review.thumbsUp;
+          thumbsUp -= 1;
 
-        const updatedReview = await prisma.updateReview({
-          data: { thumbsUp },
-          where: { id: id }
-        });
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsUp },
+            where: { id: revId }
+          });
 
-        const user = await prisma.updateUser({
-          data: { LikedReviews: { connect: { id } } },
-          where: { username: username }
-        });
+          const user = await prisma.updateUser({
+            data: { LikedReviews: { disconnect: { id: revId } } },
+            where: { username: username }
+          });
 
-        return updatedReview;
+          return updatedReview;
+        } else {
+          const review = await prisma.review({ id: revId });
+          let thumbsUp = review.thumbsUp;
+          thumbsUp += 1;
+
+          const updatedReview = await prisma.updateReview({
+            data: { thumbsUp },
+            where: { id: revId }
+          });
+
+          const user = await prisma.updateUser({
+            data: { LikedReviews: { connect: { id: revId } } },
+            where: { username: username }
+          });
+
+          return updatedReview;
+        }
       }
     });
     t.field('rateAProject', {
@@ -88,7 +125,7 @@ const Mutation = prismaObjectType({
         ratings.push(rating);
 
         const updatedProject = await prisma.updateProject({
-          data: { rating: ratings },
+          data: { rating: { set: ratings } },
           where: { id }
         });
 
@@ -129,6 +166,59 @@ const Mutation = prismaObjectType({
         return user;
       }
     });
+    t.field('editReview', {
+      type: 'Review',
+      args: {
+        name: stringArg(),
+        text: stringArg(),
+        timestamp: stringArg(),
+        projId: idArg(),
+        revId: idArg(),
+        projRating: intArg()
+      },
+      resolve: async (
+        parent,
+        { name, text, timestamp, projId, revId, projRating },
+        ctx,
+        info
+      ) => {
+        if (projRating > 0) {
+          const ratingProject = await prisma.project({ id: projId });
+          let ratings = ratingProject.rating;
+          ratings.push(projRating);
+
+          const updateProj = await prisma.updateProject({
+            data: { rating: { set: ratings } },
+            where: { id: projId }
+          });
+
+          let review = await prisma.updateReview({
+            data: {
+              name,
+              text,
+              timestamp,
+              projRating
+            },
+            where: { id: revId }
+          });
+
+          return review;
+        } else {
+          let review = await prisma.updateReview({
+            data: {
+              name,
+              text,
+              timestamp,
+              projRating
+            },
+            where: { id: revId }
+          });
+
+          return review;
+        }
+      }
+    });
+
     t.field('newReview', {
       type: 'Review',
       args: {
@@ -137,44 +227,94 @@ const Mutation = prismaObjectType({
         timestamp: stringArg(),
         user: stringArg(),
         username: stringArg(),
-        id: idArg()
+        id: idArg(),
+        projRating: intArg()
       },
       resolve: async (
         parent,
-        { name, text, timestamp, username, user, id },
+        { name, text, timestamp, username, user, id, projRating },
         ctx,
         info
       ) => {
-        let project = await prisma.project({ id: id });
-        let projectAuthor = await prisma.user({ username: user });
-        const compiledFunction = pug.compileFile('./templates/newReview.pug');
-        const template = compiledFunction({
-          name: project.name
-        });
+        if (projRating > 0) {
+          const ratingProject = await prisma.project({ id: id });
+          let ratings = ratingProject.rating;
+          ratings.push(projRating);
 
-        mailOptions = {
-          from: 'ratemydiyproject@gmail.com', // sender address
-          to: projectAuthor.email, // list of receivers
-          subject: 'Your project has a new review!', // Subject line
-          html: template // plain text body
-        };
+          const updateProj = await prisma.updateProject({
+            data: { rating: { set: ratings } },
+            where: { id }
+          });
 
-        let review = await prisma.createReview({
-          name,
-          text,
-          timestamp,
-          Author: {
-            connect: { username }
-          },
-          ProjectReviewed: {
-            connect: { id }
-          }
-        });
-        await transporter.sendMail(mailOptions, function(err, info) {
-          if (err) console.log(err);
-          else console.log(info);
-        });
-        return review;
+          const updateUser = await prisma.updateUser({
+            data: { RatedProjects: { connect: { id } } },
+            where: { username: username }
+          });
+
+          let project = await prisma.project({ id: id });
+          let projectAuthor = await prisma.user({ username: user });
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
+          const template = compiledFunction({
+            name: project.name
+          });
+
+          mailOptions = {
+            from: 'ratemydiyproject@gmail.com', // sender address
+            to: projectAuthor.email, // list of receivers
+            subject: 'Your project has a new review!', // Subject line
+            html: template // plain text body
+          };
+
+          let review = await prisma.createReview({
+            name,
+            text,
+            timestamp,
+            projRating,
+            Author: {
+              connect: { username }
+            },
+            ProjectReviewed: {
+              connect: { id }
+            }
+          });
+          await transporter.sendMail(mailOptions, function(err, info) {
+            if (err) console.log(err);
+            else console.log(info);
+          });
+
+          return review;
+        } else {
+          let project = await prisma.project({ id: id });
+          let projectAuthor = await prisma.user({ username: user });
+          const compiledFunction = pug.compileFile('./templates/newReview.pug');
+          const template = compiledFunction({
+            name: project.name
+          });
+
+          mailOptions = {
+            from: 'ratemydiyproject@gmail.com', // sender address
+            to: projectAuthor.email, // list of receivers
+            subject: 'Your project has a new review!', // Subject line
+            html: template // plain text body
+          };
+
+          let review = await prisma.createReview({
+            name,
+            text,
+            timestamp,
+            Author: {
+              connect: { username }
+            },
+            ProjectReviewed: {
+              connect: { id }
+            }
+          });
+          await transporter.sendMail(mailOptions, function(err, info) {
+            if (err) console.log(err);
+            else console.log(info);
+          });
+          return review;
+        }
       }
     });
     t.field('newProject', {
@@ -201,7 +341,49 @@ const Mutation = prismaObjectType({
           titleImg,
           titleBlurb,
           steps,
+          rating: { set: [1] },
           User: { connect: { username } }
+        });
+      }
+    });
+    t.field('editProject', {
+      type: 'Project',
+      args: {
+        name: stringArg(),
+        category: stringArg(),
+        timestamp: stringArg(),
+        titleImg: stringArg(),
+        titleBlurb: stringArg(),
+        steps: stringArg(),
+        username: stringArg(),
+        id: idArg()
+      },
+      resolve: (
+        parent,
+        {
+          name,
+          category,
+          timestamp,
+          titleImg,
+          titleBlurb,
+          steps,
+          username,
+          id
+        },
+        ctx,
+        info
+      ) => {
+        return prisma.updateProject({
+          data: {
+            name,
+            category,
+            timestamp,
+            titleImg,
+            titleBlurb,
+            steps,
+            User: { connect: { username } }
+          },
+          where: { id: id }
         });
       }
     });

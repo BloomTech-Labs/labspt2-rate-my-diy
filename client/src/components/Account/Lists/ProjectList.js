@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import ProjectCard from '../ProjectCard/ProjectCard';
+import { Link } from 'react-router-dom';
 import * as math from 'mathjs';
 
 const GET_PROJECTS = gql`
@@ -19,6 +19,7 @@ const GET_PROJECTS = gql`
       User {
         id
         username
+        email
       }
     }
   }
@@ -59,12 +60,29 @@ class ProjectList extends React.Component {
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
                     {projectsData.projects.map((project) => {
-                      let meanRating = parseFloat(
-                        math.mean(project.rating).toFixed(2)
-                      );
+                      let meanRating = project.rating;
+                      if (project.rating.length > 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
+                        );
+                      if (project.rating.length === 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating).toFixed(2)
+                        );
+
                       project.rating = meanRating;
-                      return <ProjectCard key={project.id} project={project} />;
+                      return (
+                        <div key={project.id}>
+                          <Link to={`/projects/${project.id}`}>{`${
+                            project.name
+                          }`}</Link>
+                          <div>{`${project.rating}`}</div>
+                          <img src={`${project.titleImg}`} alt="project" />
+                          <div>{`${project.timestamp}`}</div>
+                        </div>
+                      );
                     })}
+                    <Link to={'/createproject'}>Add a New Project</Link>
                   </div>
                 );
               } else {
@@ -72,7 +90,8 @@ class ProjectList extends React.Component {
                 return (
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>
-                    <span>Add some projects</span>
+                    <p>You don't have any projects yet.</p>
+                    <Link to={'/createproject'}>Add a New Project</Link>
                   </div>
                 );
               }

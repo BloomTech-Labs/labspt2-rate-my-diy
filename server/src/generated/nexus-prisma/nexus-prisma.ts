@@ -615,6 +615,7 @@ type ReviewObject =
   | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
   | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'projRating', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'LikedBy', args?: ReviewLikedByArgs[] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
@@ -628,6 +629,7 @@ type ReviewFields =
   | 'rKey'
   | 'text'
   | 'timestamp'
+  | 'projRating'
   | 'thumbsUp'
   | 'LikedBy'
   | 'thumbsDown'
@@ -693,6 +695,14 @@ export interface ReviewFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  projRating: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   thumbsUp: {
@@ -2222,6 +2232,7 @@ type ReviewPreviousValuesObject =
   | { name: 'rKey', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
   | { name: 'timestamp', args?: [] | false, alias?: string  } 
+  | { name: 'projRating', args?: [] | false, alias?: string  } 
   | { name: 'thumbsUp', args?: [] | false, alias?: string  } 
   | { name: 'thumbsDown', args?: [] | false, alias?: string  } 
 
@@ -2231,6 +2242,7 @@ type ReviewPreviousValuesFields =
   | 'rKey'
   | 'text'
   | 'timestamp'
+  | 'projRating'
   | 'thumbsUp'
   | 'thumbsDown'
 
@@ -2277,6 +2289,14 @@ export interface ReviewPreviousValuesFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  projRating: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   thumbsUp: {
@@ -2379,6 +2399,14 @@ export interface ReviewWhereInput {
   timestamp_lte?: string | null
   timestamp_gt?: string | null
   timestamp_gte?: string | null
+  projRating?: number | null
+  projRating_not?: number | null
+  projRating_in?: number[]
+  projRating_not_in?: number[]
+  projRating_lt?: number | null
+  projRating_lte?: number | null
+  projRating_gt?: number | null
+  projRating_gte?: number | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -2473,6 +2501,14 @@ export type ReviewWhereInputInputObject =
   | { name: 'timestamp_lte', alias?: string  } 
   | { name: 'timestamp_gt', alias?: string  } 
   | { name: 'timestamp_gte', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
+  | { name: 'projRating_not', alias?: string  } 
+  | { name: 'projRating_in', alias?: string  } 
+  | { name: 'projRating_not_in', alias?: string  } 
+  | { name: 'projRating_lt', alias?: string  } 
+  | { name: 'projRating_lte', alias?: string  } 
+  | { name: 'projRating_gt', alias?: string  } 
+  | { name: 'projRating_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -3124,6 +3160,7 @@ export interface ReviewCreateWithoutAuthorInput {
   rKey?: string | null
   text?: string
   timestamp?: string
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3136,6 +3173,7 @@ export type ReviewCreateWithoutAuthorInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3196,6 +3234,7 @@ export interface ReviewCreateWithoutDislikedByInput {
   rKey?: string | null
   text?: string
   timestamp?: string
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3208,6 +3247,7 @@ export type ReviewCreateWithoutDislikedByInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3268,6 +3308,7 @@ export interface ReviewCreateWithoutLikedByInput {
   rKey?: string | null
   text?: string
   timestamp?: string
+  projRating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
   DislikedBy?: UserCreateManyWithoutDislikedReviewsInput | null
@@ -3280,6 +3321,7 @@ export type ReviewCreateWithoutLikedByInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -3381,6 +3423,7 @@ export interface ReviewCreateWithoutProjectReviewedInput {
   rKey?: string | null
   text?: string
   timestamp?: string
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3393,6 +3436,7 @@ export type ReviewCreateWithoutProjectReviewedInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3617,6 +3661,7 @@ export interface ReviewUpdateWithoutAuthorDataInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3629,6 +3674,7 @@ export type ReviewUpdateWithoutAuthorDataInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3735,6 +3781,7 @@ export interface ReviewUpdateWithoutDislikedByDataInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -3747,6 +3794,7 @@ export type ReviewUpdateWithoutDislikedByDataInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -3834,6 +3882,7 @@ export interface ReviewUpdateWithoutLikedByDataInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
   DislikedBy?: UserUpdateManyWithoutDislikedReviewsInput | null
@@ -3846,6 +3895,7 @@ export type ReviewUpdateWithoutLikedByDataInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   | { name: 'DislikedBy', alias?: string  } 
@@ -4016,6 +4066,7 @@ export interface ReviewUpdateWithoutProjectReviewedDataInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -4028,6 +4079,7 @@ export type ReviewUpdateWithoutProjectReviewedDataInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -4110,6 +4162,14 @@ export interface ReviewScalarWhereInput {
   timestamp_lte?: string | null
   timestamp_gt?: string | null
   timestamp_gte?: string | null
+  projRating?: number | null
+  projRating_not?: number | null
+  projRating_in?: number[]
+  projRating_not_in?: number[]
+  projRating_lt?: number | null
+  projRating_lte?: number | null
+  projRating_gt?: number | null
+  projRating_gte?: number | null
   thumbsUp?: number | null
   thumbsUp_not?: number | null
   thumbsUp_in?: number[]
@@ -4196,6 +4256,14 @@ export type ReviewScalarWhereInputInputObject =
   | { name: 'timestamp_lte', alias?: string  } 
   | { name: 'timestamp_gt', alias?: string  } 
   | { name: 'timestamp_gte', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
+  | { name: 'projRating_not', alias?: string  } 
+  | { name: 'projRating_in', alias?: string  } 
+  | { name: 'projRating_not_in', alias?: string  } 
+  | { name: 'projRating_lt', alias?: string  } 
+  | { name: 'projRating_lte', alias?: string  } 
+  | { name: 'projRating_gt', alias?: string  } 
+  | { name: 'projRating_gte', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsUp_not', alias?: string  } 
   | { name: 'thumbsUp_in', alias?: string  } 
@@ -4230,6 +4298,7 @@ export interface ReviewUpdateManyDataInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
@@ -4239,6 +4308,7 @@ export type ReviewUpdateManyDataInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -5238,6 +5308,7 @@ export interface ReviewCreateInput {
   rKey?: string | null
   text?: string
   timestamp?: string
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserCreateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -5251,6 +5322,7 @@ export type ReviewCreateInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5263,6 +5335,7 @@ export interface ReviewUpdateInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   LikedBy?: UserUpdateManyWithoutLikedReviewsInput | null
   thumbsDown?: number | null
@@ -5276,6 +5349,7 @@ export type ReviewUpdateInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'LikedBy', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
@@ -5288,6 +5362,7 @@ export interface ReviewUpdateManyMutationInput {
   rKey?: string | null
   text?: string | null
   timestamp?: string | null
+  projRating?: number | null
   thumbsUp?: number | null
   thumbsDown?: number | null
 }
@@ -5297,6 +5372,7 @@ export type ReviewUpdateManyMutationInputInputObject =
   | { name: 'rKey', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'timestamp', alias?: string  } 
+  | { name: 'projRating', alias?: string  } 
   | { name: 'thumbsUp', alias?: string  } 
   | { name: 'thumbsDown', alias?: string  } 
   
@@ -5375,6 +5451,8 @@ export type ReviewOrderByInputValues =
   | 'text_DESC'
   | 'timestamp_ASC'
   | 'timestamp_DESC'
+  | 'projRating_ASC'
+  | 'projRating_DESC'
   | 'thumbsUp_ASC'
   | 'thumbsUp_DESC'
   | 'thumbsDown_ASC'
