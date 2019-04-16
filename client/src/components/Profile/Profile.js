@@ -329,6 +329,7 @@ class Profile extends React.Component {
                           reviews={ReviewList}
                           users={users}
                           user={user}
+                          refetch={usersRefetch}
                         />
                       );
                     })}
@@ -382,6 +383,7 @@ class Profile extends React.Component {
                           reviews={ReviewList}
                           users={users}
                           user={user}
+                          refetch={usersRefetch}
                         />
                       );
                     })}

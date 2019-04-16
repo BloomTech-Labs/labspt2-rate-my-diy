@@ -40,7 +40,8 @@ class ProjectCard extends React.Component {
       name: '',
       text: '',
       reviews: revs,
-      showMore: false
+      showMore: false,
+      username: visitor[0].username
     };
   }
 

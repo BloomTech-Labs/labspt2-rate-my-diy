@@ -147,6 +147,7 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
+        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.addImage(image);
       })
@@ -166,6 +167,7 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
+        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.setState({
           imgDeleteDisabled: false,
@@ -337,7 +339,7 @@ class CreateProject extends Component {
                   );
                 } else {
                   return (
-                    <div key={step[idx]}>
+                    <div key={idx}>
                       <input
                         type="text"
                         value={step.body}
