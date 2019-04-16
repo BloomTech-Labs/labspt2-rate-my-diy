@@ -61,12 +61,6 @@ class SignInGithubBase extends Component {
     });
   };
   onSubmit = (event) => {
-    let isNew = JSON.parse(socialAuthUser.additionalUserInfo.isNewUser);
-    console.log({
-      isNew: isNew,
-      addInfo: socialAuthUser.additionalUserInfo,
-      socialAuthUser: socialAuthUser
-    });
     this.props.firebase
       .doSignInWithGithub()
       // console.log(this.props, 'home page props')

@@ -41,9 +41,7 @@ const NavigationAuth = ({ authUser }) => {
           <li>
             <Link to={ROUTES.HOME}>Home</Link>
           </li>
-          <li>
-            <Link to={ROUTES.ACCOUNT}>My Account</Link>
-          </li>
+
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading, error, data }) => {
               if (loading) {
@@ -57,11 +55,18 @@ const NavigationAuth = ({ authUser }) => {
               if (data) {
                 console.log({ profData: data, email: email });
                 return (
-                  <li>
-                    <Link to={`/${data.user.username}/profile`}>
-                      My Profile
-                    </Link>
-                  </li>
+                  <>
+                    <li>
+                      <Link to={`/${data.user.username}/account`}>
+                        My Account
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/${data.user.username}/profile`}>
+                        My Profile
+                      </Link>
+                    </li>
+                  </>
                 );
               }
             }

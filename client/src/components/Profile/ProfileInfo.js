@@ -21,8 +21,9 @@ class ProfileInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userProfileImage: '',
-      bio: ''
+      userProfileImage: this.props.user.userProfileImage,
+      bio: this.props.user.bio,
+      username: this.props.user.username
     };
   }
 
@@ -77,68 +78,99 @@ class ProfileInfo extends React.Component {
 
   render() {
     const email = this.props.email;
+
     return (
-      <Query query={GET_USER} variables={{ email: email }}>
-        {({
-          loading: userLoading,
-          data: userData,
-          error: userError,
-          refetch: userRefetch
-        }) => (
-          <Mutation mutation={editUser}>
-            {(
-              editUser,
-              { loading: editLoading, data: editData, error: editError }
-            ) => {
-              if (userLoading || editLoading) return <div>Loading...</div>;
-              if (userError || editError) {
-                console.log({ userError: userError, editError: editError });
-                return <div>There was an error.</div>;
-              }
-              if (userData || editData) {
-                console.log({ userData: userData, editData: editData });
-                return <div>Complete</div>;
-              }
-              return (
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    await editUser({
-                      variables: {
-                        userProfileImage: this.state.userProfileImage,
-                        bio: this.state.bio,
-                        email: this.props.email
-                      }
-                    });
-                    await userRefetch();
-                    await this.setState({
-                      ...this.state,
-                      userProfileImage: userData.user.userProfileImage,
-                      bio: userData.user.bio
-                    });
-                  }}
-                >
-                  <div>
-                    <img src={this.state.userProfileImage} />
-                  </div>
-                  <button onClick={this.openCloudinary}>
-                    Set Profile Image
-                  </button>
-                  <h3>Bio</h3>
-                  <textarea
-                    rows="6"
-                    cols="75"
-                    name="bio"
-                    value={this.state.bio}
-                    onChange={this.textChange}
-                  />
-                  <button type="submit">Submit</button>
-                </form>
-              );
-            }}
-          </Mutation>
-        )}
-      </Query>
+      <Mutation mutation={editUser}>
+        {(editUser, { loading, data, error }) => {
+          if (loading) return <div>Loading...</div>;
+          if (error) {
+            console.log({ error });
+            return <div>There was an error.</div>;
+          }
+          // if (editData) {
+          //   return (
+          //     <div>
+          //     <h1>{`${this.state.username}`}</h1>
+          //     <img src={`${this.state.userProfileImage}`}/>
+          //     <p>{`${this.state.bio}`}</p>
+
+          //     </div>
+          //   )
+          // }
+          if (data) {
+            return (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await editUser({
+                    variables: {
+                      userProfileImage: this.state.userProfileImage,
+                      bio: this.state.bio,
+                      email: this.props.email
+                    }
+                  });
+
+                  // await this.setState({
+                  //   ...this.state,
+                  //   userProfileImage: data.editUser.userProfileImage,
+                  //   bio: data.editUser.bio,
+                  // });
+                }}
+              >
+                <h1>{`${this.state.username}`}</h1>
+                <div>
+                  <img src={this.state.userProfileImage} />
+                </div>
+                <button onClick={this.openCloudinary}>Set Profile Image</button>
+                <h3>Bio</h3>
+                <textarea
+                  rows="6"
+                  cols="75"
+                  name="bio"
+                  value={this.state.bio}
+                  onChange={this.textChange}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            );
+          }
+          return (
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                await editUser({
+                  variables: {
+                    userProfileImage: this.state.userProfileImage,
+                    bio: this.state.bio,
+                    email: this.props.email
+                  }
+                });
+
+                // await this.setState({
+                //   ...this.state,
+                //   userProfileImage: data.editUser.userProfileImage,
+                //   bio: data.editUser.bio
+                // })
+              }}
+            >
+              <h1>{`${this.state.username}`}</h1>
+              <div>
+                <img src={this.state.userProfileImage} />
+              </div>
+              <button onClick={this.openCloudinary}>Set Profile Image</button>
+              <h3>Bio</h3>
+              <textarea
+                rows="6"
+                cols="75"
+                name="bio"
+                value={this.state.bio}
+                onChange={this.textChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
+          );
+        }}
+      </Mutation>
     );
   }
 }

@@ -23,7 +23,9 @@ class Account extends Component {
               <Link to={ROUTES.STRIPE}>Billing</Link>
             </li>
             <li>
-              <Link to={ROUTES.SETTINGS}>Settings</Link>
+              <Link to={`/${this.props.user.username}/account/settings`}>
+                Settings
+              </Link>
             </li>
           </ul>
         </div>
@@ -36,7 +38,6 @@ class Account extends Component {
             <Stripe {...props} firebase={this.props.firebase} />
           )}
         />
-        <Route path={ROUTES.SETTINGS} component={Settings} />
       </div>
     );
   }

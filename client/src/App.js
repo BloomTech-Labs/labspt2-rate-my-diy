@@ -27,6 +27,7 @@ import ProjectCard from './components/Account/ProjectCard/ProjectCard';
 import ReviewCard from './components/Account/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
+import Settings from './components/Account/Settings/Settings';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -171,6 +172,29 @@ class App extends Component {
                                 );
                               }}
                             />
+                            <Route
+                              exact
+                              path={`/${user.username}/account`}
+                              render={(props) => (
+                                <Account
+                                  {...props}
+                                  email={user.email}
+                                  user={user}
+                                />
+                              )}
+                            />
+                            <Route
+                              path={`/${user.username}/account/settings`}
+                              render={(props) => {
+                                return (
+                                  <Settings
+                                    {...props}
+                                    email={user.email}
+                                    user={user}
+                                  />
+                                );
+                              }}
+                            />
                           </div>
                         );
                       })}
@@ -284,7 +308,7 @@ class App extends Component {
               />
             )}
           />
-          <Route path={ROUTES.ACCOUNT} component={Account} />
+
           {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
           <RoutesWithData />
           <Route path={ROUTES.FOOTER} component={Footer} />
