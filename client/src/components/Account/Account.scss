@@ -1,0 +1,16 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 700px;
+    width: 90%;
+    padding: 0 5%;
+    text-align: center;
+}
+
+.stripe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+}

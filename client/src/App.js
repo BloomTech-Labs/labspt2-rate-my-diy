@@ -85,7 +85,14 @@ class App extends Component {
               />
             )}
           />
-          <Route path={ROUTES.ACCOUNT} component={Account} />
+          <Route
+            path={ROUTES.ACCOUNT}
+            render={(props) => (
+              <Account {...props} firebase={this.props.firebase} />
+            )}
+          />
+          <Route path={ROUTES.MY_PROJECTS} component={ProjectList} />
+          <Route path={ROUTES.MY_REVIEWS} component={ReviewList} />
           <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} />
           <Route path={ROUTES.FOOTER} component={Footer} />
           <Query

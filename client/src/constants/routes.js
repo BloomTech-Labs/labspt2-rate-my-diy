@@ -12,4 +12,3 @@ export const MY_PROJECTS = '/account/projects';
 export const PROJECT_LIST = '/:user/projects';
 export const REVIEW_LIST = '/:user/reviews';
 export const MORE_INFO = '/register';
-export const STRIPE = '/account/stripe';

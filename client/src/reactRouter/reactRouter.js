@@ -26,16 +26,20 @@ const NavigationAuth = () => {
       <div className="verticalNav">
         <ul>
           <li>
-            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-          </li>
-          <li>
             <Link to={ROUTES.HOME}>Home</Link>
           </li>
           <li>
             <Link to={ROUTES.ACCOUNT}>My Account</Link>
           </li>
+          <li>
+            <Link to={ROUTES.MY_PROJECTS}>My Projects</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.MY_REVIEWS}>My Reviews</Link>
+          </li>
+          <SignOutButton />
         </ul>
-        <SignOutButton />
+
       </div>
     </>
   );
