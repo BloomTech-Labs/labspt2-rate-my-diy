@@ -14,7 +14,7 @@ class ReviewCard extends React.Component {
     const authUser = JSON.parse(json);
     let visitor = [];
     let loggedIn = false;
-    if (user !== null)
+    if (authUser !== null)
       visitor = users.filter((u) => u.email === authUser.email)[0];
     console.log({ users: users });
     // visitor = user

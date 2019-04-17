@@ -29,6 +29,7 @@ import ProjectCard from './components/Account/ProjectCard/ProjectCard';
 import ReviewCard from './components/Account/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
+import Settings from './components/Account/Settings/Settings';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -138,7 +139,11 @@ class App extends Component {
                               path={`/${user.username}/profile`}
                               render={(props) => {
                                 return (
-                                  <Profile {...props} email={user.email} />
+                                  <Profile
+                                    {...props}
+                                    email={user.email}
+                                    user={user}
+                                  />
                                 );
                               }}
                             />
@@ -147,7 +152,11 @@ class App extends Component {
                               path={`/${user.username}/projects`}
                               render={(props) => {
                                 return (
-                                  <ProjectList {...props} email={user.email} />
+                                  <ProjectList
+                                    {...props}
+                                    email={user.email}
+                                    user={user}
+                                  />
                                 );
                               }}
                             />
@@ -160,6 +169,29 @@ class App extends Component {
                                     {...props}
                                     email={user.email}
                                     users={userArray}
+                                    user={user}
+                                  />
+                                );
+                              }}
+                            />
+                            <Route
+                              exact
+                              path={`/${user.username}/account`}
+                              render={(props) => (
+                                <Account
+                                  {...props}
+                                  email={user.email}
+                                  user={user}
+                                />
+                              )}
+                            />
+                            <Route
+                              path={`/${user.username}/account/settings`}
+                              render={(props) => {
+                                return (
+                                  <Settings
+                                    {...props}
+                                    email={user.email}
                                     user={user}
                                   />
                                 );
@@ -278,7 +310,7 @@ class App extends Component {
               />
             )}
           />
-          <Route path={ROUTES.ACCOUNT} component={Account} />
+
           {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
           <RoutesWithData />
           <Route path={ROUTES.FOOTER} component={Footer} />

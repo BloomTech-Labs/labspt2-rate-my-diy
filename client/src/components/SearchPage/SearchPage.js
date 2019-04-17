@@ -211,14 +211,6 @@ class SearchPage extends Component {
                         console.log({ rev: rev, review: review });
                         return (
                           <div key={review.id} className="card-container">
-                            {/* <Link to={`/reviews/${id}`}>{`${name}`}</Link>
-                    
-                    <div>{`${text}`}</div>
-                    <div>{`${timestamp}`}</div>
-                    <Link to={`/${Author.username}/profile`}>
-                      <div>{`${Author.username}`}</div>
-                    </Link>
-                    <div>{`${ProjectReviewed.name}`}</div> */}
                             <ReviewCard
                               review={rev}
                               refetch={refetch}

@@ -57,36 +57,6 @@ class CreateProject extends Component {
       });
     }
   };
-  // componentDidMount = async () => {
-
-  //   try {
-  //     const user = await localStorage.getItem('authUser');
-  //     const json = await JSON.parse(user);
-  //     const userPull = await this.props.users.filter(
-  //       (user) => user.email === json.email
-  //     );
-  //     const { username, email } = await userPull[0];
-
-  //     const categories = await this.props.projects.map((project) => project.category);
-  //     let filteredCategories = await [...new Set(categories)];
-  //     let steps = await this.state.project.steps
-
-  //     // steps = JSON.parse(this.state.project.steps)
-
-  //     await this.setState({
-  //       ...this.state,
-  //       imgDeleteDisabled: true,
-  //       categories: filteredCategories,
-  //       username: username,
-  //       email: email,
-  //     });
-
-  //     await console.log({mountState: this.state})
-  //   }
-  //  catch(err) {
-  //    console.log({mountError: err})
-  //  }
-  // };
 
   textChange = async (e) => {
     let value = e.target.value;
@@ -177,6 +147,7 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
+        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.addImage(image);
       })
@@ -196,6 +167,7 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
+        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.setState({
           imgDeleteDisabled: false,
@@ -240,20 +212,6 @@ class CreateProject extends Component {
     });
     await console.log({ category: this.state.project.category });
   };
-  // handleInputChange = (inputValue, actionMeta) => {
-  //   this.setState({
-  //     project: {
-  //       ...this.state.project,
-  //       category: inputValue
-  //     }
-  //   });
-
-  //   console.group('Input Changed');
-  //   console.log(inputValue);
-  //   console.log(`action: ${actionMeta.action}`);
-  //   console.log(`state: ${this.state.project.category}`);
-  //   console.groupEnd();
-  // };
 
   finalize = async (e) => {
     e.preventDefault();
@@ -381,7 +339,7 @@ class CreateProject extends Component {
                   );
                 } else {
                   return (
-                    <div key={step[idx]}>
+                    <div key={idx}>
                       <input
                         type="text"
                         value={step.body}
