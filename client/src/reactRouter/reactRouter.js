@@ -30,31 +30,53 @@ const NavigationAuth = ({ authUser }) => {
   const user = JSON.parse(json);
   const email = user.email;
   return (
-    <React.Fragment>
-      <div className="overlay">
-        <label htmlFor="toggle" />
-      </div>
-
-      <input type="checkbox" id="toggle" name="toggle" />
-      <div className="verticalNav">
-        <ul>
-          <li>
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.ACCOUNT}>My Account</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.MY_PROJECTS}>My Projects</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.MY_REVIEWS}>My Reviews</Link>
-          </li>
-          <SignOutButton />
-        </ul>
-
-      </div>
-    </React.Fragment>
+    <Query query={GET_USER} variables={{ email: email }}>
+      {({ loading, data, error }) => {
+        if (loading) return null;
+        if (error) {
+          console.log({ navError: error });
+          return null;
+        }
+        if (data)
+          return (
+            <React.Fragment>
+              <div className="overlay">
+                <label htmlFor="toggle" />
+              </div>
+              <input type="checkbox" id="toggle" name="toggle" />
+              <div className="verticalNav">
+                <ul>
+                  <li>
+                    <Link to={ROUTES.HOME}>Home</Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/account`}>
+                      My Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/profile`}>
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/projects`}>
+                      My Projects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/${data.user.username}/reviews`}>
+                      My Reviews
+                    </Link>
+                  </li>
+                  <SignOutButton />
+                </ul>
+              </div>
+            </React.Fragment>
+          );
+        return null;
+      }}
+    </Query>
   );
 };
 const NavigationNonAuth = () => {
