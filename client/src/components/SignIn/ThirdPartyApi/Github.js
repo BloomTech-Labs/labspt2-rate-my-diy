@@ -6,6 +6,7 @@ import { withFirebase } from '../../Firebase/Exports';
 import Modal from 'react-modal';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -57,7 +58,8 @@ class SignInGithubBase extends Component {
       isNewUser: false,
       email: '',
       username: '',
-      uid: ''
+      uid: '',
+      signedUp: false
     };
   }
   secondSubmit = (e) => {
@@ -85,6 +87,9 @@ class SignInGithubBase extends Component {
 
   render() {
     const { error } = this.state;
+    if (this.state.signedUp) {
+      return <Redirect to={ROUTES.HOME} />;
+    }
     return (
       <React.Fragment>
         <Query
@@ -134,15 +139,16 @@ class SignInGithubBase extends Component {
                           console.log({ state: this.state });
                           return (
                             <form
-                              onSubmit={(e) => {
+                              onSubmit={async (e) => {
                                 e.preventDefault();
-                                firebaseSignUp({
+                                await firebaseSignUp({
                                   variables: {
                                     username: this.state.username,
                                     thirdPartyUID: this.state.uid,
                                     email: this.state.email
                                   }
                                 });
+                                await this.setState({ signedUp: true });
                               }}
                             >
                               <input

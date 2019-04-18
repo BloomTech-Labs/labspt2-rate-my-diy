@@ -37,7 +37,7 @@ const NavigationAuth = ({ authUser }) => {
           console.log({ navError: error });
           return null;
         }
-        if (data)
+        if (data.user)
           return (
             <React.Fragment>
               <div className="overlay">
@@ -74,6 +74,7 @@ const NavigationAuth = ({ authUser }) => {
               </div>
             </React.Fragment>
           );
+
         return null;
       }}
     </Query>
