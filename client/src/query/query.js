@@ -6,6 +6,7 @@ export const getUsers = gql`
       id
       username
       userProfileImage
+      bio
       email
       RatedProjects {
         id
@@ -162,6 +163,22 @@ export const UPDATE_PROJECT = gql`
     ) {
       id
       name
+    }
+  }
+`;
+
+export const editUser = gql`
+  mutation editUser(
+    $userProfileImage: String!
+    $bio: String!
+    $email: String!
+  ) {
+    editUser(userProfileImage: $userProfileImage, bio: $bio, email: $email) {
+      id
+      username
+      userProfileImage
+      bio
+      email
     }
   }
 `;

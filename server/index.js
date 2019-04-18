@@ -137,6 +137,21 @@ const Mutation = prismaObjectType({
         return updatedProject;
       }
     });
+    t.field('editUser', {
+      type: 'User',
+      args: {
+        userProfileImage: stringArg(),
+        bio: stringArg(),
+        email: stringArg()
+      },
+      resolve: async (parent, { userProfileImage, bio, email }, ctx, info) => {
+        const updatedUser = await prisma.updateUser({
+          data: { userProfileImage, bio },
+          where: { email }
+        });
+        return updatedUser;
+      }
+    });
     t.field('newUser', {
       type: 'User',
       args: {
@@ -145,6 +160,25 @@ const Mutation = prismaObjectType({
       },
       resolve: async (parent, { username, email }, ctx, info) => {
         const compiledFunction = pug.compileFile('./templates/newUser.pug');
+        const avatars = [
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-14.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-15.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-5.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-3.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-12.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-13.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-11.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-4.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-2.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-8.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-10.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-1.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-9.png'
+        ];
+        let avatar = avatars[Math.floor(Math.random() * avatars.length)];
         const template = compiledFunction({
           name: username
         });
@@ -157,7 +191,8 @@ const Mutation = prismaObjectType({
 
         let user = await prisma.createUser({
           username,
-          email
+          email,
+          userProfileImage: avatar
         });
         await transporter.sendMail(mailOptions, function(err, info) {
           if (err) console.log(err);
@@ -400,6 +435,25 @@ const Mutation = prismaObjectType({
         ctx,
         info
       ) => {
+        const avatars = [
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-14.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-15.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-5.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-3.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-12.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-13.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-11.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-4.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-2.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-8.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-10.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-1.png',
+          'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-9.png'
+        ];
+        let avatar = avatars[Math.floor(Math.random() * avatars.length)];
         const compiledFunction = pug.compileFile('./templates/newUser.pug');
         const template = compiledFunction({
           name: username
@@ -414,12 +468,14 @@ const Mutation = prismaObjectType({
         let user = await prisma.createUser({
           username,
           email,
-          thirdPartyUID
+          thirdPartyUID,
+          userProfileImage: avatar
         });
         await transporter.sendMail(mailOptions, function(err, info) {
           if (err) console.log(err);
           else console.log(info);
         });
+        console.log({ newUser: user });
         return user;
       }
     });

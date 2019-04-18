@@ -9,7 +9,7 @@ type User {
   firebaseUID: String @unique
   username: String! @unique
   email: String! @unique
-  userProfileImage: String! @default(value: "https://picsum.photos/400?random")
+  userProfileImage: String! @default(value: "https://rosieshouse.org/wp-content/uploads/2016/06/avatar-large-square.jpg")
   bio: String! @default(value: "Hi, this is my page where I share projects and reviews")
   privilege: String! @default(value: "Plebian")
   stripeId: String
@@ -27,7 +27,7 @@ type Project {
  key: String @unique
  category: String!
  timestamp: DateTime!
- titleImg: String! @default(value: "http://lorempixel.com/400/400/")
+ titleImg: String! @default(value: "https://res.cloudinary.com/dv1rhurfd/image/upload/c_scale,w_400/v1555355210/project%20images/doodle-3644073_640.png")
  titleBlurb: String! @default(value: "I hope you like my project")
  rating: [Int!] @default(value: [])
  steps: String! @default(value: "[{\"type\":\"img\",\"body\":\"https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png\"},{\"type\":\"text\",\"body\":\"Bender is great\"}]")
