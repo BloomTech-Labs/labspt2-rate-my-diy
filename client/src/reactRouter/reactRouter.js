@@ -4,6 +4,8 @@ import * as ROUTES from '../constants/routes';
 import SignOutButton from '../components/SignOut/SignOut';
 import { withAuthentication } from '../components/Session/session';
 import { AuthUserContext } from '../components/Session/session';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import './reactRouter.scss';
 
@@ -15,9 +17,20 @@ const Navigation = () => (
   </AuthUserContext.Consumer>
 );
 
-const NavigationAuth = () => {
+const NavigationAuth = ({ authUser }) => {
+  const GET_USER = gql`
+    query user($email: String!) {
+      user(where: { email: $email }) {
+        id
+        username
+      }
+    }
+  `;
+  const json = localStorage.getItem('authUser');
+  const user = JSON.parse(json);
+  const email = user.email;
   return (
-    <>
+    <React.Fragment>
       <div className="overlay">
         <label htmlFor="toggle" />
       </div>
@@ -41,12 +54,12 @@ const NavigationAuth = () => {
         </ul>
 
       </div>
-    </>
+    </React.Fragment>
   );
 };
 const NavigationNonAuth = () => {
   return (
-    <>
+    <React.Fragment>
       <div className="overlay">
         <label htmlFor="toggle" />
       </div>
@@ -62,7 +75,7 @@ const NavigationNonAuth = () => {
           </li>
         </ul>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

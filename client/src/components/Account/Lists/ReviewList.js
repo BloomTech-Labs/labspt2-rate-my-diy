@@ -2,6 +2,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import ReviewCard from '../ReviewCard/ReviewCard';
+import { Link } from 'react-router-dom';
+import { getUsers } from '../../../query/query';
 
 // const json = localStorage.getItem("authUser")
 // const user = JSON.parse(json)
@@ -61,31 +63,53 @@ class ReviewList extends React.Component {
           data: reviewsData
         }) => (
           <Query query={GET_USER} variables={{ email: email }}>
-            {({ loading: userLoading, data: userData, error: userError }) => {
-              if (reviewsLoading || userLoading) return 'Loading...';
-              if (reviewsError || userError) return `Error!`;
-              if (reviewsData && userData)
-                console.log({ reviewsData: reviewsData, userData: userData });
+            {({ loading: userLoading, data: userData, error: userError }) => (
+              <Query query={getUsers}>
+                {({
+                  loading: usersLoading,
+                  data: usersData,
+                  error: usersError
+                }) => {
+                  if (reviewsLoading || userLoading || usersLoading)
+                    return 'Loading...';
+                  if (reviewsError || userError || usersError) return `Error!`;
+                  if (reviewsData && userData && usersData)
+                    console.log({
+                      reviewsData: reviewsData,
+                      userData: userData,
+                      usersData: usersData
+                    });
 
-              if (reviewsData.reviews[0]) {
-                return (
-                  <div>
-                    <h1>{`${userData.user.username}'s Reviews`}</h1>
-                    {reviewsData.reviews.map((review) => {
-                      return <ReviewCard key={review.id} review={review} />;
-                    })}
-                  </div>
-                );
-              } else {
-                console.log(userData);
-                return (
-                  <div>
-                    <h1>{`${userData.user.username}'s Reviews`}</h1>
-                    <span>Add some Reviews</span>
-                  </div>
-                );
-              }
-            }}
+                  if (reviewsData.reviews[0]) {
+                    return (
+                      <div>
+                        <h1>{`${userData.user.username}'s Reviews`}</h1>
+                        {reviewsData.reviews.map((review) => {
+                          return (
+                            <ReviewCard
+                              key={review.id}
+                              review={review}
+                              users={usersData.users}
+                              user={userData.user}
+                            />
+                          );
+                        })}
+                        <Link to={'/search'}>Go Review a New Project</Link>
+                      </div>
+                    );
+                  } else {
+                    console.log(userData);
+                    return (
+                      <div>
+                        <h1>{`${userData.user.username}'s Reviews`}</h1>
+                        <p>You haven't reviewed any projects.</p>
+                        <Link to={'/search'}>Go Review a New Project</Link>
+                      </div>
+                    );
+                  }
+                }}
+              </Query>
+            )}
           </Query>
         )}
       </Query>

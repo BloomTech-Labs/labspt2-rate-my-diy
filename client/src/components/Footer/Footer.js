@@ -1,13 +1,16 @@
 import React from 'react';
 import './Footer.scss';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <div className="footer">
       <nav className="bottomNav">
-        <a href="/">Home</a>
-        <a href="/">About the Team</a>
-        <a href="/subscribe">Support Us</a>
+        <Link to="/">Home</Link>
+        <a href="https://github.com/Lambda-School-Labs/labspt2-rate-my-diy">
+          About the Team
+        </a>
+        <Link to="/subscribe">Support Us</Link>
       </nav>
       <p>
         2019 Copyright <a href="/">Rate My DIY</a>{' '}

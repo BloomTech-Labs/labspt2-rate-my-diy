@@ -1,8 +1,10 @@
+# import avatars
 mutation {
   user1: createUser(
     data: {
       username: "asdfsd"
       email: "asldkf@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png"
       Projects: {
         create: [
           {
@@ -10,14 +12,14 @@ mutation {
             category: "random"
             timestamp: "2019-02-01"
             key: "1"
-            rating: { set: [5, 4, 3, 2, 5, 4] }
+            rating: { set: [1, 5, 4, 3, 2, 5, 4] }
           }
           {
             name: "Sarah's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-15"
             key: "2"
-            rating: { set: [4, 3, 2, 1, 1, 1] }
+            rating: { set: [1, 4, 3, 2, 1, 1, 1] }
           }
         ]
       }
@@ -29,6 +31,7 @@ mutation {
     data: {
       username: "sldfksd"
       email: "lkjwe@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png"
       Projects: {
         create: [
           {
@@ -36,14 +39,14 @@ mutation {
             category: "random"
             timestamp: "2018-02-01"
             key: "3"
-            rating: { set: [5, 4, 4, 3, 3] }
+            rating: { set: [1, 5, 4, 4, 3, 3] }
           }
           {
             name: "Joe's 2nd Project"
             category: "kitchen"
             timestamp: "2018-05-15"
             key: "4"
-            rating: { set: [5, 4, 5, 5, 3] }
+            rating: { set: [1, 5, 4, 5, 5, 3] }
           }
         ]
       }
@@ -55,6 +58,7 @@ mutation {
     data: {
       username: "slekrj"
       email: "riowjw@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-14.png"
       Projects: {
         create: [
           {
@@ -62,14 +66,14 @@ mutation {
             category: "garage"
             timestamp: "2018-07-01"
             key: "5"
-            rating: { set: [1, 2, 1, 3, 4] }
+            rating: { set: [1, 1, 2, 1, 3, 4] }
           }
           {
             name: "Mark's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-22"
             key: "6"
-            rating: { set: [5, 5, 4, 4, 3, 5, 3] }
+            rating: { set: [1, 5, 5, 4, 4, 3, 5, 3] }
           }
         ]
       }
@@ -81,6 +85,7 @@ mutation {
     data: {
       username: "lkrjawe"
       email: "orije@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-15.png"
       Projects: {
         create: [
           {
@@ -88,14 +93,14 @@ mutation {
             category: "web development"
             timestamp: "2018-01-17"
             key: "7"
-            rating: { set: [3, 2, 3, 2, 3, 3] }
+            rating: { set: [1, 3, 2, 3, 2, 3, 3] }
           }
           {
             name: "Bo's 2nd Project"
             category: "cocktails"
             timestamp: "2018-03-18"
             key: "8"
-            rating: { set: [5, 5, 4, 4, 3] }
+            rating: { set: [1, 5, 5, 4, 4, 3] }
           }
         ]
       }
@@ -107,6 +112,7 @@ mutation {
     data: {
       username: "lkrwetir"
       email: "toieja@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-5.png"
       Projects: {
         create: [
           {
@@ -114,14 +120,14 @@ mutation {
             category: "self improvement"
             timestamp: "2018-01-21"
             key: "9"
-            rating: { set: [1, 1, 1, 3] }
+            rating: { set: [1, 1, 1, 1, 3] }
           }
           {
             name: "Timmy's 2nd Project"
             category: "home improvement"
             timestamp: "2018-02-12"
             key: "10"
-            rating: { set: [2, 4, 4, 3, 4, 2] }
+            rating: { set: [1, 2, 4, 4, 3, 4, 2] }
           }
         ]
       }
@@ -133,6 +139,7 @@ mutation {
     data: {
       username: "toigjewe"
       email: "rtoijge@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-3.png"
       Projects: {
         create: [
           {
@@ -140,14 +147,14 @@ mutation {
             category: "kitchen"
             timestamp: "2018-07-01"
             key: "11"
-            rating: { set: [5, 4, 4, 4, 3, 4] }
+            rating: { set: [1, 5, 4, 4, 4, 3, 4] }
           }
           {
             name: "Rhonda's 2nd Project"
             category: "handicrafts"
             timestamp: "2019-01-15"
             key: "12"
-            rating: { set: [3, 2, 3, 3, 2, 1] }
+            rating: { set: [1, 3, 2, 3, 3, 2, 1] }
           }
         ]
       }
@@ -159,6 +166,7 @@ mutation {
     data: {
       username: "oiwjoeawd"
       email: "rglklsajfeee@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-12.png"
       Projects: {
         create: [
           {
@@ -166,14 +174,14 @@ mutation {
             category: "music"
             timestamp: "2018-06-04"
             key: "13"
-            rating: { set: [5, 4, 5, 5, 3, 5, 4] }
+            rating: { set: [1, 5, 4, 5, 5, 3, 5, 4] }
           }
           {
             name: "Yanelli's 2nd Project"
             category: "cocktails"
             timestamp: "2018-07-02"
             key: "14"
-            rating: { set: [2, 1, 2, 1, 3, 2] }
+            rating: { set: [1, 2, 1, 2, 1, 3, 2] }
           }
         ]
       }
@@ -185,6 +193,7 @@ mutation {
     data: {
       username: "wlefjwe"
       email: "lrkgjwaelw@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-13.png"
       Projects: {
         create: [
           {
@@ -192,14 +201,14 @@ mutation {
             category: "kid crafts"
             timestamp: "2019-01-01"
             key: "15"
-            rating: { set: [5, 4, 4, 3, 4, 3] }
+            rating: { set: [1, 5, 4, 4, 3, 4, 3] }
           }
           {
             name: "Ashley's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-24"
             key: "16"
-            rating: { set: [5, 5, 4, 4, 3, 2] }
+            rating: { set: [1, 5, 5, 4, 4, 3, 2] }
           }
         ]
       }
@@ -211,6 +220,7 @@ mutation {
     data: {
       username: "askldfjewavvv"
       email: "glrijad@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-11.png"
       Projects: {
         create: [
           {
@@ -218,14 +228,14 @@ mutation {
             category: "random"
             timestamp: "2019-01-09"
             key: "17"
-            rating: { set: [2, 2, 3, 4, 5, 3] }
+            rating: { set: [1, 2, 2, 3, 4, 5, 3] }
           }
           {
             name: "Elmer's 2nd Project"
             category: "kid crafts"
             timestamp: "2019-03-01"
             key: "18"
-            rating: { set: [3, 4, 5, 2, 4, 3] }
+            rating: { set: [1, 3, 4, 5, 2, 4, 3] }
           }
         ]
       }
@@ -237,6 +247,7 @@ mutation {
     data: {
       username: "lgrjraweks"
       email: "tlirjerss@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-4.png"
       Projects: {
         create: [
           {
@@ -244,14 +255,14 @@ mutation {
             category: "music"
             timestamp: "2019-01-15"
             key: "19"
-            rating: { set: [1, 1, 1, 4, 2] }
+            rating: { set: [1, 1, 1, 1, 4, 2] }
           }
           {
             name: "Eric's 2nd Project"
             category: "sewing"
             timestamp: "2019-03-04"
             key: "20"
-            rating: { set: [3, 3, 2, 2, 1] }
+            rating: { set: [1, 3, 3, 2, 2, 1] }
           }
         ]
       }
@@ -263,6 +274,7 @@ mutation {
     data: {
       username: "lrijfwwa"
       email: "dlgiawefs@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar.png"
       Projects: {
         create: [
           {
@@ -270,14 +282,14 @@ mutation {
             category: "music"
             timestamp: "2018-06-01"
             key: "21"
-            rating: { set: [5, 5, 4, 3, 3, 2] }
+            rating: { set: [1, 5, 5, 4, 3, 3, 2] }
           }
           {
             name: "Derek's 2nd Project"
             category: "kitchen"
             timestamp: "2018-08-13"
             key: "22"
-            rating: { set: [4, 3, 3, 2, 2, 1] }
+            rating: { set: [1, 4, 3, 3, 2, 2, 1] }
           }
         ]
       }
@@ -289,6 +301,7 @@ mutation {
     data: {
       username: "itbdsldvf"
       email: "tijaecvvdsd@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-2.png"
       Projects: {
         create: [
           {
@@ -296,14 +309,14 @@ mutation {
             category: "dance"
             timestamp: "2019-03-01"
             key: "23"
-            rating: { set: [5, 4, 4, 4, 3, 2] }
+            rating: { set: [1, 5, 4, 4, 4, 3, 2] }
           }
           {
             name: "Melinda's 2nd Project"
             category: "kitchen"
             timestamp: "2019-03-18"
             key: "24"
-            rating: { set: [4, 4, 3, 3, 2, 1] }
+            rating: { set: [1, 4, 4, 3, 3, 2, 1] }
           }
         ]
       }
@@ -315,6 +328,7 @@ mutation {
     data: {
       username: "dlgirassdweeww"
       email: "adlkfsvvwket@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-8.png"
       Projects: {
         create: [
           {
@@ -322,14 +336,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-05"
             key: "25"
-            rating: { set: [5, 5, 5, 5, 4, 4] }
+            rating: { set: [1, 5, 5, 5, 5, 4, 4] }
           }
           {
             name: "Elsa's 2nd Project"
             category: "home improvement"
             timestamp: "2019-02-18"
             key: "26"
-            rating: { set: [5, 4, 4, 4, 3, 3, 2] }
+            rating: { set: [1, 5, 4, 4, 4, 3, 3, 2] }
           }
         ]
       }
@@ -341,6 +355,7 @@ mutation {
     data: {
       username: "dglawerwdfvvyeiwq"
       email: "tgiasccvdew2@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-10.png"
       Projects: {
         create: [
           {
@@ -348,14 +363,14 @@ mutation {
             category: "random"
             timestamp: "2018-05-08"
             key: "27"
-            rating: { set: [1, 2, 2, 3, 3] }
+            rating: { set: [1, 1, 2, 2, 3, 3] }
           }
           {
             name: "Robert's 2nd Project"
             category: "self improvement"
             timestamp: "2018-09-11"
             key: "28"
-            rating: { set: [3, 3, 4, 2, 2, 2] }
+            rating: { set: [1, 3, 3, 4, 2, 2, 2] }
           }
         ]
       }
@@ -367,6 +382,7 @@ mutation {
     data: {
       username: "yoirewowd"
       email: "lgrakesl@gmail.com"
+      userProfileImage: "https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353675/avatars/avatar-1.png"
       Projects: {
         create: [
           {
@@ -374,41 +390,14 @@ mutation {
             category: "music"
             timestamp: "2019-02-04"
             key: "29"
-            rating: { set: [2, 2, 3, 4, 3, 2, 1] }
+            rating: { set: [1, 2, 2, 3, 4, 3, 2, 1] }
           }
           {
             name: "Amy's 2nd Project"
             category: "dance"
             timestamp: "2019-03-20"
             key: "30"
-            rating: { set: [1, 2, 4, 4, 4] }
-          }
-        ]
-      }
-    }
-  ) {
-    id
-  }
-
-  user16: createUser(
-    data: {
-      username: "alasalle"
-      email: "angela.lasalle91@gmail.com"
-      Projects: {
-        create: [
-          {
-            name: "Angela's 1st Project"
-            category: "music"
-            timestamp: "2019-02-04"
-            key: "31"
-            rating: { set: [2, 2, 3, 4, 3, 2, 1] }
-          }
-          {
-            name: "Angela's 2nd Project"
-            category: "dance"
-            timestamp: "2019-03-20"
-            key: "32"
-            rating: { set: [1, 2, 4, 4, 4] }
+            rating: { set: [1, 1, 2, 4, 4, 4] }
           }
         ]
       }
