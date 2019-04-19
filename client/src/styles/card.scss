@@ -6,7 +6,6 @@
  display: flex;
  flex-wrap: wrap;
  flex-direction: row;
- justify-content: space-evenly;
  margin: 30px 0;
 }
 
@@ -23,8 +22,6 @@ height: auto;
  overflow: hidden;
  width: 23%;
  margin: 20px 2px;
- height: 100% ;
- // max-height: 80% ;
  border: 2px solid #ecf0f1;
  text-align: center;
 
@@ -65,5 +62,9 @@ height: auto;
 
   .proj-title {
    font-size: 2rem ;
-   margin: 5px 5px;
+   width: 100% ;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis ;
+   text-align: center ;
   }
