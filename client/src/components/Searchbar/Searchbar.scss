@@ -21,7 +21,9 @@
   }
 
   .searchButton {
-    border: 2px solid #bdc3c7;
+    // border: 2px solid #bdc3c7;
+    border: 2px solid green ;
+    font-size: 1.6rem ;
     border-radius: 18px;
     padding: 10px 0;
     width: 15%;
@@ -104,12 +106,12 @@
     flex-wrap: wrap;
 
     .radio {
-      display: flex;
-      margin: 0 10px;
+     display: flex;
+     margin: 0 10px;
     }
-  }
-
-  button {
+   }
+   
+   button {
     border: 2px solid #bdc3c7;
     border-radius: 18px;
     padding: 10px 0;
