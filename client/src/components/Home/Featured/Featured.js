@@ -11,7 +11,7 @@ function Featured(props) {
   }
   return (
     <div className="card" onClick={() => props.clickHandler(props.username)}>
-      <img src={props.image} alt="project" />
+      <img className="img-responsive" src={props.image} alt="project" />
       <div className="info-container">
         <h2>{props.title}</h2>
         <p>@{props.username}</p>
