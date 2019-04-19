@@ -417,4 +417,5 @@ class App extends Component {
 
 // please update your components and Routes as needed
 
-export default withAuthentication(App);
+// export default withAuthentication(App);
+export default App
