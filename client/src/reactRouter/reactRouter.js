@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import SignOutButton from '../components/SignOut/SignOut';
@@ -9,15 +9,11 @@ import gql from 'graphql-tag';
 
 import './reactRouter.scss';
 
-const Navigation = () => (
-  <AuthUserContext.Consumer>
-    {(authUser) =>
-      authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
-    }
-  </AuthUserContext.Consumer>
-);
+const Navigation = (props) => {
+  console.log(props);
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(props.authUser.data.email);
 
-const NavigationAuth = ({ authUser }) => {
   const GET_USER = gql`
     query user($email: String!) {
       user(where: { email: $email }) {
@@ -28,7 +24,6 @@ const NavigationAuth = ({ authUser }) => {
   `;
   const json = localStorage.getItem('authUser');
   const user = JSON.parse(json);
-  const email = user.email;
   return (
     <Query query={GET_USER} variables={{ email: email }}>
       {({ loading, data, error }) => {
@@ -37,7 +32,9 @@ const NavigationAuth = ({ authUser }) => {
           console.log({ navError: error });
           return null;
         }
-        if (data.user)
+        console.log(data, 'data');
+        if (data.user.username) {
+          setUsername(data.user.username);
           return (
             <React.Fragment>
               <div className="overlay">
@@ -74,8 +71,8 @@ const NavigationAuth = ({ authUser }) => {
               </div>
             </React.Fragment>
           );
-
-        return null;
+        }
+        return <NavigationNonAuth />;
       }}
     </Query>
   );
