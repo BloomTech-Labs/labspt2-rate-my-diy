@@ -64,6 +64,7 @@
       padding: 10px 0;
       border: 2px solid #bdc3c7;
       text-align: center;
+      font-size: 1.6rem ;
     }
 
     label {
@@ -88,6 +89,7 @@
       select,
       button {
         width: 30%;
+        border: 3px solid red ;
       }
     }
   }
