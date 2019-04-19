@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import SignOutButton from '../components/SignOut/SignOut';
@@ -6,35 +6,38 @@ import { withAuthentication } from '../components/Session/session';
 import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
 import './reactRouter.scss';
 
-const Navigation = (props) => {
-  console.log(props);
-  const [username, setUsername] = useState(null);
-  const [email, setEmail] = useState(props.authUser.data.email);
-
-  const GET_USER = gql`
-    query user($email: String!) {
-      user(where: { email: $email }) {
-        id
-        username
-      }
+export const GET_USER = gql`
+  query user($thirdPartyUID: String!) {
+    user(where: { thirdPartyUID: $thirdPartyUID }) {
+      id
+      username
     }
-  `;
-  const json = localStorage.getItem('authUser');
-  const user = JSON.parse(json);
+  }
+`;
+
+const AuthNavigation = () => (
+  <AuthUserContext.Consumer>
+    {(authUser) =>
+      authUser ? <Navigation authUser={authUser} /> : <NavigationNonAuth />
+    }
+  </AuthUserContext.Consumer>
+);
+
+const Navigation = ({ authUser }) => {
+  console.log(authUser);
+  const thirdPartyUID = authUser.providerData['0'].uid;
+
   return (
-    <Query query={GET_USER} variables={{ email: email }}>
+    <Query query={GET_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
       {({ loading, data, error }) => {
         if (loading) return null;
         if (error) {
           console.log({ navError: error });
           return null;
         }
-        console.log(data, 'data');
-        if (data.user.username) {
-          setUsername(data.user.username);
+        if (data.user)
           return (
             <React.Fragment>
               <div className="overlay">
@@ -71,12 +74,13 @@ const Navigation = (props) => {
               </div>
             </React.Fragment>
           );
-        }
+
         return <NavigationNonAuth />;
       }}
     </Query>
   );
 };
+
 const NavigationNonAuth = () => {
   return (
     <React.Fragment>
@@ -99,4 +103,4 @@ const NavigationNonAuth = () => {
   );
 };
 
-export default withAuthentication(Navigation);
+export default withAuthentication(AuthNavigation);

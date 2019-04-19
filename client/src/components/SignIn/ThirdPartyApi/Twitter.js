@@ -125,7 +125,7 @@ class SignInTwitterBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <button type="submit"> Sign In with Github </button>{' '}
+                    <button type="submit"> Sign In with Twitter </button>{' '}
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal

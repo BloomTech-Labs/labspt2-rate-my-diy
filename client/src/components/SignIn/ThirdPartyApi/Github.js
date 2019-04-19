@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
+import { GET_USER } from '../../../reactRouter/reactRouter';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   'auth/account-exists-with-different-credential';
@@ -134,8 +135,18 @@ class SignInGithubBase extends Component {
                   >
                     <div>
                       <h1>Complete Your Sign Up.</h1>
-                      <Mutation mutation={firebaseSignUp}>
-                        {(firebaseSignUp) => {
+                      <Mutation
+                        mutation={firebaseSignUp}
+                        refetchQueries={() => {
+                          return [
+                            {
+                              query: GET_USER,
+                              variables: { thirdPartyUID: this.state.uid }
+                            }
+                          ];
+                        }}
+                      >
+                        {(firebaseSignUp, refetchQueries) => {
                           console.log({ state: this.state });
                           return (
                             <form
@@ -149,6 +160,7 @@ class SignInGithubBase extends Component {
                                   }
                                 });
                                 await this.setState({ signedUp: true });
+                                await refetchQueries();
                               }}
                             >
                               <input
