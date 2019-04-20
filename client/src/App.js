@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Review from './components/Review/Review';
-import ReviewModal from './components/ReviewModal/ReviewModal';
-import {
-  getUsers,
-  getProjects,
-  getReviews,
-  CREATE_PROJECT
-} from './query/query';
+import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn/SignIn';
@@ -272,48 +264,53 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
-          <Navigation />
-          <Route
-            exact
-            path={ROUTES.HOME}
-            render={(props) => (
-              <Home
-                {...props}
-                projectSearchHandler={this.projectSearchHandler}
-                userSearchHandler={this.userSearchHandler}
-                reviewSearchHandler={this.reviewSearchHandler}
-                getUsers={getUsers}
-                getProjects={getProjects}
-                getReviews={getReviews}
-              />
-            )}
+        <div id="outer-container">
+          <Navigation
+            pageWrapId={'page-wrap'}
+            outerContainerId={'outer-container'}
           />
-          <Route path={ROUTES.SIGN_IN} component={SignIn} />
-          <Route path={ROUTES.SIGN_UP} component={SignUp} />
-          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-          <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-          <Route
-            path={ROUTES.SEARCH}
-            render={(props) => (
-              <SearchPage
-                {...props}
-                users={this.state.users}
-                projects={this.state.projects}
-                reviews={this.state.reviews}
-                projectSearchHandler={this.projectSearchHandler}
-                userSearchHandler={this.userSearchHandler}
-                reviewSearchHandler={this.reviewSearchHandler}
-                getUsers={getUsers}
-                getProjects={getProjects}
-                getReviews={getReviews}
-              />
-            )}
-          />
+          <main id="page-wrap">
+            <Route
+              exact
+              path={ROUTES.HOME}
+              render={(props) => (
+                <Home
+                  {...props}
+                  projectSearchHandler={this.projectSearchHandler}
+                  userSearchHandler={this.userSearchHandler}
+                  reviewSearchHandler={this.reviewSearchHandler}
+                  getUsers={getUsers}
+                  getProjects={getProjects}
+                  getReviews={getReviews}
+                />
+              )}
+            />
+            <Route path={ROUTES.SIGN_IN} component={SignIn} />
+            <Route path={ROUTES.SIGN_UP} component={SignUp} />
+            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+            <Route
+              path={ROUTES.SEARCH}
+              render={(props) => (
+                <SearchPage
+                  {...props}
+                  users={this.state.users}
+                  projects={this.state.projects}
+                  reviews={this.state.reviews}
+                  projectSearchHandler={this.projectSearchHandler}
+                  userSearchHandler={this.userSearchHandler}
+                  reviewSearchHandler={this.reviewSearchHandler}
+                  getUsers={getUsers}
+                  getProjects={getProjects}
+                  getReviews={getReviews}
+                />
+              )}
+            />
 
-          {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
-          <RoutesWithData />
-          <Route path={ROUTES.FOOTER} component={Footer} />
+            {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
+            <RoutesWithData />
+            <Route path={ROUTES.FOOTER} component={Footer} />
+          </main>
         </div>
       </Router>
     );

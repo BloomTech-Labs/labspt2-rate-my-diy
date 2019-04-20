@@ -6,6 +6,8 @@ import { withAuthentication } from '../components/Session/session';
 import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { fallDown as Menu } from 'react-burger-menu';
+
 import './reactRouter.scss';
 
 export const GET_USER = gql`
@@ -39,40 +41,43 @@ const Navigation = ({ authUser }) => {
         }
         if (data.user)
           return (
-            <React.Fragment>
-              <div className="overlay">
-                <label htmlFor="toggle" />
-              </div>
-              <input type="checkbox" id="toggle" name="toggle" />
-              <div className="verticalNav">
-                <ul>
-                  <li>
-                    <Link to={ROUTES.HOME}>Home</Link>
-                  </li>
-                  <li>
-                    <Link to={`/${data.user.username}/account`}>
-                      My Account
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={`/${data.user.username}/profile`}>
-                      My Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={`/${data.user.username}/projects`}>
-                      My Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={`/${data.user.username}/reviews`}>
-                      My Reviews
-                    </Link>
-                  </li>
-                  <SignOutButton />
-                </ul>
-              </div>
-            </React.Fragment>
+            <Menu>
+              <Link to={ROUTES.HOME} className="menu-item">
+                Home
+              </Link>
+
+              <Link to={`/${data.user.username}/account`} className="menu-item">
+                My Account
+              </Link>
+
+              <a
+                id="profile"
+                href={`/${data.user.username}/profile`}
+                className="menu-item"
+              >
+                My Profile
+              </a>
+
+              <a
+                id="projects"
+                href={`/${data.user.username}/projects`}
+                className="menu-item"
+              >
+                My Projects
+              </a>
+
+              <a
+                id="reviews"
+                href={`/${data.user.username}/reviews`}
+                className="menu-item"
+              >
+                My Reviews
+              </a>
+
+              <a id="signOut" href="#" className="menu-item">
+                <SignOutButton />
+              </a>
+            </Menu>
           );
 
         return <NavigationNonAuth />;
