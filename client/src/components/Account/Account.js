@@ -7,7 +7,6 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthorization } from '../Session/session';
 import PasswordChange from '../PasswordChange/PasswordChange';
 import './Account.scss';
-import '../../styles/_globals.scss';
 
 const createSubscriptionMutation = gql`
   mutation createSubscription($source: String!, $email: String!) {
