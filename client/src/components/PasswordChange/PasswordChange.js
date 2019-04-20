@@ -47,7 +47,7 @@ class PasswordChangeBase extends Component {
     const { passwordOne, passwordTwo, error } = this.state;
     const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
     return (
-      <form onSubmit={this.onSubmit} className='form'>
+      <form onSubmit={this.onSubmit}>
         <input
           name="passwordOne"
           value={passwordOne}
