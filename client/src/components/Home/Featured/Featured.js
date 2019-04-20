@@ -14,7 +14,7 @@ function Featured(props) {
       <img className="img-responsive" src={props.image} alt="project" />
       <div className="info-container">
         <h2 className="proj-title" >{props.title}</h2>
-        <p>@{props.username}</p>
+        <p className="proj-user" >@{props.username}</p>
         <Link to={`/${props.username}/profile`}>
           <button className="featured-button" >See More</button>
         </Link>

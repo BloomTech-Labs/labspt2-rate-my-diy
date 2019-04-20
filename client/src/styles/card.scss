@@ -57,14 +57,19 @@ height: auto;
 
   .featured-button {
    font-size: 1.6rem ;
-   margin: 5px 5px ;
+   margin: 10px 10px ;
   }
 
   .proj-title {
    font-size: 2rem ;
+   margin: 5px 5px ;
    width: 100% ;
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis ;
    text-align: center ;
+  }
+
+  .proj-user {
+   margin: 5px 5px ;
   }
