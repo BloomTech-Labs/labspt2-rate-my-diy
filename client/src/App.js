@@ -22,6 +22,7 @@ import ReviewCard from './components/Account/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
 import Settings from './components/Account/Settings/Settings';
+import Header from './components/Home/Header/Header';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -265,11 +266,9 @@ class App extends Component {
     return (
       <Router>
         <div id="outer-container">
-          <Navigation
-            pageWrapId={'page-wrap'}
-            outerContainerId={'outer-container'}
-          />
+          <Navigation />
           <main id="page-wrap">
+            <Header />
             <Route
               exact
               path={ROUTES.HOME}
@@ -309,8 +308,8 @@ class App extends Component {
 
             {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
             <RoutesWithData />
-            <Route path={ROUTES.FOOTER} component={Footer} />
           </main>
+          <Route path={ROUTES.FOOTER} component={Footer} />
         </div>
       </Router>
     );

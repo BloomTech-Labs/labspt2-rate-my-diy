@@ -114,7 +114,6 @@ class SearchPage extends Component {
 
     return (
       <div id="home-container">
-        <Header />
         <SearchWithData />
         <h1>Results:</h1>
         <div className="card-container">

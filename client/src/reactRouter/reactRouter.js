@@ -41,9 +41,13 @@ const Navigation = ({ authUser }) => {
         }
         if (data.user)
           return (
-            <Menu>
+            <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'}>
               <Link to={ROUTES.HOME} className="menu-item">
                 Home
+              </Link>
+
+              <Link to={'/search'} className="menu-item">
+                Search
               </Link>
 
               <Link to={`/${data.user.username}/account`} className="menu-item">
@@ -73,6 +77,8 @@ const Navigation = ({ authUser }) => {
               >
                 My Reviews
               </a>
+
+              <Link to={'/createproject'}>Create Project</Link>
 
               <a id="signOut" href="#" className="menu-item">
                 <SignOutButton />

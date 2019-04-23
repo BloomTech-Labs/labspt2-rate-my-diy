@@ -192,7 +192,6 @@ class Home extends Component {
 
     return (
       <div>
-        <Header />
         <SearchWithData />
 
         <div id="home-container">
