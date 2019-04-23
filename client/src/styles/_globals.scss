@@ -94,9 +94,11 @@ video {
   margin: 0 auto;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html {
   font-size: 62.5%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
@@ -153,16 +155,16 @@ a {
 }
 
 .btn {
-    border: 2px solid #bdc3c7;
-		border-radius: 18px;
-    padding: 10px 0;
-    background-color: #2980b9;
-    color: white;
-    width: 200px;
+  border: 2px solid #bdc3c7;
+  border-radius: 18px;
+  padding: 10px 0;
+  background-color: #2980b9;
+  color: white;
+  width: 200px;
 
-    a {
-      color: white;
-    }
+  a {
+    color: white;
+  }
 }
 
 .small {
