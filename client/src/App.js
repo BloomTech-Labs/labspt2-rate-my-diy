@@ -269,47 +269,49 @@ class App extends Component {
           <Navigation />
           <main id="page-wrap">
             <Header />
-            <Route
-              exact
-              path={ROUTES.HOME}
-              render={(props) => (
-                <Home
-                  {...props}
-                  projectSearchHandler={this.projectSearchHandler}
-                  userSearchHandler={this.userSearchHandler}
-                  reviewSearchHandler={this.reviewSearchHandler}
-                  getUsers={getUsers}
-                  getProjects={getProjects}
-                  getReviews={getReviews}
-                />
-              )}
-            />
-            <Route path={ROUTES.SIGN_IN} component={SignIn} />
-            <Route path={ROUTES.SIGN_UP} component={SignUp} />
-            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-            <Route
-              path={ROUTES.SEARCH}
-              render={(props) => (
-                <SearchPage
-                  {...props}
-                  users={this.state.users}
-                  projects={this.state.projects}
-                  reviews={this.state.reviews}
-                  projectSearchHandler={this.projectSearchHandler}
-                  userSearchHandler={this.userSearchHandler}
-                  reviewSearchHandler={this.reviewSearchHandler}
-                  getUsers={getUsers}
-                  getProjects={getProjects}
-                  getReviews={getReviews}
-                />
-              )}
-            />
+            <div className="main-container">
+              <Route
+                exact
+                path={ROUTES.HOME}
+                render={(props) => (
+                  <Home
+                    {...props}
+                    projectSearchHandler={this.projectSearchHandler}
+                    userSearchHandler={this.userSearchHandler}
+                    reviewSearchHandler={this.reviewSearchHandler}
+                    getUsers={getUsers}
+                    getProjects={getProjects}
+                    getReviews={getReviews}
+                  />
+                )}
+              />
+              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route path={ROUTES.SIGN_UP} component={SignUp} />
+              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+              <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+              <Route
+                path={ROUTES.SEARCH}
+                render={(props) => (
+                  <SearchPage
+                    {...props}
+                    users={this.state.users}
+                    projects={this.state.projects}
+                    reviews={this.state.reviews}
+                    projectSearchHandler={this.projectSearchHandler}
+                    userSearchHandler={this.userSearchHandler}
+                    reviewSearchHandler={this.reviewSearchHandler}
+                    getUsers={getUsers}
+                    getProjects={getProjects}
+                    getReviews={getReviews}
+                  />
+                )}
+              />
 
-            {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
-            <RoutesWithData />
+              {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
+              <RoutesWithData />
+            </div>
+            <Route path={ROUTES.FOOTER} component={Footer} />
           </main>
-          <Route path={ROUTES.FOOTER} component={Footer} />
         </div>
       </Router>
     );

@@ -42,24 +42,24 @@ const Navigation = ({ authUser }) => {
         if (data.user)
           return (
             <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'}>
-              <Link to={ROUTES.HOME} className="menu-item">
-                Home
-              </Link>
+              <a href={ROUTES.HOME} className="menu-item">
+                <div>Home</div>
+              </a>
 
-              <Link to={'/search'} className="menu-item">
-                Search
-              </Link>
+              <a href={'/search'} className="menu-item">
+                <div>Search</div>
+              </a>
 
-              <Link to={`/${data.user.username}/account`} className="menu-item">
-                My Account
-              </Link>
+              <a href={`/${data.user.username}/account`} className="menu-item">
+                <div>My Account</div>
+              </a>
 
               <a
                 id="profile"
                 href={`/${data.user.username}/profile`}
                 className="menu-item"
               >
-                My Profile
+                <div>My Profile</div>
               </a>
 
               <a
@@ -67,7 +67,7 @@ const Navigation = ({ authUser }) => {
                 href={`/${data.user.username}/projects`}
                 className="menu-item"
               >
-                My Projects
+                <div>My Projects</div>
               </a>
 
               <a
@@ -75,12 +75,14 @@ const Navigation = ({ authUser }) => {
                 href={`/${data.user.username}/reviews`}
                 className="menu-item"
               >
-                My Reviews
+                <div>My Reviews</div>
               </a>
 
-              <Link to={'/createproject'}>Create Project</Link>
+              <a id="create" className="menu-item" href={'/createproject'}>
+                <div>Create Project</div>
+              </a>
 
-              <a id="signOut" href="#" className="menu-item">
+              <a id="signOut" href="/" className="menu-item">
                 <SignOutButton />
               </a>
             </Menu>
@@ -95,21 +97,14 @@ const Navigation = ({ authUser }) => {
 const NavigationNonAuth = () => {
   return (
     <React.Fragment>
-      <div className="overlay">
-        <label htmlFor="toggle" />
-      </div>
-
-      <input type="checkbox" id="toggle" name="toggle" />
-      <div className="verticalNav">
-        <ul>
-          <li>
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-          </li>
-        </ul>
-      </div>
+      <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'}>
+        <a id="home" className="menu-item" href={ROUTES.HOME}>
+          <div>Home</div>
+        </a>
+        <a id="signIn" className="menu-item" href={ROUTES.SIGN_IN}>
+          <div>Sign In</div>
+        </a>
+      </Menu>
     </React.Fragment>
   );
 };
