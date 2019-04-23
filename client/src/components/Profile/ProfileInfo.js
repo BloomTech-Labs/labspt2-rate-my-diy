@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Query, Mutation } from 'react-apollo';
 import { editUser } from '../../query/query';
+import './Profile.scss';
 
 const GET_USER = gql`
   query user($email: String!) {
@@ -87,18 +88,8 @@ class ProfileInfo extends React.Component {
             console.log({ error });
             return <div>There was an error.</div>;
           }
-          // if (editData) {
-          //   return (
-          //     <div>
-          //     <h1>{`${this.state.username}`}</h1>
-          //     <img src={`${this.state.userProfileImage}`}/>
-          //     <p>{`${this.state.bio}`}</p>
-
-          //     </div>
-          //   )
-          // }
-          if (data) {
-            return (
+          return (
+            <div className="profile-form-flex-container">
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
@@ -109,65 +100,22 @@ class ProfileInfo extends React.Component {
                       email: this.props.email
                     }
                   });
-
-                  // await this.setState({
-                  //   ...this.state,
-                  //   userProfileImage: data.editUser.userProfileImage,
-                  //   bio: data.editUser.bio,
-                  // });
                 }}
               >
-                <h1>{`${this.state.username}`}</h1>
-                <div>
+                <h2>{`${this.state.username}`}</h2>
+                <div className="img-container">
                   <img src={this.state.userProfileImage} />
                 </div>
                 <button onClick={this.openCloudinary}>Set Profile Image</button>
                 <h3>Bio</h3>
                 <textarea
-                  rows="6"
-                  cols="75"
                   name="bio"
                   value={this.state.bio}
                   onChange={this.textChange}
                 />
                 <button type="submit">Submit</button>
               </form>
-            );
-          }
-          return (
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                await editUser({
-                  variables: {
-                    userProfileImage: this.state.userProfileImage,
-                    bio: this.state.bio,
-                    email: this.props.email
-                  }
-                });
-
-                // await this.setState({
-                //   ...this.state,
-                //   userProfileImage: data.editUser.userProfileImage,
-                //   bio: data.editUser.bio
-                // })
-              }}
-            >
-              <h1>{`${this.state.username}`}</h1>
-              <div>
-                <img src={this.state.userProfileImage} />
-              </div>
-              <button onClick={this.openCloudinary}>Set Profile Image</button>
-              <h3>Bio</h3>
-              <textarea
-                rows="6"
-                cols="75"
-                name="bio"
-                value={this.state.bio}
-                onChange={this.textChange}
-              />
-              <button type="submit">Submit</button>
-            </form>
+            </div>
           );
         }}
       </Mutation>

@@ -1,0 +1,40 @@
+.profile-form-flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: space-around;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    textarea {
+      width: 50%;
+      height: 80px;
+      resize: none;
+
+      @media (max-width: 800px) {
+        width: 70%;
+      }
+
+      @media (max-width: 500px) {
+        width: 90%;
+      }
+    }
+
+    img {
+      height: 150px;
+      width: 10%;
+
+      @media (max-width: 800px) {
+        width: 30%;
+      }
+
+      @media (max-width: 500px) {
+        width: 50%;
+      }
+    }
+  }
+}
