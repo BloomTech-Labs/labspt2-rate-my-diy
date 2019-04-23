@@ -290,7 +290,7 @@ class Profile extends React.Component {
               } = user;
 
               return (
-                <div>
+                <div className="profile-container">
                   <h1>{`${username}`}</h1>
                   <img src={userProfileImage} />
                   <p>{`${bio}`}</p>
@@ -308,7 +308,7 @@ class Profile extends React.Component {
                       );
                     })}
                   </div>
-                  <div>
+                  <div className="profile-projects">
                     <h2>{`${username}'s Projects`}</h2>
                     {Projects.map((project) => {
                       let meanRating = project.rating;
