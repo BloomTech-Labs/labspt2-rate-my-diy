@@ -290,12 +290,15 @@ class Profile extends React.Component {
               } = user;
 
               return (
+               <React.Fragment>
                 <div className="profile-container">
+                  <div className="profile-info">
                   <h1>{`${username}`}</h1>
                   <img src={userProfileImage} />
                   <p>{`${bio}`}</p>
                   <div>
-                    <h2>{`${username}'s Reviews`}</h2>
+                   <h2>{`${username}'s Reviews`}</h2>
+                  </div>
                     {ReviewList.map((review) => {
                       return (
                         <ReviewCard
@@ -389,6 +392,7 @@ class Profile extends React.Component {
                     })}
                   </div>
                 </div>
+                </React.Fragment>
               );
             }}
           </Query>
