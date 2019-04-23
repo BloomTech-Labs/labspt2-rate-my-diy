@@ -47,43 +47,45 @@
  flex-direction: column ;
  justify-content: center ;
  margin: 0 auto ;
- border: 2px solid green ;
+ // border: 1px solid green ;
 }
 
 .profile-info {
-border: 4px solid yellow ;
-display: flex ;
-flex-direction: column ;
-// max-width: 300px;
+// border: 1px solid yellow ;
+// display: flex ;
+// flex-direction: column ;
 width: 100% ;
 
 }
 
 .profile-projects {
- border: 1px solid red ;
+ // border: 1px solid red ;
  display: flex ;
  flex-direction: row ;
+ 
 }
 
 .profile-liked-reviews {
- border: 2px solid blue ;
+ // border: 1px solid blue ;
  display: flex ;
  flex-direction: row ;
 }
 
 .profile-disliked-reviews {
- border: 2px solid orange ;
+ // border: 1px solid orange ;
 }
 
 .profile-review-card {
- border: 8px solid purple ;
+ // border: 1px solid purple ;
  display: flex;
- justify-content: space-evenly ;
+ justify-content: center ;
  margin: 10px 10px ;
+ // background: $alternate-complementing-color ;
 }
 
 .profile-project-card {
- border: 2px solid yellow ;
+ // border: 1px solid yellow ;
+
  margin: 10px 10px ;
 }
 
@@ -93,11 +95,11 @@ width: 100% ;
 }
 
 .profile-username {
- border: 1px solid red ;
+ // border: 1px solid red ;
  height: 50px ;
 }
 
 .liked-reviews {
- border: 2px solid green ;
+ // border: 1px solid green ;
  height: 50px ;
 }

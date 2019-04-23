@@ -3,6 +3,7 @@ import MicroModal from 'react-micro-modal';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editReview, likeAReview, dislikeAReview } from '../../../query/query';
+import "./ReviewCard.scss"
 
 class ReviewCard extends React.Component {
   constructor(props) {
