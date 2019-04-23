@@ -76,7 +76,10 @@ width: 100% ;
 }
 
 .profile-review-card {
- border: 3px solid purple ;
+ border: 8px solid purple ;
+ display: flex;
+ justify-content: space-evenly ;
+ margin: 10px 10px ;
 }
 
 .profile-project-card {
@@ -91,5 +94,10 @@ width: 100% ;
 
 .profile-username {
  border: 1px solid red ;
+ height: 50px ;
+}
+
+.liked-reviews {
+ border: 2px solid green ;
  height: 50px ;
 }

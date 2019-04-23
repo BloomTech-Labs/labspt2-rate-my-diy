@@ -345,10 +345,13 @@ class Profile extends React.Component {
                     })}
 
                   </div>
-                  <div className="profile-liked-reviews">
+                  <span className="liked-reviews">
                     <h2>{`Reviews Liked By ${username}`}</h2>
+                  </span>
+                  <div className="profile-liked-reviews">
                     {LikedReviews.map((review) => {
                       return (
+                       <div className="profile-review-card">
                         <ReviewCard
                           key={review.id}
                           review={review}
@@ -356,6 +359,7 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
                       );
                     })}
                   </div>
