@@ -80,7 +80,7 @@ const Navigation = ({ authUser }) => {
 
               <Link to={'/createproject'}>Create Project</Link>
 
-              <a id="signOut" href="#" className="menu-item">
+              <a id="signOut" href="/" className="menu-item">
                 <SignOutButton />
               </a>
             </Menu>
