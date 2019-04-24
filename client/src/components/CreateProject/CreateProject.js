@@ -307,8 +307,6 @@ class CreateProject extends Component {
             </div>
             <div className="titleImage">
               <div className="setThumbnail">
-                <h3>Main Image</h3>
-                <button onClick={this.mainImage}>SET MAIN IMAGE</button>
                 <h3>Set Category</h3>
                 <CreatableSelect
                   isClearable
@@ -323,19 +321,38 @@ class CreateProject extends Component {
                 />
               </div>
               <div className="imageArea">
-                <img src={this.state.project.titleImg} />
                 {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
                 <div className="descriptionRow">
                   <h2>Project Description:</h2>
-                  <textarea
-                    rows="6"
-                    placeHolder="Add Description..."
-                    cols="75"
-                    name="titleBlurb"
-                    value={this.state.project.titleBlurb}
-                    onChange={this.textChange}
-                  />
+                  <div className="image-description">
+                    {this.state.project.titleImg ? (
+                      <img src={this.state.project.titleImg} alt="mainImage" />
+                    ) : (
+                      <div className="emptyMainImage">
+                        <button onClick={this.mainImage}>Set Main Image</button>
+                      </div>
+                    )}
+
+                    <textarea
+                      rows="6"
+                      placeHolder="Add Description..."
+                      cols="75"
+                      name="titleBlurb"
+                      value={this.state.project.titleBlurb}
+                      onChange={this.textChange}
+                    />
+                  </div>
                 </div>
+              </div>
+              <div className="conditionalImage">
+                {this.state.project.titleImg ? (
+                  <button
+                    className="conditionalButton"
+                    onClick={this.mainImage}
+                  >
+                    CHANGE MAIN IMAGE
+                  </button>
+                ) : null}
               </div>
             </div>
 
@@ -443,7 +460,6 @@ class CreateProject extends Component {
                     <img src={this.state.project.titleImg} />
                     {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
                   </div>
-                  <button onClick={this.mainImage}>Set Main Image</button>
                   <h2>project description:</h2>
                   <textarea
                     rows="6"
