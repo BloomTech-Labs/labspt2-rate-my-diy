@@ -294,7 +294,7 @@ class CreateProject extends Component {
           <form>
             <h1>Create Project</h1>
             <div className="projectTitle">
-              <h2>Title Of Your DIY</h2>
+              <h2>Title</h2>
 
               <input
                 type="text"
@@ -302,74 +302,91 @@ class CreateProject extends Component {
                 className="projectTitleInput"
                 value={this.state.project.name}
                 onChange={this.textChange}
-                placeholder="Your Project Title..."
+                placeholder="Add Title"
               />
             </div>
-            <h2>main image:</h2>
-            <div>
-              <img src={this.state.project.titleImg} />
-              {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+            <div className="titleImage">
+              <div className="setThumbnail">
+                <h3>Main Image</h3>
+                <button onClick={this.mainImage}>SET MAIN IMAGE</button>
+                <h3>Set Category</h3>
+                <CreatableSelect
+                  isClearable
+                  onChange={this.handleChange}
+                  className="category"
+                  onInputChange={this.handleInputChange}
+                  options={cats}
+                  value={{
+                    value: this.state.project.category,
+                    label: this.state.project.category
+                  }}
+                />
+              </div>
+              <div className="imageArea">
+                <img src={this.state.project.titleImg} />
+                {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                <div className="descriptionRow">
+                  <h2>Project Description:</h2>
+                  <textarea
+                    rows="6"
+                    placeHolder="Add Description..."
+                    cols="75"
+                    name="titleBlurb"
+                    value={this.state.project.titleBlurb}
+                    onChange={this.textChange}
+                  />
+                </div>
+              </div>
             </div>
-            <button onClick={this.mainImage}>Set Main Image</button>
-            <h2>project description:</h2>
-            <textarea
-              rows="6"
-              cols="75"
-              name="titleBlurb"
-              value={this.state.project.titleBlurb}
-              onChange={this.textChange}
-            />
-            <h2>category:</h2>
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange}
-              onInputChange={this.handleInputChange}
-              options={cats}
-              value={{
-                value: this.state.project.category,
-                label: this.state.project.category
-              }}
-            />
 
-            <h2>Steps:</h2>
-            <div>
-              {this.state.project['steps'].map((step, idx) => {
-                if (step.type === 'img') {
-                  return (
-                    <div key={idx}>
-                      <img src={step.body} />
-                      <button onClick={this.deletePhoto(idx)}>
-                        Delete Photo
-                      </button>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div key={idx}>
-                      <input
-                        type="text"
-                        value={step.body}
-                        onChange={this.textChangeHandler(idx)}
-                      />
-                      <button
-                        type="button"
-                        onClick={this.removeTextStep(idx)}
-                        className="small"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        onClick={this.handleAddStep}
-                        className="small"
-                      >
-                        +
-                      </button>
-                      <button onClick={this.openCloudinary}>Add Picture</button>
-                    </div>
-                  );
-                }
-              })}
+            <div className="stepSection">
+              <h2>Steps:</h2>
+              <div>
+                {this.state.project['steps'].map((step, idx) => {
+                  if (step.type === 'img') {
+                    return (
+                      <div key={idx}>
+                        <img src={step.body} />
+                        <button onClick={this.deletePhoto(idx)}>
+                          Delete Photo
+                        </button>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={idx}>
+                        <textArea
+                          type="text"
+                          placeholder="Add Step..."
+                          value={step.body}
+                          onChange={this.textChangeHandler(idx)}
+                        />
+
+                        <button
+                          type="button"
+                          onClick={this.handleAddStep}
+                          className="addStep"
+                        >
+                          Add Step
+                        </button>
+                        <button
+                          className="addPicture"
+                          onClick={this.openCloudinary}
+                        >
+                          Add Picture
+                        </button>
+                        <button
+                          type="button"
+                          onClick={this.removeTextStep(idx)}
+                          className="removeStep"
+                        >
+                          Remove This Step
+                        </button>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
             </div>
             <button onClick={this.finalize}>Finalize</button>
             <button disabled={this.state.submitDisabled}>Submit</button>
