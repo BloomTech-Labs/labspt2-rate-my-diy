@@ -1634,9 +1634,10 @@ class ProjectCard extends React.Component {
               );
               return (
                 <div className="project-card-container">
-                <div >
+                <div className="inner-project-card">
                  
                   <h1>{`${project.name}`}</h1>
+                  <hr className="line-break" />
                   <div>{`${project.User.username}`}</div>
                   <div>{`${project.rating}`}</div>
                   <div>{`${project.timestamp}`}</div>
