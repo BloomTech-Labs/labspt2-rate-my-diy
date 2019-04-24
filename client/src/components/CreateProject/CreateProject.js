@@ -405,8 +405,23 @@ class CreateProject extends Component {
                 })}
               </div>
             </div>
-            <button onClick={this.finalize}>Finalize</button>
-            <button disabled={this.state.submitDisabled}>Submit</button>
+            {this.state.submitDisabled ? (
+              <button
+                className="submitButton"
+                type="button"
+                onClick={this.finalize}
+              >
+                Finalize
+              </button>
+            ) : (
+              <button
+                className="submitButton"
+                type="submit"
+                disabled={this.state.submitDisabled}
+              >
+                Submit
+              </button>
+            )}
           </form>
         </div>
       );
@@ -521,12 +536,15 @@ class CreateProject extends Component {
                       }
                     })}
                   </div>
-                  <button type="button" onClick={this.finalize}>
-                    Finalize
-                  </button>
-                  <button type="submit" disabled={this.state.submitDisabled}>
-                    Submit
-                  </button>
+                  {this.state.submitDisabled ? (
+                    <button type="button" onClick={this.finalize}>
+                      Finalize
+                    </button>
+                  ) : (
+                    <button type="submit" disabled={this.state.submitDisabled}>
+                      Submit
+                    </button>
+                  )}
                 </form>
               </div>
             );
