@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .searchBar {
   display: flex;
   padding: 40px 10px;
@@ -21,13 +23,7 @@
   }
 
   .searchButton {
-    border: 2px solid #bdc3c7;
-    font-size: 1.6rem ;
-    border-radius: 18px;
-    padding: 10px 0;
-    width: 15%;
-    background-color: #2980b9;
-    color: white;
+    @include custom-button(20%, 10px);
   }
 
   @media (max-width: 600px) {
@@ -42,8 +38,7 @@
     }
 
     .searchButton {
-      width: 100%;
-      margin: 20px 0;
+      @include custom-button(100%, 20px);
     }
   }
 }
