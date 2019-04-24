@@ -1634,6 +1634,8 @@ class ProjectCard extends React.Component {
               );
               return (
                 <div className="project-card-container">
+                <div >
+                 
                   <h1>{`${project.name}`}</h1>
                   <div>{`${project.User.username}`}</div>
                   <div>{`${project.rating}`}</div>
@@ -1641,25 +1643,26 @@ class ProjectCard extends React.Component {
                   <img src={`${project.titleImg}`} alt="project" />
                   <div>{`${project.titleBlurb}`}</div>
                   <button onClick={this.showMore}>View More</button>
+                    </div>
                   {this.state.showMore ? (
-                    <div>
+                   <div>
                       <h2>Steps:</h2>
                       {steps.map((step) => {
-                        if (step.type === 'img') {
+                       if (step.type === 'img') {
                           return <img key={step.body} src={step.body} />;
-                        } else {
+                         } else {
                           return <div key={step.body}>{`${step.body}`}</div>;
-                        }
-                      })}
+                         }
+                        })}
 
                       <h2>Reviews:</h2>
                       <p>There are currently no reviews.</p>
 
                       <button
                         onClick={(e) => {
-                          this.review();
+                         this.review();
                         }}
-                      >
+                        >
                         Add a review
                       </button>
                       <button onClick={this.collapse}>Collapse</button>
@@ -1672,8 +1675,8 @@ class ProjectCard extends React.Component {
         }
       }
     } else {
-      // not logged in
-      if (this.state.reviews[0]) {
+     // not logged in
+     if (this.state.reviews[0]) {
         // not logged in, are reviews, return
         return (
           <div>

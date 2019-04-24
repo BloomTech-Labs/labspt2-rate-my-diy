@@ -9,7 +9,7 @@
  // margin-right: -15px ;
  margin: 10px 10px 10px 20px ;
  
- background: $background-color ;
+ background: $alternate-color-one ;
  button {
   width: 85px ;
   height: 40px ;
@@ -29,8 +29,9 @@
 .inner-review-card {
  border: 3px solid black ;
 //  width: 400px ;
-box-shadow: 5px 5px 15px ;
+box-shadow: 0.5px 1px 15px ;
 padding: 5px 5px ;
+background: $alternate-color-two
 
 }
 
