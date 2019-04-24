@@ -953,6 +953,7 @@ class ReviewCard extends React.Component {
           //   }
           // }
           return (
+           <div className="review-section-container">
            <div className="profile-review-container">
               <MicroModal
                 trigger={(handleOpen) => (
@@ -1171,6 +1172,7 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
               />
+            </div>
             </div>
           );
         }

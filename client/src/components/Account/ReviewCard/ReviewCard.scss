@@ -4,12 +4,10 @@
  border: 1px solid black ;
  box-shadow: 5px 5px 20px ;
  display: flex ;
- // width: 300px ;
  flex-direction: column ;
  justify-content: center ;
- max-width: 400px ;
- width: 100% ;
- // background: $alternate-complementing-color ;
+ margin-left: -8px ;
+ 
  background: $background-color ;
  button {
   width: 85px ;
@@ -25,11 +23,16 @@
   border-radius: 10px 5%;
  }
  padding: 15px 15px ;
- margin: 10px 10px ;
 }
 
 .inner-review-card {
- // border: 3px solid black ;
+ border: 3px solid black ;
 //  width: 400px ;
 
+}
+
+.review-section-container {
+ // border: 2px solid blueviolet ;
+ display: flex;
+ flex-direction: row ;
 }
