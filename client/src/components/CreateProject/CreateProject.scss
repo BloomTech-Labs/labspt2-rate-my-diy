@@ -1,0 +1,28 @@
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid orange;
+  input {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    border-color: transparent;
+  }
+  h1 {
+    text-align: center;
+  }
+  .projectTitle {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 100%;
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}

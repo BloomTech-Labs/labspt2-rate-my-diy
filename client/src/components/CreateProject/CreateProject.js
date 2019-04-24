@@ -4,6 +4,7 @@ import CreatableSelect from 'react-select/lib/Creatable';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
 import { CREATE_PROJECT } from '../../query/query';
+import './CreateProject.scss';
 
 import Header from '../Home/Header/Header';
 
@@ -292,13 +293,18 @@ class CreateProject extends Component {
         <div className="projectInfo">
           <form>
             <h1>Create Project</h1>
-            <h2>project name:</h2>
-            <input
-              type="text"
-              name="name"
-              value={this.state.project.name}
-              onChange={this.textChange}
-            />
+            <div className="projectTitle">
+              <h2>Title Of Your DIY</h2>
+
+              <input
+                type="text"
+                name="name"
+                className="projectTitleInput"
+                value={this.state.project.name}
+                onChange={this.textChange}
+                placeholder="Your Project Title..."
+              />
+            </div>
             <h2>main image:</h2>
             <div>
               <img src={this.state.project.titleImg} />
@@ -402,15 +408,20 @@ class CreateProject extends Component {
                     console.log({ data: this.props.data });
                   }}
                 >
-                  <h1>Create Project</h1>
-                  <h2>project name:</h2>
-                  <input
-                    type="text"
-                    name="name"
-                    value={this.state.project.name}
-                    onChange={this.textChange}
-                  />
-                  <h2>main image:</h2>
+                  {' '}
+                  <div className="projectInfo">
+                    <div className="projectTitle">
+                      <h1>Create Project</h1>
+                      <h2>Project Name:</h2>
+                    </div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.project.name}
+                      onChange={this.textChange}
+                    />
+                    <h2>main image:</h2>
+                  </div>
                   <div>
                     <img src={this.state.project.titleImg} />
                     {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
@@ -477,7 +488,6 @@ class CreateProject extends Component {
                       }
                     })}
                   </div>
-
                   <button type="button" onClick={this.finalize}>
                     Finalize
                   </button>
