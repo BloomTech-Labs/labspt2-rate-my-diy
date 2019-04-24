@@ -7,7 +7,7 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 class ProjectCard extends React.Component {
   constructor(props) {
     super(props);
-    const { users, reviews, project, user } = this.props;
+    const { users, reviews, project } = this.props;
 
     const json = localStorage.getItem('authUser');
 
@@ -144,7 +144,13 @@ class ProjectCard extends React.Component {
                   })}
                   <h2>Reviews:</h2>
                   {this.state.reviews.map((rev) => {
-                    return <ReviewCard key={rev.id} review={rev} />;
+                    return (
+                      <ReviewCard
+                        key={rev.id}
+                        review={rev}
+                        users={this.props.users}
+                      />
+                    );
                   })}
                   <button
                     onClick={() => {
@@ -194,7 +200,13 @@ class ProjectCard extends React.Component {
                         })}
                         <h2>Reviews:</h2>
                         {this.state.reviews.map((rev) => {
-                          return <ReviewCard key={rev.id} review={rev} />;
+                          return (
+                            <ReviewCard
+                              key={rev.id}
+                              review={rev}
+                              users={this.props.users}
+                            />
+                          );
                         })}
                         <button
                           onClick={(e) => {
@@ -386,7 +398,13 @@ class ProjectCard extends React.Component {
 
                         <h2>Reviews:</h2>
                         {this.state.reviews.map((rev) => {
-                          return <ReviewCard key={rev.id} review={rev} />;
+                          return (
+                            <ReviewCard
+                              key={rev.id}
+                              review={rev}
+                              users={this.props.users}
+                            />
+                          );
                         })}
                         <Mutation mutation={NEW_REVIEW}>
                           {(newReview, { loading, error, data }) => {
@@ -578,7 +596,13 @@ class ProjectCard extends React.Component {
 
                       <h2>Reviews:</h2>
                       {this.state.reviews.map((rev) => {
-                        return <ReviewCard key={rev.id} review={rev} />;
+                        return (
+                          <ReviewCard
+                            key={rev.id}
+                            review={rev}
+                            users={this.props.users}
+                          />
+                        );
                       })}
                       <Mutation mutation={NEW_REVIEW}>
                         {(newReview, { loading, error, data }) => {
@@ -779,7 +803,13 @@ class ProjectCard extends React.Component {
                         })}
                         <h2>Reviews:</h2>
                         {this.state.reviews.map((rev) => {
-                          return <ReviewCard key={rev.id} review={rev} />;
+                          return (
+                            <ReviewCard
+                              key={rev.id}
+                              review={rev}
+                              users={this.props.users}
+                            />
+                          );
                         })}
                         <button
                           onClick={(e) => {
@@ -818,7 +848,13 @@ class ProjectCard extends React.Component {
 
                         <h2>Reviews:</h2>
                         {this.state.reviews.map((rev) => {
-                          return <ReviewCard key={rev.id} review={rev} />;
+                          return (
+                            <ReviewCard
+                              key={rev.id}
+                              review={rev}
+                              users={this.props.users}
+                            />
+                          );
                         })}
                         <button
                           onClick={(e) => {
@@ -858,7 +894,13 @@ class ProjectCard extends React.Component {
 
                       <h2>Reviews:</h2>
                       {this.state.reviews.map((rev) => {
-                        return <ReviewCard key={rev.id} review={rev} />;
+                        return (
+                          <ReviewCard
+                            key={rev.id}
+                            review={rev}
+                            users={this.props.users}
+                          />
+                        );
                       })}
                       <button
                         onClick={(e) => {
@@ -1653,7 +1695,13 @@ class ProjectCard extends React.Component {
                 })}
                 <h2>Reviews:</h2>
                 {this.state.reviews.map((rev) => {
-                  return <ReviewCard key={rev.id} review={rev} />;
+                  return (
+                    <ReviewCard
+                      key={rev.id}
+                      review={rev}
+                      users={this.props.users}
+                    />
+                  );
                 })}
                 <button
                   onClick={(e) => {

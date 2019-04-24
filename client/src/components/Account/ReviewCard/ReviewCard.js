@@ -8,7 +8,7 @@ class ReviewCard extends React.Component {
   constructor(props) {
     super(props);
 
-    const { users, review, user } = this.props;
+    const { users, review } = this.props;
 
     const json = localStorage.getItem('authUser');
     const authUser = JSON.parse(json);
@@ -16,7 +16,7 @@ class ReviewCard extends React.Component {
     let loggedIn = false;
     if (authUser !== null)
       visitor = users.filter((u) => u.email === authUser.email)[0];
-    console.log({ users: users });
+    console.log({ reviewCardUsers: users, visitor: visitor });
     // visitor = user
 
     this.state = {

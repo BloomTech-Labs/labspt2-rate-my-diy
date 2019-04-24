@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase/Exports';
+import '../../styles/_globals.scss';
 
 const PasswordChangePage = () => (
-  <div>
-    <h1>Password Change</h1>
+  <div className='form-flex-container'>
+    <h2>Password Change</h2>
     <PasswordChangeForm />
   </div>
 );
@@ -46,7 +47,7 @@ class PasswordChangeBase extends Component {
     const { passwordOne, passwordTwo, error } = this.state;
     const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className='form'>
         <input
           name="passwordOne"
           value={passwordOne}
@@ -61,8 +62,8 @@ class PasswordChangeBase extends Component {
           type="password"
           placeholder="Confirm New Password"
         />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
+        <button disabled={isInvalid} type="submit" className='btn'>
+          Confirm
         </button>
         {error && <p>{error.message}</p>}
       </form>

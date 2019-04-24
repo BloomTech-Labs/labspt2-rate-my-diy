@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import SignOutButton from '../components/SignOut/SignOut';
@@ -6,50 +6,45 @@ import { withAuthentication } from '../components/Session/session';
 import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
 import './reactRouter.scss';
 
-const Navigation = () => (
+export const GET_USER = gql`
+  query user($thirdPartyUID: String!) {
+    user(where: { thirdPartyUID: $thirdPartyUID }) {
+      id
+      username
+    }
+  }
+`;
+
+const AuthNavigation = () => (
   <AuthUserContext.Consumer>
     {(authUser) =>
-      authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
+      authUser ? <Navigation authUser={authUser} /> : <NavigationNonAuth />
     }
   </AuthUserContext.Consumer>
 );
 
-const NavigationAuth = ({ authUser }) => {
-  const GET_USER = gql`
-    query user($email: String!) {
-      user(where: { email: $email }) {
-        id
-        username
-      }
-    }
-  `;
-  const json = localStorage.getItem('authUser');
-  const user = JSON.parse(json);
-  const email = user.email;
-  return (
-    <React.Fragment>
-      <div className="overlay">
-        <label htmlFor="toggle" />
-      </div>
+const Navigation = ({ authUser }) => {
+  console.log(authUser);
+  const thirdPartyUID = authUser.providerData['0'].uid;
 
-      <input type="checkbox" id="toggle" name="toggle" />
-      <div className="verticalNav">
-        <Query query={GET_USER} variables={{ email: email }}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              console.log({ profLoading: loading });
-              return null;
-            }
-            if (error) {
-              console.log({ profError: error });
-              return null;
-            }
-            if (data) {
-              console.log({ profData: data, email: email });
-              return (
+  return (
+    <Query query={GET_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
+      {({ loading, data, error }) => {
+        if (loading) return null;
+        if (error) {
+          console.log({ navError: error });
+          return null;
+        }
+        if (data.user)
+          return (
+            <React.Fragment>
+              <div className="overlay">
+                <label htmlFor="toggle" />
+              </div>
+              <input type="checkbox" id="toggle" name="toggle" />
+              <div className="verticalNav">
                 <ul>
                   <li>
                     <Link to={ROUTES.HOME}>Home</Link>
@@ -65,25 +60,27 @@ const NavigationAuth = ({ authUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROUTES.CREATE_PROJECT}>Create Project</Link>
+                    <Link to={`/${data.user.username}/projects`}>
+                      My Projects
+                    </Link>
                   </li>
+                  <li>
+                    <Link to={`/${data.user.username}/reviews`}>
+                      My Reviews
+                    </Link>
+                  </li>
+                  <SignOutButton />
                 </ul>
-              );
-            }
-          }
-          // (
-          //   <li>
-          //     <Link to={`/${user.username}/profile`}>My Profile</Link>
-          //   </li>
-          // )
-          }
-        </Query>
+              </div>
+            </React.Fragment>
+          );
 
-        <SignOutButton />
-      </div>
-    </React.Fragment>
+        return <NavigationNonAuth />;
+      }}
+    </Query>
   );
 };
+
 const NavigationNonAuth = () => {
   return (
     <React.Fragment>
@@ -106,4 +103,4 @@ const NavigationNonAuth = () => {
   );
 };
 
-export default withAuthentication(Navigation);
+export default withAuthentication(AuthNavigation);
