@@ -142,7 +142,7 @@ a {
   height: 300px;
   justify-content: space-around;
 
-  .form {
+  form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -151,8 +151,13 @@ a {
     input {
       width: 50%;
       margin: auto;
+
+      @media (max-width: 500px) {
+        width: 90%;
+      }
     }
   }
+
 }
 
 .btn {
