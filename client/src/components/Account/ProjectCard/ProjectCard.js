@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { NEW_REVIEW, getReviews } from '../../../query/query';
 import ReviewCard from '../ReviewCard/ReviewCard';
+import "./ProjectCard.scss"
 
 class ProjectCard extends React.Component {
   constructor(props) {
@@ -1632,7 +1633,7 @@ class ProjectCard extends React.Component {
                 "logged in, no revs, not your proj, not newReview, you've never rated, return"
               );
               return (
-                <div>
+                <div className="project-card-container">
                   <h1>{`${project.name}`}</h1>
                   <div>{`${project.User.username}`}</div>
                   <div>{`${project.rating}`}</div>

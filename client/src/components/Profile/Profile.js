@@ -290,14 +290,18 @@ class Profile extends React.Component {
               } = user;
 
               return (
-                <div>
+               <React.Fragment>
+                <div className="profile-container">
+                  <div className="profile-info">
                   <h1>{`${username}`}</h1>
-                  <img src={userProfileImage} />
+                  <img className="profile-img" src={userProfileImage} />
                   <p>{`${bio}`}</p>
                   <div>
-                    <h2>{`${username}'s Reviews`}</h2>
+                   <h2>{`${username}'s Reviews`}</h2>
+                  </div>
                     {ReviewList.map((review) => {
                       return (
+                       <div className="project-review-card">
                         <ReviewCard
                           key={review.id}
                           review={review}
@@ -305,11 +309,15 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
                       );
                     })}
                   </div>
-                  <div>
+                    <span className="profile-username">
                     <h2>{`${username}'s Projects`}</h2>
+                    </span>
+                  <div className="profile-projects">
+
                     {Projects.map((project) => {
                       let meanRating = project.rating;
                       if (project.rating.length > 1)
@@ -323,6 +331,7 @@ class Profile extends React.Component {
 
                       project.rating = meanRating;
                       return (
+                       <div className="profile-project-card">
                         <ProjectCard
                           key={project.id}
                           project={project}
@@ -331,13 +340,18 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
                       );
                     })}
+
                   </div>
-                  <div>
+                  <span className="liked-reviews">
                     <h2>{`Reviews Liked By ${username}`}</h2>
+                  </span>
+                  <div className="profile-liked-reviews">
                     {LikedReviews.map((review) => {
                       return (
+                       <div className="profile-review-card">
                         <ReviewCard
                           key={review.id}
                           review={review}
@@ -345,10 +359,11 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
                       );
                     })}
                   </div>
-                  <div>
+                  <div className="profile-disliked-reviews">
                     <h2>{`Reviews Disliked By ${username}`}</h2>
                     {DislikedReviews.map((review) => {
                       return (
@@ -389,6 +404,7 @@ class Profile extends React.Component {
                     })}
                   </div>
                 </div>
+                </React.Fragment>
               );
             }}
           </Query>
