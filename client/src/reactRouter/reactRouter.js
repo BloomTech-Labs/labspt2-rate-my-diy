@@ -31,6 +31,7 @@ const Navigation = ({ authUser }) => {
   console.log(authUser);
   const thirdPartyUID = authUser.providerData['0'].uid;
 
+
   return (
     <Query query={GET_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
       {({ loading, data, error }) => {
