@@ -157,19 +157,22 @@ a {
       }
     }
   }
+
+
 }
 
 .btn {
-  border: 2px solid #bdc3c7;
-  border-radius: 18px;
-  padding: 10px 0;
-  background-color: #2980b9;
-  color: white;
-  width: 200px;
-
-  a {
+    border: 2px solid #bdc3c7;
+		border-radius: 18px;
+    padding: 10px 0;
+    background-color: #2980b9;
     color: white;
-  }
+    width: 200px;
+
+    a {
+      color: white;
+    }
+
 }
 
 .small {
@@ -234,6 +237,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
+  position: sticky;
+  top: 2.5em;
   background: #388087;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;

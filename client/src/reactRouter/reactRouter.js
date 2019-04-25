@@ -6,7 +6,7 @@ import { withAuthentication } from '../components/Session/session';
 import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { fallDown as Menu } from 'react-burger-menu';
+import { slide as Menu } from 'react-burger-menu';
 
 import './reactRouter.scss';
 
@@ -31,6 +31,7 @@ const Navigation = ({ authUser }) => {
   console.log(authUser);
   const thirdPartyUID = authUser.providerData['0'].uid;
 
+
   return (
     <Query query={GET_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
       {({ loading, data, error }) => {
@@ -41,7 +42,7 @@ const Navigation = ({ authUser }) => {
         }
         if (data.user)
           return (
-            <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'}>
+            <Menu>
               <a href={ROUTES.HOME} className="menu-item">
                 <div>Home</div>
               </a>
@@ -97,7 +98,7 @@ const Navigation = ({ authUser }) => {
 const NavigationNonAuth = () => {
   return (
     <React.Fragment>
-      <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'}>
+      <Menu>
         <a id="home" className="menu-item" href={ROUTES.HOME}>
           <div>Home</div>
         </a>
