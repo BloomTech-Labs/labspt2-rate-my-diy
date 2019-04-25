@@ -1,3 +1,5 @@
+@import '../styles/mixins.scss';
+
 * {
  font-size: 62.5% ;
 }
@@ -52,12 +54,11 @@ height: auto;
      margin: 10px 10px ;
      padding: 5px 5px ;
    }
- 
+
   }
 
   .featured-button {
-   font-size: 1.6rem ;
-   margin: 10px 10px ;
+    @include custom-button(30%, 10px);
   }
 
   .proj-title {
