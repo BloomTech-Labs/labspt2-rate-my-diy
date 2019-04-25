@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Review from './components/Review/Review';
-import ReviewModal from './components/ReviewModal/ReviewModal';
-import {
-  getUsers,
-  getProjects,
-  getReviews,
-  CREATE_PROJECT
-} from './query/query';
+import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import Navigation from './reactRouter/reactRouter';
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn/SignIn';
@@ -30,6 +22,7 @@ import ReviewCard from './components/Account/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
 import Settings from './components/Account/Settings/Settings';
+import Header from './components/Home/Header/Header';
 import * as math from 'mathjs';
 
 class App extends Component {
@@ -274,46 +267,49 @@ class App extends Component {
       <Router>
         <div>
           <Navigation />
-          <Route
-            exact
-            path={ROUTES.HOME}
-            render={(props) => (
-              <Home
-                {...props}
-                projectSearchHandler={this.projectSearchHandler}
-                userSearchHandler={this.userSearchHandler}
-                reviewSearchHandler={this.reviewSearchHandler}
-                getUsers={getUsers}
-                getProjects={getProjects}
-                getReviews={getReviews}
-              />
-            )}
-          />
-          <Route path={ROUTES.SIGN_IN} component={SignIn} />
-          <Route path={ROUTES.SIGN_UP} component={SignUp} />
-          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-          <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-          <Route
-            path={ROUTES.SEARCH}
-            render={(props) => (
-              <SearchPage
-                {...props}
-                users={this.state.users}
-                projects={this.state.projects}
-                reviews={this.state.reviews}
-                projectSearchHandler={this.projectSearchHandler}
-                userSearchHandler={this.userSearchHandler}
-                reviewSearchHandler={this.reviewSearchHandler}
-                getUsers={getUsers}
-                getProjects={getProjects}
-                getReviews={getReviews}
-              />
-            )}
-          />
+          <Header />
+          <div className="main-container">
+            <Route
+              exact
+              path={ROUTES.HOME}
+              render={(props) => (
+                <Home
+                  {...props}
+                  projectSearchHandler={this.projectSearchHandler}
+                  userSearchHandler={this.userSearchHandler}
+                  reviewSearchHandler={this.reviewSearchHandler}
+                  getUsers={getUsers}
+                  getProjects={getProjects}
+                  getReviews={getReviews}
+                />
+              )}
+            />
+            <Route path={ROUTES.SIGN_IN} component={SignIn} />
+            <Route path={ROUTES.SIGN_UP} component={SignUp} />
+            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+            <Route
+              path={ROUTES.SEARCH}
+              render={(props) => (
+                <SearchPage
+                  {...props}
+                  users={this.state.users}
+                  projects={this.state.projects}
+                  reviews={this.state.reviews}
+                  projectSearchHandler={this.projectSearchHandler}
+                  userSearchHandler={this.userSearchHandler}
+                  reviewSearchHandler={this.reviewSearchHandler}
+                  getUsers={getUsers}
+                  getProjects={getProjects}
+                  getReviews={getReviews}
+                />
+              )}
+            />
 
-          {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
-          <RoutesWithData />
-          <Route path={ROUTES.FOOTER} component={Footer} />
+            {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
+            <RoutesWithData />
+            <Route path={ROUTES.FOOTER} component={Footer} />
+          </div>
         </div>
       </Router>
     );
@@ -323,4 +319,3 @@ class App extends Component {
 // please update your components and Routes as needed
 
 export default withAuthentication(App);
-

@@ -88,6 +88,37 @@ class ProfileInfo extends React.Component {
             console.log({ error });
             return <div>There was an error.</div>;
           }
+
+          return (
+            <div className="profile-form-flex-container">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await editUser({
+                    variables: {
+                      userProfileImage: this.state.userProfileImage,
+                      bio: this.state.bio,
+                      email: this.props.email
+                    }
+                  });
+                }}
+              >
+                <h2>{`${this.state.username}`}</h2>
+                <div className="img-container">
+                  <img src={this.state.userProfileImage} />
+                </div>
+                <button onClick={this.openCloudinary}>Set Profile Image</button>
+                <h3>Bio</h3>
+                <textarea
+                  name="bio"
+                  value={this.state.bio}
+                  onChange={this.textChange}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          );
+        }}
             return (
               <div
                 className='profile-form-flex-container'

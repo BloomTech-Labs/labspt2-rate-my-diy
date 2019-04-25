@@ -58,14 +58,14 @@
       width: 20%;
       padding: 10px 0;
       border: 2px solid #bdc3c7;
-      margin: 5px 5px ;
+      margin: 5px 5px;
       text-align: center;
-      font-size: 1.6rem ;
+      font-size: 1.6rem;
     }
 
     label {
       margin: 0 10px;
-      font-size: 1.6rem ;      
+      font-size: 1.6rem;
     }
 
     button {
@@ -81,10 +81,10 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
-       }
-       
-       select,
-       button {
+      }
+
+      select,
+      button {
         width: 30%;
       }
     }
@@ -95,30 +95,29 @@
   padding: 30px 10px;
   width: 50%;
   margin: auto;
-  
+
   .radioGroup {
-   display: flex;
-   justify-content: flex-start;
-   margin: 20px 0;
-   flex-wrap: wrap;
-   
-   .radio {
     display: flex;
-    margin: 0 10px;
-   }
+    justify-content: flex-start;
+    margin: 20px 0;
+    flex-wrap: wrap;
+
+    .radio {
+      display: flex;
+      margin: 0 10px;
+    }
   }
-  
+
   button {
-   border: 2px solid #bdc3c7;
-   border-radius: 18px;
+    border: 2px solid #bdc3c7;
+    border-radius: 18px;
     padding: 10px 0;
     background-color: #2980b9;
     color: white;
     width: 100%;
-   }
-   
-   @media (max-width: 600px) {
-    width: 100%;
-   }
   }
-  
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}

@@ -13,10 +13,10 @@ function Featured(props) {
     <div className="card" onClick={() => props.clickHandler(props.username)}>
       <img className="img-responsive" src={props.image} alt="project" />
       <div className="info-container">
-        <h2 className="proj-title" >{props.title}</h2>
-        <p className="proj-user" >@{props.username}</p>
+        <h2 className="proj-title">{props.title}</h2>
+        <p className="proj-user">@{props.username}</p>
         <Link to={`/${props.username}/profile`}>
-          <button className="featured-button" >See More</button>
+          <button className="featured-button">See More</button>
         </Link>
         <div className="rating-container">
           {stars.map((star) => {
