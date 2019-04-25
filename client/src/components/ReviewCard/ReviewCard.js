@@ -107,10 +107,7 @@ class ReviewCard extends React.Component {
     if (loggedIn) {
       const { review } = this.props;
       // console.log("logged in")
-      console.log({
-        revAuthEmail: review.Author.email,
-        visEmail: this.state.visitor.email
-      });
+
       if (review.Author.email === authUser.email) {
         // console.log("logged in, your review")
         if (review.projRating !== null && review.projRating !== undefined) {
@@ -706,14 +703,6 @@ class ReviewCard extends React.Component {
         if (review.projRating !== null && review.projRating !== undefined) {
           // console.log("logged in, not your rev, review w/rating")
 
-          // if (this.state.didThumbUp) {
-          //   // logged in, not your rev, review w/ rating, added thumbUp, return
-          // } else if (this.state.didThumbDown) {
-          //   // logged in, not your rev, review w/ rating, added thumbDown, return
-          // } else {
-          //   // logged in, not your rev, review w/ rating, haven't thumbed yet, return
-          // }
-
           return (
             <div>
               <MicroModal
@@ -944,14 +933,6 @@ class ReviewCard extends React.Component {
         } else {
           // console.log("logged in, not your rev,  review w/o rating")
 
-          //   if (this.state.didThumbUp) {
-          //     // logged in, not your rev, review w/o rating, added thumbUp, return
-          //   } else if (this.state.didThumbDown) {
-          //     // logged in, not your rev, review w/o rating, added thumbDown, return
-          //   } else {
-          //     // logged in, not your rev, review w/o rating, haven't thumbed yet, return
-          //   }
-          // }
           return (
             <div className="review-section-container">
               <div className="profile-review-container">

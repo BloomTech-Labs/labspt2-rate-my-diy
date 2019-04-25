@@ -7,7 +7,6 @@ import * as math from 'mathjs';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import { getUsers } from '../../query/query';
 
-import Header from '../Home/Header/Header';
 import '../../styles/card.scss';
 import './SearchPage.scss';
 import star from '../../img/star.png';
@@ -195,7 +194,6 @@ class SearchPage extends Component {
                               refetch={refetch}
                               users={data.users}
                               user={user}
-                              refetch={refetch}
                             />
                           </div>
                         );

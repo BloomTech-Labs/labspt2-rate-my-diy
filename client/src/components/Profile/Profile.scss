@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss" ;
+@import '../../styles/variables.scss';
 
 .profile-form-flex-container {
   display: flex;
@@ -41,65 +41,47 @@
   }
 }
 
-
 .profile-container {
- display: flex ;
- flex-direction: column ;
- justify-content: center ;
- margin: 0 auto ;
- // border: 1px solid green ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  // border: 1px solid green ;
 }
 
 .profile-info {
-// border: 1px solid yellow ;
-// display: flex ;
-// flex-direction: column ;
-width: 100% ;
-
+  width: 100%;
 }
 
 .profile-projects {
- // border: 1px solid red ;
- display: flex ;
- flex-direction: row ;
- 
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-liked-reviews {
- // border: 1px solid blue ;
- display: flex ;
- flex-direction: row ;
-}
-
-.profile-disliked-reviews {
- // border: 1px solid orange ;
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-review-card {
- // border: 1px solid purple ;
- display: flex;
- justify-content: center ;
- margin: 10px 10px ;
- // background: $alternate-complementing-color ;
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px;
 }
 
 .profile-project-card {
- // border: 1px solid yellow ;
-
- margin: 10px 10px ;
+  margin: 10px 10px;
 }
 
 .profile-img {
- height: 150px;
- width: 10%;
+  height: 150px;
+  width: 10%;
 }
 
 .profile-username {
- // border: 1px solid red ;
- height: 50px ;
+  height: 50px;
 }
 
 .liked-reviews {
- // border: 1px solid green ;
- height: 50px ;
+  height: 50px;
 }

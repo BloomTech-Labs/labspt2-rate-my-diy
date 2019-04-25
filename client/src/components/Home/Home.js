@@ -5,9 +5,7 @@ import gql from 'graphql-tag';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
 import Featured from './Featured/Featured';
-import Header from './Header/Header';
 import './Home.scss';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
   constructor() {
@@ -232,7 +230,6 @@ class Home extends Component {
                   });
                 }
               });
-              console.log({ projectArray: projectArray });
               const projects = this.filterByCurrentMonth(projectArray)
                 .slice(0, 4)
                 .sort(function(a, b) {

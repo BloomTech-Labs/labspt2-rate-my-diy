@@ -35,17 +35,14 @@ class App extends Component {
   }
 
   projectSearchHandler = (projects) => {
-    console.log({ projects: projects });
     this.setState({ projects });
   };
 
   userSearchHandler = (users) => {
-    console.log({ users: users });
     this.setState({ users });
   };
 
   reviewSearchHandler = (reviews) => {
-    console.log({ reviews: reviews });
     this.setState({ reviews });
   };
 
@@ -79,7 +76,7 @@ class App extends Component {
                     return <span>{`projectError: ${projectError}`}</span>;
                   if (reviewError)
                     return <span>{`reviewError: ${reviewError}`}</span>;
-                  // if (createProjectError) return <span>{`createProjectError: ${createProjectError}`}</span>
+
                   let userArray = [];
                   let projectArray = [];
                   let reviewArray = [];
@@ -293,7 +290,6 @@ class App extends Component {
               )}
             />
 
-            {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
             <RoutesWithData />
             <Route path={ROUTES.FOOTER} component={Footer} />
           </div>

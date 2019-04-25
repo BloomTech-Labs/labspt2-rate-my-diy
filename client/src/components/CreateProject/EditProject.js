@@ -6,8 +6,6 @@ import { Redirect } from 'react-router';
 import { UPDATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
 
-import Header from '../Home/Header/Header';
-
 class EditProject extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +29,6 @@ class EditProject extends Component {
       steps,
       id
     } = this.props.project;
-    console.log({ state1st: this.props.project });
     let newSteps = [];
     if (typeof steps === 'string')
       newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
@@ -56,16 +53,7 @@ class EditProject extends Component {
     };
   }
 
-  componentWillUnmount = () => {
-    console.log({ unMountState: this.state }, 'unmounting');
-  };
-
-  // componentWillMount = () => {
-  //   console.log({newMountState: this.state})
-  // }
   componentDidMount = () => {
-    console.log({ newMountState: this.state });
-
     if (typeof this.state.project.steps === 'string') {
       let steps = this.state.project.steps;
       let array = JSON.parse(steps);
@@ -75,36 +63,6 @@ class EditProject extends Component {
       });
     }
   };
-  // componentDidMount = async () => {
-
-  //   try {
-  //     const user = await localStorage.getItem('authUser');
-  //     const json = await JSON.parse(user);
-  //     const userPull = await this.props.users.filter(
-  //       (user) => user.email === json.email
-  //     );
-  //     const { username, email } = await userPull[0];
-
-  //     const categories = await this.props.projects.map((project) => project.category);
-  //     let filteredCategories = await [...new Set(categories)];
-  //     let steps = await this.state.project.steps
-
-  //     // steps = JSON.parse(this.state.project.steps)
-
-  //     await this.setState({
-  //       ...this.state,
-  //       imgDeleteDisabled: true,
-  //       categories: filteredCategories,
-  //       username: username,
-  //       email: email,
-  //     });
-
-  //     await console.log({mountState: this.state})
-  //   }
-  //  catch(err) {
-  //    console.log({mountError: err})
-  //  }
-  // };
 
   textChange = async (e) => {
     let value = e.target.value;
@@ -115,8 +73,6 @@ class EditProject extends Component {
         [e.target.name]: value
       }
     });
-
-    console.log({ name: this.state.project.name, focus: x });
   };
   textChangeHandler = (index) => (e) => {
     const newText = this.state.project.steps.map((step, sidx) => {
@@ -132,7 +88,6 @@ class EditProject extends Component {
         steps: newText
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   handleAddStep = () => {
@@ -143,7 +98,6 @@ class EditProject extends Component {
         steps: this.state.project.steps.concat([{ type: '', body: '' }])
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   addImage = (img) => {
@@ -173,7 +127,6 @@ class EditProject extends Component {
         steps: [filtered, { type: '', body: '' }]
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   removeTextStep = (idx) => () => {
@@ -181,7 +134,6 @@ class EditProject extends Component {
     this.setState({
       project: { steps: steps }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   openCloudinary = (e) => {
@@ -240,11 +192,6 @@ class EditProject extends Component {
   };
 
   handleChange = async (newValue, actionMeta) => {
-    console.group('Value Changed');
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-
     let value = '';
 
     if (newValue !== null) value = await newValue.value;
@@ -256,22 +203,7 @@ class EditProject extends Component {
         category: value
       }
     });
-    await console.log({ category: this.state.project.category });
   };
-  // handleInputChange = (inputValue, actionMeta) => {
-  //   this.setState({
-  //     project: {
-  //       ...this.state.project,
-  //       category: inputValue
-  //     }
-  //   });
-
-  //   console.group('Input Changed');
-  //   console.log(inputValue);
-  //   console.log(`action: ${actionMeta.action}`);
-  //   console.log(`state: ${this.state.project.category}`);
-  //   console.groupEnd();
-  // };
 
   finalize = async (e) => {
     e.preventDefault();
@@ -292,13 +224,6 @@ class EditProject extends Component {
       const { name, category, titleImg, titleBlurb, id } = await this.state
         .project;
 
-      await console.log({
-        b4name: name,
-        b4cat: category,
-        b4titleImg: titleImg,
-        b4titleBlurb: titleBlurb
-      });
-
       await this.setState({
         ...this.state,
         submitDisabled: false,
@@ -312,8 +237,6 @@ class EditProject extends Component {
           id: id
         }
       });
-
-      await console.log({ finalizeState: this.state });
     } catch (err) {
       console.log({ error: err });
     }
@@ -336,20 +259,15 @@ class EditProject extends Component {
       }
     };
 
-    // const isEnabled = projCheck() && userCheck();
-
     const cats = this.state.categories.map((cat) => {
       return { value: cat, label: cat };
     });
-
-    // const steps = JSON.parse(this.state.project.steps)
 
     if (
       this.state.project.steps != null &&
       typeof this.state.project.steps === 'object'
     ) {
       let type = typeof this.state.project.steps;
-      console.log({ steps: this.state.project.steps, stepArray: type });
       return (
         <div className="projectInfo">
           <form>
@@ -364,7 +282,6 @@ class EditProject extends Component {
             <h2>main image:</h2>
             <div>
               <img src={this.state.project.titleImg} />
-              {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
             </div>
             <button onClick={this.mainImage}>Set Main Image</button>
             <h2>project description:</h2>
@@ -492,7 +409,6 @@ class EditProject extends Component {
                   <h2>main image:</h2>
                   <div>
                     <img src={this.state.project.titleImg} />
-                    {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
                   </div>
                   <button onClick={this.mainImage}>Set Main Image</button>
                   <h2>project description:</h2>

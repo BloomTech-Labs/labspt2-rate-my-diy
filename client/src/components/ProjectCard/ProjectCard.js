@@ -20,15 +20,6 @@ class ProjectCard extends React.Component {
     let loggedIn = false;
     if (authUser !== null)
       visitor = users.filter((u) => u.email === authUser.email);
-    // if (!visitor[0]) visitor = user
-
-    console.log({
-      users: users,
-      reviews: reviews,
-      project: project,
-      visitor: visitor,
-      user: authUser
-    });
 
     this.state = {
       edit: false,
@@ -47,7 +38,6 @@ class ProjectCard extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log({ visitor: this.state.visitor, username: this.state.username });
     if (this.state.authUser != null) {
       this.setState({ ...this.state, loggedIn: true });
     } else {
@@ -106,10 +96,6 @@ class ProjectCard extends React.Component {
     const { project } = this.props;
 
     let steps = JSON.parse(project.steps);
-
-    // let revs = this.state.reviews.filter((rev) => rev.ProjectReviewed.id === project.id);
-
-    // console.log({ visitor: this.state.visitor, revs: this.state.reviews });
 
     if (this.state.edit) {
       return <Redirect to={`/projects/${project.id}/edit`} />;
@@ -320,7 +306,6 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars
                                     }
-                                    // refetchQueries: [ { query: getReviews}]
                                   });
 
                                   await this.props.refetch();

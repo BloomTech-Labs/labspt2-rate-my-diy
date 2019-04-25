@@ -5,12 +5,6 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../../query/query';
 
-// const json = localStorage.getItem("authUser")
-// const user = JSON.parse(json)
-// const email = user.email
-
-// console.log({user, email})
-
 const GET_REVIEWS = gql`
   query reviews($email: String!) {
     reviews(where: { Author: { email: $email } }, orderBy: timestamp_DESC) {

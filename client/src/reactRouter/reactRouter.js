@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import * as ROUTES from '../constants/routes';
 import SignOutButton from '../components/SignOut/SignOut';
 import { withAuthentication } from '../components/Session/session';
