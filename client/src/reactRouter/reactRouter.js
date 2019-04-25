@@ -27,7 +27,6 @@ const AuthNavigation = () => (
 );
 
 const Navigation = ({ authUser }) => {
-  console.log(authUser);
   const thirdPartyUID = authUser.providerData['0'].uid;
 
   return (

@@ -17,7 +17,7 @@ class ReviewCard extends React.Component {
     let loggedIn = false;
     if (authUser !== null)
       visitor = users.filter((u) => u.email === authUser.email)[0];
-    console.log({ reviewCardUsers: users, visitor: visitor });
+
     // visitor = user
 
     this.state = {
@@ -771,6 +771,7 @@ class ReviewCard extends React.Component {
                                 e.preventDefault();
                                 await likeAReview({
                                   variables: {
+                                    // eslint-disable-next-line
                                     revId: review.id,
                                     username: this.state.visitor.username,
                                     didThumbUp: this.state.didThumbUp
@@ -804,6 +805,7 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await likeAReview({
                                 variables: {
+                                  // eslint-disable-next-line
                                   revId: review.id,
                                   username: this.state.visitor.username,
                                   didThumbUp: this.state.didThumbUp
@@ -864,6 +866,7 @@ class ReviewCard extends React.Component {
                                 e.preventDefault();
                                 await dislikeAReview({
                                   variables: {
+                                    // eslint-disable-next-line
                                     revId: review.id,
                                     username: this.state.visitor.username,
                                     didThumbDown: this.state.didThumbDown
@@ -896,6 +899,7 @@ class ReviewCard extends React.Component {
                               e.preventDefault();
                               await dislikeAReview({
                                 variables: {
+                                  // eslint-disable-next-line
                                   revId: review.id,
                                   username: this.state.visitor.username,
                                   didThumbDown: this.state.didThumbDown

@@ -136,7 +136,6 @@ class SignInGithubBase extends Component {
                         }}
                       >
                         {(firebaseSignUp, refetchQueries) => {
-                          console.log({ state: this.state });
                           return (
                             <form
                               onSubmit={async (e) => {

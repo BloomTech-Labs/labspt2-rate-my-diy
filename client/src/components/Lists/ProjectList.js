@@ -52,8 +52,6 @@ class ProjectList extends React.Component {
               if (projectsLoading || userLoading) return 'Loading...';
               if (projectsError || userError)
                 return <span>{`Error: ${userError}`}</span>;
-              if (projectsData && userData)
-                console.log({ projectsData: projectsData, userData: userData });
 
               if (projectsData.projects[0]) {
                 return (
@@ -86,7 +84,6 @@ class ProjectList extends React.Component {
                   </div>
                 );
               } else {
-                console.log(userData);
                 return (
                   <div>
                     <h1>{`${userData.user.username}'s Projects`}</h1>

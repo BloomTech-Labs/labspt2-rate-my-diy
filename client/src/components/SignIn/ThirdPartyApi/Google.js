@@ -125,7 +125,6 @@ class SignInGoogleBase extends Component {
                       <h1>Complete Your Sign Up.</h1>
                       <Mutation mutation={firebaseSignUp}>
                         {(firebaseSignUp) => {
-                          console.log({ state: this.state });
                           return (
                             <form
                               onSubmit={async (e) => {

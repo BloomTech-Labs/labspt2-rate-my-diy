@@ -182,11 +182,9 @@ class SearchPage extends Component {
                         let user = data.users.filter(
                           (user) => user.email === review.Author.email
                         );
-                        console.log({ searchuser: user });
                         let rev = user[0].ReviewList.filter(
                           (r) => r.id === review.id
                         )[0];
-                        console.log({ rev: rev, review: review });
                         return (
                           <div key={review.id} className="card-container">
                             <ReviewCard

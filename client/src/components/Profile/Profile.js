@@ -1,7 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-// import { Link } from 'react-router-dom';
 import * as math from 'mathjs';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import ReviewCard from '../ReviewCard/ReviewCard';
@@ -243,13 +242,7 @@ const GET_USER = gql`
 
 class Profile extends React.Component {
   render() {
-    const json = localStorage.getItem('authUser');
-
-    const authUser = JSON.parse(json);
-
     let email = this.props.email;
-    // if (user.email !== email) email = user.email
-    console.log({ email: email });
     const UserWithData = () => (
       <Query query={GET_USER} variables={{ email: email }}>
         {({
@@ -276,12 +269,9 @@ class Profile extends React.Component {
                 usersData = Object.values(usersData).flat();
               const users = usersData;
               const {
-                id,
                 username,
                 userProfileImage,
-                email,
                 bio,
-                accountType,
                 ReviewList,
                 Projects,
                 LikedReviews,
@@ -294,7 +284,11 @@ class Profile extends React.Component {
                   <div className="profile-container">
                     <div className="profile-info">
                       <h1>{`${username}`}</h1>
-                      <img className="profile-img" src={userProfileImage} />
+                      <img
+                        className="profile-img"
+                        src={userProfileImage}
+                        alt="profile"
+                      />
                       <p>{`${bio}`}</p>
                       <div>
                         <h2>{`${username}'s Reviews`}</h2>

@@ -66,7 +66,6 @@ class EditProject extends Component {
 
   textChange = async (e) => {
     let value = e.target.value;
-    let x = document.activeElement.tagName;
     await this.setState({
       project: {
         ...this.state.project,
@@ -79,8 +78,6 @@ class EditProject extends Component {
       if (index !== sidx) return step;
       return { type: 'text', body: e.target.value };
     });
-
-    const final = newText.concat([{ type: '', body: '' }]);
 
     this.setState({
       project: {
@@ -207,9 +204,7 @@ class EditProject extends Component {
 
   finalize = async (e) => {
     e.preventDefault();
-    let steps = this.state.project.steps.map((step) => {
-      return step.body;
-    });
+
     try {
       const steps = await this.state.project['steps'];
 
@@ -243,22 +238,6 @@ class EditProject extends Component {
   };
 
   render() {
-    const projCheck = () => {
-      const proj = this.state.project;
-      for (let key in proj) {
-        if (proj[key] !== null && proj[key] != '') return false;
-      }
-      return true;
-    };
-
-    const userCheck = () => {
-      if (this.state.username !== null && this.state.username != '') {
-        return false;
-      } else {
-        return true;
-      }
-    };
-
     const cats = this.state.categories.map((cat) => {
       return { value: cat, label: cat };
     });
@@ -267,7 +246,6 @@ class EditProject extends Component {
       this.state.project.steps != null &&
       typeof this.state.project.steps === 'object'
     ) {
-      let type = typeof this.state.project.steps;
       return (
         <div className="projectInfo">
           <form>
@@ -281,7 +259,7 @@ class EditProject extends Component {
             />
             <h2>main image:</h2>
             <div>
-              <img src={this.state.project.titleImg} />
+              <img src={this.state.project.titleImg} alt="main" />
             </div>
             <button onClick={this.mainImage}>Set Main Image</button>
             <h2>project description:</h2>
@@ -310,7 +288,7 @@ class EditProject extends Component {
                 if (step.type === 'img') {
                   return (
                     <div key={idx}>
-                      <img src={step.body} />
+                      <img src={step.body} alt="step" />
                       <button onClick={this.deletePhoto(idx)}>
                         Delete Photo
                       </button>
@@ -350,12 +328,6 @@ class EditProject extends Component {
         </div>
       );
     } else {
-      let type = typeof this.state.project.steps;
-      console.log({
-        type: type,
-        steps: this.state.project.steps,
-        stepArray: type
-      });
       let steps = JSON.parse(this.state.project.steps);
       const json = localStorage.getItem('authUser');
       const user = JSON.parse(json);
@@ -408,7 +380,7 @@ class EditProject extends Component {
                   />
                   <h2>main image:</h2>
                   <div>
-                    <img src={this.state.project.titleImg} />
+                    <img src={this.state.project.titleImg} alt="main" />
                   </div>
                   <button onClick={this.mainImage}>Set Main Image</button>
                   <h2>project description:</h2>
@@ -436,7 +408,7 @@ class EditProject extends Component {
                       if (step.type === 'img') {
                         return (
                           <div key={idx}>
-                            <img src={step.body} />
+                            <img src={step.body} alt="step" />
                             <button onClick={this.deletePhoto(idx)}>
                               Delete Photo
                             </button>

@@ -1,22 +1,9 @@
 import React from 'react';
 import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
-import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
-import { Query, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import { editUser } from '../../query/query';
 import './Profile.scss';
-
-const GET_USER = gql`
-  query user($email: String!) {
-    user(where: { email: $email }) {
-      id
-      username
-      userProfileImage
-      bio
-      email
-    }
-  }
-`;
 
 class ProfileInfo extends React.Component {
   constructor(props) {
@@ -78,8 +65,6 @@ class ProfileInfo extends React.Component {
   };
 
   render() {
-    const email = this.props.email;
-
     return (
       <Mutation mutation={editUser}>
         {(editUser, { loading, data, error }) => {
@@ -104,7 +89,7 @@ class ProfileInfo extends React.Component {
               >
                 <h2>{`${this.state.username}`}</h2>
                 <div className="img-container">
-                  <img src={this.state.userProfileImage} />
+                  <img src={this.state.userProfileImage} alt="profile" />
                 </div>
                 <button onClick={this.openCloudinary}>Set Profile Image</button>
                 <h3>Bio</h3>

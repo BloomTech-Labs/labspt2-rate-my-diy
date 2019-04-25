@@ -49,11 +49,14 @@ class Home extends Component {
 
     const filteredData = data.map((item) => {
       if (
+        // eslint-disable-next-line
         item.timestamp.slice(0, 4) == year &&
+        // eslint-disable-next-line
         item.timestamp.slice(5, 7) == month
       ) {
         return item;
       }
+      return null;
     });
 
     return filteredData.filter(function(e) {
@@ -73,6 +76,7 @@ class Home extends Component {
       if (item.ReviewList[0] !== undefined) {
         return item;
       }
+      return null;
     });
 
     const popularReviewer = [];
@@ -82,11 +86,14 @@ class Home extends Component {
       let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
         (review) => {
           if (
+            // eslint-disable-next-line
             review.timestamp.slice(0, 4) == year &&
+            // eslint-disable-next-line
             review.timestamp.slice(5, 7) == month
           ) {
             return review;
           }
+          return null;
         }
       );
 
@@ -101,7 +108,7 @@ class Home extends Component {
       let thumbsUpTotal = 0;
 
       eliminateEmptyReviews[i].ReviewList.map((review) => {
-        thumbsUpTotal += review.thumbsUp;
+        return (thumbsUpTotal += review.thumbsUp);
       });
 
       //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period

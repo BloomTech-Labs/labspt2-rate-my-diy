@@ -67,12 +67,6 @@ class ReviewList extends React.Component {
                   if (reviewsLoading || userLoading || usersLoading)
                     return 'Loading...';
                   if (reviewsError || userError || usersError) return `Error!`;
-                  if (reviewsData && userData && usersData)
-                    console.log({
-                      reviewsData: reviewsData,
-                      userData: userData,
-                      usersData: usersData
-                    });
 
                   if (reviewsData.reviews[0]) {
                     return (
@@ -92,7 +86,6 @@ class ReviewList extends React.Component {
                       </div>
                     );
                   } else {
-                    console.log(userData);
                     return (
                       <div>
                         <h1>{`${userData.user.username}'s Reviews`}</h1>

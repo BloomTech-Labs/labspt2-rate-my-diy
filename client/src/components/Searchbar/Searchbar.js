@@ -58,7 +58,6 @@ class SearchBar extends Component {
       if (this.state.options.includes('category')) {
         await options.push('category');
       }
-      console.log(options);
       await this.search(options);
     } else {
       await this.setState({ displayPopUp: true });
@@ -85,7 +84,6 @@ class SearchBar extends Component {
     if (this.state.options.includes('category')) {
       await options.push('category');
     }
-    console.log(options);
     await this.search(options);
   };
 
@@ -147,8 +145,6 @@ class SearchBar extends Component {
         options: [...newOpts]
       });
     }
-
-    console.log({ state: this.state });
   };
 
   starChange = (e) => {
@@ -625,9 +621,6 @@ class SearchBar extends Component {
     if (!option[0]) {
       options.keys.push('username');
       options.keys.push('name');
-      const usersFuse = new Fuse(this.props.users, options);
-      const reviewsFuse = new Fuse(this.props.reviews, options);
-      const projectsFuse = new Fuse(this.props.projects, options);
 
       let userSearch = this.props.users;
       let projectSearch = this.props.projects;

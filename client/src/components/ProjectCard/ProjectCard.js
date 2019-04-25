@@ -124,7 +124,7 @@ class ProjectCard extends React.Component {
                   <h2>Steps:</h2>
                   {steps.map((step) => {
                     if (step.type === 'img') {
-                      return <img key={step.body} src={step.body} />;
+                      return <img key={step.body} src={step.body} alt="step" />;
                     } else {
                       return <div key={step.body}>{`${step.body}`}</div>;
                     }
@@ -162,7 +162,6 @@ class ProjectCard extends React.Component {
               let rateCheck = this.state.visitor[0].RatedProjects.filter(
                 (proj) => proj.id === project.id
               );
-              // console.log({ rateCheck: rateCheck });
               if (rateCheck.length >= 1) {
                 // logged in, are reviews, not your proj, newRev, you've rated projs, rated this one, return
 
@@ -180,7 +179,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -288,70 +289,67 @@ class ProjectCard extends React.Component {
                               );
                             }
                             if (data)
-                              console.log({
-                                data: data
-                              }); /* return this.setState({...this.state, newReview: false}) */
-                            return (
-                              <form
-                                onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  const date = await new Date(Date.now());
-                                  await newReview({
-                                    variables: {
-                                      name: this.state.name,
-                                      text: this.state.text,
-                                      timestamp: date,
-                                      user: project.User.username,
-                                      username: this.state.username,
-                                      id: project.id,
-                                      projRating: this.state.stars
-                                    }
-                                  });
+                              return (
+                                <form
+                                  onSubmit={async (e) => {
+                                    e.preventDefault();
+                                    const date = await new Date(Date.now());
+                                    await newReview({
+                                      variables: {
+                                        name: this.state.name,
+                                        text: this.state.text,
+                                        timestamp: date,
+                                        user: project.User.username,
+                                        username: this.state.username,
+                                        id: project.id,
+                                        projRating: this.state.stars
+                                      }
+                                    });
 
-                                  await this.props.refetch();
-                                  const { reviews } = await this.props;
-                                  let revs = await reviews.filter(
-                                    (rev) =>
-                                      rev.ProjectReviewed.id === project.id
-                                  );
-                                  await this.setState({
-                                    ...this.state,
-                                    newReview: false,
-                                    reviews: revs
-                                  });
-                                }}
-                              >
-                                <h2>New Review</h2>
-                                <h3>Rating</h3>
-                                <select
-                                  name="stars"
-                                  onChange={this.starChange}
-                                  value={this.state.stars}
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
+                                  }}
                                 >
-                                  <option value="0">Rating</option>
-                                  <option value="1">1 star</option>
-                                  <option value="2">2 stars</option>
-                                  <option value="3">3 stars</option>
-                                  <option value="4">4 stars</option>
-                                  <option value="5">5 stars</option>
-                                </select>
+                                  <h2>New Review</h2>
+                                  <h3>Rating</h3>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
 
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                />
-                                <button type="submit">Submit</button>
-                              </form>
-                            );
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                  />
+                                  <button type="submit">Submit</button>
+                                </form>
+                              );
                           }}
                         </Mutation>
                         <button onClick={this.collapse}>Collapse</button>
@@ -376,7 +374,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -477,15 +477,13 @@ class ProjectCard extends React.Component {
                                 </form>
                               );
                             }
-                            if (data) console.log({ data: data });
+
                             return (
                               <form
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
-                                  console.log({
-                                    username: this.state.visitor[0].username
-                                  });
+
                                   await newReview({
                                     variables: {
                                       name: this.state.name,
@@ -574,7 +572,9 @@ class ProjectCard extends React.Component {
                       <h2>Steps:</h2>
                       {steps.map((step) => {
                         if (step.type === 'img') {
-                          return <img key={step.body} src={step.body} />;
+                          return (
+                            <img key={step.body} src={step.body} alt="step" />
+                          );
                         } else {
                           return <div key={step.body}>{`${step.body}`}</div>;
                         }
@@ -674,18 +674,12 @@ class ProjectCard extends React.Component {
                               </form>
                             );
                           }
-                          if (data)
-                            console.log({
-                              data: data
-                            }); /* return this.setState({...this.state, newReview: false}) */
+
                           return (
                             <form
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 const date = await new Date(Date.now());
-                                console.log({
-                                  username: this.state.visitor[0].username
-                                });
 
                                 await newReview({
                                   variables: {
@@ -782,7 +776,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -826,7 +822,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -872,7 +870,9 @@ class ProjectCard extends React.Component {
                       <h2>Steps:</h2>
                       {steps.map((step) => {
                         if (step.type === 'img') {
-                          return <img key={step.body} src={step.body} />;
+                          return (
+                            <img key={step.body} src={step.body} alt="step" />
+                          );
                         } else {
                           return <div key={step.body}>{`${step.body}`}</div>;
                         }
@@ -924,7 +924,7 @@ class ProjectCard extends React.Component {
                   <h2>Steps:</h2>
                   {steps.map((step) => {
                     if (step.type === 'img') {
-                      return <img key={step.body} src={step.body} />;
+                      return <img key={step.body} src={step.body} alt="step" />;
                     } else {
                       return <div key={step.body}>{`${step.body}`}</div>;
                     }
@@ -972,7 +972,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -1065,73 +1067,68 @@ class ProjectCard extends React.Component {
                               );
                             }
                             if (data)
-                              console.log({
-                                data: data
-                              }); /* return this.setState({...this.state, newReview: false}) */
-                            return (
-                              <form
-                                onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  const date = await new Date(Date.now());
-                                  console.log({
-                                    username: this.state.visitor[0].username
-                                  });
-                                  await newReview({
-                                    variables: {
-                                      name: this.state.name,
-                                      text: this.state.text,
-                                      timestamp: date,
-                                      user: project.User.username,
-                                      username: this.state.username,
-                                      id: project.id,
-                                      projRating: this.state.stars
-                                    }
-                                    // refetchQueries: [ { query: getReviews}]
-                                  });
-                                  await this.props.refetch();
-                                  const { reviews } = await this.props;
-                                  let revs = await reviews.filter(
-                                    (rev) =>
-                                      rev.ProjectReviewed.id === project.id
-                                  );
-                                  await this.setState({
-                                    ...this.state,
-                                    newReview: false,
-                                    reviews: revs
-                                  });
-                                }}
-                              >
-                                <h2>New Review</h2>
-                                <h3>Rating:</h3>
-                                <select
-                                  name="stars"
-                                  onChange={this.starChange}
-                                  value={this.state.stars}
-                                >
-                                  <option value="0">Rating</option>
-                                  <option value="1">1 star</option>
-                                  <option value="2">2 stars</option>
-                                  <option value="3">3 stars</option>
-                                  <option value="4">4 stars</option>
-                                  <option value="5">5 stars</option>
-                                </select>
+                              return (
+                                <form
+                                  onSubmit={async (e) => {
+                                    e.preventDefault();
+                                    const date = await new Date(Date.now());
 
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                />
-                                <button type="submit">Submit</button>
-                              </form>
-                            );
+                                    await newReview({
+                                      variables: {
+                                        name: this.state.name,
+                                        text: this.state.text,
+                                        timestamp: date,
+                                        user: project.User.username,
+                                        username: this.state.username,
+                                        id: project.id,
+                                        projRating: this.state.stars
+                                      }
+                                      // refetchQueries: [ { query: getReviews}]
+                                    });
+                                    await this.props.refetch();
+                                    const { reviews } = await this.props;
+                                    let revs = await reviews.filter(
+                                      (rev) =>
+                                        rev.ProjectReviewed.id === project.id
+                                    );
+                                    await this.setState({
+                                      ...this.state,
+                                      newReview: false,
+                                      reviews: revs
+                                    });
+                                  }}
+                                >
+                                  <h2>New Review</h2>
+                                  <h3>Rating:</h3>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
+
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                  />
+                                  <button type="submit">Submit</button>
+                                </form>
+                              );
                           }}
                         </Mutation>
                         <button
@@ -1163,7 +1160,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -1256,15 +1255,12 @@ class ProjectCard extends React.Component {
                                 </form>
                               );
                             }
-                            if (data) console.log({ data: data });
+
                             return (
                               <form
                                 onSubmit={async (e) => {
                                   e.preventDefault();
                                   const date = await new Date(Date.now());
-                                  console.log({
-                                    username: this.state.visitor[0].username
-                                  });
 
                                   await newReview({
                                     variables: {
@@ -1354,7 +1350,9 @@ class ProjectCard extends React.Component {
                       <h2>Steps:</h2>
                       {steps.map((step) => {
                         if (step.type === 'img') {
-                          return <img key={step.body} src={step.body} />;
+                          return (
+                            <img key={step.body} src={step.body} alt="step" />
+                          );
                         } else {
                           return <div key={step.body}>{`${step.body}`}</div>;
                         }
@@ -1447,15 +1445,13 @@ class ProjectCard extends React.Component {
                               </form>
                             );
                           }
-                          if (data) console.log({ data: data });
+
                           return (
                             <form
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 const date = await new Date(Date.now());
-                                console.log({
-                                  username: this.state.visitor[0].username
-                                });
+
                                 await newReview({
                                   variables: {
                                     name: this.state.name,
@@ -1534,7 +1530,7 @@ class ProjectCard extends React.Component {
               let rateCheck = this.state.visitor[0].RatedProjects.filter(
                 (proj) => proj.id === project.id
               );
-              // console.log({ rateCheck: rateCheck });
+
               if (rateCheck.length >= 1) {
                 // logged in, no reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
@@ -1552,7 +1548,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -1590,7 +1588,9 @@ class ProjectCard extends React.Component {
                         <h2>Steps:</h2>
                         {steps.map((step) => {
                           if (step.type === 'img') {
-                            return <img key={step.body} src={step.body} />;
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
                           } else {
                             return <div key={step.body}>{`${step.body}`}</div>;
                           }
@@ -1614,9 +1614,7 @@ class ProjectCard extends React.Component {
               }
             } else {
               //logged in, no revs, not your proj, not newReview, you've never rated, return
-              console.log(
-                "logged in, no revs, not your proj, not newReview, you've never rated, return"
-              );
+
               return (
                 <div className="project-card-container">
                   <h1>{`${project.name}`}</h1>
@@ -1631,7 +1629,9 @@ class ProjectCard extends React.Component {
                       <h2>Steps:</h2>
                       {steps.map((step) => {
                         if (step.type === 'img') {
-                          return <img key={step.body} src={step.body} />;
+                          return (
+                            <img key={step.body} src={step.body} alt="step" />
+                          );
                         } else {
                           return <div key={step.body}>{`${step.body}`}</div>;
                         }
@@ -1674,7 +1674,7 @@ class ProjectCard extends React.Component {
                 <h2>Steps:</h2>
                 {steps.map((step) => {
                   if (step.type === 'img') {
-                    return <img key={step.body} src={step.body} />;
+                    return <img key={step.body} src={step.body} alt="step" />;
                   } else {
                     return <div key={step.body}>{`${step.body}`}</div>;
                   }
@@ -1718,7 +1718,7 @@ class ProjectCard extends React.Component {
                 <h2>Steps:</h2>
                 {steps.map((step) => {
                   if (step.type === 'img') {
-                    return <img key={step.body} src={step.body} />;
+                    return <img key={step.body} src={step.body} alt="step" />;
                   } else {
                     return <div key={step.body}>{`${step.body}`}</div>;
                   }
