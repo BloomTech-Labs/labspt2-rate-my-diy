@@ -5,7 +5,10 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
 import Modal from 'react-modal';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { withApollo } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
+import { Mutation, Query } from 'react-apollo';
+import { GET_USER } from '../../../reactRouter/reactRouter';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   'auth/account-exists-with-different-credential';
@@ -15,6 +18,17 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   this social account already exists. Try to login from
   this account instead and associate your social accounts on
   your personal account page.
+`;
+
+const CHECK_IF_USER_EXISTS = gql`
+  query user($thirdPartyUID: String!) {
+    user(where: { thirdPartyUID: $thirdPartyUID }) {
+      id
+      thirdPartyUID
+      username
+      email
+    }
+  }
 `;
 
 const firebaseSignUp = gql`
@@ -45,7 +59,8 @@ class SignInGithubBase extends Component {
       isNewUser: false,
       email: '',
       username: '',
-      uid: ''
+      uid: '',
+      signedUp: false
     };
   }
   secondSubmit = (e) => {
@@ -61,99 +76,128 @@ class SignInGithubBase extends Component {
     });
   };
   onSubmit = (event) => {
+    event.preventDefault();
     this.props.firebase
       .doSignInWithGithub()
-      // console.log(this.props, 'home page props')
       .then((socialAuthUser) => {
-        // 1. Catch GH user object here, parse it for isNewUser project, ifNewUser === true, push to More Info page
-        var userBooleanValue = JSON.parse(
-          socialAuthUser.additionalUserInfo.isNewUser
-        );
-        if (userBooleanValue) {
-          const email = socialAuthUser.user.providerData['0'].email;
-          const uid = socialAuthUser.user.providerData['0'].uid;
-          const user = email.split('@');
-          const username = user[0];
-          console.log({ username: username });
-
-          /* userBooleanValue variable is set to the isNewUser key on the GH object,
-          if that value === true, then push the route to more info page?
-          */
-          // We could use if-else do-while or switch statement instead of while
-          this.setState({
-            isNewUser: true,
-            isOpen: true,
-            email: email,
-            uid: uid,
-            username: username
-          });
-          // this.props.history.push(ROUTES.MORE_INFO);
-        } else {
-          this.props.history.push(ROUTES.HOME);
-        }
-        // console.log(socialAuthUser.user.providerData["0"].uid);
-        return this.props.firebase
-          .user(socialAuthUser.user.providerData['0'].uid)
-          .set({
-            email: socialAuthUser.user.email
-          });
+        const thirdPartyUID = socialAuthUser.user.providerData['0'].uid;
+        this.setState({ uid: thirdPartyUID, isOpen: true });
       })
-      .catch((err) => {
-        if (err.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          err.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-        this.setError(err);
-      });
-    event.preventDefault();
+      .catch((err) => console.log(err));
   };
 
   render() {
     const { error } = this.state;
+    if (this.state.signedUp) {
+      return <Redirect to={ROUTES.HOME} />;
+    }
     return (
       <React.Fragment>
-        <form onSubmit={this.onSubmit}>
-          <button type="submit"> Sign In with Github </button>{' '}
-          {error && <p> {error.message} </p>}
-        </form>
-        <Modal isOpen={this.state.isOpen} contentLabel="Example Modal">
-          <div>
-            <h1>Complete Your Sign Up.</h1>
-            <Mutation mutation={firebaseSignUp}>
-              {(firebaseSignUp) => {
-                console.log({ state: this.state });
-                return (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      firebaseSignUp({
-                        variables: {
-                          username: this.state.username,
-                          thirdPartyUID: this.state.uid,
-                          email: this.state.email
-                        }
-                      });
-                    }}
-                  >
-                    <input
-                      onChange={this.onChange}
-                      defaultValue={this.state.email}
-                      placeholder="email"
-                      name="email"
-                      value={this.state.email}
-                    />
-                    <input
-                      onChange={this.onChange}
-                      placeholder="username"
-                      name="username"
-                      value={this.state.username}
-                    />
-                    <button type="submit">Submit</button>
+        <Query
+          query={CHECK_IF_USER_EXISTS}
+          variables={{ thirdPartyUID: this.state.uid }}
+        >
+          {({ loading, data, error: checkError }) => {
+            if (loading)
+              return (
+                <form onSubmit={this.onSubmit}>
+                  <button type="submit" disabled>
+                    {' '}
+                    Sign In with Github{' '}
+                  </button>{' '}
+                  <div>Loading...</div>
+                  {error && <p> {error.message} </p>}
+                </form>
+              );
+            if (checkError) {
+              console.log({ error: checkError });
+              return (
+                <form onSubmit={this.onSubmit}>
+                  <button type="submit" disabled>
+                    {' '}
+                    Sign In with Github{' '}
+                  </button>{' '}
+                  <div>There was an error.</div>
+                  {error && <p> {error.message} </p>}
+                </form>
+              );
+            }
+            if (data && !data.user) {
+              return (
+                <div>
+                  <form onSubmit={this.onSubmit}>
+                    <button type="submit"> Sign In with Github </button>{' '}
+                    {error && <p> {error.message} </p>}
                   </form>
-                );
-              }}
-            </Mutation>
-          </div>
-        </Modal>
+                  <Modal
+                    isOpen={this.state.isOpen}
+                    contentLabel="Example Modal"
+                  >
+                    <div>
+                      <h1>Complete Your Sign Up.</h1>
+                      <Mutation
+                        mutation={firebaseSignUp}
+                        refetchQueries={() => {
+                          return [
+                            {
+                              query: GET_USER,
+                              variables: { thirdPartyUID: this.state.uid }
+                            }
+                          ];
+                        }}
+                      >
+                        {(firebaseSignUp, refetchQueries) => {
+                          console.log({ state: this.state });
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await firebaseSignUp({
+                                  variables: {
+                                    username: this.state.username,
+                                    thirdPartyUID: this.state.uid,
+                                    email: this.state.email
+                                  }
+                                });
+                                await this.setState({ signedUp: true });
+                                await refetchQueries();
+                              }}
+                            >
+                              <input
+                                onChange={this.onChange}
+                                defaultValue={this.state.email}
+                                placeholder="email"
+                                name="email"
+                                value={this.state.email}
+                              />
+                              <input
+                                onChange={this.onChange}
+                                placeholder="username"
+                                name="username"
+                                value={this.state.username}
+                              />
+                              <button type="submit">Submit</button>
+                            </form>
+                          );
+                        }}
+                      </Mutation>
+                    </div>
+                  </Modal>
+                </div>
+              );
+            }
+            if (data && data.user.thirdPartyUID) {
+              this.props.history.push(ROUTES.HOME);
+            }
+            return (
+              <form onSubmit={this.onSubmit}>
+                <button type="submit"> Sign In with Github </button>{' '}
+                <div>Loading...</div>
+                {error && <p> {error.message} </p>}
+              </form>
+            );
+          }}
+        </Query>
       </React.Fragment>
     );
   }

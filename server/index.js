@@ -465,11 +465,18 @@ const Mutation = prismaObjectType({
           html: template // plain text body
         };
 
-        let user = await prisma.createUser({
-          username,
-          email,
-          thirdPartyUID,
-          userProfileImage: avatar
+        let user = await prisma.upsertUser({
+          where: { username },
+          create: {
+            username,
+            email,
+            thirdPartyUID,
+            userProfileImage: avatar
+          },
+          update: {
+            email,
+            thirdPartyUID
+          }
         });
         await transporter.sendMail(mailOptions, function(err, info) {
           if (err) console.log(err);

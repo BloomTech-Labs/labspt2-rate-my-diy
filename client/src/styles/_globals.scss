@@ -131,6 +131,48 @@ a {
   text-decoration: none;
 }
 
+.standard-flex-container-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-around;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+
+    input {
+      width: 50%;
+      margin: auto;
+
+      @media (max-width: 500px) {
+        width: 90%;
+      }
+    }
+  }
+
+}
+
+.btn {
+    border: 2px solid #bdc3c7;
+		border-radius: 18px;
+    padding: 10px 0;
+    background-color: #2980b9;
+    color: white;
+    width: 200px;
+
+    a {
+      color: white;
+    }
+}
+
 .small {
   font-size: 12px;
   width: 70px;

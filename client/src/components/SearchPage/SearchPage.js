@@ -133,8 +133,8 @@ class SearchPage extends Component {
               }
 
               return (
-                <div>
-                  <div key={id} className="card">
+                <div key={id}>
+                  <div className="card">
                     <img src={`${titleImg}`} alt="project" />
 
                     <Link to={`/projects/${id}`}>{`${name}`}</Link>
@@ -172,26 +172,6 @@ class SearchPage extends Component {
                   </Link>
                 </div>
               ))
-            )
-            .concat(
-              this.props.reviews.map(
-                ({
-                  id,
-                  name,
-                  text,
-                  timestamp,
-                  Author,
-                  ProjectReviewed,
-                  userProfileImage
-                }) => (
-                  <div key={id} className="card">
-                    <img src={`${userProfileImage}`} alt="user" />
-                    <Link to={`/${Author.username}/profile`}>
-                      <div>{`${Author.username}`}</div>
-                    </Link>
-                  </div>
-                )
-              )
             )
             .concat(
               this.props.reviews.map((review) => {
