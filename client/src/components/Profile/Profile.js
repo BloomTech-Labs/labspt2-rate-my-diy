@@ -293,11 +293,14 @@ class Profile extends React.Component {
                <React.Fragment>
                 <div className="profile-container">
                   <div className="profile-info">
+                  <div className="profile-user-content">
                   <h1>{`${username}`}</h1>
                   <img className="profile-img" src={userProfileImage} />
                   <p>{`${bio}`}</p>
+                  </div>
                   <div>
                    <h2>{`${username}'s Reviews`}</h2>
+                   <hr className="line-break" />
                   </div>
                     {ReviewList.map((review) => {
                       return (
@@ -348,6 +351,7 @@ class Profile extends React.Component {
                   <span className="liked-reviews">
                     <h2>{`Reviews Liked By ${username}`}</h2>
                   </span>
+                  <hr className="line-break" />
                   <div className="profile-liked-reviews">
                     {LikedReviews.map((review) => {
                       return (
@@ -365,6 +369,7 @@ class Profile extends React.Component {
                   </div>
                   <div className="profile-disliked-reviews">
                     <h2>{`Reviews Disliked By ${username}`}</h2>
+                    <hr className="line-break" />
                     {DislikedReviews.map((review) => {
                       return (
                         <ReviewCard
