@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import * as math from 'mathjs';
 
-const GET_PROJECTS = gql`
+export const GET_PROJECTS = gql`
   query projects($email: String!) {
     projects(where: { User: { email: $email } }, orderBy: timestamp_DESC) {
       id

@@ -14,14 +14,13 @@ import Footer from './components/Footer/Footer';
 import Account from './components/Account/Account';
 import PasswordChange from './components/PasswordChange/PasswordChange';
 import { withAuthentication } from './components/Session/session';
-import ProjectList from './components/Account/Lists/ProjectList';
-import ReviewList from './components/Account/Lists/ReviewList';
+import ProjectList from './components/Lists/ProjectList';
+import ReviewList from './components/Lists/ReviewList';
 import CreateProject from './components/CreateProject/CreateProject';
-import ProjectCard from './components/Account/ProjectCard/ProjectCard';
-import ReviewCard from './components/Account/ReviewCard/ReviewCard';
+import ProjectCard from './components/ProjectCard/ProjectCard';
+import ReviewCard from './components/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
-import Settings from './components/Account/Settings/Settings';
 import Header from './components/Home/Header/Header';
 import * as math from 'mathjs';
 
@@ -177,18 +176,6 @@ class App extends Component {
                                   user={user}
                                 />
                               )}
-                            />
-                            <Route
-                              path={`/${user.username}/account/settings`}
-                              render={(props) => {
-                                return (
-                                  <Settings
-                                    {...props}
-                                    email={user.email}
-                                    user={user}
-                                  />
-                                );
-                              }}
                             />
                           </div>
                         );

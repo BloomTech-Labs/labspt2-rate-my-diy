@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import { Link } from 'react-router-dom';
-import { getUsers } from '../../../query/query';
+import { getUsers } from '../../query/query';
 
 // const json = localStorage.getItem("authUser")
 // const user = JSON.parse(json)

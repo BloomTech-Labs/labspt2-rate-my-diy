@@ -2,8 +2,8 @@ import React from 'react';
 import MicroModal from 'react-micro-modal';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { editReview, likeAReview, dislikeAReview } from '../../../query/query';
-import "./ReviewCard.scss"
+import { editReview, likeAReview, dislikeAReview } from '../../query/query';
+import './ReviewCard.scss';
 
 class ReviewCard extends React.Component {
   constructor(props) {
@@ -953,63 +953,96 @@ class ReviewCard extends React.Component {
           //   }
           // }
           return (
-           <div className="review-section-container">
-           <div className="profile-review-container">
-              <MicroModal
-                trigger={(handleOpen) => (
-                  <div className="inner-review-card">
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
-                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                    </Link>
-                    <div>{`${review.name}`}</div>
-                    <button onClick={handleOpen}>View More</button>
-                  </div>
-                )}
-                children={(handleClose) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
-                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                    </Link>
-                    <div>{`${review.name}`}</div>
-                    <div>{`${review.text}`}</div>
+            <div className="review-section-container">
+              <div className="profile-review-container">
+                <MicroModal
+                  trigger={(handleOpen) => (
+                    <div className="inner-review-card">
+                      <div>{`${review.ProjectReviewed.name}`}</div>
+                      <div>{`Review By: @${review.Author.username}`}</div>
+                      <div>{`${review.timestamp}`}</div>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
+                      <div>{`${review.name}`}</div>
+                      <button onClick={handleOpen}>View More</button>
+                    </div>
+                  )}
+                  children={(handleClose) => (
+                    <div>
+                      <div>{`${review.ProjectReviewed.name}`}</div>
+                      <div>{`Review By: @${review.Author.username}`}</div>
+                      <div>{`${review.timestamp}`}</div>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
+                      <div>{`${review.name}`}</div>
+                      <div>{`${review.text}`}</div>
 
-                    <Mutation mutation={likeAReview}>
-                      {(likeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>+</button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ likeError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>+</button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        }
-                        if (data)
+                      <Mutation mutation={likeAReview}>
+                        {(likeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>+</button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ likeError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>+</button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await likeAReview({
+                                    variables: {
+                                      revId: this.state.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbUp: this.state.didThumbUp
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsUp();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsUp: review.thumbsUp
+                                  });
+                                }}
+                              >
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsUpDisabled}
+                                  >
+                                    +
+                                  </button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
                           return (
                             <form
                               onSubmit={async (e) => {
@@ -1043,65 +1076,66 @@ class ReviewCard extends React.Component {
                               |
                             </form>
                           );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await likeAReview({
-                                variables: {
-                                  revId: this.state.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbUp: this.state.didThumbUp
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsUp();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsUp: review.thumbsUp
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsUpDisabled}
+                        }}
+                      </Mutation>
+                      <Mutation mutation={dislikeAReview}>
+                        {(dislikeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ disError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                                <div>
+                                  There was an error logging your rating.
+                                </div>
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await dislikeAReview({
+                                    variables: {
+                                      revId: this.props.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbDown: this.state.didThumbDown
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsDown();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsDown: review.thumbsDown
+                                  });
+                                }}
                               >
-                                +
-                              </button>
-                              {`Thumbs Up: ${this.state.thumbsUp}`}
-                            </span>
-                            |
-                          </form>
-                        );
-                      }}
-                    </Mutation>
-                    <Mutation mutation={dislikeAReview}>
-                      {(dislikeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ disError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                              <div>There was an error logging your rating.</div>
-                            </form>
-                          );
-                        }
-                        if (data)
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsDownDisabled}
+                                  >
+                                    -
+                                  </button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
                           return (
                             <form
                               onSubmit={async (e) => {
@@ -1134,45 +1168,13 @@ class ReviewCard extends React.Component {
                               </span>
                             </form>
                           );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await dislikeAReview({
-                                variables: {
-                                  revId: this.props.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbDown: this.state.didThumbDown
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsDown();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsDown: review.thumbsDown
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsDownDisabled}
-                              >
-                                -
-                              </button>
-                              {`Thumbs Down: ${this.state.thumbsDown}`}
-                            </span>
-                          </form>
-                        );
-                      }}
-                    </Mutation>
-                    <button onClick={handleClose}>Close</button>
-                  </div>
-                )}
-              />
-            </div>
+                        }}
+                      </Mutation>
+                      <button onClick={handleClose}>Close</button>
+                    </div>
+                  )}
+                />
+              </div>
             </div>
           );
         }

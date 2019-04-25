@@ -4,6 +4,7 @@ import CreatableSelect from 'react-select/lib/Creatable';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
 import { CREATE_PROJECT } from '../../query/query';
+import { GET_PROJECTS } from '../Lists/ProjectList';
 
 import Header from '../Home/Header/Header';
 
@@ -374,9 +375,22 @@ class CreateProject extends Component {
       let type = typeof this.state.project.steps;
       console.log({ steps: this.state.project.steps, stepArray: type });
       let steps = JSON.parse(this.state.project.steps);
+      const json = localStorage.getItem('authUser');
+      const user = JSON.parse(json);
+      const email = user.email;
 
       return (
-        <Mutation mutation={CREATE_PROJECT}>
+        <Mutation
+          mutation={CREATE_PROJECT}
+          refetchQueries={() => {
+            return [
+              {
+                query: GET_PROJECTS,
+                variables: { email: email }
+              }
+            ];
+          }}
+        >
           {(newProject, { loading, error, data }) => {
             if (loading) return <span>Submitting your project...</span>;
             if (error) return <span>{`Error: ${error}`}</span>;
