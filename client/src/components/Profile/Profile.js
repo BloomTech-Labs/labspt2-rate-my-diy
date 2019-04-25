@@ -295,9 +295,8 @@ class Profile extends React.Component {
                       </div>
                       {ReviewList.map((review) => {
                         return (
-                          <div className="project-review-card">
+                          <div className="project-review-card" key={review.id}>
                             <ReviewCard
-                              key={review.id}
                               review={review}
                               users={users}
                               user={user}
@@ -324,9 +323,11 @@ class Profile extends React.Component {
 
                         project.rating = meanRating;
                         return (
-                          <div className="profile-project-card">
+                          <div
+                            className="profile-project-card"
+                            key={project.id}
+                          >
                             <ProjectCard
-                              key={project.id}
                               project={project}
                               reviews={ReviewList}
                               users={users}
@@ -343,9 +344,8 @@ class Profile extends React.Component {
                     <div className="profile-liked-reviews">
                       {LikedReviews.map((review) => {
                         return (
-                          <div className="profile-review-card">
+                          <div className="profile-review-card" key={review.id}>
                             <ReviewCard
-                              key={review.id}
                               review={review}
                               users={users}
                               user={user}

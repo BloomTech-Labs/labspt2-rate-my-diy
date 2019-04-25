@@ -57,7 +57,7 @@ class ProfileInfo extends React.Component {
     ReactCloudinaryUploader.open(options)
       .then((image) => {
         if (this.props.returnJustUrl) image = image.url;
-        this.addImage(image);
+        this.addImg(image);
       })
       .catch((err) => {
         console.error({ error: err });
