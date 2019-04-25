@@ -958,11 +958,13 @@ class ReviewCard extends React.Component {
               <MicroModal
                 trigger={(handleOpen) => (
                   <div className="inner-review-card">
-                    <div>{`${review.ProjectReviewed.name}`}</div>
+                    <div className="reviewed-name">{`${review.ProjectReviewed.name}`}</div>
+                    <hr className="line-break"/>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                       className="review-img"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
