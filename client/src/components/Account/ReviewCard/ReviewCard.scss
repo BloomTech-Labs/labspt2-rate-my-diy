@@ -6,7 +6,6 @@
  display: flex ;
  flex-direction: row ;
  justify-content: center ;
- // margin-right: -15px ;
  margin: 10px 10px 10px 20px ;
  
  background: $alternate-color-one ;
@@ -27,7 +26,7 @@
 }
 
 .inner-review-card {
- border: 3px solid black ;
+border: 3px solid black ;
 box-shadow: 0.5px 1px 15px ;
 padding: 5px 5px ;
 background: $alternate-color-two
@@ -37,5 +36,5 @@ background: $alternate-color-two
 .review-section-container {
  display: flex;
  flex-direction: row ;
-margin: 0 15px 0 -15px ;
+ margin: 0 15px 0 -15px ;
 }

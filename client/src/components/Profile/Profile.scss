@@ -42,17 +42,15 @@
    }
    
    
-   .profile-container {
-    display: flex ;
-    flex-direction: column ;
-    justify-content: center ;
-    margin: 0 auto ;
-    background: $background-color ;
- // border: 1px solid green ;
+ .profile-container {
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  margin: 0 auto ;
+  background: $background-color ;
 }
 
 .profile-info {
-// border: 1px solid yellow ;
 display: flex ;
 flex-direction: column ;
 width: 100% ;
@@ -60,51 +58,37 @@ width: 100% ;
 }
 
 .profile-projects {
- // border: 1px solid red ;
  display: flex ;
  flex-direction: row ;
  
 }
 
 .profile-liked-reviews {
- // border: 1px solid blue ;
  display: flex ;
  flex-direction: row ;
 }
 
-.profile-disliked-reviews {
- // border: 1px solid orange ;
-}
-
 .profile-review-card {
- // border: 1px solid purple ;
  display: flex;
  justify-content: center ;
  margin: 10px 10px ;
- // background: $alternate-complementing-color ;
 }
 
 .profile-project-card {
- // border: 1px solid yellow ;
-
  margin: 10px 10px ;
 }
 
 .profile-img {
- // height: 150px;
  height: 15% ;
  width: 15% ;
  margin: 20px 0 20px 0 ;
- // width: 10%;
 }
 
 .profile-username {
- // border: 1px solid red ;
  height: 50px ;
 }
 
 .liked-reviews {
- // border: 1px solid green ;
  height: 50px ;
 }
 
@@ -113,7 +97,6 @@ width: 100% ;
 }
 
 .profile-user-content {
- // border: 3px solid green ;
  display: flex;
  flex-direction: column ;
  justify-content: space-evenly ;
