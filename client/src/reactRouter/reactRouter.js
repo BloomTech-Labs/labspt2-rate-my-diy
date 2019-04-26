@@ -6,6 +6,7 @@ import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { slide as Menu } from 'react-burger-menu';
+import { useState } from 'react';
 
 import './reactRouter.scss';
 
