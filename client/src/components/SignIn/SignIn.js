@@ -11,7 +11,7 @@ import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
 import { PasswordChangeLink } from '../PasswordChange/PasswordChange';
 
 const SignInPage = () => (
-  <div>
+  <div className="signInWrapper">
     <h1>Sign In</h1>
     <SignInForm />
     <PasswordForgetLink />
