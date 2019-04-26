@@ -3,6 +3,7 @@ import MicroModal from 'react-micro-modal';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editReview, likeAReview, dislikeAReview } from '../../../query/query';
+import "./ReviewCard.scss"
 
 class ReviewCard extends React.Component {
   constructor(props) {
@@ -952,15 +953,18 @@ class ReviewCard extends React.Component {
           //   }
           // }
           return (
-            <div>
+           <div className="review-section-container">
+           <div className="profile-review-container">
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
+                  <div className="inner-review-card">
+                    <div className="reviewed-name">{`${review.ProjectReviewed.name}`}</div>
+                    <hr className="line-break"/>
                     <div>{`Review By: @${review.Author.username}`}</div>
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                       className="review-img"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -1170,6 +1174,7 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
               />
+            </div>
             </div>
           );
         }
