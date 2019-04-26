@@ -10,25 +10,26 @@
   height: 70vh;
   .thirdPartyButtons {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: 40%;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 }
 
 .signInSection {
-  padding: 20px;
   h1 {
     margin-bottom: 20px;
     font-size: 3rem;
     color: $main-color;
   }
   width: 35%;
-  height: 50%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
+  border: 1px solid darkgray;
   .forgotPassword {
     display: flex;
     flex-direction: row;
@@ -46,9 +47,9 @@
 }
 
 .signInForm {
-  width: 50%;
+  width: 45%;
   input {
-    height: 30px;
+    height: 35px;
     margin-bottom: 5px;
     width: 100%;
     padding: 5px;

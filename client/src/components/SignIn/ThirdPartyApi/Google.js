@@ -100,7 +100,11 @@ class SignInGoogleBase extends Component {
             if (loading)
               return (
                 <form onSubmit={this.onSubmit}>
-                  <GoogleLoginButton align="center" onClick={this.onSubmit} />
+                  <GoogleLoginButton
+                    size="35px"
+                    align="center"
+                    onClick={this.onSubmit}
+                  />
 
                   <div>Loading...</div>
                   {error && <p> {error.message} </p>}
@@ -111,7 +115,7 @@ class SignInGoogleBase extends Component {
               return (
                 <form onSubmit={this.onSubmit}>
                   <GoogleLoginButton
-                    fontSize="12"
+                    size="35px"
                     align="center"
                     onClick={this.onSubmit}
                   />
@@ -125,7 +129,7 @@ class SignInGoogleBase extends Component {
                 <div>
                   <form onSubmit={this.onSubmit}>
                     <GoogleLoginButton
-                      fontSize="12"
+                      size="35px"
                       align="center"
                       onClick={this.onSubmit}
                     />
@@ -182,7 +186,7 @@ class SignInGoogleBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <GoogleLoginButton size="100px" onClick={this.onSubmit} />
+                <GoogleLoginButton size="35px" onClick={this.onSubmit} />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>

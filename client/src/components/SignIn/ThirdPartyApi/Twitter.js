@@ -100,7 +100,11 @@ class SignInTwitterBase extends Component {
             if (loading)
               return (
                 <form onSubmit={this.onSubmit}>
-                  <TwitterLoginButton align="center" onClick={this.onSubmit} />
+                  <TwitterLoginButton
+                    size="35px"
+                    align="center"
+                    onClick={this.onSubmit}
+                  />
                   <div>Loading...</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -109,7 +113,11 @@ class SignInTwitterBase extends Component {
               console.log({ error: checkError });
               return (
                 <form onSubmit={this.onSubmit}>
-                  <TwitterLoginButton align="center" onClick={this.onSubmit} />
+                  <TwitterLoginButton
+                    size="35px"
+                    align="center"
+                    onClick={this.onSubmit}
+                  />
                   <div>There was an error.</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -120,6 +128,7 @@ class SignInTwitterBase extends Component {
                 <div>
                   <form onSubmit={this.onSubmit}>
                     <TwitterLoginButton
+                      size="35px"
                       align="center"
                       onClick={this.onSubmit}
                     />
@@ -176,7 +185,7 @@ class SignInTwitterBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <TwitterLoginButton type="submit" />
+                <TwitterLoginButton size="35px" type="submit" />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>
