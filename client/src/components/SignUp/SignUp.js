@@ -6,16 +6,8 @@ import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 const newUser = gql`
-  mutation newUser(
-    $username: String!
-    $firebaseUID: String!
-    $email: String!
-  ) {
-    newUser(
-      username: $username
-      $firebaseUID: $firebaseUID
-      email: $email
-    ) {
+  mutation newUser($username: String!, $firebaseUID: String!, $email: String!) {
+    newUser(username: $username, firebaseUID: $firebaseUID, email: $email) {
       id
       username
       email
@@ -60,7 +52,213 @@ class SignUpFormBase extends Component {
     return (
       <React.Fragment>
         <Mutation mutation={newUser}>
-          {(newUser, { data }) => {
+          {(newUser, { loading, error, data }) => {
+            if (loading)
+              return (
+                <form>
+                  <input
+                    name="username"
+                    value={username}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Username"
+                    disabled
+                  />
+                  <input
+                    name="email"
+                    value={email}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Email Address"
+                    disabled
+                  />
+                  <input
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Password"
+                    disabled
+                  />
+                  <input
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Confirm password."
+                    disabled
+                  />
+                  <button disabled type="submit">
+                    {' '}
+                    Sign Up
+                  </button>
+                  <div>Submitting your change...</div>
+                </form>
+              );
+            if (error) {
+              console.log({ passChangeError: error });
+              return (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const { username, email, passwordOne } = this.state;
+                    const roles = [];
+                    this.props.firebase
+                      .doCreateUserWithEmailAndPassword(email, passwordOne)
+                      .then((authUser) => {
+                        this.setState({ uid: authUser.user.uid });
+                        return this.props.firebase.user(authUser.user.uid).set(
+                          {
+                            username,
+                            email,
+                            roles
+                          },
+                          { merge: true }
+                        );
+                      })
+                      .then(async () => {
+                        await newUser({
+                          variables: {
+                            username: this.state.username,
+                            firebaseUID: this.state.uid,
+                            email: this.state.email
+                          }
+                        });
+                        await this.props.firebase.doSignInWithEmailAndPassword(
+                          this.state.email,
+                          this.state.passwordTwo
+                        );
+                      })
+                      .then(() => {
+                        this.props.history.push(ROUTES.HOME);
+                      })
+                      .catch((err) => {
+                        // Made error codes/msg's strings until we set the value.
+                        if (err.code === 'ERROR_CODE_ACCOUNT_EXISTS') {
+                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS';
+                        }
+
+                        this.setState({ err });
+                      });
+                  }}
+                >
+                  <input
+                    name="username"
+                    value={username}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Username"
+                  />
+                  <input
+                    name="email"
+                    value={email}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Email Address"
+                  />
+                  <input
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Password"
+                  />
+                  <input
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Confirm password."
+                  />
+                  <button disabled={isInvalid} type="submit">
+                    {' '}
+                    Sign Up
+                  </button>
+                  <div>There was an error submitting your change.</div>
+                </form>
+              );
+            }
+            if (data)
+              return (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const { username, email, passwordOne } = this.state;
+                    const roles = [];
+                    this.props.firebase
+                      .doCreateUserWithEmailAndPassword(email, passwordOne)
+                      .then((authUser) => {
+                        this.setState({ uid: authUser.user.uid });
+                        return this.props.firebase.user(authUser.user.uid).set(
+                          {
+                            username,
+                            email,
+                            roles
+                          },
+                          { merge: true }
+                        );
+                      })
+                      .then(async () => {
+                        await newUser({
+                          variables: {
+                            username: this.state.username,
+                            firebaseUID: this.state.uid,
+                            email: this.state.email
+                          }
+                        });
+                        await this.props.firebase.doSignInWithEmailAndPassword(
+                          this.state.email,
+                          this.state.passwordTwo
+                        );
+                      })
+                      .then(() => {
+                        this.props.history.push(ROUTES.HOME);
+                      })
+                      .catch((err) => {
+                        // Made error codes/msg's strings until we set the value.
+                        if (err.code === 'ERROR_CODE_ACCOUNT_EXISTS') {
+                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS';
+                        }
+
+                        this.setState({ err });
+                      });
+                  }}
+                >
+                  <input
+                    name="username"
+                    value={username}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Username"
+                  />
+                  <input
+                    name="email"
+                    value={email}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Email Address"
+                  />
+                  <input
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Password"
+                  />
+                  <input
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={this.onChangeHandler}
+                    type="text"
+                    placeholder="Confirm password."
+                  />
+                  <button disabled={isInvalid} type="submit">
+                    {' '}
+                    Sign Up
+                  </button>
+                  <div>Your change was successfully submitted!</div>
+                </form>
+              );
             return (
               <form
                 onSubmit={(e) => {
@@ -80,14 +278,18 @@ class SignUpFormBase extends Component {
                         { merge: true }
                       );
                     })
-                    .then(() => {
-                      newUser({
+                    .then(async () => {
+                      await newUser({
                         variables: {
                           username: this.state.username,
                           firebaseUID: this.state.uid,
                           email: this.state.email
                         }
                       });
+                      await this.props.firebase.doSignInWithEmailAndPassword(
+                        this.state.email,
+                        this.state.passwordTwo
+                      );
                     })
                     .then(() => {
                       this.props.history.push(ROUTES.HOME);

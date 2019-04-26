@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
-import { GET_USER } from '../../../reactRouter/reactRouter';
+import { GET_THIRD_USER } from '../../../reactRouter/reactRouter';
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -129,7 +129,7 @@ class SignInGithubBase extends Component {
                         refetchQueries={() => {
                           return [
                             {
-                              query: GET_USER,
+                              query: GET_THIRD_USER,
                               variables: { thirdPartyUID: this.state.uid }
                             }
                           ];
