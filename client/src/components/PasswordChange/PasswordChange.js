@@ -5,7 +5,9 @@ import { withFirebase } from '../Firebase/Exports';
 import '../../styles/_globals.scss';
 
 const PasswordChangePage = () => (
-  <div className="form-flex-container">
+
+  <div className='form-flex-container'>
+
     <h2>Password Change</h2>
     <PasswordChangeForm />
   </div>
@@ -62,7 +64,9 @@ class PasswordChangeBase extends Component {
           type="password"
           placeholder="Confirm New Password"
         />
-        <button disabled={isInvalid} type="submit" className="btn">
+
+        <button disabled={isInvalid} type="submit" className='btn'>
+
           Confirm
         </button>
         {error && <p>{error.message}</p>}

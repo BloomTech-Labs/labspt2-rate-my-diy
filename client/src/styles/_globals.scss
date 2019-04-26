@@ -157,19 +157,22 @@ a {
       }
     }
   }
+
+
 }
 
 .btn {
-  border: 2px solid #bdc3c7;
-  border-radius: 18px;
-  padding: 10px 0;
-  background-color: #2980b9;
-  color: white;
-  width: 200px;
-
-  a {
+    border: 2px solid #bdc3c7;
+		border-radius: 18px;
+    padding: 10px 0;
+    background-color: #2980b9;
     color: white;
-  }
+    width: 200px;
+
+    a {
+      color: white;
+    }
+
 }
 
 .small {
@@ -209,7 +212,7 @@ a {
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: #2980b9;
+  background: #388087;
 }
 
 /* Position and sizing of clickable cross button */
@@ -234,7 +237,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: aquamarine;
+  position: sticky;
+  top: 2.5em;
+  background: #388087;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -253,9 +258,21 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
+  padding: 0.1em;
+}
+
+.bm-item :hover {
+  background: #badfe7;
+  font-size: 1.25em;
+  box-shadow: 5px 5px #6fb3b8;
 }
 
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.main-container {
+  position: relative;
+  top: 100px;
 }

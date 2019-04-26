@@ -265,10 +265,10 @@ class App extends Component {
 
     return (
       <Router>
-        <div id="outer-container">
+        <div>
           <Navigation />
-          <main id="page-wrap">
-            <Header />
+          <Header />
+          <div className="main-container">
             <Route
               exact
               path={ROUTES.HOME}
@@ -308,8 +308,8 @@ class App extends Component {
 
             {/* <Route path={ROUTES.CREATE_PROJECT} component={CreateProject} /> */}
             <RoutesWithData />
-          </main>
-          <Route path={ROUTES.FOOTER} component={Footer} />
+            <Route path={ROUTES.FOOTER} component={Footer} />
+          </div>
         </div>
       </Router>
     );
