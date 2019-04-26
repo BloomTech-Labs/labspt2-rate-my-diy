@@ -106,7 +106,7 @@ class CreateProject extends Component {
     const filtered = steps.filter((step, sidx) => idx !== sidx);
     this.setState({
       project: {
-        steps: [filtered, { type: '', body: '' }]
+        steps: filtered
       }
     });
   };
