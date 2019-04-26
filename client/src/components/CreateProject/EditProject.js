@@ -121,6 +121,7 @@ class EditProject extends Component {
     const filtered = steps.filter((step, sidx) => idx !== sidx);
     this.setState({
       project: {
+        ...this.state.project,
         steps: filtered
       }
     });
