@@ -5,21 +5,21 @@ import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-const firebaseSignUp = gql`
-  mutation firebaseSignUp(
+const newUser = gql`
+  mutation newUser(
     $username: String!
-    $thirdPartyUID: String!
+    $firebaseUID: String!
     $email: String!
   ) {
-    firebaseSignUp(
+    newUser(
       username: $username
-      thirdPartyUID: $thirdPartyUID
+      $firebaseUID: $firebaseUID
       email: $email
     ) {
       id
       username
       email
-      thirdPartyUID
+      firebaseUID
     }
   }
 `;
@@ -59,8 +59,8 @@ class SignUpFormBase extends Component {
       username === '';
     return (
       <React.Fragment>
-        <Mutation mutation={firebaseSignUp}>
-          {(firebaseSignUp, { data }) => {
+        <Mutation mutation={newUser}>
+          {(newUser, { data }) => {
             return (
               <form
                 onSubmit={(e) => {
@@ -81,10 +81,10 @@ class SignUpFormBase extends Component {
                       );
                     })
                     .then(() => {
-                      firebaseSignUp({
+                      newUser({
                         variables: {
                           username: this.state.username,
-                          thirdPartyUID: this.state.uid,
+                          firebaseUID: this.state.uid,
                           email: this.state.email
                         }
                       });

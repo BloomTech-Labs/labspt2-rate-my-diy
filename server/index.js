@@ -156,9 +156,10 @@ const Mutation = prismaObjectType({
       type: 'User',
       args: {
         username: stringArg(),
-        email: stringArg()
+        email: stringArg(),
+        firebaseUID: stringArg()
       },
-      resolve: async (parent, { username, email }, ctx, info) => {
+      resolve: async (parent, { username, email, firebaseUID }, ctx, info) => {
         const compiledFunction = pug.compileFile('./templates/newUser.pug');
         const avatars = [
           'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png',
@@ -192,6 +193,7 @@ const Mutation = prismaObjectType({
         let user = await prisma.createUser({
           username,
           email,
+          firebaseUID,
           userProfileImage: avatar
         });
         await transporter.sendMail(mailOptions, function(err, info) {
