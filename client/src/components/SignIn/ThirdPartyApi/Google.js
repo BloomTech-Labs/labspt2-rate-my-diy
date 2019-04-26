@@ -106,7 +106,6 @@ class SignInGoogleBase extends Component {
                     onClick={this.onSubmit}
                   />
 
-                  <div>Loading...</div>
                   {error && <p> {error.message} </p>}
                 </form>
               );

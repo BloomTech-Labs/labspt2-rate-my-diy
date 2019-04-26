@@ -105,7 +105,7 @@ class SignInTwitterBase extends Component {
                     align="center"
                     onClick={this.onSubmit}
                   />
-                  <div>Loading...</div>
+
                   {error && <p> {error.message} </p>}
                 </form>
               );
