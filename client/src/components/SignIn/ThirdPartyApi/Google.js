@@ -76,7 +76,6 @@ class SignInGoogleBase extends Component {
     });
   };
   onSubmit = (event) => {
-    event.preventDefault();
     this.props.firebase
       .doSignInWithTwitter()
       .then((socialAuthUser) => {
@@ -121,9 +120,8 @@ class SignInGoogleBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <button type="submit" disabled>
-                      <GoogleLoginButton type="submit" />
-                    </button>{' '}
+                    <GoogleLoginButton onClick={this.onSubmit} />
+
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
@@ -177,7 +175,7 @@ class SignInGoogleBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <GoogleLoginButton type="submit" />
+                <GoogleLoginButton onClick={this.onSubmit} />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>

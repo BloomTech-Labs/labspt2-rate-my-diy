@@ -77,7 +77,6 @@ class SignInGithubBase extends Component {
     });
   };
   onSubmit = (event) => {
-    event.preventDefault();
     this.props.firebase
       .doSignInWithGithub()
       .then((socialAuthUser) => {

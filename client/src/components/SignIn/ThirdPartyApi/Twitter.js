@@ -76,7 +76,6 @@ class SignInTwitterBase extends Component {
     });
   };
   onSubmit = (event) => {
-    event.preventDefault();
     this.props.firebase
       .doSignInWithTwitter()
       .then((socialAuthUser) => {
