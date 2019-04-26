@@ -9,17 +9,23 @@ import SignInGoogle from './ThirdPartyApi/Google';
 import SignInTwitter from './ThirdPartyApi/Twitter';
 import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
 import { PasswordChangeLink } from '../PasswordChange/PasswordChange';
+import './SignIn.scss';
+import '../../styles/variables.scss';
 
 const SignInPage = () => (
   <div className="signInWrapper">
-    <h1>Sign In</h1>
-    <SignInForm />
-    <PasswordForgetLink />
-    <PasswordChangeLink />
-    <SignInGithub />
-    <SignInGoogle />
-    <SignInTwitter />
-    <SignUpLink />
+    <div className="signInSection">
+      <h1>Sign In</h1>
+      <SignInForm />
+      <div className="forgotPassword">
+        <PasswordForgetLink />
+        <PasswordChangeLink />
+      </div>
+      <SignInGithub />
+      <SignInGoogle />
+      <SignInTwitter />
+      <SignUpLink />
+    </div>
   </div>
 );
 const INITIAL_STATE = {
@@ -58,7 +64,7 @@ class signInFormBase extends Component {
     const { email, password, error } = this.state;
     const isInvalid = password === '' || email === '';
     return (
-      <form>
+      <form className="signInForm">
         <input
           name="email"
           value={email}
