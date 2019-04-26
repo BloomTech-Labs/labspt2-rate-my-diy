@@ -21,9 +21,11 @@ const SignInPage = () => (
         <PasswordForgetLink />
         <PasswordChangeLink />
       </div>
-      <SignInGithub />
-      <SignInGoogle />
-      <SignInTwitter />
+      <div className="thirdPartyButtons">
+        <SignInGoogle />
+        <SignInTwitter />
+        <SignInGithub />
+      </div>
       <SignUpLink />
     </div>
   </div>

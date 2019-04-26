@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   'auth/account-exists-with-different-credential';
@@ -100,10 +101,8 @@ class SignInGoogleBase extends Component {
             if (loading)
               return (
                 <form onSubmit={this.onSubmit}>
-                  <button type="submit" disabled>
-                    {' '}
-                    Sign In with Google{' '}
-                  </button>{' '}
+                  <GoogleLoginButton type="submit" />
+
                   <div>Loading...</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -112,10 +111,7 @@ class SignInGoogleBase extends Component {
               console.log({ error: checkError });
               return (
                 <form onSubmit={this.onSubmit}>
-                  <button type="submit" disabled>
-                    {' '}
-                    Sign In with Google{' '}
-                  </button>{' '}
+                  <GoogleLoginButton type="submit" />
                   <div>There was an error.</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -125,7 +121,9 @@ class SignInGoogleBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <button type="submit"> Sign In with Google </button>{' '}
+                    <button type="submit" disabled>
+                      <GoogleLoginButton type="submit" />
+                    </button>{' '}
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
@@ -179,7 +177,7 @@ class SignInGoogleBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <button type="submit"> Sign In with Google </button>{' '}
+                <GoogleLoginButton type="submit" />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>
