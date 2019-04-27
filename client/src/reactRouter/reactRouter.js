@@ -19,8 +19,8 @@ export const GET_THIRD_USER = gql`
 `;
 
 export const GET_NATIVE_USER = gql`
-  query user($username: String!) {
-    user(where: { username: $username }) {
+  query user($firebaseUID: String!) {
+    user(where: { firebaseUID: $firebaseUID }) {
       id
       username
     }
@@ -37,13 +37,13 @@ const AuthNavigation = () => (
 
 const Navigation = ({ authUser }) => {
   const thirdPartyUID = authUser.providerData['0'].uid;
-  const username = authUser.username;
-  console.log({ username });
+  const uid = authUser.uid;
+  console.log({ uid });
 
   return (
     <Query query={GET_THIRD_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
       {({ loading: thirdLoading, data: thirdData, error: thirdError }) => (
-        <Query query={GET_NATIVE_USER} variables={{ username: username }}>
+        <Query query={GET_NATIVE_USER} variables={{ firebaseUID: uid }}>
           {({
             loading: nativeLoading,
             data: nativeData,

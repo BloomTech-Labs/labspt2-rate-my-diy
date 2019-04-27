@@ -18,10 +18,6 @@ class Home extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   document.location.reload()
-  // }
-
   componentWillMount() {
     let user = this.props.firebase.auth.currentUser !== null;
     if (user) {
