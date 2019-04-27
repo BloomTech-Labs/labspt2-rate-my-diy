@@ -6,7 +6,6 @@ import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { slide as Menu } from 'react-burger-menu';
-import { useState } from 'react';
 
 import './reactRouter.scss';
 
@@ -20,8 +19,8 @@ export const GET_THIRD_USER = gql`
 `;
 
 export const GET_NATIVE_USER = gql`
-  query user($firebaseUID: String!) {
-    user(where: { firebaseUID: $firebaseUID }) {
+  query user($username: String!) {
+    user(where: { username: $username }) {
       id
       username
     }
@@ -38,12 +37,13 @@ const AuthNavigation = () => (
 
 const Navigation = ({ authUser }) => {
   const thirdPartyUID = authUser.providerData['0'].uid;
-  const uid = authUser.uid;
+  const username = authUser.username;
+  console.log({ username });
 
   return (
     <Query query={GET_THIRD_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
       {({ loading: thirdLoading, data: thirdData, error: thirdError }) => (
-        <Query query={GET_NATIVE_USER} variables={{ firebaseUID: uid }}>
+        <Query query={GET_NATIVE_USER} variables={{ username: username }}>
           {({
             loading: nativeLoading,
             data: nativeData,

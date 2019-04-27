@@ -8,14 +8,19 @@ import Featured from './Featured/Featured';
 import './Home.scss';
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props);
     this.state = {
       userClicked: null,
       isLoggedIn: false,
       user: ''
     };
   }
+
+  // componentDidMount() {
+  //   document.location.reload()
+  // }
 
   componentWillMount() {
     let user = this.props.firebase.auth.currentUser !== null;

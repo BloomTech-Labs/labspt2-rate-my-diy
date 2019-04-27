@@ -5,7 +5,7 @@ import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Redirect } from 'react-router-dom';
+import { GET_NATIVE_USER } from '../../reactRouter/reactRouter';
 const newUser = gql`
   mutation newUser($username: String!, $firebaseUID: String!, $email: String!) {
     newUser(username: $username, firebaseUID: $firebaseUID, email: $email) {
@@ -126,15 +126,8 @@ class SignUpFormBase extends Component {
                           }
                         });
                       })
-                      //   .then(() => {
-                      //   this.props.firebase.doSignInWithEmailAndPassword(
-                      //     this.state.email,
-                      //     this.state.passwordTwo
-                      //   );
-                      // })
                       .then(() => {
-                        // this.props.history.push(ROUTES.HOME);
-                        return <Redirect to={ROUTES.HOME} />;
+                        this.props.history.push(ROUTES.HOME);
                       })
                       .catch((err) => {
                         // Made error codes/msg's strings until we set the value.
@@ -202,18 +195,14 @@ class SignUpFormBase extends Component {
                           { merge: true }
                         );
                       })
-                      .then(async () => {
-                        await newUser({
+                      .then(() => {
+                        newUser({
                           variables: {
                             username: this.state.username,
                             firebaseUID: this.state.uid,
                             email: this.state.email
                           }
                         });
-                        await this.props.firebase.doSignInWithEmailAndPassword(
-                          this.state.email,
-                          this.state.passwordTwo
-                        );
                       })
                       .then(() => {
                         this.props.history.push(ROUTES.HOME);
@@ -282,18 +271,20 @@ class SignUpFormBase extends Component {
                         { merge: true }
                       );
                     })
-                    .then(async () => {
-                      await newUser({
+                    .then(() => {
+                      newUser({
                         variables: {
                           username: this.state.username,
                           firebaseUID: this.state.uid,
                           email: this.state.email
-                        }
+                        },
+                        refetchQueries: [
+                          {
+                            query: GET_NATIVE_USER,
+                            variables: { username: this.state.username }
+                          }
+                        ]
                       });
-                      await this.props.firebase.doSignInWithEmailAndPassword(
-                        this.state.email,
-                        this.state.passwordTwo
-                      );
                     })
                     .then(() => {
                       this.props.history.push(ROUTES.HOME);
