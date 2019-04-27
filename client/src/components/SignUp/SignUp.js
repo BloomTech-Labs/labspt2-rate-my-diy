@@ -27,7 +27,8 @@ const firebaseSignUp = gql`
 const SignUpPage = () => {
   return (
     <div>
-      <h1>Changing This</h1>
+      <h2>Sign Up</h2>
+      <p>And be a part of the most creative community on the net</p>
       <SignUpForm />
     </div>
   );
