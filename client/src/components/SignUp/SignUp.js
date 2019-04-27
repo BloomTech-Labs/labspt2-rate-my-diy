@@ -5,6 +5,7 @@ import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import './Signup.scss';
 const firebaseSignUp = gql`
   mutation firebaseSignUp(
     $username: String!
@@ -26,7 +27,7 @@ const firebaseSignUp = gql`
 
 const SignUpPage = () => {
   return (
-    <div>
+    <div className="signUpWrapper">
       <h2>Sign Up</h2>
       <p>And be a part of the most creative community on the net</p>
       <SignUpForm />
