@@ -6,7 +6,7 @@ import './PasswordForget.scss';
 
 const PasswordForgetPage = () => (
   <div className="passwordContainer">
-    <h1>Reset Your Password</h1>
+    <h2>Reset Your Password</h2>
     <p>Just enter your email and we will send you a new password.</p>
     <PasswordForgetForm />
   </div>
