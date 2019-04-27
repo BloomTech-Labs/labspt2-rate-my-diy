@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import * as math from 'mathjs';
 import ProjectCard from '../Account/ProjectCard/ProjectCard';
 import ReviewCard from '../Account/ReviewCard/ReviewCard';
-
+import "./Profile.scss"
 const GET_USERS = gql`
   {
     users {
@@ -382,21 +382,23 @@ class Profile extends React.Component {
                       );
                     })}
                   </div>
-                  <div>
                     <h2>{`Projects Rated By ${username}`}</h2>
-                    {RatedProjects.map((project) => {
-                      let meanRating = project.rating;
-                      if (project.rating.length > 1)
-                        meanRating = parseFloat(
-                          math.mean(project.rating.slice(1)).toFixed(2)
-                        );
-                      if (project.rating.length === 1)
-                        meanRating = parseFloat(
-                          math.mean(project.rating).toFixed(2)
-                        );
+                  <div className="rated-card-container">
+                  <div className="inner-rated-card">
 
-                      project.rating = meanRating;
-                      return (
+                    {RatedProjects.map((project) => {
+                     let meanRating = project.rating;
+                     if (project.rating.length > 1)
+                     meanRating = parseFloat(
+                      math.mean(project.rating.slice(1)).toFixed(2)
+                      );
+                      if (project.rating.length === 1)
+                      meanRating = parseFloat(
+                       math.mean(project.rating).toFixed(2)
+                       );
+                       
+                       project.rating = meanRating;
+                       return (
                         <ProjectCard
                           key={project.id}
                           project={project}
@@ -404,10 +406,12 @@ class Profile extends React.Component {
                           users={users}
                           user={user}
                           refetch={usersRefetch}
-                        />
-                      );
-                    })}
-                  </div>
+                          />
+                          );
+                         })}
+
+                         </div>
+                     </div>
                 </div>
                 </React.Fragment>
               );
