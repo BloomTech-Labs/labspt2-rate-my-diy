@@ -46,7 +46,7 @@
   display: flex ;
   flex-direction: column ;
   justify-content: center ;
-  margin: 0 auto ;
+  // margin: 0 auto ;
   background: $background-color ;
 }
 
@@ -105,14 +105,14 @@ width: 100% ;
 }
 
 .rated-card-container {
- border: 2px solid black ;
+ border: 1px solid black ;
  box-shadow: 5px 5px 20px ;
  display: flex ;
  flex-direction: column ;
  justify-content: center ;
  background: $main-color ;
- width: 50% ;
- height: 725px ;
+ // max-width: 725px;
+ width: 23% ;
  img {
   border: 2px solid black ;
   // width: 15% ;
@@ -134,16 +134,15 @@ width: 100% ;
   border-radius: 10px 5%;
  }
  padding: 15px 15px ;
- margin: 10px 10px 10px 20px ;
+ margin: 10px 10px 10px 10px ;
 }
 
 
 .inner-rated-card {
- border: 5px solid black ;
+ border: 3px solid black ;
  display: flex ;
- // width: 100% ;
- // height: 475px ;
- flex-direction: column ;
+ width: 99% ;
+ flex-direction: row ;
  justify-content: center ;
  border: 3px solid black ;
  box-shadow: 0.5px 1px 15px ;

@@ -304,7 +304,8 @@ class Profile extends React.Component {
                   </div>
                     {ReviewList.map((review) => {
                       return (
-                       <div className="project-review-card">
+                       <div className="rated-card-container">
+                       <div className="inner-rated-card">
                         <ReviewCard
                           key={review.id}
                           review={review}
@@ -313,11 +314,12 @@ class Profile extends React.Component {
                           refetch={usersRefetch}
                         />
                         </div>
+                        </div>
                       );
                     })}
                   </div>
                     <span className="profile-username">
-                    <h2>{`${username}'s Projects`}</h2>
+                    <h3>{`${username}'s Projects`}</h3>
                     </span>
                   <div className="profile-projects">
 
@@ -334,7 +336,8 @@ class Profile extends React.Component {
 
                       project.rating = meanRating;
                       return (
-                       <div className="profile-project-card">
+                       <div className="rated-card-container">
+                       <div className="inner-rated-card">
                         <ProjectCard
                           key={project.id}
                           project={project}
@@ -343,6 +346,7 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
                         </div>
                       );
                     })}
@@ -383,8 +387,6 @@ class Profile extends React.Component {
                     })}
                   </div>
                     <h2>{`Projects Rated By ${username}`}</h2>
-                  <div className="rated-card-container">
-                  <div className="inner-rated-card">
 
                     {RatedProjects.map((project) => {
                      let meanRating = project.rating;
@@ -399,6 +401,8 @@ class Profile extends React.Component {
                        
                        project.rating = meanRating;
                        return (
+                  <div className="rated-card-container">
+                  <div className="inner-rated-card">
                         <ProjectCard
                           key={project.id}
                           project={project}
@@ -407,12 +411,12 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                           />
+                         </div>
+                         </div>
                           );
                          })}
 
-                         </div>
                      </div>
-                </div>
                 </React.Fragment>
               );
             }}

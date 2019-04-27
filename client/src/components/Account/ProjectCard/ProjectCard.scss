@@ -5,10 +5,14 @@
  box-shadow: 5px 5px 20px ;
  display: flex ;
  flex-direction: column ;
- justify-content: center ;
+ justify-content: space-around ;
  background: $main-color ;
+ max-width: 725px;
+ width: 100% ;
  img {
   border: 2px solid black ;
+  max-width: 20%;
+  height: auto ;
  }
  button {
   width: 85px ;
@@ -24,16 +28,14 @@
   border-radius: 10px 5%;
  }
  padding: 15px 15px ;
-
+ // margin: 10px 10px 10px 10px ;
 }
 
 
 .inner-project-card {
- border: 5px solid black ;
  width: 100% ;
  display: flex ;
  flex-direction: column ;
- border: 3px solid black ;
  box-shadow: 0.5px 1px 15px ;
  padding: 5px 5px ;
  border-radius: 0 4.75% 4.75% 0 ;
