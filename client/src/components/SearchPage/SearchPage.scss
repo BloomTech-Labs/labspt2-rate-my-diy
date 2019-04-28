@@ -1,4 +1,55 @@
+@import '../../styles/variables.scss';
+
 a {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
+}
+
+.card-container {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: center;
+	.title {
+		font-size: 3.0rem;
+		&:hover {
+			color: $main-color;
+		}
+	}
+	p {
+		font-size: 1.8rem;
+		margin: 2px;
+	}
+}
+
+.home-container {
+	display: flex;
+	width: 100%;
+}
+
+.card {
+	width: 25%;
+	height: 550px;
+	margin: 50px;
+	border: 3px solid $alternate-color-one;
+	padding: 2%;
+	img {
+		height: 300px;
+		width: 300px;
+	}
+	.stars {
+		height: 30px;
+		width: 30px;
+	}
+}
+
+.cardContainer {
+	display: flex;
+}
+
+.results {
+	text-align: center;
+	color: $main-color;
+	font-size: 3.6rem;
+	margin-top: 20px;
 }
