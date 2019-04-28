@@ -119,7 +119,7 @@ class SearchPage extends Component {
 							return (
 								<div className="card" key={id}>
 									<div>
-										<img src={`${titleImg}`} alt="project" />
+										<img className="projectImage" src={`${titleImg}`} alt="project" />
 
 										<Link className="title" to={`/projects/${id}`}>{`${name}`}</Link>
 

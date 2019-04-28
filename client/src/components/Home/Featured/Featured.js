@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/card.scss';
 import star from '../../../img/star.png';
 import { Link } from 'react-router-dom';
+import './Featured.scss';
 
 function Featured(props) {
   const stars = [];
@@ -18,7 +19,7 @@ function Featured(props) {
         <Link to={`/${props.username}/profile`}>
           <button className="featured-button">See More</button>
         </Link>
-        <div className="rating-container">
+        <div className="stars">
           {stars.map((star) => {
             return star;
           })}
