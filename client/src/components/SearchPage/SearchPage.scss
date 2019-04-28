@@ -28,6 +28,11 @@ a {
 }
 
 .card {
+    .createdBy{
+        &:hover{
+            color: $main-color;
+        }
+    }
 	width: 25%;
 	height: 550px;
 	margin: 50px;

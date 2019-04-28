@@ -123,11 +123,11 @@ class SearchPage extends Component {
 
 										<Link className="title" to={`/projects/${id}`}>{`${name}`}</Link>
 
-										<p>Category:{`${category}`}</p>
+										<p>{`Category: ${category}`}</p>
 										<Link to={`/${User.username}/profile`}>
-											<p>Created by: {`${User.username}`}</p>
+											<p className="createdBy"> {`Created by: ${User.username}`}</p>
 										</Link>
-										<p>Average Rating: {`${meanRating}`}</p>
+										<p> {`Average Rating: ${meanRating}`}</p>
 										<div className="rating-container">
 											{stars.map((star) => {
 												return star;
