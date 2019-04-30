@@ -1,12 +1,12 @@
 @import "../../../styles/variables.scss" ;
 
 .profile-review-container {
- border: 1px solid black ;
+ border: 5px solid black ;
  box-shadow: 5px 5px 20px ;
  display: flex ;
  flex-direction: row ;
  justify-content: center ;
- margin: 10px 10px 10px 20px ;
+ // margin: 10px 10px 10px 20px ;
  
  background: $alternate-color-one ;
  button {
@@ -37,7 +37,7 @@ background: $alternate-color-two
 .review-section-container {
  display: flex;
  flex-direction: row ;
- margin: 0 15px 0 -15px ;
+ // margin: 0 15px 0 -15px ;
 }
 
 .review-img {
