@@ -157,22 +157,19 @@ a {
       }
     }
   }
-
-
 }
 
 .btn {
-    border: 2px solid #bdc3c7;
-		border-radius: 18px;
-    padding: 10px 0;
-    background-color: #2980b9;
+  border: 2px solid #bdc3c7;
+  border-radius: 18px;
+  padding: 10px 0;
+  background-color: #2980b9;
+  color: white;
+  width: 200px;
+
+  a {
     color: white;
-    width: 200px;
-
-    a {
-      color: white;
-    }
-
+  }
 }
 
 .small {

@@ -194,8 +194,8 @@ class Home extends Component {
       <div>
         <SearchWithData />
 
-        <div id="home-container">
-          <h2>Featured Projects</h2>
+        <div className="homeContainer">
+          <h2 className="projectTitle">Featured Projects</h2>
           <Query
             query={gql`
               {
@@ -240,7 +240,7 @@ class Home extends Component {
                 });
 
               return (
-                <div className="card-container">
+                <div className="home-card-container">
                   {projects.map(({ id, name, titleImg, rating, User }) => {
                     let meanRating = rating;
                     if (rating.length > 1)
@@ -252,6 +252,7 @@ class Home extends Component {
                     return (
                       <Featured
                         key={id}
+                        id={id}
                         image={titleImg}
                         rating={meanRating}
                         title={name}
@@ -339,7 +340,7 @@ class Home extends Component {
                 .slice(0, 8);
 
               return (
-                <div className="card-container">
+                <div className="home-card-container">
                   {sortedMakers.map(
                     ({ id, username, userProfileImage, averageRating }) => (
                       <Featured
@@ -383,7 +384,7 @@ class Home extends Component {
               ).slice(0, 8);
 
               return (
-                <div className="card-container">
+                <div className="home-card-container">
                   {reviews.map(({ id, username, userProfileImage }) => (
                     <Featured
                       key={id}

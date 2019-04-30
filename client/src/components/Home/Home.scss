@@ -1,11 +1,32 @@
-#home-container {
+@import '../../styles/variables.scss';
+
+.homeContainer {
+  // this is the entire home container
+  background: $alternate-complementing-color;
   margin: 20px 30px;
   margin-top: 10px;
+  border: 5px solid orange;
+  h2 {
+    text-align: center;
+    font-size: 4.8rem;
+  }
 }
 
-.stars{
-  img{
+.stars {
+  img {
     height: 20px;
     width: 20px;
   }
+}
+
+.home-card-container {
+  // line 243
+  // border: 4px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.second-card-container {
+  border: 2px solid red;
 }
