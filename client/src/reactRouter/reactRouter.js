@@ -38,7 +38,6 @@ const AuthNavigation = () => (
 const Navigation = ({ authUser }) => {
   const thirdPartyUID = authUser.providerData['0'].uid;
   const uid = authUser.uid;
-  console.log({ uid });
 
   return (
     <Query query={GET_THIRD_USER} variables={{ thirdPartyUID: thirdPartyUID }}>
@@ -58,63 +57,65 @@ const Navigation = ({ authUser }) => {
               return null;
             }
             if (thirdData || nativeData)
-              console.log({ thirdData: thirdData, nativeData: nativeData });
-            if (thirdData.user || nativeData.user) {
-              let data;
-              if (thirdData.user) data = thirdData;
-              if (nativeData.user) data = nativeData;
-              console.log({ data: data });
-              return (
-                <Menu>
-                  <a href={ROUTES.HOME} className="menu-item">
-                    <div>Home</div>
-                  </a>
+              if (thirdData.user || nativeData.user) {
+                let data;
+                if (thirdData.user) data = thirdData;
+                if (nativeData.user) data = nativeData;
+                return (
+                  <Menu>
+                    <a href={ROUTES.HOME} className="menu-item">
+                      <div>Home</div>
+                    </a>
 
-                  <a href={'/search'} className="menu-item">
-                    <div>Search</div>
-                  </a>
+                    <a href={'/search'} className="menu-item">
+                      <div>Search</div>
+                    </a>
 
-                  <a
-                    href={`/${data.user.username}/account`}
-                    className="menu-item"
-                  >
-                    <div>My Account</div>
-                  </a>
+                    <a
+                      href={`/${data.user.username}/account`}
+                      className="menu-item"
+                    >
+                      <div>My Account</div>
+                    </a>
 
-                  <a
-                    id="profile"
-                    href={`/${data.user.username}/profile`}
-                    className="menu-item"
-                  >
-                    <div>My Profile</div>
-                  </a>
+                    <a
+                      id="profile"
+                      href={`/${data.user.username}/profile`}
+                      className="menu-item"
+                    >
+                      <div>My Profile</div>
+                    </a>
 
-                  <a
-                    id="projects"
-                    href={`/${data.user.username}/projects`}
-                    className="menu-item"
-                  >
-                    <div>My Projects</div>
-                  </a>
+                    <a
+                      id="projects"
+                      href={`/${data.user.username}/projects`}
+                      className="menu-item"
+                    >
+                      <div>My Projects</div>
+                    </a>
 
-                  <a
-                    id="reviews"
-                    href={`/${data.user.username}/reviews`}
-                    className="menu-item"
-                  >
-                    <div>My Reviews</div>
-                  </a>
+                    <a
+                      id="reviews"
+                      href={`/${data.user.username}/reviews`}
+                      className="menu-item"
+                    >
+                      <div>My Reviews</div>
+                    </a>
 
-                  <a id="create" className="menu-item" href={'/createproject'}>
-                    <div>Create Project</div>
-                  </a>
+                    <a
+                      id="create"
+                      className="menu-item"
+                      href={'/createproject'}
+                    >
+                      <div>Create Project</div>
+                    </a>
 
-                  <a id="signOut" href="/" className="menu-item">
-                    <SignOutButton />
-                  </a>
-                </Menu>
-              );
-            }
+                    <a id="signOut" href="/" className="menu-item">
+                      <SignOutButton />
+                    </a>
+                  </Menu>
+                );
+              }
 
             return <NavigationNonAuth />;
           }}

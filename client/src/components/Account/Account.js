@@ -34,7 +34,6 @@ class Account extends Component {
               return null;
             }
             if (data) {
-              console.log({ nativeDta: data });
               if (
                 (data.user.firebaseUID !== null) &
                 (data.user.firebaseUID !== undefined)

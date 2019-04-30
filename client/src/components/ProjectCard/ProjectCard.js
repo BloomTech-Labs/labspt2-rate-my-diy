@@ -954,7 +954,6 @@ class ProjectCard extends React.Component {
               let rateCheck = this.state.visitor[0].RatedProjects.filter(
                 (proj) => proj.id === project.id
               );
-              console.log({ rateCheck: rateCheck });
               if (rateCheck.length >= 1) {
                 // logged in, no reviews, not your proj, newRev, you've rated projs, rated this one, return
 

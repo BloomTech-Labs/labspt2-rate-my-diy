@@ -10,7 +10,6 @@ import './Home.scss';
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       userClicked: null,
       isLoggedIn: false,
