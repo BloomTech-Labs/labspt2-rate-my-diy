@@ -143,9 +143,18 @@ class Home extends Component {
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
-                  if (userError) return <span>{`${userError}`}</span>;
-                  if (projectError) return <span>{`${projectError}`}</span>;
-                  if (reviewError) return <span>{`${reviewError}`}</span>;
+                  if (userError) {
+                    console.log({ userError: userError });
+                    return null;
+                  }
+                  if (projectError) {
+                    console.log({ projectError: projectError });
+                    return null;
+                  }
+                  if (reviewError) {
+                    console.log({ reviewError: reviewError });
+                    return null;
+                  }
                   let userArray = [];
                   let projectArray = [];
                   let reviewArray = [];

@@ -33,13 +33,20 @@ class ProjectCard extends React.Component {
       text: '',
       reviews: revs,
       showMore: false,
-      username: visitor[0].username
+      username: ''
     };
   }
 
   componentDidMount = () => {
+    const { users } = this.props;
+
     if (this.state.authUser != null) {
-      this.setState({ ...this.state, loggedIn: true });
+      let visitor = users.filter((u) => u.email === this.state.authUser.email);
+      this.setState({
+        ...this.state,
+        loggedIn: true,
+        username: visitor[0].username
+      });
     } else {
       this.setState({ loggedIn: false });
     }
