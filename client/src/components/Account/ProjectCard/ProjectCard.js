@@ -1636,7 +1636,7 @@ class ProjectCard extends React.Component {
                 <div >
                 <div >
                  
-                  <h3>{`${project.name}`}</h3>
+                  <h2>{`${project.name}`}</h2>
                   <hr className="line-break" />
                   <div>{`${project.User.username}`}</div>
                   <div>{`${project.rating}`}</div>
