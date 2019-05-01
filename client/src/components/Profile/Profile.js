@@ -285,7 +285,7 @@ class Profile extends React.Component {
                     <div className="profile-info">
                       <div className="profile-user-content">
                         <h1>{`${username}`}</h1>
-                        <img className="profile-img" src={userProfileImage} />
+                        <img className="profile-img" src={userProfileImage} alt="profile" />
                         <p>{`${bio}`}</p>
                       </div>
                       <div>

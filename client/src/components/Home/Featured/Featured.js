@@ -11,7 +11,7 @@ function Featured(props) {
     stars.push(<img src={star} alt="star" key={i} />);
   }
   return (
-    <div className="card" onClick={() => props.clickHandler(props.username)}>
+    <div className="featured-card search-card" onClick={() => props.clickHandler(props.username)}>
       <img className="img-responsive" src={props.image} alt="project" />
       <div className="info-container">
         <h2 className="proj-title">{props.title}</h2>

@@ -297,7 +297,7 @@ class EditProject extends Component {
                   );
                 } else {
                   return (
-                    <div key={step[idx]}>
+                    <div key={idx}>
                       <input
                         type="text"
                         value={step.body}

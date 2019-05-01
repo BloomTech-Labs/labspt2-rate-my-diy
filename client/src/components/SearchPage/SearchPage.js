@@ -112,8 +112,10 @@ class SearchPage extends Component {
     );
 
     return (
+      <>
+      <SearchWithData />
       <div id="home-container">
-        <SearchWithData />
+        
         <h1>Results:</h1>
         <div className="card-container">
           {this.props.projects
@@ -132,7 +134,7 @@ class SearchPage extends Component {
 
               return (
                 <div key={id}>
-                  <div className="card">
+                  <div className="search-card featured-card">
                     <img src={`${titleImg}`} alt="project" />
 
                     <Link to={`/projects/${id}`}>{`${name}`}</Link>
@@ -163,7 +165,7 @@ class SearchPage extends Component {
             })
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div key={id} className="card">
+                <div key={id} className="search-card featured-card">
                   <img src={`${userProfileImage}`} alt="user" />
                   <Link to={`/${username}/profile`}>
                     <div>{`${username}`}</div>
@@ -203,6 +205,7 @@ class SearchPage extends Component {
             )}
         </div>
       </div>
+      </>
     );
   }
 }

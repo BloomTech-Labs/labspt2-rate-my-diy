@@ -9829,6 +9829,11 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.7.5"
 
+semantic-ui-card@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/semantic-ui-card/-/semantic-ui-card-2.3.1.tgz#a55847fdaf8704c814597ddc62409a3c86cfb7f3"
+  integrity sha512-7FzibUcZoSmdOvqepegjvQshvxHBwTU8ZU/oQtVd9BxhpLgjjktQX6Qmdark9F5NM1Uy1bESrNocm3Vib2gSVw==
+
 "semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"

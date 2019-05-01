@@ -4,10 +4,9 @@ import CreatableSelect from 'react-select/lib/Creatable';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
 import { CREATE_PROJECT } from '../../query/query';
+import { GET_PROJECTS } from '../Lists/ProjectList';
 import './CreateProject.scss';
 
-import Header from '../Home/Header/Header';
-import { GET_PROJECTS } from '../Lists/ProjectList';
 
 class CreateProject extends Component {
   constructor(props) {
@@ -306,7 +305,7 @@ class CreateProject extends Component {
                   if (step.type === 'img') {
                     return (
                       <div key={idx}>
-                        <img src={step.body} />
+                        <img src={step.body} alt="step"/>
                         <button onClick={this.deletePhoto(idx)}>
                           Delete Photo
                         </button>
@@ -489,7 +488,7 @@ class CreateProject extends Component {
                             if (step.type === 'img') {
                               return (
                                 <div key={idx}>
-                                  <img src={step.body} />
+                                  <img src={step.body} alt="step"/>
                                   <button onClick={this.deletePhoto(idx)}>
                                     Delete Photo
                                   </button>

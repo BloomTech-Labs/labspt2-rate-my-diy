@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.project-list-all-container {
+  display: flex;
+  flex-direction: column
+}
+
+.project-list-title {
+  align-self: center
+}
+.project-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
