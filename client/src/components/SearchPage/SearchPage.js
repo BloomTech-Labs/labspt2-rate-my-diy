@@ -137,15 +137,14 @@ class SearchPage extends Component {
                 <div className="search-card" key={id}>
                   <div>
                     <img
-                      className="projectImage"
+                      className="searchProjectImage"
                       src={`${titleImg}`}
                       alt="project"
                     />
 
-                    <Link
-                      className="project-title"
-                      to={`/projects/${id}`}
-                    >{`${name}`}</Link>
+                    <Link className="project-title" to={`/projects/${id}`}>
+                      <h3>{`${name}`}</h3>
+                    </Link>
 
                     <p>{`Category: ${category}`}</p>
                     <Link to={`/${User.username}/profile`}>
@@ -155,7 +154,7 @@ class SearchPage extends Component {
                       </p>
                     </Link>
                     <p> {`Average Rating: ${meanRating}`}</p>
-                    <div className="rating-container">
+                    <div className="search-rating-container">
                       {stars.map((star) => {
                         return star;
                       })}
@@ -166,10 +165,17 @@ class SearchPage extends Component {
             })
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div key={id} className="card">
-                  <img src={`${userProfileImage}`} alt="user" />
+                <div key={id} className="search-card">
+                  <img
+                    className="searchProjectImage"
+                    src={`${userProfileImage}`}
+                    alt="user"
+                  />
                   <Link to={`/${username}/profile`}>
-                    <div>{`${username}`}</div>
+                    <h3>{`User Name: ${username}`}</h3>
+                  </Link>
+                  <Link to={`/${username}/projects`}>
+                    <h4 id="searchProjectButton">View My Projects</h4>
                   </Link>
                 </div>
               ))

@@ -23,7 +23,9 @@ function Featured(props) {
           <h3 className="projectTitle">{props.title}</h3>
         </Link>
         <Link to={`/${props.username}/profile`}>
-          <p>Author: {props.username}</p>
+          {props.category ? <p>Category: {props.category}</p> : null}
+          <p>Created By: {props.username}</p>
+          <p>Average Rating {props.rating}</p>
         </Link>
         <div className="stars">
           {stars.map((star) => {
