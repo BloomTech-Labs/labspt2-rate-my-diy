@@ -956,7 +956,7 @@ class ReviewCard extends React.Component {
            
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div className="inner-review-card">
+                  <div>
                     <div className="reviewed-name">{`${review.ProjectReviewed.name}`}</div>
                     <hr className="line-break"/>
                     <div>{`Review By: @${review.Author.username}`}</div>
