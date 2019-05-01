@@ -5,10 +5,12 @@ a {
   color: black;
 }
 
-.card-container {
+.search-card-container {
+  border: 2px solid black;
   display: flex;
   width: 100%;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   .title {
     font-size: 3rem;
@@ -22,13 +24,14 @@ a {
   }
 }
 
-.home-container {
+.search-container {
   display: flex;
-  width: 100%;
-  border: 2px solid orange;
+  border: 5px solid orange;
+  flex-direction: column;
+  max-width: 100%;
 }
 
-.card {
+.search-card {
   .createdBy {
     &:hover {
       color: $main-color;
@@ -55,10 +58,6 @@ a {
       width: 30px;
     }
   }
-}
-
-.cardContainer {
-  display: flex;
 }
 
 .results {
