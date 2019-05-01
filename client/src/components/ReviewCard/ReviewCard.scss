@@ -1,14 +1,15 @@
-@import '../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .profile-review-container {
-  border: 5px solid black;
+  border: 1px solid black;
   box-shadow: 5px 5px 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  // margin: 10px 10px 10px 20px ;
+  // margin-right: -15px ;
+  margin: 10px 10px 10px 20px;
 
-  background: $alternate-color-one;
+  background: $background-color;
   button {
     width: 85px;
     height: 40px;
@@ -27,26 +28,14 @@
 
 .inner-review-card {
   border: 3px solid black;
-  box-shadow: 0.5px 1px 15px;
+  //  width: 400px ;
+  box-shadow: 5px 5px 15px;
   padding: 5px 5px;
-  border-radius: 0 4.75% 4.75% 0;
-  background: $alternate-color-two;
 }
 
 .review-section-container {
+  //  // border: 2px solid blueviolet ;
   display: flex;
   flex-direction: row;
-  // margin: 0 15px 0 -15px ;
-}
-
-.review-img {
-  border: 2px solid black;
-}
-
-.reviewed-name {
-  font-size: 3rem;
-}
-
-.line-break {
-  border: 1px solid black;
+  margin: 0 15px 0 -15px;
 }

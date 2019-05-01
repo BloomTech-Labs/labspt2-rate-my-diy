@@ -4,10 +4,9 @@ import SearchBar from '../Searchbar/Searchbar';
 import { Query } from 'react-apollo';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
-import ReviewCard from '../Account/ReviewCard/ReviewCard';
+import ReviewCard from '../ReviewCard/ReviewCard';
 import { getUsers } from '../../query/query';
 
-import Header from '../Home/Header/Header';
 import '../../styles/card.scss';
 import './SearchPage.scss';
 import star from '../../img/star.png';

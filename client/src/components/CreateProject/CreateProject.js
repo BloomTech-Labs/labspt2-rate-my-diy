@@ -7,6 +7,7 @@ import { CREATE_PROJECT } from '../../query/query';
 import './CreateProject.scss';
 
 import Header from '../Home/Header/Header';
+import { GET_PROJECTS } from '../Lists/ProjectList';
 
 class CreateProject extends Component {
   constructor(props) {
@@ -39,16 +40,7 @@ class CreateProject extends Component {
     };
   }
 
-  componentWillUnmount = () => {
-    console.log({ unMountState: this.state }, 'unmounting');
-  };
-
-  // componentWillMount = () => {
-  //   console.log({newMountState: this.state})
-  // }
   componentDidMount = () => {
-    console.log({ newMountState: this.state });
-
     if (typeof this.state.project.steps === 'string') {
       let steps = this.state.project.steps;
       let array = JSON.parse(steps);
@@ -61,23 +53,19 @@ class CreateProject extends Component {
 
   textChange = async (e) => {
     let value = e.target.value;
-    let x = document.activeElement.tagName;
     await this.setState({
       project: {
         ...this.state.project,
         [e.target.name]: value
       }
     });
-
-    console.log({ name: this.state.project.name, focus: x });
   };
+
   textChangeHandler = (index) => (e) => {
     const newText = this.state.project.steps.map((step, sidx) => {
       if (index !== sidx) return step;
       return { type: 'text', body: e.target.value };
     });
-
-    const final = newText.concat([{ type: '', body: '' }]);
 
     this.setState({
       project: {
@@ -85,7 +73,6 @@ class CreateProject extends Component {
         steps: newText
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   handleAddStep = () => {
@@ -96,7 +83,6 @@ class CreateProject extends Component {
         steps: this.state.project.steps.concat([{ type: '', body: '' }])
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   addImage = (img) => {
@@ -123,10 +109,10 @@ class CreateProject extends Component {
     const filtered = steps.filter((step, sidx) => idx !== sidx);
     this.setState({
       project: {
-        steps: [filtered, { type: '', body: '' }]
+        ...this.state.project,
+        steps: filtered
       }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   removeTextStep = (idx) => () => {
@@ -134,7 +120,6 @@ class CreateProject extends Component {
     this.setState({
       project: { steps: steps }
     });
-    console.log({ steps: this.state.project.steps });
   };
 
   openCloudinary = (e) => {
@@ -148,7 +133,6 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
-        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.addImage(image);
       })
@@ -168,7 +152,6 @@ class CreateProject extends Component {
     };
     ReactCloudinaryUploader.open(options)
       .then((image) => {
-        console.log({ image: image });
         if (this.props.returnJustUrl) image = image.url;
         this.setState({
           imgDeleteDisabled: false,
@@ -194,12 +177,7 @@ class CreateProject extends Component {
     });
   };
 
-  handleChange = async (newValue, actionMeta) => {
-    console.group('Value Changed');
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-
+  handleChange = async (newValue) => {
     let value = '';
 
     if (newValue !== null) value = await newValue.value;
@@ -211,14 +189,10 @@ class CreateProject extends Component {
         category: value
       }
     });
-    await console.log({ category: this.state.project.category });
   };
 
   finalize = async (e) => {
     e.preventDefault();
-    let steps = this.state.project.steps.map((step) => {
-      return step.body;
-    });
     try {
       const steps = await this.state.project['steps'];
 
@@ -232,13 +206,6 @@ class CreateProject extends Component {
 
       const { name, category, titleImg, titleBlurb } = await this.state.project;
 
-      await console.log({
-        b4name: name,
-        b4cat: category,
-        b4titleImg: titleImg,
-        b4titleBlurb: titleBlurb
-      });
-
       await this.setState({
         ...this.state,
         submitDisabled: false,
@@ -251,44 +218,20 @@ class CreateProject extends Component {
           timestamp: date
         }
       });
-
-      await console.log({ finalizeState: this.state });
     } catch (err) {
       console.log({ error: err });
     }
   };
 
   render() {
-    const projCheck = () => {
-      const proj = this.state.project;
-      for (let key in proj) {
-        if (proj[key] !== null && proj[key] != '') return false;
-      }
-      return true;
-    };
-
-    const userCheck = () => {
-      if (this.state.username !== null && this.state.username != '') {
-        return false;
-      } else {
-        return true;
-      }
-    };
-
-    // const isEnabled = projCheck() && userCheck();
-
     const cats = this.state.categories.map((cat) => {
       return { value: cat, label: cat };
     });
-
-    // const steps = JSON.parse(this.state.project.steps)
 
     if (
       this.state.project.steps != null &&
       typeof this.state.project.steps === 'object'
     ) {
-      let type = typeof this.state.project.steps;
-      console.log({ steps: this.state.project.steps, stepArray: type });
       return (
         <div className="projectInfo">
           <form>
@@ -426,12 +369,23 @@ class CreateProject extends Component {
         </div>
       );
     } else {
-      let type = typeof this.state.project.steps;
-      console.log({ steps: this.state.project.steps, stepArray: type });
       let steps = JSON.parse(this.state.project.steps);
+      const json = localStorage.getItem('authUser');
+      const user = JSON.parse(json);
+      const email = user.email;
 
       return (
-        <Mutation mutation={CREATE_PROJECT}>
+        <Mutation
+          mutation={CREATE_PROJECT}
+          refetchQueries={() => {
+            return [
+              {
+                query: GET_PROJECTS,
+                variables: { email: email }
+              }
+            ];
+          }}
+        >
           {(newProject, { loading, error, data }) => {
             if (loading) return <span>Submitting your project...</span>;
             if (error) return <span>{`Error: ${error}`}</span>;
@@ -454,7 +408,6 @@ class CreateProject extends Component {
                         username: this.state.username
                       }
                     });
-                    console.log({ data: this.props.data });
                   }}
                 >
                   {' '}

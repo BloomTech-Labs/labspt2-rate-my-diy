@@ -5,6 +5,7 @@ a {
   color: black;
 }
 
+<<<<<<< HEAD
 .search-card-container {
   border: 2px solid black;
   display: flex;
@@ -12,6 +13,13 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+=======
+.card-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+>>>>>>> f868b393cc2c8a45888889d6ec07a5181dcc5c32
   .title {
     font-size: 3rem;
     &:hover {
@@ -24,6 +32,7 @@ a {
   }
 }
 
+<<<<<<< HEAD
 .search-container {
   display: flex;
   border: 5px solid orange;
@@ -64,6 +73,45 @@ a {
   width: 300px;
   border: 2px solid black;
   margin-bottom: 10px;
+=======
+.home-container {
+  display: flex;
+  width: 100%;
+  border: 2px solid orange;
+}
+
+.card {
+  .createdBy {
+    &:hover {
+      color: $main-color;
+    }
+  }
+  width: 25%;
+  height: 550px;
+  margin: 50px;
+  border: 3px solid $alternate-color-one;
+  padding: 2%;
+  .projectImage {
+    height: 300px;
+    width: 300px;
+  }
+  .stars {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}
+
+.cardContainer {
+  display: flex;
+>>>>>>> f868b393cc2c8a45888889d6ec07a5181dcc5c32
 }
 
 .results {
@@ -71,6 +119,7 @@ a {
   color: $main-color;
   font-size: 3.6rem;
   margin-top: 20px;
+<<<<<<< HEAD
 }
 
 .search-rating-container {
@@ -100,4 +149,16 @@ a {
   box-shadow: 5px 5px 5px darkgray;
   background: $color2;
   color: white;
+=======
+}
+
+.rating-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  img {
+    height: 20px;
+    width: 20px;
+  }
+>>>>>>> f868b393cc2c8a45888889d6ec07a5181dcc5c32
 }

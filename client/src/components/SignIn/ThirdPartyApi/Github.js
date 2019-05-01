@@ -5,21 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
 import Modal from 'react-modal';
 import gql from 'graphql-tag';
-import { withApollo } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
-import { GET_USER } from '../../../reactRouter/reactRouter';
-import { GithubLoginButton } from 'react-social-login-buttons';
-
-const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential';
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with an E-Mail address to
-  this social account already exists. Try to login from
-  this account instead and associate your social accounts on
-  your personal account page.
-`;
+import { GET_THIRD_USER } from '../../../reactRouter/reactRouter';
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -77,6 +65,7 @@ class SignInGithubBase extends Component {
     });
   };
   onSubmit = (event) => {
+    event.preventDefault();
     this.props.firebase
       .doSignInWithGithub()
       .then((socialAuthUser) => {
@@ -101,12 +90,11 @@ class SignInGithubBase extends Component {
             if (loading)
               return (
                 <form onSubmit={this.onSubmit}>
-                  <GithubLoginButton
-                    size="35px"
-                    align="center"
-                    onClick={this.onSubmit}
-                  />
-
+                  <button type="submit" disabled>
+                    {' '}
+                    Sign In with Github{' '}
+                  </button>{' '}
+                  <div>Loading...</div>
                   {error && <p> {error.message} </p>}
                 </form>
               );
@@ -114,11 +102,10 @@ class SignInGithubBase extends Component {
               console.log({ error: checkError });
               return (
                 <form onSubmit={this.onSubmit}>
-                  <GithubLoginButton
-                    size="35px"
-                    align="center"
-                    onClick={this.onSubmit}
-                  />
+                  <button type="submit" disabled>
+                    {' '}
+                    Sign In with Github{' '}
+                  </button>{' '}
                   <div>There was an error.</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -128,11 +115,7 @@ class SignInGithubBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <GithubLoginButton
-                      size="35px"
-                      align="center"
-                      onClick={this.onSubmit}
-                    />
+                    <button type="submit"> Sign In with Github </button>{' '}
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
@@ -146,14 +129,13 @@ class SignInGithubBase extends Component {
                         refetchQueries={() => {
                           return [
                             {
-                              query: GET_USER,
+                              query: GET_THIRD_USER,
                               variables: { thirdPartyUID: this.state.uid }
                             }
                           ];
                         }}
                       >
                         {(firebaseSignUp, refetchQueries) => {
-                          console.log({ state: this.state });
                           return (
                             <form
                               onSubmit={async (e) => {
@@ -197,7 +179,7 @@ class SignInGithubBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <GithubLoginButton size="35px" onClick={this.onSubmit} />
+                <button type="submit"> Sign In with Github </button>{' '}
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>

@@ -1,43 +1,42 @@
-@import "../../styles/variables.scss" ;
+@import '../../styles/variables.scss';
 
 .profile-form-flex-container {
   display: flex;
   flex-direction: column;
   height: 500px;
   justify-content: space-around;
-  
+
   form {
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
-   height: 100%;
-   
-   textarea {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    textarea {
+      width: 50%;
       height: 80px;
       resize: none;
-      
+
       @media (max-width: 800px) {
-       width: 70%;
+        width: 70%;
       }
-      
+
       @media (max-width: 500px) {
-       width: 90%;
+        width: 90%;
       }
-     }
-     
-     img {
+    }
+
+    img {
       height: 150px;
       width: 10%;
-      
+
       @media (max-width: 800px) {
-       width: 30%;
+        width: 30%;
       }
-      
+
       @media (max-width: 500px) {
-       width: 50%;
+        width: 50%;
       }
-     }
     }
    }
    
@@ -56,45 +55,48 @@ flex-direction: column ;
 width: 100% ;
 border: 2px solid green ;
 
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .profile-projects {
- display: flex ;
- flex-direction: row ;
- 
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-liked-reviews {
- display: flex ;
- flex-direction: row ;
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-review-card {
- display: flex;
- justify-content: center ;
- margin: 10px 10px ;
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px;
 }
 
 .profile-project-card {
- margin: 10px 10px ;
+  margin: 10px 10px;
 }
 
 .profile-img {
- height: 15% ;
- width: 15% ;
- margin: 20px 0 20px 0 ;
+  height: 15%;
+  width: 15%;
+  margin: 20px 0 20px 0;
 }
 
 .profile-username {
- height: 50px ;
+  height: 50px;
 }
 
 .liked-reviews {
- height: 50px ;
+  height: 50px;
 }
 
 .line-break {
- border: 1px solid black ;
+  border: 1px solid black;
 }
 
 .profile-user-content {

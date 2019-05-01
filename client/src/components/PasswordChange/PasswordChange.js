@@ -28,7 +28,6 @@ class PasswordChangeBase extends Component {
     this.props.firebase
       .doPasswordUpdate(passwordOne)
       .then((response) => {
-        // console.log(response);
         this.setState({
           ...INITIAL_STATE
         });

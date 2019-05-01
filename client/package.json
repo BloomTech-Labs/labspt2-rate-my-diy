@@ -46,7 +46,8 @@
     "react-ui-cards": "^1.5.0",
     "recompose": "^0.30.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "tingle.js": "^0.14.0"
+    "tingle.js": "^0.14.0",
+    "use-force-update": "^1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
