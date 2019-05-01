@@ -5,13 +5,11 @@ import gql from 'graphql-tag';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
 import Featured from './Featured/Featured';
-import Header from './Header/Header';
 import './Home.scss';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userClicked: null,
       isLoggedIn: false,
@@ -51,11 +49,14 @@ class Home extends Component {
 
     const filteredData = data.map((item) => {
       if (
+        // eslint-disable-next-line
         item.timestamp.slice(0, 4) == year &&
+        // eslint-disable-next-line
         item.timestamp.slice(5, 7) == month
       ) {
         return item;
       }
+      return null;
     });
 
     return filteredData.filter(function(e) {
@@ -75,6 +76,7 @@ class Home extends Component {
       if (item.ReviewList[0] !== undefined) {
         return item;
       }
+      return null;
     });
 
     const popularReviewer = [];
@@ -84,11 +86,14 @@ class Home extends Component {
       let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
         (review) => {
           if (
+            // eslint-disable-next-line
             review.timestamp.slice(0, 4) == year &&
+            // eslint-disable-next-line
             review.timestamp.slice(5, 7) == month
           ) {
             return review;
           }
+          return null;
         }
       );
 
@@ -103,7 +108,7 @@ class Home extends Component {
       let thumbsUpTotal = 0;
 
       eliminateEmptyReviews[i].ReviewList.map((review) => {
-        thumbsUpTotal += review.thumbsUp;
+        return (thumbsUpTotal += review.thumbsUp);
       });
 
       //A way to sanitize our reviews because if a reviewer is not liked I'm sorry buddy you are not popular period
@@ -138,9 +143,18 @@ class Home extends Component {
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return <span>loading...</span>;
-                  if (userError) return <span>{`${userError}`}</span>;
-                  if (projectError) return <span>{`${projectError}`}</span>;
-                  if (reviewError) return <span>{`${reviewError}`}</span>;
+                  if (userError) {
+                    console.log({ userError: userError });
+                    return null;
+                  }
+                  if (projectError) {
+                    console.log({ projectError: projectError });
+                    return null;
+                  }
+                  if (reviewError) {
+                    console.log({ reviewError: reviewError });
+                    return null;
+                  }
                   let userArray = [];
                   let projectArray = [];
                   let reviewArray = [];
@@ -232,7 +246,6 @@ class Home extends Component {
                   });
                 }
               });
-              console.log({ projectArray: projectArray });
               const projects = this.filterByCurrentMonth(projectArray)
                 .slice(0, 4)
                 .sort(function(a, b) {

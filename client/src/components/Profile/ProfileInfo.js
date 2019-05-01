@@ -1,22 +1,9 @@
 import React from 'react';
 import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
-import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
-import { Query, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import { editUser } from '../../query/query';
 import './Profile.scss';
-
-const GET_USER = gql`
-  query user($email: String!) {
-    user(where: { email: $email }) {
-      id
-      username
-      userProfileImage
-      bio
-      email
-    }
-  }
-`;
 
 class ProfileInfo extends React.Component {
   constructor(props) {
@@ -70,7 +57,7 @@ class ProfileInfo extends React.Component {
     ReactCloudinaryUploader.open(options)
       .then((image) => {
         if (this.props.returnJustUrl) image = image.url;
-        this.addImage(image);
+        this.addImg(image);
       })
       .catch((err) => {
         console.error({ error: err });
@@ -78,8 +65,6 @@ class ProfileInfo extends React.Component {
   };
 
   render() {
-    const email = this.props.email;
-
     return (
       <Mutation mutation={editUser}>
         {(editUser, { loading, data, error }) => {
@@ -88,7 +73,6 @@ class ProfileInfo extends React.Component {
             console.log({ error });
             return <div>There was an error.</div>;
           }
-
           return (
             <div className="profile-form-flex-container">
               <form
@@ -105,7 +89,7 @@ class ProfileInfo extends React.Component {
               >
                 <h2>{`${this.state.username}`}</h2>
                 <div className="img-container">
-                  <img src={this.state.userProfileImage} />
+                  <img src={this.state.userProfileImage} alt="profile" />
                 </div>
                 <button onClick={this.openCloudinary}>Set Profile Image</button>
                 <h3>Bio</h3>
@@ -119,39 +103,6 @@ class ProfileInfo extends React.Component {
             </div>
           );
         }}
-            return (
-              <div
-                className='profile-form-flex-container'
-              >
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    await editUser({
-                      variables: {
-                        userProfileImage: this.state.userProfileImage,
-                        bio: this.state.bio,
-                        email: this.props.email
-                      }
-                    });
-                  }}
-                >
-                  <h2>{`${this.state.username}`}</h2>
-                  <div className='img-container'>
-                    <img src={this.state.userProfileImage} />
-                  </div>
-                  <button onClick={this.openCloudinary}>Set Profile Image</button>
-                  <h3>Bio</h3>
-                  <textarea
-                    name="bio"
-                    value={this.state.bio}
-                    onChange={this.textChange}
-                  />
-                  <button type="submit">Submit</button>
-                </form>
-              </div>
-            );
-          }
-        }
       </Mutation>
     );
   }

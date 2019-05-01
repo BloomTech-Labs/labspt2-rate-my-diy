@@ -52,14 +52,12 @@
     height: 100%;
     margin: 10px 10px;
     padding: 5px 5px;
-
   }
 }
 
-
-  .featured-button {
-    @include custom-button(30%, 10px);
-  }
+.featured-button {
+  @include custom-button(30%, 10px);
+}
 
 .proj-title {
   font-size: 2rem;
