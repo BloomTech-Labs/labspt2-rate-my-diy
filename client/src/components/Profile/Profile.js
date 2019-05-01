@@ -376,6 +376,8 @@ class Profile extends React.Component {
                     <hr className="line-break" />
                     {DislikedReviews.map((review) => {
                       return (
+                       <div className="rated-card-container">
+                       <div className="inner-rated-card">
                         <ReviewCard
                           key={review.id}
                           review={review}
@@ -383,6 +385,8 @@ class Profile extends React.Component {
                           user={user}
                           refetch={usersRefetch}
                         />
+                        </div>
+                        </div>
                       );
                     })}
                   </div>
