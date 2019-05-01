@@ -143,7 +143,7 @@ class SearchPage extends Component {
                     />
 
                     <Link
-                      className="title"
+                      className="project-title"
                       to={`/projects/${id}`}
                     >{`${name}`}</Link>
 
