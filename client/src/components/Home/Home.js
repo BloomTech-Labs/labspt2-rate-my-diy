@@ -204,7 +204,6 @@ class Home extends Component {
                   name
                   titleImg
                   rating
-                  category
                   User {
                     id
                     username
@@ -242,29 +241,26 @@ class Home extends Component {
 
               return (
                 <div className="home-card-container">
-                  {projects.map(
-                    ({ id, name, titleImg, rating, User, category }) => {
-                      let meanRating = rating;
-                      if (rating.length > 1)
-                        meanRating = parseFloat(
-                          math.mean(rating.slice(1)).toFixed(2)
-                        );
-                      if (rating.length === 1)
-                        meanRating = parseFloat(math.mean(rating).toFixed(2));
-                      return (
-                        <Featured
-                          key={id}
-                          category={category}
-                          id={id}
-                          image={titleImg}
-                          rating={meanRating}
-                          title={name}
-                          username={User.username}
-                          clickHandler={this.clickUserHandler}
-                        />
+                  {projects.map(({ id, name, titleImg, rating, User }) => {
+                    let meanRating = rating;
+                    if (rating.length > 1)
+                      meanRating = parseFloat(
+                        math.mean(rating.slice(1)).toFixed(2)
                       );
-                    }
-                  )}
+                    if (rating.length === 1)
+                      meanRating = parseFloat(math.mean(rating).toFixed(2));
+                    return (
+                      <Featured
+                        key={id}
+                        id={id}
+                        image={titleImg}
+                        rating={meanRating}
+                        title={name}
+                        username={User.username}
+                        clickHandler={this.clickUserHandler}
+                      />
+                    );
+                  })}
                 </div>
               );
             }}
@@ -346,16 +342,9 @@ class Home extends Component {
               return (
                 <div className="home-card-container">
                   {sortedMakers.map(
-                    ({
-                      id,
-                      username,
-                      userProfileImage,
-                      averageRating,
-                      category
-                    }) => (
+                    ({ id, username, userProfileImage, averageRating }) => (
                       <Featured
                         key={id}
-                        category={category}
                         username={username}
                         image={userProfileImage}
                         clickHandler={this.clickUserHandler}
