@@ -1,39 +1,56 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
-import { gql } from 'apollo-boost';
 import ProfileInfo from '../Profile/ProfileInfo';
-import * as ROUTES from '../../constants/routes';
 import { withAuthorization } from '../Session/session';
 import PasswordChange from '../PasswordChange/PasswordChange';
+import gql from 'graphql-tag';
+
+import { Query } from 'react-apollo';
 import './Account.scss';
 
-const createSubscriptionMutation = gql`
-  mutation createSubscription($source: String!, $email: String!) {
-    createSubscription(source: $source, email: $email) {
+export const GET_NATIVE_USER = gql`
+  query user($email: String!) {
+    user(where: { email: $email }) {
       id
-      email
+      username
+      firebaseUID
     }
   }
 `;
 
 class Account extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const user = this.props.firebase.auth.currentUser;
+    const email = user.providerData[0].email;
     return (
       <div className="settings-container">
         <h1>Settings</h1>
         <ProfileInfo email={this.props.email} user={this.props.user} />
-        <PasswordChange />
+        <Query query={GET_NATIVE_USER} variables={{ email: email }}>
+          {({ loading, data, error }) => {
+            if (loading) return null;
+            if (error) {
+              console.log({ accountError: error });
+              return null;
+            }
+            if (data) {
+              if (
+                (data.user.firebaseUID !== null) &
+                (data.user.firebaseUID !== undefined)
+              ) {
+                return <PasswordChange />;
+              }
+              return null;
+            }
+            return null;
+          }}
+        </Query>
         <div className="stripe-container">
           <h2>Want to Buy Angela A Coffee?</h2>
           <StripeCheckout
             className="btn"
             token={async (token) => {
-              const response = await this.props.mutate({
+              await this.props.mutate({
                 variables: { source: token.id, email: user.email }
               });
             }}

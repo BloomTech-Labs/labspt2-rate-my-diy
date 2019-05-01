@@ -10,7 +10,6 @@ function Footer() {
         <a href="https://github.com/Lambda-School-Labs/labspt2-rate-my-diy">
           About the Team
         </a>
-        <Link to="/subscribe">Support Us</Link>
       </nav>
       <p>
         2019 Copyright <a href="/">Rate My DIY</a>{' '}

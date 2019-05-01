@@ -5,20 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
 import Modal from 'react-modal';
 import gql from 'graphql-tag';
-import { withApollo } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { TwitterLoginButton } from 'react-social-login-buttons';
-
-const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential';
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with an E-Mail address to
-  this social account already exists. Try to login from
-  this account instead and associate your social accounts on
-  your personal account page.
-`;
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -142,7 +131,6 @@ class SignInTwitterBase extends Component {
                       <h1>Complete Your Sign Up.</h1>
                       <Mutation mutation={firebaseSignUp}>
                         {(firebaseSignUp) => {
-                          console.log({ state: this.state });
                           return (
                             <form
                               onSubmit={async (e) => {

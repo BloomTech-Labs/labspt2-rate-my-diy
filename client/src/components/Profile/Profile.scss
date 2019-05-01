@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss" ;
+@import '../../styles/variables.scss';
 
 .profile-form-flex-container {
   display: flex;
@@ -39,6 +39,7 @@
       }
      }
     }
+<<<<<<< HEAD
    }
    
    
@@ -103,3 +104,52 @@ width: 100% ;
  justify-content: space-evenly ;
  padding: 10px 10px ;
 }
+=======
+  }
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  // border: 1px solid green ;
+}
+
+.profile-info {
+  width: 100%;
+}
+
+.profile-projects {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-liked-reviews {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-review-card {
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px;
+}
+
+.profile-project-card {
+  margin: 10px 10px;
+}
+
+.profile-img {
+  height: 150px;
+  width: 10%;
+}
+
+.profile-username {
+  height: 50px;
+}
+
+.liked-reviews {
+  height: 50px;
+}
+>>>>>>> 62ed98d002ced4deef8f1f3f8215c1827c4cda33

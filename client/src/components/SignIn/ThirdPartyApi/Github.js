@@ -5,11 +5,11 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../Firebase/Exports';
 import Modal from 'react-modal';
 import gql from 'graphql-tag';
-import { withApollo } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { GET_USER } from '../../../reactRouter/reactRouter';
 import { GithubLoginButton } from 'react-social-login-buttons';
+import { GET_THIRD_USER } from '../../../reactRouter/reactRouter';
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   'auth/account-exists-with-different-credential';
@@ -20,6 +20,7 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   this account instead and associate your social accounts on
   your personal account page.
 `;
+
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -146,14 +147,13 @@ class SignInGithubBase extends Component {
                         refetchQueries={() => {
                           return [
                             {
-                              query: GET_USER,
+                              query: GET_THIRD_USER,
                               variables: { thirdPartyUID: this.state.uid }
                             }
                           ];
                         }}
                       >
                         {(firebaseSignUp, refetchQueries) => {
-                          console.log({ state: this.state });
                           return (
                             <form
                               onSubmit={async (e) => {
