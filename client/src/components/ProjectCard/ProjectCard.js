@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { NEW_REVIEW, getReviews } from '../../../query/query';
+import { NEW_REVIEW, getReviews } from '../../query/query';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import "./ProjectCard.scss"
 
