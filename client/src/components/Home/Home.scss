@@ -2,13 +2,13 @@
 
 .homeContainer {
   // this is the entire home container
-  background: $alternate-complementing-color;
   margin: 20px 30px;
   margin-top: 10px;
-  border: 5px solid orange;
+  border: 5px solid lightblue;
   h2 {
     text-align: center;
     font-size: 4.8rem;
+    color: $alternate-color-three;
   }
 }
 
