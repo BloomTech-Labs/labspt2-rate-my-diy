@@ -46,7 +46,7 @@ class Account extends Component {
           }}
         </Query>
         <div className="stripe-container">
-          <h2>Want to Upgrade?</h2>
+          <h2>Want to Buy Angela A Coffee?</h2>
           <StripeCheckout
             className="btn"
             token={async (token) => {

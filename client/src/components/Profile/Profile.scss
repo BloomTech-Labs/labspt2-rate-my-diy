@@ -46,10 +46,12 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  // border: 1px solid green ;
+  background: $background-color;
 }
 
 .profile-info {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -74,8 +76,9 @@
 }
 
 .profile-img {
-  height: 150px;
-  width: 10%;
+  height: 15%;
+  width: 15%;
+  margin: 20px 0 20px 0;
 }
 
 .profile-username {
@@ -84,4 +87,15 @@
 
 .liked-reviews {
   height: 50px;
+}
+
+.line-break {
+  border: 1px solid black;
+}
+
+.profile-user-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px 10px;
 }

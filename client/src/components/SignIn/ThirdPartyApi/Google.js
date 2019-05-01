@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -64,7 +65,6 @@ class SignInGoogleBase extends Component {
     });
   };
   onSubmit = (event) => {
-    event.preventDefault();
     this.props.firebase
       .doSignInWithTwitter()
       .then((socialAuthUser) => {
@@ -89,11 +89,12 @@ class SignInGoogleBase extends Component {
             if (loading)
               return (
                 <form onSubmit={this.onSubmit}>
-                  <button type="submit" disabled>
-                    {' '}
-                    Sign In with Google{' '}
-                  </button>{' '}
-                  <div>Loading...</div>
+                  <GoogleLoginButton
+                    size="35px"
+                    align="center"
+                    onClick={this.onSubmit}
+                  />
+
                   {error && <p> {error.message} </p>}
                 </form>
               );
@@ -101,10 +102,11 @@ class SignInGoogleBase extends Component {
               console.log({ error: checkError });
               return (
                 <form onSubmit={this.onSubmit}>
-                  <button type="submit" disabled>
-                    {' '}
-                    Sign In with Google{' '}
-                  </button>{' '}
+                  <GoogleLoginButton
+                    size="35px"
+                    align="center"
+                    onClick={this.onSubmit}
+                  />
                   <div>There was an error.</div>
                   {error && <p> {error.message} </p>}
                 </form>
@@ -114,7 +116,11 @@ class SignInGoogleBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <button type="submit"> Sign In with Google </button>{' '}
+                    <GoogleLoginButton
+                      size="35px"
+                      align="center"
+                      onClick={this.onSubmit}
+                    />
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
@@ -167,7 +173,7 @@ class SignInGoogleBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <button type="submit"> Sign In with Google </button>{' '}
+                <GoogleLoginButton size="35px" onClick={this.onSubmit} />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>

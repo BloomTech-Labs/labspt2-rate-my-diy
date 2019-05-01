@@ -283,20 +283,20 @@ class Profile extends React.Component {
                 <React.Fragment>
                   <div className="profile-container">
                     <div className="profile-info">
-                      <h1>{`${username}`}</h1>
-                      <img
-                        className="profile-img"
-                        src={userProfileImage}
-                        alt="profile"
-                      />
-                      <p>{`${bio}`}</p>
+                      <div className="profile-user-content">
+                        <h1>{`${username}`}</h1>
+                        <img className="profile-img" src={userProfileImage} />
+                        <p>{`${bio}`}</p>
+                      </div>
                       <div>
                         <h2>{`${username}'s Reviews`}</h2>
+                        <hr className="line-break" />
                       </div>
                       {ReviewList.map((review) => {
                         return (
-                          <div className="project-review-card" key={review.id}>
+                          <div className="project-review-card">
                             <ReviewCard
+                              key={review.id}
                               review={review}
                               users={users}
                               user={user}

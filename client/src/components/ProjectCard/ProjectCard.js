@@ -1623,13 +1623,16 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`${project.name}`}</h1>
-                  <div>{`${project.User.username}`}</div>
-                  <div>{`${project.rating}`}</div>
-                  <div>{`${project.timestamp}`}</div>
-                  <img src={`${project.titleImg}`} alt="project" />
-                  <div>{`${project.titleBlurb}`}</div>
-                  <button onClick={this.showMore}>View More</button>
+                  <div className="inner-project-card">
+                    <h1>{`${project.name}`}</h1>
+                    <hr className="line-break" />
+                    <div>{`${project.User.username}`}</div>
+                    <div>{`${project.rating}`}</div>
+                    <div>{`${project.timestamp}`}</div>
+                    <img src={`${project.titleImg}`} alt="project" />
+                    <div>{`${project.titleBlurb}`}</div>
+                    <button onClick={this.showMore}>View More</button>
+                  </div>
                   {this.state.showMore ? (
                     <div>
                       <h2>Steps:</h2>
