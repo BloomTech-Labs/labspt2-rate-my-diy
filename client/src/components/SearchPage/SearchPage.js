@@ -170,7 +170,7 @@ class SearchPage extends Component {
             })
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div key={id} className="search-card">
+                <div key={id}>
                   <img
                     className="searchProjectImage"
                     src={`${userProfileImage}`}
@@ -200,9 +200,17 @@ class SearchPage extends Component {
                         let rev = user[0].ReviewList.filter(
                           (r) => r.id === review.id
                         )[0];
-                        console.log({ rev: rev, review: review });
+                        console.log(
+                          { rev: rev, review: review },
+                          'check this out'
+                        );
+
                         return (
-                          <div key={review.id} className="card-container">
+                          <div
+                            className="search-card"
+                            key={review.id}
+                            className="card-container"
+                          >
                             <ReviewCard
                               review={rev}
                               users={data.users}
