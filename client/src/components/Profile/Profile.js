@@ -2,9 +2,9 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import * as math from 'mathjs';
-import ProjectCard from '../ProjectCard/ProjectCard';
 import ReviewCard from '../ReviewCard/ReviewCard';
-
+import './Profile.scss';
+import ProjectCard from '../ProjectCard/ProjectCard';
 const GET_USERS = gql`
   {
     users {
@@ -294,20 +294,22 @@ class Profile extends React.Component {
                       </div>
                       {ReviewList.map((review) => {
                         return (
-                          <div className="project-review-card">
-                            <ReviewCard
-                              key={review.id}
-                              review={review}
-                              users={users}
-                              user={user}
-                              refetch={usersRefetch}
-                            />
+                          <div className="rated-card-container">
+                            <div className="inner-rated-card">
+                              <ReviewCard
+                                key={review.id}
+                                review={review}
+                                users={users}
+                                user={user}
+                                refetch={usersRefetch}
+                              />
+                            </div>
                           </div>
                         );
                       })}
                     </div>
                     <span className="profile-username">
-                      <h2>{`${username}'s Projects`}</h2>
+                      <h3>{`${username}'s Projects`}</h3>
                     </span>
                     <div className="profile-projects">
                       {Projects.map((project) => {
@@ -336,65 +338,77 @@ class Profile extends React.Component {
                             />
                           </div>
                         );
+
+                       
                       })}
                     </div>
                     <span className="liked-reviews">
                       <h2>{`Reviews Liked By ${username}`}</h2>
                     </span>
-                    <div className="profile-liked-reviews">
-                      {LikedReviews.map((review) => {
-                        return (
-                          <div className="profile-review-card" key={review.id}>
+                    <hr className="line-break" />
+                    {LikedReviews.map((review) => {
+                      return (
+                        <div className="rated-card-container">
+                          <div className="inner-rated-card">
                             <ReviewCard
+                              key={review.id}
                               review={review}
                               users={users}
                               user={user}
                               refetch={usersRefetch}
                             />
                           </div>
-                        );
-                      })}
-                    </div>
+                        </div>
+                      );
+                    })}
                     <div className="profile-disliked-reviews">
                       <h2>{`Reviews Disliked By ${username}`}</h2>
+                      <hr className="line-break" />
                       {DislikedReviews.map((review) => {
                         return (
-                          <ReviewCard
-                            key={review.id}
-                            review={review}
-                            users={users}
-                            user={user}
-                            refetch={usersRefetch}
-                          />
+                          <div className="rated-card-container">
+                            <div className="inner-rated-card">
+                              <ReviewCard
+                                key={review.id}
+                                review={review}
+                                users={users}
+                                user={user}
+                                refetch={usersRefetch}
+                              />
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
-                    <div>
-                      <h2>{`Projects Rated By ${username}`}</h2>
-                      {RatedProjects.map((project) => {
-                        let meanRating = project.rating;
-                        if (project.rating.length > 1)
-                          meanRating = parseFloat(
-                            math.mean(project.rating.slice(1)).toFixed(2)
-                          );
-                        if (project.rating.length === 1)
-                          meanRating = parseFloat(
-                            math.mean(project.rating).toFixed(2)
-                          );
+                    <h2>{`Projects Rated By ${username}`}</h2>
 
-                        project.rating = meanRating;
-                        return (
-                          <ProjectCard
-                            key={project.id}
-                            project={project}
-                            reviews={ReviewList}
-                            users={users}
-                            user={user}
-                            refetch={usersRefetch}
-                          />
+                    {RatedProjects.map((project) => {
+                      let meanRating = project.rating;
+                      if (project.rating.length > 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
                         );
-                      })}
-                    </div>
+                      if (project.rating.length === 1)
+                        meanRating = parseFloat(
+                          math.mean(project.rating).toFixed(2)
+                        );
+
+                      project.rating = meanRating;
+                      return (
+                        <div className="rated-card-container">
+                          <div className="inner-rated-card">
+                            <ProjectCard
+                              key={project.id}
+                              project={project}
+                              reviews={ReviewList}
+                              users={users}
+                              user={user}
+                              refetch={usersRefetch}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </React.Fragment>
               );

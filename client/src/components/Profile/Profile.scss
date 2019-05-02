@@ -39,63 +39,118 @@
       }
     }
   }
-}
 
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  background: $background-color;
-}
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // margin: 0 auto ;
+    background: $background-color;
+  }
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid green;
 
-.profile-projects {
-  display: flex;
-  flex-direction: row;
-}
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
 
-.profile-liked-reviews {
-  display: flex;
-  flex-direction: row;
-}
+    .profile-projects {
+      display: flex;
+      flex-direction: row;
+    }
 
-.profile-review-card {
-  display: flex;
-  justify-content: center;
-  margin: 10px 10px;
-}
+    .profile-liked-reviews {
+      display: flex;
+      flex-direction: row;
+    }
 
-.profile-project-card {
-  margin: 10px 10px;
-}
+    .profile-review-card {
+      display: flex;
+      justify-content: center;
+      margin: 10px 10px;
+    }
 
-.profile-img {
-  height: 15%;
-  width: 15%;
-  margin: 20px 0 20px 0;
-}
+    .profile-project-card {
+      margin: 10px 10px;
+    }
 
-.profile-username {
-  height: 50px;
-}
+    .profile-img {
+      height: 15%;
+      width: 15%;
+      margin: 20px 0 20px 0;
+    }
 
-.liked-reviews {
-  height: 50px;
-}
+    .profile-username {
+      height: 50px;
+    }
 
-.line-break {
-  border: 1px solid black;
-}
+    .liked-reviews {
+      height: 50px;
+    }
 
-.profile-user-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 10px 10px;
+    .line-break {
+      border: 1px solid black;
+    }
+
+    .profile-user-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 10px 10px;
+      border: 2px solid red;
+      width: 50%;
+    }
+
+    .rated-card-container {
+      border: 1px solid black;
+      box-shadow: 5px 5px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: $main-color;
+      // max-width: 725px;
+      width: 23%;
+      img {
+        border: 2px solid black;
+        // width: 15% ;
+        // height: 15% ;
+        width: 400px;
+        // height: auto ;
+      }
+      button {
+        width: 85px;
+        height: 40px;
+        background: none;
+        border: 2px solid black;
+        border-radius: 10px 5%;
+        margin-bottom: 10px;
+        margin-left: 5px;
+      }
+      button:hover {
+        background: $alternate-color-one;
+        border-radius: 10px 5%;
+      }
+      padding: 15px 15px;
+      margin: 10px 10px 10px 10px;
+    }
+
+    .inner-rated-card {
+      border: 3px solid black;
+      display: flex;
+      width: 99%;
+      flex-direction: row;
+      justify-content: center;
+      border: 3px solid black;
+      box-shadow: 0.5px 1px 15px;
+      padding: 5px 5px;
+      border-radius: 0 4.75% 4.75% 0;
+      background-color: $alternate-color-two;
+    }
+  }
 }

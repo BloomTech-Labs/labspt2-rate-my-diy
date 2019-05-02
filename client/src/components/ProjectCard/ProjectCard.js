@@ -1622,9 +1622,9 @@ class ProjectCard extends React.Component {
               //logged in, no revs, not your proj, not newReview, you've never rated, return
 
               return (
-                <div className="project-card-container">
-                  <div className="inner-project-card">
-                    <h1>{`${project.name}`}</h1>
+                <div>
+                  <div>
+                    <h3>{`${project.name}`}</h3>
                     <hr className="line-break" />
                     <div>{`${project.User.username}`}</div>
                     <div>{`${project.rating}`}</div>

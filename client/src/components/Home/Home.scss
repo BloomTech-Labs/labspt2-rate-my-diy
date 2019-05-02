@@ -1,11 +1,38 @@
-#home-container {
+@import '../../styles/variables.scss';
+
+.homeContainer {
+  // this is the entire home container
   margin: 20px 30px;
   margin-top: 10px;
+  border: 5px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  h2 {
+    text-align: center;
+    font-size: 4.8rem;
+    color: $alternate-color-three;
+  }
 }
 
 .stars {
   img {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
+    margin: 1%;
+    margin-top: 10px;
   }
+}
+
+.home-card-container {
+  // line 243
+  // border: 4px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.second-card-container {
+  border: 2px solid red;
 }

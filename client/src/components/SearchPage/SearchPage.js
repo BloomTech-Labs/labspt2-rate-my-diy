@@ -112,12 +112,16 @@ class SearchPage extends Component {
     );
 
     return (
+
       <>
+      
+
       <SearchWithData />
-      <div id="home-container">
+      <div className="search-container">
         
-        <h1>Results:</h1>
-        <div className="card-container">
+        <h1 className="results">Results</h1>
+        <div className="search-card-container">
+
           {this.props.projects
             .map(({ id, name, titleImg, rating, User, category }) => {
               let meanRating = rating;
@@ -129,46 +133,54 @@ class SearchPage extends Component {
               const stars = [];
 
               for (let i = 0; i < Math.round(meanRating); i++) {
-                stars.push(<img src={star} alt="star" key={i} />);
+                stars.push(
+                  <img src={star} className="stars" alt="star" key={i} />
+                );
               }
 
               return (
-                <div key={id}>
-                  <div className="search-card featured-card">
-                    <img src={`${titleImg}`} alt="project" />
+                <div className="search-card" key={id}>
+                  <div>
+                    <img
+                      className="searchProjectImage"
+                      src={`${titleImg}`}
+                      alt="project"
+                    />
 
-                    <Link to={`/projects/${id}`}>{`${name}`}</Link>
-                    {/* <div>{`${name}`}</div> */}
-                    <div>{`${meanRating}`}</div>
-                    <div>{`${category}`}</div>
+                    <Link className="project-title" to={`/projects/${id}`}>
+                      <h3>{`${name}`}</h3>
+                    </Link>
+
+                    <p>{`Category: ${category}`}</p>
                     <Link to={`/${User.username}/profile`}>
-                      <div>{`${User.username}`}</div>
+                      <p className="createdBy">
+                        {' '}
+                        {`Created by: ${User.username}`}
+                      </p>
                     </Link>
-
-                    <Link to={`/${User.username}/projects`}>
-                      <h2>{name}</h2>
-                    </Link>
-                    <div className="rating-container">
+                    <p> {`Average Rating: ${meanRating}`}</p>
+                    <div className="search-rating-container">
                       {stars.map((star) => {
                         return star;
                       })}
                     </div>
-                    <div>{`${category}`}</div>
-                    <Link to={`/${User.username}/profile`}>
-                      <div>{`${User.username}`}</div>
-                    </Link>
                   </div>
-                  <p>{category}</p>
-                  <p>@{User.username}</p>
                 </div>
               );
             })
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div key={id} className="search-card featured-card">
-                  <img src={`${userProfileImage}`} alt="user" />
+                <div key={id} className="search-card">
+                  <img
+                    className="searchProjectImage"
+                    src={`${userProfileImage}`}
+                    alt="user"
+                  />
                   <Link to={`/${username}/profile`}>
-                    <div>{`${username}`}</div>
+                    <h3>{`User Name: ${username}`}</h3>
+                  </Link>
+                  <Link to={`/${username}/projects`}>
+                    <h4 id="searchProjectButton">View My Projects</h4>
                   </Link>
                 </div>
               ))
@@ -184,16 +196,18 @@ class SearchPage extends Component {
                         let user = data.users.filter(
                           (user) => user.email === review.Author.email
                         );
+                        console.log({ searchuser: user });
                         let rev = user[0].ReviewList.filter(
                           (r) => r.id === review.id
                         )[0];
+                        console.log({ rev: rev, review: review });
                         return (
                           <div key={review.id} className="card-container">
                             <ReviewCard
                               review={rev}
-                              refetch={refetch}
                               users={data.users}
                               user={user}
+                              refetch={refetch}
                             />
                           </div>
                         );

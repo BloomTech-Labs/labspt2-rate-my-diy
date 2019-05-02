@@ -2,8 +2,9 @@ import React from 'react';
 import '../../../styles/card.scss';
 import star from '../../../img/star.png';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Featured.scss';
-
+// This is the base of all cards in the app.
 function Featured(props) {
   const stars = [];
 
@@ -11,13 +12,20 @@ function Featured(props) {
     stars.push(<img src={star} alt="star" key={i} />);
   }
   return (
-    <div className="featured-card search-card" onClick={() => props.clickHandler(props.username)}>
+    <div
+      className="featuredCard"
+      onClick={() => props.clickHandler(props.username)}
+    >
+      {console.log(props, 'props card')}
       <img className="img-responsive" src={props.image} alt="project" />
-      <div className="info-container">
-        <h2 className="proj-title">{props.title}</h2>
-        <p className="proj-user">@{props.username}</p>
+      <div className="infoContainer">
+        <Link to={`/projects/${props.id}`}>
+          <h3 className="projectTitle">{props.title}</h3>
+        </Link>
         <Link to={`/${props.username}/profile`}>
-          <button className="featured-button">See More</button>
+          {props.category ? <p>Category: {props.category}</p> : null}
+          <p>Created By: {props.username}</p>
+          <p>Average Rating {props.rating}</p>
         </Link>
         <div className="stars">
           {stars.map((star) => {
@@ -29,4 +37,4 @@ function Featured(props) {
   );
 }
 
-export default Featured;
+export default withRouter(Featured);

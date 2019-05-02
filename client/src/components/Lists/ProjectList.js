@@ -76,12 +76,13 @@ class ProjectList extends React.Component {
 
                         project.rating = meanRating;
                         return (
-                          <div key={project.id}>
-                            <Link to={`/projects/${project.id}`}>{`${
+                          <div className="project-list-card" key={project.id}>
+                          <img className="project-list-card-img" src={`${project.titleImg}`} alt="project" />
+                            <Link className="project-list-title" to={`/projects/${project.id}`}>{`${
                               project.name
                             }`}</Link>
-                            <div>{`${project.rating}`}</div>
-                            <img src={`${project.titleImg}`} alt="project" />
+                            <div>{`Average Rating: ${project.rating}`}</div>
+                            
                             <div>{`${project.timestamp}`}</div>
                           </div>
                         );

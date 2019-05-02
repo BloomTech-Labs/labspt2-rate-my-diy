@@ -741,7 +741,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disable={this.state.thumbsUpDisabled}>
+                                <button disabled={this.state.thumbsUpDisabled}>
                                   +
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
@@ -772,7 +772,7 @@ class ReviewCard extends React.Component {
                                 await likeAReview({
                                   variables: {
                                     // eslint-disable-next-line
-                                    revId: review.id,
+                                    revId: this.state.review.id,
                                     username: this.state.visitor.username,
                                     didThumbUp: this.state.didThumbUp
                                   }
@@ -806,7 +806,7 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   // eslint-disable-next-line
-                                  revId: review.id,
+                                  revId: this.state.review.id,
                                   username: this.state.visitor.username,
                                   didThumbUp: this.state.didThumbUp
                                 }
@@ -867,7 +867,7 @@ class ReviewCard extends React.Component {
                                 await dislikeAReview({
                                   variables: {
                                     // eslint-disable-next-line
-                                    revId: review.id,
+                                    revId: this.state.review.id,
                                     username: this.state.visitor.username,
                                     didThumbDown: this.state.didThumbDown
                                   }
@@ -900,7 +900,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   // eslint-disable-next-line
-                                  revId: review.id,
+                                  revId: this.state.review.id,
                                   username: this.state.visitor.username,
                                   didThumbDown: this.state.didThumbDown
                                 }
