@@ -125,6 +125,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -149,6 +150,7 @@ class ReviewCard extends React.Component {
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
                                   <img
+                                    className="searchProjectImage"
                                     src={`${review.ProjectReviewed.titleImg}`}
                                     alt="project"
                                   />
@@ -199,6 +201,7 @@ class ReviewCard extends React.Component {
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
                                   <img
+                                    className="searchProjectImage"
                                     src={`${review.ProjectReviewed.titleImg}`}
                                     alt="project"
                                   />
@@ -250,6 +253,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -297,6 +301,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -348,6 +353,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -363,6 +369,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -403,6 +410,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -427,6 +435,7 @@ class ReviewCard extends React.Component {
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
                                   <img
+                                    className="searchProjectImage"
                                     src={`${review.ProjectReviewed.titleImg}`}
                                     alt="project"
                                   />
@@ -487,6 +496,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -546,6 +556,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -596,6 +607,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -657,6 +669,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -672,6 +685,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -713,6 +727,7 @@ class ReviewCard extends React.Component {
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                        className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -728,6 +743,7 @@ class ReviewCard extends React.Component {
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                        className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -949,7 +965,7 @@ class ReviewCard extends React.Component {
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
-                        className="review-img"
+                        className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -965,6 +981,7 @@ class ReviewCard extends React.Component {
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                        className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -1180,6 +1197,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
@@ -1195,6 +1213,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
@@ -1223,6 +1242,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
@@ -1238,6 +1258,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
