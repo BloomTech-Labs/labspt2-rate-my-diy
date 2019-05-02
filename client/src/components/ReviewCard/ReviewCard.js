@@ -240,7 +240,7 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <div>
+                            <div className="review-card">
                               <div>{`${review.ProjectReviewed.name}`}</div>
                               <div>{`Review By: @${
                                 review.Author.username
