@@ -200,19 +200,13 @@ class SearchPage extends Component {
                         );
 
                         return (
-                          <div
-                            className="search-card"
-                            key={review.id}
-                            className="card-container"
-                          >
-                            <ReviewCard
-                              review={rev}
-                              refetch={refetch}
-                              users={data.users}
-                              user={user}
-                              refetch={refetch}
-                            />
-                          </div>
+                          <ReviewCard
+                            review={rev}
+                            refetch={refetch}
+                            users={data.users}
+                            user={user}
+                            refetch={refetch}
+                          />
                         );
                       }
                     }}

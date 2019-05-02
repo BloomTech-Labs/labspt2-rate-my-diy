@@ -116,7 +116,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated the project, you want to edit, return")
 
             return (
-              <div>
+              <div className="searchReviewCard">
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
@@ -339,7 +339,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated, you don't want to edit, return")
 
             return (
-              <div>
+              <div className="searchReviewCard">
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
@@ -394,7 +394,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you want to edit, return")
 
             return (
-              <div>
+              <div className="searchReviewCard">
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
@@ -648,7 +648,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
 
             return (
-              <div>
+              <div className="searchReviewCard">
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
@@ -704,7 +704,7 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev, review w/rating")
 
           return (
-            <div>
+            <div className="searchReviewCard">
               <MicroModal
                 trigger={(handleOpen) => (
                   <div>
@@ -1171,7 +1171,7 @@ class ReviewCard extends React.Component {
         // console.log("logged in, review includes rating, return")
 
         return (
-          <div>
+          <div className="searchReviewCard">
             <MicroModal
               trigger={(handleOpen) => (
                 <div>
@@ -1214,7 +1214,7 @@ class ReviewCard extends React.Component {
         //console.log("")logged in, review w/o rating, return
 
         return (
-          <div>
+          <div className="searchReviewCard">
             <MicroModal
               trigger={(handleOpen) => (
                 <div>
