@@ -120,18 +120,21 @@ class ReviewCard extends React.Component {
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          className="searchProjectImage"
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`${review.name}`}</p>
+                      <button className="reviewButton" onClick={handleOpen}>
+                        View More
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -141,23 +144,20 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <div>
-                                <div>{`${review.ProjectReviewed.name}`}</div>
-                                <div>{`Review By: @${
-                                  review.Author.username
-                                }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                <img
+                                  className="searchProjectImage"
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                                <h3>{`${review.ProjectReviewed.name}`}</h3>
+                                <p>{`Review By: @${review.Author.username}`}</p>
+                                <p>{`${review.timestamp}`}</p>
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
-                                >
-                                  <img
-                                    className="searchProjectImage"
-                                    src={`${review.ProjectReviewed.titleImg}`}
-                                    alt="project"
-                                  />
-                                </Link>
-                                <div>{`Rating of Project: ${
+                                />
+                                <p>{`Rating of Project: ${
                                   review.projRating
-                                }`}</div>
+                                }`}</p>
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -348,18 +348,21 @@ class ReviewCard extends React.Component {
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          className="searchProjectImage"
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`${review.name}`}</p>
+                      <button className="reviewButton" onClick={handleOpen}>
+                        View More
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -405,18 +408,21 @@ class ReviewCard extends React.Component {
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          className="searchProjectImage"
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`${review.name}`}</p>
+                      <button className="reviewButton" onClick={handleOpen}>
+                        View More
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -664,18 +670,21 @@ class ReviewCard extends React.Component {
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          className="searchProjectImage"
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`${review.name}`}</p>
+                      <button className="reviewButton" onClick={handleOpen}>
+                        View More
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -722,18 +731,21 @@ class ReviewCard extends React.Component {
               <MicroModal
                 trigger={(handleOpen) => (
                   <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
-                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                      <img
-                        className="searchProjectImage"
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                    </Link>
-                    <div>{`${review.name}`}</div>
-                    <button onClick={handleOpen}>View More</button>
+                    <img
+                      className="searchProjectImage"
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`Date of Review: ${review.timestamp
+                      .toString()
+                      .slice(0, 10)}`}</p>
+                    <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                    <p>{`${review.name}`}</p>
+                    <button className="reviewButton" onClick={handleOpen}>
+                      View More
+                    </button>
                   </div>
                 )}
                 children={(handleClose) => (
@@ -954,24 +966,25 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev,  review w/o rating")
 
           return (
-            <div>
+            <div className="searchReviewCard">
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div className="searchReviewCard">
-                    <div className="reviewed-name">{`${
-                      review.ProjectReviewed.name
-                    }`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
-                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                      <img
-                        className="searchProjectImage"
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                    </Link>
-                    <div>{`${review.name}`}</div>
-                    <button onClick={handleOpen}>View More</button>
+                  <div>
+                    <img
+                      className="searchProjectImage"
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`Date of Review: ${review.timestamp
+                      .toString()
+                      .slice(0, 10)}`}</p>
+                    <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                    <p>{`${review.name}`}</p>
+                    <button className="reviewButton" onClick={handleOpen}>
+                      View More
+                    </button>
                   </div>
                 )}
                 children={(handleClose) => (
@@ -1192,18 +1205,21 @@ class ReviewCard extends React.Component {
             <MicroModal
               trigger={(handleOpen) => (
                 <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      className="searchProjectImage"
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`${review.name}`}</div>
-                  <button onClick={handleOpen}>View More</button>
+                  <img
+                    className="searchProjectImage"
+                    src={`${review.ProjectReviewed.titleImg}`}
+                    alt="project"
+                  />
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`Date of Review: ${review.timestamp
+                    .toString()
+                    .slice(0, 10)}`}</p>
+                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                  <p>{`${review.name}`}</p>
+                  <button className="reviewButton" onClick={handleOpen}>
+                    View More
+                  </button>
                 </div>
               )}
               children={(handleClose) => (
@@ -1237,18 +1253,21 @@ class ReviewCard extends React.Component {
             <MicroModal
               trigger={(handleOpen) => (
                 <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      className="searchProjectImage"
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`${review.name}`}</div>
-                  <button onClick={handleOpen}>View More</button>
+                  <img
+                    className="searchProjectImage"
+                    src={`${review.ProjectReviewed.titleImg}`}
+                    alt="project"
+                  />
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`Date of Review: ${review.timestamp
+                    .toString()
+                    .slice(0, 10)}`}</p>
+                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                  <p>{`${review.name}`}</p>
+                  <button className="reviewButton" onClick={handleOpen}>
+                    View More
+                  </button>
                 </div>
               )}
               children={(handleClose) => (
