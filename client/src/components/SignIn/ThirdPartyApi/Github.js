@@ -65,8 +65,7 @@ class SignInGithubBase extends Component {
       isNewUser: false
     });
   };
-  onSubmit = (event) => {
-    event.preventDefault();
+  onSubmit = () => {
     this.props.firebase
       .doSignInWithGithub()
       .then((socialAuthUser) => {

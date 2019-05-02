@@ -61,9 +61,9 @@ a {
 }
 .searchProjectImage {
   height: 300px;
-  width: 300px;
-  border: 2px solid black;
+  width: auto;
   margin-bottom: 10px;
+  object-fit: contain;
 }
 
 .results {
