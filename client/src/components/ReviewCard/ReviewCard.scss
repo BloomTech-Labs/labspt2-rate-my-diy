@@ -11,17 +11,20 @@
 // }
 
 button {
-  width: 85px;
-  height: 40px;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px 5%;
-  margin-bottom: 10px;
-  margin-left: 5px;
-}
-button:hover {
-  background: $alternate-color-one;
-  border-radius: 10px 5%;
+  border: 2px solid $alternate-color-one;
+  margin: 10px 0 10px 0;
+  padding: 5px;
+  width: 150px;
+  height: 50px;
+  font-size: 1.6rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px darkgray;
+  background: $color2;
+  color: white;
 }
 
 .searchReviewCard {
@@ -33,12 +36,13 @@ button:hover {
   h3 {
     text-align: center;
   }
+
   background-color: $alternate-complementing-color;
   min-width: 400px;
   padding: 1%;
   border: 4px solid $alternate-color-one;
   box-shadow: 5px 5px 5px darkgray;
-  height: 525px;
+  height: 550px;
   box-sizing: border-box;
   width: 22%;
   margin: 10px 10px 10px 10px;
