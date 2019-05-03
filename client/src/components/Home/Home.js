@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
+import moment from "moment";
 import Featured from './Featured/Featured';
 import './Home.scss';
 
@@ -41,18 +42,11 @@ class Home extends Component {
   };
 
   filterByCurrentMonth = (data) => {
-    const currentTime = new Date();
-
-    const month = currentTime.getMonth();
-
-    const year = currentTime.getFullYear();
+   
 
     const filteredData = data.map((item) => {
       if (
-        // eslint-disable-next-line
-        item.timestamp.slice(0, 4) == year &&
-        // eslint-disable-next-line
-        item.timestamp.slice(5, 7) == month
+        moment({hours: 0}).diff(item.timestamp, 'days') <= 30
       ) {
         return item;
       }
@@ -65,19 +59,17 @@ class Home extends Component {
   };
 
   filterByCurrentMonthReviews = (data) => {
-    const currentTime = new Date();
-
-    const month = currentTime.getMonth() + 1;
-
-    const year = currentTime.getFullYear();
+ 
 
     //We clean the data we got to get over by taking out users that have no reviews
     const eliminateEmptyReviews = data.filter((item) => {
+      
       if (item.ReviewList[0] !== undefined) {
         return item;
       }
       return null;
     });
+    console.log({empty: eliminateEmptyReviews})
 
     const popularReviewer = [];
 
@@ -86,10 +78,7 @@ class Home extends Component {
       let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
         (review) => {
           if (
-            // eslint-disable-next-line
-            review.timestamp.slice(0, 4) == year &&
-            // eslint-disable-next-line
-            review.timestamp.slice(5, 7) == month
+            moment({hours: 0}).diff(review.timestamp, 'days') <= 30
           ) {
             return review;
           }
@@ -103,6 +92,8 @@ class Home extends Component {
       */
 
       eliminateEmptyReviews[i].ReviewList = currentReviews;
+
+      console.log({current: currentReviews})
 
       //This block of code just grabs the thumbs up total of the reviews and returns just that
       let thumbsUpTotal = 0;
@@ -394,18 +385,21 @@ class Home extends Component {
 
               const reviews = this.filterByCurrentMonthReviews(
                 data.users
-              ).slice(0, 8);
+              );
+
+              console.log({popReviewers: reviews})
 
               return (
                 <div className="home-card-container">
-                  {reviews.map(({ id, username, userProfileImage }) => (
+                  {reviews.map(({ id, username, userProfileImage, thumbsUpTotal }) => (
                     <Featured
                       key={id}
                       username={username}
+                      thumbsUp={thumbsUpTotal}
                       image={userProfileImage}
                       clickHandler={this.clickUserHandler}
                     />
-                  ))}
+                  )).slice(0,8)}
                 </div>
               );
             }}
