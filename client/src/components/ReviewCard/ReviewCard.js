@@ -116,10 +116,10 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated the project, you want to edit, return")
 
             return (
-              <div className="searchReviewCard">
+              <div>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
+                    <div className="searchReviewCard">
                       <img
                         className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
@@ -131,9 +131,9 @@ class ReviewCard extends React.Component {
                         .toString()
                         .slice(0, 10)}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`${review.name}`}</p>
-                      <button className="reviewButton" onClick={handleOpen}>
-                        View More
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
                       </button>
                     </div>
                   )}
@@ -344,10 +344,10 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated, you don't want to edit, return")
 
             return (
-              <div className="searchReviewCard">
+              <div>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
+                    <div className="searchReviewCard">
                       <img
                         className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
@@ -359,9 +359,9 @@ class ReviewCard extends React.Component {
                         .toString()
                         .slice(0, 10)}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`${review.name}`}</p>
-                      <button className="reviewButton" onClick={handleOpen}>
-                        View More
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
                       </button>
                     </div>
                   )}
@@ -404,10 +404,10 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you want to edit, return")
 
             return (
-              <div className="searchReviewCard">
+              <div>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
+                    <div className="searchReviewCard">
                       <img
                         className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
@@ -419,9 +419,9 @@ class ReviewCard extends React.Component {
                         .toString()
                         .slice(0, 10)}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`${review.name}`}</p>
-                      <button className="reviewButton" onClick={handleOpen}>
-                        View More
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
                       </button>
                     </div>
                   )}
@@ -666,10 +666,10 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
 
             return (
-              <div className="searchReviewCard">
+              <div>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
+                    <div className="searchReviewCard">
                       <img
                         className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
@@ -681,9 +681,9 @@ class ReviewCard extends React.Component {
                         .toString()
                         .slice(0, 10)}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`${review.name}`}</p>
-                      <button className="reviewButton" onClick={handleOpen}>
-                        View More
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
                       </button>
                     </div>
                   )}
@@ -727,10 +727,10 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev, review w/rating")
 
           return (
-            <div className="searchReviewCard">
+            <div>
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div>
+                  <div className="searchReviewCard">
                     <img
                       className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
@@ -742,9 +742,9 @@ class ReviewCard extends React.Component {
                       .toString()
                       .slice(0, 10)}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                    <p>{`${review.name}`}</p>
-                    <button className="reviewButton" onClick={handleOpen}>
-                      View More
+                    <p>{`Title: ${review.name}`}</p>
+                    <button id="reviewButton" onClick={handleOpen}>
+                      See This Review
                     </button>
                   </div>
                 )}
@@ -966,10 +966,10 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev,  review w/o rating")
 
           return (
-            <div className="searchReviewCard">
+            <div>
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div>
+                  <div className="searchReviewCard">
                     <img
                       className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
@@ -981,9 +981,9 @@ class ReviewCard extends React.Component {
                       .toString()
                       .slice(0, 10)}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                    <p>{`${review.name}`}</p>
-                    <button className="reviewButton" onClick={handleOpen}>
-                      View More
+                    <p>{`Title: ${review.name}`}</p>
+                    <button id="reviewButton" onClick={handleOpen}>
+                      See This Review
                     </button>
                   </div>
                 )}
@@ -1201,10 +1201,10 @@ class ReviewCard extends React.Component {
         // console.log("logged in, review includes rating, return")
 
         return (
-          <div className="searchReviewCard">
+          <div>
             <MicroModal
               trigger={(handleOpen) => (
-                <div>
+                <div className="searchReviewCard">
                   <img
                     className="searchProjectImage"
                     src={`${review.ProjectReviewed.titleImg}`}
@@ -1216,9 +1216,9 @@ class ReviewCard extends React.Component {
                     .toString()
                     .slice(0, 10)}`}</p>
                   <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                  <p>{`${review.name}`}</p>
-                  <button className="reviewButton" onClick={handleOpen}>
-                    View More
+                  <p>{`Title: ${review.name}`}</p>
+                  <button id="reviewButton" onClick={handleOpen}>
+                    See This Review
                   </button>
                 </div>
               )}
@@ -1249,10 +1249,10 @@ class ReviewCard extends React.Component {
         //console.log("")logged in, review w/o rating, return
 
         return (
-          <div className="searchReviewCard">
+          <div>
             <MicroModal
               trigger={(handleOpen) => (
-                <div>
+                <div className="searchReviewCard">
                   <img
                     className="searchProjectImage"
                     src={`${review.ProjectReviewed.titleImg}`}
@@ -1264,9 +1264,9 @@ class ReviewCard extends React.Component {
                     .toString()
                     .slice(0, 10)}`}</p>
                   <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                  <p>{`${review.name}`}</p>
-                  <button className="reviewButton" onClick={handleOpen}>
-                    View More
+                  <p>{`Title: ${review.name}`}</p>
+                  <button id="reviewButton" onClick={handleOpen}>
+                    See This Review
                   </button>
                 </div>
               )}
