@@ -42,11 +42,7 @@ class Home extends Component {
   };
 
   filterByCurrentMonth = (data) => {
-    const currentTime = new Date();
-
-    const month = currentTime.getMonth();
-
-    const year = currentTime.getFullYear();
+   
 
     const filteredData = data.map((item) => {
       if (
@@ -63,11 +59,7 @@ class Home extends Component {
   };
 
   filterByCurrentMonthReviews = (data) => {
-    const currentTime = new Date();
-
-    const month = currentTime.getMonth() + 1;
-
-    const year = currentTime.getFullYear();
+ 
 
     //We clean the data we got to get over by taking out users that have no reviews
     const eliminateEmptyReviews = data.filter((item) => {
