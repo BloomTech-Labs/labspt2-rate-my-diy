@@ -139,7 +139,7 @@ class SearchPage extends Component {
               }
 
               return (
-                <div className="search-card" key={id}>
+                <div className="searchReviewCard" key={id}>
                   <div>
                     <img
                       className="searchProjectImage"
@@ -170,7 +170,7 @@ class SearchPage extends Component {
             })
             .concat(
               this.props.users.map(({ id, username, userProfileImage }) => (
-                <div key={id}>
+                <div className="searchReviewCard" key={id}>
                   <img
                     className="searchProjectImage"
                     src={`${userProfileImage}`}
@@ -206,18 +206,12 @@ class SearchPage extends Component {
                         );
 
                         return (
-                          <div
-                            className="search-card"
-                            key={review.id}
-                            className="card-container"
-                          >
-                            <ReviewCard
-                              review={rev}
-                              users={data.users}
-                              user={user}
-                              refetch={refetch}
-                            />
-                          </div>
+                          <ReviewCard
+                            review={rev}
+                            refetch={refetch}
+                            users={data.users}
+                            user={user}
+                          />
                         );
                       }
                     }}

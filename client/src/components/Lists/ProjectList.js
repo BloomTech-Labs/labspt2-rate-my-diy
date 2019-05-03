@@ -3,7 +3,9 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import * as math from 'mathjs';
-import plus from "../../img/plus.png"
+import plus from '../../img/plus.png';
+import moment from 'moment';
+import star from '../../img/star.png';
 
 import './ProjectList.scss';
 
@@ -75,36 +77,83 @@ class ProjectList extends React.Component {
                           );
 
                         project.rating = meanRating;
+
+                        const stars = [];
+
+                        for (let i = 0; i < Math.round(project.rating); i++) {
+                          stars.push(
+                            <img
+                              src={star}
+                              className="stars"
+                              alt="star"
+                              key={i}
+                            />
+                          );
+                        }
                         return (
                           <div className="project-list-card" key={project.id}>
-                          <img className="project-list-card-img" src={`${project.titleImg}`} alt="project" />
-                            <Link className="project-list-title" to={`/projects/${project.id}`}>{`${
-                              project.name
-                            }`}</Link>
-                            <div>{`Average Rating: ${project.rating}`}</div>
-                            
-                            <div>{`${project.timestamp}`}</div>
+                            <div>
+                              <img
+                                className="project-list-card-img"
+                                src={`${project.titleImg}`}
+                                alt="project"
+                              />
+                              <Link to={`/projects/${project.id}`}>
+                                <div className="project-list-card-title">{`${
+                                  project.name
+                                }`}</div>
+                              </Link>
+                              <p>
+                                {moment(project.timestamp).format(
+                                  'MMMM Do YYYY'
+                                )}
+                              </p>
+                              <div className="project-list-card-rating-container">
+                                {stars.map((star) => {
+                                  return star;
+                                })}
+                              </div>
+                            </div>
                           </div>
                         );
                       })}
                       <div className="project-list-card">
-                      <Link to="/createproject">
-                        <div className="image">
-                          <img src={plus} alt="plus"/>
+                        <div>
+                          <Link to="/createproject">
+                            {/* <div className="image"> */}
+                            <img
+                              className="project-list-card-img"
+                              src={plus}
+                              alt="plus"
+                            />
+                            {/* </div> */}
+                            <p>Add a New Project</p>
+                          </Link>
                         </div>
-                        <p>Add a New Project</p>
-                        </Link>
                       </div>
-                      
                     </div>
                   </div>
                 );
               } else {
                 return (
-                  <div>
-                    <h1>{`${userData.user.username}'s Projects`}</h1>
-                    <p>You don't have any projects yet.</p>
-                    <Link to={'/createproject'}>Add a New Project</Link>
+                  <div className="project-list-all-container">
+                    <h1 className="project-list-title">{`${
+                      userData.user.username
+                    }'s Projects`}</h1>
+                    <div className="project-list-card">
+                      <div>
+                        <Link to="/createproject">
+                          {/* <div className="image"> */}
+                          <img
+                            className="project-list-card-img"
+                            src={plus}
+                            alt="plus"
+                          />
+                          {/* </div> */}
+                          <p>Add a New Project</p>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 );
               }
