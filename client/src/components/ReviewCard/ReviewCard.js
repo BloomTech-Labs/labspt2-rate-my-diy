@@ -105,7 +105,6 @@ class ReviewCard extends React.Component {
     const { loggedIn, authUser } = this.state;
     const { review } = this.props;
     if (loggedIn) {
-      const { review } = this.props;
       // console.log("logged in")
 
       if (review.Author.email === authUser.email) {
@@ -769,7 +768,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disable={this.state.thumbsUpDisabled}>
+                                <button disabled={this.state.thumbsUpDisabled}>
                                   +
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}

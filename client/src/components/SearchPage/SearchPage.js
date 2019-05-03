@@ -112,10 +112,16 @@ class SearchPage extends Component {
     );
 
     return (
+
+      <>
+      
+
+      <SearchWithData />
       <div className="search-container">
-        <SearchWithData />
+        
         <h1 className="results">Results</h1>
         <div className="search-card-container">
+
           {this.props.projects
             .map(({ id, name, titleImg, rating, User, category }) => {
               let meanRating = rating;
@@ -205,7 +211,6 @@ class SearchPage extends Component {
                             refetch={refetch}
                             users={data.users}
                             user={user}
-                            refetch={refetch}
                           />
                         );
                       }
@@ -216,6 +221,7 @@ class SearchPage extends Component {
             )}
         </div>
       </div>
+      </>
     );
   }
 }

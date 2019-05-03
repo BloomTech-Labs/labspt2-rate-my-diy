@@ -180,7 +180,7 @@ class SignInGithubBase extends Component {
             }
             return (
               <form onSubmit={this.onSubmit}>
-                <button type="submit"> Sign In with Github </button>{' '}
+                <GithubLoginButton size="35px" onClick={this.onSubmit} />
                 <div>Loading...</div>
                 {error && <p> {error.message} </p>}
               </form>
