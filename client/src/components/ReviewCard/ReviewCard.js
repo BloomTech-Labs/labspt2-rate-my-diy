@@ -116,7 +116,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated the project, you want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div className="searchReviewCard">
@@ -338,13 +338,13 @@ class ReviewCard extends React.Component {
                     </Mutation>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           } else {
             // console.log("logged in, your review, you rated, you don't want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div className="searchReviewCard">
@@ -395,7 +395,7 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           }
         } else {
@@ -404,7 +404,7 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div className="searchReviewCard">
@@ -660,13 +660,13 @@ class ReviewCard extends React.Component {
                     </Mutation>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           } else {
             // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
                     <div className="searchReviewCard">
@@ -716,7 +716,7 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           }
         }
@@ -727,7 +727,7 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev, review w/rating")
 
           return (
-            <div>
+            <React.Fragment>
               <MicroModal
                 trigger={(handleOpen) => (
                   <div className="searchReviewCard">
@@ -960,13 +960,13 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
               />
-            </div>
+            </React.Fragment>
           );
         } else {
           // console.log("logged in, not your rev,  review w/o rating")
 
           return (
-            <div>
+            <React.Fragment>
               <MicroModal
                 trigger={(handleOpen) => (
                   <div className="searchReviewCard">
@@ -1189,7 +1189,7 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
               />
-            </div>
+            </React.Fragment>
           );
         }
       }
@@ -1201,7 +1201,7 @@ class ReviewCard extends React.Component {
         // console.log("logged in, review includes rating, return")
 
         return (
-          <div>
+          <React.Fragment>
             <MicroModal
               trigger={(handleOpen) => (
                 <div className="searchReviewCard">
@@ -1243,13 +1243,13 @@ class ReviewCard extends React.Component {
                 </div>
               )}
             />
-          </div>
+          </React.Fragment>
         );
       } else {
         //console.log("")logged in, review w/o rating, return
 
         return (
-          <div>
+          <React.Fragment>
             <MicroModal
               trigger={(handleOpen) => (
                 <div className="searchReviewCard">
@@ -1290,7 +1290,7 @@ class ReviewCard extends React.Component {
                 </div>
               )}
             />
-          </div>
+          </React.Fragment>
         );
       }
     }
