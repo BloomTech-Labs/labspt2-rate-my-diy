@@ -7,7 +7,6 @@ import { CREATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
 import './CreateProject.scss';
 
-
 class CreateProject extends Component {
   constructor(props) {
     super(props);
@@ -249,7 +248,7 @@ class CreateProject extends Component {
             </div>
             <div className="titleImage">
               <div className="setThumbnail">
-                <h3>Set Category</h3>
+                <h2>Set Category</h2>
                 <CreatableSelect
                   isClearable
                   onChange={this.handleChange}
@@ -305,7 +304,7 @@ class CreateProject extends Component {
                   if (step.type === 'img') {
                     return (
                       <div key={idx}>
-                        <img src={step.body} alt="step"/>
+                        <img src={step.body} alt="step" />
                         <button onClick={this.deletePhoto(idx)}>
                           Delete Photo
                         </button>
@@ -313,34 +312,35 @@ class CreateProject extends Component {
                     );
                   } else {
                     return (
-                      <div key={idx}>
+                      <div className="stepSection" key={idx}>
                         <textArea
                           type="text"
                           placeholder="Add Step..."
                           value={step.body}
                           onChange={this.textChangeHandler(idx)}
                         />
-
-                        <button
-                          type="button"
-                          onClick={this.handleAddStep}
-                          className="addStep"
-                        >
-                          Add Step
-                        </button>
-                        <button
-                          className="addPicture"
-                          onClick={this.openCloudinary}
-                        >
-                          Add Picture
-                        </button>
-                        <button
-                          type="button"
-                          onClick={this.removeTextStep(idx)}
-                          className="removeStep"
-                        >
-                          Remove This Step
-                        </button>
+                        <div className="buttonRow">
+                          <button
+                            type="button"
+                            onClick={this.handleAddStep}
+                            className="addStep"
+                          >
+                            Add Step
+                          </button>
+                          <button
+                            className="addPicture"
+                            onClick={this.openCloudinary}
+                          >
+                            Add Picture
+                          </button>
+                          <button
+                            type="button"
+                            onClick={this.removeTextStep(idx)}
+                            className="removeStep"
+                          >
+                            Remove This Step
+                          </button>
+                        </div>
                       </div>
                     );
                   }
@@ -488,7 +488,7 @@ class CreateProject extends Component {
                             if (step.type === 'img') {
                               return (
                                 <div key={idx}>
-                                  <img src={step.body} alt="step"/>
+                                  <img src={step.body} alt="step" />
                                   <button onClick={this.deletePhoto(idx)}>
                                     Delete Photo
                                   </button>
@@ -503,27 +503,28 @@ class CreateProject extends Component {
                                     value={step.body}
                                     onChange={this.textChangeHandler(idx)}
                                   />
-
-                                  <button
-                                    type="button"
-                                    onClick={this.handleAddStep}
-                                    className="addStep"
-                                  >
-                                    Add Step
-                                  </button>
-                                  <button
-                                    className="addPicture"
-                                    onClick={this.openCloudinary}
-                                  >
-                                    Add Picture
-                                  </button>
-                                  <button
-                                    type="button"
-                                    onClick={this.removeTextStep(idx)}
-                                    className="removeStep"
-                                  >
-                                    Remove This Step
-                                  </button>
+                                  <div className="buttonRow">
+                                    <button
+                                      type="button"
+                                      onClick={this.handleAddStep}
+                                      className="addStep"
+                                    >
+                                      Add Step
+                                    </button>
+                                    <button
+                                      className="addPicture"
+                                      onClick={this.openCloudinary}
+                                    >
+                                      Add Picture
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={this.removeTextStep(idx)}
+                                      className="removeStep"
+                                    >
+                                      Remove This Step
+                                    </button>
+                                  </div>
                                 </div>
                               );
                             }
