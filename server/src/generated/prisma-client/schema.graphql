@@ -33,12 +33,15 @@ type Mutation {
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deleteReview(where: ReviewWhereUniqueInput!): Review
   deleteUser(where: UserWhereUniqueInput!): User
-  dislikeAReview(id: ID, username: String): Review!
+  dislikeAReview(didThumbDown: Boolean, revId: ID, username: String): Review!
+  editProject(category: String, id: ID, name: String, steps: String, timestamp: String, titleBlurb: String, titleImg: String, username: String): Project!
+  editReview(name: String, projId: ID, projRating: Int, revId: ID, text: String, timestamp: String): Review!
+  editUser(bio: String, email: String, userProfileImage: String): User!
   firebaseSignUp(email: String, thirdPartyUID: String, username: String): User!
-  likeAReview(id: ID, username: String): Review!
+  likeAReview(didThumbUp: Boolean, revId: ID, username: String): Review!
   newProject(category: String, name: String, steps: String, timestamp: String, titleBlurb: String, titleImg: String, username: String): Project!
-  newReview(id: ID, name: String, text: String, timestamp: String, user: String, username: String): Review!
-  newUser(email: String, username: String): User!
+  newReview(id: ID, name: String, projRating: Int, text: String, timestamp: String, user: String, username: String): Review!
+  newUser(email: String, firebaseUID: String, username: String): User!
   rateAProject(id: ID, rating: Int, username: String): Project!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
   updateManyReviews(data: ReviewUpdateManyMutationInput!, where: ReviewWhereInput): BatchPayload!
@@ -576,6 +579,7 @@ type Review {
   LikedBy(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]
   name: String!
   ProjectReviewed: Project!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int!
@@ -595,6 +599,7 @@ input ReviewCreateInput {
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   name: String!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int
@@ -627,6 +632,7 @@ input ReviewCreateWithoutAuthorInput {
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   name: String!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int
@@ -639,6 +645,7 @@ input ReviewCreateWithoutDislikedByInput {
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   name: String!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int
@@ -651,6 +658,7 @@ input ReviewCreateWithoutLikedByInput {
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   name: String!
   ProjectReviewed: ProjectCreateOneWithoutReviewsInput!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int
@@ -663,6 +671,7 @@ input ReviewCreateWithoutProjectReviewedInput {
   DislikedBy: UserCreateManyWithoutDislikedReviewsInput
   LikedBy: UserCreateManyWithoutLikedReviewsInput
   name: String!
+  projRating: Int
   rKey: String
   text: String!
   thumbsDown: Int
@@ -682,6 +691,8 @@ enum ReviewOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  projRating_ASC
+  projRating_DESC
   rKey_ASC
   rKey_DESC
   text_ASC
@@ -728,6 +739,14 @@ input ReviewScalarWhereInput {
   name_starts_with: String
   NOT: [ReviewScalarWhereInput!]
   OR: [ReviewScalarWhereInput!]
+  projRating: Int
+  projRating_gt: Int
+  projRating_gte: Int
+  projRating_in: [Int!]
+  projRating_lt: Int
+  projRating_lte: Int
+  projRating_not: Int
+  projRating_not_in: [Int!]
   rKey: String
   rKey_contains: String
   rKey_ends_with: String
@@ -788,6 +807,7 @@ input ReviewUpdateInput {
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   name: String
   ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -797,6 +817,7 @@ input ReviewUpdateInput {
 
 input ReviewUpdateManyDataInput {
   name: String
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -806,6 +827,7 @@ input ReviewUpdateManyDataInput {
 
 input ReviewUpdateManyMutationInput {
   name: String
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -871,6 +893,7 @@ input ReviewUpdateWithoutAuthorDataInput {
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   name: String
   ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -883,6 +906,7 @@ input ReviewUpdateWithoutDislikedByDataInput {
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   name: String
   ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -895,6 +919,7 @@ input ReviewUpdateWithoutLikedByDataInput {
   DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
   name: String
   ProjectReviewed: ProjectUpdateOneRequiredWithoutReviewsInput
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -907,6 +932,7 @@ input ReviewUpdateWithoutProjectReviewedDataInput {
   DislikedBy: UserUpdateManyWithoutDislikedReviewsInput
   LikedBy: UserUpdateManyWithoutLikedReviewsInput
   name: String
+  projRating: Int
   rKey: String
   text: String
   thumbsDown: Int
@@ -998,6 +1024,14 @@ input ReviewWhereInput {
   NOT: [ReviewWhereInput!]
   OR: [ReviewWhereInput!]
   ProjectReviewed: ProjectWhereInput
+  projRating: Int
+  projRating_gt: Int
+  projRating_gte: Int
+  projRating_in: [Int!]
+  projRating_lt: Int
+  projRating_lte: Int
+  projRating_not: Int
+  projRating_not_in: [Int!]
   rKey: String
   rKey_contains: String
   rKey_ends_with: String

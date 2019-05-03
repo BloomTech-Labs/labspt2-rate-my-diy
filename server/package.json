@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,6 +35,8 @@
     "@types/node": "^11.11.4",
     "@types/stripe": "^6.25.2",
     "@types/ws": "^6.0.1",
+    "jest": "^24.7.1",
+    "jest-cli": "^24.7.1",
     "nodemon": "^1.18.10",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.14.0",
