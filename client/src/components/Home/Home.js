@@ -63,11 +63,13 @@ class Home extends Component {
 
     //We clean the data we got to get over by taking out users that have no reviews
     const eliminateEmptyReviews = data.filter((item) => {
+      
       if (item.ReviewList[0] !== undefined) {
         return item;
       }
       return null;
     });
+    console.log({empty: eliminateEmptyReviews})
 
     const popularReviewer = [];
 
@@ -90,6 +92,8 @@ class Home extends Component {
       */
 
       eliminateEmptyReviews[i].ReviewList = currentReviews;
+
+      console.log({current: currentReviews})
 
       //This block of code just grabs the thumbs up total of the reviews and returns just that
       let thumbsUpTotal = 0;
@@ -381,18 +385,21 @@ class Home extends Component {
 
               const reviews = this.filterByCurrentMonthReviews(
                 data.users
-              ).slice(0, 8);
+              );
+
+              console.log({popReviewers: reviews})
 
               return (
                 <div className="home-card-container">
-                  {reviews.map(({ id, username, userProfileImage }) => (
+                  {reviews.map(({ id, username, userProfileImage, thumbsUpTotal }) => (
                     <Featured
                       key={id}
                       username={username}
+                      thumbsUp={thumbsUpTotal}
                       image={userProfileImage}
                       clickHandler={this.clickUserHandler}
                     />
-                  ))}
+                  )).slice(0,8)}
                 </div>
               );
             }}

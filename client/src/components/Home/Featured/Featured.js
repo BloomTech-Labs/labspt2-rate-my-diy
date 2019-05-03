@@ -16,7 +16,6 @@ function Featured(props) {
       className="featuredCard"
       onClick={() => props.clickHandler(props.username)}
     >
-      {console.log(props, 'props card')}
       <img className="img-responsive" src={props.image} alt="project" />
       <div className="infoContainer">
         <Link to={`/projects/${props.id}`}>
@@ -24,9 +23,10 @@ function Featured(props) {
         </Link>
         <Link to={`/${props.username}/profile`}>
           {props.category ? <p>Category: {props.category}</p> : null}
-          <p>Created By: {props.username}</p>
-          <p>Average Rating {props.rating}</p>
+          <p>@{props.username}</p>
         </Link>
+        {props.rating ? <p>Average Rating {props.rating}</p> : null}
+        {props.thumbsUp ? <p>{`Thumbs Up: ${props.thumbsUp}`}</p> : null}
         <div className="stars">
           {stars.map((star) => {
             return star;
