@@ -103,7 +103,7 @@ class ReviewCard extends React.Component {
 
   render() {
     const { loggedIn, authUser } = this.state;
-
+    const { review } = this.props;
     if (loggedIn) {
       const { review } = this.props;
       // console.log("logged in")
@@ -116,21 +116,25 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you rated the project, you want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                    <div className="searchReviewCard">
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -140,22 +144,20 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <div>
-                                <div>{`${review.ProjectReviewed.name}`}</div>
-                                <div>{`Review By: @${
-                                  review.Author.username
-                                }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                <img
+                                  className="searchProjectImage"
+                                  src={`${review.ProjectReviewed.titleImg}`}
+                                  alt="project"
+                                />
+                                <h3>{`${review.ProjectReviewed.name}`}</h3>
+                                <p>{`Review By: @${review.Author.username}`}</p>
+                                <p>{`${review.timestamp}`}</p>
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
-                                >
-                                  <img
-                                    src={`${review.ProjectReviewed.titleImg}`}
-                                    alt="project"
-                                  />
-                                </Link>
-                                <div>{`Rating of Project: ${
+                                />
+                                <p>{`Rating of Project: ${
                                   review.projRating
-                                }`}</div>
+                                }`}</p>
                                 <h3>Title:</h3>
                                 <input
                                   type="text"
@@ -199,6 +201,7 @@ class ReviewCard extends React.Component {
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
                                   <img
+                                    className="searchProjectImage"
                                     src={`${review.ProjectReviewed.titleImg}`}
                                     alt="project"
                                   />
@@ -240,7 +243,7 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <div>
+                            <div className="review-card">
                               <div>{`${review.ProjectReviewed.name}`}</div>
                               <div>{`Review By: @${
                                 review.Author.username
@@ -250,6 +253,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -297,6 +301,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -333,27 +338,31 @@ class ReviewCard extends React.Component {
                     </Mutation>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           } else {
             // console.log("logged in, your review, you rated, you don't want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                    <div className="searchReviewCard">
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -363,6 +372,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -385,7 +395,7 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           }
         } else {
@@ -394,21 +404,25 @@ class ReviewCard extends React.Component {
             // console.log("logged in, your review, you didn't rate, you want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                    <div className="searchReviewCard">
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -427,6 +441,7 @@ class ReviewCard extends React.Component {
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
                                   <img
+                                    className="searchProjectImage"
                                     src={`${review.ProjectReviewed.titleImg}`}
                                     alt="project"
                                   />
@@ -487,6 +502,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -546,6 +562,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -596,6 +613,7 @@ class ReviewCard extends React.Component {
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
                                 <img
+                                  className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
                                   alt="project"
                                 />
@@ -642,27 +660,31 @@ class ReviewCard extends React.Component {
                     </Mutation>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           } else {
             // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
 
             return (
-              <div>
+              <React.Fragment>
                 <MicroModal
                   trigger={(handleOpen) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
+                    <div className="searchReviewCard">
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
+                      </button>
                     </div>
                   )}
                   children={(handleClose) => (
@@ -672,6 +694,7 @@ class ReviewCard extends React.Component {
                       <div>{`${review.timestamp}`}</div>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
+                          className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
@@ -693,7 +716,7 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                 />
-              </div>
+              </React.Fragment>
             );
           }
         }
@@ -704,21 +727,25 @@ class ReviewCard extends React.Component {
           // console.log("logged in, not your rev, review w/rating")
 
           return (
-            <div>
+            <React.Fragment>
               <MicroModal
                 trigger={(handleOpen) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
-                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                      <img
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                    </Link>
-                    <div>{`${review.name}`}</div>
-                    <button onClick={handleOpen}>View More</button>
+                  <div className="searchReviewCard">
+                    <img
+                      className="searchProjectImage"
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`Date of Review: ${review.timestamp
+                      .toString()
+                      .slice(0, 10)}`}</p>
+                    <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                    <p>{`Title: ${review.name}`}</p>
+                    <button id="reviewButton" onClick={handleOpen}>
+                      See This Review
+                    </button>
                   </div>
                 )}
                 children={(handleClose) => (
@@ -728,6 +755,7 @@ class ReviewCard extends React.Component {
                     <div>{`${review.timestamp}`}</div>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
+                        className="searchProjectImage"
                         src={`${review.ProjectReviewed.titleImg}`}
                         alt="project"
                       />
@@ -772,7 +800,7 @@ class ReviewCard extends React.Component {
                                 await likeAReview({
                                   variables: {
                                     // eslint-disable-next-line
-                                    revId: review.id,
+                                    revId: this.state.review.id,
                                     username: this.state.visitor.username,
                                     didThumbUp: this.state.didThumbUp
                                   }
@@ -806,7 +834,7 @@ class ReviewCard extends React.Component {
                               await likeAReview({
                                 variables: {
                                   // eslint-disable-next-line
-                                  revId: review.id,
+                                  revId: this.state.review.id,
                                   username: this.state.visitor.username,
                                   didThumbUp: this.state.didThumbUp
                                 }
@@ -867,7 +895,7 @@ class ReviewCard extends React.Component {
                                 await dislikeAReview({
                                   variables: {
                                     // eslint-disable-next-line
-                                    revId: review.id,
+                                    revId: this.state.review.id,
                                     username: this.state.visitor.username,
                                     didThumbDown: this.state.didThumbDown
                                   }
@@ -900,7 +928,7 @@ class ReviewCard extends React.Component {
                               await dislikeAReview({
                                 variables: {
                                   // eslint-disable-next-line
-                                  revId: review.id,
+                                  revId: this.state.review.id,
                                   username: this.state.visitor.username,
                                   didThumbDown: this.state.didThumbDown
                                 }
@@ -932,106 +960,73 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
               />
-            </div>
+            </React.Fragment>
           );
         } else {
           // console.log("logged in, not your rev,  review w/o rating")
 
           return (
-            <div className="review-section-container">
-              <div className="profile-review-container">
-                <MicroModal
-                  trigger={(handleOpen) => (
-                    <div className="inner-review-card">
-                      <div className="reviewed-name">{`${
-                        review.ProjectReviewed.name
-                      }`}</div>
-                      <hr className="line-break" />
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          className="review-img"
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <button onClick={handleOpen}>View More</button>
-                    </div>
-                  )}
-                  children={(handleClose) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                        <img
-                          src={`${review.ProjectReviewed.titleImg}`}
-                          alt="project"
-                        />
-                      </Link>
-                      <div>{`${review.name}`}</div>
-                      <div>{`${review.text}`}</div>
+            <React.Fragment>
+              <MicroModal
+                trigger={(handleOpen) => (
+                  <div className="searchReviewCard">
+                    <img
+                      className="searchProjectImage"
+                      src={`${review.ProjectReviewed.titleImg}`}
+                      alt="project"
+                    />
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`Date of Review: ${review.timestamp
+                      .toString()
+                      .slice(0, 10)}`}</p>
+                    <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                    <p>{`Title: ${review.name}`}</p>
+                    <button id="reviewButton" onClick={handleOpen}>
+                      See This Review
+                    </button>
+                  </div>
+                )}
+                children={(handleClose) => (
+                  <div>
+                    <div>{`${review.ProjectReviewed.name}`}</div>
+                    <div>{`Review By: @${review.Author.username}`}</div>
+                    <div>{`${review.timestamp}`}</div>
+                    <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                    </Link>
+                    <div>{`${review.name}`}</div>
+                    <div>{`${review.text}`}</div>
 
-                      <Mutation mutation={likeAReview}>
-                        {(likeAReview, { loading, error, data }) => {
-                          if (loading)
-                            return (
-                              <form>
-                                <span>
-                                  <button disabled>+</button>
-                                  {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
-                              </form>
-                            );
-                          if (error) {
-                            console.log({ likeError: error });
-                            return (
-                              <form>
-                                <span>
-                                  <button disabled>+</button>
-                                  {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
-                              </form>
-                            );
-                          }
-                          if (data)
-                            return (
-                              <form
-                                onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  await likeAReview({
-                                    variables: {
-                                      revId: this.state.review.id,
-                                      username: this.state.visitor.username,
-                                      didThumbUp: this.state.didThumbUp
-                                    }
-                                  });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
-                                  await this.thumbsUp();
-                                  await this.setState({
-                                    ...this.state,
-                                    review: review,
-                                    thumbsUp: review.thumbsUp
-                                  });
-                                }}
-                              >
-                                <span>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.thumbsUpDisabled}
-                                  >
-                                    +
-                                  </button>
-                                  {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
-                              </form>
-                            );
+                    <Mutation mutation={likeAReview}>
+                      {(likeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>+</button>
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ likeError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>+</button>
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        }
+                        if (data)
                           return (
                             <form
                               onSubmit={async (e) => {
@@ -1065,73 +1060,72 @@ class ReviewCard extends React.Component {
                               |
                             </form>
                           );
-                        }}
-                      </Mutation>
-                      <Mutation mutation={dislikeAReview}>
-                        {(dislikeAReview, { loading, error, data }) => {
-                          if (loading)
-                            return (
-                              <form>
-                                <span>
-                                  <button disabled>-</button>
-                                  {`Thumbs Down: ${this.state.thumbsDown}`}
-                                </span>
-                              </form>
-                            );
-                          if (error) {
-                            console.log({ disError: error });
-                            return (
-                              <form>
-                                <span>
-                                  <button disabled>-</button>
-                                  {`Thumbs Down: ${this.state.thumbsDown}`}
-                                </span>
-                                <div>
-                                  There was an error logging your rating.
-                                </div>
-                              </form>
-                            );
-                          }
-                          if (data)
-                            return (
-                              <form
-                                onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  await dislikeAReview({
-                                    variables: {
-                                      revId: this.props.review.id,
-                                      username: this.state.visitor.username,
-                                      didThumbDown: this.state.didThumbDown
-                                    }
-                                  });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
-                                  await this.thumbsDown();
-                                  await this.setState({
-                                    ...this.state,
-                                    review: review,
-                                    thumbsDown: review.thumbsDown
-                                  });
-                                }}
+                        return (
+                          <form
+                            onSubmit={async (e) => {
+                              e.preventDefault();
+                              await likeAReview({
+                                variables: {
+                                  revId: this.state.review.id,
+                                  username: this.state.visitor.username,
+                                  didThumbUp: this.state.didThumbUp
+                                }
+                              });
+                              await this.props.refetch();
+                              const { review } = await this.props;
+                              await this.thumbsUp();
+                              await this.setState({
+                                ...this.state,
+                                review: review,
+                                thumbsUp: review.thumbsUp
+                              });
+                            }}
+                          >
+                            <span>
+                              <button
+                                type="submit"
+                                disabled={this.state.thumbsUpDisabled}
                               >
-                                <span>
-                                  <button
-                                    type="submit"
-                                    disabled={this.state.thumbsDownDisabled}
-                                  >
-                                    -
-                                  </button>
-                                  {`Thumbs Down: ${this.state.thumbsDown}`}
-                                </span>
-                              </form>
-                            );
+                                +
+                              </button>
+                              {`Thumbs Up: ${this.state.thumbsUp}`}
+                            </span>
+                            |
+                          </form>
+                        );
+                      }}
+                    </Mutation>
+                    <Mutation mutation={dislikeAReview}>
+                      {(dislikeAReview, { loading, error, data }) => {
+                        if (loading)
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
+                        if (error) {
+                          console.log({ disError: error });
+                          return (
+                            <form>
+                              <span>
+                                <button disabled>-</button>
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
+                              </span>
+                              <div>There was an error logging your rating.</div>
+                            </form>
+                          );
+                        }
+                        if (data)
                           return (
                             <form
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 await dislikeAReview({
                                   variables: {
-                                    revId: this.props.review.id,
+                                    revId: this.state.review.id,
                                     username: this.state.visitor.username,
                                     didThumbDown: this.state.didThumbDown
                                   }
@@ -1157,14 +1151,45 @@ class ReviewCard extends React.Component {
                               </span>
                             </form>
                           );
-                        }}
-                      </Mutation>
-                      <button onClick={handleClose}>Close</button>
-                    </div>
-                  )}
-                />
-              </div>
-            </div>
+                        return (
+                          <form
+                            onSubmit={async (e) => {
+                              e.preventDefault();
+                              await dislikeAReview({
+                                variables: {
+                                  revId: this.props.review.id,
+                                  username: this.state.visitor.username,
+                                  didThumbDown: this.state.didThumbDown
+                                }
+                              });
+                              await this.props.refetch();
+                              const { review } = await this.props;
+                              await this.thumbsDown();
+                              await this.setState({
+                                ...this.state,
+                                review: review,
+                                thumbsDown: review.thumbsDown
+                              });
+                            }}
+                          >
+                            <span>
+                              <button
+                                type="submit"
+                                disabled={this.state.thumbsDownDisabled}
+                              >
+                                -
+                              </button>
+                              {`Thumbs Down: ${this.state.thumbsDown}`}
+                            </span>
+                          </form>
+                        );
+                      }}
+                    </Mutation>
+                    <button onClick={handleClose}>Close</button>
+                  </div>
+                )}
+              />
+            </React.Fragment>
           );
         }
       }
@@ -1176,21 +1201,25 @@ class ReviewCard extends React.Component {
         // console.log("logged in, review includes rating, return")
 
         return (
-          <div>
+          <React.Fragment>
             <MicroModal
               trigger={(handleOpen) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`${review.name}`}</div>
-                  <button onClick={handleOpen}>View More</button>
+                <div className="searchReviewCard">
+                  <img
+                    className="searchProjectImage"
+                    src={`${review.ProjectReviewed.titleImg}`}
+                    alt="project"
+                  />
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`Date of Review: ${review.timestamp
+                    .toString()
+                    .slice(0, 10)}`}</p>
+                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                  <p>{`Title: ${review.name}`}</p>
+                  <button id="reviewButton" onClick={handleOpen}>
+                    See This Review
+                  </button>
                 </div>
               )}
               children={(handleClose) => (
@@ -1200,6 +1229,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
@@ -1213,27 +1243,31 @@ class ReviewCard extends React.Component {
                 </div>
               )}
             />
-          </div>
+          </React.Fragment>
         );
       } else {
         //console.log("")logged in, review w/o rating, return
 
         return (
-          <div>
+          <React.Fragment>
             <MicroModal
               trigger={(handleOpen) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`${review.name}`}</div>
-                  <button onClick={handleOpen}>View More</button>
+                <div className="searchReviewCard">
+                  <img
+                    className="searchProjectImage"
+                    src={`${review.ProjectReviewed.titleImg}`}
+                    alt="project"
+                  />
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`Date of Review: ${review.timestamp
+                    .toString()
+                    .slice(0, 10)}`}</p>
+                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                  <p>{`Title: ${review.name}`}</p>
+                  <button id="reviewButton" onClick={handleOpen}>
+                    See This Review
+                  </button>
                 </div>
               )}
               children={(handleClose) => (
@@ -1243,6 +1277,7 @@ class ReviewCard extends React.Component {
                   <div>{`${review.timestamp}`}</div>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
+                      className="searchProjectImage"
                       src={`${review.ProjectReviewed.titleImg}`}
                       alt="project"
                     />
@@ -1255,7 +1290,7 @@ class ReviewCard extends React.Component {
                 </div>
               )}
             />
-          </div>
+          </React.Fragment>
         );
       }
     }

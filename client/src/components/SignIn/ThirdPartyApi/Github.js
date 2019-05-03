@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { GET_THIRD_USER } from '../../../reactRouter/reactRouter';
+import { GithubLoginButton } from 'react-social-login-buttons';
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -64,8 +65,7 @@ class SignInGithubBase extends Component {
       isNewUser: false
     });
   };
-  onSubmit = (event) => {
-    event.preventDefault();
+  onSubmit = () => {
     this.props.firebase
       .doSignInWithGithub()
       .then((socialAuthUser) => {
@@ -115,7 +115,8 @@ class SignInGithubBase extends Component {
               return (
                 <div>
                   <form onSubmit={this.onSubmit}>
-                    <button type="submit"> Sign In with Github </button>{' '}
+                    <GithubLoginButton size="35px" onClick={this.onSubmit} />
+                    <div>Loading...</div>
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
