@@ -4,6 +4,9 @@ import gql from 'graphql-tag';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../../query/query';
+import plus from '../../img/plus.png';
+
+import './ReviewList.scss';
 
 const GET_REVIEWS = gql`
   query reviews($email: String!) {
@@ -70,27 +73,54 @@ class ReviewList extends React.Component {
 
                   if (reviewsData.reviews[0]) {
                     return (
-                      <div>
-                        <h1>{`${userData.user.username}'s Reviews`}</h1>
-                        {reviewsData.reviews.map((review) => {
-                          return (
-                            <ReviewCard
-                              key={review.id}
-                              review={review}
-                              users={usersData.users}
-                              user={userData.user}
-                            />
-                          );
-                        })}
-                        <Link to={'/search'}>Go Review a New Project</Link>
+                      <div className="review-list-all-container">
+                        <h1 className="review-list-title">{`${
+                          userData.user.username
+                        }'s Reviews`}</h1>
+                        <div className="review-list-container">
+                          {reviewsData.reviews.map((review) => {
+                            return (
+                              <ReviewCard
+                                key={review.id}
+                                review={review}
+                                users={usersData.users}
+                                user={userData.user}
+                              />
+                            );
+                          })}
+                          <div className="review-list-card">
+                            <div>
+                              <Link to="/search">
+                                <img
+                                  className="review-list-card-img"
+                                  src={plus}
+                                  alt="plus"
+                                />
+                                <p>Find a Project to Review</p>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     );
                   } else {
                     return (
-                      <div>
-                        <h1>{`${userData.user.username}'s Reviews`}</h1>
-                        <p>You haven't reviewed any projects.</p>
-                        <Link to={'/search'}>Go Review a New Project</Link>
+                      <div className="review-list-all-container">
+                        <h1 className="review-list-title">{`${
+                          userData.user.username
+                        }'s Reviews`}</h1>
+                        <div className="review-list-card">
+                          <div>
+                            <Link to="/search">
+                              <img
+                                className="review-list-card-img"
+                                src={plus}
+                                alt="plus"
+                              />
+                              <p>Find a Project to Review</p>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     );
                   }
