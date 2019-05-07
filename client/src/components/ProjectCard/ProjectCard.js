@@ -117,13 +117,17 @@ class ProjectCard extends React.Component {
         if (project.User.email === this.state.authUser.email) {
           // logged in, are reviews, your project, return
           return (
-            <div>
-              <h1>{`${project.name}`}</h1>
-              <div>{`${project.User.username}`}</div>
-              <div>{`${project.rating}`}</div>
-              <div>{`${project.timestamp}`}</div>
-              <img src={`${project.titleImg}`} alt="project" />
-              <div>{`${project.titleBlurb}`}</div>
+            <div className="project-card-container">
+              <h1>{`Project Title:${project.name}`}</h1>
+              <p>{`Created By:${project.User.username}`}</p>
+              <p>{`Rating:${project.rating}`}</p>
+              <p>{`Date Created${project.timestamp}`}</p>
+              <img
+                className="project-page-image"
+                src={`${project.titleImg}`}
+                alt="project"
+              />
+              <p>{`${project.titleBlurb}`}</p>
 
               <button onClick={this.showMore}>View More</button>
               {this.state.showMore ? (
@@ -173,13 +177,18 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your proj, newRev, you've rated projs, rated this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -368,13 +377,18 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -566,13 +580,18 @@ class ProjectCard extends React.Component {
               //logged in, are revs, not your proj, newReview, you've never rated, return
 
               return (
-                <div>
-                  <h1>{`${project.name}`}</h1>
-                  <div>{`${project.User.username}`}</div>
-                  <div>{`${project.rating}`}</div>
-                  <div>{`${project.timestamp}`}</div>
-                  <img src={`${project.titleImg}`} alt="project" />
-                  <div>{`${project.titleBlurb}`}</div>
+                <div className="project-card-container">
+                  <h1>{`Project Title:${project.name}`}</h1>
+                  <p>{`Created By:${project.User.username}`}</p>
+                  <p>{`Rating:${project.rating}`}</p>
+                  <p>{`Date Created${project.timestamp}`}</p>
+                  <img
+                    className="project-page-image"
+                    src={`${project.titleImg}`}
+                    alt="project"
+                  />
+                  <p>{`${project.titleBlurb}`}</p>
+
                   <button onClick={this.showMore}>View More</button>
                   {this.state.showMore ? (
                     <div>
@@ -770,13 +789,18 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -816,13 +840,18 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -864,13 +893,18 @@ class ProjectCard extends React.Component {
               //logged in, are revs, not your proj, not newReview, you've never rated, return
 
               return (
-                <div>
-                  <h1>{`${project.name}`}</h1>
-                  <div>{`${project.User.username}`}</div>
-                  <div>{`${project.rating}`}</div>
-                  <div>{`${project.timestamp}`}</div>
-                  <img src={`${project.titleImg}`} alt="project" />
-                  <div>{`${project.titleBlurb}`}</div>
+                <div className="project-card-container">
+                  <h1>{`Project Title:${project.name}`}</h1>
+                  <p>{`Created By:${project.User.username}`}</p>
+                  <p>{`Rating:${project.rating}`}</p>
+                  <p>{`Date Created${project.timestamp}`}</p>
+                  <img
+                    className="project-page-image"
+                    src={`${project.titleImg}`}
+                    alt="project"
+                  />
+                  <p>{`${project.titleBlurb}`}</p>
+
                   <button onClick={this.showMore}>View More</button>
                   {this.state.showMore ? (
                     <div>
@@ -917,13 +951,17 @@ class ProjectCard extends React.Component {
           // logged in, no revs, your proj, return
 
           return (
-            <div>
-              <h1>{`${project.name}`}</h1>
-              <div>{`${project.User.username}`}</div>
-              <div>{`${project.rating}`}</div>
-              <div>{`${project.timestamp}`}</div>
-              <img src={`${project.titleImg}`} alt="project" />
-              <div>{`${project.titleBlurb}`}</div>
+            <div className="project-card-container">
+              <h1>{`Project Title:${project.name}`}</h1>
+              <p>{`Created By:${project.User.username}`}</p>
+              <p>{`Rating:${project.rating}`}</p>
+              <p>{`Date Created${project.timestamp}`}</p>
+              <img
+                className="project-page-image"
+                src={`${project.titleImg}`}
+                alt="project"
+              />
+              <p>{`${project.titleBlurb}`}</p>
 
               <button onClick={this.showMore}>View More</button>
               {this.state.showMore ? (
@@ -965,13 +1003,18 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your proj, newRev, you've rated projs, rated this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -1153,13 +1196,18 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -1343,13 +1391,18 @@ class ProjectCard extends React.Component {
               //logged in, no revs, not your proj, newReview, you've never rated, return
 
               return (
-                <div>
-                  <h1>{`${project.name}`}</h1>
-                  <div>{`${project.User.username}`}</div>
-                  <div>{`${project.rating}`}</div>
-                  <div>{`${project.timestamp}`}</div>
-                  <img src={`${project.titleImg}`} alt="project" />
-                  <div>{`${project.titleBlurb}`}</div>
+                <div className="project-card-container">
+                  <h1>{`Project Title:${project.name}`}</h1>
+                  <p>{`Created By:${project.User.username}`}</p>
+                  <p>{`Rating:${project.rating}`}</p>
+                  <p>{`Date Created${project.timestamp}`}</p>
+                  <img
+                    className="project-page-image"
+                    src={`${project.titleImg}`}
+                    alt="project"
+                  />
+                  <p>{`${project.titleBlurb}`}</p>
+
                   <button onClick={this.showMore}>View More</button>
                   {this.state.showMore ? (
                     <div>
@@ -1541,13 +1594,18 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -1581,13 +1639,18 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -1622,17 +1685,19 @@ class ProjectCard extends React.Component {
               //logged in, no revs, not your proj, not newReview, you've never rated, return
 
               return (
-                <div>
-                  <div>
-                    <h3>{`${project.name}`}</h3>
-                    <hr className="line-break" />
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
-                    <button onClick={this.showMore}>View More</button>
-                  </div>
+                <div className="project-card-container">
+                  <h1>{`Project Title:${project.name}`}</h1>
+                  <p>{`Created By:${project.User.username}`}</p>
+                  <p>{`Rating:${project.rating}`}</p>
+                  <p>{`Date Created${project.timestamp}`}</p>
+                  <img
+                    className="project-page-image"
+                    src={`${project.titleImg}`}
+                    alt="project"
+                  />
+                  <p>{`${project.titleBlurb}`}</p>
+
+                  <button onClick={this.showMore}>View More</button>
                   {this.state.showMore ? (
                     <div>
                       <h2>Steps:</h2>
@@ -1670,13 +1735,18 @@ class ProjectCard extends React.Component {
       if (this.state.reviews[0]) {
         // not logged in, are reviews, return
         return (
-          <div>
-            <h1>{`${project.name}`}</h1>
-            <div>{`${project.User.username}`}</div>
-            <div>{`${project.rating}`}</div>
-            <div>{`${project.timestamp}`}</div>
-            <img src={`${project.titleImg}`} alt="project" />
-            <div>{`${project.titleBlurb}`}</div>
+          <div className="project-card-container">
+            <h1>{`Project Title:${project.name}`}</h1>
+            <p>{`Created By:${project.User.username}`}</p>
+            <p>{`Rating:${project.rating}`}</p>
+            <p>{`Date Created${project.timestamp}`}</p>
+            <img
+              className="project-page-image"
+              src={`${project.titleImg}`}
+              alt="project"
+            />
+            <p>{`${project.titleBlurb}`}</p>
+
             <button onClick={this.showMore}>View More</button>
             {this.state.showMore ? (
               <div>
@@ -1714,13 +1784,18 @@ class ProjectCard extends React.Component {
         // not logged in, no reviews, return
 
         return (
-          <div>
-            <h1>{`${project.name}`}</h1>
-            <div>{`${project.User.username}`}</div>
-            <div>{`${project.rating}`}</div>
-            <div>{`${project.timestamp}`}</div>
-            <img src={`${project.titleImg}`} alt="project" />
-            <div>{`${project.titleBlurb}`}</div>
+          <div className="project-card-container">
+            <h1>{`Project Title:${project.name}`}</h1>
+            <p>{`Created By:${project.User.username}`}</p>
+            <p>{`Rating:${project.rating}`}</p>
+            <p>{`Date Created${project.timestamp}`}</p>
+            <img
+              className="project-page-image"
+              src={`${project.titleImg}`}
+              alt="project"
+            />
+            <p>{`${project.titleBlurb}`}</p>
+
             <button onClick={this.showMore}>View More</button>
             {this.state.showMore ? (
               <div>
