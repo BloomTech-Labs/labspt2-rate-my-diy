@@ -8,5 +8,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "react-test-renderer": "^16.8.6"
   }
 }
