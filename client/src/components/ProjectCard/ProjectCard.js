@@ -127,12 +127,9 @@ class ProjectCard extends React.Component {
                 src={`${project.titleImg}`}
                 alt="project"
               />
-              <p>{`${project.titleBlurb}`}</p>
-
-              <button onClick={this.showMore}>View More</button>
-              {this.state.showMore ? (
-                <div>
-                  <h2>Steps:</h2>
+              <div className="project-step-section">
+                <h2>Steps:</h2>
+                <div className="steps-container">
                   {steps.map((step) => {
                     if (step.type === 'img') {
                       return <img key={step.body} src={step.body} alt="step" />;
@@ -140,26 +137,26 @@ class ProjectCard extends React.Component {
                       return <div key={step.body}>{`${step.body}`}</div>;
                     }
                   })}
-                  <h2>Reviews:</h2>
-                  {this.state.reviews.map((rev) => {
-                    return (
-                      <ReviewCard
-                        key={rev.id}
-                        review={rev}
-                        users={this.props.users}
-                      />
-                    );
-                  })}
-                  <button
-                    onClick={() => {
-                      this.setState({ edit: true });
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button onClick={this.collapse}>Collapse</button>
                 </div>
-              ) : null}
+                <h2>Reviews:</h2>
+                {this.state.reviews.map((rev) => {
+                  return (
+                    <ReviewCard
+                      key={rev.id}
+                      review={rev}
+                      users={this.props.users}
+                    />
+                  );
+                })}
+                <button
+                  onClick={() => {
+                    this.setState({ edit: true });
+                  }}
+                >
+                  Edit
+                </button>
+                <button onClick={this.collapse}>Collapse</button>
+              </div>
             </div>
           );
         } else {

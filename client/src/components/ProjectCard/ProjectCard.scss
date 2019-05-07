@@ -4,10 +4,19 @@
   border: 2px solid black;
   box-shadow: 5px 5px 20px;
   display: flex;
-  // width: 300px ;
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   background: $alternate-complementing-color;
+  height: 100%;
+  p {
+    font-size: 2rem;
+  }
+  .project-page-image {
+    height: 500px;
+    width: 500px;
+    object-fit: contain;
+  }
   button {
     width: 85px;
     height: 40px;
@@ -22,4 +31,26 @@
     border-radius: 10px 5%;
   }
   padding: 15px 15px;
+}
+
+.project-step-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.steps-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    text-align: center;
+  }
+  img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    margin: 10px 0 10px 0;
+  }
 }
