@@ -134,7 +134,7 @@ class ProjectCard extends React.Component {
                     if (step.type === 'img') {
                       return <img key={step.body} src={step.body} alt="step" />;
                     } else {
-                      return <div key={step.body}>{`${step.body}`}</div>;
+                      return <li key={step.body}>{`${step.body}`}</li>;
                     }
                   })}
                 </div>
