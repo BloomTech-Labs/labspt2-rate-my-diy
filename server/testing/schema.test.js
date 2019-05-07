@@ -85,6 +85,7 @@ describe('Schema', () => {
  })
 
  cases.forEach((obj) => {
+  // iterate through all of the test cases
   const { id, query, variables, context: ctx, expected} = obj;
 
   test(`query: ${id}`, async () => {
