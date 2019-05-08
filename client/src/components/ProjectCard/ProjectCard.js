@@ -118,10 +118,21 @@ class ProjectCard extends React.Component {
           // logged in, are reviews, your project, return
           return (
             <div className="project-card-container">
-              <h1>{`Project Title:${project.name}`}</h1>
-              <p>{`Created By:${project.User.username}`}</p>
-              <p>{`Rating:${project.rating}`}</p>
-              <p>{`Date Created${project.timestamp}`}</p>
+              <button
+                className="editButton"
+                onClick={() => {
+                  this.setState({ edit: true });
+                }}
+              >
+                Edit
+              </button>
+              <div>
+                <h1>{`Project Title:${project.name}`}</h1>
+                <p>{`Created By:${project.User.username}`}</p>
+                <p>{`Rating: ${project.rating}`}</p>
+                <p>{`Date Created ${project.timestamp.slice(0, 10)}`}</p>
+              </div>
+
               <img
                 className="project-page-image"
                 src={`${project.titleImg}`}
@@ -148,14 +159,6 @@ class ProjectCard extends React.Component {
                     />
                   );
                 })}
-                <button
-                  onClick={() => {
-                    this.setState({ edit: true });
-                  }}
-                >
-                  Edit
-                </button>
-                <button onClick={this.collapse}>Collapse</button>
               </div>
             </div>
           );

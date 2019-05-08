@@ -1,14 +1,20 @@
 @import '../../styles/variables.scss';
 
 .project-card-container {
-  border: 2px solid black;
+  border: 3px solid black;
   box-shadow: 5px 5px 20px;
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  background: $alternate-complementing-color;
+  background-color: $alternate-complementing-color;
   height: 100%;
+  .editButton {
+    background-color: $main-color;
+    align-self: flex-end;
+    margin-right: 20px;
+  }
+
   p {
     font-size: 2rem;
   }
@@ -16,15 +22,17 @@
     height: 500px;
     width: 500px;
     object-fit: contain;
+    border: 5px solid darkgray;
   }
   button {
-    width: 85px;
+    width: 100px;
     height: 40px;
     background: none;
     border: 2px solid black;
     border-radius: 10px 5%;
     margin-bottom: 10px;
     margin-left: 5px;
+    background-color: dark-gray;
   }
   button:hover {
     background: $alternate-color-one;
@@ -53,8 +61,10 @@
     object-fit: contain;
     margin: 10px 0 10px 0;
     margin: auto;
+    border: 5px solid darkgray;
   }
   li {
     margin: 10px 0 10px 0;
+    font-size: 2.4rem;
   }
 }
