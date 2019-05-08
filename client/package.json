@@ -43,12 +43,14 @@
     "react-select": "^2.4.2",
     "react-social-login-buttons": "^2.3.1",
     "react-stripe-checkout": "^2.6.3",
+    "react-test-renderer": "^16.8.6",
     "react-transition-group": "^4.0.0",
     "react-ui-cards": "^1.5.0",
     "recompose": "^0.30.0",
     "subscriptions-transport-ws": "^0.9.16",
     "tingle.js": "^0.14.0",
-    "use-force-update": "^1.0.4"
+    "use-force-update": "^1.0.4",
+    "waait": "^1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
