@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import { MockedProvider } from 'react-apollo/test-utils';
 import wait from 'waait';
 import User, { GET_USERS_QUERY } from './User';
+
 // import jest,
 // const renderer = TestRenderer;
 
@@ -16,10 +17,9 @@ import User, { GET_USERS_QUERY } from './User';
 //    email: '',
 //   }
 // }`;
-console.log(User);
 it('should render loading state initially', () => {
   const component = renderer.create(
-    <MockedProvider>
+    <MockedProvider mocks={mocks}>
       <User />
     </MockedProvider>
   );
@@ -28,8 +28,8 @@ it('should render loading state initially', () => {
 });
 
 it('should render without error or crash', () => {
-  const User = renderer.create(
-    <MockedProvider mocks={[]}>
+  const component = renderer.create(
+    <MockedProvider mocks={mocks}>
       <User />
     </MockedProvider>
   );
@@ -37,7 +37,7 @@ it('should render without error or crash', () => {
 const mocks = [
   {
     request: {
-      query: GET_USER_QUERY
+      query: GET_USERS_QUERY
     },
     result: {
       data: {

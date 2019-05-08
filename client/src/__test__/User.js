@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 export const GET_USERS_QUERY = gql`
   {
-    users {
+    users(first: 2) {
       id
       username
       userProfileImage
