@@ -16,7 +16,7 @@ import User, { GET_USERS_QUERY } from './User';
 //    email: '',
 //   }
 // }`;
-
+console.log(User);
 it('should render loading state initially', () => {
   const component = renderer.create(
     <MockedProvider>
@@ -34,21 +34,35 @@ it('should render without error or crash', () => {
     </MockedProvider>
   );
 });
-// const mocks = [
-//   {
-//     request: {
-//       query: GET_USER_QUERY,
-//       variables: {
-//         name: 'mtrew'
-//       }
-//     },
-//     result: {
-//       data: {
-//         user: {}
-//       }
-//     }
-//   }
-// ];
+const mocks = [
+  {
+    request: {
+      query: GET_USER_QUERY
+    },
+    result: {
+      data: {
+        users: [
+          {
+            email: 'asldkf@gmail.com',
+            username: 'asdfsd',
+            bio: 'Hi, this is my page where I share projects and reviews',
+            id: 'cjunieium00u50765xx6b78i5',
+            userProfileImage:
+              'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png'
+          },
+          {
+            email: 'lkjwe@gmail.com',
+            username: 'sldfksd',
+            bio: 'Hi, this is my page where I share projects and reviews',
+            id: 'cjuniej0p00uh0765iw80avuy',
+            userProfileImage:
+              'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png'
+          }
+        ]
+      }
+    }
+  }
+];
 
 // export const User = ({ username }) => (
 //   <Query query={GET_USER_QUERY} variables={{ username }}>
