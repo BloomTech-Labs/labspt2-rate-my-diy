@@ -1,18 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { GET_USERS_QUERY } from './test-queries/test-queries';
 
-export const GET_USERS_QUERY = gql`
-  {
-    users(first: 2) {
-      id
-      username
-      userProfileImage
-      bio
-      email
-    }
-  }
-`;
 export default () => (
   <Query query={GET_USERS_QUERY}>
     {({ loading, data, error }) => {

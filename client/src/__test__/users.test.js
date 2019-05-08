@@ -2,7 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { MockedProvider } from 'react-apollo/test-utils';
 import wait from 'waait';
-import Users, { GET_USERS_QUERY } from './Users';
+import Users from './Users';
+import { GET_USERS_QUERY } from './test-queries/test-queries';
+import { userMocks } from './data-mocks/data-mocks';
 
 // import jest,
 // const renderer = TestRenderer;
@@ -19,50 +21,51 @@ import Users, { GET_USERS_QUERY } from './Users';
 // }`;
 it('should render loading state initially', () => {
   const component = renderer.create(
-    <MockedProvider mocks={mocks}>
+    <MockedProvider mocks={userMocks}>
       <Users />
     </MockedProvider>
   );
   const tree = component.toJSON();
   expect(tree.children).toContain('Loading...');
+  console.log(component.toTree());
 });
 
 it('should render without error or crash', () => {
   const component = renderer.create(
-    <MockedProvider mocks={mocks}>
+    <MockedProvider mocks={userMocks}>
       <Users />
     </MockedProvider>
   );
 });
-const mocks = [
-  {
-    request: {
-      query: GET_USERS_QUERY
-    },
-    result: {
-      data: {
-        users: [
-          {
-            email: 'asldkf@gmail.com',
-            username: 'asdfsd',
-            bio: 'Hi, this is my page where I share projects and reviews',
-            id: 'cjunieium00u50765xx6b78i5',
-            userProfileImage:
-              'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png'
-          },
-          {
-            email: 'lkjwe@gmail.com',
-            username: 'sldfksd',
-            bio: 'Hi, this is my page where I share projects and reviews',
-            id: 'cjuniej0p00uh0765iw80avuy',
-            userProfileImage:
-              'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png'
-          }
-        ]
-      }
-    }
-  }
-];
+// const mocks = [
+//   {
+//     request: {
+//       query: GET_USERS_QUERY
+//     },
+//     result: {
+//       data: {
+//         users: [
+//           {
+//             email: 'asldkf@gmail.com',
+//             username: 'asdfsd',
+//             bio: 'Hi, this is my page where I share projects and reviews',
+//             id: 'cjunieium00u50765xx6b78i5',
+//             userProfileImage:
+//               'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-6.png'
+//           },
+//           {
+//             email: 'lkjwe@gmail.com',
+//             username: 'sldfksd',
+//             bio: 'Hi, this is my page where I share projects and reviews',
+//             id: 'cjuniej0p00uh0765iw80avuy',
+//             userProfileImage:
+//               'https://res.cloudinary.com/dv1rhurfd/image/upload/v1555353676/avatars/avatar-7.png'
+//           }
+//         ]
+//       }
+//     }
+//   }
+// ];
 
 // export const User = ({ username }) => (
 //   <Query query={GET_USER_QUERY} variables={{ username }}>
