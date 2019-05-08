@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { MockedProvider } from 'react-apollo/test-utils';
 import wait from 'waait';
-import User, { GET_USERS_QUERY } from './User';
+import Users, { GET_USERS_QUERY } from './Users';
 
 // import jest,
 // const renderer = TestRenderer;
@@ -20,7 +20,7 @@ import User, { GET_USERS_QUERY } from './User';
 it('should render loading state initially', () => {
   const component = renderer.create(
     <MockedProvider mocks={mocks}>
-      <User />
+      <Users />
     </MockedProvider>
   );
   const tree = component.toJSON();
@@ -30,7 +30,7 @@ it('should render loading state initially', () => {
 it('should render without error or crash', () => {
   const component = renderer.create(
     <MockedProvider mocks={mocks}>
-      <User />
+      <Users />
     </MockedProvider>
   );
 });
