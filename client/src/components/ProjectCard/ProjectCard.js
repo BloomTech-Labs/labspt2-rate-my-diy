@@ -126,11 +126,11 @@ class ProjectCard extends React.Component {
               >
                 Edit
               </button>
-              <div>
-                <h1>{`Project Title:${project.name}`}</h1>
-                <p>{`Created By:${project.User.username}`}</p>
+              <div className="header-info">
+                <h1>{`Project Title: ${project.name}`}</h1>
+                <p>{`Created By: ${project.User.username}`}</p>
                 <p>{`Rating: ${project.rating}`}</p>
-                <p>{`Date Created ${project.timestamp.slice(0, 10)}`}</p>
+                <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
               </div>
 
               <img
