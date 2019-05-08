@@ -180,7 +180,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`aProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -380,7 +380,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`bProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -583,7 +583,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`Project Title:${project.name}`}</h1>
+                  <h1>{`bProject Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -792,7 +792,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`dProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -843,7 +843,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`eProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -896,7 +896,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`Project Title:${project.name}`}</h1>
+                  <h1>{`fProject Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -954,7 +954,7 @@ class ProjectCard extends React.Component {
 
           return (
             <div className="project-card-container">
-              <h1>{`Project Title:${project.name}`}</h1>
+              <h1>{`gProject Title:${project.name}`}</h1>
               <p>{`Created By:${project.User.username}`}</p>
               <p>{`Rating:${project.rating}`}</p>
               <p>{`Date Created${project.timestamp}`}</p>
@@ -1006,7 +1006,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`hProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -1199,7 +1199,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`iProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -1394,7 +1394,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`Project Title:${project.name}`}</h1>
+                  <h1>{`jProject Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -1597,7 +1597,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`kProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -1642,7 +1642,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`Project Title:${project.name}`}</h1>
+                    <h1>{`lProject Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -1688,7 +1688,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`Project Title:${project.name}`}</h1>
+                  <h1>{`mProject Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -1738,7 +1738,7 @@ class ProjectCard extends React.Component {
         // not logged in, are reviews, return
         return (
           <div className="project-card-container">
-            <h1>{`Project Title:${project.name}`}</h1>
+            <h1>{`nProject Title:${project.name}`}</h1>
             <p>{`Created By:${project.User.username}`}</p>
             <p>{`Rating:${project.rating}`}</p>
             <p>{`Date Created${project.timestamp}`}</p>
@@ -1787,7 +1787,7 @@ class ProjectCard extends React.Component {
 
         return (
           <div className="project-card-container">
-            <h1>{`Project Title:${project.name}`}</h1>
+            <h1>{`oProject Title:${project.name}`}</h1>
             <p>{`Created By:${project.User.username}`}</p>
             <p>{`Rating:${project.rating}`}</p>
             <p>{`Date Created${project.timestamp}`}</p>
