@@ -1,16 +1,15 @@
 import gql from 'graphql-tag';
 
 export const getUsers = gql`
-  {
+  
+    {
     users {
       id
       username
       userProfileImage
-      bio
       email
-      RatedProjects {
-        id
-      }
+      bio
+      accountType
       ReviewList {
         id
         name
@@ -27,7 +26,28 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
+        }
+      }
+      Projects {
+        id
+        name
+        timestamp
+        titleImg
+        titleBlurb
+        rating
+        steps
+        User {
+          id
+          username
+          email
         }
       }
       LikedReviews {
@@ -35,8 +55,8 @@ export const getUsers = gql`
         name
         text
         timestamp
-        thumbsUp
         thumbsDown
+        thumbsUp
         projRating
         Author {
           id
@@ -46,7 +66,14 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
         }
       }
       DislikedReviews {
@@ -65,7 +92,27 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
+        }
+      }
+      RatedProjects {
+        id
+        name
+        timestamp
+        titleImg
+        titleBlurb
+        rating
+        steps
+        User {
+          id
+          username
         }
       }
     }

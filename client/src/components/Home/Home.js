@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withAuthentication } from '../Session/session';
 import * as math from 'mathjs';
-import moment from "moment";
+import moment from 'moment';
 import Featured from './Featured/Featured';
 import './Home.scss';
 
@@ -42,12 +42,8 @@ class Home extends Component {
   };
 
   filterByCurrentMonth = (data) => {
-   
-
     const filteredData = data.map((item) => {
-      if (
-        moment({hours: 0}).diff(item.timestamp, 'days') <= 30
-      ) {
+      if (moment({ hours: 0 }).diff(item.timestamp, 'days') <= 30) {
         return item;
       }
       return null;
@@ -59,17 +55,14 @@ class Home extends Component {
   };
 
   filterByCurrentMonthReviews = (data) => {
- 
-
     //We clean the data we got to get over by taking out users that have no reviews
     const eliminateEmptyReviews = data.filter((item) => {
-      
       if (item.ReviewList[0] !== undefined) {
         return item;
       }
       return null;
     });
-    console.log({empty: eliminateEmptyReviews})
+    console.log({ empty: eliminateEmptyReviews });
 
     const popularReviewer = [];
 
@@ -77,9 +70,7 @@ class Home extends Component {
       //We get the reviews that are from the current month
       let currentReviews = eliminateEmptyReviews[i].ReviewList.filter(
         (review) => {
-          if (
-            moment({hours: 0}).diff(review.timestamp, 'days') <= 30
-          ) {
+          if (moment({ hours: 0 }).diff(review.timestamp, 'days') <= 30) {
             return review;
           }
           return null;
@@ -93,7 +84,7 @@ class Home extends Component {
 
       eliminateEmptyReviews[i].ReviewList = currentReviews;
 
-      console.log({current: currentReviews})
+      console.log({ current: currentReviews });
 
       //This block of code just grabs the thumbs up total of the reviews and returns just that
       let thumbsUpTotal = 0;
@@ -117,91 +108,154 @@ class Home extends Component {
   };
 
   render() {
-    const SearchWithData = () => (
-      <Query query={this.props.getUsers}>
-        {({ loading: loadingUsers, data: userData, error: userError }) => (
-          <Query query={this.props.getProjects}>
-            {({
-              loading: loadingProjects,
-              data: projectData,
-              error: projectError
-            }) => (
-              <Query query={this.props.getReviews}>
-                {({
-                  loading: loadingReviews,
-                  data: reviewData,
-                  error: reviewError
-                }) => {
-                  if (loadingUsers || loadingProjects || loadingReviews)
-                    return <span>loading...</span>;
-                  if (userError) {
-                    console.log({ userError: userError });
-                    return null;
-                  }
-                  if (projectError) {
-                    console.log({ projectError: projectError });
-                    return null;
-                  }
-                  if (reviewError) {
-                    console.log({ reviewError: reviewError });
-                    return null;
-                  }
-                  let userArray = [];
-                  let projectArray = [];
-                  let reviewArray = [];
+    // const SearchWithData = () => (
+    //   <Query query={this.props.getUsers}>
+    //     {({ loading: loadingUsers, data: userData, error: userError }) => (
+    //       <Query query={this.props.getProjects}>
+    //         {({
+    //           loading: loadingProjects,
+    //           data: projectData,
+    //           error: projectError
+    //         }) => (
+    //           <Query query={this.props.getReviews}>
+    //             {({
+    //               loading: loadingReviews,
+    //               data: reviewData,
+    //               error: reviewError
+    //             }) => {
+    //               if (loadingUsers || loadingProjects || loadingReviews)
+    //                 return <span>loading...</span>;
+    //               if (userError) {
+    //                 console.log({ userError: userError });
+    //                 return null;
+    //               }
+    //               if (projectError) {
+    //                 console.log({ projectError: projectError });
+    //                 return null;
+    //               }
+    //               if (reviewError) {
+    //                 console.log({ reviewError: reviewError });
+    //                 return null;
+    //               }
+    //               let userArray = [];
+    //               let projectArray = [];
+    //               let reviewArray = [];
 
-                  if (userData !== undefined)
-                    userArray = Object.values(userData).flat();
+    //               if (userData !== undefined)
+    //                 userArray = Object.values(userData).flat();
 
-                  if (projectData !== undefined)
-                    projectArray = Object.values(projectData).flat();
-                  projectArray = projectArray.map((project) => {
-                    if (project.rating.length > 1) {
-                      return (project = {
-                        ...project,
-                        rating: parseFloat(
-                          math.mean(project.rating.slice(1)).toFixed(2)
-                        )
-                      });
-                    } else {
-                      return (project = {
-                        ...project,
-                        rating: parseFloat(math.mean(project.rating).toFixed(2))
-                      });
-                    }
-                  });
+    //               if (projectData !== undefined)
+    //                 projectArray = Object.values(projectData).flat();
+    //               projectArray = projectArray.map((project) => {
+    //                 if (project.rating.length > 1) {
+    //                   return (project = {
+    //                     ...project,
+    //                     rating: parseFloat(
+    //                       math.mean(project.rating.slice(1)).toFixed(2)
+    //                     )
+    //                   });
+    //                 } else {
+    //                   return (project = {
+    //                     ...project,
+    //                     rating: parseFloat(math.mean(project.rating).toFixed(2))
+    //                   });
+    //                 }
+    //               });
 
-                  if (reviewData !== undefined)
-                    reviewArray = Object.values(reviewData).flat();
-                  return (
-                    <SearchBar
-                      {...this.props}
-                      userClicked={this.state.userClicked}
-                      user={this.state.user}
-                      loggedIn={this.state.isLoggedIn}
-                      users={userArray}
-                      projects={projectArray}
-                      reviews={reviewArray}
-                      projectSearchHandler={this.props.projectSearchHandler}
-                      userSearchHandler={this.props.userSearchHandler}
-                      reviewSearchHandler={this.props.reviewSearchHandler}
-                    />
-                  );
-                }}
-              </Query>
-            )}
-          </Query>
-        )}
-      </Query>
-    );
+    //               if (reviewData !== undefined)
+    //                 reviewArray = Object.values(reviewData).flat();
+    //               return (
+    //                 <SearchBar
+    //                   {...this.props}
+    //                   userClicked={this.state.userClicked}
+    //                   user={this.state.user}
+    //                   loggedIn={this.state.isLoggedIn}
+    //                   users={userArray}
+    //                   projects={projectArray}
+    //                   reviews={reviewArray}
+    //                   projectSearchHandler={this.props.projectSearchHandler}
+    //                   userSearchHandler={this.props.userSearchHandler}
+    //                   reviewSearchHandler={this.props.reviewSearchHandler}
+    //                 />
+    //               );
+    //             }}
+    //           </Query>
+    //         )}
+    //       </Query>
+    //     )}
+    //   </Query>
+    // );
+
+    const projects = this.filterByCurrentMonth(this.props.projectArray)
+      .slice(0, 4)
+      .sort(function(a, b) {
+        return b.rating - a.rating;
+      });
+
+    const currentMakers = this.props.userArray
+      .map((user) => {
+        const currentProject = this.filterByCurrentMonth(user.Projects);
+
+        if (currentProject.length === 0) {
+          return null;
+        }
+
+        const rating = currentProject.map((project) => {
+          let meanRating = project.rating;
+          
+          return meanRating;
+        });
+
+        ///Checks for the mode average
+
+        let frequency = {}; // array of frequency.
+        let max = 0; // holds the max frequency.
+        let average; // holds the max frequency element.
+        for (let v in rating) {
+          frequency[rating[v]] = (frequency[rating[v]] || 0) + 1; // increment frequency.
+          if (frequency[rating[v]] > max) {
+            // is this frequency > max so far ?
+            max = frequency[rating[v]]; // update max.
+            average = rating[v]; // update result.
+          }
+        }
+
+        return {
+          id: user.id,
+          username: user.username,
+          userProfileImage: user.userProfileImage,
+          averageRating: average
+        };
+      })
+      .filter((e) => e !== undefined && e !== null);
+
+    const sortedMakers = currentMakers
+      .sort(function(a, b) {
+        return b.averageRating - a.averageRating;
+      })
+      .slice(0, 8);
+
+    const reviews = this.filterByCurrentMonthReviews(this.props.userArray);
 
     return (
       <div>
-        <SearchWithData />
+        {/* <SearchWithData /> */}
+        <SearchBar
+          {...this.props}
+          userClicked={this.state.userClicked}
+          user={this.state.user}
+          loggedIn={this.state.isLoggedIn}
+          users={this.props.userArray}
+          projects={this.props.projectArray}
+          reviews={this.props.reviewArray}
+          projectSearchHandler={this.props.projectSearchHandler}
+          userSearchHandler={this.props.userSearchHandler}
+          reviewSearchHandler={this.props.reviewSearchHandler}
+        />
 
         <div className="homeContainer">
           <h2 className="projectTitle">Featured Projects</h2>
-          <Query
+          {/* <Query
             query={gql`
               {
                 projects {
@@ -236,42 +290,35 @@ class Home extends Component {
                     rating: parseFloat(math.mean(project.rating).toFixed(2))
                   });
                 }
-              });
-              const projects = this.filterByCurrentMonth(projectArray)
-                .slice(0, 4)
-                .sort(function(a, b) {
-                  return b.rating - a.rating;
-                });
-
+              }); */}
+          {/* return ( */}
+          <div className="home-card-container">
+            {projects.map(({ id, name, titleImg, rating, User }) => {
+              // let meanRating = rating;
+              // if (rating.length > 1)
+              //   meanRating = parseFloat(
+              //     math.mean(rating.slice(1)).toFixed(2)
+              //   );
+              // if (rating.length === 1)
+              //   meanRating = parseFloat(math.mean(rating).toFixed(2));
               return (
-                <div className="home-card-container">
-                  {projects.map(({ id, name, titleImg, rating, User }) => {
-                    let meanRating = rating;
-                    if (rating.length > 1)
-                      meanRating = parseFloat(
-                        math.mean(rating.slice(1)).toFixed(2)
-                      );
-                    if (rating.length === 1)
-                      meanRating = parseFloat(math.mean(rating).toFixed(2));
-                    return (
-                      <Featured
-                        key={id}
-                        id={id}
-                        image={titleImg}
-                        rating={meanRating}
-                        title={name}
-                        username={User.username}
-                        clickHandler={this.clickUserHandler}
-                      />
-                    );
-                  })}
-                </div>
+                <Featured
+                  key={id}
+                  id={id}
+                  image={titleImg}
+                  rating={rating}
+                  title={name}
+                  username={User.username}
+                  clickHandler={this.clickUserHandler}
+                />
               );
-            }}
-          </Query>
-
+            })}
+          </div>
+          {/* );  */}
+          {/* }} */}
+          {/* </Query> */}
           <h2>Popular Makers</h2>
-          <Query
+          {/* <Query
             query={gql`
               {
                 users(orderBy: username_ASC) {
@@ -290,78 +337,26 @@ class Home extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error :(</p>;
 
-              const currentMakers = data.users
-                .map((user) => {
-                  const currentProject = this.filterByCurrentMonth(
-                    user.Projects
-                  );
-
-                  if (currentProject.length === 0) {
-                    return null;
-                  }
-
-                  const rating = currentProject.map((project) => {
-                    let meanRating = project.rating;
-                    if (project.rating.length > 1)
-                      meanRating = parseFloat(
-                        math.mean(project.rating.slice(1)).toFixed(2)
-                      );
-                    if (project.rating.length === 1)
-                      meanRating = parseFloat(
-                        math.mean(project.rating).toFixed(2)
-                      );
-
-                    return meanRating;
-                  });
-
-                  ///Checks for the mode average
-
-                  let frequency = {}; // array of frequency.
-                  let max = 0; // holds the max frequency.
-                  let average; // holds the max frequency element.
-                  for (let v in rating) {
-                    frequency[rating[v]] = (frequency[rating[v]] || 0) + 1; // increment frequency.
-                    if (frequency[rating[v]] > max) {
-                      // is this frequency > max so far ?
-                      max = frequency[rating[v]]; // update max.
-                      average = rating[v]; // update result.
-                    }
-                  }
-
-                  return {
-                    id: user.id,
-                    username: user.username,
-                    userProfileImage: user.userProfileImage,
-                    averageRating: average
-                  };
-                })
-                .filter((e) => e !== undefined && e !== null);
-
-              const sortedMakers = currentMakers
-                .sort(function(a, b) {
-                  return b.averageRating - a.averageRating;
-                })
-                .slice(0, 8);
-
-              return (
-                <div className="home-card-container">
-                  {sortedMakers.map(
-                    ({ id, username, userProfileImage, averageRating }) => (
-                      <Featured
-                        key={id}
-                        username={username}
-                        image={userProfileImage}
-                        clickHandler={this.clickUserHandler}
-                        rating={averageRating}
-                      />
-                    )
-                  )}
-                </div>
-              );
-            }}
-          </Query>
+               */}
+          {/* return ( */}
+          <div className="home-card-container">
+            {sortedMakers.map(
+              ({ id, username, userProfileImage, averageRating }) => (
+                <Featured
+                  key={id}
+                  username={username}
+                  image={userProfileImage}
+                  clickHandler={this.clickUserHandler}
+                  rating={averageRating}
+                />
+              )
+            )}
+          </div>
+          {/* ); */}
+          {/* }}
+          </Query> */}
           <h2>Popular Reviewers</h2>
-          <Query
+          {/* <Query
             query={gql`
               {
                 users(orderBy: username_ASC) {
@@ -381,29 +376,31 @@ class Home extends Component {
           >
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
+              if (error) return <p>Error :(</p>; */}
+{/* 
+              const reviews = this.filterByCurrentMonthReviews(data.users);
 
-              const reviews = this.filterByCurrentMonthReviews(
-                data.users
-              );
+              console.log({ popReviewers: reviews }); */}
 
-              console.log({popReviewers: reviews})
-
-              return (
+              {/* return ( */}
                 <div className="home-card-container">
-                  {reviews.map(({ id, username, userProfileImage, thumbsUpTotal }) => (
-                    <Featured
-                      key={id}
-                      username={username}
-                      thumbsUp={thumbsUpTotal}
-                      image={userProfileImage}
-                      clickHandler={this.clickUserHandler}
-                    />
-                  )).slice(0,8)}
+                  {reviews
+                    .map(
+                      ({ id, username, userProfileImage, thumbsUpTotal }) => (
+                        <Featured
+                          key={id}
+                          username={username}
+                          thumbsUp={thumbsUpTotal}
+                          image={userProfileImage}
+                          clickHandler={this.clickUserHandler}
+                        />
+                      )
+                    )
+                    .slice(0, 8)}
                 </div>
-              );
-            }}
-          </Query>
+              {/* ); */}
+            {/* }} */}
+          {/* </Query> */}
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import './Account.scss';
 
-export const GET_NATIVE_USER = gql`
+export const GET_NAT_USER = gql`
   query user($email: String!) {
     user(where: { email: $email }) {
       id
@@ -26,7 +26,7 @@ class Account extends Component {
       <div className="settings-container">
         <h1>Settings</h1>
         <ProfileInfo email={this.props.email} user={this.props.user} />
-        <Query query={GET_NATIVE_USER} variables={{ email: email }}>
+        <Query query={GET_NAT_USER} variables={{ email: email }}>
           {({ loading, data, error }) => {
             if (loading) return null;
             if (error) {

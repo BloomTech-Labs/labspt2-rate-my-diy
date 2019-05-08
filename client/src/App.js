@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+
 import { getUsers, getProjects, getReviews } from './query/query';
 import * as ROUTES from './constants/routes';
 import { Query } from 'react-apollo';
@@ -23,6 +23,7 @@ import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
 import Header from './components/Home/Header/Header';
 import * as math from 'mathjs';
+import { Dimmer, Loader} from 'semantic-ui-react';
 
 class App extends Component {
   constructor() {
@@ -33,6 +34,7 @@ class App extends Component {
       reviews: []
     };
   }
+
 
   projectSearchHandler = (projects) => {
     this.setState({ projects });
@@ -47,7 +49,9 @@ class App extends Component {
   };
 
   render() {
-    const RoutesWithData = () => (
+    // const RoutesWithData = () =>
+
+    return (
       <Query query={getUsers}>
         {({
           loading: loadingUsers,
@@ -69,7 +73,16 @@ class App extends Component {
                   refetch
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
-                    return <span>loading...</span>;
+                    return (
+                      //   <div>
+
+                      // <span>loading...</span>
+                      // </div>
+                        <Dimmer active inverted>
+                          <Loader size="large">Loading</Loader>
+                        </Dimmer>
+                      
+                    );
                   if (userError)
                     return <span>{`userError: ${userError}`}</span>;
                   if (projectError)
@@ -105,139 +118,209 @@ class App extends Component {
                   if (reviewData !== undefined)
                     reviewArray = Object.values(reviewData).flat();
                   return (
-                    <div>
+                    // <div>
+                    <>
                       <Route
-                        exact
-                        path={ROUTES.CREATE_PROJECT}
-                        render={(props) => {
-                          return (
-                            <CreateProject
-                              {...props}
-                              projects={projectArray}
-                              users={userArray}
-                            />
-                          );
-                        }}
+                        path="/"
+                        render={(props) => (
+                          <Navigation
+                            {...props}
+                            getUsers={getUsers}
+                            getProjects={getProjects}
+                            getReviews={getReviews}
+                          />
+                        )}
                       />
 
-                      {userArray.map((user) => {
-                        return (
-                          <div key={user.id}>
-                            <Route
-                              exact
-                              path={`/${user.username}/profile`}
-                              render={(props) => {
-                                return (
-                                  <Profile
-                                    {...props}
-                                    email={user.email}
-                                    user={user}
-                                  />
-                                );
-                              }}
+                      <Header />
+                      <div className="main-container">
+                        <Route
+                          exact
+                          path={ROUTES.HOME}
+                          render={(props) => (
+                            <Home
+                              {...props}
+                              projectSearchHandler={this.projectSearchHandler}
+                              userSearchHandler={this.userSearchHandler}
+                              reviewSearchHandler={this.reviewSearchHandler}
+                              getUsers={getUsers}
+                              getProjects={getProjects}
+                              getReviews={getReviews}
+                              userArray={userArray}
+                              projectArray={projectArray}
+                              reviewArray={reviewArray}
                             />
-                            <Route
-                              exact
-                              path={`/${user.username}/projects`}
-                              render={(props) => {
-                                return (
-                                  <ProjectList
-                                    {...props}
-                                    email={user.email}
-                                    user={user}
-                                  />
-                                );
-                              }}
+                          )}
+                        />
+                        <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                        <Route
+                          path={ROUTES.PASSWORD_FORGET}
+                          component={PasswordForget}
+                        />
+                        <Route
+                          path={ROUTES.PASSWORD_CHANGE}
+                          component={PasswordChange}
+                        />
+                        <Route
+                          path={ROUTES.SEARCH}
+                          render={(props) => (
+                            <SearchPage
+                              {...props}
+                              users={this.state.users}
+                              projects={this.state.projects}
+                              reviews={this.state.reviews}
+                              projectSearchHandler={this.projectSearchHandler}
+                              userSearchHandler={this.userSearchHandler}
+                              reviewSearchHandler={this.reviewSearchHandler}
+                              getUsers={getUsers}
+                              getProjects={getProjects}
+                              getReviews={getReviews}
+                              userArray={userArray}
+                              projectArray={projectArray}
+                              reviewArray={reviewArray}
                             />
-                            <Route
-                              exact
-                              path={`/${user.username}/reviews`}
-                              render={(props) => {
-                                return (
-                                  <ReviewList
-                                    {...props}
-                                    email={user.email}
-                                    users={userArray}
-                                    user={user}
-                                  />
-                                );
-                              }}
-                            />
-                            <Route
-                              exact
-                              path={`/${user.username}/account`}
-                              render={(props) => (
-                                <Account
-                                  {...props}
-                                  email={user.email}
-                                  user={user}
-                                />
-                              )}
-                            />
-                          </div>
-                        );
-                      })}
-                      {projectArray.map((project) => {
-                        return (
-                          <div key={project.id}>
-                            <Route
-                              exact
-                              path={`/projects/${project.id}`}
-                              render={(props) => {
-                                return (
-                                  <ProjectCard
-                                    {...props}
-                                    project={project}
-                                    users={userArray}
-                                    reviews={reviewArray}
-                                    refetch={refetch}
-                                  />
-                                );
-                              }}
-                            />
-                            <Route
-                              key={project.id}
-                              exact
-                              path={`/projects/${project.id}/edit`}
-                              render={(props) => {
-                                return (
-                                  <EditProject
-                                    {...props}
-                                    project={project}
-                                    projects={projectArray}
-                                    users={userArray}
-                                  />
-                                );
-                              }}
-                            />
-                          </div>
-                        );
-                      })}
+                          )}
+                        />
 
-                      {reviewArray.map((review) => {
-                        let user = userArray.filter(
-                          (user) => user.email === review.Author.email
-                        );
-                        return (
+                        <div>
                           <Route
-                            key={review.id}
                             exact
-                            path={`/reviews/${review.id}`}
+                            path={ROUTES.CREATE_PROJECT}
                             render={(props) => {
                               return (
-                                <ReviewCard
+                                <CreateProject
                                   {...props}
-                                  review={review}
+                                  projects={projectArray}
                                   users={userArray}
-                                  user={user}
-                                  refetch={userRefetch}
                                 />
                               );
                             }}
                           />
-                        );
-                      })}
-                    </div>
+
+                          {userArray.map((user) => {
+                            return (
+                              <div key={user.id}>
+                                <Route
+                                  exact
+                                  path={`/${user.username}/profile`}
+                                  render={(props) => {
+                                    return (
+                                      <Profile
+                                        {...props}
+                                        email={user.email}
+                                        user={user}
+                                        users={userArray}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/projects`}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectList
+                                        {...props}
+                                        email={user.email}
+                                        user={user}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/reviews`}
+                                  render={(props) => {
+                                    return (
+                                      <ReviewList
+                                        {...props}
+                                        email={user.email}
+                                        users={userArray}
+                                        user={user}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/account`}
+                                  render={(props) => (
+                                    <Account
+                                      {...props}
+                                      email={user.email}
+                                      user={user}
+                                    />
+                                  )}
+                                />
+                              </div>
+                            );
+                          })}
+                          {projectArray.map((project) => {
+                            return (
+                              <div key={project.id}>
+                                <Route
+                                  exact
+                                  path={`/projects/${project.id}`}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectCard
+                                        {...props}
+                                        project={project}
+                                        users={userArray}
+                                        reviews={reviewArray}
+                                        refetch={refetch}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  key={project.id}
+                                  exact
+                                  path={`/projects/${project.id}/edit`}
+                                  render={(props) => {
+                                    return (
+                                      <EditProject
+                                        {...props}
+                                        project={project}
+                                        projects={projectArray}
+                                        users={userArray}
+                                      />
+                                    );
+                                  }}
+                                />
+                              </div>
+                            );
+                          })}
+
+                          {reviewArray.map((review) => {
+                            let user = userArray.filter(
+                              (user) => user.email === review.Author.email
+                            );
+                            return (
+                              <Route
+                                key={review.id}
+                                exact
+                                path={`/reviews/${review.id}`}
+                                render={(props) => {
+                                  return (
+                                    <ReviewCard
+                                      {...props}
+                                      review={review}
+                                      users={userArray}
+                                      user={user}
+                                      refetch={userRefetch}
+                                    />
+                                  );
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                        <Route path={ROUTES.FOOTER} component={Footer} />
+                      </div>
+                    </>
+                    /* </div> */
                   );
                 }}
               </Query>
@@ -246,58 +329,66 @@ class App extends Component {
         )}
       </Query>
     );
-
-    return (
-      <Router>
-        <div>
-          <Navigation />
-          <Header />
-          <div className="main-container">
-            <Route
-              exact
-              path={ROUTES.HOME}
-              render={(props) => (
-                <Home
-                  {...props}
-                  projectSearchHandler={this.projectSearchHandler}
-                  userSearchHandler={this.userSearchHandler}
-                  reviewSearchHandler={this.reviewSearchHandler}
-                  getUsers={getUsers}
-                  getProjects={getProjects}
-                  getReviews={getReviews}
-                />
-              )}
-            />
-            <Route path={ROUTES.SIGN_IN} component={SignIn} />
-            <Route path={ROUTES.SIGN_UP} component={SignUp} />
-            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-            <Route
-              path={ROUTES.SEARCH}
-              render={(props) => (
-                <SearchPage
-                  {...props}
-                  users={this.state.users}
-                  projects={this.state.projects}
-                  reviews={this.state.reviews}
-                  projectSearchHandler={this.projectSearchHandler}
-                  userSearchHandler={this.userSearchHandler}
-                  reviewSearchHandler={this.reviewSearchHandler}
-                  getUsers={getUsers}
-                  getProjects={getProjects}
-                  getReviews={getReviews}
-                />
-              )}
-            />
-
-            <RoutesWithData />
-            <Route path={ROUTES.FOOTER} component={Footer} />
-          </div>
-        </div>
-      </Router>
-    );
   }
 }
+
+/* // return (
+    //   <Router>
+    //     <div>
+    //       <Route
+    //       path="/"
+    //       render={(props) => (
+    //         <Navigation {...props} getUsers={getUsers} getProjects={getProjects} getReviews={getReviews}/>
+    //       )}/>
+
+    //       <Header />
+    //       <div className="main-container">
+    //         <Route
+    //           exact
+    //           path={ROUTES.HOME}
+    //           render={(props) => (
+    //             <Home
+    //               {...props}
+    //               projectSearchHandler={this.projectSearchHandler}
+    //               userSearchHandler={this.userSearchHandler}
+    //               reviewSearchHandler={this.reviewSearchHandler}
+    //               getUsers={getUsers}
+    //               getProjects={getProjects}
+    //               getReviews={getReviews}
+    //             />
+    //           )}
+    //         />
+    //         <Route path={ROUTES.SIGN_IN} component={SignIn} />
+    //         <Route path={ROUTES.SIGN_UP} component={SignUp} />
+    //         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+    //         <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+    //         <Route
+    //           path={ROUTES.SEARCH}
+    //           render={(props) => (
+    //             <SearchPage
+    //               {...props}
+    //               users={this.state.users}
+    //               projects={this.state.projects}
+    //               reviews={this.state.reviews}
+    //               projectSearchHandler={this.projectSearchHandler}
+    //               userSearchHandler={this.userSearchHandler}
+    //               reviewSearchHandler={this.reviewSearchHandler}
+    //               getUsers={getUsers}
+    //               getProjects={getProjects}
+    //               getReviews={getReviews}
+    //             />
+    //           )}
+    //         />
+
+    //         <RoutesWithData />
+    //         <Route path={ROUTES.FOOTER} component={Footer} />
+    //       </div>
+    //     </div>
+    //   </Router>
+    // );
+  }
+} */
+// }
 
 // please update your components and Routes as needed
 

@@ -94,7 +94,7 @@ class SignInGithubBase extends Component {
                     {' '}
                     Sign In with Github{' '}
                   </button>{' '}
-                  <div>Loading...</div>
+                  {/* <div>Loading...</div> */}
                   {error && <p> {error.message} </p>}
                 </form>
               );
@@ -116,7 +116,7 @@ class SignInGithubBase extends Component {
                 <div>
                   <form onSubmit={this.onSubmit}>
                     <GithubLoginButton size="35px" onClick={this.onSubmit} />
-                    <div>Loading...</div>
+                    {/* <div>Loading...</div> */}
                     {error && <p> {error.message} </p>}
                   </form>
                   <Modal
