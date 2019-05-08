@@ -3,19 +3,18 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 export const GET_USERS_QUERY = gql`
- {
-  user {
-   id,
-   username,
-   userProfileImages,
-   bio,
-   email
+  {
+    users {
+      id
+      username
+      userProfileImage
+      bio
+      email
+    }
   }
- }
-}`;
-
+`;
 export default () => (
-  <Query query={GET_USER_QUERY} variables={{ username }}>
+  <Query query={GET_USERS_QUERY}>
     {({ loading, data, error }) => {
       if (loading) return <p>Loading...</p>;
       if (error) {
