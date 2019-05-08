@@ -9,6 +9,11 @@
   align-items: center;
   background-color: $alternate-complementing-color;
   height: 100%;
+  .review-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   .header-info {
     display: flex;
     flex-direction: column;

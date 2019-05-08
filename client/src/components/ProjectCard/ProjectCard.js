@@ -150,15 +150,17 @@ class ProjectCard extends React.Component {
                   })}
                 </div>
                 <h2>Reviews:</h2>
-                {this.state.reviews.map((rev) => {
-                  return (
-                    <ReviewCard
-                      key={rev.id}
-                      review={rev}
-                      users={this.props.users}
-                    />
-                  );
-                })}
+                <div className="review-section">
+                  {this.state.reviews.map((rev) => {
+                    return (
+                      <ReviewCard
+                        key={rev.id}
+                        review={rev}
+                        users={this.props.users}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           );
