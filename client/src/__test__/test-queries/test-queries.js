@@ -87,7 +87,7 @@ export const GET_USERS_QUERY = gql`
 
 export const getProjects = gql`
   {
-    projects {
+    projects(first: 2) {
       id
       name
       titleImg
@@ -98,7 +98,19 @@ export const getProjects = gql`
       titleBlurb
       User {
         id
-        username
+        usernameid
+        name
+        titleImg
+        category
+        rating
+        timestamp
+        steps
+        titleBlurb
+        User {
+          id
+          username
+          email
+        }
         email
       }
     }

@@ -3,7 +3,6 @@ import renderer from 'react-test-renderer';
 import { MockedProvider } from 'react-apollo/test-utils';
 import wait from 'waait';
 import Users from './Users';
-import { GET_USERS_QUERY } from '../test-queries/test-queries';
 import { userMocks } from '../data-mocks/data-mocks';
 
 // import jest,
@@ -27,7 +26,6 @@ it('should render loading state initially', () => {
   );
   const tree = component.toJSON();
   expect(tree.children).toContain('Loading...');
-  console.log(component.toTree());
 });
 
 it('should render without error or crash', () => {

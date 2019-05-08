@@ -85,8 +85,14 @@ const projectMocks = [
             titleImg:
               'https://res.cloudinary.com/dv1rhurfd/image/upload/c_scale,w_400/v1555355210/project%20images/doodle-3644073_640.png',
             category: 'random',
-            steps:
-              '[{"type":"img","body":"https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png"},{"type":"text","body":"Bender is great"}]'
+            steps: [
+              {
+                type: 'img',
+                body:
+                  'https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png'
+              },
+              { type: 'text', body: 'Bender is great' }
+            ]
           },
           {
             titleBlurb: 'I hope you like my project',
@@ -102,8 +108,14 @@ const projectMocks = [
             titleImg:
               'https://res.cloudinary.com/dv1rhurfd/image/upload/c_scale,w_400/v1555355210/project%20images/doodle-3644073_640.png',
             category: 'home improvement',
-            steps:
-              '[{"type":"img","body":"https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png"},{"type":"text","body":"Bender is great"}]'
+            steps: [
+              {
+                type: 'img',
+                body:
+                  'https://static.comicvine.com/uploads/scale_medium/11/114183/6665970-%24+%281%29.png'
+              },
+              { type: 'text', body: 'Bender is great' }
+            ]
           }
         ]
       }
