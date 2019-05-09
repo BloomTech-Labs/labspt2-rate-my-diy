@@ -96,28 +96,11 @@ export const GET_PROJECTS = gql`
       timestamp
       steps
       titleBlurb
-      User {
-        id
-        usernameid
-        name
-        titleImg
-        category
-        rating
-        timestamp
-        steps
-        titleBlurb
-        User {
-          id
-          username
-          email
-        }
-        email
-      }
     }
   }
 `;
 
-export const getReviews = gql`
+export const GET_REVIEWS = gql`
   {
     reviews {
       id
@@ -127,20 +110,11 @@ export const getReviews = gql`
       thumbsUp
       thumbsDown
       projRating
-      Author {
-        id
-        username
-        email
-      }
-      ProjectReviewed {
-        id
-        name
-        titleImg
-      }
     }
   }
 `;
 
 module.exports = {
-  GET_USERS_QUERY
+  GET_USERS_QUERY,
+  GET_PROJECTS
 };

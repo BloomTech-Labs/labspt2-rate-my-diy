@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getProjects as GET_PROJECTS } from '../test-queries/test-queries';
+import { GET_PROJECTS } from '../test-queries/test-queries';
 
 export default () => (
   <Query query={GET_PROJECTS}>
