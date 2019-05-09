@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const getUsers = gql`
   
-    {
+    query {
     users {
       id
       username
@@ -23,7 +23,7 @@ export const getUsers = gql`
           username
           email
         }
-        ProjectReviewed @defer{
+        ProjectReviewed @defer {
           id
           name
           timestamp
@@ -119,7 +119,7 @@ export const getUsers = gql`
   }
 `;
 export const getProjects = gql`
-  {
+  query {
     projects {
       id
       name
@@ -139,7 +139,7 @@ export const getProjects = gql`
 `;
 
 export const getReviews = gql`
-  {
+  query {
     reviews {
       id
       name

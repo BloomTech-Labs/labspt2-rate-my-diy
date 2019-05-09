@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from '../Searchbar/Searchbar';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { withAuthentication } from '../Session/session';
-import * as math from 'mathjs';
 import moment from 'moment';
 import Featured from './Featured/Featured';
 import './Home.scss';
