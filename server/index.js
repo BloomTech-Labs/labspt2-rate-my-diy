@@ -1,5 +1,4 @@
 const path = require('path');
-const { GraphQLServer } = require('graphql-yoga');
 const { ApolloServer } = require('apollo-server')
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
 const { prisma } = require('./src/generated/prisma-client');

@@ -23,7 +23,7 @@ export const getUsers = gql`
           username
           email
         }
-        ProjectReviewed @defer {
+        ProjectReviewed {
           id
           name
           timestamp
@@ -50,7 +50,7 @@ export const getUsers = gql`
           email 
         }
       }
-      LikedReviews @defer{
+      LikedReviews {
         id
         name
         text
@@ -63,7 +63,7 @@ export const getUsers = gql`
           username
           email
         }
-        ProjectReviewed @defer{
+        ProjectReviewed {
           id
           name
           timestamp
@@ -76,7 +76,7 @@ export const getUsers = gql`
           }
         }
       }
-      DislikedReviews @defer {
+      DislikedReviews {
         id
         name
         text
@@ -89,7 +89,7 @@ export const getUsers = gql`
           username
           email
         }
-        ProjectReviewed @defer {
+        ProjectReviewed {
           id
           name
           timestamp
@@ -102,7 +102,7 @@ export const getUsers = gql`
           }
         }
       }
-      RatedProjects @defer {
+      RatedProjects {
         id
         name
         timestamp
@@ -127,8 +127,8 @@ export const getProjects = gql`
       category
       rating
       timestamp
-      steps @defer
-      titleBlurb @defer
+      steps 
+      titleBlurb 
       User {
         id
         username
@@ -153,7 +153,7 @@ export const getReviews = gql`
         username
         email
       }
-      ProjectReviewed @defer {
+      ProjectReviewed {
         id
         name
         titleImg
