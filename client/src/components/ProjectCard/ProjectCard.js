@@ -127,7 +127,7 @@ class ProjectCard extends React.Component {
                 Edit
               </button>
               <div className="header-info">
-                <h1>{`oProject Title: ${project.name}`}</h1>
+                <h1>{`xProject Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
                 <p>{`Rating: ${project.rating}`}</p>
                 <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1683,44 +1683,52 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`mProject Title:${project.name}`}</h1>
-                  <p>{`Created By:${project.User.username}`}</p>
-                  <p>{`Rating:${project.rating}`}</p>
-                  <p>{`Date Created${project.timestamp}`}</p>
+                  <button
+                    className="editButton"
+                    onClick={() => {
+                      this.setState({ edit: true });
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <div className="header-info">
+                    <h1>{`xxxProject Title: ${project.name}`}</h1>
+                    <p>{`Created By: ${project.User.username}`}</p>
+                    <p>{`Rating: ${project.rating}`}</p>
+                    <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+                  </div>
+
                   <img
                     className="project-page-image"
                     src={`${project.titleImg}`}
                     alt="project"
                   />
-                  <p>{`${project.titleBlurb}`}</p>
 
-                  <button onClick={this.showMore}>View More</button>
-                  {this.state.showMore ? (
-                    <div>
-                      <h2>Steps:</h2>
+                  <div className="project-step-section">
+                    <h2>Steps:</h2>
+                    <div className="steps-container">
                       {steps.map((step) => {
                         if (step.type === 'img') {
                           return (
                             <img key={step.body} src={step.body} alt="step" />
                           );
                         } else {
-                          return <div key={step.body}>{`${step.body}`}</div>;
+                          return <li key={step.body}>{`${step.body}`}</li>;
                         }
                       })}
-
-                      <h2>Reviews:</h2>
-                      <p>There are currently no reviews.</p>
-
-                      <button
-                        onClick={(e) => {
-                          this.review();
-                        }}
-                      >
-                        Add a review
-                      </button>
-                      <button onClick={this.collapse}>Collapse</button>
                     </div>
-                  ) : null}
+
+                    <h2>Reviews:</h2>
+                    <p>There are currently no reviews.</p>
+
+                    <button
+                      onClick={(e) => {
+                        this.review();
+                      }}
+                    >
+                      Add a review
+                    </button>
+                  </div>
                 </div>
               );
             }
@@ -1733,16 +1741,8 @@ class ProjectCard extends React.Component {
         // not logged in, are reviews, return
         return (
           <div className="project-card-container">
-            <button
-              className="editButton"
-              onClick={() => {
-                this.setState({ edit: true });
-              }}
-            >
-              Edit
-            </button>
             <div className="header-info">
-              <h1>{`eProject Title: ${project.name}`}</h1>
+              <h1>{`yProject Title: ${project.name}`}</h1>
               <p>{`Created By: ${project.User.username}`}</p>
               <p>{`Rating: ${project.rating}`}</p>
               <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1791,16 +1791,8 @@ class ProjectCard extends React.Component {
 
         return (
           <div className="project-card-container">
-            <button
-              className="editButton"
-              onClick={() => {
-                this.setState({ edit: true });
-              }}
-            >
-              Edit
-            </button>
             <div className="header-info">
-              <h1>{`oProject Title: ${project.name}`}</h1>
+              <h1>{`zzProject Title: ${project.name}`}</h1>
               <p>{`Created By: ${project.User.username}`}</p>
               <p>{`Rating: ${project.rating}`}</p>
               <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1812,17 +1804,19 @@ class ProjectCard extends React.Component {
               alt="project"
             />
 
-            <div>
+            <div className="project-step-section">
               <h2>Steps:</h2>
-              {steps.map((step) => {
-                if (step.type === 'img') {
-                  return <img key={step.body} src={step.body} alt="step" />;
-                } else {
-                  return <div key={step.body}>{`${step.body}`}</div>;
-                }
-              })}
-              <h2>Reviews:</h2>
-              <p>There are currently no reviews.</p>
+              <div className="steps-container">
+                {steps.map((step) => {
+                  if (step.type === 'img') {
+                    return <img key={step.body} src={step.body} alt="step" />;
+                  } else {
+                    return <li key={step.body}>{`${step.body}`}</li>;
+                  }
+                })}
+                <h2>Reviews:</h2>
+                <p>There are no reviews yet</p>
+              </div>
               <button
                 onClick={(e) => {
                   this.review();
@@ -1830,7 +1824,6 @@ class ProjectCard extends React.Component {
               >
                 Add a review
               </button>
-              <button onClick={this.collapse}>Collapse</button>
             </div>
           </div>
         );
