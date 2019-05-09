@@ -1,7 +1,7 @@
 const path = require('path');
 const { GraphQLServer } = require('graphql-yoga');
+const { ApolloServer } = require('apollo-server')
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
-const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
 const { stripe } = require('./src/stripe');
@@ -532,9 +532,9 @@ const schema = makePrismaSchema({
   }
 });
 
-const server = new GraphQLServer({
+const server = new ApolloServer({
   schema,
   context: { prisma },
   debug: true
 });
-server.start(() => console.log(`Server is running on http://localhost:4000`));
+server.listen(4000, () => console.log(`Server is running on http://localhost:4000`));

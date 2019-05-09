@@ -49,7 +49,6 @@ class App extends Component {
   };
 
   render() {
-    // const RoutesWithData = () =>
 
     return (
       <Query query={getUsers}>
@@ -74,10 +73,7 @@ class App extends Component {
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews)
                     return (
-                      //   <div>
-
-                      // <span>loading...</span>
-                      // </div>
+                     
                         <Dimmer active inverted>
                           <Loader size="large">Loading</Loader>
                         </Dimmer>

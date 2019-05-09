@@ -108,83 +108,6 @@ class Home extends Component {
   };
 
   render() {
-    // const SearchWithData = () => (
-    //   <Query query={this.props.getUsers}>
-    //     {({ loading: loadingUsers, data: userData, error: userError }) => (
-    //       <Query query={this.props.getProjects}>
-    //         {({
-    //           loading: loadingProjects,
-    //           data: projectData,
-    //           error: projectError
-    //         }) => (
-    //           <Query query={this.props.getReviews}>
-    //             {({
-    //               loading: loadingReviews,
-    //               data: reviewData,
-    //               error: reviewError
-    //             }) => {
-    //               if (loadingUsers || loadingProjects || loadingReviews)
-    //                 return <span>loading...</span>;
-    //               if (userError) {
-    //                 console.log({ userError: userError });
-    //                 return null;
-    //               }
-    //               if (projectError) {
-    //                 console.log({ projectError: projectError });
-    //                 return null;
-    //               }
-    //               if (reviewError) {
-    //                 console.log({ reviewError: reviewError });
-    //                 return null;
-    //               }
-    //               let userArray = [];
-    //               let projectArray = [];
-    //               let reviewArray = [];
-
-    //               if (userData !== undefined)
-    //                 userArray = Object.values(userData).flat();
-
-    //               if (projectData !== undefined)
-    //                 projectArray = Object.values(projectData).flat();
-    //               projectArray = projectArray.map((project) => {
-    //                 if (project.rating.length > 1) {
-    //                   return (project = {
-    //                     ...project,
-    //                     rating: parseFloat(
-    //                       math.mean(project.rating.slice(1)).toFixed(2)
-    //                     )
-    //                   });
-    //                 } else {
-    //                   return (project = {
-    //                     ...project,
-    //                     rating: parseFloat(math.mean(project.rating).toFixed(2))
-    //                   });
-    //                 }
-    //               });
-
-    //               if (reviewData !== undefined)
-    //                 reviewArray = Object.values(reviewData).flat();
-    //               return (
-    //                 <SearchBar
-    //                   {...this.props}
-    //                   userClicked={this.state.userClicked}
-    //                   user={this.state.user}
-    //                   loggedIn={this.state.isLoggedIn}
-    //                   users={userArray}
-    //                   projects={projectArray}
-    //                   reviews={reviewArray}
-    //                   projectSearchHandler={this.props.projectSearchHandler}
-    //                   userSearchHandler={this.props.userSearchHandler}
-    //                   reviewSearchHandler={this.props.reviewSearchHandler}
-    //                 />
-    //               );
-    //             }}
-    //           </Query>
-    //         )}
-    //       </Query>
-    //     )}
-    //   </Query>
-    // );
 
     const projects = this.filterByCurrentMonth(this.props.projectArray)
       .slice(0, 4)
@@ -239,7 +162,6 @@ class Home extends Component {
 
     return (
       <div>
-        {/* <SearchWithData /> */}
         <SearchBar
           {...this.props}
           userClicked={this.state.userClicked}
@@ -255,52 +177,10 @@ class Home extends Component {
 
         <div className="homeContainer">
           <h2 className="projectTitle">Featured Projects</h2>
-          {/* <Query
-            query={gql`
-              {
-                projects {
-                  id
-                  name
-                  titleImg
-                  rating
-                  User {
-                    id
-                    username
-                    email
-                  }
-                  timestamp
-                }
-              }
-            `}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>{`${error}`}</p>;
-              let projectArray = data.projects.map((project) => {
-                if (project.rating.length > 1) {
-                  return (project = {
-                    ...project,
-                    rating: parseFloat(
-                      math.mean(project.rating.slice(1)).toFixed(2)
-                    )
-                  });
-                } else {
-                  return (project = {
-                    ...project,
-                    rating: parseFloat(math.mean(project.rating).toFixed(2))
-                  });
-                }
-              }); */}
-          {/* return ( */}
+          
           <div className="home-card-container">
             {projects.map(({ id, name, titleImg, rating, User }) => {
-              // let meanRating = rating;
-              // if (rating.length > 1)
-              //   meanRating = parseFloat(
-              //     math.mean(rating.slice(1)).toFixed(2)
-              //   );
-              // if (rating.length === 1)
-              //   meanRating = parseFloat(math.mean(rating).toFixed(2));
+              
               return (
                 <Featured
                   key={id}
@@ -314,31 +194,9 @@ class Home extends Component {
               );
             })}
           </div>
-          {/* );  */}
-          {/* }} */}
-          {/* </Query> */}
+         
           <h2>Popular Makers</h2>
-          {/* <Query
-            query={gql`
-              {
-                users(orderBy: username_ASC) {
-                  id
-                  username
-                  userProfileImage
-                  Projects {
-                    rating
-                    timestamp
-                  }
-                }
-              }
-            `}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-
-               */}
-          {/* return ( */}
+          
           <div className="home-card-container">
             {sortedMakers.map(
               ({ id, username, userProfileImage, averageRating }) => (
@@ -352,37 +210,9 @@ class Home extends Component {
               )
             )}
           </div>
-          {/* ); */}
-          {/* }}
-          </Query> */}
+          
           <h2>Popular Reviewers</h2>
-          {/* <Query
-            query={gql`
-              {
-                users(orderBy: username_ASC) {
-                  id
-                  username
-                  email
-                  userProfileImage
-                  ReviewList {
-                    id
-                    name
-                    thumbsUp
-                    timestamp
-                  }
-                }
-              }
-            `}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>; */}
-{/* 
-              const reviews = this.filterByCurrentMonthReviews(data.users);
-
-              console.log({ popReviewers: reviews }); */}
-
-              {/* return ( */}
+          
                 <div className="home-card-container">
                   {reviews
                     .map(
@@ -398,9 +228,7 @@ class Home extends Component {
                     )
                     .slice(0, 8)}
                 </div>
-              {/* ); */}
-            {/* }} */}
-          {/* </Query> */}
+              
         </div>
       </div>
     );
