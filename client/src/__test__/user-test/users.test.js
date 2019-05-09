@@ -1,23 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MockedProvider } from 'react-apollo/test-utils';
-import wait from 'waait';
 import Users from './Users';
 import { userMocks } from '../data-mocks/data-mocks';
 
-// import jest,
-// const renderer = TestRenderer;
-
-// export const GET_USER_QUERY = gql`
-//  query getUser($name: String) {
-//   user: {
-//    id: '',
-//    username: '',
-//    userProfileImage: '',
-//    bio: '',
-//    email: '',
-//   }
-// }`;
 it('should render loading state initially', () => {
   const component = renderer.create(
     <MockedProvider mocks={userMocks}>

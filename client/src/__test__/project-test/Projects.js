@@ -1,8 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
-import { projectMocks } from './data-mocks/data-mocks';
+import { getProjects as GET_PROJECTS } from '../test-queries/test-queries';
 
 export default () => (
   <Query query={GET_PROJECTS}>
@@ -22,7 +21,19 @@ export default () => (
           titleImg,
           category,
           steps
-        }) => <div key={username} />
+        }) => (
+          <div key={id}>
+            <p>{titleBlurb}</p>
+            <p>{name}</p>
+            <p>{timestamp}</p>
+            <p>{id}</p>
+            <p>{rating}</p>
+            <p>{User}</p>
+            <img src={titleImg} />
+            <p>{category}</p>
+            <p>{steps}</p>
+          </div>
+        )
       );
     }}
   </Query>
