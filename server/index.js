@@ -8,6 +8,7 @@ const { stripe } = require('./src/stripe');
 const { stringArg, idArg, intArg, booleanArg } = require('nexus');
 const nodemailer = require('nodemailer');
 const pug = require('pug');
+const port = process.env.PORT || 4000
 
 let transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -537,4 +538,4 @@ const server = new ApolloServer({
   context: { prisma },
   debug: true
 });
-server.listen(4000, () => console.log(`Server is running on http://localhost:4000`));
+server.listen(port, () => console.log(`Server is running on http://localhost:4000`));
