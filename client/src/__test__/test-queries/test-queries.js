@@ -116,5 +116,6 @@ export const GET_REVIEWS = gql`
 
 module.exports = {
   GET_USERS_QUERY,
-  GET_PROJECTS
+  GET_PROJECTS,
+  GET_REVIEWS
 };
