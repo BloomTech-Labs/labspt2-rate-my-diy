@@ -837,14 +837,6 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <button
-                      className="editButton"
-                      onClick={() => {
-                        this.setState({ edit: true });
-                      }}
-                    >
-                      Edit
-                    </button>
                     <div className="header-info">
                       <h1>{`eProject Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
@@ -857,18 +849,19 @@ class ProjectCard extends React.Component {
                       src={`${project.titleImg}`}
                       alt="project"
                     />
-                    <button onClick={this.showMore}>View More</button>
                     <div className="project-step-section">
                       <h2>Steps:</h2>
-                      {steps.map((step) => {
-                        if (step.type === 'img') {
-                          return (
-                            <img key={step.body} src={step.body} alt="step" />
-                          );
-                        } else {
-                          return <div key={step.body}>{`${step.body}`}</div>;
-                        }
-                      })}
+                      <div className="steps-container">
+                        {steps.map((step) => {
+                          if (step.type === 'img') {
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
+                          } else {
+                            return <li key={step.body}>{`${step.body}`}</li>;
+                          }
+                        })}
+                      </div>
 
                       <h2>Reviews:</h2>
                       {this.state.reviews.map((rev) => {
@@ -887,7 +880,6 @@ class ProjectCard extends React.Component {
                       >
                         Add a review
                       </button>
-                      <button onClick={this.collapse}>Collapse</button>
                     </div>
                   </div>
                 );
