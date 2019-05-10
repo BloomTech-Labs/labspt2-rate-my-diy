@@ -1,6 +1,5 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { GET_USERS_QUERY } from '../test-queries/test-queries';
 
 export default () => (
