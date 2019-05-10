@@ -1319,6 +1319,7 @@ class ProjectCard extends React.Component {
                                   className="titleInput"
                                   type="text"
                                   name="name"
+                                  placeHolder="Add Title..."
                                   value={this.state.name}
                                   onChange={this.textChange}
                                 />
@@ -1335,13 +1336,6 @@ class ProjectCard extends React.Component {
                           );
                         }}
                       </Mutation>
-                      <button
-                        onClick={(e) => {
-                          this.review();
-                        }}
-                      >
-                        Add a review
-                      </button>
                     </div>
                   </div>
                 );

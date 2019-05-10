@@ -32,11 +32,13 @@
       width: 100%;
       height: 50px;
       font-size: 2.4rem;
+      border: 3px solid $main-color;
     }
     .reviewBody {
       width: 100%;
       height: 400px;
       font-size: 1.8rem;
+      border: 3px solid $main-color;
     }
   }
   .review-section {
