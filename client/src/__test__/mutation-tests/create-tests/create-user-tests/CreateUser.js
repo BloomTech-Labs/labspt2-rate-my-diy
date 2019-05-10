@@ -7,11 +7,10 @@ export const CREATE_USER = gql`
  mutation createUser(
   $username: String!
   $email: String!
-  # $userProfileImage: String! @default(value: "https://rosieshouse.org/wp-content/uploads/2016/06/avatar-large-square.jpg")
+  $userProfileImage: String! 
   $bio: String!
-  # privilege: String! @default(value: "Plebian")
+  privilege: String! 
   $name: String
-  # $accountType: String! @default(value: "free-tier")
-
+  $accountType: String!
 )
 `;
