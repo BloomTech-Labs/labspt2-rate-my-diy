@@ -12,6 +12,7 @@ it('should render loading state initially', () => {
   );
   const tree = component.toJSON();
   expect(tree.children).toContain('Loading...');
+  console.log(component.toTree());
 });
 
 it('should render without error or crash', () => {
