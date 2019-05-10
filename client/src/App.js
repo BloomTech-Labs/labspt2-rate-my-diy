@@ -71,14 +71,46 @@ class App extends Component {
                   error: reviewError,
                   refetch
                 }) => {
-                  if (loadingUsers || loadingProjects || loadingReviews)
+                  if (loadingUsers || loadingProjects || loadingReviews) {
+                    let userArray = []
+                    let reviewArray = []
+                    let projectArray = []
                     return (
                      
-                        <Dimmer active inverted>
-                          <Loader size="large">Loading</Loader>
-                        </Dimmer>
+                      <>
+                      <Route 
+                      path="/"
+                      render={(props) => (
+                        <Navigation
+                        {...props}
+                        userArray={userArray}/>
+                      )}/>
                       
-                    );
+                     
+                    
+
+                     <Header />
+                     <div className="main-container">
+                       <Route
+                         exact
+                         path={ROUTES.HOME}
+                         render={(props) => (
+                           <Home
+                             {...props}
+                             userArray={userArray}
+                             projectArray={projectArray}
+                             reviewArray={reviewArray}
+                           />
+                         )}
+                       />
+                       <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                    </div>
+                      </>
+                    
+                  );
+                  }
+                    
                   if (userError)
                     return <span>{`userError: ${userError}`}</span>;
                   if (projectError)
@@ -116,17 +148,10 @@ class App extends Component {
                   return (
                     // <div>
                     <>
-                      <Route
-                        path="/"
-                        render={(props) => (
-                          <Navigation
-                            {...props}
-                            getUsers={getUsers}
-                            getProjects={getProjects}
-                            getReviews={getReviews}
-                          />
-                        )}
-                      />
+                      
+                          <Navigation/>
+                       
+                      
 
                       <Header />
                       <div className="main-container">
@@ -327,64 +352,6 @@ class App extends Component {
     );
   }
 }
-
-/* // return (
-    //   <Router>
-    //     <div>
-    //       <Route
-    //       path="/"
-    //       render={(props) => (
-    //         <Navigation {...props} getUsers={getUsers} getProjects={getProjects} getReviews={getReviews}/>
-    //       )}/>
-
-    //       <Header />
-    //       <div className="main-container">
-    //         <Route
-    //           exact
-    //           path={ROUTES.HOME}
-    //           render={(props) => (
-    //             <Home
-    //               {...props}
-    //               projectSearchHandler={this.projectSearchHandler}
-    //               userSearchHandler={this.userSearchHandler}
-    //               reviewSearchHandler={this.reviewSearchHandler}
-    //               getUsers={getUsers}
-    //               getProjects={getProjects}
-    //               getReviews={getReviews}
-    //             />
-    //           )}
-    //         />
-    //         <Route path={ROUTES.SIGN_IN} component={SignIn} />
-    //         <Route path={ROUTES.SIGN_UP} component={SignUp} />
-    //         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-    //         <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-    //         <Route
-    //           path={ROUTES.SEARCH}
-    //           render={(props) => (
-    //             <SearchPage
-    //               {...props}
-    //               users={this.state.users}
-    //               projects={this.state.projects}
-    //               reviews={this.state.reviews}
-    //               projectSearchHandler={this.projectSearchHandler}
-    //               userSearchHandler={this.userSearchHandler}
-    //               reviewSearchHandler={this.reviewSearchHandler}
-    //               getUsers={getUsers}
-    //               getProjects={getProjects}
-    //               getReviews={getReviews}
-    //             />
-    //           )}
-    //         />
-
-    //         <RoutesWithData />
-    //         <Route path={ROUTES.FOOTER} component={Footer} />
-    //       </div>
-    //     </div>
-    //   </Router>
-    // );
-  }
-} */
-// }
 
 // please update your components and Routes as needed
 

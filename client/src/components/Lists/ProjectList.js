@@ -61,7 +61,7 @@ class ProjectList extends React.Component {
                     <div className="project-list-card">
                       <div>
                       <Skeleton count={3}/>
-                          <Skeleton />
+                      <Skeleton />
                         
                       </div>
                     </div>

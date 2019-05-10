@@ -6,8 +6,8 @@ import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { slide as Menu } from 'react-burger-menu';
-import {GET_NAT_USER} from "../components/Account/Account"
-import {withApollo} from "react-apollo";
+import { GET_NAT_USER } from '../components/Account/Account';
+import { withApollo } from 'react-apollo';
 
 import './reactRouter.scss';
 
@@ -33,12 +33,16 @@ export const GET_NATIVE_USER = gql`
 const AuthNavigation = (props) => (
   <AuthUserContext.Consumer>
     {(authUser) =>
-      authUser ? <Navigation authUser={authUser} props={props} /> : <NavigationNonAuth />
+      authUser ? (
+        <Navigation authUser={authUser} props={props} />
+      ) : (
+        <NavigationNonAuth />
+      )
     }
   </AuthUserContext.Consumer>
 );
 
-const Navigation = ({props, authUser}) => {
+const Navigation = ({ props, authUser }) => {
   const thirdPartyUID = authUser.providerData['0'].uid;
   const uid = authUser.uid;
 
@@ -64,32 +68,23 @@ const Navigation = ({props, authUser}) => {
                 let data;
                 if (thirdData.user) data = thirdData;
                 if (nativeData.user) data = nativeData;
+                if (props.userArray) {
+                  return (
+                    <Menu>
+                      <a href={ROUTES.HOME} className="menu-item">
+                        <div>Home</div>
+                      </a>
+
+                      <a id="signOut" href="/" className="menu-item">
+                        <SignOutButton />
+                      </a>
+                    </Menu>
+                  );
+                }
                 return (
                   <Menu>
                     <a href={ROUTES.HOME} className="menu-item">
-                      <div
-                      onMouseOver={() => {
-                        console.log({clprops: props})
-                        return (
-                          props.client.query({
-                            query: props.getUsers
-                          
-                          }),
-
-                          props.client.query({
-                            query: props.getReviews
-                          
-                          }),
-                          props.client.query({
-                            query: props.getProjects
-                          
-                          })
-                          )
-                          // console.log({props: props})
-                        }}
-                        
-                      
-                      >Home</div>
+                      <div>Home</div>
                     </a>
 
                     <a href={'/search'} className="menu-item">
@@ -100,18 +95,7 @@ const Navigation = ({props, authUser}) => {
                       href={`/${data.user.username}/account`}
                       className="menu-item"
                     >
-                      <div
-                      onMouseOver={() => {
-                        console.log({email: data.user.email})
-                        return (props.client.query({
-                          query: GET_NAT_USER,
-                          variables: { email: data.user.email }
-                        }))
-                        // console.log({props: props})
-                      }}
-                      >
-                        My Account
-                        </div>
+                      <div>My Account</div>
                     </a>
 
                     <a

@@ -5,6 +5,7 @@ import LoginPopup from '../LoginPopUp/LoginPopUp';
 import Fuse from 'fuse.js';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 import { RadioGroup, Radio } from 'react-radio-group';
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 import '../../styles/_globals.scss';
 import './Searchbar.scss';
 
@@ -641,188 +642,230 @@ class SearchBar extends Component {
   };
 
   render() {
-    let categories = this.props.projects.map((project) => project.category);
+    let categories = [];
+    if (this.props.projects)
+      categories = this.props.projects.map((project) => project.category);
     let filteredCategories = [...new Set(categories)];
 
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="searchBar">
-            <div className="searchInput">
-              <FontAwesomeIcon icon={faSearch} className="icon" />
+    if (this.props.projects) {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <div className="searchBar">
+              <div className="searchInput">
+                <FontAwesomeIcon icon={faSearch} className="icon" />
+                <input
+                  type="text"
+                  onChange={this.changeHandler}
+                  value={this.state.text}
+                />
+              </div>
+              <input className="searchButton" type="submit" value="Search" />
+            </div>
+            <div className="filterContainer">
+              <div className="searchByContainer">
+                <>
+                  <CheckboxGroup
+                    checkboxDepth={2} // This is needed to optimize the checkbox group
+                    name="options"
+                    className="checkboxGroup"
+                    value={this.state.options}
+                    onChange={this.optionsChanged}
+                  >
+                    <label>
+                      <Checkbox value="user" /> User
+                    </label>
+                    <label>
+                      <Checkbox value="project" /> Project
+                    </label>
+                    <label>
+                      <Checkbox value="review" /> Review
+                    </label>
+                  </CheckboxGroup>
+                </>
+                <>
+                  <select
+                    name="stars"
+                    onChange={this.starChange}
+                    value={this.state.stars}
+                    disabled={this.state.starsDisabled}
+                  >
+                    <option value="0">Stars</option>
+                    <option value="1">1+ Stars</option>
+                    <option value="2">2+ Stars</option>
+                    <option value="3">3+ Stars</option>
+                    <option value="4">4+ Stars</option>
+                    <option value="5">5+ Stars</option>
+                  </select>
+                  <select
+                    name="category"
+                    onChange={this.categoryChange}
+                    value={this.state.category}
+                    disabled={this.state.categoryDisabled}
+                  >
+                    <option value="">Categories</option>
+                    {filteredCategories.map((category) => {
+                      return (
+                        <option
+                          value={category}
+                          key={category}
+                        >{`${category}`}</option>
+                      );
+                    })}
+                  </select>
+                  {this.state.filterDisabled ? (
+                    <button onClick={this.filterOnClick}>Sort</button>
+                  ) : null}
+                </>
+              </div>
+              {!this.state.filterDisabled ? (
+                <div className="filter-options">
+                  <h4>Sort Users:</h4>
+                  <RadioGroup
+                    name="userSort"
+                    className="radioGroup"
+                    selectedValue={this.state.userSort}
+                    onChange={this.userSortChange}
+                  >
+                    <div className="radio">
+                      <Radio
+                        value="alpha"
+                        disabled={this.state.userSortDisabled}
+                      />{' '}
+                      <p>alphabetical</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="revAlpha"
+                        disabled={this.state.userSortDisabled}
+                      />{' '}
+                      <p>reverse alphabetical</p>
+                    </div>
+                  </RadioGroup>
+                  <h4>Sort Projects:</h4>
+                  <RadioGroup
+                    name="projectSort"
+                    className="radioGroup"
+                    selectedValue={this.state.projectSort}
+                    onChange={this.projectSortChange}
+                  >
+                    <div className="radio">
+                      <Radio
+                        value="alpha"
+                        disabled={this.state.projectSortDisabled}
+                      />
+                      {''}
+                      <p>alphabetical</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="revAlpha"
+                        disabled={this.state.projectSortDisabled}
+                      />{' '}
+                      <p>reverse alphabetical</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="highest"
+                        disabled={this.state.projectSortDisabled}
+                      />{' '}
+                      <p>highest rated</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="lowest"
+                        disabled={this.state.projectSortDisabled}
+                      />{' '}
+                      <p>lowest rated</p>
+                    </div>
+                  </RadioGroup>
+                  <h4>Sort Reviews:</h4>
+                  <RadioGroup
+                    name="reviewSort"
+                    className="radioGroup"
+                    selectedValue={this.state.reviewSort}
+                    onChange={this.reviewSortChange}
+                  >
+                    <div className="radio">
+                      <Radio
+                        value="alpha"
+                        disabled={this.state.reviewSortDisabled}
+                      />{' '}
+                      <p>alphabetical</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="revAlpha"
+                        disabled={this.state.reviewSortDisabled}
+                      />{' '}
+                      <p>reverse alphabetical</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="newest"
+                        disabled={this.state.reviewSortDisabled}
+                      />{' '}
+                      <p>newest</p>
+                    </div>
+                    <div className="radio">
+                      <Radio
+                        value="oldest"
+                        disabled={this.state.reviewSortDisabled}
+                      />{' '}
+                      <p>oldest</p>
+                    </div>
+                  </RadioGroup>
+                  <button onClick={this.filterOnClick}>Close</button>
+                </div>
+              ) : null}
+            </div>
+          </form>
+
+          <LoginPopup
+            show={this.state.displayPopUp}
+            closePopUp={this.closePopUp}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <>
+        
+          <form>
+          <SkeletonTheme highlightColor="#6fb3b8">
+            <div className="searchBar">
+              <div className="searchInput">
+                <FontAwesomeIcon icon={faSearch} className="icon" />
+                <div className="skeletonBar">
+                <Skeleton />
+                </div>
+              </div>
+
               <input
-                type="text"
-                onChange={this.changeHandler}
-                value={this.state.text}
+                className="searchButton"
+                type="submit"
+                disabled
+                value="Search"
               />
             </div>
-            <input className="searchButton" type="submit" value="Search" />
-          </div>
-          <div className="filterContainer">
-            <div className="searchByContainer">
-              <>
-                <CheckboxGroup
-                  checkboxDepth={2} // This is needed to optimize the checkbox group
-                  name="options"
-                  className="checkboxGroup"
-                  value={this.state.options}
-                  onChange={this.optionsChanged}
-                >
-                  <label>
-                    <Checkbox value="user" /> User
-                  </label>
-                  <label>
-                    <Checkbox value="project" /> Project
-                  </label>
-                  <label>
-                    <Checkbox value="review" /> Review
-                  </label>
-                </CheckboxGroup>
-              </>
-              <>
-                <select
-                  name="stars"
-                  onChange={this.starChange}
-                  value={this.state.stars}
-                  disabled={this.state.starsDisabled}
-                >
-                  <option value="0">Stars</option>
-                  <option value="1">1+ Stars</option>
-                  <option value="2">2+ Stars</option>
-                  <option value="3">3+ Stars</option>
-                  <option value="4">4+ Stars</option>
-                  <option value="5">5+ Stars</option>
-                </select>
-                <select
-                  name="category"
-                  onChange={this.categoryChange}
-                  value={this.state.category}
-                  disabled={this.state.categoryDisabled}
-                >
-                  <option value="">Categories</option>
-                  {filteredCategories.map((category) => {
-                    return (
-                      <option
-                        value={category}
-                        key={category}
-                      >{`${category}`}</option>
-                    );
-                  })}
-                </select>
-                {this.state.filterDisabled ? (
-                  <button onClick={this.filterOnClick}>Sort</button>
-                ) : null}
-              </>
-            </div>
-            {!this.state.filterDisabled ? (
-              <div className="filter-options">
-                <h4>Sort Users:</h4>
-                <RadioGroup
-                  name="userSort"
-                  className="radioGroup"
-                  selectedValue={this.state.userSort}
-                  onChange={this.userSortChange}
-                >
-                  <div className="radio">
-                    <Radio
-                      value="alpha"
-                      disabled={this.state.userSortDisabled}
-                    />{' '}
-                    <p>alphabetical</p>
+            </SkeletonTheme>
+            <div className="filterContainer">
+              <div className="searchByContainer">
+                <>
+                  <div className="checkboxGroup">
+                    <Skeleton />
                   </div>
-                  <div className="radio">
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.userSortDisabled}
-                    />{' '}
-                    <p>reverse alphabetical</p>
-                  </div>
-                </RadioGroup>
-                <h4>Sort Projects:</h4>
-                <RadioGroup
-                  name="projectSort"
-                  className="radioGroup"
-                  selectedValue={this.state.projectSort}
-                  onChange={this.projectSortChange}
-                >
-                  <div className="radio">
-                    <Radio
-                      value="alpha"
-                      disabled={this.state.projectSortDisabled}
-                    />
-                    {''}
-                    <p>alphabetical</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.projectSortDisabled}
-                    />{' '}
-                    <p>reverse alphabetical</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="highest"
-                      disabled={this.state.projectSortDisabled}
-                    />{' '}
-                    <p>highest rated</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="lowest"
-                      disabled={this.state.projectSortDisabled}
-                    />{' '}
-                    <p>lowest rated</p>
-                  </div>
-                </RadioGroup>
-                <h4>Sort Reviews:</h4>
-                <RadioGroup
-                  name="reviewSort"
-                  className="radioGroup"
-                  selectedValue={this.state.reviewSort}
-                  onChange={this.reviewSortChange}
-                >
-                  <div className="radio">
-                    <Radio
-                      value="alpha"
-                      disabled={this.state.reviewSortDisabled}
-                    />{' '}
-                    <p>alphabetical</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="revAlpha"
-                      disabled={this.state.reviewSortDisabled}
-                    />{' '}
-                    <p>reverse alphabetical</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="newest"
-                      disabled={this.state.reviewSortDisabled}
-                    />{' '}
-                    <p>newest</p>
-                  </div>
-                  <div className="radio">
-                    <Radio
-                      value="oldest"
-                      disabled={this.state.reviewSortDisabled}
-                    />{' '}
-                    <p>oldest</p>
-                  </div>
-                </RadioGroup>
-                <button onClick={this.filterOnClick}>Close</button>
+                </>
+                <>
+                  <Skeleton count={3} />
+                </>
               </div>
-            ) : null}
-          </div>
-        </form>
-
-        <LoginPopup
-          show={this.state.displayPopUp}
-          closePopUp={this.closePopUp}
-        />
-      </div>
-    );
+            </div>
+          </form>
+          
+        </>
+      );
+    }
   }
 }
 

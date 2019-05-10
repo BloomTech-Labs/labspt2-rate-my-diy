@@ -3,6 +3,7 @@ import SearchBar from '../Searchbar/Searchbar';
 import { withAuthentication } from '../Session/session';
 import moment from 'moment';
 import Featured from './Featured/Featured';
+import Skeleton from 'react-loading-skeleton';
 import './Home.scss';
 
 class Home extends Component {
@@ -105,130 +106,163 @@ class Home extends Component {
   };
 
   render() {
+    const projects =
+      this.filterByCurrentMonth(this.props.projectArray)
+        .slice(0, 4)
+        .sort(function(a, b) {
+          return b.rating - a.rating;
+        }) || [];
 
-    const projects = this.filterByCurrentMonth(this.props.projectArray)
-      .slice(0, 4)
-      .sort(function(a, b) {
-        return b.rating - a.rating;
-      });
+    const currentMakers =
+      this.props.userArray
+        .map((user) => {
+          const currentProject = this.filterByCurrentMonth(user.Projects);
 
-    const currentMakers = this.props.userArray
-      .map((user) => {
-        const currentProject = this.filterByCurrentMonth(user.Projects);
-
-        if (currentProject.length === 0) {
-          return null;
-        }
-
-        const rating = currentProject.map((project) => {
-          let meanRating = project.rating;
-          
-          return meanRating;
-        });
-
-        ///Checks for the mode average
-
-        let frequency = {}; // array of frequency.
-        let max = 0; // holds the max frequency.
-        let average; // holds the max frequency element.
-        for (let v in rating) {
-          frequency[rating[v]] = (frequency[rating[v]] || 0) + 1; // increment frequency.
-          if (frequency[rating[v]] > max) {
-            // is this frequency > max so far ?
-            max = frequency[rating[v]]; // update max.
-            average = rating[v]; // update result.
+          if (currentProject.length === 0) {
+            return null;
           }
-        }
 
-        return {
-          id: user.id,
-          username: user.username,
-          userProfileImage: user.userProfileImage,
-          averageRating: average
-        };
-      })
-      .filter((e) => e !== undefined && e !== null);
+          const rating = currentProject.map((project) => {
+            let meanRating = project.rating;
 
-    const sortedMakers = currentMakers
-      .sort(function(a, b) {
-        return b.averageRating - a.averageRating;
-      })
-      .slice(0, 8);
+            return meanRating;
+          });
 
-    const reviews = this.filterByCurrentMonthReviews(this.props.userArray);
+          ///Checks for the mode average
 
-    return (
-      <div>
-        <SearchBar
-          {...this.props}
-          userClicked={this.state.userClicked}
-          user={this.state.user}
-          loggedIn={this.state.isLoggedIn}
-          users={this.props.userArray}
-          projects={this.props.projectArray}
-          reviews={this.props.reviewArray}
-          projectSearchHandler={this.props.projectSearchHandler}
-          userSearchHandler={this.props.userSearchHandler}
-          reviewSearchHandler={this.props.reviewSearchHandler}
-        />
+          let frequency = {}; // array of frequency.
+          let max = 0; // holds the max frequency.
+          let average; // holds the max frequency element.
+          for (let v in rating) {
+            frequency[rating[v]] = (frequency[rating[v]] || 0) + 1; // increment frequency.
+            if (frequency[rating[v]] > max) {
+              // is this frequency > max so far ?
+              max = frequency[rating[v]]; // update max.
+              average = rating[v]; // update result.
+            }
+          }
 
-        <div className="homeContainer">
-          <h2 className="projectTitle">Featured Projects</h2>
-          
-          <div className="home-card-container">
-            {projects.map(({ id, name, titleImg, rating, User }) => {
-              
-              return (
-                <Featured
-                  key={id}
-                  id={id}
-                  image={titleImg}
-                  rating={rating}
-                  title={name}
-                  username={User.username}
-                  clickHandler={this.clickUserHandler}
-                />
-              );
-            })}
+          return {
+            id: user.id,
+            username: user.username,
+            userProfileImage: user.userProfileImage,
+            averageRating: average
+          };
+        })
+        .filter((e) => e !== undefined && e !== null) || [];
+
+    const sortedMakers =
+      currentMakers
+        .sort(function(a, b) {
+          return b.averageRating - a.averageRating;
+        })
+        .slice(0, 8) || [];
+
+    const reviews =
+      this.filterByCurrentMonthReviews(this.props.userArray) || [];
+
+    if (this.props.userArray[0]) {
+      return (
+        <div>
+          <SearchBar
+            {...this.props}
+            userClicked={this.state.userClicked}
+            user={this.state.user}
+            loggedIn={this.state.isLoggedIn}
+            users={this.props.userArray}
+            projects={this.props.projectArray}
+            reviews={this.props.reviewArray}
+            projectSearchHandler={this.props.projectSearchHandler}
+            userSearchHandler={this.props.userSearchHandler}
+            reviewSearchHandler={this.props.reviewSearchHandler}
+          />
+
+          <div className="homeContainer">
+            <h2 className="projectTitle">Featured Projects</h2>
+
+            <div className="home-card-container">
+              {projects.map(({ id, name, titleImg, rating, User }) => {
+                return (
+                  <Featured
+                    key={id}
+                    id={id}
+                    image={titleImg}
+                    rating={rating}
+                    title={name}
+                    username={User.username}
+                    clickHandler={this.clickUserHandler}
+                  />
+                );
+              }) || <Featured />}
+            </div>
+
+            <h2>Popular Makers</h2>
+
+            <div className="home-card-container">
+              {sortedMakers.map(
+                ({ id, username, userProfileImage, averageRating }) => (
+                  <Featured
+                    key={id}
+                    username={username}
+                    image={userProfileImage}
+                    clickHandler={this.clickUserHandler}
+                    rating={averageRating}
+                  />
+                )
+              )}
+            </div>
+
+            <h2>Popular Reviewers</h2>
+
+            <div className="home-card-container">
+              {reviews
+                .map(({ id, username, userProfileImage, thumbsUpTotal }) => (
+                  <Featured
+                    key={id}
+                    username={username}
+                    thumbsUp={thumbsUpTotal}
+                    image={userProfileImage}
+                    clickHandler={this.clickUserHandler}
+                  />
+                ))
+                .slice(0, 8)}
+            </div>
           </div>
-         
-          <h2>Popular Makers</h2>
-          
-          <div className="home-card-container">
-            {sortedMakers.map(
-              ({ id, username, userProfileImage, averageRating }) => (
-                <Featured
-                  key={id}
-                  username={username}
-                  image={userProfileImage}
-                  clickHandler={this.clickUserHandler}
-                  rating={averageRating}
-                />
-              )
-            )}
-          </div>
-          
-          <h2>Popular Reviewers</h2>
-          
-                <div className="home-card-container">
-                  {reviews
-                    .map(
-                      ({ id, username, userProfileImage, thumbsUpTotal }) => (
-                        <Featured
-                          key={id}
-                          username={username}
-                          thumbsUp={thumbsUpTotal}
-                          image={userProfileImage}
-                          clickHandler={this.clickUserHandler}
-                        />
-                      )
-                    )
-                    .slice(0, 8)}
-                </div>
-              
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <SearchBar />
+
+          <div className="homeContainer">
+            <h2 className="projectTitle">Featured Projects</h2>
+
+            <div className="home-card-container">
+              <Featured />
+              <Featured />
+              <Featured />
+            </div>
+
+            <h2>Popular Makers</h2>
+
+            <div className="home-card-container">
+              <Featured />
+              <Featured />
+              <Featured />
+            </div>
+
+            <h2>Popular Reviewers</h2>
+
+            <div className="home-card-container">
+              <Featured />
+              <Featured />
+              <Featured />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

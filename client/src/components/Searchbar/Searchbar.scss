@@ -2,14 +2,19 @@
 
 .searchBar {
   display: flex;
-  padding: 40px 10px;
+  padding-top: 40px;
   flex-wrap: wrap;
+  height: 100px;
+  justify-content: center;
+  align-content: center;
 
   .searchInput {
     border: 2px solid #bdc3c7;
     width: 70%;
+    height: 50px;
     border-radius: 25px;
     padding: 10px;
+    display: inline-flex;
 
     input {
       border: none;
@@ -20,10 +25,14 @@
       box-shadow: none;
       width: 90%;
     }
+
+    .skeletonBar {
+      width: 90%;
+    }
   }
 
   .searchButton {
-    @include custom-button(20%, 10px);
+    @include custom-button(20%, 5px);
   }
 
   @media (max-width: 600px) {
