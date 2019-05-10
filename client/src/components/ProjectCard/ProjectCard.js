@@ -127,7 +127,7 @@ class ProjectCard extends React.Component {
                 Edit
               </button>
               <div className="header-info">
-                <h1>{`xProject Title: ${project.name}`}</h1>
+                <h1>{`QZProject Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
                 <p>{`Rating: ${project.rating}`}</p>
                 <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1198,68 +1198,32 @@ class ProjectCard extends React.Component {
                       <p>{`Rating: ${project.rating}`}</p>
                       <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                     </div>
+
                     <img
                       className="project-page-image"
                       src={`${project.titleImg}`}
                       alt="project"
                     />
-                    <div>
+                    <div className="project-step-section">
                       <h2>Steps:</h2>
-                      {steps.map((step) => {
-                        if (step.type === 'img') {
-                          return (
-                            <img key={step.body} src={step.body} alt="step" />
-                          );
-                        } else {
-                          return <div key={step.body}>{`${step.body}`}</div>;
-                        }
-                      })}
-
-                      <h2>Reviews:</h2>
-                      <p>There are currently no reviews.</p>
+                      <div className="steps-container">
+                        {steps.map((step) => {
+                          if (step.type === 'img') {
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
+                          } else {
+                            return <li key={step.body}>{`${step.body}`}</li>;
+                          }
+                        })}
+                      </div>
                       <Mutation mutation={NEW_REVIEW}>
                         {(newReview, { loading, error, data }) => {
-                          if (loading)
-                            return (
-                              <form>
-                                <h2>New Review</h2>
-                                <h3>Rating:</h3>
-                                <select
-                                  name="stars"
-                                  onChange={this.starChange}
-                                  value={this.state.stars}
-                                  disabled
-                                >
-                                  <option value="0">Rating</option>
-                                  <option value="1">1 star</option>
-                                  <option value="2">2 stars</option>
-                                  <option value="3">3 stars</option>
-                                  <option value="4">4 stars</option>
-                                  <option value="5">5 stars</option>
-                                </select>
-
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                  disabled
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                  disabled
-                                />
-                                <span>Submitting your review...</span>
-                              </form>
-                            );
+                          if (loading) return <h1>Loading...</h1>;
                           if (error) {
                             console.log({ revError: error });
                             return (
-                              <form>
+                              <form className="reviewForm">
                                 <h2>New Review</h2>
                                 <h3>Rating:</h3>
                                 <select
@@ -1305,6 +1269,7 @@ class ProjectCard extends React.Component {
 
                           return (
                             <form
+                              className="addReviewForm"
                               onSubmit={async (e) => {
                                 e.preventDefault();
                                 const date = await new Date(Date.now());
@@ -1333,35 +1298,39 @@ class ProjectCard extends React.Component {
                                 });
                               }}
                             >
-                              <h2>New Review</h2>
-                              <h3>Rating:</h3>
-                              <select
-                                name="stars"
-                                onChange={this.starChange}
-                                value={this.state.stars}
-                              >
-                                <option value="0">Rating</option>
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                              </select>
+                              <div className="addReviewSection">
+                                <h2>New Review</h2>
+                                <h3>Rating:</h3>
+                                <select
+                                  name="stars"
+                                  onChange={this.starChange}
+                                  value={this.state.stars}
+                                >
+                                  <option value="0">Rating</option>
+                                  <option value="1">1 star</option>
+                                  <option value="2">2 stars</option>
+                                  <option value="3">3 stars</option>
+                                  <option value="4">4 stars</option>
+                                  <option value="5">5 stars</option>
+                                </select>
 
-                              <h3>Title:</h3>
-                              <input
-                                type="text"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.textChange}
-                              />
-                              <h3>Body:</h3>
-                              <textarea
-                                name="text"
-                                value={this.state.text}
-                                onChange={this.textChange}
-                              />
-                              <button type="submit">Submit</button>
+                                <h3>Title:</h3>
+                                <input
+                                  className="titleInput"
+                                  type="text"
+                                  name="name"
+                                  value={this.state.name}
+                                  onChange={this.textChange}
+                                />
+                                <h3>Body:</h3>
+                                <textarea
+                                  name="text"
+                                  value={this.state.text}
+                                  onChange={this.textChange}
+                                  className="reviewBody"
+                                />
+                                <button type="submit">Submit</button>
+                              </div>
                             </form>
                           );
                         }}

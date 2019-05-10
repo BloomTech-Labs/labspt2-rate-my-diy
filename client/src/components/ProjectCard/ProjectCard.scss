@@ -3,12 +3,42 @@
 .project-card-container {
   border: 3px solid black;
   box-shadow: 5px 5px 20px;
+  margin: auto;
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
   background-color: $alternate-complementing-color;
   height: 100%;
+  .addReviewForm {
+    width: 100%;
+  }
+  .addReviewSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    h3 {
+      color: $main-color;
+    }
+    select {
+      width: 100px;
+      height: 30px;
+      font-size: 1.4rem;
+      color: $color2;
+    }
+    .titleInput {
+      width: 100%;
+      height: 50px;
+      font-size: 2.4rem;
+    }
+    .reviewBody {
+      width: 100%;
+      height: 400px;
+      font-size: 1.8rem;
+    }
+  }
   .review-section {
     display: flex;
     flex-direction: row;
@@ -69,7 +99,7 @@
 }
 
 .steps-container {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   h2 {
@@ -86,5 +116,6 @@
     margin: 10px 0 10px 0;
     font-size: 2.4rem;
     color: $color2;
+    text-align: center;
   }
 }
