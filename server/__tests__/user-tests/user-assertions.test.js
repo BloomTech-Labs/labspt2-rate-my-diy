@@ -14,6 +14,27 @@ describe('Testing schema, Query', () => {
   beforeAll(() => {
     tester = new EGQLT(schema);
   });
+  describe('Should pass if the root level query is valid.', () => {
+    it('Valid query getUsers', () => {
+      const validQuery = `
+ {
+  users {
+   id
+   thirdPartyUID
+   firebaseUID
+   username
+   email
+   userProfileImage
+   bio
+   privilege
+   stripeId
+   accountType
+  }
+ }
+`;
+      tester.test(true, validQuery);
+    });
+  });
   describe('Should pass if the root level query is invalid', () => {
     it('Invalid query getUsers', () => {
       const invalidQuery = `
@@ -39,27 +60,6 @@ describe('Testing schema, Query', () => {
      }
     `;
       tester.test(false, invalidQuery);
-    });
-    descibe('Should pass if root level query is valid.', () => {
-      it('Valid query getUsers', () => {
-        const validQuery = `
-     {
-      users {
-       id
-       thirdPartyUID
-       firebaseUID
-       username
-       email
-       userProfileImage
-       bio
-       privilege
-       stripeId
-       accountType
-      }
-     }
-    `;
-        tester.test(true, validQuery);
-      });
     });
   });
 });
