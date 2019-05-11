@@ -3,7 +3,6 @@ import SearchBar from '../Searchbar/Searchbar';
 import { withAuthentication } from '../Session/session';
 import moment from 'moment';
 import Featured from './Featured/Featured';
-import Skeleton from 'react-loading-skeleton';
 import './Home.scss';
 
 class Home extends Component {

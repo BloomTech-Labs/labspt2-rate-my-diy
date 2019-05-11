@@ -6,7 +6,7 @@ import * as math from 'mathjs';
 import plus from '../../img/plus.png';
 import moment from 'moment';
 import star from '../../img/star.png';
-import Skeleton from 'react-loading-skeleton';
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 
 import './ProjectList.scss';
 

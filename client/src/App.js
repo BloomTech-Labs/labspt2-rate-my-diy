@@ -23,7 +23,6 @@ import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
 import Header from './components/Home/Header/Header';
 import * as math from 'mathjs';
-import { Dimmer, Loader} from 'semantic-ui-react';
 
 class App extends Component {
   constructor() {
@@ -34,7 +33,6 @@ class App extends Component {
       reviews: []
     };
   }
-
 
   projectSearchHandler = (projects) => {
     this.setState({ projects });
@@ -49,7 +47,7 @@ class App extends Component {
   };
 
   render() {
-
+    console.log({props: this.props})
     return (
       <Query query={getUsers}>
         {({
@@ -72,45 +70,167 @@ class App extends Component {
                   refetch
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews) {
-                    let userArray = []
-                    let reviewArray = []
-                    let projectArray = []
+                    let userArray = [];
+                    let reviewArray = [];
+                    let projectArray = [];
                     return (
-                     
                       <>
-                      <Route 
-                      path="/"
-                      render={(props) => (
-                        <Navigation
-                        {...props}
-                        userArray={userArray}/>
-                      )}/>
-                      
-                     
-                    
+                        <Route
+                          path="/"
+                          render={(props) => (
+                            <Navigation {...props} userArray={userArray} />
+                          )}
+                        />
 
-                     <Header />
-                     <div className="main-container">
-                       <Route
-                         exact
-                         path={ROUTES.HOME}
-                         render={(props) => (
-                           <Home
-                             {...props}
-                             userArray={userArray}
-                             projectArray={projectArray}
-                             reviewArray={reviewArray}
-                           />
-                         )}
-                       />
-                       <Route path={ROUTES.SIGN_IN} component={SignIn} />
-                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                    </div>
+                        <Header />
+                        <div className="main-container">
+                          <Route
+                            exact
+                            path={ROUTES.HOME}
+                            render={(props) => (
+                              <Home
+                                {...props}
+                                userArray={userArray}
+                                projectArray={projectArray}
+                                reviewArray={reviewArray}
+                              />
+                            )}
+                          />
+                          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                          <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                          <Route
+                          path={ROUTES.PASSWORD_FORGET}
+                          component={PasswordForget}
+                        />
+                        <Route
+                          path={ROUTES.PASSWORD_CHANGE}
+                          component={PasswordChange}
+                        />
+                        <Route
+                          path={ROUTES.SEARCH}
+                          render={(props) => (
+                            <SearchPage
+                              {...props}
+                              userArray={userArray}
+                            />
+                          )}
+                        />
+
+                        <div>
+                          <Route
+                            exact
+                            path={ROUTES.CREATE_PROJECT}
+                            render={(props) => {
+                              return (
+                                <CreateProject
+                                  {...props}
+                                  projects={projectArray}
+                                  users={userArray}
+                                />
+                              );
+                            }}
+                          />
+
+                              
+                                <Route
+                                  exact
+                                  path={"/:username/profile"}
+                                  render={(props) => {
+                                    return (
+                                      <Profile
+                                        {...props}
+                                        users={userArray}
+                                        refetch={userRefetch}
+                                      />
+                                    )
+                                  }}
+                                />
+                               
+                                <Route
+                                  exact
+                                  path={"/:username/projects"}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectList
+                                        {...props}
+                                        projects={projectArray}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/:username/reviews"}
+                                  render={(props) => {
+                                    return (
+                                      <ReviewList
+                                        {...props}
+                                        users={userArray}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/:username/account"}
+                                  render={(props) => (
+                                    <Account
+                                      {...props}
+                                    />
+                                  )}
+                                />
+                            
+                         
+                              
+                                <Route
+                                  exact
+                                  path={"/projects/:projID"}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectCard
+                                        {...props}
+                                        users={userArray}
+                                        refetch={refetch}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/projects/:projID/edit"}
+                                  render={(props) => {
+                                    return (
+                                      <EditProject
+                                        {...props}
+                                        projects={projectArray}
+                                        users={userArray}
+                                      />
+                                    );
+                                  }}
+                                />
+
+                          
+                              <Route
+                                exact
+                                path={"/reviews/:revID"}
+                                render={(props) => {
+                                  return (
+                                    <ReviewCard
+                                      {...props}
+                                      users={userArray}
+                                      refetch={userRefetch}
+                                    />
+                                  );
+                                }}
+                              />
+                            
+                        </div>
+                        <Route path={ROUTES.FOOTER} component={Footer} />
+                        </div>
                       </>
-                    
-                  );
+                    );
                   }
-                    
+
                   if (userError)
                     return <span>{`userError: ${userError}`}</span>;
                   if (projectError)
@@ -148,10 +268,7 @@ class App extends Component {
                   return (
                     // <div>
                     <>
-                      
-                          <Navigation/>
-                       
-                      
+                      <Navigation />
 
                       <Header />
                       <div className="main-container">

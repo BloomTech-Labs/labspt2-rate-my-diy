@@ -1,5 +1,6 @@
 const path = require('path');
 const { ApolloServer } = require('apollo-server')
+import { GraphQLServer } from 'graphql-yoga'
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
@@ -7,7 +8,6 @@ const { stripe } = require('./src/stripe');
 const { stringArg, idArg, intArg, booleanArg } = require('nexus');
 const nodemailer = require('nodemailer');
 const pug = require('pug');
-const port = process.env.PORT || 4000
 
 let transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -181,7 +181,7 @@ const Mutation = prismaObjectType({
         ];
         let avatar = avatars[Math.floor(Math.random() * avatars.length)];
         const template = compiledFunction({
-          name: username
+          username: username
         });
         mailOptions = {
           from: 'ratemydiyproject@gmail.com', // sender address
@@ -532,9 +532,9 @@ const schema = makePrismaSchema({
   }
 });
 
-const server = new ApolloServer({
+const server = new GraphQLServer({
   schema,
   context: { prisma },
   debug: true
 });
-server.listen(port, () => console.log(`Server is running on http://localhost:4000`));
+server.start(() => console.log(`Server is running on http://localhost:4000`));
