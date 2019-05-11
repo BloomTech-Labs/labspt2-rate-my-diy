@@ -5,6 +5,7 @@ import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
 import { UPDATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
+import './EditProject.scss';
 
 class EditProject extends Component {
   constructor(props) {
@@ -248,16 +249,18 @@ class EditProject extends Component {
       typeof this.state.project.steps === 'object'
     ) {
       return (
-        <div className="projectInfo">
-          <form>
+        <div className="projectInfoEdit">
+          <form className="projectEditForm">
             <h1>{`Edit ${this.state.project.name}`}</h1>
-            <h2>project name:</h2>
+            <div className="project-Flex">
+            <h2>Project Title:</h2>
             <input
               type="text"
               name="name"
               value={this.state.project.name}
               onChange={this.textChange}
-            />
+              />
+              </div>
             <h2>main image:</h2>
             <div>
               <img src={this.state.project.titleImg} alt="main" />
