@@ -14,7 +14,7 @@ describe('Testing schema, Query', () => {
   beforeAll(() => {
     tester = new EGQLT(schema);
   });
-  describe('Should pass if the root level query is valid.', () => {
+  describe('Should pass if the root level user query is valid.', () => {
     it('Valid query getUsers', () => {
       const validQuery = `
  {
@@ -35,7 +35,7 @@ describe('Testing schema, Query', () => {
       tester.test(true, validQuery);
     });
   });
-  describe('Should pass if the root level query is invalid', () => {
+  describe('Should pass if the root level user query is invalid', () => {
     it('Invalid query getUsers', () => {
       const invalidQuery = `
      {
@@ -62,4 +62,81 @@ describe('Testing schema, Query', () => {
       tester.test(false, invalidQuery);
     });
   });
+
+  describe('Should pass if the nested user query is valid.', () => {
+    it('Valid Query', () => {
+      const validNestedUserQuery = `
+   {
+    users {
+      id
+      username
+      userProfileImage
+      bio
+      email
+      RatedProjects {
+        id
+      }
+      ReviewList {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
+      LikedReviews {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
+      DislikedReviews {
+        id
+        name
+        text
+        timestamp
+        thumbsUp
+        thumbsDown
+        Author {
+          id
+          username
+          email
+        }
+        ProjectReviewed {
+          id
+          name
+          titleImg
+        }
+      }
+    }
+  }`;
+      tester.test(true, validNestedUserQuery);
+    });
+  });
+
+  // describe('Should pass if the nested user query is invalid.', () => {
+  //  it('', () => {});
+  // });
 });
