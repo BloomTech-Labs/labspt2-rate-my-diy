@@ -2,9 +2,10 @@
 const EGQLT = require('easygraphql-tester');
 const fs = require('fs');
 const path = require('path');
+
 const { expect } = require('chai');
 const schema = fs.readFileSync(
-  path.join(__dirname, '..', '.../../../schema.graphql'),
+  path.join(__dirname, '..', '../../server/__tests__/mock-schema.graphql'),
   'utf8'
 );
 
@@ -13,7 +14,7 @@ describe('Testing schema, Query', () => {
   beforeAll(() => {
     tester = new EGQLT(schema);
   });
-  describe('Should pass if the query is invalid', () => {
+  describe('Should pass if the root level query is invalid', () => {
     it('Invalid query getUsers', () => {
       const invalidQuery = `
      {
@@ -37,6 +38,28 @@ describe('Testing schema, Query', () => {
       }
      }
     `;
+      tester.test(false, invalidQuery);
+    });
+    descibe('Should pass if root level query is valid.', () => {
+      it('Valid query getUsers', () => {
+        const validQuery = `
+     {
+      users {
+       id
+       thirdPartyUID
+       firebaseUID
+       username
+       email
+       userProfileImage
+       bio
+       privilege
+       stripeId
+       accountType
+      }
+     }
+    `;
+        tester.test(true, validQuery);
+      });
     });
   });
 });
