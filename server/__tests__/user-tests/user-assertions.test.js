@@ -136,6 +136,80 @@ describe('Testing schema, Query', () => {
     });
   });
 
+  describe('Should pass if the nested user query is invalid.', () => {
+    it('Invalid Query', () => {
+      const invalidNestedUserQuery = `
+  {
+   users {
+     id
+     username
+     invalidField
+     userProfileImage
+     bio
+     email
+     RatedProjects {
+       id
+     }
+     ReviewList {
+       id
+       name
+       text
+       timestamp
+       thumbsUp
+       thumbsDown
+       Author {
+         id
+         username
+         email
+       }
+       ProjectReviewed {
+         id
+         name
+         titleImg
+       }
+     }
+     LikedReviews {
+       id
+       name
+       text
+       timestamp
+       thumbsUp
+       thumbsDown
+       Author {
+         id
+         username
+         email
+       }
+       ProjectReviewed {
+         id
+         name
+         titleImg
+       }
+     }
+     DislikedReviews {
+       id
+       name
+       text
+       timestamp
+       thumbsUp
+       thumbsDown
+       Author {
+         id
+         username
+         email
+       }
+       ProjectReviewed {
+         id
+         name
+         titleImg
+       }
+     }
+   }
+ }`;
+      tester.test(false, invalidNestedUserQuery);
+    });
+  });
+
   // describe('Should pass if the nested user query is invalid.', () => {
   //  it('', () => {});
   // });
