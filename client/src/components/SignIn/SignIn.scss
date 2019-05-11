@@ -1,72 +1,79 @@
 @import '../../styles/variables';
 
 .signInWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%;
-  height: 70vh;
-  .thirdPartyButtons {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+  height: 100%;
+  border: 2px solid orange;
+	.thirdPartyButtons {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-  }
+    // border: 2px solid red;
+	}
 }
 
 .signInSection {
-  h1 {
-    margin-bottom: 20px;
-    font-size: 3rem;
+	h1 {
+		margin-bottom: 20px;
+		font-size: 3rem;
     color: $main-color;
-  }
-  width: 35%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    // border: 2px solid blue;
+	}
+	width: 45%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
   border: 1px solid darkgray;
-  .forgotPassword {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 70%;
-    margin: 10px;
-    a {
-      font-size: 1.4rem;
-      &:hover {
-        color: $main-color;
-      }
-    }
-  }
+	.forgotPassword {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 70%;
+		margin: 10px;
+		a {
+			font-size: 1.4rem;
+			&:hover {
+				color: $main-color;
+			}
+		}
+	}
 }
 
 .signInForm {
-  width: 45%;
-  input {
-    height: 35px;
-    margin-bottom: 5px;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid black;
-    box-shadow: 2px 2px black;
-    font-size: 1.4rem;
-  }
-  display: flex;
+	width: 45%;
+	input {
+		height: 35px;
+		margin-bottom: 5px;
+		width: 100%;
+		padding: 5px;
+		border-radius: 5px;
+		border: 1px solid black;
+		box-shadow: 2px 2px black;
+		font-size: 1.4rem;
+	}
+	display: flex;
   flex-direction: column;
-  button {
-    width: 80px;
-    border-radius: 5px;
-    height: 30px;
-    margin-top: 7px;
-    font-size: 1.4rem;
-    color: black;
+  align-items: center;
+  // border: 2px solid green;
+	button {
+		width: 80px;
+		border-radius: 5px;
+		height: 30px;
+		margin-top: 7px;
+		font-size: 1.2rem;
+		color: black;
     box-shadow: 2px 2px black;
-  }
+	}
 }
