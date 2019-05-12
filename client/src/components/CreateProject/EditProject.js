@@ -279,7 +279,13 @@ class EditProject extends Component {
 													value={step.body}
 													onChange={this.textChangeHandler(idx)}
 												/>
-												<div className="buttonSection">
+												
+											</div>
+										);
+									}
+								})}
+							</div>
+              <div className="buttonSection">
 													{/* <button
 														type="button"
 														onClick={this.removeTextStep(idx)}
@@ -296,11 +302,6 @@ class EditProject extends Component {
 													</button>
 													<button onClick={this.openCloudinary}>Add Picture</button>
 												</div>
-											</div>
-										);
-									}
-								})}
-							</div>
 						</div>
 						<button onClick={this.finalize}>Finalize</button>
 						
