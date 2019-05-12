@@ -280,13 +280,13 @@ class EditProject extends Component {
 													onChange={this.textChangeHandler(idx)}
 												/>
 												<div className="buttonSection">
-													<button
+													{/* <button
 														type="button"
 														onClick={this.removeTextStep(idx)}
 														className="small"
 													>
 														Delete This Step
-													</button>
+													</button> */}
 													<button
 														type="button"
 														onClick={this.handleAddStep}
@@ -331,7 +331,7 @@ class EditProject extends Component {
 						if (data) return <Redirect to={`/${this.state.username}/projects`} />;
 						return (
 							<div className="projectInfo">
-								<form
+								<form className="projectEditForm"
 									onSubmit={(e) => {
 										e.preventDefault();
 
@@ -350,7 +350,7 @@ class EditProject extends Component {
 									}}
 								>
 									<div className="projectInfoEdit">
-										<form className="projectEditForm">
+										
 											<h1>{`Edit ${this.state.project.name}`}</h1>
 											<div className="project-Flex">
 												<h2>Project Title:</h2>
@@ -424,7 +424,7 @@ class EditProject extends Component {
 												</button>
                       )}
                     
-										</form>
+					
                     
 									</div>
 								</form>
