@@ -219,6 +219,9 @@ describe('Create Project Mutation', () => {
      titleBlurb: "test",
      rating: [0, 0],
      steps: "test"
+     User: {
+      username: "test"
+     }
     })
     {
      id
@@ -229,8 +232,26 @@ describe('Create Project Mutation', () => {
      titleBlurb
      rating
      steps
+     User {
+      username
+     }
     }
   }
   `;
+    const tester = new EGQLT(schema);
+    tester.test(true, mutation, [
+      {
+        name: 'test',
+        category: 'test',
+        timestamp: 'test',
+        titleImg: 'test',
+        titleBlurb: 'test',
+        rating: [0, 0],
+        steps: 'test',
+        User: {
+          username: 'test'
+        }
+      }
+    ]);
   });
 });
