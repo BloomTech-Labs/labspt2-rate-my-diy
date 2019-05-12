@@ -35,7 +35,7 @@ describe('Testing schema, Query', () => {
       tester.test(true, validQuery);
     });
   });
-  describe('Should pass if the root level user query is invalid', () => {
+  describe('Should pass iff the root level user query is invalid', () => {
     it('Invalid query getUsers', () => {
       const invalidQuery = `
      {
@@ -136,7 +136,7 @@ describe('Testing schema, Query', () => {
     });
   });
 
-  describe('Should pass if the nested user query is invalid.', () => {
+  describe('Should pass iff the nested user query is invalid.', () => {
     it('Invalid Query', () => {
       const invalidNestedUserQuery = `
   {
@@ -214,3 +214,42 @@ describe('Testing schema, Query', () => {
   //  it('', () => {});
   // });
 });
+
+// describe('Testing schema, Mutation', () => {
+// it('Should pass if the mutation input is valid', () => {
+const createUserMutation = `
+   mutation createUser($User: UserCreateInput!) {
+    createUser(user: $User) {
+     id
+     thirdPartyUID
+     firebaseUID
+     username
+     email
+     userProfileImage
+     bio
+     privilege
+     stripeId
+     accountType
+    }
+   }
+  `;
+
+const User = {
+  user: {
+    username: 'test',
+    id: 'test',
+    thirdPartyUID: 'test',
+    firebaseUID: 'test',
+    email: 'test',
+    userProfileImage: 'test'
+  }
+};
+// tester.test(true, createUserMutation, {
+//  user: {
+//   id: "cjunieium00u50793jx6b78i5",
+//   username: "test-user",
+
+//  }
+// })
+// })
+// })
