@@ -127,7 +127,7 @@ class ProjectCard extends React.Component {
                 Edit
               </button>
               <div className="header-info">
-                <h1>{`QZProject Title: ${project.name}`}</h1>
+                <h1>{`Project Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
                 <p>{`Rating: ${project.rating}`}</p>
                 <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -838,7 +838,7 @@ class ProjectCard extends React.Component {
                 return (
                   <div className="project-card-container">
                     <div className="header-info">
-                      <h1>{`eProject Title: ${project.name}`}</h1>
+                      <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
                       <p>{`Rating: ${project.rating}`}</p>
                       <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -889,7 +889,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`fProject Title:${project.name}`}</h1>
+                  <h1>{`Project Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -956,7 +956,7 @@ class ProjectCard extends React.Component {
                 Edit
               </button>
               <div className="header-info">
-                <h1>{`gProject Title: ${project.name}`}</h1>
+                <h1>{`Project Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
                 <p>{`Rating: ${project.rating}`}</p>
                 <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -999,7 +999,7 @@ class ProjectCard extends React.Component {
 
                 return (
                   <div className="project-card-container">
-                    <h1>{`hProject Title:${project.name}`}</h1>
+                    <h1>{`Project Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
                     <p>{`Rating:${project.rating}`}</p>
                     <p>{`Date Created${project.timestamp}`}</p>
@@ -1193,7 +1193,7 @@ class ProjectCard extends React.Component {
                 return (
                   <div className="project-card-container">
                     <div className="header-info">
-                      <h1>{`QProject Title: ${project.name}`}</h1>
+                      <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
                       <p>{`Rating: ${project.rating}`}</p>
                       <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1345,7 +1345,7 @@ class ProjectCard extends React.Component {
 
               return (
                 <div className="project-card-container">
-                  <h1>{`jProject Title:${project.name}`}</h1>
+                  <h1>{`Project Title:${project.name}`}</h1>
                   <p>{`Created By:${project.User.username}`}</p>
                   <p>{`Rating:${project.rating}`}</p>
                   <p>{`Date Created${project.timestamp}`}</p>
@@ -1595,7 +1595,7 @@ class ProjectCard extends React.Component {
                 return (
                   <div className="project-card-container">
                     <div className="header-info">
-                      <h1>{`lProject Title: ${project.name}`}</h1>
+                      <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
                       <p>{`Rating: ${project.rating}`}</p>
                       <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1647,7 +1647,7 @@ class ProjectCard extends React.Component {
                     Edit
                   </button>
                   <div className="header-info">
-                    <h1>{`xxxProject Title: ${project.name}`}</h1>
+                    <h1>{`Project Title: ${project.name}`}</h1>
                     <p>{`Created By: ${project.User.username}`}</p>
                     <p>{`Rating: ${project.rating}`}</p>
                     <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1697,7 +1697,7 @@ class ProjectCard extends React.Component {
         return (
           <div className="project-card-container">
             <div className="header-info">
-              <h1>{`yProject Title: ${project.name}`}</h1>
+              <h1>{`Project Title: ${project.name}`}</h1>
               <p>{`Created By: ${project.User.username}`}</p>
               <p>{`Rating: ${project.rating}`}</p>
               <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
@@ -1747,7 +1747,7 @@ class ProjectCard extends React.Component {
         return (
           <div className="project-card-container">
             <div className="header-info">
-              <h1>{`zzProject Title: ${project.name}`}</h1>
+              <h1>{`Project Title: ${project.name}`}</h1>
               <p>{`Created By: ${project.User.username}`}</p>
               <p>{`Rating: ${project.rating}`}</p>
               <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
