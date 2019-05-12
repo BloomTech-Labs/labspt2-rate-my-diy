@@ -262,12 +262,19 @@ describe('Create User Mutation', () => {
 describe('Delete User Mutation', () => {
   it('Should delete a user given unique input.', () => {
     const mutation = `
-   mutation deleteUser {
-    deleteUser(where {id: ""}) {
-     
+   mutation deleteUser($username: String!) {
+    deleteUser(where: {username: $username}) {
+     username
+     id
     }
-   }
-  
+   } 
   `;
+    const username = {
+      username: 'test'
+    };
+    const tester = new EGQLT(schema);
+    const {
+      data: { deleteUser }
+    } = tester.mock({ query: mutation, variables: username });
   });
 });
