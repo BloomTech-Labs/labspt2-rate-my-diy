@@ -209,62 +209,56 @@ describe('Testing schema, Query', () => {
       tester.test(false, invalidNestedUserQuery);
     });
   });
-
-  // describe('Should pass if the nested user query is invalid.', () => {
-  //  it('', () => {});
-  // });
 });
 
-// describe('Testing schema, Mutation', () => {
-// it('Should pass if the mutation input is valid', () => {
-//  const User = {
-// {data:   User: {
-//      username: 'test',
-//      thirdPartyUID: 'test',
-//      firebaseUID: 'test',
-//      email: 'test',
-//      userProfileImage: 'test',
-//      bio: 'test',
-//      privilege: 'test',
-//      stripeId: 'test',
-//      accountType: 'test',
-//    }
-//   }
-//  };
+describe('Create User Mutation', () => {
+  it('createUser should return a properly shaped user object.', () => {
+    const mutation = `
+       mutation createUser {
+         createUser(data: 
+          {
+          username: "test",
+          thirdPartyUID: "test",
+          firebaseUID: "test",
+          email: "test",
+          userProfileImage: "test",
+          bio: "test",
+          privilege: "test",
+          stripeId: "test",
+          accountType: "test"
+         })
+         {
+          id
+          username
+          thirdPartyUID
+          firebaseUID
+          email
+          userProfileImage
+          bio
+          privilege
+          stripeId
+          accountType
+         }
+       }
+      `;
+    const tester = new EGQLT(schema);
+    tester.test(true, mutation, [
+      {
+        username: 'test',
+        thirdPartyUID: 'test',
+        firebaseUID: 'test',
+        email: 'test',
+        userProfileImage: 'test',
+        bio: 'test',
+        privilege: 'test',
+        stripeId: 'test',
+        accountType: 'test'
+      }
+    ]);
+  });
+});
 
-const input = {
-  data: {
-    User: {
-      username: 'test',
-      thirdPartyUID: 'test',
-      firebaseUID: 'test',
-      email: 'test',
-      userProfileImage: 'test',
-      bio: 'test',
-      privilege: 'test',
-      stripeId: 'test',
-      accountType: 'test'
-    }
-  }
-};
-
-const mutation = `
-   mutation createUser($input: UserCreateInput!) {
-    createUser(input: $input) {
-     thirdPartyUID
-     firebaseUID
-     username
-     email
-     userProfileImage
-     bio
-     privilege
-     stripeId
-     accountType
-    }
-   }
-  `;
-
-const testfn = new EGQLT(schema);
-const {
-  data: { createUser }
-} = testfn.mock({ query: mutation, variables: input });
+// const { data: { createUser } } = testfn.mock({
+// 	query: mutation,
+// 	variables: input
+// });
