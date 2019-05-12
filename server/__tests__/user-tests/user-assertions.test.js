@@ -278,3 +278,28 @@ describe('Delete User Mutation', () => {
     } = tester.mock({ query: mutation, variables: username });
   });
 });
+
+describe('Update User Mutation', () => {
+  it('Should update a user given unique input.', () => {
+    const mutation = ` 
+   mutation updateUser(
+    $username: String!
+    $email: String!
+   ) {
+    updateUser(where: {username: $username email: $email}
+     ) {
+     username
+     email
+    }
+   }
+  `;
+    const updateInfo = {
+      username: 'test',
+      email: 'test@test.com'
+    };
+    const tester = new EGQLT(schema);
+    const {
+      data: { updateUser }
+    } = tester.mock({ query: mutation, variables: updateInfo });
+  });
+});
