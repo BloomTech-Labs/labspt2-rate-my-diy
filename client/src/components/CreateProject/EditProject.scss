@@ -20,6 +20,9 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        :last-child{
+            display: hidden;
+        }
     }
 	.buttonSection {
         display: flex;
@@ -64,6 +67,7 @@
             font-size: 1.8rem;
             border: 2px solid $main-color;
             margin-bottom: 10px;
+        
 		}
 	}
 	display: flex;

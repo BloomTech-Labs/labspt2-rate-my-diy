@@ -303,7 +303,7 @@ class EditProject extends Component {
 							</div>
 						</div>
 						<button onClick={this.finalize}>Finalize</button>
-						<button disabled={this.state.submitDisabled}>Submit</button>
+						
 					</form>
 				</div>
 			);
