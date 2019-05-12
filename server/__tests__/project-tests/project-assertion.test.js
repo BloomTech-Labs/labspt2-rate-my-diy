@@ -59,7 +59,7 @@ describe('Testing schema (Project), Query', () => {
 
   describe('Should pass if the nested project query is valid.', () => {
     it('Is a valid nested project query.', () => {
-      const valiedNestedProjectQuery = `
+      const validNestedProjectQuery = `
     {
      projects {
       id 
@@ -127,12 +127,12 @@ describe('Testing schema (Project), Query', () => {
      }
     }
     `;
-      tester.test(true, valiedNestedProjectQuery);
+      tester.test(true, validNestedProjectQuery);
     });
   });
   describe('Should pass iff the nested project query is invalid.', () => {
-    it('Is a valid nested project query.', () => {
-      const valiedNestedProjectQuery = `
+    it('Is an invalid nested project query.', () => {
+      const invalidNestedProjectQuery = `
     {
      projects {
       id 
@@ -201,7 +201,36 @@ describe('Testing schema (Project), Query', () => {
      }
     }
     `;
-      tester.test(false, valiedNestedProjectQuery);
+      tester.test(false, invalidNestedProjectQuery);
     });
+  });
+});
+
+describe('Create Project Mutation', () => {
+  it('createProject should return a properly shaped project object.', () => {
+    const mutation = `
+  mutation createProject {
+   createProject(data:
+    {
+     name: "test",
+     category: "test",
+     timestamp: "test",
+     titleImg: "test",
+     titleBlurb: "test",
+     rating: [0, 0],
+     steps: "test"
+    })
+    {
+     id
+     name
+     category
+     timestamp
+     titleImg
+     titleBlurb
+     rating
+     steps
+    }
+  }
+  `;
   });
 });
