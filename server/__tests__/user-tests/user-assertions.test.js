@@ -2,7 +2,7 @@
 const EGQLT = require('easygraphql-tester');
 const fs = require('fs');
 const path = require('path');
-
+// const testSchema = require('../mock-schema.graphql')
 const { expect } = require('chai');
 const schema = fs.readFileSync(
   path.join(__dirname, '..', '../../server/__tests__/mock-schema.graphql'),
@@ -217,10 +217,40 @@ describe('Testing schema, Query', () => {
 
 // describe('Testing schema, Mutation', () => {
 // it('Should pass if the mutation input is valid', () => {
-const createUserMutation = `
-   mutation createUser($User: UserCreateInput!) {
-    createUser(user: $User) {
-     id
+//  const User = {
+// {data:   User: {
+//      username: 'test',
+//      thirdPartyUID: 'test',
+//      firebaseUID: 'test',
+//      email: 'test',
+//      userProfileImage: 'test',
+//      bio: 'test',
+//      privilege: 'test',
+//      stripeId: 'test',
+//      accountType: 'test',
+//    }
+//   }
+//  };
+
+const input = {
+  data: {
+    User: {
+      username: 'test',
+      thirdPartyUID: 'test',
+      firebaseUID: 'test',
+      email: 'test',
+      userProfileImage: 'test',
+      bio: 'test',
+      privilege: 'test',
+      stripeId: 'test',
+      accountType: 'test'
+    }
+  }
+};
+
+const mutation = `
+   mutation createUser($input: UserCreateInput!) {
+    createUser(input: $input) {
      thirdPartyUID
      firebaseUID
      username
@@ -234,22 +264,7 @@ const createUserMutation = `
    }
   `;
 
-const User = {
-  user: {
-    username: 'test',
-    id: 'test',
-    thirdPartyUID: 'test',
-    firebaseUID: 'test',
-    email: 'test',
-    userProfileImage: 'test'
-  }
-};
-// tester.test(true, createUserMutation, {
-//  user: {
-//   id: "cjunieium00u50793jx6b78i5",
-//   username: "test-user",
-
-//  }
-// })
-// })
-// })
+const testfn = new EGQLT(schema);
+const {
+  data: { createUser }
+} = testfn.mock({ query: mutation, variables: input });
