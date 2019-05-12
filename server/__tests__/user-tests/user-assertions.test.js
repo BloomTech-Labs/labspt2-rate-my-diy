@@ -282,12 +282,8 @@ describe('Delete User Mutation', () => {
 describe('Update User Mutation', () => {
   it('Should update a user given unique input.', () => {
     const mutation = ` 
-   mutation updateUser(
-    $username: String!
-    $email: String!
-   ) {
-    updateUser(where: {username: $username email: $email}
-     ) {
+   mutation updateUser($username: String! $email: String!) {
+    updateUser(data: {username: $username email: $email} where: {username: $username email: $email}) {
      username
      email
     }
