@@ -9,13 +9,14 @@ const schema = fs.readFileSync(
   'utf8'
 );
 
-describe('Testing schema, Query', () => {
+describe('Testing schema (User), Query', () => {
   let tester;
   beforeAll(() => {
     tester = new EGQLT(schema);
   });
+
   describe('Should pass if the root level user query is valid.', () => {
-    it('Valid query getUsers', () => {
+    it('Is a valid getUsers query.', () => {
       const validQuery = `
  {
   users {
@@ -36,10 +37,10 @@ describe('Testing schema, Query', () => {
     });
   });
   describe('Should pass iff the root level user query is invalid', () => {
-    it('Invalid query getUsers', () => {
+    it('Is an invalid getUsers query.', () => {
       const invalidQuery = `
      {
-      getUsers {
+      users {
        id
        thirdPartyUID
        firebaseUID
@@ -64,7 +65,7 @@ describe('Testing schema, Query', () => {
   });
 
   describe('Should pass if the nested user query is valid.', () => {
-    it('Valid Query', () => {
+    it('Is a valid nested user query.', () => {
       const validNestedUserQuery = `
    {
     users {
@@ -137,7 +138,7 @@ describe('Testing schema, Query', () => {
   });
 
   describe('Should pass iff the nested user query is invalid.', () => {
-    it('Invalid Query', () => {
+    it('Is an invalid nested user query.', () => {
       const invalidNestedUserQuery = `
   {
    users {
@@ -275,15 +276,24 @@ describe('Delete User Mutation', () => {
     const tester = new EGQLT(schema);
     const {
       data: { deleteUser }
-    } = tester.mock({ query: mutation, variables: username });
+    } = tester.mock({
+      query: mutation,
+      variables: username
+    });
   });
 });
 
 describe('Update User Mutation', () => {
   it('Should update a user given unique input.', () => {
     const mutation = ` 
-   mutation updateUser($username: String! $email: String!) {
-    updateUser(data: {username: $username email: $email} where: {username: $username email: $email}) {
+   mutation updateUser(
+    $username: String! 
+    $email: String!) {
+    updateUser(
+     data: {
+      username: $username 
+      email: $email} 
+      where: {username: $username email: $email}) {
      username
      email
     }
@@ -296,6 +306,9 @@ describe('Update User Mutation', () => {
     const tester = new EGQLT(schema);
     const {
       data: { updateUser }
-    } = tester.mock({ query: mutation, variables: updateInfo });
+    } = tester.mock({
+      query: mutation,
+      variables: updateInfo
+    });
   });
 });
