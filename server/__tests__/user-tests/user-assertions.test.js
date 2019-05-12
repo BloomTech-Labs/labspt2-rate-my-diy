@@ -256,9 +256,18 @@ describe('Create User Mutation', () => {
       }
     ]);
   });
+  // expect(mutation)
 });
 
-// const { data: { createUser } } = testfn.mock({
-// 	query: mutation,
-// 	variables: input
-// });
+describe('Delete User Mutation', () => {
+  it('Should delete a user given unique input.', () => {
+    const mutation = `
+   mutation deleteUser {
+    deleteUser(where {id: ""}) {
+     
+    }
+   }
+  
+  `;
+  });
+});
