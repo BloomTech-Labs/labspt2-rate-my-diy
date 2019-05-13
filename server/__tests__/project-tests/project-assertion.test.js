@@ -125,7 +125,7 @@ describe('Testing schema (Project), Query', () => {
     it('Is a valid nested project query.', () => {
       const validNestedProjectQuery = `
   {
-   project {
+   project(where: {id: "test"}) {
     id 
     name
     key
