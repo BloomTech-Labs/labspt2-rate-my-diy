@@ -218,6 +218,9 @@ describe('Create Project Mutation', () => {
      titleBlurb: "test",
      timestamp: "test", 
      steps: "test"
+     rating: {
+      set: [0, 0]
+     }
      User: {
       create: {
        username: "test"
@@ -243,6 +246,9 @@ describe('Create Project Mutation', () => {
         titleImg: 'test',
         titleBlurb: 'test',
         steps: 'test',
+        rating: {
+          set: [0, 0]
+        },
         User: {
           create: {
             username: 'test'
@@ -252,9 +258,6 @@ describe('Create Project Mutation', () => {
     ]);
   });
 });
-{
-  username;
-}
 
 describe('Delete Project Mutation', () => {
   it('Should delete a project given unique input.', () => {
@@ -273,5 +276,39 @@ describe('Delete Project Mutation', () => {
     const {
       data: { deleteProject }
     } = tester.mock({ query: mutation, variables: key });
+  });
+});
+
+describe('Update Project Mutation', () => {
+  it('Should update a project given unique input.', () => {
+    const mutation = `
+  mutation updateProject(
+   $name: String!
+   $category: String!
+   $key: String
+  ) {
+   updateProject(
+    data: {
+     name: $name
+     key: $key
+     category: $category
+    }
+    where: {key: $key}) {
+     name
+     category
+    }
+  }
+  `;
+    const updateInfo = {
+      name: 'test',
+      category: 'test'
+    };
+    const tester = new EGQLT(schema);
+    const {
+      data: { updateProject }
+    } = tester.mock({
+      query: mutation,
+      variables: updateInfo
+    });
   });
 });

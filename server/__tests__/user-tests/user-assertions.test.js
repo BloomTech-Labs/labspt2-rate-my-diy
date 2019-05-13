@@ -257,7 +257,6 @@ describe('Create User Mutation', () => {
       }
     ]);
   });
-  // expect(mutation)
 });
 
 describe('Delete User Mutation', () => {
