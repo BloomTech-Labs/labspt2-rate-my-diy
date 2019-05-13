@@ -16,7 +16,7 @@ describe('Testing schema (User), Query', () => {
   });
 
   describe('Should pass if the root level user query is valid.', () => {
-    it('Is a valid getUsers query.', () => {
+    it('Is a valid users query.', () => {
       const validQuery = `
  {
   users {
@@ -37,7 +37,7 @@ describe('Testing schema (User), Query', () => {
     });
   });
   describe('Should pass iff the root level user query is invalid', () => {
-    it('Is an invalid getUsers query.', () => {
+    it('Is an invalid users query.', () => {
       const invalidQuery = `
      {
       users {

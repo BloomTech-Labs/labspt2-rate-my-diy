@@ -15,7 +15,7 @@ describe('Testing schema (Project), Query', () => {
   });
 
   describe('Should pass if the root level project query is valid.', () => {
-    it('Is a valid getProjects query.', () => {
+    it('Is a valid projects query.', () => {
       const validQuery = `
     {
      projects {
@@ -36,7 +36,7 @@ describe('Testing schema (Project), Query', () => {
   });
 
   describe('Should pass iff the root level project query is invalid', () => {
-    it('Is an invalid getProjects query.', () => {
+    it('Is an invalid projects query.', () => {
       const invalidQuery = `
     {
      projects {
@@ -58,8 +58,8 @@ describe('Testing schema (Project), Query', () => {
   });
 
   describe('Should pass if the nested project query is valid.', () => {
-    it('Is a valid nested project query.', () => {
-      const validNestedProjectQuery = `
+    it('Is a valid nested projects query.', () => {
+      const validNestedProjectsQuery = `
     {
      projects {
       id 
@@ -127,12 +127,12 @@ describe('Testing schema (Project), Query', () => {
      }
     }
     `;
-      tester.test(true, validNestedProjectQuery);
+      tester.test(true, validNestedProjectsQuery);
     });
   });
   describe('Should pass iff the nested project query is invalid.', () => {
-    it('Is an invalid nested project query.', () => {
-      const invalidNestedProjectQuery = `
+    it('Is an invalid nested projects query.', () => {
+      const invalidNestedProjectsQuery = `
     {
      projects {
       id 
@@ -201,7 +201,7 @@ describe('Testing schema (Project), Query', () => {
      }
     }
     `;
-      tester.test(false, invalidNestedProjectQuery);
+      tester.test(false, invalidNestedProjectsQuery);
     });
   });
 });
@@ -234,21 +234,19 @@ describe('Create Project Mutation', () => {
   }
   `;
     const tester = new EGQLT(schema);
-    tester.test(true, mutation, [
-      {
-        name: 'test',
-        category: 'test',
-        titleImg: 'test',
-        titleBlurb: 'test',
-        steps: 'test',
-        rating: [0, 0],
-        User: {
-          create: {
-            username: 'test'
-          }
+    tester.test(true, mutation, {
+      name: 'test',
+      category: 'test',
+      titleImg: 'test',
+      titleBlurb: 'test',
+      steps: 'test',
+      rating: [0, 0],
+      User: {
+        create: {
+          username: 'test'
         }
       }
-    ]);
+    });
   });
 });
 
