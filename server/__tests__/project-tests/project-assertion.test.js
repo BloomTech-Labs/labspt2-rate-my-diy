@@ -14,9 +14,9 @@ describe('Testing schema (Project), Query', () => {
     tester = new EGQLT(schema);
   });
 
-  describe('Should pass if the root level project query is valid.', () => {
+  describe('Should pass if the root level projects query is valid.', () => {
     it('Is a valid projects query.', () => {
-      const validQuery = `
+      const validProjectsQuery = `
     {
      projects {
       id
@@ -31,29 +31,167 @@ describe('Testing schema (Project), Query', () => {
      }
     }
    `;
-      tester.test(true, validQuery);
+      tester.test(true, validProjectsQuery);
     });
   });
 
   describe('Should pass iff the root level project query is invalid', () => {
     it('Is an invalid projects query.', () => {
-      const invalidQuery = `
+      const invalidProjectsQuery = `
+   {
+    projects {
+     id 
+     name
+     key
+     invalidField
+     category
+     timestamp
+     titleImg
+     titleBlurb
+     rating
+     steps
+    }
+   }
+  `;
+      tester.test(false, invalidProjectsQuery);
+    });
+  });
+
+  describe('Should pass if the root level project query is valid.', () => {
+    it('Is a valid projects query.', () => {
+      const validProjectQuery = `
+     {
+      project(where: {id: "test"}) {
+       id
+       name
+       key
+       category
+       timestamp
+       titleBlurb
+       rating
+       steps
+      }
+     }
+  `;
+
+      const projectFixture = {
+        data: {
+          project: {
+            id: 'test',
+            name: 'test',
+            key: 'test',
+            category: 'test',
+            timestamp: 'test',
+            titleBlurb: 'test',
+            rating: 'test',
+            steps: 'test'
+          }
+        }
+      };
+
+      const {
+        data: { project }
+      } = tester.mock({
+        query: validProjectQuery,
+        variables: projectFixture,
+        validateDepricated: true
+      });
+    });
+  });
+
+  describe('Should pass if the root level project query is invalid.', () => {
+    it('Is an invalid projects query.', () => {
+      const invalidProjectQuery = `
     {
-     projects {
-      id 
+     project(where: {id: "test"}) {
+      id
       name
       key
+      category
       invalidField
+      timestamp
+      titleBlurb
+      rating
+      steps
+     }
+    }
+ `;
+
+      tester.test(false, invalidProjectQuery);
+    });
+  });
+
+  describe('Should pass if the nested project query is valid.', () => {
+    it('Is a valid nested project query.', () => {
+      const validNestedProjectQuery = `
+  {
+   project {
+    id 
+    name
+    key
+    category
+    timestamp
+    titleImg
+    titleBlurb
+    rating
+    steps
+    User {
+     id
+   username
+   userProfileImage
+   bio
+   email
+    }
+    Reviews {
+     id
+     name
+     rKey
+     text
+     timestamp
+     thumbsUp
+     LikedBy {
+      id
+      email
+      username
+      userProfileImage
+      bio
+      privilege
+      accountType
+     }
+     DislikedBy {
+      id
+      email
+      username
+      bio
+     }
+     Author {
+      username
+      email
+      bio
+      id
+     }
+     ProjectReviewed {
+      id
+      name
+      key
       category
       timestamp
       titleImg
       titleBlurb
       rating
       steps
+      User {
+       username
+       email
+       id
+      }
      }
+     thumbsDown
     }
-   `;
-      tester.test(false, invalidQuery);
+   }
+  }
+  `;
+      tester.test(true, validNestedProjectQuery);
     });
   });
 

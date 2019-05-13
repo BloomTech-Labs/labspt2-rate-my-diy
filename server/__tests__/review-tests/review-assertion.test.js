@@ -52,11 +52,11 @@ describe('Testing schema (Review), Query', () => {
       tester.test(false, invalidQuery);
     });
   });
-  describe('Should pass if the nested review query is valid', () => {
-    it('Is a valid nested review query.', () => {
-      {
-        re;
-      }
-    });
-  });
+  // describe('Should pass if the nested review query is valid', () => {
+  //   it('Is a valid nested review query.', () => {
+  //     {
+  //       re;
+  //     }
+  //   });
+  // });
 });
