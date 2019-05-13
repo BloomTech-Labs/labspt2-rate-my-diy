@@ -216,11 +216,8 @@ describe('Create Project Mutation', () => {
      category: "test", 
      titleImg: "test",
      titleBlurb: "test",
-     timestamp: "test", 
      steps: "test"
-     rating: {
-      set: [0, 0]
-     }
+     rating: [0, 0]
      User: {
       create: {
        username: "test"
@@ -232,7 +229,6 @@ describe('Create Project Mutation', () => {
      category
      titleImg
      titleBlurb
-     timestamp
      steps
     }
   }
@@ -242,13 +238,10 @@ describe('Create Project Mutation', () => {
       {
         name: 'test',
         category: 'test',
-        timestamp: 'test',
         titleImg: 'test',
         titleBlurb: 'test',
         steps: 'test',
-        rating: {
-          set: [0, 0]
-        },
+        rating: [0, 0],
         User: {
           create: {
             username: 'test'
