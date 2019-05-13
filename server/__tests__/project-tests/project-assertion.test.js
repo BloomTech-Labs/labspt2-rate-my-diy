@@ -207,34 +207,30 @@ describe('Testing schema (Project), Query', () => {
 });
 
 describe('Create Project Mutation', () => {
-  it('createProject should return a properly shaped project object.', () => {
+  it('Should return a properly shaped project object.', () => {
     const mutation = `
   mutation createProject {
    createProject(data:
     {
-     name: "test",
-     category: "test",
-     timestamp: "test",
+     name: "test", 
+     category: "test", 
      titleImg: "test",
      titleBlurb: "test",
-     rating: [0, 0],
+     timestamp: "test", 
      steps: "test"
      User: {
-      username: "test"
+      create: {
+       username: "test"
+      }
      }
     })
     {
-     id
      name
      category
-     timestamp
      titleImg
      titleBlurb
-     rating
+     timestamp
      steps
-     User {
-      username
-     }
     }
   }
   `;
@@ -246,12 +242,36 @@ describe('Create Project Mutation', () => {
         timestamp: 'test',
         titleImg: 'test',
         titleBlurb: 'test',
-        rating: [0, 0],
         steps: 'test',
         User: {
-          username: 'test'
+          create: {
+            username: 'test'
+          }
         }
       }
     ]);
+  });
+});
+{
+  username;
+}
+
+describe('Delete Project Mutation', () => {
+  it('Should delete a project given unique input.', () => {
+    const mutation = `
+   mutation deleteProject($key: String!) {
+    deleteProject(where: {key: $key}) {
+     name
+     id
+    }
+   }
+  `;
+    const key = {
+      key: 'test'
+    };
+    const tester = new EGQLT(schema);
+    const {
+      data: { deleteProject }
+    } = tester.mock({ query: mutation, variables: key });
   });
 });
