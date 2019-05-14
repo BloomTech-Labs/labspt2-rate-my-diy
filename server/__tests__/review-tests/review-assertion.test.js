@@ -178,3 +178,48 @@ describe('Testing schema (Review), Query', () => {
     });
   });
 });
+
+describe('Create Review Mutation', () => {
+  it('createReview should return a properly shaped review object,', () => {
+    const createReviewMutation = `
+   mutation createReview(
+    $id: String!
+    $name: String!
+    $rKey: String
+    $text: String!
+    $timestamp: String!
+    $thumbsUp: Int
+    $thumbsDown: Int
+   ) {
+    createReview(data: {
+     id: $id
+     name: $name
+     rKey: $rKey
+     text: $text
+     timestamp: $timestamp
+     thumbsUp: $thumbsUp
+     thumbsDown: $thumbsDown}
+    ) {
+     name
+    }
+   }
+  `;
+    const tester = new EGQLT(schema);
+    const createReviewInfo = {
+      id: 'test',
+      name: 'test',
+      rKey: 'test',
+      text: 'test',
+      timestamp: 'test',
+      thumbsUp: 0,
+      thumbsDown: 0
+    };
+
+    const {
+      data: { createReview }
+    } = tester.mock({
+      query: createReviewMutation,
+      variables: createReviewInfo
+    });
+  });
+});
