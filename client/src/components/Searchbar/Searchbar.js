@@ -12,6 +12,7 @@ import './Searchbar.scss';
 class SearchBar extends Component {
   constructor(props) {
     super(props);
+    console.log({logged: this.props.loggedIn})
     this.state = {
       text: '',
       isLoggedIn: this.props.loggedIn,

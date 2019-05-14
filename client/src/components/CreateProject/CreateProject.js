@@ -12,33 +12,68 @@ class CreateProject extends Component {
   constructor(props) {
     super(props);
 
-    const user = localStorage.getItem('authUser');
-    const json = JSON.parse(user);
-    const userPull = this.props.users.filter(
-      (user) => user.email === json.email
-    );
-    const { username, email } = userPull[0];
+    
+    if (this.props.users[0]) {
 
-    let categories = [];
-    if (this.props.projects[0])
-      categories = this.props.projects.map((project) => project.category);
-    let filteredCategories = [...new Set(categories)];
 
-    this.state = {
-      imgDeleteDisabled: true,
-      categories: filteredCategories,
-      username: username,
-      email: email,
-      submitDisabled: true,
-      project: {
-        name: '',
-        category: '',
-        timestamp: '',
-        titleImg: '',
-        titleBlurb: '',
-        steps: [{ type: '', body: '' }]
-      }
-    };
+      const {username, email} = this.props.users.filter(
+        (user) => user.email === this.props.authUser.email
+      )[0]
+
+      const categories = this.props.projects.map((project) => project.category);
+
+
+      this.state = {
+        imgDeleteDisabled: true,
+        categories: categories,
+        username: username,
+        email: email,
+        submitDisabled: true,
+        project: {
+          name: '',
+          category: '',
+          timestamp: '',
+          titleImg: '',
+          titleBlurb: '',
+          steps: [{ type: '', body: '' }]
+        }
+      };
+    }
+
+    else {
+      this.state = {
+        imgDeleteDisabled: true,
+        categories: [],
+        username: '',
+        email: '',
+        submitDisabled: true,
+        project: {
+          name: '',
+          category: '',
+          timestamp: '',
+          titleImg: '',
+          titleBlurb: '',
+          steps: [{ type: '', body: '' }]
+        }
+      };
+    }
+
+    
+  }
+
+  componentWillReceiveProps() {
+
+    if (this.props.users[0] && this.props.projects[0]) {
+      console.log({uss: this.props.users, projs: this.props.projects})
+      const authUser = this.props.authUser;
+      const userPull = this.props.users.filter(
+        (user) => user.email === authUser.email
+      );
+      const { username, email } = userPull[0];
+      const categories = this.props.projects.map((project) => project.category);
+      let filteredCategories = [...new Set(categories)];
+      this.setState({ ...this.state, username: username, email: email, categories: filteredCategories });
+    }
   }
 
   componentDidMount = () => {
@@ -227,13 +262,15 @@ class CreateProject extends Component {
   };
 
   render() {
+
+    
     let cats = [];
     if (this.state.categories[0])
       cats = this.state.categories.map((cat) => {
         return { value: cat, label: cat };
       });
 
-    if (this.props.projects[0]) {
+    if (this.props.users[0]) {
       if (
         this.state.project.steps != null &&
         typeof this.state.project.steps === 'object'
@@ -289,7 +326,7 @@ class CreateProject extends Component {
 
                       <textarea
                         rows="6"
-                        placeHolder="Add Description..."
+                        placeholder="Add Description..."
                         cols="75"
                         name="titleBlurb"
                         value={this.state.project.titleBlurb}
@@ -326,7 +363,7 @@ class CreateProject extends Component {
                     } else {
                       return (
                         <div key={idx}>
-                          <textArea
+                          <textarea
                             type="text"
                             placeholder="Add Step..."
                             value={step.body}
@@ -592,18 +629,18 @@ class CreateProject extends Component {
                     <Skeleton />
                   </h2>
 
-                  <input className="projectTitleInput">
+                  <div className="projectTitleInput">
                     <Skeleton />
-                  </input>
+                  </div>
                 </div>
                 <div className="titleImage">
                   <div className="setThumbnail">
                     <h3>
                       <Skeleton />
                     </h3>
-                    <CreatableSelect className="category">
+                    {/* <CreatableSelect className="category">
                       <Skeleton />
-                    </CreatableSelect>
+                    </CreatableSelect> */}
                   </div>
                   <div className="imageArea">
                     <div className="descriptionRow">
@@ -612,10 +649,12 @@ class CreateProject extends Component {
                       </h2>
                       <div className="image-description">
                         <div className="emptyMainImage">
-                          <Skeleton />
+                          <Skeleton width={290} height={250} />
                         </div>
-
-                        <Skeleton count={6} />
+                        <div className="skeletonContainer">
+                          <Skeleton count={11} />
+                        </div>
+                        
                       </div>
                     </div>
                   </div>

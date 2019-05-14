@@ -5,8 +5,9 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../../query/query';
 import plus from '../../img/plus.png';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-import "./ReviewList.scss"
+import './ReviewList.scss';
 
 const GET_REVIEWS = gql`
   query reviews($email: String!) {
@@ -68,7 +69,47 @@ class ReviewList extends React.Component {
                   error: usersError
                 }) => {
                   if (reviewsLoading || userLoading || usersLoading)
-                    return 'Loading...';
+                    return (
+                      <div className="review-list-all-container">
+                        <SkeletonTheme highlightColor="#6fb3b8">
+                          <h1 className="review-list-title">
+                            <Skeleton />
+                          </h1>
+                          <div className="review-list-container">
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </SkeletonTheme>
+                      </div>
+                    );
                   if (reviewsError || userError || usersError) return `Error!`;
 
                   if (reviewsData.reviews[0]) {
@@ -85,6 +126,9 @@ class ReviewList extends React.Component {
                                 review={review}
                                 users={usersData.users}
                                 user={userData.user}
+                                refetch={this.props.refetch}
+                                loggedIn={this.props.loggedIn}
+                                authUser={this.props.authUser}
                               />
                             );
                           })}

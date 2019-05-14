@@ -10,28 +10,32 @@ class Home extends Component {
     super(props);
     this.state = {
       userClicked: null,
-      isLoggedIn: false,
+      isLoggedIn: this.props.loggedIn,
       user: ''
     };
   }
 
   componentWillMount() {
-    let user = this.props.firebase.auth.currentUser !== null;
-    if (user) {
-      this.setState({ isLoggedIn: true, user: user });
-    } else {
-      this.setState({ isLoggedIn: false });
-    }
+    // let user = this.props.firebase.auth.currentUser !== null;
+    // console.log({user: this.props.firebase.auth})
+    // if (user) {
+    //   this.setState({ isLoggedIn: true, user: user });
+    //   console.log({user: user})
+    // } else {
+    //   this.setState({ isLoggedIn: false });
+    //   console.log({user: "none"})
+    // }
+    console.log({homeLog: this.state.isLoggedIn})
   }
 
-  componentWillReceiveProps(nextProps) {
-    let user = nextProps.firebase.auth.currentUser !== null;
-    if (user) {
-      this.setState({ isLoggedIn: true, user: user });
-    } else {
-      this.setState({ isLoggedIn: false, user: '' });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   let user = nextProps.firebase.auth.currentUser !== null;
+  //   if (user) {
+  //     this.setState({ isLoggedIn: true, user: user });
+  //   } else {
+  //     this.setState({ isLoggedIn: false, user: '' });
+  //   }
+  // }
 
   //This handler adds the user clicked in Popular Reviewer and Popular maker to userClicked
   clickUserHandler = (username) => {
@@ -59,7 +63,6 @@ class Home extends Component {
       }
       return null;
     });
-    console.log({ empty: eliminateEmptyReviews });
 
     const popularReviewer = [];
 
@@ -232,7 +235,9 @@ class Home extends Component {
     } else {
       return (
         <div>
-          <SearchBar />
+          <SearchBar 
+          loggedIn={this.state.isLoggedIn}
+          />
 
           <div className="homeContainer">
             <h2 className="projectTitle">Featured Projects</h2>

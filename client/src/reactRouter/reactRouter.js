@@ -6,7 +6,6 @@ import { AuthUserContext } from '../components/Session/session';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { slide as Menu } from 'react-burger-menu';
-import { withApollo } from 'react-apollo';
 
 import './reactRouter.scss';
 
@@ -67,19 +66,7 @@ const Navigation = ({ props, authUser }) => {
                 let data;
                 if (thirdData.user) data = thirdData;
                 if (nativeData.user) data = nativeData;
-                if (props.userArray) {
-                  return (
-                    <Menu>
-                      <a href={ROUTES.HOME} className="menu-item">
-                        <div>Home</div>
-                      </a>
-
-                      <a id="signOut" href="/" className="menu-item">
-                        <SignOutButton />
-                      </a>
-                    </Menu>
-                  );
-                }
+                
                 return (
                   <Menu>
                     <a href={ROUTES.HOME} className="menu-item">
@@ -159,4 +146,4 @@ const NavigationNonAuth = () => {
   );
 };
 
-export default withAuthentication(withApollo(AuthNavigation));
+export default withAuthentication(AuthNavigation);

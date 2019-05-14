@@ -13,33 +13,34 @@ import './SearchPage.scss';
 import star from '../../img/star.png';
 
 class SearchPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userClicked: null,
-      isLoggedIn: false,
+      isLoggedIn: this.props.loggedIn,
       user: '',
       userArray: []
     };
   }
 
   componentWillMount() {
-    let user = this.props.firebase.auth.currentUser !== null;
-    if (user) {
-      this.setState({ isLoggedIn: true, user: user });
-    } else {
-      this.setState({ isLoggedIn: false });
-    }
+    // let user = this.props.firebase.auth.currentUser !== null;
+    // if (user) {
+    //   this.setState({ isLoggedIn: true, user: user });
+    // } else {
+    //   this.setState({ isLoggedIn: false });
+    // }
+    console.log({searchLog: this.state.isLoggedIn})
   }
 
-  componentWillReceiveProps(nextProps) {
-    let user = nextProps.firebase.auth.currentUser !== null;
-    if (user) {
-      this.setState({ isLoggedIn: true, user: user });
-    } else {
-      this.setState({ isLoggedIn: false, user: '' });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   let user = nextProps.firebase.auth.currentUser !== null;
+  //   if (user) {
+  //     this.setState({ isLoggedIn: true, user: user });
+  //   } else {
+  //     this.setState({ isLoggedIn: false, user: '' });
+  //   }
+  // }
 
   render() {
     if (this.props.userArray[0]) {
@@ -136,21 +137,22 @@ class SearchPage extends Component {
                             let user = data.users.filter(
                               (user) => user.email === review.Author.email
                             );
-                            console.log({ searchuser: user });
+                            console.log({userRev: user})
+                           
                             let rev = user[0].ReviewList.filter(
                               (r) => r.id === review.id
                             )[0];
-                            console.log(
-                              { rev: rev, review: review },
-                              'check this out'
-                            );
+                            console.log({rev: rev})
 
                             return (
                               <ReviewCard
-                                review={rev}
+                                review={review}
                                 refetch={refetch}
                                 users={data.users}
                                 user={user}
+                                loggedIn={this.props.loggedIn}
+                                authUser={this.props.authUser}
+                                refetch={this.props.refetch}
                               />
                             );
                           }
@@ -166,7 +168,9 @@ class SearchPage extends Component {
     } else {
       return (
         <>
-          <SearchBar />
+          <SearchBar 
+          loggedIn={this.state.isLoggedIn}
+          />
           <div className="search-container">
             <h1 className="results">Results</h1>
             <div className="search-card-container">
@@ -174,7 +178,7 @@ class SearchPage extends Component {
                 <SkeletonTheme highlightColor="#6fb3b8">
                   <div>
                     <div className="searchProjectImage">
-                      <Skeleton height={300} width={390} />
+                      <Skeleton height={280} width={380} />
                     </div>
 
                     <h3 className="project-title">
@@ -190,7 +194,7 @@ class SearchPage extends Component {
                 <SkeletonTheme highlightColor="#6fb3b8">
                   <div>
                     <div className="searchProjectImage">
-                      <Skeleton height={300} width={390} />
+                      <Skeleton height={280} width={380} />
                     </div>
 
                     <h3 className="project-title">
@@ -206,7 +210,7 @@ class SearchPage extends Component {
                 <SkeletonTheme highlightColor="#6fb3b8">
                   <div>
                     <div className="searchProjectImage">
-                      <Skeleton height={300} width={390} />
+                      <Skeleton height={280} width={380} />
                     </div>
 
                     <h3 className="project-title">

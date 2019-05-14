@@ -6,7 +6,7 @@ import * as math from 'mathjs';
 import plus from '../../img/plus.png';
 import moment from 'moment';
 import star from '../../img/star.png';
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 import './ProjectList.scss';
 
@@ -55,18 +55,76 @@ class ProjectList extends React.Component {
         }) => (
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading: userLoading, data: userData, error: userError }) => {
-              if (projectsLoading || userLoading) return (
-                <div className="project-list-all-container">
-                    <h1 className="project-list-title">{<Skeleton />}</h1>
-                    <div className="project-list-card">
-                      <div>
-                      <Skeleton count={3}/>
+              if (projectsLoading || userLoading)
+                return (
+                  <div className="project-list-all-container">
+                  <SkeletonTheme highlightColor="#6fb3b8">
+                    <h1 className="project-list-title">
                       <Skeleton />
+                    </h1>
+                    <div className="project-list-container">
+                      <div className="project-list-card">
+                      
+                        <div>
+                          <div className="project-list-card-img">
+                            <Skeleton height={290} width={390} />
+                          </div>
+
+                          <div className="project-list-card-title">
+                            <Skeleton />
+                          </div>
+                          <p>
+                            <Skeleton />
+                          </p>
+                          <div className="project-list-card-rating-container">
+                            <Skeleton />
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div className="project-list-card">
+                      
+                        <div>
+                          <div className="project-list-card-img">
+                            <Skeleton height={290} width={390} />
+                          </div>
+
+                          <div className="project-list-card-title">
+                            <Skeleton />
+                          </div>
+                          <p>
+                            <Skeleton />
+                          </p>
+                          <div className="project-list-card-rating-container">
+                            <Skeleton />
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div className="project-list-card">
+                      
+                        <div>
+                          <div className="project-list-card-img">
+                            <Skeleton height={290} width={390} />
+                          </div>
+
+                          <div className="project-list-card-title">
+                            <Skeleton />
+                          </div>
+                          <p>
+                            <Skeleton />
+                          </p>
+                          <div className="project-list-card-rating-container">
+                            <Skeleton />
+                          </div>
+                        </div>
                         
                       </div>
                     </div>
+                    
+                    </SkeletonTheme>
                   </div>
-              )
+                );
               if (projectsError || userError)
                 return <span>{`Error: ${userError}`}</span>;
 
@@ -75,7 +133,7 @@ class ProjectList extends React.Component {
                   <div className="project-list-all-container">
                     <h1 className="project-list-title">{`${
                       userData.user.username
-                    }'s Projects` }</h1>
+                    }'s Projects`}</h1>
                     <div className="project-list-container">
                       {projectsData.projects.map((project) => {
                         let meanRating = project.rating;

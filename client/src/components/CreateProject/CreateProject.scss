@@ -104,6 +104,12 @@
           margin: 0;
           margin-right: 10px;
         }
+
+        .skeletonContainer {
+          width: 70%;
+          height: 261px;
+          flex-direction: column;
+        }
       }
       .emptyMainImage {
         display: flex;

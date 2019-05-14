@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import ProfileInfo from '../Profile/ProfileInfo';
 import { withAuthorization } from '../Session/session';
 import PasswordChange from '../PasswordChange/PasswordChange';
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import gql from 'graphql-tag';
 
 import { Query } from 'react-apollo';
@@ -20,12 +21,14 @@ export const GET_NAT_USER = gql`
 
 class Account extends Component {
   render() {
-    const user = this.props.firebase.auth.currentUser;
+    if (this.props.user) {
+      
+      const user = this.props.firebase.auth.currentUser;
     const email = user.providerData[0].email;
     return (
       <div className="settings-container">
         <h1>Settings</h1>
-        <ProfileInfo email={this.props.email} user={this.props.user} />
+        <ProfileInfo email={this.props.email} user={this.props.user} authUser={this.props.authUser}/>
         <Query query={GET_NAT_USER} variables={{ email: email }}>
           {({ loading, data, error }) => {
             if (loading) return null;
@@ -46,7 +49,7 @@ class Account extends Component {
           }}
         </Query>
         <div className="stripe-container">
-          <h2>Want to Buy Angela A Coffee?</h2>
+          <h2>Support the Developers</h2>
           <StripeCheckout
             className="btn"
             token={async (token) => {
@@ -59,6 +62,24 @@ class Account extends Component {
         </div>
       </div>
     );
+    } else {
+      return (
+        <div className="settings-container">
+        <SkeletonTheme highlightColor="#6fb3b8">
+        <h1><Skeleton/></h1>
+        <ProfileInfo authUser={this.props.authUser} />
+        <div className="pass-change-skeleton">
+        <h2><Skeleton/></h2>
+        <Skeleton count={3}/>
+        </div>
+        <div className="stripe-container">
+        <Skeleton/>
+        </div>
+        </SkeletonTheme>
+        </div>
+      )
+    }
+    
   }
 }
 

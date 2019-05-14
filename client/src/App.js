@@ -22,15 +22,31 @@ import ReviewCard from './components/ReviewCard/ReviewCard';
 import Profile from './components/Profile/Profile';
 import EditProject from './components/CreateProject/EditProject';
 import Header from './components/Home/Header/Header';
+import { AuthUserContext } from './components/Session/session';
 import * as math from 'mathjs';
 
+
+const AuthApp = () => (
+  <AuthUserContext.Consumer>
+    {(authUser) =>
+      authUser ? (
+        <App authUser={authUser} />
+      ) : (
+        <AppNonAuth />
+      )
+    }
+  </AuthUserContext.Consumer>
+);
+
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log({user: this.props.authUser})
     this.state = {
       users: [],
       projects: [],
-      reviews: []
+      reviews: [],
+      loggedIn: true
     };
   }
 
@@ -46,8 +62,8 @@ class App extends Component {
     this.setState({ reviews });
   };
 
-  render() {
-    console.log({props: this.props})
+  render () {
+    const loggedIn = this.state.loggedIn
     return (
       <Query query={getUsers}>
         {({
@@ -78,7 +94,7 @@ class App extends Component {
                         <Route
                           path="/"
                           render={(props) => (
-                            <Navigation {...props} userArray={userArray} />
+                            <Navigation {...props} userArray={userArray} loggedIn={loggedIn} />
                           )}
                         />
 
@@ -93,6 +109,8 @@ class App extends Component {
                                 userArray={userArray}
                                 projectArray={projectArray}
                                 reviewArray={reviewArray}
+                                loggedIn={loggedIn}
+                                authUser={this.props.authUser}
                               />
                             )}
                           />
@@ -112,6 +130,9 @@ class App extends Component {
                             <SearchPage
                               {...props}
                               userArray={userArray}
+                              loggedIn={loggedIn}
+                              authUser={this.props.authUser}
+                              refetch={userRefetch}
                             />
                           )}
                         />
@@ -126,6 +147,8 @@ class App extends Component {
                                   {...props}
                                   projects={projectArray}
                                   users={userArray}
+                                  loggedIn={loggedIn}
+                                  authUser={this.props.authUser}
                                 />
                               );
                             }}
@@ -141,6 +164,8 @@ class App extends Component {
                                         {...props}
                                         users={userArray}
                                         refetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     )
                                   }}
@@ -154,6 +179,8 @@ class App extends Component {
                                       <ProjectList
                                         {...props}
                                         projects={projectArray}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -166,6 +193,9 @@ class App extends Component {
                                       <ReviewList
                                         {...props}
                                         users={userArray}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
+                                        refetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -176,6 +206,8 @@ class App extends Component {
                                   render={(props) => (
                                     <Account
                                       {...props}
+                                      loggedIn={loggedIn}
+                                      authUser={this.props.authUser}
                                     />
                                   )}
                                 />
@@ -191,6 +223,9 @@ class App extends Component {
                                         {...props}
                                         users={userArray}
                                         refetch={refetch}
+                                        userRefetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -204,6 +239,8 @@ class App extends Component {
                                         {...props}
                                         projects={projectArray}
                                         users={userArray}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -219,6 +256,8 @@ class App extends Component {
                                       {...props}
                                       users={userArray}
                                       refetch={userRefetch}
+                                      loggedIn={loggedIn}
+                                      authUser={this.props.authUser}
                                     />
                                   );
                                 }}
@@ -268,7 +307,7 @@ class App extends Component {
                   return (
                     // <div>
                     <>
-                      <Navigation />
+                      <Navigation loggedIn={loggedIn} />
 
                       <Header />
                       <div className="main-container">
@@ -287,6 +326,8 @@ class App extends Component {
                               userArray={userArray}
                               projectArray={projectArray}
                               reviewArray={reviewArray}
+                              loggedIn={loggedIn}
+                              authUser={this.props.authUser}
                             />
                           )}
                         />
@@ -317,6 +358,9 @@ class App extends Component {
                               userArray={userArray}
                               projectArray={projectArray}
                               reviewArray={reviewArray}
+                              loggedIn={loggedIn}
+                              authUser={this.props.authUser}
+                              refetch={userRefetch}
                             />
                           )}
                         />
@@ -331,6 +375,8 @@ class App extends Component {
                                   {...props}
                                   projects={projectArray}
                                   users={userArray}
+                                  loggedIn={loggedIn}
+                                  authUser={this.props.authUser}
                                 />
                               );
                             }}
@@ -349,6 +395,9 @@ class App extends Component {
                                         email={user.email}
                                         user={user}
                                         users={userArray}
+                                        loggedIn={loggedIn}
+                                        refetch={userRefetch}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -362,6 +411,8 @@ class App extends Component {
                                         {...props}
                                         email={user.email}
                                         user={user}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -376,6 +427,9 @@ class App extends Component {
                                         email={user.email}
                                         users={userArray}
                                         user={user}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
+                                        refetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -388,6 +442,8 @@ class App extends Component {
                                       {...props}
                                       email={user.email}
                                       user={user}
+                                      loggedIn={loggedIn}
+                                      authUser={this.props.authUser}
                                     />
                                   )}
                                 />
@@ -408,6 +464,9 @@ class App extends Component {
                                         users={userArray}
                                         reviews={reviewArray}
                                         refetch={refetch}
+                                        userRefetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -423,6 +482,8 @@ class App extends Component {
                                         project={project}
                                         projects={projectArray}
                                         users={userArray}
+                                        loggedIn={loggedIn}
+                                        authUser={this.props.authUser}
                                       />
                                     );
                                   }}
@@ -448,6 +509,484 @@ class App extends Component {
                                       users={userArray}
                                       user={user}
                                       refetch={userRefetch}
+                                      loggedIn={loggedIn}
+                                      authUser={this.props.authUser}
+                                    />
+                                  );
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                        <Route path={ROUTES.FOOTER} component={Footer} />
+                      </div>
+                    </>
+                    /* </div> */
+                  );
+                }}
+              </Query>
+            )}
+          </Query>
+        )}
+      </Query>
+    );
+  }
+}
+
+class AppNonAuth extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      projects: [],
+      reviews: [],
+      loggedIn: false
+    };
+  }
+
+
+
+  projectSearchHandler = (projects) => {
+    this.setState({ projects });
+  };
+
+  userSearchHandler = (users) => {
+    this.setState({ users });
+  };
+
+  reviewSearchHandler = (reviews) => {
+    this.setState({ reviews });
+  };
+
+  render () {
+    const loggedIn = this.state.loggedIn
+    return (
+      <Query query={getUsers}>
+        {({
+          loading: loadingUsers,
+          data: userData,
+          error: userError,
+          refetch: userRefetch
+        }) => (
+          <Query query={getProjects}>
+            {({
+              loading: loadingProjects,
+              data: projectData,
+              error: projectError
+            }) => (
+              <Query query={getReviews}>
+                {({
+                  loading: loadingReviews,
+                  data: reviewData,
+                  error: reviewError,
+                  refetch
+                }) => {
+                  if (loadingUsers || loadingProjects || loadingReviews) {
+                    let userArray = [];
+                    let reviewArray = [];
+                    let projectArray = [];
+                    return (
+                      <>
+                        <Route
+                          path="/"
+                          render={(props) => (
+                            <Navigation {...props} userArray={userArray} loggedIn={loggedIn} />
+                          )}
+                        />
+
+                        <Header />
+                        <div className="main-container">
+                          <Route
+                            exact
+                            path={ROUTES.HOME}
+                            render={(props) => (
+                              <Home
+                                {...props}
+                                userArray={userArray}
+                                projectArray={projectArray}
+                                reviewArray={reviewArray}
+                                loggedIn={loggedIn}
+                              />
+                            )}
+                          />
+                          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                          <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                          <Route
+                          path={ROUTES.PASSWORD_FORGET}
+                          component={PasswordForget}
+                        />
+                        <Route
+                          path={ROUTES.PASSWORD_CHANGE}
+                          component={PasswordChange}
+                        />
+                        <Route
+                          path={ROUTES.SEARCH}
+                          render={(props) => (
+                            <SearchPage
+                              {...props}
+                              userArray={userArray}
+                              loggedIn={loggedIn}
+                              refetch={userRefetch}
+                            />
+                          )}
+                        />
+
+                        <div>
+                          <Route
+                            exact
+                            path={ROUTES.CREATE_PROJECT}
+                            render={(props) => {
+                              return (
+                                <CreateProject
+                                  {...props}
+                                  projects={projectArray}
+                                  users={userArray}
+                                  loggedIn={loggedIn}
+                                />
+                              );
+                            }}
+                          />
+
+                              
+                                <Route
+                                  exact
+                                  path={"/:username/profile"}
+                                  render={(props) => {
+                                    return (
+                                      <Profile
+                                        {...props}
+                                        users={userArray}
+                                        refetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                      />
+                                    )
+                                  }}
+                                />
+                               
+                                <Route
+                                  exact
+                                  path={"/:username/projects"}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectList
+                                        {...props}
+                                        projects={projectArray}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/:username/reviews"}
+                                  render={(props) => {
+                                    return (
+                                      <ReviewList
+                                        {...props}
+                                        users={userArray}
+                                        loggedIn={loggedIn}
+                                        refetch={userRefetch}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/:username/account"}
+                                  render={(props) => (
+                                    <Account
+                                      {...props}
+                                      loggedIn={loggedIn}
+                                    />
+                                  )}
+                                />
+                            
+                         
+                              
+                                <Route
+                                  exact
+                                  path={"/projects/:projID"}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectCard
+                                        {...props}
+                                        users={userArray}
+                                        refetch={refetch}
+                                        userRefetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={"/projects/:projID/edit"}
+                                  render={(props) => {
+                                    return (
+                                      <EditProject
+                                        {...props}
+                                        projects={projectArray}
+                                        users={userArray}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+
+                          
+                              <Route
+                                exact
+                                path={"/reviews/:revID"}
+                                render={(props) => {
+                                  return (
+                                    <ReviewCard
+                                      {...props}
+                                      users={userArray}
+                                      refetch={userRefetch}
+                                      loggedIn={loggedIn}
+                                    />
+                                  );
+                                }}
+                              />
+                            
+                        </div>
+                        <Route path={ROUTES.FOOTER} component={Footer} />
+                        </div>
+                      </>
+                    );
+                  }
+
+                  if (userError)
+                    return <span>{`userError: ${userError}`}</span>;
+                  if (projectError)
+                    return <span>{`projectError: ${projectError}`}</span>;
+                  if (reviewError)
+                    return <span>{`reviewError: ${reviewError}`}</span>;
+
+                  let userArray = [];
+                  let projectArray = [];
+                  let reviewArray = [];
+
+                  if (userData !== undefined)
+                    userArray = Object.values(userData).flat();
+
+                  if (projectData !== undefined)
+                    projectArray = Object.values(projectData).flat();
+                  projectArray = projectArray.map((project) => {
+                    if (project.length > 1) {
+                      return (project = {
+                        ...project,
+                        rating: parseFloat(
+                          math.mean(project.rating.slice(1)).toFixed(2)
+                        )
+                      });
+                    } else {
+                      return (project = {
+                        ...project,
+                        rating: parseFloat(math.mean(project.rating).toFixed(2))
+                      });
+                    }
+                  });
+
+                  if (reviewData !== undefined)
+                    reviewArray = Object.values(reviewData).flat();
+                  return (
+                    // <div>
+                    <>
+                      <Navigation loggedIn={loggedIn} />
+
+                      <Header />
+                      <div className="main-container">
+                        <Route
+                          exact
+                          path={ROUTES.HOME}
+                          render={(props) => (
+                            <Home
+                              {...props}
+                              projectSearchHandler={this.projectSearchHandler}
+                              userSearchHandler={this.userSearchHandler}
+                              reviewSearchHandler={this.reviewSearchHandler}
+                              getUsers={getUsers}
+                              getProjects={getProjects}
+                              getReviews={getReviews}
+                              userArray={userArray}
+                              projectArray={projectArray}
+                              reviewArray={reviewArray}
+                              loggedIn={loggedIn}
+                            />
+                          )}
+                        />
+                        <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                        <Route
+                          path={ROUTES.PASSWORD_FORGET}
+                          component={PasswordForget}
+                        />
+                        <Route
+                          path={ROUTES.PASSWORD_CHANGE}
+                          component={PasswordChange}
+                        />
+                        <Route
+                          path={ROUTES.SEARCH}
+                          render={(props) => (
+                            <SearchPage
+                              {...props}
+                              users={this.state.users}
+                              projects={this.state.projects}
+                              reviews={this.state.reviews}
+                              projectSearchHandler={this.projectSearchHandler}
+                              userSearchHandler={this.userSearchHandler}
+                              reviewSearchHandler={this.reviewSearchHandler}
+                              getUsers={getUsers}
+                              getProjects={getProjects}
+                              getReviews={getReviews}
+                              userArray={userArray}
+                              projectArray={projectArray}
+                              reviewArray={reviewArray}
+                              loggedIn={loggedIn}
+                              refetch={userRefetch}
+                            />
+                          )}
+                        />
+
+                        <div>
+                          <Route
+                            exact
+                            path={ROUTES.CREATE_PROJECT}
+                            render={(props) => {
+                              return (
+                                <CreateProject
+                                  {...props}
+                                  projects={projectArray}
+                                  users={userArray}
+                                  loggedIn={loggedIn}
+                                />
+                              );
+                            }}
+                          />
+
+                          {userArray.map((user) => {
+                            return (
+                              <div key={user.id}>
+                                <Route
+                                  exact
+                                  path={`/${user.username}/profile`}
+                                  render={(props) => {
+                                    return (
+                                      <Profile
+                                        {...props}
+                                        email={user.email}
+                                        user={user}
+                                        users={userArray}
+                                        refetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/projects`}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectList
+                                        {...props}
+                                        email={user.email}
+                                        user={user}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/reviews`}
+                                  render={(props) => {
+                                    return (
+                                      <ReviewList
+                                        {...props}
+                                        email={user.email}
+                                        users={userArray}
+                                        user={user}
+                                        loggedIn={loggedIn}
+                                        refetch={userRefetch}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact
+                                  path={`/${user.username}/account`}
+                                  render={(props) => (
+                                    <Account
+                                      {...props}
+                                      email={user.email}
+                                      user={user}
+                                      loggedIn={loggedIn}
+                                    />
+                                  )}
+                                />
+                              </div>
+                            );
+                          })}
+                          {projectArray.map((project) => {
+                            return (
+                              <div key={project.id}>
+                                <Route
+                                  exact
+                                  path={`/projects/${project.id}`}
+                                  render={(props) => {
+                                    return (
+                                      <ProjectCard
+                                        {...props}
+                                        project={project}
+                                        users={userArray}
+                                        reviews={reviewArray}
+                                        refetch={refetch}
+                                        userRefetch={userRefetch}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  key={project.id}
+                                  exact
+                                  path={`/projects/${project.id}/edit`}
+                                  render={(props) => {
+                                    return (
+                                      <EditProject
+                                        {...props}
+                                        project={project}
+                                        projects={projectArray}
+                                        users={userArray}
+                                        loggedIn={loggedIn}
+                                      />
+                                    );
+                                  }}
+                                />
+                              </div>
+                            );
+                          })}
+
+                          {reviewArray.map((review) => {
+                            let user = userArray.filter(
+                              (user) => user.email === review.Author.email
+                            );
+                            return (
+                              <Route
+                                key={review.id}
+                                exact
+                                path={`/reviews/${review.id}`}
+                                render={(props) => {
+                                  return (
+                                    <ReviewCard
+                                      {...props}
+                                      review={review}
+                                      users={userArray}
+                                      user={user}
+                                      refetch={userRefetch}
+                                      loggedIn={loggedIn}
                                     />
                                   );
                                 }}
@@ -472,4 +1011,4 @@ class App extends Component {
 
 // please update your components and Routes as needed
 
-export default withAuthentication(App);
+export default withAuthentication(AuthApp);

@@ -40,6 +40,8 @@ class Profile extends React.Component {
                         users={users}
                         user={user}
                         refetch={this.props.refetch}
+                        loggedIn={this.props.loggedIn}
+                        authUser={this.props.authUser}
                       />
                     </div>
                   </div>
@@ -77,6 +79,8 @@ class Profile extends React.Component {
                       users={users}
                       user={user}
                       refetch={this.props.refetch}
+                      loggedIn={this.props.loggedIn}
+                      authUser={this.props.authUser}
                     />
                   </div>
                 </div>
@@ -95,6 +99,8 @@ class Profile extends React.Component {
                         users={users}
                         user={user}
                         refetch={this.props.refetch}
+                        loggedIn={this.props.loggedIn}
+                        authUser={this.props.authUser}
                       />
                     </div>
                   </div>

@@ -3,69 +3,111 @@ import MicroModal from 'react-micro-modal';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editReview, likeAReview, dislikeAReview } from '../../query/query';
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import './ReviewCard.scss';
 
 class ReviewCard extends React.Component {
   constructor(props) {
     super(props);
 
-    const { users, review } = this.props;
+    if (this.props.users[0]) {
+      const { users, loggedIn } = this.props;
 
-    const json = localStorage.getItem('authUser');
-    const authUser = JSON.parse(json);
-    let visitor = [];
-    let loggedIn = false;
-    if (authUser !== null)
-      visitor = users.filter((u) => u.email === authUser.email)[0];
+      let visitor = {};
+      let authUser = { email: '' };
+      if (this.props.authUser != undefined) authUser = this.props.authUser;
+      if (this.props.authUser != undefined) visitor = users.filter((u) => u.email === authUser.email)[0];
+      console.log({users: users, visitor: visitor, authUser: authUser})
 
-    // visitor = user
+      
 
-    this.state = {
-      edit: false,
-      thumbsUp: review.thumbsUp,
-      thumbsDown: review.thumbsDown,
-      didThumbUp: false,
-      didThumbDown: false,
-      thumbsUpDisabled: false,
-      thumbsDownDisabled: false,
-      authUser: authUser,
-      visitor: visitor,
-      loggedIn: loggedIn,
-      name: review.name,
-      text: review.text,
-      stars: 0,
-      review: review
-    };
+      if (this.props.review) {
+        const {review} = this.props
+        this.state = {
+          edit: false,
+          thumbsUp: review.thumbsUp,
+          thumbsDown: review.thumbsDown,
+          didThumbUp: false,
+          didThumbDown: false,
+          thumbsUpDisabled: false,
+          thumbsDownDisabled: false,
+          authUser: authUser,
+          visitor: visitor,
+          loggedIn: loggedIn,
+          name: review.name,
+          text: review.text,
+          stars: 0,
+          review: review
+        };
+      } else {
+        this.state = {
+          edit: false,
+          thumbsUp: null,
+          thumbsDown: null,
+          didThumbUp: false,
+          didThumbDown: false,
+          thumbsUpDisabled: false,
+          thumbsDownDisabled: false,
+          authUser: authUser,
+          visitor: visitor,
+          loggedIn: loggedIn,
+          name: "",
+          text: "",
+          stars: 0,
+          review: {}
+        };
+      }
+
+      
+    } else {
+      const { loggedIn } = this.props;
+      let authUser = { email: '' };
+      let visitor = {};
+      if (this.props.authUser != undefined)
+      if (this.props.authUser != undefined) authUser = this.props.authUser;
+      this.state = {
+        edit: false,
+        thumbsUp: null,
+        thumbsDown: null,
+        didThumbUp: false,
+        didThumbDown: false,
+        thumbsUpDisabled: false,
+        thumbsDownDisabled: false,
+        authUser: authUser,
+        visitor: visitor,
+        loggedIn: loggedIn,
+        name: '',
+        text: '',
+        stars: 0,
+        review: {}
+      };
+    }
   }
 
   componentDidMount() {
-    if (this.state.authUser != null) {
-      let disFilter = this.state.visitor.DislikedReviews.filter(
-        (r) => r.id === this.state.review.id
-      );
-      let likeFilter = this.state.visitor.LikedReviews.filter(
-        (r) => r.id === this.state.review.id
-      );
-      if (disFilter[0]) {
-        this.setState({
-          ...this.state,
-          didThumbDown: true,
-          thumbsUpDisabled: true,
-          loggedIn: true
-        });
+    if (this.props.users[0]) {
+      if (this.props.authUser != undefined) {
+        let disFilter = this.state.visitor.DislikedReviews.filter(
+          (r) => r.id === this.state.review.id
+        );
+        let likeFilter = this.state.visitor.LikedReviews.filter(
+          (r) => r.id === this.state.review.id
+        );
+        if (disFilter[0]) {
+          this.setState({
+            ...this.state,
+            didThumbDown: true,
+            thumbsUpDisabled: true
+          });
+        }
+        if (likeFilter[0]) {
+          this.setState({
+            ...this.state,
+            didThumbUp: true,
+            thumbsDownDisabled: true
+          });
+        }
       }
-      if (likeFilter[0]) {
-        this.setState({
-          ...this.state,
-          didThumbUp: true,
-          thumbsDownDisabled: true,
-          loggedIn: true
-        });
-      } else {
-        this.setState({ ...this.state, loggedIn: true });
-      }
-    } else {
-      this.setState({ loggedIn: false });
     }
   }
 
@@ -102,76 +144,171 @@ class ReviewCard extends React.Component {
   };
 
   render() {
-    const { loggedIn, authUser } = this.state;
-    const { review } = this.props;
-    if (loggedIn) {
-      // console.log("logged in")
+    if (this.props.review && this.props.users[0]) {
+      const { loggedIn, authUser } = this.state;
+      const { review } = this.props;
+      if (loggedIn) {
+        // console.log("logged in")
 
-      if (review.Author.email === authUser.email) {
-        // console.log("logged in, your review")
-        if (review.projRating !== null && review.projRating !== undefined) {
-          // console.log("logged in, your review, you rated the project")
-          if (this.state.edit) {
-            // console.log("logged in, your review, you rated the project, you want to edit, return")
+        if (review.Author.email === authUser.email) {
+          // console.log("logged in, your review")
+          if (review.projRating !== null && review.projRating !== undefined) {
+            // console.log("logged in, your review, you rated the project")
+            if (this.state.edit) {
+              // console.log("logged in, your review, you rated the project, you want to edit, return")
 
-            return (
-              <React.Fragment>
-                <MicroModal
-                  trigger={(handleOpen) => (
-                    <div className="searchReviewCard">
-                      <img
-                        className="searchProjectImage"
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                      <h3>{`${review.ProjectReviewed.name}`}</h3>
-                      <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp
-                        .toString()
-                        .slice(0, 10)}`}</p>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`Title: ${review.name}`}</p>
-                      <button id="reviewButton" onClick={handleOpen}>
-                        See This Review
-                      </button>
-                    </div>
-                  )}
-                  children={(handleClose) => (
-                    <Mutation mutation={editReview}>
-                      {(editReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <div>
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                                <h3>{`${review.ProjectReviewed.name}`}</h3>
-                                <p>{`Review By: @${review.Author.username}`}</p>
-                                <p>{`${review.timestamp}`}</p>
+              return (
+                <React.Fragment>
+                  <MicroModal
+                    trigger={(handleOpen) => (
+                      <div className="searchReviewCard">
+                        <img
+                          className="searchProjectImage"
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`Date of Review: ${review.timestamp
+                          .toString()
+                          .slice(0, 10)}`}</p>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                        <p>{`Title: ${review.name}`}</p>
+                        <button id="reviewButton" onClick={handleOpen}>
+                          See This Review
+                        </button>
+                      </div>
+                    )}
+                    children={(handleClose) => (
+                      <Mutation mutation={editReview}>
+                        {(editReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <div>
+                                  <img
+                                    className="searchProjectImage"
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                                  <p>{`Review By: @${
+                                    review.Author.username
+                                  }`}</p>
+                                  <p>{`${review.timestamp}`}</p>
+                                  <Link
+                                    to={`/projects/${
+                                      review.ProjectReviewed.id
+                                    }`}
+                                  />
+                                  <p>{`Rating of Project: ${
+                                    review.projRating
+                                  }`}</p>
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <span>{`Thumbs Up: ${
+                                    this.state.thumbsUp
+                                  }`}</span>
+                                  |
+                                  <span>{`Thumbs Down: ${
+                                    this.state.thumbsDown
+                                  }`}</span>
+                                  <div>
+                                    <span>Submitting your changes...</span>
+                                    <button onClick={handleClose}>Close</button>
+                                  </div>
+                                </div>
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ editRevError: error });
+                            return (
+                              <form>
+                                <div>
+                                  <div>{`${review.ProjectReviewed.name}`}</div>
+                                  <div>{`Review By: @${
+                                    review.Author.username
+                                  }`}</div>
+                                  <div>{`${review.timestamp}`}</div>
+                                  <Link
+                                    to={`/projects/${
+                                      review.ProjectReviewed.id
+                                    }`}
+                                  >
+                                    <img
+                                      className="searchProjectImage"
+                                      src={`${review.ProjectReviewed.titleImg}`}
+                                      alt="project"
+                                    />
+                                  </Link>
+                                  <div>{`Rating of Project: ${
+                                    review.projRating
+                                  }`}</div>
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <span>{`Thumbs Up: ${
+                                    this.state.thumbsUp
+                                  }`}</span>
+                                  |
+                                  <span>{`Thumbs Down: ${
+                                    this.state.thumbsDown
+                                  }`}</span>
+                                  <div>
+                                    <span>
+                                      There was an error submitting your
+                                      changes.
+                                    </span>
+                                    <button onClick={handleClose}>Close</button>
+                                  </div>
+                                </div>
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <div className="review-card">
+                                <div>{`${review.ProjectReviewed.name}`}</div>
+                                <div>{`Review By: @${
+                                  review.Author.username
+                                }`}</div>
+                                <div>{`${review.timestamp}`}</div>
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
-                                />
-                                <p>{`Rating of Project: ${
-                                  review.projRating
-                                }`}</p>
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                  disabled
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                  disabled
-                                />
+                                >
+                                  <img
+                                    className="searchProjectImage"
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
+                                <div>{`${review.name}`}</div>
+                                <div>{`${review.text}`}</div>
                                 <span>{`Thumbs Up: ${
                                   this.state.thumbsUp
                                 }`}</span>
@@ -179,17 +316,32 @@ class ReviewCard extends React.Component {
                                 <span>{`Thumbs Down: ${
                                   this.state.thumbsDown
                                 }`}</span>
-                                <div>
-                                  <span>Submitting your changes...</span>
-                                  <button onClick={handleClose}>Close</button>
-                                </div>
+                                <button onClick={handleClose}>Close</button>
                               </div>
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ editRevError: error });
+                            );
                           return (
-                            <form>
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                const date = await new Date(Date.now());
+                                await editReview({
+                                  variables: {
+                                    name: this.state.name,
+                                    text: this.state.text,
+                                    timestamp: date,
+                                    projId: review.ProjectReviewed.id,
+                                    revId: review.id
+                                  }
+                                });
+                                await this.props.refetch();
+                                let revs = this.props.review;
+                                await this.setState({
+                                  ...this.state,
+                                  review: revs,
+                                  edit: false
+                                });
+                              }}
+                            >
                               <div>
                                 <div>{`${review.ProjectReviewed.name}`}</div>
                                 <div>{`Review By: @${
@@ -214,14 +366,12 @@ class ReviewCard extends React.Component {
                                   name="name"
                                   value={this.state.name}
                                   onChange={this.textChange}
-                                  disabled
                                 />
                                 <h3>Body:</h3>
                                 <textarea
                                   name="text"
                                   value={this.state.text}
                                   onChange={this.textChange}
-                                  disabled
                                 />
                                 <span>{`Thumbs Up: ${
                                   this.state.thumbsUp
@@ -231,205 +381,172 @@ class ReviewCard extends React.Component {
                                   this.state.thumbsDown
                                 }`}</span>
                                 <div>
-                                  <span>
-                                    There was an error submitting your changes.
-                                  </span>
+                                  <button type="submit">Submit</button>
                                   <button onClick={handleClose}>Close</button>
                                 </div>
                               </div>
                             </form>
                           );
-                        }
-                        if (data)
-                          return (
-                            <div className="review-card">
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
-                                review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
-                              <Link
-                                to={`/projects/${review.ProjectReviewed.id}`}
-                              >
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                              </Link>
-                              <div>{`${review.name}`}</div>
-                              <div>{`${review.text}`}</div>
-                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                              |
-                              <span>{`Thumbs Down: ${
-                                this.state.thumbsDown
-                              }`}</span>
-                              <button onClick={handleClose}>Close</button>
-                            </div>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              const date = await new Date(Date.now());
-                              await editReview({
-                                variables: {
-                                  name: this.state.name,
-                                  text: this.state.text,
-                                  timestamp: date,
-                                  projId: review.ProjectReviewed.id,
-                                  revId: review.id
-                                }
-                              });
-                              await this.props.refetch();
-                              let revs = this.props.review;
-                              await this.setState({
-                                ...this.state,
-                                review: revs,
-                                edit: false
-                              });
-                            }}
-                          >
-                            <div>
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
-                                review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
-                              <Link
-                                to={`/projects/${review.ProjectReviewed.id}`}
-                              >
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                              </Link>
-                              <div>{`Rating of Project: ${
-                                review.projRating
-                              }`}</div>
-                              <h3>Title:</h3>
-                              <input
-                                type="text"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.textChange}
-                              />
-                              <h3>Body:</h3>
-                              <textarea
-                                name="text"
-                                value={this.state.text}
-                                onChange={this.textChange}
-                              />
-                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                              |
-                              <span>{`Thumbs Down: ${
-                                this.state.thumbsDown
-                              }`}</span>
-                              <div>
-                                <button type="submit">Submit</button>
-                                <button onClick={handleClose}>Close</button>
-                              </div>
-                            </div>
-                          </form>
-                        );
-                      }}
-                    </Mutation>
-                  )}
-                />
-              </React.Fragment>
-            );
-          } else {
-            // console.log("logged in, your review, you rated, you don't want to edit, return")
+                        }}
+                      </Mutation>
+                    )}
+                  />
+                </React.Fragment>
+              );
+            } else {
+              // console.log("logged in, your review, you rated, you don't want to edit, return")
 
-            return (
-              <React.Fragment>
-                <MicroModal
-                  trigger={(handleOpen) => (
-                    <div className="searchReviewCard">
-                      <img
-                        className="searchProjectImage"
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                      <h3>{`${review.ProjectReviewed.name}`}</h3>
-                      <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp
-                        .toString()
-                        .slice(0, 10)}`}</p>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`Title: ${review.name}`}</p>
-                      <button id="reviewButton" onClick={handleOpen}>
-                        See This Review
-                      </button>
-                    </div>
-                  )}
-                  children={(handleClose) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+              return (
+                <React.Fragment>
+                  <MicroModal
+                    trigger={(handleOpen) => (
+                      <div className="searchReviewCard">
                         <img
                           className="searchProjectImage"
                           src={`${review.ProjectReviewed.titleImg}`}
                           alt="project"
                         />
-                      </Link>
-                      <div>{`Rating of Project: ${review.projRating}`}</div>
-                      <div>{`${review.name}`}</div>
-                      <div>{`${review.text}`}</div>
-                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
-                      <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
-                      <div>
-                        <button
-                          onClick={() =>
-                            this.setState({ ...this.state, edit: true })
-                          }
-                        >
-                          Edit
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`Date of Review: ${review.timestamp
+                          .toString()
+                          .slice(0, 10)}`}</p>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                        <p>{`Title: ${review.name}`}</p>
+                        <button id="reviewButton" onClick={handleOpen}>
+                          See This Review
                         </button>
-                        <button onClick={handleClose}>Close</button>
                       </div>
-                    </div>
-                  )}
-                />
-              </React.Fragment>
-            );
-          }
-        } else {
-          // console.log("logged in, your review, you didn't rate")
-          if (this.state.edit) {
-            // console.log("logged in, your review, you didn't rate, you want to edit, return")
+                    )}
+                    children={(handleClose) => (
+                      <div>
+                        <div>{`${review.ProjectReviewed.name}`}</div>
+                        <div>{`Review By: @${review.Author.username}`}</div>
+                        <div>{`${review.timestamp}`}</div>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                          <img
+                            className="searchProjectImage"
+                            src={`${review.ProjectReviewed.titleImg}`}
+                            alt="project"
+                          />
+                        </Link>
+                        <div>{`Rating of Project: ${review.projRating}`}</div>
+                        <div>{`${review.name}`}</div>
+                        <div>{`${review.text}`}</div>
+                        <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
+                        <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                        <div>
+                          <button
+                            onClick={() =>
+                              this.setState({ ...this.state, edit: true })
+                            }
+                          >
+                            Edit
+                          </button>
+                          <button onClick={handleClose}>Close</button>
+                        </div>
+                      </div>
+                    )}
+                  />
+                </React.Fragment>
+              );
+            }
+          } else {
+            // console.log("logged in, your review, you didn't rate")
+            if (this.state.edit) {
+              // console.log("logged in, your review, you didn't rate, you want to edit, return")
 
-            return (
-              <React.Fragment>
-                <MicroModal
-                  trigger={(handleOpen) => (
-                    <div className="searchReviewCard">
-                      <img
-                        className="searchProjectImage"
-                        src={`${review.ProjectReviewed.titleImg}`}
-                        alt="project"
-                      />
-                      <h3>{`${review.ProjectReviewed.name}`}</h3>
-                      <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp
-                        .toString()
-                        .slice(0, 10)}`}</p>
-                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                      <p>{`Title: ${review.name}`}</p>
-                      <button id="reviewButton" onClick={handleOpen}>
-                        See This Review
-                      </button>
-                    </div>
-                  )}
-                  children={(handleClose) => (
-                    <Mutation mutation={editReview}>
-                      {(editReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
+              return (
+                <React.Fragment>
+                  <MicroModal
+                    trigger={(handleOpen) => (
+                      <div className="searchReviewCard">
+                        <img
+                          className="searchProjectImage"
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`Date of Review: ${review.timestamp
+                          .toString()
+                          .slice(0, 10)}`}</p>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                        <p>{`Title: ${review.name}`}</p>
+                        <button id="reviewButton" onClick={handleOpen}>
+                          See This Review
+                        </button>
+                      </div>
+                    )}
+                    children={(handleClose) => (
+                      <Mutation mutation={editReview}>
+                        {(editReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <div>
+                                  <div>{`${review.ProjectReviewed.name}`}</div>
+                                  <div>{`Review By: @${
+                                    review.Author.username
+                                  }`}</div>
+                                  <div>{`${review.timestamp}`}</div>
+                                  <Link
+                                    to={`/projects/${
+                                      review.ProjectReviewed.id
+                                    }`}
+                                  >
+                                    <img
+                                      className="searchProjectImage"
+                                      src={`${review.ProjectReviewed.titleImg}`}
+                                      alt="project"
+                                    />
+                                  </Link>
+                                  <div>Rating of Project:</div>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                    disabled
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <span>{`Thumbs Up: ${
+                                    this.state.thumbsUp
+                                  }`}</span>
+                                  |
+                                  <span>{`Thumbs Down: ${
+                                    this.state.thumbsDown
+                                  }`}</span>
+                                  <div>
+                                    <span>Submitting your changes...</span>
+                                    <button onClick={handleClose}>Close</button>
+                                  </div>
+                                </div>
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ editRevError: error });
+                            return (
                               <div>
                                 <div>{`${review.ProjectReviewed.name}`}</div>
                                 <div>{`Review By: @${
@@ -482,187 +599,436 @@ class ReviewCard extends React.Component {
                                   this.state.thumbsDown
                                 }`}</span>
                                 <div>
-                                  <span>Submitting your changes...</span>
+                                  <span>
+                                    There was trouble submitting your changes.
+                                  </span>
+                                  <button onClick={handleClose}>Close</button>
+                                </div>
+                              </div>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <div>
+                                <div>{`${review.ProjectReviewed.name}`}</div>
+                                <div>{`Review By: @${
+                                  review.Author.username
+                                }`}</div>
+                                <div>{`${review.timestamp}`}</div>
+                                <Link
+                                  to={`/projects/${review.ProjectReviewed.id}`}
+                                >
+                                  <img
+                                    className="searchProjectImage"
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
+                                <div>{`${review.name}`}</div>
+                                <div>{`${review.text}`}</div>
+                                <span>{`Thumbs Up: ${
+                                  this.state.thumbsUp
+                                }`}</span>
+                                |
+                                <span>{`Thumbs Down: ${
+                                  this.state.thumbsDown
+                                }`}</span>
+                                <div>
+                                  <button onClick={handleClose}>Close</button>
+                                </div>
+                              </div>
+                            );
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                const date = await new Date(Date.now());
+                                await editReview({
+                                  variables: {
+                                    name: this.state.name,
+                                    text: this.state.text,
+                                    timestamp: date,
+                                    projId: review.ProjectReviewed.id,
+                                    revId: review.id,
+                                    projRating: this.state.projRating
+                                  }
+                                });
+                                await this.props.refetch();
+                                const revs = this.props.review;
+                                await this.setState({
+                                  ...this.state,
+                                  edit: false,
+                                  review: revs
+                                });
+                              }}
+                            >
+                              <div>
+                                <div>{`${review.ProjectReviewed.name}`}</div>
+                                <div>{`Review By: @${
+                                  review.Author.username
+                                }`}</div>
+                                <div>{`${review.timestamp}`}</div>
+                                <Link
+                                  to={`/projects/${review.ProjectReviewed.id}`}
+                                >
+                                  <img
+                                    className="searchProjectImage"
+                                    src={`${review.ProjectReviewed.titleImg}`}
+                                    alt="project"
+                                  />
+                                </Link>
+                                <div>Rating of Project:</div>
+                                <select
+                                  name="stars"
+                                  onChange={this.starChange}
+                                  value={this.state.stars}
+                                >
+                                  <option value="0">Rating</option>
+                                  <option value="1">1 star</option>
+                                  <option value="2">2 stars</option>
+                                  <option value="3">3 stars</option>
+                                  <option value="4">4 stars</option>
+                                  <option value="5">5 stars</option>
+                                </select>
+                                <h3>Title:</h3>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  value={this.state.name}
+                                  onChange={this.textChange}
+                                />
+                                <h3>Body:</h3>
+                                <textarea
+                                  name="text"
+                                  value={this.state.text}
+                                  onChange={this.textChange}
+                                />
+                                <span>{`Thumbs Up: ${
+                                  this.state.thumbsUp
+                                }`}</span>
+                                |
+                                <span>{`Thumbs Down: ${
+                                  this.state.thumbsDown
+                                }`}</span>
+                                <div>
+                                  <button type="submit">Submit</button>
                                   <button onClick={handleClose}>Close</button>
                                 </div>
                               </div>
                             </form>
                           );
-                        if (error) {
-                          console.log({ editRevError: error });
-                          return (
-                            <div>
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
-                                review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
-                              <Link
-                                to={`/projects/${review.ProjectReviewed.id}`}
-                              >
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                              </Link>
-                              <div>Rating of Project:</div>
-                              <select
-                                name="stars"
-                                onChange={this.starChange}
-                                value={this.state.stars}
-                                disabled
-                              >
-                                <option value="0">Rating</option>
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                              </select>
-                              <h3>Title:</h3>
-                              <input
-                                type="text"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.textChange}
-                                disabled
-                              />
-                              <h3>Body:</h3>
-                              <textarea
-                                name="text"
-                                value={this.state.text}
-                                onChange={this.textChange}
-                                disabled
-                              />
-                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                              |
-                              <span>{`Thumbs Down: ${
-                                this.state.thumbsDown
-                              }`}</span>
-                              <div>
-                                <span>
-                                  There was trouble submitting your changes.
-                                </span>
-                                <button onClick={handleClose}>Close</button>
-                              </div>
-                            </div>
-                          );
-                        }
-                        if (data)
-                          return (
-                            <div>
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
-                                review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
-                              <Link
-                                to={`/projects/${review.ProjectReviewed.id}`}
-                              >
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                              </Link>
-                              <div>{`${review.name}`}</div>
-                              <div>{`${review.text}`}</div>
-                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                              |
-                              <span>{`Thumbs Down: ${
-                                this.state.thumbsDown
-                              }`}</span>
-                              <div>
-                                <button onClick={handleClose}>Close</button>
-                              </div>
-                            </div>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              const date = await new Date(Date.now());
-                              await editReview({
-                                variables: {
-                                  name: this.state.name,
-                                  text: this.state.text,
-                                  timestamp: date,
-                                  projId: review.ProjectReviewed.id,
-                                  revId: review.id,
-                                  projRating: this.state.projRating
-                                }
-                              });
-                              await this.props.refetch();
-                              const revs = this.props.review;
-                              await this.setState({
-                                ...this.state,
-                                edit: false,
-                                review: revs
-                              });
-                            }}
+                        }}
+                      </Mutation>
+                    )}
+                  />
+                </React.Fragment>
+              );
+            } else {
+              // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
+
+              return (
+                <React.Fragment>
+                  <MicroModal
+                    trigger={(handleOpen) => (
+                      <div className="searchReviewCard">
+                        <img
+                          className="searchProjectImage"
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`Date of Review: ${review.timestamp
+                          .toString()
+                          .slice(0, 10)}`}</p>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                        <p>{`Title: ${review.name}`}</p>
+                        <button id="reviewButton" onClick={handleOpen}>
+                          See This Review
+                        </button>
+                      </div>
+                    )}
+                    children={(handleClose) => (
+                      <div>
+                        <div>{`${review.ProjectReviewed.name}`}</div>
+                        <div>{`Review By: @${review.Author.username}`}</div>
+                        <div>{`${review.timestamp}`}</div>
+                        <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                          <img
+                            className="searchProjectImage"
+                            src={`${review.ProjectReviewed.titleImg}`}
+                            alt="project"
+                          />
+                        </Link>
+                        <div>{`${review.name}`}</div>
+                        <div>{`${review.text}`}</div>
+                        <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
+                        <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                        <div>
+                          <button
+                            onClick={() =>
+                              this.setState({ ...this.state, edit: true })
+                            }
                           >
-                            <div>
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
-                                review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
-                              <Link
-                                to={`/projects/${review.ProjectReviewed.id}`}
+                            Edit
+                          </button>
+                          <button onClick={handleClose}>Close</button>
+                        </div>
+                      </div>
+                    )}
+                  />
+                </React.Fragment>
+              );
+            }
+          }
+        } else {
+          // console.log("logged in, not your review")
+
+          if (review.projRating !== null && review.projRating !== undefined) {
+            // console.log("logged in, not your rev, review w/rating")
+
+            return (
+              <React.Fragment>
+                <MicroModal
+                  trigger={(handleOpen) => (
+                    <div className="searchReviewCard">
+                      <img
+                        className="searchProjectImage"
+                        src={`${review.ProjectReviewed.titleImg}`}
+                        alt="project"
+                      />
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`Date of Review: ${review.timestamp
+                        .toString()
+                        .slice(0, 10)}`}</p>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`} />
+                      <p>{`Title: ${review.name}`}</p>
+                      <button id="reviewButton" onClick={handleOpen}>
+                        See This Review
+                      </button>
+                    </div>
+                  )}
+                  children={(handleClose) => (
+                    <div>
+                      <div>{`${review.ProjectReviewed.name}`}</div>
+                      <div>{`Review By: @${review.Author.username}`}</div>
+                      <div>{`${review.timestamp}`}</div>
+                      <Link to={`/projects/${review.ProjectReviewed.id}`}>
+                        <img
+                          className="searchProjectImage"
+                          src={`${review.ProjectReviewed.titleImg}`}
+                          alt="project"
+                        />
+                      </Link>
+                      <div>{`Rating of Project: ${review.projRating}`}</div>
+                      <div>{`${review.name}`}</div>
+                      <div>{`${review.text}`}</div>
+                      <Mutation mutation={likeAReview}>
+                        {(likeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button
+                                    disabled={this.state.thumbsUpDisabled}
+                                  >
+                                    +
+                                  </button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ likeError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>+</button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                                <span>
+                                  There was an error submitting your rating.
+                                </span>
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await likeAReview({
+                                    variables: {
+                                      // eslint-disable-next-line
+                                      revId: this.state.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbUp: this.state.didThumbUp
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsUp();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsUp: review.thumbsUp
+                                  });
+                                }}
                               >
-                                <img
-                                  className="searchProjectImage"
-                                  src={`${review.ProjectReviewed.titleImg}`}
-                                  alt="project"
-                                />
-                              </Link>
-                              <div>Rating of Project:</div>
-                              <select
-                                name="stars"
-                                onChange={this.starChange}
-                                value={this.state.stars}
-                              >
-                                <option value="0">Rating</option>
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                              </select>
-                              <h3>Title:</h3>
-                              <input
-                                type="text"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.textChange}
-                              />
-                              <h3>Body:</h3>
-                              <textarea
-                                name="text"
-                                value={this.state.text}
-                                onChange={this.textChange}
-                              />
-                              <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsUpDisabled}
+                                  >
+                                    +
+                                  </button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await likeAReview({
+                                  variables: {
+                                    // eslint-disable-next-line
+                                    revId: this.state.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbUp: this.state.didThumbUp
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsUp();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsUp: review.thumbsUp
+                                });
+                              }}
+                            >
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
+                              </span>
                               |
-                              <span>{`Thumbs Down: ${
-                                this.state.thumbsDown
-                              }`}</span>
-                              <div>
-                                <button type="submit">Submit</button>
-                                <button onClick={handleClose}>Close</button>
-                              </div>
-                            </div>
-                          </form>
-                        );
-                      }}
-                    </Mutation>
+                            </form>
+                          );
+                        }}
+                      </Mutation>
+
+                      <Mutation mutation={dislikeAReview}>
+                        {(dislikeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ disError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                                <div>
+                                  There was an error logging your rating.
+                                </div>
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await dislikeAReview({
+                                    variables: {
+                                      // eslint-disable-next-line
+                                      revId: this.state.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbDown: this.state.didThumbDown
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsDown();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsDown: review.thumbsDown
+                                  });
+                                }}
+                              >
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsDownDisabled}
+                                  >
+                                    -
+                                  </button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await dislikeAReview({
+                                  variables: {
+                                    // eslint-disable-next-line
+                                    revId: this.state.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbDown: this.state.didThumbDown
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsDown();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsDown: review.thumbsDown
+                                });
+                              }}
+                            >
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
+                        }}
+                      </Mutation>
+                      <button onClick={handleClose}>Close</button>
+                    </div>
                   )}
                 />
               </React.Fragment>
             );
           } else {
-            // console.log("logged in, your review, you didn't rate, you don't want to edit, return")
+            // console.log("logged in, not your rev,  review w/o rating")
 
             return (
               <React.Fragment>
@@ -700,18 +1066,193 @@ class ReviewCard extends React.Component {
                       </Link>
                       <div>{`${review.name}`}</div>
                       <div>{`${review.text}`}</div>
-                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
-                      <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
-                      <div>
-                        <button
-                          onClick={() =>
-                            this.setState({ ...this.state, edit: true })
+
+                      <Mutation mutation={likeAReview}>
+                        {(likeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>+</button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ likeError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>+</button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
                           }
-                        >
-                          Edit
-                        </button>
-                        <button onClick={handleClose}>Close</button>
-                      </div>
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await likeAReview({
+                                    variables: {
+                                      revId: this.state.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbUp: this.state.didThumbUp
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsUp();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsUp: review.thumbsUp
+                                  });
+                                }}
+                              >
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsUpDisabled}
+                                  >
+                                    +
+                                  </button>
+                                  {`Thumbs Up: ${this.state.thumbsUp}`}
+                                </span>
+                                |
+                              </form>
+                            );
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await likeAReview({
+                                  variables: {
+                                    revId: this.state.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbUp: this.state.didThumbUp
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsUp();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsUp: review.thumbsUp
+                                });
+                              }}
+                            >
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsUpDisabled}
+                                >
+                                  +
+                                </button>
+                                {`Thumbs Up: ${this.state.thumbsUp}`}
+                              </span>
+                              |
+                            </form>
+                          );
+                        }}
+                      </Mutation>
+                      <Mutation mutation={dislikeAReview}>
+                        {(dislikeAReview, { loading, error, data }) => {
+                          if (loading)
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
+                          if (error) {
+                            console.log({ disError: error });
+                            return (
+                              <form>
+                                <span>
+                                  <button disabled>-</button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                                <div>
+                                  There was an error logging your rating.
+                                </div>
+                              </form>
+                            );
+                          }
+                          if (data)
+                            return (
+                              <form
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  await dislikeAReview({
+                                    variables: {
+                                      revId: this.state.review.id,
+                                      username: this.state.visitor.username,
+                                      didThumbDown: this.state.didThumbDown
+                                    }
+                                  });
+                                  await this.props.refetch();
+                                  const { review } = await this.props;
+                                  await this.thumbsDown();
+                                  await this.setState({
+                                    ...this.state,
+                                    review: review,
+                                    thumbsDown: review.thumbsDown
+                                  });
+                                }}
+                              >
+                                <span>
+                                  <button
+                                    type="submit"
+                                    disabled={this.state.thumbsDownDisabled}
+                                  >
+                                    -
+                                  </button>
+                                  {`Thumbs Down: ${this.state.thumbsDown}`}
+                                </span>
+                              </form>
+                            );
+                          return (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                await dislikeAReview({
+                                  variables: {
+                                    revId: this.props.review.id,
+                                    username: this.state.visitor.username,
+                                    didThumbDown: this.state.didThumbDown
+                                  }
+                                });
+                                await this.props.refetch();
+                                const { review } = await this.props;
+                                await this.thumbsDown();
+                                await this.setState({
+                                  ...this.state,
+                                  review: review,
+                                  thumbsDown: review.thumbsDown
+                                });
+                              }}
+                            >
+                              <span>
+                                <button
+                                  type="submit"
+                                  disabled={this.state.thumbsDownDisabled}
+                                >
+                                  -
+                                </button>
+                                {`Thumbs Down: ${this.state.thumbsDown}`}
+                              </span>
+                            </form>
+                          );
+                        }}
+                      </Mutation>
+                      <button onClick={handleClose}>Close</button>
                     </div>
                   )}
                 />
@@ -720,10 +1261,12 @@ class ReviewCard extends React.Component {
           }
         }
       } else {
-        // console.log("logged in, not your review")
+        // console.log("not logged in")
+        console.log({revProps: this.props})
+        const { review } = this.props;
 
         if (review.projRating !== null && review.projRating !== undefined) {
-          // console.log("logged in, not your rev, review w/rating")
+          // console.log("logged in, review includes rating, return")
 
           return (
             <React.Fragment>
@@ -762,199 +1305,8 @@ class ReviewCard extends React.Component {
                     <div>{`Rating of Project: ${review.projRating}`}</div>
                     <div>{`${review.name}`}</div>
                     <div>{`${review.text}`}</div>
-                    <Mutation mutation={likeAReview}>
-                      {(likeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled={this.state.thumbsUpDisabled}>
-                                  +
-                                </button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ likeError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>+</button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                              <span>
-                                There was an error submitting your rating.
-                              </span>
-                            </form>
-                          );
-                        }
-                        if (data)
-                          return (
-                            <form
-                              onSubmit={async (e) => {
-                                e.preventDefault();
-                                await likeAReview({
-                                  variables: {
-                                    // eslint-disable-next-line
-                                    revId: this.state.review.id,
-                                    username: this.state.visitor.username,
-                                    didThumbUp: this.state.didThumbUp
-                                  }
-                                });
-                                await this.props.refetch();
-                                const { review } = await this.props;
-                                await this.thumbsUp();
-                                await this.setState({
-                                  ...this.state,
-                                  review: review,
-                                  thumbsUp: review.thumbsUp
-                                });
-                              }}
-                            >
-                              <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsUpDisabled}
-                                >
-                                  +
-                                </button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await likeAReview({
-                                variables: {
-                                  // eslint-disable-next-line
-                                  revId: this.state.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbUp: this.state.didThumbUp
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsUp();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsUp: review.thumbsUp
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsUpDisabled}
-                              >
-                                +
-                              </button>
-                              {`Thumbs Up: ${this.state.thumbsUp}`}
-                            </span>
-                            |
-                          </form>
-                        );
-                      }}
-                    </Mutation>
-
-                    <Mutation mutation={dislikeAReview}>
-                      {(dislikeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ disError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                              <div>There was an error logging your rating.</div>
-                            </form>
-                          );
-                        }
-                        if (data)
-                          return (
-                            <form
-                              onSubmit={async (e) => {
-                                e.preventDefault();
-                                await dislikeAReview({
-                                  variables: {
-                                    // eslint-disable-next-line
-                                    revId: this.state.review.id,
-                                    username: this.state.visitor.username,
-                                    didThumbDown: this.state.didThumbDown
-                                  }
-                                });
-                                await this.props.refetch();
-                                const { review } = await this.props;
-                                await this.thumbsDown();
-                                await this.setState({
-                                  ...this.state,
-                                  review: review,
-                                  thumbsDown: review.thumbsDown
-                                });
-                              }}
-                            >
-                              <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsDownDisabled}
-                                >
-                                  -
-                                </button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                            </form>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await dislikeAReview({
-                                variables: {
-                                  // eslint-disable-next-line
-                                  revId: this.state.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbDown: this.state.didThumbDown
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsDown();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsDown: review.thumbsDown
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsDownDisabled}
-                              >
-                                -
-                              </button>
-                              {`Thumbs Down: ${this.state.thumbsDown}`}
-                            </span>
-                          </form>
-                        );
-                      }}
-                    </Mutation>
+                    <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                    <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                     <button onClick={handleClose}>Close</button>
                   </div>
                 )}
@@ -962,7 +1314,7 @@ class ReviewCard extends React.Component {
             </React.Fragment>
           );
         } else {
-          // console.log("logged in, not your rev,  review w/o rating")
+          //console.log("")logged in, review w/o rating, return
 
           return (
             <React.Fragment>
@@ -1000,190 +1352,8 @@ class ReviewCard extends React.Component {
                     </Link>
                     <div>{`${review.name}`}</div>
                     <div>{`${review.text}`}</div>
-
-                    <Mutation mutation={likeAReview}>
-                      {(likeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>+</button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ likeError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>+</button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        }
-                        if (data)
-                          return (
-                            <form
-                              onSubmit={async (e) => {
-                                e.preventDefault();
-                                await likeAReview({
-                                  variables: {
-                                    revId: this.state.review.id,
-                                    username: this.state.visitor.username,
-                                    didThumbUp: this.state.didThumbUp
-                                  }
-                                });
-                                await this.props.refetch();
-                                const { review } = await this.props;
-                                await this.thumbsUp();
-                                await this.setState({
-                                  ...this.state,
-                                  review: review,
-                                  thumbsUp: review.thumbsUp
-                                });
-                              }}
-                            >
-                              <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsUpDisabled}
-                                >
-                                  +
-                                </button>
-                                {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
-                            </form>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await likeAReview({
-                                variables: {
-                                  revId: this.state.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbUp: this.state.didThumbUp
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsUp();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsUp: review.thumbsUp
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsUpDisabled}
-                              >
-                                +
-                              </button>
-                              {`Thumbs Up: ${this.state.thumbsUp}`}
-                            </span>
-                            |
-                          </form>
-                        );
-                      }}
-                    </Mutation>
-                    <Mutation mutation={dislikeAReview}>
-                      {(dislikeAReview, { loading, error, data }) => {
-                        if (loading)
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                            </form>
-                          );
-                        if (error) {
-                          console.log({ disError: error });
-                          return (
-                            <form>
-                              <span>
-                                <button disabled>-</button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                              <div>There was an error logging your rating.</div>
-                            </form>
-                          );
-                        }
-                        if (data)
-                          return (
-                            <form
-                              onSubmit={async (e) => {
-                                e.preventDefault();
-                                await dislikeAReview({
-                                  variables: {
-                                    revId: this.state.review.id,
-                                    username: this.state.visitor.username,
-                                    didThumbDown: this.state.didThumbDown
-                                  }
-                                });
-                                await this.props.refetch();
-                                const { review } = await this.props;
-                                await this.thumbsDown();
-                                await this.setState({
-                                  ...this.state,
-                                  review: review,
-                                  thumbsDown: review.thumbsDown
-                                });
-                              }}
-                            >
-                              <span>
-                                <button
-                                  type="submit"
-                                  disabled={this.state.thumbsDownDisabled}
-                                >
-                                  -
-                                </button>
-                                {`Thumbs Down: ${this.state.thumbsDown}`}
-                              </span>
-                            </form>
-                          );
-                        return (
-                          <form
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              await dislikeAReview({
-                                variables: {
-                                  revId: this.props.review.id,
-                                  username: this.state.visitor.username,
-                                  didThumbDown: this.state.didThumbDown
-                                }
-                              });
-                              await this.props.refetch();
-                              const { review } = await this.props;
-                              await this.thumbsDown();
-                              await this.setState({
-                                ...this.state,
-                                review: review,
-                                thumbsDown: review.thumbsDown
-                              });
-                            }}
-                          >
-                            <span>
-                              <button
-                                type="submit"
-                                disabled={this.state.thumbsDownDisabled}
-                              >
-                                -
-                              </button>
-                              {`Thumbs Down: ${this.state.thumbsDown}`}
-                            </span>
-                          </form>
-                        );
-                      }}
-                    </Mutation>
+                    <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
+                    <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                     <button onClick={handleClose}>Close</button>
                   </div>
                 )}
@@ -1193,105 +1363,31 @@ class ReviewCard extends React.Component {
         }
       }
     } else {
-      // console.log("not logged in")
-      const { review } = this.props;
-
-      if (review.projRating !== null && review.projRating !== undefined) {
-        // console.log("logged in, review includes rating, return")
-
-        return (
-          <React.Fragment>
-            <MicroModal
-              trigger={(handleOpen) => (
-                <div className="searchReviewCard">
-                  <img
-                    className="searchProjectImage"
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
-                  <h3>{`${review.ProjectReviewed.name}`}</h3>
-                  <p>{`Review By: @${review.Author.username}`}</p>
-                  <p>{`Date of Review: ${review.timestamp
-                    .toString()
-                    .slice(0, 10)}`}</p>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                  <p>{`Title: ${review.name}`}</p>
-                  <button id="reviewButton" onClick={handleOpen}>
-                    See This Review
-                  </button>
-                </div>
-              )}
-              children={(handleClose) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      className="searchProjectImage"
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`Rating of Project: ${review.projRating}`}</div>
-                  <div>{`${review.name}`}</div>
-                  <div>{`${review.text}`}</div>
-                  <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                  <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
-                  <button onClick={handleClose}>Close</button>
-                </div>
-              )}
-            />
-          </React.Fragment>
-        );
-      } else {
-        //console.log("")logged in, review w/o rating, return
-
-        return (
-          <React.Fragment>
-            <MicroModal
-              trigger={(handleOpen) => (
-                <div className="searchReviewCard">
-                  <img
-                    className="searchProjectImage"
-                    src={`${review.ProjectReviewed.titleImg}`}
-                    alt="project"
-                  />
-                  <h3>{`${review.ProjectReviewed.name}`}</h3>
-                  <p>{`Review By: @${review.Author.username}`}</p>
-                  <p>{`Date of Review: ${review.timestamp
-                    .toString()
-                    .slice(0, 10)}`}</p>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`} />
-                  <p>{`Title: ${review.name}`}</p>
-                  <button id="reviewButton" onClick={handleOpen}>
-                    See This Review
-                  </button>
-                </div>
-              )}
-              children={(handleClose) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
-                  <Link to={`/projects/${review.ProjectReviewed.id}`}>
-                    <img
-                      className="searchProjectImage"
-                      src={`${review.ProjectReviewed.titleImg}`}
-                      alt="project"
-                    />
-                  </Link>
-                  <div>{`${review.name}`}</div>
-                  <div>{`${review.text}`}</div>
-                  <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                  <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
-                  <button onClick={handleClose}>Close</button>
-                </div>
-              )}
-            />
-          </React.Fragment>
-        );
-      }
+      return (
+        <div className="searchReviewCard">
+          <SkeletonTheme highlightColor="#6fb3b8">
+            <div className="searchProjectImage">
+              <Skeleton />
+            </div>
+            <h3>
+              <Skeleton />
+            </h3>
+            <p>
+              <Skeleton />
+            </p>
+            <p>
+              <Skeleton />
+            </p>
+            <Skeleton />
+            <p>
+              <Skeleton />
+            </p>
+            <button id="reviewButton">
+              <Skeleton />
+            </button>
+          </SkeletonTheme>
+        </div>
+      );
     }
   }
 }

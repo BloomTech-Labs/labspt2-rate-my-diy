@@ -4,23 +4,34 @@ import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editUser } from '../../query/query';
 import './Profile.scss';
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 
 class ProfileInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userProfileImage: this.props.user.userProfileImage,
-      bio: this.props.user.bio,
-      username: this.props.user.username
-    };
+    if (this.props.user) {
+      this.state = {
+        userProfileImage: this.props.user.userProfileImage,
+        bio: this.props.user.bio,
+        username: this.props.user.username
+      };
+    }
+    else {
+      this.state = {
+        userProfileImage: "",
+        bio: "",
+        username: ""
+      }
+    }
   }
 
   componentDidMount() {
-    const user = localStorage.getItem('authUser');
-    const json = JSON.parse(user);
 
-    if (json !== null && json !== undefined) {
-      if (json.email !== this.props.email) {
+    if (this.props.user) {
+      const user = this.props.authUser
+
+    if (user !== null && user !== undefined) {
+      if (user.email !== this.props.email) {
         return <Redirect to="/" />;
       }
       return null;
@@ -28,6 +39,8 @@ class ProfileInfo extends React.Component {
       //Redirect
       return <Redirect to="/" />;
     }
+    }
+    
   }
 
   textChange = async (e) => {
@@ -65,46 +78,66 @@ class ProfileInfo extends React.Component {
   };
 
   render() {
-    return (
-      <Mutation mutation={editUser}>
-        {(editUser, { loading, data, error }) => {
-          if (loading) return <div>Loading...</div>;
-          if (error) {
-            console.log({ error });
-            return <div>There was an error.</div>;
-          }
-          return (
-            <div className="profile-form-flex-container">
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  await editUser({
-                    variables: {
-                      userProfileImage: this.state.userProfileImage,
-                      bio: this.state.bio,
-                      email: this.props.email
-                    }
-                  });
-                }}
-              >
-                <h2>{`${this.state.username}`}</h2>
-                <div className="img-container">
-                  <img src={this.state.userProfileImage} alt="profile" />
-                </div>
-                <button onClick={this.openCloudinary}>Set Profile Image</button>
-                <h3>Bio</h3>
-                <textarea
-                  name="bio"
-                  value={this.state.bio}
-                  onChange={this.textChange}
-                />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-          );
-        }}
-      </Mutation>
-    );
+    if (this.props.user) {
+      return (
+        <Mutation mutation={editUser}>
+          {(editUser, { loading, data, error }) => {
+            if (loading) return <div>Loading...</div>;
+            if (error) {
+              console.log({ error });
+              return <div>There was an error.</div>;
+            }
+            return (
+              <div className="profile-form-flex-container">
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    await editUser({
+                      variables: {
+                        userProfileImage: this.state.userProfileImage,
+                        bio: this.state.bio,
+                        email: this.props.email
+                      }
+                    });
+                  }}
+                >
+                  <h2>{`${this.state.username}`}</h2>
+                  <div className="img-container">
+                    <img src={this.state.userProfileImage} alt="profile" />
+                  </div>
+                  <button onClick={this.openCloudinary}>Set Profile Image</button>
+                  <h3>Bio</h3>
+                  <textarea
+                    name="bio"
+                    value={this.state.bio}
+                    onChange={this.textChange}
+                  />
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+            );
+          }}
+        </Mutation>
+      );
+    } else {
+      return (
+        <div className="profile-form-flex-container">
+        
+                <form>
+                  <h2><Skeleton/></h2>
+                  <div className="img-container">
+                    <Skeleton/>
+                  </div>
+                  <button><Skeleton/></button>
+                  <h3><Skeleton/></h3>
+                  <Skeleton count={5}/>
+                  <button><Skeleton/></button>
+                </form>
+                
+              </div>
+      )
+    }
+    
   }
 }
 
