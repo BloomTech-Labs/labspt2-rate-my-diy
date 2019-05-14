@@ -16,7 +16,7 @@ describe('Testing schema (Review), Query', () => {
 
   describe('Should pass if the root level review query is valid.', () => {
     it('Is a valid reviews query', () => {
-      const validQuery = `
+      const validReviewQuery = `
    {
     reviews {
      id
@@ -29,13 +29,13 @@ describe('Testing schema (Review), Query', () => {
     }
    }
    `;
-      tester.test(true, validQuery);
+      tester.test(true, validReviewQuery);
     });
   });
 
   describe('Should pass if the root level review query is invalid.', () => {
     it('Is an invalid reviews query.', () => {
-      const invalidQuery = `
+      const invalidReviewQuery = `
    {
     reviews {
      id
@@ -49,14 +49,132 @@ describe('Testing schema (Review), Query', () => {
     }
    }
    `;
-      tester.test(false, invalidQuery);
+      tester.test(false, invalidReviewQuery);
     });
   });
-  // describe('Should pass if the nested review query is valid', () => {
-  //   it('Is a valid nested review query.', () => {
-  //     {
-  //       re;
-  //     }
-  //   });
-  // });
+  describe('Should pass if the nested review query is valid', () => {
+    it('Is a valid nested review query.', () => {
+      const validNestedReviewQuery = `
+   { reviews 
+    { id
+     name
+     rKey
+     text
+     timestamp
+     thumbsUp
+     thumbsDown
+     LikedBy {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     DislikedBy {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     Author {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     ProjectReviewed {
+      id
+      name
+      key
+      category
+      timestamp
+      titleImg
+      titleBlurb
+      rating
+      steps
+     }}}
+     `;
+      tester.test(true, validNestedReviewQuery);
+    });
+  });
+  describe('Should pass if the nested review query is valid', () => {
+    it('Is a valid nested review query.', () => {
+      const invalidNestedReviewQuery = `
+   { reviews 
+    { id
+     name
+     rKey
+     text
+     invalidField
+     timestamp
+     thumbsUp
+     thumbsDown
+     LikedBy {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     DislikedBy {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     Author {
+      id
+      thirdPartyUID
+      firebaseUID
+      username
+      email
+      userProfileImage
+      bio
+      privilege
+      stripeId
+      accountType
+     }
+     ProjectReviewed {
+      id
+      name
+      key
+      category
+      timestamp
+      titleImg
+      titleBlurb
+      rating
+      steps
+     }}}
+     `;
+      tester.test(false, invalidNestedReviewQuery);
+    });
+  });
 });

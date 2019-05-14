@@ -17,7 +17,7 @@ describe('Testing schema (User), Query', () => {
 
   describe('Should pass if the root level user query is valid.', () => {
     it('Is a valid users query.', () => {
-      const validQuery = `
+      const validUserQuery = `
  {
   users {
    id
@@ -33,12 +33,12 @@ describe('Testing schema (User), Query', () => {
   }
  }
 `;
-      tester.test(true, validQuery);
+      tester.test(true, validUserQuery);
     });
   });
   describe('Should pass iff the root level user query is invalid', () => {
     it('Is an invalid users query.', () => {
-      const invalidQuery = `
+      const invalidUserQuery = `
      {
       users {
        id
@@ -60,7 +60,7 @@ describe('Testing schema (User), Query', () => {
       }
      }
     `;
-      tester.test(false, invalidQuery);
+      tester.test(false, invalidUserQuery);
     });
   });
 
@@ -214,7 +214,7 @@ describe('Testing schema (User), Query', () => {
 
 describe('Create User Mutation', () => {
   it('createUser should return a properly shaped user object.', () => {
-    const mutation = `
+    const createUserMutation = `
        mutation createUser {
          createUser(data: 
           {
@@ -243,7 +243,7 @@ describe('Create User Mutation', () => {
        }
       `;
     const tester = new EGQLT(schema);
-    tester.test(true, mutation, [
+    tester.test(true, createUserMutation, [
       {
         username: 'test',
         thirdPartyUID: 'test',
@@ -261,7 +261,7 @@ describe('Create User Mutation', () => {
 
 describe('Delete User Mutation', () => {
   it('Should delete a user given unique input.', () => {
-    const mutation = `
+    const deleteUserMutation = `
    mutation deleteUser($username: String!) {
     deleteUser(where: {username: $username}) {
      username
@@ -276,7 +276,7 @@ describe('Delete User Mutation', () => {
     const {
       data: { deleteUser }
     } = tester.mock({
-      query: mutation,
+      query: deleteUserMutation,
       variables: username
     });
   });
@@ -284,7 +284,7 @@ describe('Delete User Mutation', () => {
 
 describe('Update User Mutation', () => {
   it('Should update a user given unique input.', () => {
-    const mutation = ` 
+    const updateUserMutation = ` 
    mutation updateUser(
     $username: String! 
     $email: String!) {
@@ -306,7 +306,7 @@ describe('Update User Mutation', () => {
     const {
       data: { updateUser }
     } = tester.mock({
-      query: mutation,
+      query: updateUserMutation,
       variables: updateInfo
     });
   });
