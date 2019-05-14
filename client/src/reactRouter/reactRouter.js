@@ -40,7 +40,7 @@ const AuthNavigation = (props) => (
   </AuthUserContext.Consumer>
 );
 
-const Navigation = ({ props, authUser }) => {
+const Navigation = ({ authUser }) => {
   const thirdPartyUID = authUser.providerData['0'].uid;
   const uid = authUser.uid;
 
