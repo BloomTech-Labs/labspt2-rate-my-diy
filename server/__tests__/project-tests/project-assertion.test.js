@@ -348,20 +348,23 @@ describe('Create Project Mutation', () => {
   it('Should return a properly shaped project object.', () => {
     const mutation = `
   mutation createProject {
-   createProject(data:
-    {
-     name: "test", 
-     category: "test", 
-     titleImg: "test",
-     titleBlurb: "test",
-     steps: "test"
-     rating: [0, 0]
-     User: {
-      create: {
-       username: "test"
-      }
-     }
-    })
+   createProject(    data: {
+    name: "test"
+    category: "test"
+    titleImg: "test"
+    username: "test"
+    titleBlurb: "test"
+    steps: "test"
+    rating: {
+      set: [0, 0]
+    }
+    timestamp: "test"
+  }
+  User: {
+    create: {
+     username: "test"
+    }
+  })
     {
      name
      category
@@ -372,19 +375,21 @@ describe('Create Project Mutation', () => {
   }
   `;
     const tester = new EGQLT(schema);
-    tester.test(true, mutation, {
-      name: 'test',
-      category: 'test',
-      titleImg: 'test',
-      titleBlurb: 'test',
-      steps: 'test',
-      rating: [0, 0],
-      User: {
-        create: {
-          username: 'test'
-        }
+    tester.test(true, mutation, [
+      {
+        name: 'test',
+        category: 'test',
+        titleImg: 'test',
+        username: 'test',
+        titleBlurb: 'test',
+        steps: 'test',
+        rating: {
+          set: [0, 0]
+        },
+        timestamp: 'test',
+        User: { create: { username: 'test' } }
       }
-    });
+    ]);
   });
 });
 
