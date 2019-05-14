@@ -64,6 +64,71 @@ describe('Testing schema (User), Query', () => {
     });
   });
 
+  describe('Should pass if the root level user query is valid.', () => {
+    it('Is a valid user query.', () => {
+      const validUserQuery = `
+{
+ user(where: {id: "test"}) {
+  id
+  thirdPartyUID
+  firebaseUID
+  username
+  email
+  userProfileImage
+  bio
+  privilege
+  stripeId
+  accountType
+ }
+}
+`;
+
+      const userFixture = {
+        data: {
+          user: {
+            id: 'test',
+            thirdPartyUID: 'test',
+            firebaseUID: 'test',
+            username: 'test',
+            email: 'test',
+            userProfileImage: 'test',
+            bio: 'test',
+            privilege: 'test',
+            stripeId: 'test',
+            accountType: 'test'
+          }
+        }
+      };
+      tester.mock({
+        query: validUserQuery,
+        variables: userFixture,
+        validateDeprecated: true
+      });
+    });
+  });
+
+  describe('Should pass if the root level user query is invalid.', () => {
+    it('Is an invalid users query.', () => {
+      const invalidUserQuery = `
+{
+user(where: {id: "test"}) {
+ id
+ thirdPartyUID
+ firebaseUID
+ username
+ email
+ invalidField
+ userProfileImage
+ bio
+ privilege
+ stripeId
+ accountType
+}
+}
+`;
+      tester.test(false, invalidUserQuery);
+    });
+  });
   describe('Should pass if the nested users query is valid.', () => {
     it('Is a valid nested users query.', () => {
       const validNestedUsersQuery = `
