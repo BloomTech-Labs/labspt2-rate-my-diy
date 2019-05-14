@@ -1,10 +1,38 @@
+@import '../../styles/variables.scss';
+
 .projectInfo {
+  h1 {
+    color: $main-color;
+    font-size: 5.4rem;
+  }
+  h2 {
+    color: $alternate-color-one;
+  }
+  button {
+    border: 2px solid $alternate-color-one;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    font-size: 1.6rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px darkgray;
+    background: $color2;
+    color: white;
+    &:hover {
+      font-size: 1.8rem;
+    }
+  }
   display: flex;
   flex-direction: column;
   max-width: 100%;
   align-items: center;
   height: 100%;
-  border: 1px solid orange;
+  border: 5px solid $color2;
   padding: 10px;
   margin-bottom: 100px;
   form {
@@ -25,7 +53,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    border: 1px solid black;
+    border: 5px solid $color2;
     width: 100%;
     padding: 10px;
     h2 {
@@ -40,13 +68,25 @@
       align-self: flex-start;
 
       .conditionalButton {
-        width: 250px;
-        height: 50px;
-        background-color: rgb(227, 227, 227);
-        font-size: 1.4rem;
-        font-weight: 700;
-        border-radius: 4px;
-        margin-top: 10px;
+        button {
+          border: 2px solid $alternate-color-one;
+          margin: 10px 0 10px 0;
+          padding: 5px;
+          width: 150px;
+          height: 50px;
+          font-size: 1.6rem;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+          box-shadow: 5px 5px 5px darkgray;
+          background: $color2;
+          color: white;
+          &:hover {
+            font-size: 1.8rem;
+          }
+        }
       }
     }
     margin-top: 20px;
@@ -70,15 +110,6 @@
       flex-direction: row;
       justify-content: flex-start;
 
-      button {
-        margin-left: 10%;
-        width: 250px;
-        height: 50px;
-        background-color: rgb(227, 227, 227);
-        font-size: 1.4rem;
-        font-weight: 700;
-        border-radius: 4px;
-      }
       .category {
         width: 300px;
         margin-left: 20px;
@@ -86,6 +117,8 @@
           height: 40px;
           word-wrap: normal;
           font-size: 1.6rem;
+          border: 5px solid $color2;
+          border-radius: 10px;
         }
       }
     }
@@ -116,17 +149,29 @@
         width: 100%;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
+        border: 5px solid $color2;
+        border-radius: 5px;
         width: 300px;
         height: 261px;
         margin-right: 10px;
         button {
+          border: 2px solid $alternate-color-one;
+          margin: 10px 0 10px 0;
+          padding: 5px;
           width: 150px;
           height: 50px;
-          background-color: rgb(227, 227, 227);
-          font-size: 1.4rem;
-          font-weight: 700;
-          border-radius: 4px;
+          font-size: 1.6rem;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+          box-shadow: 5px 5px 5px darkgray;
+          background: $color2;
+          color: white;
+          &:hover {
+            font-size: 1.8rem;
+          }
         }
       }
       .descriptionRow {
@@ -139,6 +184,8 @@
           height: 261px;
           text-overflow: scroll;
           font-size: 1.6rem;
+          border: 5px solid $color2;
+          border-radius: 10px;
         }
       }
     }
@@ -151,6 +198,8 @@
       text-align: initial;
       width: 100%;
       font-size: 1.6rem;
+      border: 5px solid $color2;
+      border-radius: 10px;
     }
     img {
       width: 100%;
@@ -162,25 +211,50 @@
     .addStep,
     .addPicture,
     .removeStep {
-      width: 150px;
-      height: 40px;
-      margin-right: 20px;
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      background-color: rgb(227, 227, 227);
+      button {
+        border: 2px solid $alternate-color-one;
+        margin: 10px 0 10px 0;
+        padding: 5px;
+        width: 150px;
+        height: 50px;
+        font-size: 1.6rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px darkgray;
+        background: $color2;
+        color: white;
+      }
     }
   }
   .submitButton {
-    width: 150px;
-    height: 40px;
-    margin-right: 20px;
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    background-color: rgb(227, 227, 227);
-    margin-top: 30px;
+    button {
+      border: 2px solid $alternate-color-one;
+      margin: 10px 0 10px 0;
+      padding: 5px;
+      width: 150px;
+      height: 50px;
+      font-size: 1.6rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      box-shadow: 5px 5px 5px darkgray;
+      background: $color2;
+      color: white;
+      &:hover {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.buttonRow {
+  display: flex;
+  button {
+    margin-right: 15px;
   }
 }
