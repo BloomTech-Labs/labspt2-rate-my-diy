@@ -223,3 +223,62 @@ describe('Create Review Mutation', () => {
     });
   });
 });
+
+describe('Delete Review Mutation', () => {
+  it('Should delete a review given unique input.', () => {
+    const deleteReviewMutation = `
+   mutation deleteReview($rKey: String!) {
+    deleteReview(where: {rKey: $rKey}) {
+     name
+     text
+    }
+   }
+  `;
+    const rKey = {
+      rKey: 'test'
+    };
+    const tester = new EGQLT(schema);
+
+    const {
+      data: { deleteReview }
+    } = tester.mock({
+      query: deleteReviewMutation,
+      variables: rKey
+    });
+  });
+});
+
+describe('Update Review Mutation', () => {
+  it('Should update a review given unique input.', () => {
+    const updateReviewMutation = `
+   mutation updateReview(
+    $rKey: String!
+    $name: String!
+    $text: String!
+   ) {
+    updateReview(
+     data: {
+      name: $name
+      text: $text
+     }
+     where: {rKey: $rKey}) {
+      name
+      text
+     }
+   }
+  `;
+    const updateReviewInfo = {
+      name: 'test',
+      text: 'test',
+      rKey: 'test'
+    };
+
+    const tester = new EGQLT(schema);
+    const {
+      data: { updateReview }
+    } = tester.mock({
+      query: updateReviewMutation,
+      variables: updateReviewInfo
+    });
+  });
+});
