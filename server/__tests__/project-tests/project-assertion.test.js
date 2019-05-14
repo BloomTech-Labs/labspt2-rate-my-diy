@@ -35,7 +35,7 @@ describe('Testing schema (Project), Query', () => {
     });
   });
 
-  describe('Should pass iff the root level project query is invalid', () => {
+  describe('Should pass iff the root level projects query is invalid', () => {
     it('Is an invalid projects query.', () => {
       const invalidProjectsQuery = `
    {
@@ -58,7 +58,7 @@ describe('Testing schema (Project), Query', () => {
   });
 
   describe('Should pass if the root level project query is valid.', () => {
-    it('Is a valid projects query.', () => {
+    it('Is a valid project query.', () => {
       const validProjectQuery = `
      {
       project(where: {id: "test"}) {
@@ -100,7 +100,7 @@ describe('Testing schema (Project), Query', () => {
   });
 
   describe('Should pass if the root level project query is invalid.', () => {
-    it('Is an invalid projects query.', () => {
+    it('Is an invalid project query.', () => {
       const invalidProjectQuery = `
     {
      project(where: {id: "test"}) {
@@ -195,7 +195,7 @@ describe('Testing schema (Project), Query', () => {
     });
   });
 
-  describe('Should pass if the nested project query is valid.', () => {
+  describe('Should pass if the nested projects query is valid.', () => {
     it('Is a valid nested projects query.', () => {
       const validNestedProjectsQuery = `
     {

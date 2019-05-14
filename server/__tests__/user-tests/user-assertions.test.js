@@ -15,9 +15,9 @@ describe('Testing schema (User), Query', () => {
     tester = new EGQLT(schema);
   });
 
-  describe('Should pass if the root level user query is valid.', () => {
+  describe('Should pass if the root level users query is valid.', () => {
     it('Is a valid users query.', () => {
-      const validUserQuery = `
+      const validUsersQuery = `
  {
   users {
    id
@@ -33,12 +33,12 @@ describe('Testing schema (User), Query', () => {
   }
  }
 `;
-      tester.test(true, validUserQuery);
+      tester.test(true, validUsersQuery);
     });
   });
-  describe('Should pass iff the root level user query is invalid', () => {
+  describe('Should pass iff the root level users query is invalid', () => {
     it('Is an invalid users query.', () => {
-      const invalidUserQuery = `
+      const invalidUsersQuery = `
      {
       users {
        id
@@ -60,13 +60,13 @@ describe('Testing schema (User), Query', () => {
       }
      }
     `;
-      tester.test(false, invalidUserQuery);
+      tester.test(false, invalidUsersQuery);
     });
   });
 
-  describe('Should pass if the nested user query is valid.', () => {
-    it('Is a valid nested user query.', () => {
-      const validNestedUserQuery = `
+  describe('Should pass if the nested users query is valid.', () => {
+    it('Is a valid nested users query.', () => {
+      const validNestedUsersQuery = `
    {
     users {
       id
@@ -133,13 +133,13 @@ describe('Testing schema (User), Query', () => {
       }
     }
   }`;
-      tester.test(true, validNestedUserQuery);
+      tester.test(true, validNestedUsersQuery);
     });
   });
 
   describe('Should pass iff the nested user query is invalid.', () => {
-    it('Is an invalid nested user query.', () => {
-      const invalidNestedUserQuery = `
+    it('Is an invalid nested users query.', () => {
+      const invalidNestedUsersQuery = `
   {
    users {
      id
@@ -207,7 +207,7 @@ describe('Testing schema (User), Query', () => {
      }
    }
  }`;
-      tester.test(false, invalidNestedUserQuery);
+      tester.test(false, invalidNestedUsersQuery);
     });
   });
 });

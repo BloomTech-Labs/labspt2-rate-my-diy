@@ -14,9 +14,9 @@ describe('Testing schema (Review), Query', () => {
     tester = new EGQLT(schema);
   });
 
-  describe('Should pass if the root level review query is valid.', () => {
+  describe('Should pass if the root level reviews query is valid.', () => {
     it('Is a valid reviews query', () => {
-      const validReviewQuery = `
+      const validReviewsQuery = `
    {
     reviews {
      id
@@ -29,13 +29,13 @@ describe('Testing schema (Review), Query', () => {
     }
    }
    `;
-      tester.test(true, validReviewQuery);
+      tester.test(true, validReviewsQuery);
     });
   });
 
-  describe('Should pass if the root level review query is invalid.', () => {
+  describe('Should pass if the root level reviews query is invalid.', () => {
     it('Is an invalid reviews query.', () => {
-      const invalidReviewQuery = `
+      const invalidReviewsQuery = `
    {
     reviews {
      id
@@ -48,6 +48,63 @@ describe('Testing schema (Review), Query', () => {
      thumbsDown
     }
    }
+   `;
+      tester.test(false, invalidReviewsQuery);
+    });
+  });
+
+  describe('Should pass if the root level review query is valid.', () => {
+    it('Is a valid reviews query', () => {
+      const validReviewQuery = `
+  {
+   review(where: {id: "test"}) {
+    id
+    name
+    rKey
+    text
+    timestamp
+    thumbsUp
+    thumbsDown
+   }
+  }
+  `;
+
+      const reviewFixture = {
+        data: {
+          review: {
+            id: 'test',
+            name: 'test',
+            rKey: 'test',
+            timestamp: 'test',
+            thumbsUp: 0,
+            thumbsDown: 0
+          }
+        }
+      };
+      const {
+        data: { review }
+      } = tester.mock({
+        query: validReviewQuery,
+        variables: reviewFixture,
+        validateDeprecated: true
+      });
+    });
+  });
+
+  describe('Should pass if the root level review query is invalid.', () => {
+    it('Is an invalid review query', () => {
+      const invalidReviewQuery = `
+    {
+     review(where: {id: "test"}) {
+      id
+      name
+      rKey
+      timestamp
+      invalidField
+      thumbsUp
+      thumbsDown
+     }
+    }
    `;
       tester.test(false, invalidReviewQuery);
     });
