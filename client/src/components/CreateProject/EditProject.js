@@ -5,63 +5,84 @@ import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
 import { UPDATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 class EditProject extends Component {
   constructor(props) {
     super(props);
 
-    const user = localStorage.getItem('authUser');
-    const json = JSON.parse(user);
-    const userPull = this.props.users.filter(
-      (user) => user.email === json.email
-    );
-    const { username, email } = userPull[0];
+    if (this.props.users[0]) {
+      const userPull = this.props.users.filter(
+        (user) => user.email === this.props.authUser.email
+      );
+      const { username, email } = userPull[0];
+      const categories = this.props.projects.map((project) => project.category);
+      let filteredCategories = [...new Set(categories)];
 
-    const categories = this.props.projects.map((project) => project.category);
-    let filteredCategories = [...new Set(categories)];
+      const {
+        name,
+        category,
+        timestamp,
+        titleImg,
+        titleBlurb,
+        steps,
+        id
+      } = this.props.project;
+      let newSteps = [];
+      if (typeof steps === 'string')
+        newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
+      if (!typeof steps === 'string')
+        newSteps = steps.concat([{ type: '', body: '' }]);
 
-    const {
-      name,
-      category,
-      timestamp,
-      titleImg,
-      titleBlurb,
-      steps,
-      id
-    } = this.props.project;
-    let newSteps = [];
-    if (typeof steps === 'string')
-      newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
-    if (!typeof steps === 'string')
-      newSteps = steps.concat([{ type: '', body: '' }]);
-
-    this.state = {
-      imgDeleteDisabled: true,
-      categories: filteredCategories,
-      username: username,
-      email: email,
-      submitDisabled: true,
-      project: {
-        name: name,
-        category: category,
-        timestamp: timestamp,
-        titleImg: titleImg,
-        titleBlurb: titleBlurb,
-        steps: newSteps,
-        id: id
+      this.state = {
+        imgDeleteDisabled: true,
+        categories: filteredCategories,
+        username: username,
+        email: email,
+        submitDisabled: true,
+        project: {
+          name: name,
+          category: category,
+          timestamp: timestamp,
+          titleImg: titleImg,
+          titleBlurb: titleBlurb,
+          steps: newSteps,
+          id: id
+        }
+      };
+    }
+    else {
+      this.state = {
+        imgDeleteDisabled: true,
+        categories: [],
+        username: "",
+        email: "",
+        submitDisabled: true,
+        project: {
+          name: "",
+          category: "",
+          timestamp: "",
+          titleImg: "",
+          titleBlurb: "",
+          steps: [],
+          id: ""
+        }
       }
-    };
+    }
   }
 
   componentDidMount = () => {
-    if (typeof this.state.project.steps === 'string') {
-      let steps = this.state.project.steps;
-      let array = JSON.parse(steps);
-      this.setState({
-        ...this.state,
-        project: { ...this.state.project, steps: array }
-      });
+    if (this.props.users[0]) {
+      if (typeof this.state.project.steps === 'string') {
+        let steps = this.state.project.steps;
+        let array = JSON.parse(steps);
+        this.setState({
+          ...this.state,
+          project: { ...this.state.project, steps: array }
+        });
+      }
     }
+    
   };
 
   textChange = async (e) => {
@@ -239,225 +260,265 @@ class EditProject extends Component {
   };
 
   render() {
-    const cats = this.state.categories.map((cat) => {
-      return { value: cat, label: cat };
-    });
-
-    if (
-      this.state.project.steps != null &&
-      typeof this.state.project.steps === 'object'
-    ) {
+    if (this.props.users[0]) {
+      const cats = this.state.categories.map((cat) => {
+        return { value: cat, label: cat };
+      });
+  
+      if (
+        this.state.project.steps != null &&
+        typeof this.state.project.steps === 'object'
+      ) {
+        return (
+          <div className="projectInfo">
+            <form>
+              <h1>{`Edit ${this.state.project.name}`}</h1>
+              <h2>project name:</h2>
+              <input
+                type="text"
+                name="name"
+                value={this.state.project.name}
+                onChange={this.textChange}
+              />
+              <h2>main image:</h2>
+              <div>
+                <img src={this.state.project.titleImg} alt="main" />
+              </div>
+              <button onClick={this.mainImage}>Set Main Image</button>
+              <h2>project description:</h2>
+              <textarea
+                rows="6"
+                cols="75"
+                name="titleBlurb"
+                value={this.state.project.titleBlurb}
+                onChange={this.textChange}
+              />
+              <h2>category:</h2>
+              <CreatableSelect
+                isClearable
+                onChange={this.handleChange}
+                onInputChange={this.handleInputChange}
+                options={cats}
+                value={{
+                  value: this.state.project.category,
+                  label: this.state.project.category
+                }}
+              />
+  
+              <h2>Steps:</h2>
+              <div>
+                {this.state.project['steps'].map((step, idx) => {
+                  if (step.type === 'img') {
+                    return (
+                      <div key={idx}>
+                        <img src={step.body} alt="step" />
+                        <button onClick={this.deletePhoto(idx)}>
+                          Delete Photo
+                        </button>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={idx}>
+                        <input
+                          type="text"
+                          value={step.body}
+                          onChange={this.textChangeHandler(idx)}
+                        />
+                        <button
+                          type="button"
+                          onClick={this.removeTextStep(idx)}
+                          className="small"
+                        >
+                          -
+                        </button>
+                        <button
+                          type="button"
+                          onClick={this.handleAddStep}
+                          className="small"
+                        >
+                          +
+                        </button>
+                        <button onClick={this.openCloudinary}>Add Picture</button>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+              <button onClick={this.finalize}>Finalize</button>
+              <button disabled={this.state.submitDisabled}>Submit</button>
+            </form>
+          </div>
+        );
+      } else {
+        let steps = JSON.parse(this.state.project.steps);
+        const json = localStorage.getItem('authUser');
+        const user = JSON.parse(json);
+        const email = user.email;
+  
+        return (
+          <Mutation
+            mutation={UPDATE_PROJECT}
+            refetchQueries={() => {
+              return [
+                {
+                  query: GET_PROJECTS,
+                  variables: { email: email }
+                }
+              ];
+            }}
+          >
+            {(editProject, { loading, error, data }) => {
+              if (loading) return <span>Submitting your changes...</span>;
+              if (error) return <span>{`Error: ${error}`}</span>;
+              if (data)
+                return <Redirect to={`/${this.state.username}/projects`} />;
+              return (
+                <div className="projectInfo">
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+  
+                      editProject({
+                        variables: {
+                          name: this.state.project.name,
+                          category: this.state.project.category,
+                          timestamp: this.state.project.timestamp,
+                          titleImg: this.state.project.titleImg,
+                          titleBlurb: this.state.project.titleBlurb,
+                          steps: this.state.project.steps,
+                          username: this.state.username,
+                          id: this.state.project.id
+                        }
+                      });
+                    }}
+                  >
+                    <h1>{`Edit ${this.state.project.name}`}</h1>
+                    <h2>project name:</h2>
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.project.name}
+                      onChange={this.textChange}
+                    />
+                    <h2>main image:</h2>
+                    <div>
+                      <img src={this.state.project.titleImg} alt="main" />
+                    </div>
+                    <button onClick={this.mainImage}>Set Main Image</button>
+                    <h2>project description:</h2>
+                    <textarea
+                      rows="6"
+                      cols="75"
+                      name="titleBlurb"
+                      value={this.state.project.titleBlurb}
+                      onChange={this.textChange}
+                    />
+                    <h2>category:</h2>
+                    <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange}
+                      onInputChange={this.handleInputChange}
+                      options={cats}
+                      value={{
+                        value: this.state.project.category,
+                        label: this.state.project.category
+                      }}
+                    />
+                    <h2>Steps:</h2>
+                    <div>
+                      {steps.map((step, idx) => {
+                        if (step.type === 'img') {
+                          return (
+                            <div key={idx}>
+                              <img src={step.body} alt="step" />
+                              <button onClick={this.deletePhoto(idx)}>
+                                Delete Photo
+                              </button>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div key={idx}>
+                              <input
+                                type="text"
+                                value={step.body}
+                                onChange={this.textChangeHandler(idx)}
+                              />
+                              <button
+                                type="button"
+                                onClick={this.removeTextStep(idx)}
+                                className="small"
+                              >
+                                -
+                              </button>
+                              <button
+                                type="button"
+                                onClick={this.handleAddStep}
+                                className="small"
+                              >
+                                +
+                              </button>
+                              <button onClick={this.openCloudinary}>
+                                Add Picture
+                              </button>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+  
+                    <button type="button" onClick={this.finalize}>
+                      Finalize
+                    </button>
+                    <button type="submit" disabled={this.state.submitDisabled}>
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              );
+            }}
+          </Mutation>
+        );
+      }
+    }
+    else {
       return (
         <div className="projectInfo">
-          <form>
-            <h1>{`Edit ${this.state.project.name}`}</h1>
-            <h2>project name:</h2>
-            <input
-              type="text"
-              name="name"
-              value={this.state.project.name}
-              onChange={this.textChange}
-            />
-            <h2>main image:</h2>
-            <div>
-              <img src={this.state.project.titleImg} alt="main" />
-            </div>
-            <button onClick={this.mainImage}>Set Main Image</button>
-            <h2>project description:</h2>
-            <textarea
-              rows="6"
-              cols="75"
-              name="titleBlurb"
-              value={this.state.project.titleBlurb}
-              onChange={this.textChange}
-            />
-            <h2>category:</h2>
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange}
-              onInputChange={this.handleInputChange}
-              options={cats}
-              value={{
-                value: this.state.project.category,
-                label: this.state.project.category
-              }}
-            />
-
-            <h2>Steps:</h2>
-            <div>
-              {this.state.project['steps'].map((step, idx) => {
-                if (step.type === 'img') {
-                  return (
-                    <div key={idx}>
-                      <img src={step.body} alt="step" />
-                      <button onClick={this.deletePhoto(idx)}>
-                        Delete Photo
-                      </button>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div key={idx}>
-                      <input
-                        type="text"
-                        value={step.body}
-                        onChange={this.textChangeHandler(idx)}
-                      />
-                      <button
-                        type="button"
-                        onClick={this.removeTextStep(idx)}
-                        className="small"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        onClick={this.handleAddStep}
-                        className="small"
-                      >
-                        +
-                      </button>
-                      <button onClick={this.openCloudinary}>Add Picture</button>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-            <button onClick={this.finalize}>Finalize</button>
-            <button disabled={this.state.submitDisabled}>Submit</button>
-          </form>
-        </div>
-      );
-    } else {
-      let steps = JSON.parse(this.state.project.steps);
-      const json = localStorage.getItem('authUser');
-      const user = JSON.parse(json);
-      const email = user.email;
-
-      return (
-        <Mutation
-          mutation={UPDATE_PROJECT}
-          refetchQueries={() => {
-            return [
-              {
-                query: GET_PROJECTS,
-                variables: { email: email }
-              }
-            ];
-          }}
-        >
-          {(editProject, { loading, error, data }) => {
-            if (loading) return <span>Submitting your changes...</span>;
-            if (error) return <span>{`Error: ${error}`}</span>;
-            if (data)
-              return <Redirect to={`/${this.state.username}/projects`} />;
-            return (
-              <div className="projectInfo">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-
-                    editProject({
-                      variables: {
-                        name: this.state.project.name,
-                        category: this.state.project.category,
-                        timestamp: this.state.project.timestamp,
-                        titleImg: this.state.project.titleImg,
-                        titleBlurb: this.state.project.titleBlurb,
-                        steps: this.state.project.steps,
-                        username: this.state.username,
-                        id: this.state.project.id
-                      }
-                    });
-                  }}
-                >
-                  <h1>{`Edit ${this.state.project.name}`}</h1>
-                  <h2>project name:</h2>
-                  <input
-                    type="text"
-                    name="name"
-                    value={this.state.project.name}
-                    onChange={this.textChange}
-                  />
-                  <h2>main image:</h2>
-                  <div>
-                    <img src={this.state.project.titleImg} alt="main" />
-                  </div>
-                  <button onClick={this.mainImage}>Set Main Image</button>
-                  <h2>project description:</h2>
-                  <textarea
-                    rows="6"
-                    cols="75"
-                    name="titleBlurb"
-                    value={this.state.project.titleBlurb}
-                    onChange={this.textChange}
-                  />
-                  <h2>category:</h2>
-                  <CreatableSelect
-                    isClearable
-                    onChange={this.handleChange}
-                    onInputChange={this.handleInputChange}
-                    options={cats}
-                    value={{
-                      value: this.state.project.category,
-                      label: this.state.project.category
-                    }}
-                  />
-                  <h2>Steps:</h2>
-                  <div>
-                    {steps.map((step, idx) => {
-                      if (step.type === 'img') {
-                        return (
-                          <div key={idx}>
-                            <img src={step.body} alt="step" />
-                            <button onClick={this.deletePhoto(idx)}>
-                              Delete Photo
-                            </button>
-                          </div>
-                        );
-                      } else {
-                        return (
-                          <div key={idx}>
-                            <input
-                              type="text"
-                              value={step.body}
-                              onChange={this.textChangeHandler(idx)}
-                            />
-                            <button
-                              type="button"
-                              onClick={this.removeTextStep(idx)}
-                              className="small"
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={this.handleAddStep}
-                              className="small"
-                            >
-                              +
-                            </button>
-                            <button onClick={this.openCloudinary}>
-                              Add Picture
-                            </button>
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
-
-                  <button type="button" onClick={this.finalize}>
-                    Finalize
-                  </button>
-                  <button type="submit" disabled={this.state.submitDisabled}>
-                    Submit
-                  </button>
-                </form>
+            <form>
+              <h1><Skeleton/></h1>
+              <h2><Skeleton/></h2>
+              <div><Skeleton/></div>
+              <h2><Skeleton/></h2>
+              <div>
+              <Skeleton/>
               </div>
-            );
-          }}
-        </Mutation>
-      );
+              <button><Skeleton/></button>
+              <h2><Skeleton/></h2>
+              <Skeleton count={6}/>
+              <h2><Skeleton/></h2>
+              <Skeleton/>
+  
+              <h2><Skeleton/></h2>
+              <div>
+                
+                      <div>
+                      <Skeleton/>
+                        <button>
+                        <Skeleton/>
+                        </button>
+                        <button>
+                        <Skeleton/>
+                        </button>
+                        <button><Skeleton/></button>
+                      </div>
+                  
+              </div>
+              <button><Skeleton/></button>
+              <button><Skeleton/></button>
+            </form>
+          </div>
+      )
     }
   }
 }
