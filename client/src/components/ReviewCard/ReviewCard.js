@@ -142,7 +142,7 @@ class ReviewCard extends React.Component {
                         if (loading)
                           return (
                             <form>
-                              <div>
+                              <div className="reviewCardModal">
                                 <img
                                   className="searchProjectImage"
                                   src={`${review.ProjectReviewed.titleImg}`}
@@ -150,11 +150,11 @@ class ReviewCard extends React.Component {
                                 />
                                 <h3>{`${review.ProjectReviewed.name}`}</h3>
                                 <p>{`Review By: @${review.Author.username}`}</p>
-                                <p>{`${review.timestamp}`}</p>
+                                <p>{`${review.timestamp.slice(0,10)}`}</p>
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 />
-                                <p>{`Rating of Project: ${
+                                <p id="rating">{`Rating of Project: ${
                                   review.projRating
                                 }`}</p>
                                 <h3>Title:</h3>
@@ -242,12 +242,12 @@ class ReviewCard extends React.Component {
                         }
                         if (data)
                           return (
-                            <div className="review-card">
-                              <div>{`${review.ProjectReviewed.name}`}</div>
-                              <div>{`Review By: @${
+                            <div className="reviewCardModal">
+                              <h3>{`${review.ProjectReviewed.name}`}</h3>
+                              <p>{`Review By: @${
                                 review.Author.username
-                              }`}</div>
-                              <div>{`${review.timestamp}`}</div>
+                              }`}</p>
+                              <p>{`${review.timestamp.slice(0,10)}`}</p>
                               <Link
                                 to={`/projects/${review.ProjectReviewed.id}`}
                               >
@@ -257,8 +257,8 @@ class ReviewCard extends React.Component {
                                   alt="project"
                                 />
                               </Link>
-                              <div>{`${review.name}`}</div>
-                              <div>{`${review.text}`}</div>
+                              <p>{`${review.name}`}</p>
+                              <p>{`${review.text}`}</p>
                               <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
                               |
                               <span>{`Thumbs Down: ${
@@ -290,7 +290,7 @@ class ReviewCard extends React.Component {
                               });
                             }}
                           >
-                            <div>
+                            <div className="reviewCardModal">
                               <div>{`${review.ProjectReviewed.name}`}</div>
                               <div>{`Review By: @${
                                 review.Author.username
@@ -322,7 +322,7 @@ class ReviewCard extends React.Component {
                                 onChange={this.textChange}
                               />
                               <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                              |
+                              
                               <span>{`Thumbs Down: ${
                                 this.state.thumbsDown
                               }`}</span>
@@ -365,7 +365,7 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                   children={(handleClose) => (
-                    <div>
+                    <div className="reviewCardModal">
                       <div>{`${review.ProjectReviewed.name}`}</div>
                       <div>{`Review By: @${review.Author.username}`}</div>
                       <div>{`${review.timestamp}`}</div>
@@ -602,7 +602,7 @@ class ReviewCard extends React.Component {
                               });
                             }}
                           >
-                            <div>
+                            <div className="reviewCardModal">
                               <div>{`${review.ProjectReviewed.name}`}</div>
                               <div>{`Review By: @${
                                 review.Author.username
@@ -687,10 +687,10 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                   children={(handleClose) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
+                    <div className="reviewCardModal">
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`${review.timestamp.slice(0,10)}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
                           className="searchProjectImage"
@@ -698,9 +698,9 @@ class ReviewCard extends React.Component {
                           alt="project"
                         />
                       </Link>
-                      <div>{`${review.name}`}</div>
-                      <div>{`${review.text}`}</div>
-                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
+                      <p>{`Title of Review: ${review.name}`}</p>
+                      <p>{`${review.text}`}</p>
+                      <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
                       <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                       <div>
                         <button
@@ -748,10 +748,10 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
                 children={(handleClose) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
+                  <div className="reviewCardModal">
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`${review.timestamp.slice(0,10)}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
@@ -760,8 +760,8 @@ class ReviewCard extends React.Component {
                       />
                     </Link>
                     <div>{`Rating of Project: ${review.projRating}`}</div>
-                    <div>{`${review.name}`}</div>
-                    <div>{`${review.text}`}</div>
+                    <h3>{`Review Title: ${review.name}`}</h3>
+                    <p>{`${review.text}`}</p>
                     <Mutation mutation={likeAReview}>
                       {(likeAReview, { loading, error, data }) => {
                         if (loading)
@@ -769,11 +769,11 @@ class ReviewCard extends React.Component {
                             <form>
                               <span>
                                 <button disabled={this.state.thumbsUpDisabled}>
-                                  +
+                                  Like
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                             </form>
                           );
                         if (error) {
@@ -781,10 +781,10 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>+</button>
+                                <button disabled>Like</button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                               <span>
                                 There was an error submitting your rating.
                               </span>
@@ -819,11 +819,11 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
                                 >
-                                  +
+                                  Like
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                             </form>
                           );
                         return (
@@ -853,11 +853,11 @@ class ReviewCard extends React.Component {
                                 type="submit"
                                 disabled={this.state.thumbsUpDisabled}
                               >
-                                +
+                                Like
                               </button>
                               {`Thumbs Up: ${this.state.thumbsUp}`}
                             </span>
-                            |
+                            
                           </form>
                         );
                       }}
@@ -869,7 +869,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>-</button>
+                                <button disabled>Dislike</button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
@@ -879,7 +879,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>-</button>
+                                <button disabled>Dislike</button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                               <div>There was an error logging your rating.</div>
@@ -914,7 +914,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsDownDisabled}
                                 >
-                                  -
+                                  Dislike
                                 </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
@@ -947,7 +947,7 @@ class ReviewCard extends React.Component {
                                 type="submit"
                                 disabled={this.state.thumbsDownDisabled}
                               >
-                                -
+                                Dislike
                               </button>
                               {`Thumbs Down: ${this.state.thumbsDown}`}
                             </span>
@@ -987,10 +987,10 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
                 children={(handleClose) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
+                  <div className="reviewCardModal">
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`${review.timestamp.slice(0, 10)}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
@@ -998,8 +998,9 @@ class ReviewCard extends React.Component {
                         alt="project"
                       />
                     </Link>
-                    <div>{`${review.name}`}</div>
-                    <div>{`${review.text}`}</div>
+                    <div>{`Rating of Project: ${review.projRating}`}</div>
+                    <h3>{`Review Title: ${review.name}`}</h3>
+                    <p>{`${review.text}`}</p>
 
                     <Mutation mutation={likeAReview}>
                       {(likeAReview, { loading, error, data }) => {
@@ -1007,10 +1008,10 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>+</button>
+                                <button disabled>Like</button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                             </form>
                           );
                         if (error) {
@@ -1018,10 +1019,10 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>+</button>
+                                <button disabled>Like</button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                             </form>
                           );
                         }
@@ -1052,11 +1053,11 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
                                 >
-                                  +
+                                  Like
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </span>
-                              |
+                              
                             </form>
                           );
                         return (
@@ -1085,11 +1086,11 @@ class ReviewCard extends React.Component {
                                 type="submit"
                                 disabled={this.state.thumbsUpDisabled}
                               >
-                                +
+                                Like
                               </button>
                               {`Thumbs Up: ${this.state.thumbsUp}`}
                             </span>
-                            |
+                            
                           </form>
                         );
                       }}
@@ -1100,7 +1101,7 @@ class ReviewCard extends React.Component {
                           return (
                             <form>
                               <span>
-                                <button disabled>-</button>
+                                <button disabled>Dislike</button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
                             </form>
@@ -1144,7 +1145,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsDownDisabled}
                                 >
-                                  -
+                                  Dislike
                                 </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
@@ -1176,7 +1177,7 @@ class ReviewCard extends React.Component {
                                 type="submit"
                                 disabled={this.state.thumbsDownDisabled}
                               >
-                                -
+                                Dislike
                               </button>
                               {`Thumbs Down: ${this.state.thumbsDown}`}
                             </span>
@@ -1222,10 +1223,10 @@ class ReviewCard extends React.Component {
                 </div>
               )}
               children={(handleClose) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
+                <div className="reviewCardModal">
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`${review.timestamp.slice(0,10)}`}</p>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
                       className="searchProjectImage"
@@ -1233,9 +1234,9 @@ class ReviewCard extends React.Component {
                       alt="project"
                     />
                   </Link>
-                  <div>{`Rating of Project: ${review.projRating}`}</div>
-                  <div>{`${review.name}`}</div>
-                  <div>{`${review.text}`}</div>
+                  <p>{`Rating of Project: ${review.projRating}`}</p>
+                  <p>{`Title: ${review.name}`}</p>
+                  <p>{`${review.text}`}</p>
                   <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
                   <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                   <button onClick={handleClose}>Close</button>
@@ -1270,10 +1271,10 @@ class ReviewCard extends React.Component {
                 </div>
               )}
               children={(handleClose) => (
-                <div>
-                  <div>{`${review.ProjectReviewed.name}`}</div>
-                  <div>{`Review By: @${review.Author.username}`}</div>
-                  <div>{`${review.timestamp}`}</div>
+                <div className="reviewCardModal">
+                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                  <p>{`Review By: @${review.Author.username}`}</p>
+                  <p>{`${review.timestamp.slice(0, 10)}`}</p>
                   <Link to={`/projects/${review.ProjectReviewed.id}`}>
                     <img
                       className="searchProjectImage"
@@ -1281,8 +1282,9 @@ class ReviewCard extends React.Component {
                       alt="project"
                     />
                   </Link>
-                  <div>{`${review.name}`}</div>
-                  <div>{`${review.text}`}</div>
+                  <p>{`Rating of Project: ${review.projRating}`}</p>
+                  <p>{`Title: ${review.name}`}</p>
+                  <p>{`${review.text}`}</p>
                   <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
                   <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
                   <button onClick={handleClose}>Close</button>

@@ -10,6 +10,29 @@
 //   margin: 10px 10px 10px 20px;
 // }
 
+.reviewCardModal{
+  h3{
+    font-size: 2.4rem;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #rating{
+   font-weight: bold;
+   font-size: 1.8rem;
+  }
+  input{
+    width: 80%;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+  textarea{
+    width: 80%;
+    height: 200px;
+    font-size: 1.4rem;
+  }
+}
+
 button {
   border: 2px solid $alternate-color-one;
   margin: 10px 0 10px 0;
@@ -25,6 +48,7 @@ button {
   box-shadow: 5px 5px 5px darkgray;
   background: $color2;
   color: white;
+  justify-self: center;
 }
 
 .searchReviewCard {
@@ -64,3 +88,5 @@ button {
   margin: 0 15px 0 -15px;
   border: 5px solid crimson;
 }
+
+
