@@ -477,7 +477,7 @@ class ReviewCard extends React.Component {
                                 <span>{`Thumbs Up: ${
                                   this.state.thumbsUp
                                 }`}</span>
-                                |
+                                
                                 <span>{`Thumbs Down: ${
                                   this.state.thumbsDown
                                 }`}</span>
