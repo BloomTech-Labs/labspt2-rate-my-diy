@@ -147,7 +147,6 @@ class SearchPage extends Component {
                             return (
                               <ReviewCard
                                 review={review}
-                                refetch={refetch}
                                 users={data.users}
                                 user={user}
                                 loggedIn={this.props.loggedIn}

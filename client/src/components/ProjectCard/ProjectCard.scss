@@ -1,25 +1,123 @@
 @import '../../styles/variables.scss';
 
 .project-card-container {
-  border: 2px solid black;
+  border: 3px solid black;
   box-shadow: 5px 5px 20px;
+  margin: auto;
   display: flex;
-  // width: 300px ;
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
-  background: $alternate-complementing-color;
-  button {
-    width: 85px;
-    height: 40px;
-    background: none;
-    border: 2px solid black;
-    border-radius: 10px 5%;
+  align-items: center;
+  background-color: $alternate-complementing-color;
+  height: 100%;
+  .addReviewForm {
+    width: 100%;
+  }
+  .addReviewSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    h3 {
+      color: $main-color;
+    }
+    select {
+      width: 100px;
+      height: 30px;
+      font-size: 1.4rem;
+      color: $color2;
+    }
+    .titleInput {
+      width: 100%;
+      height: 50px;
+      font-size: 2.4rem;
+      border: 3px solid $main-color;
+    }
+    .reviewBody {
+      width: 100%;
+      height: 400px;
+      font-size: 1.8rem;
+      border: 3px solid $main-color;
+    }
+  }
+  .review-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      color: $main-color;
+    }
+    p {
+      font-size: 2.4rem;
+      color: $color3;
+    }
     margin-bottom: 10px;
-    margin-left: 5px;
+  }
+  .image-div {
+    background-color: $alternate-color-one;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .editButton {
+    background-color: $main-color;
+    align-self: flex-end;
+    margin-right: 20px;
+  }
+
+  p {
+    font-size: 2rem;
+  }
+  .project-page-image {
+    height: 300px;
+    width: 450px;
+  }
+  button {
+    background-color: $main-color;
   }
   button:hover {
     background: $alternate-color-one;
     border-radius: 10px 5%;
   }
-  padding: 15px 15px;
+  padding: 5px 15px;
+}
+
+.project-step-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+  h2 {
+    color: $main-color;
+    font-size: 3.6rem;
+  }
+}
+
+.steps-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    text-align: center;
+  }
+  img {
+    width: 450px;
+    height: 300px;
+    margin: 10px 0 10px 0;
+    margin: auto;
+    border: 5px solid $alternate-color-one;
+  }
+  li {
+    margin: 10px 0 10px 0;
+    font-size: 2.4rem;
+    color: $color2;
+    text-align: center;
+  }
 }

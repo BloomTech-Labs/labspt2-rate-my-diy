@@ -29,7 +29,6 @@ function Featured(props) {
               {props.category ? <p>Category: {props.category}</p> : null}
               <p>@{props.username}</p>
             </Link>
-            {props.rating ? <p>Average Rating {props.rating}</p> : null}
             {props.thumbsUp ? <p>{`Thumbs Up: ${props.thumbsUp}`}</p> : null}
             <div className="stars">
               {stars.map((star) => {

@@ -124,6 +124,7 @@ class ProfileInfo extends React.Component {
         <div className="profile-form-flex-container">
         
                 <form>
+                <SkeletonTheme highlightColor="#6fb3b8">
                   <h2><Skeleton/></h2>
                   <div className="img-container">
                     <Skeleton/>
@@ -132,6 +133,7 @@ class ProfileInfo extends React.Component {
                   <h3><Skeleton/></h3>
                   <Skeleton count={5}/>
                   <button><Skeleton/></button>
+                  </SkeletonTheme>
                 </form>
                 
               </div>

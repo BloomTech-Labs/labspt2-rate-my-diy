@@ -55,7 +55,6 @@ class ProjectCard extends React.Component {
     }
   }
 
-
   textChange = async (e) => {
     let value = e.target.value;
     await this.setState({
@@ -122,50 +121,53 @@ class ProjectCard extends React.Component {
           if (project.User.email === this.state.authUser.email) {
             // logged in, are reviews, your project, return
             return (
-              <div>
-                <h1>{`${project.name}`}</h1>
-                <div>{`${project.User.username}`}</div>
-                <div>{`${project.rating}`}</div>
-                <div>{`${project.timestamp}`}</div>
-                <img src={`${project.titleImg}`} alt="project" />
-                <div>{`${project.titleBlurb}`}</div>
+              <div className="project-card-container">
+                <button
+                  className="editButton"
+                  onClick={() => {
+                    this.setState({ edit: true });
+                  }}
+                >
+                  Edit
+                </button>
+                <div className="header-info">
+                  <h1>{`Project Title: ${project.name}`}</h1>
+                  <p>{`Created By: ${project.User.username}`}</p>
+                  <p>{`Rating: ${project.rating}`}</p>
+                  <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+                </div>
 
-                <button onClick={this.showMore}>View More</button>
-                {this.state.showMore ? (
-                  <div>
-                    <h2>Steps:</h2>
+                <img
+                  className="project-page-image"
+                  src={`${project.titleImg}`}
+                  alt="project"
+                />
+                <div className="project-step-section">
+                  <h2>Steps:</h2>
+                  <div className="steps-container">
                     {steps.map((step) => {
                       if (step.type === 'img') {
                         return (
                           <img key={step.body} src={step.body} alt="step" />
                         );
                       } else {
-                        return <div key={step.body}>{`${step.body}`}</div>;
+                        return <li key={step.body}>{`${step.body}`}</li>;
                       }
                     })}
-                    <h2>Reviews:</h2>
+                  </div>
+                  <h2>Reviews:</h2>
+                  <div className="review-section">
                     {this.state.reviews.map((rev) => {
                       return (
                         <ReviewCard
                           key={rev.id}
                           review={rev}
                           users={this.props.users}
-                          loggedIn={this.props.loggedIn}
-                          authUser={this.props.authUser}
-                          refetch={this.props.userRefetch}
                         />
                       );
                     })}
-                    <button
-                      onClick={() => {
-                        this.setState({ edit: true });
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button onClick={this.collapse}>Collapse</button>
                   </div>
-                ) : null}
+                </div>
               </div>
             );
           } else {
@@ -183,13 +185,18 @@ class ProjectCard extends React.Component {
                   // logged in, are reviews, not your proj, newRev, you've rated projs, rated this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
+                    <div className="project-card-container">
+                      <h1>{`aProject Title:${project.name}`}</h1>
+                      <p>{`Created By:${project.User.username}`}</p>
+                      <p>{`Rating:${project.rating}`}</p>
+                      <p>{`Date Created${project.timestamp}`}</p>
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <p>{`${project.titleBlurb}`}</p>
+
                       <button onClick={this.showMore}>View More</button>
                       {this.state.showMore ? (
                         <div>
@@ -216,9 +223,6 @@ class ProjectCard extends React.Component {
                                 key={rev.id}
                                 review={rev}
                                 users={this.props.users}
-                                loggedIn={this.props.loggedIn}
-                                authUser={this.props.authUser}
-                                refetch={this.props.userRefetch}
                               />
                             );
                           })}
@@ -387,13 +391,18 @@ class ProjectCard extends React.Component {
                   // logged in, are reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
+                    <div className="project-card-container">
+                      <h1>{`bProject Title:${project.name}`}</h1>
+                      <p>{`Created By:${project.User.username}`}</p>
+                      <p>{`Rating:${project.rating}`}</p>
+                      <p>{`Date Created${project.timestamp}`}</p>
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <p>{`${project.titleBlurb}`}</p>
+
                       <button onClick={this.showMore}>View More</button>
                       {this.state.showMore ? (
                         <div>
@@ -421,9 +430,6 @@ class ProjectCard extends React.Component {
                                 key={rev.id}
                                 review={rev}
                                 users={this.props.users}
-                                loggedIn={this.props.loggedIn}
-                                authUser={this.props.authUser}
-                                refetch={this.props.userRefetch}
                               />
                             );
                           })}
@@ -594,13 +600,18 @@ class ProjectCard extends React.Component {
                 //logged in, are revs, not your proj, newReview, you've never rated, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`bProject Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -622,9 +633,6 @@ class ProjectCard extends React.Component {
                               key={rev.id}
                               review={rev}
                               users={this.props.users}
-                              loggedIn={this.props.loggedIn}
-                              authUser={this.props.authUser}
-                              refetch={this.props.userRefetch}
                             />
                           );
                         })}
@@ -802,17 +810,25 @@ class ProjectCard extends React.Component {
                   // logged in, are reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
-                      <button onClick={this.showMore}>View More</button>
-                      {this.state.showMore ? (
-                        <div>
-                          <h2>Steps:</h2>
+                    <div className="project-card-container">
+                      <div className="header-info">
+                        <h1>{`Project Title: ${project.name}`}</h1>
+                        <p>{`Created By: ${project.User.username}`}</p>
+                        <p>{`Rating: ${project.rating}`}</p>
+                        <p>{`Date Created: ${project.timestamp.slice(
+                          0,
+                          10
+                        )}`}</p>
+                      </div>
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+
+                      <div className="project-step-section">
+                        <h2>Steps:</h2>
+                        <div className="steps-container">
                           {steps.map((step) => {
                             if (step.type === 'img') {
                               return (
@@ -823,51 +839,48 @@ class ProjectCard extends React.Component {
                                 />
                               );
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <li key={step.body}>{`${step.body}`}</li>;
                             }
                           })}
-                          <h2>Reviews:</h2>
+                        </div>
+                        <h2>Reviews:</h2>
+                        <div className="review-section">
                           {this.state.reviews.map((rev) => {
                             return (
                               <ReviewCard
                                 key={rev.id}
                                 review={rev}
                                 users={this.props.users}
-                                loggedIn={this.props.loggedIn}
-                                authUser={this.props.authUser}
-                                refetch={this.props.userRefetch}
                               />
                             );
                           })}
-                          <button
-                            onClick={(e) => {
-                              this.review();
-                            }}
-                          >
-                            Add a review
-                          </button>
-                          <button onClick={this.collapse}>Collapse</button>
                         </div>
-                      ) : null}
+                      </div>
                     </div>
                   );
                 } else {
                   // logged in, are reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
-                      <button onClick={this.showMore}>View More</button>
-                      {this.state.showMore ? (
-                        <div>
-                          <h2>Steps:</h2>
+                    <div className="project-card-container">
+                      <div className="header-info">
+                        <h1>{`Project Title: ${project.name}`}</h1>
+                        <p>{`Created By: ${project.User.username}`}</p>
+                        <p>{`Rating: ${project.rating}`}</p>
+                        <p>{`Date Created: ${project.timestamp.slice(
+                          0,
+                          10
+                        )}`}</p>
+                      </div>
+
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <div className="project-step-section">
+                        <h2>Steps:</h2>
+                        <div className="steps-container">
                           {steps.map((step) => {
                             if (step.type === 'img') {
                               return (
@@ -878,35 +891,29 @@ class ProjectCard extends React.Component {
                                 />
                               );
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <li key={step.body}>{`${step.body}`}</li>;
                             }
                           })}
-
-                          <h2>Reviews:</h2>
-                          {this.state.reviews.map((rev) => {
-                            return (
-                              <ReviewCard
-                                key={rev.id}
-                                review={rev}
-                                users={this.props.users}
-                                loggedIn={this.props.loggedIn}
-                                authUser={this.props.authUser}
-                                refetch={this.props.userRefetch}
-                              />
-                            );
-                          })}
-                          <button
-                            onClick={(e) => {
-                              this.review();
-                            }}
-                          >
-                            Add a review
-                          </button>
-                          <button onClick={this.collapse}>Collapse</button>
                         </div>
-                      ) : null}
+
+                        <h2>Reviews:</h2>
+                        {this.state.reviews.map((rev) => {
+                          return (
+                            <ReviewCard
+                              key={rev.id}
+                              review={rev}
+                              users={this.props.users}
+                            />
+                          );
+                        })}
+                        <button
+                          onClick={(e) => {
+                            this.review();
+                          }}
+                        >
+                          Add a review
+                        </button>
+                      </div>
                     </div>
                   );
                 }
@@ -914,13 +921,18 @@ class ProjectCard extends React.Component {
                 //logged in, are revs, not your proj, not newReview, you've never rated, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -942,9 +954,6 @@ class ProjectCard extends React.Component {
                               key={rev.id}
                               review={rev}
                               users={this.props.users}
-                              loggedIn={this.props.loggedIn}
-                              authUser={this.props.authUser}
-                              refetch={this.props.userRefetch}
                             />
                           );
                         })}
@@ -970,39 +979,43 @@ class ProjectCard extends React.Component {
             // logged in, no revs, your proj, return
 
             return (
-              <div>
-                <h1>{`${project.name}`}</h1>
-                <div>{`${project.User.username}`}</div>
-                <div>{`${project.rating}`}</div>
-                <div>{`${project.timestamp}`}</div>
-                <img src={`${project.titleImg}`} alt="project" />
-                <div>{`${project.titleBlurb}`}</div>
+              <div className="project-card-container">
+                <button
+                  className="editButton"
+                  onClick={() => {
+                    this.setState({ edit: true });
+                  }}
+                >
+                  Edit
+                </button>
+                <div className="header-info">
+                  <h1>{`Project Title: ${project.name}`}</h1>
+                  <p>{`Created By: ${project.User.username}`}</p>
+                  <p>{`Rating: ${project.rating}`}</p>
+                  <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+                </div>
 
-                <button onClick={this.showMore}>View More</button>
-                {this.state.showMore ? (
-                  <div>
-                    <h2>Steps:</h2>
+                <img
+                  className="project-page-image"
+                  src={`${project.titleImg}`}
+                  alt="project"
+                />
+                <div className="project-step-section">
+                  <h2>Steps:</h2>
+                  <div className="steps-container">
                     {steps.map((step) => {
                       if (step.type === 'img') {
                         return (
                           <img key={step.body} src={step.body} alt="step" />
                         );
                       } else {
-                        return <div key={step.body}>{`${step.body}`}</div>;
+                        return <li key={step.body}>{`${step.body}`}</li>;
                       }
                     })}
-                    <h2>Reviews:</h2>
-                    <p>There are currently no reviews.</p>
-                    <button
-                      onClick={() => {
-                        this.setState({ edit: true });
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button onClick={this.collapse}>Collapse</button>
                   </div>
-                ) : null}
+                  <h2>Reviews:</h2>
+                  <p>There are currently no reviews.</p>
+                </div>
               </div>
             );
           } else {
@@ -1020,13 +1033,18 @@ class ProjectCard extends React.Component {
                   // logged in, no reviews, not your proj, newRev, you've rated projs, rated this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
+                    <div className="project-card-container">
+                      <h1>{`Project Title:${project.name}`}</h1>
+                      <p>{`Created By:${project.User.username}`}</p>
+                      <p>{`Rating:${project.rating}`}</p>
+                      <p>{`Date Created${project.timestamp}`}</p>
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <p>{`${project.titleBlurb}`}</p>
+
                       <button onClick={this.showMore}>View More</button>
                       {this.state.showMore ? (
                         <div>
@@ -1214,17 +1232,25 @@ class ProjectCard extends React.Component {
                   // logged in, no reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
-                      <button onClick={this.showMore}>View More</button>
-                      {this.state.showMore ? (
-                        <div>
-                          <h2>Steps:</h2>
+                    <div className="project-card-container">
+                      <div className="header-info">
+                        <h1>{`Project Title: ${project.name}`}</h1>
+                        <p>{`Created By: ${project.User.username}`}</p>
+                        <p>{`Rating: ${project.rating}`}</p>
+                        <p>{`Date Created: ${project.timestamp.slice(
+                          0,
+                          10
+                        )}`}</p>
+                      </div>
+
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <div className="project-step-section">
+                        <h2>Steps:</h2>
+                        <div className="steps-container">
                           {steps.map((step) => {
                             if (step.type === 'img') {
                               return (
@@ -1235,131 +1261,93 @@ class ProjectCard extends React.Component {
                                 />
                               );
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <li key={step.body}>{`${step.body}`}</li>;
                             }
                           })}
-
-                          <h2>Reviews:</h2>
-                          <p>There are currently no reviews.</p>
-                          <Mutation mutation={NEW_REVIEW}>
-                            {(newReview, { loading, error, data }) => {
-                              if (loading)
-                                return (
-                                  <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
-
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <span>Submitting your review...</span>
-                                  </form>
-                                );
-                              if (error) {
-                                console.log({ revError: error });
-                                return (
-                                  <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
-
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <span>
-                                      There was an error submitting your review.
-                                    </span>
-                                    <button
-                                      onClick={() => window.location.reload()}
-                                    >
-                                      Go Back
-                                    </button>
-                                  </form>
-                                );
-                              }
-
+                        </div>
+                        <Mutation mutation={NEW_REVIEW}>
+                          {(newReview, { loading, error, data }) => {
+                            if (loading) return <h1>Loading...</h1>;
+                            if (error) {
+                              console.log({ revError: error });
                               return (
-                                <form
-                                  onSubmit={async (e) => {
-                                    e.preventDefault();
-                                    const date = await new Date(Date.now());
+                                <form className="reviewForm">
+                                  <h2>New Review</h2>
+                                  <h3>Rating:</h3>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                    disabled
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
 
-                                    await newReview({
-                                      variables: {
-                                        name: this.state.name,
-                                        text: this.state.text,
-                                        timestamp: date,
-                                        user: project.User.username,
-                                        username: this.state.username,
-                                        id: project.id,
-                                        projRating: this.state.stars
-                                      },
-                                      refetchQueries: [{ query: getReviews }]
-                                    });
-                                    await this.props.refetch();
-                                    const { reviews } = await this.props;
-                                    let revs = await reviews.filter(
-                                      (rev) =>
-                                        rev.ProjectReviewed.id === project.id
-                                    );
-                                    await this.setState({
-                                      ...this.state,
-                                      newReview: false,
-                                      reviews: revs
-                                    });
-                                  }}
-                                >
+                                  <h3>Title:</h3>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    disabled
+                                  />
+                                  <span>
+                                    There was an error submitting your review.
+                                  </span>
+                                  <button
+                                    onClick={() => window.location.reload()}
+                                  >
+                                    Go Back
+                                  </button>
+                                </form>
+                              );
+                            }
+
+                            return (
+                              <form
+                                className="addReviewForm"
+                                onSubmit={async (e) => {
+                                  e.preventDefault();
+                                  const date = await new Date(Date.now());
+
+                                  await newReview({
+                                    variables: {
+                                      name: this.state.name,
+                                      text: this.state.text,
+                                      timestamp: date,
+                                      user: project.User.username,
+                                      username: this.state.username,
+                                      id: project.id,
+                                      projRating: this.state.stars
+                                    },
+                                    refetchQueries: [{ query: getReviews }]
+                                  });
+                                  await this.props.refetch();
+                                  const { reviews } = await this.props;
+                                  let revs = await reviews.filter(
+                                    (rev) =>
+                                      rev.ProjectReviewed.id === project.id
+                                  );
+                                  await this.setState({
+                                    ...this.state,
+                                    newReview: false,
+                                    reviews: revs
+                                  });
+                                }}
+                              >
+                                <div className="addReviewSection">
                                   <h2>New Review</h2>
                                   <h3>Rating:</h3>
                                   <select
@@ -1377,8 +1365,10 @@ class ProjectCard extends React.Component {
 
                                   <h3>Title:</h3>
                                   <input
+                                    className="titleInput"
                                     type="text"
                                     name="name"
+                                    placeHolder="Add Title..."
                                     value={this.state.name}
                                     onChange={this.textChange}
                                   />
@@ -1387,22 +1377,15 @@ class ProjectCard extends React.Component {
                                     name="text"
                                     value={this.state.text}
                                     onChange={this.textChange}
+                                    className="reviewBody"
                                   />
                                   <button type="submit">Submit</button>
-                                </form>
-                              );
-                            }}
-                          </Mutation>
-                          <button
-                            onClick={(e) => {
-                              this.review();
-                            }}
-                          >
-                            Add a review
-                          </button>
-                          <button onClick={this.collapse}>Collapse</button>
-                        </div>
-                      ) : null}
+                                </div>
+                              </form>
+                            );
+                          }}
+                        </Mutation>
+                      </div>
                     </div>
                   );
                 }
@@ -1410,13 +1393,18 @@ class ProjectCard extends React.Component {
                 //logged in, no revs, not your proj, newReview, you've never rated, return
 
                 return (
-                  <div>
-                    <h1>{`${project.name}`}</h1>
-                    <div>{`${project.User.username}`}</div>
-                    <div>{`${project.rating}`}</div>
-                    <div>{`${project.timestamp}`}</div>
-                    <img src={`${project.titleImg}`} alt="project" />
-                    <div>{`${project.titleBlurb}`}</div>
+                  <div className="project-card-container">
+                    <h1>{`Project Title:${project.name}`}</h1>
+                    <p>{`Created By:${project.User.username}`}</p>
+                    <p>{`Rating:${project.rating}`}</p>
+                    <p>{`Date Created${project.timestamp}`}</p>
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+                    <p>{`${project.titleBlurb}`}</p>
+
                     <button onClick={this.showMore}>View More</button>
                     {this.state.showMore ? (
                       <div>
@@ -1609,13 +1597,22 @@ class ProjectCard extends React.Component {
                   // logged in, no reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
+                    <div className="project-card-container">
+                      <div className="header-info">
+                        <h1>{`Project Title: ${project.name}`}</h1>
+                        <p>{`Created By: ${project.User.username}`}</p>
+                        <p>{`Rating: ${project.rating}`}</p>
+                        <p>{`Date Created: ${project.timestamp.slice(
+                          0,
+                          10
+                        )}`}</p>
+                      </div>
+
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
                       <button onClick={this.showMore}>View More</button>
                       {this.state.showMore ? (
                         <div>
@@ -1655,17 +1652,25 @@ class ProjectCard extends React.Component {
                   // logged in, no reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
                   return (
-                    <div>
-                      <h1>{`${project.name}`}</h1>
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
-                      <button onClick={this.showMore}>View More</button>
-                      {this.state.showMore ? (
-                        <div>
-                          <h2>Steps:</h2>
+                    <div className="project-card-container">
+                      <div className="header-info">
+                        <h1>{`Project Title: ${project.name}`}</h1>
+                        <p>{`Created By: ${project.User.username}`}</p>
+                        <p>{`Rating: ${project.rating}`}</p>
+                        <p>{`Date Created: ${project.timestamp.slice(
+                          0,
+                          10
+                        )}`}</p>
+                      </div>
+
+                      <img
+                        className="project-page-image"
+                        src={`${project.titleImg}`}
+                        alt="project"
+                      />
+                      <div className="project-step-section">
+                        <h2>Steps:</h2>
+                        <div className="steps-container">
                           {steps.map((step) => {
                             if (step.type === 'img') {
                               return (
@@ -1676,58 +1681,12 @@ class ProjectCard extends React.Component {
                                 />
                               );
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <li key={step.body}>{`${step.body}`}</li>;
                             }
                           })}
-
-                          <h2>Reviews:</h2>
-                          <p>There are currently no reviews</p>
-
-                          <button
-                            onClick={(e) => {
-                              this.review();
-                            }}
-                          >
-                            Add a review
-                          </button>
-                          <button onClick={this.collapse}>Collapse</button>
                         </div>
-                      ) : null}
-                    </div>
-                  );
-                }
-              } else {
-                //logged in, no revs, not your proj, not newReview, you've never rated, return
-
-                return (
-                  <div>
-                    <div>
-                      <h3>{`${project.name}`}</h3>
-                      <hr className="line-break" />
-                      <div>{`${project.User.username}`}</div>
-                      <div>{`${project.rating}`}</div>
-                      <div>{`${project.timestamp}`}</div>
-                      <img src={`${project.titleImg}`} alt="project" />
-                      <div>{`${project.titleBlurb}`}</div>
-                      <button onClick={this.showMore}>View More</button>
-                    </div>
-                    {this.state.showMore ? (
-                      <div>
-                        <h2>Steps:</h2>
-                        {steps.map((step) => {
-                          if (step.type === 'img') {
-                            return (
-                              <img key={step.body} src={step.body} alt="step" />
-                            );
-                          } else {
-                            return <div key={step.body}>{`${step.body}`}</div>;
-                          }
-                        })}
-
                         <h2>Reviews:</h2>
-                        <p>There are currently no reviews.</p>
+                        <p>There are currently no reviews</p>
 
                         <button
                           onClick={(e) => {
@@ -1736,9 +1695,61 @@ class ProjectCard extends React.Component {
                         >
                           Add a review
                         </button>
-                        <button onClick={this.collapse}>Collapse</button>
                       </div>
-                    ) : null}
+                    </div>
+                  );
+                }
+              } else {
+                //logged in, no revs, not your proj, not newReview, you've never rated, return
+
+                return (
+                  <div className="project-card-container">
+                    <button
+                      className="editButton"
+                      onClick={() => {
+                        this.setState({ edit: true });
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <div className="header-info">
+                      <h1>{`Project Title: ${project.name}`}</h1>
+                      <p>{`Created By: ${project.User.username}`}</p>
+                      <p>{`Rating: ${project.rating}`}</p>
+                      <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+                    </div>
+
+                    <img
+                      className="project-page-image"
+                      src={`${project.titleImg}`}
+                      alt="project"
+                    />
+
+                    <div className="project-step-section">
+                      <h2>Steps:</h2>
+                      <div className="steps-container">
+                        {steps.map((step) => {
+                          if (step.type === 'img') {
+                            return (
+                              <img key={step.body} src={step.body} alt="step" />
+                            );
+                          } else {
+                            return <li key={step.body}>{`${step.body}`}</li>;
+                          }
+                        })}
+                      </div>
+
+                      <h2>Reviews:</h2>
+                      <p>There are currently no reviews.</p>
+
+                      <button
+                        onClick={(e) => {
+                          this.review();
+                        }}
+                      >
+                        Add a review
+                      </button>
+                    </div>
                   </div>
                 );
               }
@@ -1750,117 +1761,135 @@ class ProjectCard extends React.Component {
         if (this.state.reviews[0]) {
           // not logged in, are reviews, return
           return (
-            <div>
-              <h1>{`${project.name}`}</h1>
-              <div>{`${project.User.username}`}</div>
-              <div>{`${project.rating}`}</div>
-              <div>{`${project.timestamp}`}</div>
-              <img src={`${project.titleImg}`} alt="project" />
-              <div>{`${project.titleBlurb}`}</div>
-              <button onClick={this.showMore}>View More</button>
-              {this.state.showMore ? (
-                <div>
-                  <h2>Steps:</h2>
+            <div className="project-card-container">
+              <div className="header-info">
+                <h1>{`Project Title: ${project.name}`}</h1>
+                <p>{`Created By: ${project.User.username}`}</p>
+                <p>{`Rating: ${project.rating}`}</p>
+                <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+              </div>
+
+              <img
+                className="project-page-image"
+                src={`${project.titleImg}`}
+                alt="project"
+              />
+              <div className="project-step-section">
+                <h2>Steps:</h2>
+                <div className="steps-container">
                   {steps.map((step) => {
                     if (step.type === 'img') {
                       return <img key={step.body} src={step.body} alt="step" />;
                     } else {
-                      return <div key={step.body}>{`${step.body}`}</div>;
+                      return <li key={step.body}>{`${step.body}`}</li>;
                     }
                   })}
-                  <h2>Reviews:</h2>
+                </div>
+                <h2>Reviews:</h2>
+                <div className="review-section">
                   {this.state.reviews.map((rev) => {
                     return (
                       <ReviewCard
                         key={rev.id}
                         review={rev}
                         users={this.props.users}
-                        loggedIn={this.props.loggedIn}
-                        authUser={this.props.authUser}
-                        refetch={this.props.userRefetch}
                       />
                     );
                   })}
-                  <button
-                    onClick={(e) => {
-                      this.review();
-                    }}
-                  >
-                    Add a review
-                  </button>
-                  <button onClick={this.collapse}>Collapse</button>
                 </div>
-              ) : null}
+                <button
+                  onClick={(e) => {
+                    this.review();
+                  }}
+                >
+                  Add a review
+                </button>
+              </div>
             </div>
           );
         } else {
           // not logged in, no reviews, return
 
           return (
-            <div>
-              <h1>{`${project.name}`}</h1>
-              <div>{`${project.User.username}`}</div>
-              <div>{`${project.rating}`}</div>
-              <div>{`${project.timestamp}`}</div>
-              <img src={`${project.titleImg}`} alt="project" />
-              <div>{`${project.titleBlurb}`}</div>
-              <button onClick={this.showMore}>View More</button>
-              {this.state.showMore ? (
-                <div>
-                  <h2>Steps:</h2>
+            <div className="project-card-container">
+              <div className="header-info">
+                <h1>{`Project Title: ${project.name}`}</h1>
+                <p>{`Created By: ${project.User.username}`}</p>
+                <p>{`Rating: ${project.rating}`}</p>
+                <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
+              </div>
+
+              <img
+                className="project-page-image"
+                src={`${project.titleImg}`}
+                alt="project"
+              />
+
+              <div className="project-step-section">
+                <h2>Steps:</h2>
+                <div className="steps-container">
                   {steps.map((step) => {
                     if (step.type === 'img') {
                       return <img key={step.body} src={step.body} alt="step" />;
                     } else {
-                      return <div key={step.body}>{`${step.body}`}</div>;
+                      return <li key={step.body}>{`${step.body}`}</li>;
                     }
                   })}
                   <h2>Reviews:</h2>
-                  <p>There are currently no reviews.</p>
-                  <button
-                    onClick={(e) => {
-                      this.review();
-                    }}
-                  >
-                    Add a review
-                  </button>
-                  <button onClick={this.collapse}>Collapse</button>
+                  <p>There are no reviews yet</p>
                 </div>
-              ) : null}
+                <button
+                  onClick={(e) => {
+                    this.review();
+                  }}
+                >
+                  Add a review
+                </button>
+              </div>
             </div>
           );
         }
       }
     } else {
       return (
-        <div>
+        <div className="project-card-container">
           <SkeletonTheme highlightColor="#6fb3b8">
-            <h1>
-              <Skeleton />
-            </h1>
-            <div>
-              <Skeleton />
+            <div className="header-info">
+              <h1>
+                <Skeleton />
+              </h1>
+              <p>
+                <Skeleton />
+              </p>
+              <p>
+                <Skeleton />
+              </p>
+              <p>
+                <Skeleton />
+              </p>
             </div>
-            <div>
-              <Skeleton />
-            </div>
-            <div>
-              <Skeleton />
-            </div>
-            <Skeleton />
-            <div>
-              <Skeleton />
-            </div>
-            <button>
-              <Skeleton />
-            </button>
 
-            <button>
+            <div className="project-page-image">
               <Skeleton />
-            </button>
-            <button>
-              <Skeleton />
-            </button>
+            </div>
+
+            <div className="project-step-section">
+              <h2>
+                <Skeleton />
+              </h2>
+              <div className="steps-container">
+                <Skeleton count={3} />
+                <h2>
+                  <Skeleton />
+                </h2>
+                <p>
+                  <Skeleton />
+                </p>
+              </div>
+              <button>
+                <Skeleton />
+              </button>
+            </div>
           </SkeletonTheme>
         </div>
       );

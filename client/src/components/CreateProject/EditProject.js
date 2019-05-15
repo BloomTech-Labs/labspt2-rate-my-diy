@@ -50,24 +50,23 @@ class EditProject extends Component {
           id: id
         }
       };
-    }
-    else {
+    } else {
       this.state = {
         imgDeleteDisabled: true,
         categories: [],
-        username: "",
-        email: "",
+        username: '',
+        email: '',
         submitDisabled: true,
         project: {
-          name: "",
-          category: "",
-          timestamp: "",
-          titleImg: "",
-          titleBlurb: "",
+          name: '',
+          category: '',
+          timestamp: '',
+          titleImg: '',
+          titleBlurb: '',
           steps: [],
-          id: ""
+          id: ''
         }
-      }
+      };
     }
   }
 
@@ -82,7 +81,6 @@ class EditProject extends Component {
         });
       }
     }
-    
   };
 
   textChange = async (e) => {
@@ -264,37 +262,40 @@ class EditProject extends Component {
       const cats = this.state.categories.map((cat) => {
         return { value: cat, label: cat };
       });
-  
+
       if (
         this.state.project.steps != null &&
         typeof this.state.project.steps === 'object'
       ) {
         return (
-          <div className="projectInfo">
-            <form>
+          <div className="projectInfoEdit">
+            <form className="projectEditForm">
               <h1>{`Edit ${this.state.project.name}`}</h1>
-              <h2>project name:</h2>
-              <input
-                type="text"
-                name="name"
-                value={this.state.project.name}
-                onChange={this.textChange}
-              />
-              <h2>main image:</h2>
+              <div className="project-Flex">
+                <h2>project Title:</h2>
+                <input
+                  type="text"
+                  name="name"
+                  value={this.state.project.name}
+                  onChange={this.textChange}
+                />
+              </div>
               <div>
                 <img src={this.state.project.titleImg} alt="main" />
               </div>
               <button onClick={this.mainImage}>Set Main Image</button>
-              <h2>project description:</h2>
+              <h2>Project Description:</h2>
               <textarea
+                className="editProjectDescription"
                 rows="6"
                 cols="75"
                 name="titleBlurb"
                 value={this.state.project.titleBlurb}
                 onChange={this.textChange}
               />
-              <h2>category:</h2>
+              <h2>Category:</h2>
               <CreatableSelect
+                className="editCategorySelector"
                 isClearable
                 onChange={this.handleChange}
                 onInputChange={this.handleInputChange}
@@ -304,49 +305,52 @@ class EditProject extends Component {
                   label: this.state.project.category
                 }}
               />
-  
+
               <h2>Steps:</h2>
-              <div>
-                {this.state.project['steps'].map((step, idx) => {
-                  if (step.type === 'img') {
-                    return (
-                      <div key={idx}>
-                        <img src={step.body} alt="step" />
-                        <button onClick={this.deletePhoto(idx)}>
-                          Delete Photo
-                        </button>
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div key={idx}>
-                        <input
-                          type="text"
-                          value={step.body}
-                          onChange={this.textChangeHandler(idx)}
-                        />
-                        <button
-                          type="button"
-                          onClick={this.removeTextStep(idx)}
-                          className="small"
-                        >
-                          -
-                        </button>
-                        <button
-                          type="button"
-                          onClick={this.handleAddStep}
-                          className="small"
-                        >
-                          +
-                        </button>
-                        <button onClick={this.openCloudinary}>Add Picture</button>
-                      </div>
-                    );
-                  }
-                })}
+              <div className="project-step-section">
+                <div className="steps-container">
+                  {this.state.project['steps'].map((step, idx) => {
+                    if (step.type === 'img') {
+                      return (
+                        <div className="editImageSection" key={idx}>
+                          <img src={step.body} alt="step" />
+                          <button onClick={this.deletePhoto(idx)}>
+                            Delete Photo
+                          </button>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div className="inputSection" key={idx}>
+                          <input
+                            type="text"
+                            value={step.body}
+                            onChange={this.textChangeHandler(idx)}
+                          />
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+                <div className="buttonSection">
+                  {/* <button
+														type="button"
+														onClick={this.removeTextStep(idx)}
+														className="small"
+													>
+														Delete This Step
+													</button> */}
+                  <button
+                    type="button"
+                    onClick={this.handleAddStep}
+                    className="small"
+                  >
+                    Add New Step
+                  </button>
+                  <button onClick={this.openCloudinary}>Add Picture</button>
+                </div>
               </div>
               <button onClick={this.finalize}>Finalize</button>
-              <button disabled={this.state.submitDisabled}>Submit</button>
             </form>
           </div>
         );
@@ -355,7 +359,7 @@ class EditProject extends Component {
         const json = localStorage.getItem('authUser');
         const user = JSON.parse(json);
         const email = user.email;
-  
+
         return (
           <Mutation
             mutation={UPDATE_PROJECT}
@@ -378,7 +382,7 @@ class EditProject extends Component {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-  
+
                       editProject({
                         variables: {
                           name: this.state.project.name,
@@ -393,87 +397,85 @@ class EditProject extends Component {
                       });
                     }}
                   >
-                    <h1>{`Edit ${this.state.project.name}`}</h1>
-                    <h2>project name:</h2>
-                    <input
-                      type="text"
-                      name="name"
-                      value={this.state.project.name}
-                      onChange={this.textChange}
-                    />
-                    <h2>main image:</h2>
-                    <div>
-                      <img src={this.state.project.titleImg} alt="main" />
+                    <div className="projectInfoEdit">
+                      <h1>{`Edit ${this.state.project.name}`}</h1>
+                      <div className="project-Flex">
+                        <h2>Project Title:</h2>
+                        <input
+                          type="text"
+                          name="name"
+                          value={this.state.project.name}
+                          onChange={this.textChange}
+                        />
+                      </div>
+
+                      <div>
+                        <img src={this.state.project.titleImg} alt="main" />
+                      </div>
+                      <button onClick={this.mainImage}>Set Main Image</button>
+                      <h2>Project Description:</h2>
+                      <textarea
+                        className="editProjectDescription"
+                        rows="6"
+                        cols="75"
+                        name="titleBlurb"
+                        value={this.state.project.titleBlurb}
+                        onChange={this.textChange}
+                      />
+                      <h2>Category:</h2>
+                      <CreatableSelect
+                        className="editCategorySelector"
+                        isClearable
+                        onChange={this.handleChange}
+                        onInputChange={this.handleInputChange}
+                        options={cats}
+                        value={{
+                          value: this.state.project.category,
+                          label: this.state.project.category
+                        }}
+                      />
+
+                      <div className="project-step-section">
+                        <div className="steps-container">
+                          {steps.map((step, idx) => {
+                            if (step.type === 'img') {
+                              return (
+                                <div className="editImageSection" key={idx}>
+                                  <img src={step.body} alt="step" />
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div className="inputSection" key={idx}>
+                                  <input
+                                    type="text"
+                                    value={step.body}
+                                    onChange={this.textChangeHandler(idx)}
+                                  />
+                                </div>
+                              );
+                            }
+                          })}
+                        </div>
+                      </div>
+                      {this.state.submitDisabled ? (
+                        <button
+                          className="submitButton"
+                          type="button"
+                          onClick={this.finalize}
+                        >
+                          Finalize
+                        </button>
+                      ) : (
+                        <button
+                          className="submitButton"
+                          type="submit"
+                          disabled={this.state.submitDisabled}
+                        >
+                          Submit
+                        </button>
+                      )}
                     </div>
-                    <button onClick={this.mainImage}>Set Main Image</button>
-                    <h2>project description:</h2>
-                    <textarea
-                      rows="6"
-                      cols="75"
-                      name="titleBlurb"
-                      value={this.state.project.titleBlurb}
-                      onChange={this.textChange}
-                    />
-                    <h2>category:</h2>
-                    <CreatableSelect
-                      isClearable
-                      onChange={this.handleChange}
-                      onInputChange={this.handleInputChange}
-                      options={cats}
-                      value={{
-                        value: this.state.project.category,
-                        label: this.state.project.category
-                      }}
-                    />
-                    <h2>Steps:</h2>
-                    <div>
-                      {steps.map((step, idx) => {
-                        if (step.type === 'img') {
-                          return (
-                            <div key={idx}>
-                              <img src={step.body} alt="step" />
-                              <button onClick={this.deletePhoto(idx)}>
-                                Delete Photo
-                              </button>
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div key={idx}>
-                              <input
-                                type="text"
-                                value={step.body}
-                                onChange={this.textChangeHandler(idx)}
-                              />
-                              <button
-                                type="button"
-                                onClick={this.removeTextStep(idx)}
-                                className="small"
-                              >
-                                -
-                              </button>
-                              <button
-                                type="button"
-                                onClick={this.handleAddStep}
-                                className="small"
-                              >
-                                +
-                              </button>
-                              <button onClick={this.openCloudinary}>
-                                Add Picture
-                              </button>
-                            </div>
-                          );
-                        }
-                      })}
-                    </div>
-  
-                    <button type="button" onClick={this.finalize}>
-                      Finalize
-                    </button>
-                    <button type="submit" disabled={this.state.submitDisabled}>
-                      Submit
-                    </button>
                   </form>
                 </div>
               );
@@ -481,44 +483,55 @@ class EditProject extends Component {
           </Mutation>
         );
       }
-    }
-    else {
+    } else {
       return (
         <div className="projectInfo">
-            <form>
-              <h1><Skeleton/></h1>
-              <h2><Skeleton/></h2>
-              <div><Skeleton/></div>
-              <h2><Skeleton/></h2>
-              <div>
-              <Skeleton/>
+          <form className="projectEditForm">
+          <SkeletonTheme highlightColor="#6fb3b8">
+            <div className="projectInfoEdit">
+              <h1>
+                <Skeleton />
+              </h1>
+              <div className="project-Flex">
+                <h2>
+                  <Skeleton />
+                </h2>
+                <Skeleton />
               </div>
-              <button><Skeleton/></button>
-              <h2><Skeleton/></h2>
-              <Skeleton count={6}/>
-              <h2><Skeleton/></h2>
-              <Skeleton/>
-  
-              <h2><Skeleton/></h2>
-              <div>
-                
-                      <div>
-                      <Skeleton/>
-                        <button>
-                        <Skeleton/>
-                        </button>
-                        <button>
-                        <Skeleton/>
-                        </button>
-                        <button><Skeleton/></button>
-                      </div>
-                  
+              <div className="skeletonImg">
+                <Skeleton />
               </div>
-              <button><Skeleton/></button>
-              <button><Skeleton/></button>
-            </form>
-          </div>
-      )
+              <button>
+                <Skeleton />
+              </button>
+              <h2>
+                <Skeleton />
+              </h2>
+              <div className="editProjectDescription">
+                <Skeleton count={6} />
+              </div>
+              <h2>
+                <Skeleton />
+              </h2>
+              <div className="editCategorySelector">
+                <Skeleton />
+              </div>
+              <div className="project-step-section">
+                <div className="steps-container">
+                  <div className="inputSection">
+                    <Skeleton />
+                  </div>
+                </div>
+              </div>
+              <button className="submitButton">
+                <Skeleton />
+              </button>
+              )}
+            </div>
+            </SkeletonTheme>
+          </form>
+        </div>
+      );
     }
   }
 }
