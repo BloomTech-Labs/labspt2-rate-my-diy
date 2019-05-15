@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
-import * as math from 'mathjs';
 import plus from '../../img/plus.png';
 import moment from 'moment';
 import star from '../../img/star.png';
@@ -136,17 +135,6 @@ class ProjectList extends React.Component {
                     }'s Projects`}</h1>
                     <div className="project-list-container">
                       {projectsData.projects.map((project) => {
-                        let meanRating = project.rating;
-                        if (project.rating.length > 1)
-                          meanRating = parseFloat(
-                            math.mean(project.rating.slice(1)).toFixed(2)
-                          );
-                        if (project.rating.length === 1)
-                          meanRating = parseFloat(
-                            math.mean(project.rating).toFixed(2)
-                          );
-
-                        project.rating = meanRating;
 
                         const stars = [];
 

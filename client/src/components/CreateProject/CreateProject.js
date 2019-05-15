@@ -652,7 +652,7 @@ class CreateProject extends Component {
                           <Skeleton width={290} height={250} />
                         </div>
                         <div className="skeletonContainer">
-                          <Skeleton count={11} />
+                          <Skeleton count={10} />
                         </div>
                         
                       </div>
@@ -671,7 +671,9 @@ class CreateProject extends Component {
                   </h2>
                   <div>
                     <div>
-                      <Skeleton />
+                      <div className="skeletonContainer">
+                        <Skeleton count={6}/>
+                      </div>
 
                       <button className="addStep">
                         <Skeleton />

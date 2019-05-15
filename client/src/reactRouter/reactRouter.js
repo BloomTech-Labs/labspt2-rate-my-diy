@@ -53,7 +53,29 @@ const Navigation = ({ authUser }) => {
             data: nativeData,
             error: nativeError
           }) => {
-            if (thirdLoading || nativeLoading) return null;
+            if (thirdLoading || nativeLoading) {
+              return (
+                <Menu>
+                  <a href={ROUTES.HOME} className="menu-item">
+                      <div>Home</div>
+                    </a>
+                    <a href={'/search'} className="menu-item">
+                      <div>Search</div>
+                    </a>
+                    <a
+                      id="create"
+                      className="menu-item"
+                      href={'/createproject'}
+                    >
+                      <div>Create Project</div>
+                    </a>
+
+                    <a id="signOut" href="/" className="menu-item">
+                      <SignOutButton />
+                    </a>
+                </Menu>
+              )
+            };
             if (thirdError || nativeError) {
               console.log({
                 navErrorNative: nativeError,
