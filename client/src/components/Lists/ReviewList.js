@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getUsers } from '../../query/query';
 import plus from '../../img/plus.png';
 
-import "./ReviewList.scss"
+import './ReviewList.scss';
 
 const GET_REVIEWS = gql`
   query reviews($email: String!) {

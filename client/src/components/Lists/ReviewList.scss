@@ -23,7 +23,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  
 }
 
 .review-list-card {
@@ -48,7 +47,6 @@
   a {
     &:hover {
       color: $main-color;
-      
     }
   }
 }
@@ -62,4 +60,3 @@
   border-radius: 5%;
   padding: 1%;
 }
-
