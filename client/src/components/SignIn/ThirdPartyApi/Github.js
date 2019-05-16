@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { GET_THIRD_USER } from '../../../reactRouter/reactRouter';
 import { GithubLoginButton } from 'react-social-login-buttons';
+import '../SignIn.scss'
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -117,7 +118,7 @@ class SignInGithubBase extends Component {
                     isOpen={this.state.isOpen}
                     contentLabel="Example Modal"
                   >
-                    <div>
+                    <div className="infoModal">
                       <h1>Complete Your Sign Up.</h1>
                       <Mutation
                         mutation={firebaseSignUp}

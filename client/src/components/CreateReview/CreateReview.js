@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import './CreateReview.scss';
+import React, { Component } from 'react'
+import './CreateReview.scss'
 class CreateReview extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       title: '',
-      reviewText: ''
-    };
+      reviewText: '',
+    }
   }
 
   onChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+      [event.target.name]: event.target.value,
+    })
+  }
 
   render() {
     return (
@@ -35,8 +35,8 @@ class CreateReview extends Component {
           />
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default CreateReview;
+export default CreateReview

@@ -1,11 +1,11 @@
-import './LoginPopUp.scss';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import './LoginPopUp.scss'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class LoginPopup extends Component {
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {}
   }
   render() {
     return this.props.show === true ? (
@@ -20,8 +20,8 @@ class LoginPopup extends Component {
           </Link>
         </div>
       </div>
-    ) : null;
+    ) : null
   }
 }
 
-export default LoginPopup;
+export default LoginPopup

@@ -1,7 +1,7 @@
 const path = require('path');
-const { GraphQLServer } = require('graphql-yoga');
+const { ApolloServer } = require('apollo-server')
+import { GraphQLServer } from 'graphql-yoga'
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
-const { unionType } = require('nexus');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
 const { stripe } = require('./src/stripe');
@@ -181,7 +181,7 @@ const Mutation = prismaObjectType({
         ];
         let avatar = avatars[Math.floor(Math.random() * avatars.length)];
         const template = compiledFunction({
-          name: username
+          username: username
         });
         mailOptions = {
           from: 'ratemydiyproject@gmail.com', // sender address

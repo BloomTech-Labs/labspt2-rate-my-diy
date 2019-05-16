@@ -1,6 +1,9 @@
 @import '../../styles/variables.scss';
 
 .projectInfoEdit {
+  h1, h2{
+    color: $color2;
+  }
     .editImageSection{
         display: flex;
         flex-direction: column;

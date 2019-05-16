@@ -1,11 +1,27 @@
+@import '../../styles/variables.scss';
 .settings-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   height: 1200px;
-  width: 90%;
+  width: 100%;
   padding: 0 5%;
   text-align: center;
+  h1{
+    font-size: 4.8rem;
+    color: $color2;
+  }
+  h2{
+    color: $alternate-color-one;
+    font-size: 3.6rem;
+    font-weight: 900;
+  }
+
+  h3{
+    color: $alternate-color-one;
+    font-weight: 900;
+  }
 }
 
 .stripe-container {
@@ -13,4 +29,19 @@
   flex-direction: column;
   justify-content: space-around;
   height: 150px;
+  align-items: center;
+  .stripeButton{
+     background-color: $color4 !important;
+      background-image: none !important;
+      background: $color4 !important;
+      box-shadow: none !important;
+      border: none !important;
+    span{
+      background-color: $color4 !important;
+      background-image: none !important;
+      background: $color4 !important;
+      box-shadow: none !important;
+    }
+
+  }
 }

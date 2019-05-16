@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { GoogleLoginButton } from 'react-social-login-buttons';
+import '../SignIn.scss'
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -66,7 +67,7 @@ class SignInGoogleBase extends Component {
   };
   onSubmit = (event) => {
     this.props.firebase
-      .doSignInWithTwitter()
+      .doSignInWithGoogle()
       .then((socialAuthUser) => {
         const thirdPartyUID = socialAuthUser.user.providerData['0'].uid;
         this.setState({ uid: thirdPartyUID, isOpen: true });
@@ -127,7 +128,7 @@ class SignInGoogleBase extends Component {
                     isOpen={this.state.isOpen}
                     contentLabel="Example Modal"
                   >
-                    <div>
+                      <div className="infoModal">
                       <h1>Complete Your Sign Up.</h1>
                       <Mutation mutation={firebaseSignUp}>
                         {(firebaseSignUp) => {
