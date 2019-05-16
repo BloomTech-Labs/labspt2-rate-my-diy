@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
-import CreatableSelect from 'react-select/lib/Creatable';
-import { Mutation } from 'react-apollo';
-import { Redirect } from 'react-router';
-import { UPDATE_PROJECT } from '../../query/query';
-import { GET_PROJECTS } from '../Lists/ProjectList';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import './CreateProject.scss';
+import React, { Component } from 'react'
+import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader'
+import CreatableSelect from 'react-select/lib/Creatable'
+import { Mutation } from 'react-apollo'
+import { Redirect } from 'react-router'
+import { UPDATE_PROJECT } from '../../query/query'
+import { GET_PROJECTS } from '../Lists/ProjectList'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import './CreateProject.scss'
 
 class EditProject extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     if (this.props.projects[0]) {
       const userPull = this.props.users.filter(
         (user) => user.email === this.props.authUser.email
-      );
-      const { username, email } = userPull[0];
-      const categories = this.props.projects.map((project) => project.category);
-      let filteredCategories = [...new Set(categories)];
+      )
+      const { username, email } = userPull[0]
+      const categories = this.props.projects.map((project) => project.category)
+      let filteredCategories = [...new Set(categories)]
 
       const {
         name,
@@ -27,13 +27,13 @@ class EditProject extends Component {
         titleImg,
         titleBlurb,
         steps,
-        id
-      } = this.props.project;
-      let newSteps = [];
+        id,
+      } = this.props.project
+      let newSteps = []
       if (typeof steps === 'string')
-        newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
+        newSteps = JSON.parse(steps).concat([{ type: '', body: '' }])
       if (!typeof steps === 'string')
-        newSteps = steps.concat([{ type: '', body: '' }]);
+        newSteps = steps.concat([{ type: '', body: '' }])
 
       this.state = {
         imgDeleteDisabled: true,
@@ -48,9 +48,9 @@ class EditProject extends Component {
           titleImg: titleImg,
           titleBlurb: titleBlurb,
           steps: newSteps,
-          id: id
-        }
-      };
+          id: id,
+        },
+      }
     } else {
       this.state = {
         imgDeleteDisabled: true,
@@ -65,141 +65,142 @@ class EditProject extends Component {
           titleImg: '',
           titleBlurb: '',
           steps: [],
-          id: ''
-        }
-      };
+          id: '',
+        },
+      }
     }
   }
 
   componentDidMount = () => {
     if (this.props.users[0]) {
       if (typeof this.state.project.steps === 'string') {
-        let steps = this.state.project.steps;
-        let array = JSON.parse(steps);
+        let steps = this.state.project.steps
+        let array = JSON.parse(steps)
         this.setState({
           ...this.state,
-          project: { ...this.state.project, steps: array }
-        });
+          project: { ...this.state.project, steps: array },
+        })
       }
     }
-  };
+  }
 
   textChange = async (e) => {
-    let value = e.target.value;
+    let value = e.target.value
     await this.setState({
       project: {
         ...this.state.project,
-        [e.target.name]: value
-      }
-    });
-  };
+        [e.target.name]: value,
+      },
+    })
+  }
   textChangeHandler = (index) => (e) => {
     const newText = this.state.project.steps.map((step, sidx) => {
-      if (index !== sidx) return step;
-      return { type: 'text', body: e.target.value };
-    });
+      if (index !== sidx) return step
+      return { type: 'text', body: e.target.value }
+    })
 
     this.setState({
       project: {
         ...this.state.project,
-        steps: newText
-      }
-    });
-  };
+        steps: newText,
+      },
+    })
+  }
 
   handleAddStep = () => {
     this.setState({
       ...this.state,
       project: {
         ...this.state.project,
-        steps: this.state.project.steps.concat([{ type: '', body: '' }])
-      }
-    });
-  };
+        steps: this.state.project.steps.concat([{ type: '', body: '' }]),
+      },
+    })
+  }
 
   addImage = (img) => {
     const steps = this.state.project.steps.filter(
       (step) => step !== { type: '', body: '' }
-    );
+    )
 
-    const newSteps = steps.concat({ type: 'img', body: img });
+    const newSteps = steps.concat({ type: 'img', body: img })
 
-    const extraStep = newSteps.concat({ type: '', body: '' });
+    const extraStep = newSteps.concat({ type: '', body: '' })
 
     this.setState({
       project: {
         ...this.state.project,
-        steps: extraStep
-      }
-    });
-  };
+        steps: extraStep,
+      },
+    })
+  }
 
   deletePhoto = (idx) => () => {
     const steps = this.state.project.steps.filter(
       (step) => step !== { type: '', body: '' }
-    );
-    const filtered = steps.filter((step, sidx) => idx !== sidx);
+    )
+    const filtered = steps.filter((step, sidx) => idx !== sidx)
     this.setState({
       project: {
         ...this.state.project,
-        steps: filtered
-      }
-    });
-  };
+        steps: filtered,
+      },
+    })
+  }
 
   removeTextStep = (idx) => () => {
-    const steps = this.state.project.steps.filter((step, sidx) => idx !== sidx);
+    const steps = this.state.project.steps.filter((step, sidx) => idx !== sidx)
     this.setState({
       ...this.state,
-      project: { 
-        ...this.state.project, 
-        steps: steps }
-    });
-  };
+      project: {
+        ...this.state.project,
+        steps: steps,
+      },
+    })
+  }
 
   openCloudinary = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     let options = {
       cloud_name: 'dv1rhurfd',
       upload_preset: 'korisbak',
       returnJustUrl: true,
       maxImageWidth: 400,
-      maxImageHeight: 500
-    };
+      maxImageHeight: 500,
+    }
     ReactCloudinaryUploader.open(options)
       .then((image) => {
-        if (this.props.returnJustUrl) image = image.url;
-        this.addImage(image);
+        if (this.props.returnJustUrl) image = image.url
+        this.addImage(image)
       })
       .catch((err) => {
-        console.error({ error: err });
-      });
-  };
+        console.error({ error: err })
+      })
+  }
 
   mainImage = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     let options = {
       cloud_name: 'dv1rhurfd',
       upload_preset: 'korisbak',
       returnJustUrl: true,
       maxImageWidth: 400,
-      maxImageHeight: 500
-    };
+      maxImageHeight: 500,
+    }
     ReactCloudinaryUploader.open(options)
       .then((image) => {
-        if (this.props.returnJustUrl) image = image.url;
+        if (this.props.returnJustUrl) image = image.url
         this.setState({
           imgDeleteDisabled: false,
           project: {
             ...this.state.project,
-            titleImg: image
-          }
-        });
+            titleImg: image,
+          },
+        })
       })
       .catch((err) => {
-        console.error({ error: err });
-      });
-  };
+        console.error({ error: err })
+      })
+  }
 
   deleteMainImg = () => {
     this.setState({
@@ -207,41 +208,41 @@ class EditProject extends Component {
       imgDeleteDisabled: true,
       project: {
         ...this.state.project,
-        category: ''
-      }
-    });
-  };
+        category: '',
+      },
+    })
+  }
 
   handleChange = async (newValue, actionMeta) => {
-    let value = '';
+    let value = ''
 
-    if (newValue !== null) value = await newValue.value;
+    if (newValue !== null) value = await newValue.value
 
     await this.setState({
       ...this.state,
       project: {
         ...this.state.project,
-        category: value
-      }
-    });
-  };
+        category: value,
+      },
+    })
+  }
 
   finalize = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const steps = await this.state.project['steps'];
+      const steps = await this.state.project['steps']
 
       const filter = await steps.filter(
         (step) => step.type !== '' && step.body !== ''
-      );
+      )
 
-      const string = await JSON.stringify(filter);
+      const string = await JSON.stringify(filter)
 
-      const date = await new Date(Date.now());
+      const date = await new Date(Date.now())
 
       const { name, category, titleImg, titleBlurb, id } = await this.state
-        .project;
+        .project
 
       await this.setState({
         ...this.state,
@@ -253,21 +254,26 @@ class EditProject extends Component {
           titleBlurb: titleBlurb,
           steps: string,
           timestamp: date,
-          id: id
-        }
-      });
+          id: id,
+        },
+      })
     } catch (err) {
-      console.log({ error: err });
+      console.log({ error: err })
     }
-  };
+  }
 
   render() {
     // eslint-disable-next-line
     if (this.props.project != undefined) {
       let categories = this.props.projects.map((project) => project.category)
-      let cats = [...new Set(categories.map((category) => {return {value: category, label: category}}))];
-      
-      
+      let cats = [
+        ...new Set(
+          categories.map((category) => {
+            return { value: category, label: category }
+          })
+        ),
+      ]
+
       if (
         this.state.project.steps != null &&
         typeof this.state.project.steps === 'object'
@@ -298,7 +304,7 @@ class EditProject extends Component {
                     options={cats}
                     value={{
                       value: this.state.project.category,
-                      label: this.state.project.category
+                      label: this.state.project.category,
                     }}
                   />
                 </div>
@@ -354,7 +360,7 @@ class EditProject extends Component {
                             Delete Photo
                           </button>
                         </div>
-                      );
+                      )
                     } else {
                       return (
                         <div key={idx}>
@@ -386,7 +392,7 @@ class EditProject extends Component {
                             Remove This Step
                           </button>
                         </div>
-                      );
+                      )
                     }
                   })}
                 </div>
@@ -410,35 +416,35 @@ class EditProject extends Component {
               )}
             </form>
           </div>
-        );
+        )
       } else {
-        let steps = JSON.parse(this.state.project.steps);
-        
-        const email = this.props.authUser.email;
-        const username = this.props.users.filter(user => user.email === email)[0].username
-        return (
+        let steps = JSON.parse(this.state.project.steps)
 
+        const email = this.props.authUser.email
+        const username = this.props.users.filter(
+          (user) => user.email === email
+        )[0].username
+        return (
           <Mutation
             mutation={UPDATE_PROJECT}
             refetchQueries={() => {
               return [
                 {
                   query: GET_PROJECTS,
-                  variables: { email: email }
-                }
-              ];
+                  variables: { email: email },
+                },
+              ]
             }}
           >
             {(editProject, { loading, error, data }) => {
-              if (loading) return <span>Submitting your changes...</span>;
-              if (error) return <span>{`Error: ${error}`}</span>;
-              if (data)
-                return <Redirect to={`/${username}/projects`} />;
+              if (loading) return <span>Submitting your changes...</span>
+              if (error) return <span>{`Error: ${error}`}</span>
+              if (data) return <Redirect to={`/${username}/projects`} />
               return (
                 <div className="projectInfo">
                   <form
                     onSubmit={(e) => {
-                      e.preventDefault();
+                      e.preventDefault()
 
                       editProject({
                         variables: {
@@ -449,154 +455,153 @@ class EditProject extends Component {
                           titleBlurb: this.state.project.titleBlurb,
                           steps: this.state.project.steps,
                           username: this.state.username,
-                          id: this.state.project.id
-                        }
-                      });
+                          id: this.state.project.id,
+                        },
+                      })
                     }}
                   >
                     {' '}
                     <div className="projectInfo">
-                      
-                        <h1>{`Edit ${this.state.project.name}`}</h1>
-                        <div className="projectTitle">
-                          <h2>Title</h2>
+                      <h1>{`Edit ${this.state.project.name}`}</h1>
+                      <div className="projectTitle">
+                        <h2>Title</h2>
 
-                          <input
-                            type="text"
-                            name="name"
-                            className="projectTitleInput"
-                            value={this.state.project.name}
-                            onChange={this.textChange}
+                        <input
+                          type="text"
+                          name="name"
+                          className="projectTitleInput"
+                          value={this.state.project.name}
+                          onChange={this.textChange}
+                        />
+                      </div>
+                      <div className="titleImage">
+                        <div className="setThumbnail">
+                          <h3>Category</h3>
+                          <CreatableSelect
+                            isClearable
+                            onChange={this.handleChange}
+                            className="category"
+                            onInputChange={this.handleInputChange}
+                            options={cats}
+                            value={{
+                              value: this.state.project.category,
+                              label: this.state.project.category,
+                            }}
                           />
                         </div>
-                        <div className="titleImage">
-                          <div className="setThumbnail">
-                            <h3>Category</h3>
-                            <CreatableSelect
-                              isClearable
-                              onChange={this.handleChange}
-                              className="category"
-                              onInputChange={this.handleInputChange}
-                              options={cats}
-                              value={{
-                                value: this.state.project.category,
-                                label: this.state.project.category
-                              }}
-                            />
-                          </div>
-                          <div className="imageArea">
-                            {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
-                            <div className="descriptionRow">
-                              <h2>Project Description:</h2>
-                              <div className="image-description">
-                                {this.state.project.titleImg ? (
-                                  <img
-                                    src={this.state.project.titleImg}
-                                    alt="mainImage"
-                                  />
-                                ) : (
-                                  <div className="emptyMainImage">
-                                    <button onClick={this.mainImage}>
-                                      Set Main Image
-                                    </button>
-                                  </div>
-                                )}
-
-                                <textarea
-                                  rows="6"
-                                  cols="75"
-                                  name="titleBlurb"
-                                  value={this.state.project.titleBlurb}
-                                  onChange={this.textChange}
+                        <div className="imageArea">
+                          {/* <button disabled={this.state.imgDeleteDisabled} onClick={this.deleteMainImg}>Delete Photo</button> */}
+                          <div className="descriptionRow">
+                            <h2>Project Description:</h2>
+                            <div className="image-description">
+                              {this.state.project.titleImg ? (
+                                <img
+                                  src={this.state.project.titleImg}
+                                  alt="mainImage"
                                 />
-                              </div>
+                              ) : (
+                                <div className="emptyMainImage">
+                                  <button onClick={this.mainImage}>
+                                    Set Main Image
+                                  </button>
+                                </div>
+                              )}
+
+                              <textarea
+                                rows="6"
+                                cols="75"
+                                name="titleBlurb"
+                                value={this.state.project.titleBlurb}
+                                onChange={this.textChange}
+                              />
                             </div>
                           </div>
-                          <div className="conditionalImage">
-                            {this.state.project.titleImg ? (
-                              <button
-                                className="conditionalButton"
-                                onClick={this.mainImage}
-                              >
-                                Change Main Image
-                              </button>
-                            ) : null}
-                          </div>
                         </div>
-
-                        <div className="stepSection">
-                          <h2>Steps:</h2>
-                          <div>
-                            {steps.map((step, idx) => {
-                              if (step.type === 'img') {
-                                return (
-                                  <div key={idx}>
-                                    <img src={step.body} alt="step" />
-                                    <button onClick={this.deletePhoto(idx)}>
-                                      Delete Photo
-                                    </button>
-                                  </div>
-                                );
-                              } else {
-                                return (
-                                  <div key={idx}>
-                                    <textarea
-                                      type="text"
-                                      placeholder="Add Step..."
-                                      value={step.body}
-                                      onChange={this.textChangeHandler(idx)}
-                                    />
-
-                                    <button
-                                      type="button"
-                                      onClick={this.handleAddStep}
-                                      className="addStep"
-                                    >
-                                      Add Step
-                                    </button>
-                                    <button
-                                      className="addPicture"
-                                      onClick={this.openCloudinary}
-                                    >
-                                      Add Picture
-                                    </button>
-                                    <button
-                                      type="button"
-                                      onClick={this.removeTextStep(idx)}
-                                      className="removeStep"
-                                    >
-                                      Remove This Step
-                                    </button>
-                                  </div>
-                                );
-                              }
-                            })}
-                          </div>
+                        <div className="conditionalImage">
+                          {this.state.project.titleImg ? (
+                            <button
+                              className="conditionalButton"
+                              onClick={this.mainImage}
+                            >
+                              Change Main Image
+                            </button>
+                          ) : null}
                         </div>
-                        {this.state.submitDisabled ? (
-                          <button
-                            className="submitButton"
-                            type="button"
-                            onClick={this.finalize}
-                          >
-                            Finalize
-                          </button>
-                        ) : (
-                          <button
-                            className="submitButton"
-                            type="submit"
-                            disabled={this.state.submitDisabled}
-                          >
-                            Submit
-                          </button>
-                        )}
                       </div>
+
+                      <div className="stepSection">
+                        <h2>Steps:</h2>
+                        <div>
+                          {steps.map((step, idx) => {
+                            if (step.type === 'img') {
+                              return (
+                                <div key={idx}>
+                                  <img src={step.body} alt="step" />
+                                  <button onClick={this.deletePhoto(idx)}>
+                                    Delete Photo
+                                  </button>
+                                </div>
+                              )
+                            } else {
+                              return (
+                                <div key={idx}>
+                                  <textarea
+                                    type="text"
+                                    placeholder="Add Step..."
+                                    value={step.body}
+                                    onChange={this.textChangeHandler(idx)}
+                                  />
+
+                                  <button
+                                    type="button"
+                                    onClick={this.handleAddStep}
+                                    className="addStep"
+                                  >
+                                    Add Step
+                                  </button>
+                                  <button
+                                    className="addPicture"
+                                    onClick={this.openCloudinary}
+                                  >
+                                    Add Picture
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={this.removeTextStep(idx)}
+                                    className="removeStep"
+                                  >
+                                    Remove This Step
+                                  </button>
+                                </div>
+                              )
+                            }
+                          })}
+                        </div>
+                      </div>
+                      {this.state.submitDisabled ? (
+                        <button
+                          className="submitButton"
+                          type="button"
+                          onClick={this.finalize}
+                        >
+                          Finalize
+                        </button>
+                      ) : (
+                        <button
+                          className="submitButton"
+                          type="submit"
+                          disabled={this.state.submitDisabled}
+                        >
+                          Submit
+                        </button>
+                      )}
+                    </div>
                   </form>
                 </div>
-              );
+              )
             }}
           </Mutation>
-        );
+        )
       }
     } else {
       return (
@@ -635,7 +640,6 @@ class EditProject extends Component {
                         <div className="skeletonContainer">
                           <Skeleton count={10} />
                         </div>
-                        
                       </div>
                     </div>
                   </div>
@@ -653,7 +657,7 @@ class EditProject extends Component {
                   <div>
                     <div>
                       <div className="skeletonContainer">
-                        <Skeleton count={6}/>
+                        <Skeleton count={6} />
                       </div>
 
                       <button className="addStep">
@@ -676,9 +680,9 @@ class EditProject extends Component {
             </div>
           </form>
         </div>
-      );
+      )
     }
   }
 }
 
-export default EditProject;
+export default EditProject

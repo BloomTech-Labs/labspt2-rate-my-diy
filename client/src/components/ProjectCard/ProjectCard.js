@@ -1,27 +1,27 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { Mutation } from 'react-apollo';
-import moment from "moment";
-import { NEW_REVIEW, getReviews } from '../../query/query';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import './ProjectCard.scss';
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import { Mutation } from 'react-apollo'
+import moment from 'moment'
+import { NEW_REVIEW, getReviews } from '../../query/query'
+import ReviewCard from '../ReviewCard/ReviewCard'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import './ProjectCard.scss'
 
 class ProjectCard extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     if (this.props.users[0]) {
-      const { users, reviews, project, loggedIn } = this.props;
+      const { users, reviews, project, loggedIn } = this.props
 
-      let revs = reviews.filter((rev) => rev.ProjectReviewed.id === project.id);
+      let revs = reviews.filter((rev) => rev.ProjectReviewed.id === project.id)
 
-      let visitor = [{ username: '' }];
-      let authUser = { email: '' };
+      let visitor = [{ username: '' }]
+      let authUser = { email: '' }
       // eslint-disable-next-line
-      if (this.props.authUser != undefined) authUser = this.props.authUser;
+      if (this.props.authUser != undefined) authUser = this.props.authUser
       // eslint-disable-next-line
       if (this.props.authUser != undefined)
-        visitor = users.filter((u) => u.email === authUser.email);
+        visitor = users.filter((u) => u.email === authUser.email)
 
       this.state = {
         edit: false,
@@ -35,13 +35,13 @@ class ProjectCard extends React.Component {
         text: '',
         reviews: revs,
         showMore: false,
-        username: visitor[0].username
-      };
+        username: visitor[0].username,
+      }
     } else {
-      const { loggedIn } = this.props;
-      let authUser = { email: '' };
+      const { loggedIn } = this.props
+      let authUser = { email: '' }
       // eslint-disable-next-line
-      if (this.props.authUser != undefined) authUser = this.props.authUser;
+      if (this.props.authUser != undefined) authUser = this.props.authUser
       this.state = {
         edit: false,
         stars: 0,
@@ -54,70 +54,68 @@ class ProjectCard extends React.Component {
         text: '',
         reviews: [],
         showMore: false,
-        username: ''
-      };
+        username: '',
+      }
     }
   }
 
   textChange = async (e) => {
-    let value = e.target.value;
+    let value = e.target.value
     await this.setState({
       ...this.state,
-      [e.target.name]: value
-    });
-  };
+      [e.target.name]: value,
+    })
+  }
 
   starChange = async (e) => {
-    const stars = await parseInt(e.target.value);
+    const stars = await parseInt(e.target.value)
     await this.setState({
       ...this.state,
-      stars: stars
-    });
+      stars: stars,
+    })
 
     if (this.state.stars === 0) {
-      await this.setState({ ...this.state, starsDisabled: true });
+      await this.setState({ ...this.state, starsDisabled: true })
     }
 
     if (this.state.stars > 0) {
-      await this.setState({ ...this.state, starsDisabled: false });
+      await this.setState({ ...this.state, starsDisabled: false })
     }
-  };
+  }
 
   review = () => {
     if (this.state.loggedIn === true) {
-      this.setState({ ...this.state, newReview: true });
+      this.setState({ ...this.state, newReview: true })
     } else {
-      return this.props.history.push('/signin');
+      return this.props.history.push('/signin')
     }
-  };
+  }
 
   showMore = async () => {
     try {
-      await this.setState({ ...this.state, showMore: true });
+      await this.setState({ ...this.state, showMore: true })
     } catch (err) {
-      console.log({ showError: err });
+      console.log({ showError: err })
     }
-  };
+  }
 
   collapse = async () => {
     try {
-      await this.setState({ ...this.state, showMore: false });
+      await this.setState({ ...this.state, showMore: false })
     } catch (err) {
-      console.log({ showError: err });
+      console.log({ showError: err })
     }
-  };
+  }
   render() {
     if (this.props.users[0]) {
-      const { project } = this.props;
+      const { project } = this.props
       const time = moment(project.timestamp).format('MMMM Do YYYY')
-      console.log({timestamp: [project].timestamp, time: time})
-      if (time !== "Invalid date")
-      project.timestamp = time
+      if (time !== 'Invalid date') project.timestamp = time
 
-      let steps = JSON.parse(project.steps);
+      let steps = JSON.parse(project.steps)
 
       if (this.state.edit) {
-        return <Redirect to={`/projects/${project.id}/edit`} />;
+        return <Redirect to={`/projects/${project.id}/edit`} />
       }
 
       if (this.state.loggedIn === true) {
@@ -133,7 +131,7 @@ class ProjectCard extends React.Component {
                 <button
                   className="editButton"
                   onClick={() => {
-                    this.setState({ edit: true });
+                    this.setState({ edit: true })
                   }}
                 >
                   Edit
@@ -158,9 +156,9 @@ class ProjectCard extends React.Component {
                       if (step.type === 'img') {
                         return (
                           <img key={step.body} src={step.body} alt="step" />
-                        );
+                        )
                       } else {
-                        return <li key={step.body}>{`${step.body}`}</li>;
+                        return <li key={step.body}>{`${step.body}`}</li>
                       }
                     })}
                   </div>
@@ -173,12 +171,12 @@ class ProjectCard extends React.Component {
                           review={rev}
                           users={this.props.users}
                         />
-                      );
+                      )
                     })}
                   </div>
                 </div>
               </div>
-            );
+            )
           } else {
             // logged in, are reviews, not your project
 
@@ -189,7 +187,7 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your project, newReview, you've rated projs
                 let rateCheck = this.state.visitor[0].RatedProjects.filter(
                   (proj) => proj.id === project.id
-                );
+                )
                 if (rateCheck.length >= 1) {
                   // logged in, are reviews, not your proj, newRev, you've rated projs, rated this one, return
 
@@ -218,11 +216,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <div key={step.body}>{`${step.body}`}</div>
                             }
                           })}
                           <h2>Reviews:</h2>
@@ -233,11 +229,11 @@ class ProjectCard extends React.Component {
                                 review={rev}
                                 users={this.props.users}
                               />
-                            );
+                            )
                           })}
                           <button
                             onClick={(e) => {
-                              this.review();
+                              this.review()
                             }}
                           >
                             Add a review
@@ -280,9 +276,9 @@ class ProjectCard extends React.Component {
                                     />
                                     <span>Submitting your review...</span>
                                   </form>
-                                );
+                                )
                               if (error) {
-                                console.log({ revError: error });
+                                console.log({ revError: error })
                                 return (
                                   <form>
                                     <h2>New Review</h2>
@@ -325,14 +321,14 @@ class ProjectCard extends React.Component {
                                       Go Back
                                     </button>
                                   </form>
-                                );
+                                )
                               }
                               if (data)
                                 return (
                                   <form
                                     onSubmit={async (e) => {
-                                      e.preventDefault();
-                                      const date = await new Date(Date.now());
+                                      e.preventDefault()
+                                      const date = await new Date(Date.now())
                                       await newReview({
                                         variables: {
                                           name: this.state.name,
@@ -341,21 +337,21 @@ class ProjectCard extends React.Component {
                                           user: project.User.username,
                                           username: this.state.username,
                                           id: project.id,
-                                          projRating: this.state.stars
-                                        }
-                                      });
+                                          projRating: this.state.stars,
+                                        },
+                                      })
 
-                                      await this.props.refetch();
-                                      const { reviews } = await this.props;
+                                      await this.props.refetch()
+                                      const { reviews } = await this.props
                                       let revs = await reviews.filter(
                                         (rev) =>
                                           rev.ProjectReviewed.id === project.id
-                                      );
+                                      )
                                       await this.setState({
                                         ...this.state,
                                         newReview: false,
-                                        reviews: revs
-                                      });
+                                        reviews: revs,
+                                      })
                                     }}
                                   >
                                     <h2>New Review</h2>
@@ -388,14 +384,14 @@ class ProjectCard extends React.Component {
                                     />
                                     <button type="submit">Submit</button>
                                   </form>
-                                );
+                                )
                             }}
                           </Mutation>
                           <button onClick={this.collapse}>Collapse</button>
                         </div>
                       ) : null}
                     </div>
-                  );
+                  )
                 } else {
                   // logged in, are reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
@@ -424,11 +420,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <div key={step.body}>{`${step.body}`}</div>
                             }
                           })}
 
@@ -440,7 +434,7 @@ class ProjectCard extends React.Component {
                                 review={rev}
                                 users={this.props.users}
                               />
-                            );
+                            )
                           })}
                           <Mutation mutation={NEW_REVIEW}>
                             {(newReview, { loading, error, data }) => {
@@ -480,9 +474,9 @@ class ProjectCard extends React.Component {
                                     />
                                     <span>Submitting your review...</span>
                                   </form>
-                                );
+                                )
                               if (error) {
-                                console.log({ revError: error });
+                                console.log({ revError: error })
                                 return (
                                   <form>
                                     <h2>New Review</h2>
@@ -525,14 +519,14 @@ class ProjectCard extends React.Component {
                                       Go Back
                                     </button>
                                   </form>
-                                );
+                                )
                               }
 
                               return (
                                 <form
                                   onSubmit={async (e) => {
-                                    e.preventDefault();
-                                    const date = await new Date(Date.now());
+                                    e.preventDefault()
+                                    const date = await new Date(Date.now())
 
                                     await newReview({
                                       variables: {
@@ -542,21 +536,21 @@ class ProjectCard extends React.Component {
                                         user: project.User.username,
                                         username: this.state.username,
                                         id: project.id,
-                                        projRating: this.state.stars
-                                      }
+                                        projRating: this.state.stars,
+                                      },
                                       // refetchQueries: [ { query: getReviews}]
-                                    });
-                                    await this.props.refetch();
-                                    const { reviews } = await this.props;
+                                    })
+                                    await this.props.refetch()
+                                    const { reviews } = await this.props
                                     let revs = await reviews.filter(
                                       (rev) =>
                                         rev.ProjectReviewed.id === project.id
-                                    );
+                                    )
                                     await this.setState({
                                       ...this.state,
                                       newReview: false,
-                                      reviews: revs
-                                    });
+                                      reviews: revs,
+                                    })
                                   }}
                                 >
                                   <h2>New Review</h2>
@@ -589,12 +583,12 @@ class ProjectCard extends React.Component {
                                   />
                                   <button type="submit">Submit</button>
                                 </form>
-                              );
+                              )
                             }}
                           </Mutation>
                           <button
                             onClick={(e) => {
-                              this.review();
+                              this.review()
                             }}
                           >
                             Add a review
@@ -603,7 +597,7 @@ class ProjectCard extends React.Component {
                         </div>
                       ) : null}
                     </div>
-                  );
+                  )
                 }
               } else {
                 //logged in, are revs, not your proj, newReview, you've never rated, return
@@ -629,9 +623,9 @@ class ProjectCard extends React.Component {
                           if (step.type === 'img') {
                             return (
                               <img key={step.body} src={step.body} alt="step" />
-                            );
+                            )
                           } else {
-                            return <div key={step.body}>{`${step.body}`}</div>;
+                            return <div key={step.body}>{`${step.body}`}</div>
                           }
                         })}
 
@@ -643,7 +637,7 @@ class ProjectCard extends React.Component {
                               review={rev}
                               users={this.props.users}
                             />
-                          );
+                          )
                         })}
                         <Mutation mutation={NEW_REVIEW}>
                           {(newReview, { loading, error, data }) => {
@@ -682,9 +676,9 @@ class ProjectCard extends React.Component {
                                   />
                                   <span>Submitting your review...</span>
                                 </form>
-                              );
+                              )
                             if (error) {
-                              console.log({ revError: error });
+                              console.log({ revError: error })
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -727,14 +721,14 @@ class ProjectCard extends React.Component {
                                     Go Back
                                   </button>
                                 </form>
-                              );
+                              )
                             }
 
                             return (
                               <form
                                 onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  const date = await new Date(Date.now());
+                                  e.preventDefault()
+                                  const date = await new Date(Date.now())
 
                                   await newReview({
                                     variables: {
@@ -744,21 +738,21 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.username,
                                       id: project.id,
-                                      projRating: this.state.stars
-                                    }
+                                      projRating: this.state.stars,
+                                    },
                                     // refetchQueries: [ { query: getReviews}]
-                                  });
-                                  await this.props.refetch();
-                                  const { reviews } = await this.props;
+                                  })
+                                  await this.props.refetch()
+                                  const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
                                       rev.ProjectReviewed.id === project.id
-                                  );
+                                  )
                                   await this.setState({
                                     ...this.state,
                                     newReview: false,
-                                    reviews: revs
-                                  });
+                                    reviews: revs,
+                                  })
                                 }}
                               >
                                 <h2>New Review</h2>
@@ -791,12 +785,12 @@ class ProjectCard extends React.Component {
                                 />
                                 <button type="submit">Submit</button>
                               </form>
-                            );
+                            )
                           }}
                         </Mutation>
                         <button
                           onClick={(e) => {
-                            this.review();
+                            this.review()
                           }}
                         >
                           Add a review
@@ -805,7 +799,7 @@ class ProjectCard extends React.Component {
                       </div>
                     ) : null}
                   </div>
-                );
+                )
               }
             } else {
               // logged in, are reviews, not your project, not newReview
@@ -814,7 +808,7 @@ class ProjectCard extends React.Component {
                 // logged in, are reviews, not your project, not newReview, you've rated projs
                 let rateCheck = this.state.visitor[0].RatedProjects.filter(
                   (proj) => proj.id === project.id
-                );
+                )
                 if (rateCheck.length >= 1) {
                   // logged in, are reviews, not your proj, not newRev, you've rated projs, rated this one, return
 
@@ -843,9 +837,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return <li key={step.body}>{`${step.body}`}</li>;
+                              return <li key={step.body}>{`${step.body}`}</li>
                             }
                           })}
                         </div>
@@ -858,12 +852,12 @@ class ProjectCard extends React.Component {
                                 review={rev}
                                 users={this.props.users}
                               />
-                            );
+                            )
                           })}
                         </div>
                       </div>
                     </div>
-                  );
+                  )
                 } else {
                   // logged in, are reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
@@ -892,9 +886,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return <li key={step.body}>{`${step.body}`}</li>;
+                              return <li key={step.body}>{`${step.body}`}</li>
                             }
                           })}
                         </div>
@@ -907,18 +901,18 @@ class ProjectCard extends React.Component {
                               review={rev}
                               users={this.props.users}
                             />
-                          );
+                          )
                         })}
                         <button
                           onClick={(e) => {
-                            this.review();
+                            this.review()
                           }}
                         >
                           Add a review
                         </button>
                       </div>
                     </div>
-                  );
+                  )
                 }
               } else {
                 //logged in, are revs, not your proj, not newReview, you've never rated, return
@@ -944,9 +938,9 @@ class ProjectCard extends React.Component {
                           if (step.type === 'img') {
                             return (
                               <img key={step.body} src={step.body} alt="step" />
-                            );
+                            )
                           } else {
-                            return <div key={step.body}>{`${step.body}`}</div>;
+                            return <div key={step.body}>{`${step.body}`}</div>
                           }
                         })}
 
@@ -958,11 +952,11 @@ class ProjectCard extends React.Component {
                               review={rev}
                               users={this.props.users}
                             />
-                          );
+                          )
                         })}
                         <button
                           onClick={(e) => {
-                            this.review();
+                            this.review()
                           }}
                         >
                           Add a review
@@ -971,7 +965,7 @@ class ProjectCard extends React.Component {
                       </div>
                     ) : null}
                   </div>
-                );
+                )
               }
             }
           }
@@ -986,7 +980,7 @@ class ProjectCard extends React.Component {
                 <button
                   className="editButton"
                   onClick={() => {
-                    this.setState({ edit: true });
+                    this.setState({ edit: true })
                   }}
                 >
                   Edit
@@ -1010,9 +1004,9 @@ class ProjectCard extends React.Component {
                       if (step.type === 'img') {
                         return (
                           <img key={step.body} src={step.body} alt="step" />
-                        );
+                        )
                       } else {
-                        return <li key={step.body}>{`${step.body}`}</li>;
+                        return <li key={step.body}>{`${step.body}`}</li>
                       }
                     })}
                   </div>
@@ -1020,7 +1014,7 @@ class ProjectCard extends React.Component {
                   <p>There are currently no reviews.</p>
                 </div>
               </div>
-            );
+            )
           } else {
             // logged in, no revs, not your proj
 
@@ -1031,7 +1025,7 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your project, newReview, you've rated projs
                 let rateCheck = this.state.visitor[0].RatedProjects.filter(
                   (proj) => proj.id === project.id
-                );
+                )
                 if (rateCheck.length >= 1) {
                   // logged in, no reviews, not your proj, newRev, you've rated projs, rated this one, return
 
@@ -1060,11 +1054,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <div key={step.body}>{`${step.body}`}</div>
                             }
                           })}
                           <h2>Reviews:</h2>
@@ -1107,9 +1099,9 @@ class ProjectCard extends React.Component {
                                     />
                                     <span>Submitting your review...</span>
                                   </form>
-                                );
+                                )
                               if (error) {
-                                console.log({ revError: error });
+                                console.log({ revError: error })
                                 return (
                                   <form>
                                     <h2>New Review</h2>
@@ -1152,14 +1144,14 @@ class ProjectCard extends React.Component {
                                       Go Back
                                     </button>
                                   </form>
-                                );
+                                )
                               }
                               if (data)
                                 return (
                                   <form
                                     onSubmit={async (e) => {
-                                      e.preventDefault();
-                                      const date = await new Date(Date.now());
+                                      e.preventDefault()
+                                      const date = await new Date(Date.now())
 
                                       await newReview({
                                         variables: {
@@ -1169,21 +1161,21 @@ class ProjectCard extends React.Component {
                                           user: project.User.username,
                                           username: this.state.username,
                                           id: project.id,
-                                          projRating: this.state.stars
-                                        }
+                                          projRating: this.state.stars,
+                                        },
                                         // refetchQueries: [ { query: getReviews}]
-                                      });
-                                      await this.props.refetch();
-                                      const { reviews } = await this.props;
+                                      })
+                                      await this.props.refetch()
+                                      const { reviews } = await this.props
                                       let revs = await reviews.filter(
                                         (rev) =>
                                           rev.ProjectReviewed.id === project.id
-                                      );
+                                      )
                                       await this.setState({
                                         ...this.state,
                                         newReview: false,
-                                        reviews: revs
-                                      });
+                                        reviews: revs,
+                                      })
                                     }}
                                   >
                                     <h2>New Review</h2>
@@ -1216,12 +1208,12 @@ class ProjectCard extends React.Component {
                                     />
                                     <button type="submit">Submit</button>
                                   </form>
-                                );
+                                )
                             }}
                           </Mutation>
                           <button
                             onClick={(e) => {
-                              this.review();
+                              this.review()
                             }}
                           >
                             Add a review
@@ -1230,7 +1222,7 @@ class ProjectCard extends React.Component {
                         </div>
                       ) : null}
                     </div>
-                  );
+                  )
                 } else {
                   // logged in, no reviews, not your proj, newRev, you've rated projs, didn't rate this one, return
 
@@ -1259,17 +1251,17 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return <li key={step.body}>{`${step.body}`}</li>;
+                              return <li key={step.body}>{`${step.body}`}</li>
                             }
                           })}
                         </div>
                         <Mutation mutation={NEW_REVIEW}>
                           {(newReview, { loading, error, data }) => {
-                            if (loading) return <h1>Loading...</h1>;
+                            if (loading) return <h1>Loading...</h1>
                             if (error) {
-                              console.log({ revError: error });
+                              console.log({ revError: error })
                               return (
                                 <form className="reviewForm">
                                   <h2>New Review</h2>
@@ -1312,15 +1304,15 @@ class ProjectCard extends React.Component {
                                     Go Back
                                   </button>
                                 </form>
-                              );
+                              )
                             }
 
                             return (
                               <form
                                 className="addReviewForm"
                                 onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  const date = await new Date(Date.now());
+                                  e.preventDefault()
+                                  const date = await new Date(Date.now())
 
                                   await newReview({
                                     variables: {
@@ -1330,21 +1322,21 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.username,
                                       id: project.id,
-                                      projRating: this.state.stars
+                                      projRating: this.state.stars,
                                     },
-                                    refetchQueries: [{ query: getReviews }]
-                                  });
-                                  await this.props.refetch();
-                                  const { reviews } = await this.props;
+                                    refetchQueries: [{ query: getReviews }],
+                                  })
+                                  await this.props.refetch()
+                                  const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
                                       rev.ProjectReviewed.id === project.id
-                                  );
+                                  )
                                   await this.setState({
                                     ...this.state,
                                     newReview: false,
-                                    reviews: revs
-                                  });
+                                    reviews: revs,
+                                  })
                                 }}
                               >
                                 <div className="addReviewSection">
@@ -1382,12 +1374,12 @@ class ProjectCard extends React.Component {
                                   <button type="submit">Submit</button>
                                 </div>
                               </form>
-                            );
+                            )
                           }}
                         </Mutation>
                       </div>
                     </div>
-                  );
+                  )
                 }
               } else {
                 //logged in, no revs, not your proj, newReview, you've never rated, return
@@ -1413,9 +1405,9 @@ class ProjectCard extends React.Component {
                           if (step.type === 'img') {
                             return (
                               <img key={step.body} src={step.body} alt="step" />
-                            );
+                            )
                           } else {
-                            return <div key={step.body}>{`${step.body}`}</div>;
+                            return <div key={step.body}>{`${step.body}`}</div>
                           }
                         })}
 
@@ -1459,9 +1451,9 @@ class ProjectCard extends React.Component {
                                   />
                                   <span>Submitting your review...</span>
                                 </form>
-                              );
+                              )
                             if (error) {
-                              console.log({ revError: error });
+                              console.log({ revError: error })
                               return (
                                 <form>
                                   <h2>New Review</h2>
@@ -1504,14 +1496,14 @@ class ProjectCard extends React.Component {
                                     Go Back
                                   </button>
                                 </form>
-                              );
+                              )
                             }
 
                             return (
                               <form
                                 onSubmit={async (e) => {
-                                  e.preventDefault();
-                                  const date = await new Date(Date.now());
+                                  e.preventDefault()
+                                  const date = await new Date(Date.now())
 
                                   await newReview({
                                     variables: {
@@ -1521,21 +1513,21 @@ class ProjectCard extends React.Component {
                                       user: project.User.username,
                                       username: this.state.username,
                                       id: project.id,
-                                      projRating: this.state.stars
-                                    }
+                                      projRating: this.state.stars,
+                                    },
                                     // refetchQueries: [ { query: getReviews}]
-                                  });
-                                  await this.props.refetch();
-                                  const { reviews } = await this.props;
+                                  })
+                                  await this.props.refetch()
+                                  const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
                                       rev.ProjectReviewed.id === project.id
-                                  );
+                                  )
                                   await this.setState({
                                     ...this.state,
                                     newReview: false,
-                                    reviews: revs
-                                  });
+                                    reviews: revs,
+                                  })
                                 }}
                               >
                                 <h2>New Review</h2>
@@ -1568,12 +1560,12 @@ class ProjectCard extends React.Component {
                                 />
                                 <button type="submit">Submit</button>
                               </form>
-                            );
+                            )
                           }}
                         </Mutation>
                         <button
                           onClick={(e) => {
-                            this.review();
+                            this.review()
                           }}
                         >
                           Add a review
@@ -1582,7 +1574,7 @@ class ProjectCard extends React.Component {
                       </div>
                     ) : null}
                   </div>
-                );
+                )
               }
             } else {
               // logged in, no revs, not your proj, not newRev
@@ -1591,7 +1583,7 @@ class ProjectCard extends React.Component {
                 // logged in, no reviews, not your project, not newReview, you've rated projs
                 let rateCheck = this.state.visitor[0].RatedProjects.filter(
                   (proj) => proj.id === project.id
-                );
+                )
 
                 if (rateCheck.length >= 1) {
                   // logged in, no reviews, not your proj, not newRev, you've rated projs, rated this one, return
@@ -1622,11 +1614,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return (
-                                <div key={step.body}>{`${step.body}`}</div>
-                              );
+                              return <div key={step.body}>{`${step.body}`}</div>
                             }
                           })}
 
@@ -1635,7 +1625,7 @@ class ProjectCard extends React.Component {
 
                           <button
                             onClick={(e) => {
-                              this.review();
+                              this.review()
                             }}
                           >
                             Add a review
@@ -1644,7 +1634,7 @@ class ProjectCard extends React.Component {
                         </div>
                       ) : null}
                     </div>
-                  );
+                  )
                 } else {
                   // logged in, no reviews, not your proj, not newRev, you've rated projs, didn't rate this one, return
 
@@ -1673,9 +1663,9 @@ class ProjectCard extends React.Component {
                                   src={step.body}
                                   alt="step"
                                 />
-                              );
+                              )
                             } else {
-                              return <li key={step.body}>{`${step.body}`}</li>;
+                              return <li key={step.body}>{`${step.body}`}</li>
                             }
                           })}
                         </div>
@@ -1684,14 +1674,14 @@ class ProjectCard extends React.Component {
 
                         <button
                           onClick={(e) => {
-                            this.review();
+                            this.review()
                           }}
                         >
                           Add a review
                         </button>
                       </div>
                     </div>
-                  );
+                  )
                 }
               } else {
                 //logged in, no revs, not your proj, not newReview, you've never rated, return
@@ -1701,7 +1691,7 @@ class ProjectCard extends React.Component {
                     <button
                       className="editButton"
                       onClick={() => {
-                        this.setState({ edit: true });
+                        this.setState({ edit: true })
                       }}
                     >
                       Edit
@@ -1726,9 +1716,9 @@ class ProjectCard extends React.Component {
                           if (step.type === 'img') {
                             return (
                               <img key={step.body} src={step.body} alt="step" />
-                            );
+                            )
                           } else {
-                            return <li key={step.body}>{`${step.body}`}</li>;
+                            return <li key={step.body}>{`${step.body}`}</li>
                           }
                         })}
                       </div>
@@ -1738,14 +1728,14 @@ class ProjectCard extends React.Component {
 
                       <button
                         onClick={(e) => {
-                          this.review();
+                          this.review()
                         }}
                       >
                         Add a review
                       </button>
                     </div>
                   </div>
-                );
+                )
               }
             }
           }
@@ -1773,9 +1763,9 @@ class ProjectCard extends React.Component {
                 <div className="steps-container">
                   {steps.map((step) => {
                     if (step.type === 'img') {
-                      return <img key={step.body} src={step.body} alt="step" />;
+                      return <img key={step.body} src={step.body} alt="step" />
                     } else {
-                      return <li key={step.body}>{`${step.body}`}</li>;
+                      return <li key={step.body}>{`${step.body}`}</li>
                     }
                   })}
                 </div>
@@ -1788,19 +1778,19 @@ class ProjectCard extends React.Component {
                         review={rev}
                         users={this.props.users}
                       />
-                    );
+                    )
                   })}
                 </div>
                 <button
                   onClick={(e) => {
-                    this.review();
+                    this.review()
                   }}
                 >
                   Add a review
                 </button>
               </div>
             </div>
-          );
+          )
         } else {
           // not logged in, no reviews, return
 
@@ -1824,9 +1814,9 @@ class ProjectCard extends React.Component {
                 <div className="steps-container">
                   {steps.map((step) => {
                     if (step.type === 'img') {
-                      return <img key={step.body} src={step.body} alt="step" />;
+                      return <img key={step.body} src={step.body} alt="step" />
                     } else {
-                      return <li key={step.body}>{`${step.body}`}</li>;
+                      return <li key={step.body}>{`${step.body}`}</li>
                     }
                   })}
                   <h2>Reviews:</h2>
@@ -1834,14 +1824,14 @@ class ProjectCard extends React.Component {
                 </div>
                 <button
                   onClick={(e) => {
-                    this.review();
+                    this.review()
                   }}
                 >
                   Add a review
                 </button>
               </div>
             </div>
-          );
+          )
         }
       }
     } else {
@@ -1886,9 +1876,9 @@ class ProjectCard extends React.Component {
             </div>
           </SkeletonTheme>
         </div>
-      );
+      )
     }
   }
 }
 
-export default ProjectCard;
+export default ProjectCard

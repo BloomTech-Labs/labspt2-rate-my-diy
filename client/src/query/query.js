@@ -1,8 +1,7 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export const getUsers = gql`
-  
-    query {
+  query {
     users {
       id
       username
@@ -43,11 +42,11 @@ export const getUsers = gql`
         titleImg
         titleBlurb
         rating
-        steps 
+        steps
         User {
           id
           username
-          email 
+          email
         }
       }
       LikedReviews {
@@ -117,7 +116,7 @@ export const getUsers = gql`
       }
     }
   }
-`;
+`
 export const getProjects = gql`
   query {
     projects {
@@ -127,8 +126,8 @@ export const getProjects = gql`
       category
       rating
       timestamp
-      steps 
-      titleBlurb 
+      steps
+      titleBlurb
       User {
         id
         username
@@ -136,7 +135,7 @@ export const getProjects = gql`
       }
     }
   }
-`;
+`
 
 export const getReviews = gql`
   query {
@@ -160,7 +159,7 @@ export const getReviews = gql`
       }
     }
   }
-`;
+`
 
 export const CREATE_PROJECT = gql`
   mutation newProject(
@@ -185,7 +184,7 @@ export const CREATE_PROJECT = gql`
       name
     }
   }
-`;
+`
 
 export const UPDATE_PROJECT = gql`
   mutation editProject(
@@ -212,7 +211,7 @@ export const UPDATE_PROJECT = gql`
       name
     }
   }
-`;
+`
 
 export const editUser = gql`
   mutation editUser(
@@ -228,7 +227,7 @@ export const editUser = gql`
       email
     }
   }
-`;
+`
 
 export const editReview = gql`
   mutation editReview(
@@ -266,7 +265,7 @@ export const editReview = gql`
       }
     }
   }
-`;
+`
 
 export const NEW_REVIEW = gql`
   mutation newReview(
@@ -306,7 +305,7 @@ export const NEW_REVIEW = gql`
       }
     }
   }
-`;
+`
 
 export const dislikeAReview = gql`
   mutation dislikeAReview(
@@ -338,7 +337,7 @@ export const dislikeAReview = gql`
       }
     }
   }
-`;
+`
 
 export const likeAReview = gql`
   mutation likeAReview($revId: ID!, $username: String!, $didThumbUp: Boolean!) {
@@ -362,4 +361,4 @@ export const likeAReview = gql`
       }
     }
   }
-`;
+`

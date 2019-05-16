@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { withFirebase } from '../Firebase/Exports';
-import * as ROUTES from '../../constants/routes';
-import './PasswordForget.scss';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { withFirebase } from '../Firebase/Exports'
+import * as ROUTES from '../../constants/routes'
+import './PasswordForget.scss'
 
 const PasswordForgetPage = () => (
   <div className="passwordContainer">
@@ -10,36 +10,36 @@ const PasswordForgetPage = () => (
     <p>Just enter your email and we will send you a new password.</p>
     <PasswordForgetForm />
   </div>
-);
+)
 
 const INITIAL_STATE = {
   email: '',
-  error: null
-};
+  error: null,
+}
 class PasswordForgetBase extends Component {
   constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
+    super(props)
+    this.state = { ...INITIAL_STATE }
   }
   onSubmit = (e) => {
-    const { email } = this.state;
-    e.preventDefault();
+    const { email } = this.state
+    e.preventDefault()
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ ...INITIAL_STATE })
       })
       .catch((error) => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value })
+  }
   render() {
-    const { email, error } = this.state;
-    const isInvalid = email === '';
+    const { email, error } = this.state
+    const isInvalid = email === ''
     return (
       <div className="forgotPasswordForm">
         <form onSubmit={this.onSubmit}>
@@ -56,7 +56,7 @@ class PasswordForgetBase extends Component {
           {error && <p>{error.message}</p>}
         </form>
       </div>
-    );
+    )
   }
 }
 
@@ -64,10 +64,10 @@ const PasswordForgetLink = () => (
   <p>
     <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
   </p>
-);
+)
 
-export default PasswordForgetPage;
+export default PasswordForgetPage
 
-const PasswordForgetForm = withFirebase(PasswordForgetBase);
+const PasswordForgetForm = withFirebase(PasswordForgetBase)
 
-export { PasswordForgetForm, PasswordForgetLink };
+export { PasswordForgetForm, PasswordForgetLink }
