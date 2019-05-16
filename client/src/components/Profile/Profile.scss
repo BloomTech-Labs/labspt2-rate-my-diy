@@ -1,195 +1,52 @@
 @import '../../styles/variables.scss';
 
-.profile-form-flex-container {
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  justify-content: space-around;
+.profile-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	// border: 5px solid red;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
+	.project-profile-container {
+		// border: 5px solid navy;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 
-    textarea {
-      width: 50%;
-      height: 80px;
-      resize: none;
-
-      @media (max-width: 800px) {
-        width: 70%;
-      }
-
-      @media (max-width: 500px) {
-        width: 90%;
-      }
-    }
-
-    img {
-      height: 150px;
-      width: 10%;
-
-      @media (max-width: 800px) {
-        width: 30%;
-      }
-
-      @media (max-width: 500px) {
-        width: 50%;
-      }
-    }
-  }
-
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    // margin: 0 auto ;
-    background: $background-color;
-  }
-
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 2px solid green;
-
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .profile-projects {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .profile-liked-reviews {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .profile-review-card {
-      display: flex;
-      justify-content: center;
-      margin: 10px 10px;
-    }
-
-    .profile-project-card {
-      margin: 10px 10px;
-    }
-
-    .profile-img {
-      height: 15%;
-      width: 15%;
-      margin: 20px 0 20px 0;
-    }
-
-    .profile-username {
-      height: 50px;
-    }
-
-    .liked-reviews {
-      height: 50px;
-    }
-
-    .line-break {
-      border: 1px solid black;
-    }
-
-    .profile-user-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      padding: 10px 10px;
-      border: 2px solid red;
-      width: 50%;
-    }
-
-    .rated-card-container {
-      border: 1px solid black;
-      box-shadow: 5px 5px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: $main-color;
-      // max-width: 725px;
-      width: 23%;
-      img {
-        border: 2px solid black;
-        // width: 15% ;
-        // height: 15% ;
-        width: 400px;
-        // height: auto ;
-      }
-      button {
-        width: 85px;
-        height: 40px;
-        background: none;
-        border: 2px solid black;
-        border-radius: 10px 5%;
-        margin-bottom: 10px;
-        margin-left: 5px;
-      }
-      button:hover {
-        background: $alternate-color-one;
-        border-radius: 10px 5%;
-      }
-      padding: 15px 15px;
-      margin: 10px 10px 10px 10px;
-    }
-
-    .inner-rated-card {
-      border: 3px solid black;
-      display: flex;
-      width: 99%;
-      flex-direction: row;
-      justify-content: center;
-      border: 3px solid black;
-      box-shadow: 0.5px 1px 15px;
-      padding: 5px 5px;
-      border-radius: 0 4.75% 4.75% 0;
-      background-color: $alternate-color-two;
-    }
-  }
+	.profileReviewContainer {
+		// border: 5px solid navy;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.profile-projects {
+		// border: 5px solid yellow;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	h1 {
+		color: $alternate-color-three;
+		font-size: 4.8rem;
+	}
+	h2 {
+		text-align: center;
+    color: $main-color;
+    border-bottom: 5px dashed $color5;
+	}
+	.profile-user-content {
+		// border: 5px solid green;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		img {
+			width: 400px;
+			height: auto;
+		}
+		p {
+			font-size: 1.8rem;
+			margin-top: 10px;
+		}
+	}
 }
-
-// .profile-review-container {
-//   border: 5px solid orange;
-//   box-shadow: 5px 5px 20px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   // margin-right: -15px ;
-//   margin: 10px 10px 10px 20px;
-
-// background: $background-color;
-//   button {
-//     width: 85px;
-//     height: 40px;
-//     background: none;
-//     border: 2px solid black;
-//     border-radius: 10px 5%;
-//     margin-bottom: 10px;
-//     margin-left: 5px;
-//   }
-//   button:hover {
-//     background: $alternate-color-one;
-//     border-radius: 10px 5%;
-//   }
-
-// .inner-review-card {
-//   border: 5px solid green;
-//   //  width: 400px ;
-//   box-shadow: 5px 5px 15px;
-//   padding: 5px 5px;
-// }
-
-// .review-section-container {
-//   //  // border: 2px solid blueviolet ;
-//   display: flex;
-//   flex-direction: row;
-//   margin: 0 15px 0 -15px;
-//   border: 5px solid crimson;
-// }
