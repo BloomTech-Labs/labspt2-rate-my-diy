@@ -3,6 +3,7 @@
 .profile-container {
 	display: flex;
 	flex-direction: column;
+
   width: 100%;
   align-items: center;
 	// border: 5px solid red;
@@ -13,6 +14,7 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
+
   }
   
   .img-container{
@@ -30,6 +32,7 @@
       font-size: 1.8rem;
     }
   }
+
 
 	.profileReviewContainer {
 		// border: 5px solid navy;
@@ -52,6 +55,7 @@
     color: $main-color;
     border-bottom: 5px dashed $color5;
     margin-bottom: 10px;
+
 	}
 	.profile-user-content {
 		// border: 5px solid green;
