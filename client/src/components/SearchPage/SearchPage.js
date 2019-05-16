@@ -1,26 +1,25 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SearchBar from '../Searchbar/Searchbar';
-import { Query } from 'react-apollo';
-import { withAuthentication } from '../Session/session';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import { getUsers } from '../../query/query';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import SearchBar from '../Searchbar/Searchbar'
+import { Query } from 'react-apollo'
+import { withAuthentication } from '../Session/session'
+import ReviewCard from '../ReviewCard/ReviewCard'
+import { getUsers } from '../../query/query'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-import '../../styles/card.scss';
-import './SearchPage.scss';
-import star from '../../img/star.png';
+import '../../styles/card.scss'
+import './SearchPage.scss'
+import star from '../../img/star.png'
 
 class SearchPage extends Component {
   constructor(props) {
-    super(props);
-    console.log({sPageProps: props})
+    super(props)
     this.state = {
       userClicked: null,
       isLoggedIn: this.props.loggedIn,
       user: '',
-      userArray: []
-    };
+      userArray: [],
+    }
   }
 
   render() {
@@ -44,12 +43,12 @@ class SearchPage extends Component {
             <div className="search-card-container">
               {this.props.projects
                 .map(({ id, name, titleImg, rating, User, category }) => {
-                  const stars = [];
+                  const stars = []
 
                   for (let i = 0; i < Math.round(rating); i++) {
                     stars.push(
                       <img src={star} className="stars" alt="star" key={i} />
-                    );
+                    )
                   }
 
                   return (
@@ -72,12 +71,12 @@ class SearchPage extends Component {
                         <p> {`Average Rating: ${rating}`}</p>
                         <div className="search-rating-container">
                           {stars.map((star) => {
-                            return star;
+                            return star
                           })}
                         </div>
                       </div>
                     </div>
-                  );
+                  )
                 })
                 .concat(
                   this.props.users.map(({ id, username, userProfileImage }) => (
@@ -102,14 +101,12 @@ class SearchPage extends Component {
                       <Query query={getUsers} key={review.id}>
                         {({ loading, data, error, refetch }) => {
                           if (loading) return null
-                          
-                          if (error) return null;
+
+                          if (error) return null
                           if (data) {
                             let user = data.users.filter(
                               (user) => user.email === review.Author.email
-                            );
-
-                            
+                            )
 
                             return (
                               <ReviewCard
@@ -120,17 +117,17 @@ class SearchPage extends Component {
                                 authUser={this.props.authUser}
                                 refetch={refetch}
                               />
-                            );
+                            )
                           }
                         }}
                       </Query>
-                    );
+                    )
                   })
                 )}
             </div>
           </div>
         </>
-      );
+      )
     } else {
       return (
         <>
@@ -188,9 +185,9 @@ class SearchPage extends Component {
             </div>
           </div>
         </>
-      );
+      )
     }
   }
 }
 
-export default withAuthentication(SearchPage);
+export default withAuthentication(SearchPage)

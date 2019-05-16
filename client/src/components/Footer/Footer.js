@@ -1,6 +1,6 @@
-import React from 'react';
-import './Footer.scss';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import './Footer.scss'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
@@ -12,10 +12,10 @@ function Footer() {
         </a>
       </nav>
       <p>
-        &copy; 2019 Copyright  <a href="/">Rate My DIY</a>{' '}
+        &copy; 2019 Copyright <a href="/">Rate My DIY</a>{' '}
       </p>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

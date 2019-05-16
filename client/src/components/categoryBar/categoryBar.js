@@ -1,5 +1,5 @@
-import React from 'react';
-import SearchBar from '../searchbar/searchbar';
+import React from 'react'
+import SearchBar from '../searchbar/searchbar'
 
 const categoryBar = () => {
   return (
@@ -48,7 +48,7 @@ const categoryBar = () => {
         </select>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default categoryBar;
+export default categoryBar

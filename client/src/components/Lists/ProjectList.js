@@ -1,13 +1,13 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
-import plus from '../../img/plus.png';
-import moment from 'moment';
-import star from '../../img/star.png';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import React from 'react'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
+import plus from '../../img/plus.png'
+import moment from 'moment'
+import star from '../../img/star.png'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-import './ProjectList.scss';
+import './ProjectList.scss'
 
 export const GET_PROJECTS = gql`
   query projects($email: String!) {
@@ -28,7 +28,7 @@ export const GET_PROJECTS = gql`
       }
     }
   }
-`;
+`
 
 const GET_USER = gql`
   query user($email: String!) {
@@ -37,95 +37,88 @@ const GET_USER = gql`
       username
     }
   }
-`;
+`
 
 class ProjectList extends React.Component {
   render() {
-    const json = localStorage.getItem('authUser');
-    const user = JSON.parse(json);
-    const email = this.props.email || user.email;
+    const json = localStorage.getItem('authUser')
+    const user = JSON.parse(json)
+    const email = this.props.email || user.email
 
     const ProjectListWithData = () => (
       <Query query={GET_PROJECTS} variables={{ email: email }}>
         {({
           loading: projectsLoading,
           error: projectsError,
-          data: projectsData
+          data: projectsData,
         }) => (
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading: userLoading, data: userData, error: userError }) => {
               if (projectsLoading || userLoading)
                 return (
                   <div className="project-list-all-container">
-                  <SkeletonTheme highlightColor="#6fb3b8">
-                    <h1 className="project-list-title">
-                      <Skeleton />
-                    </h1>
-                    <div className="project-list-container">
-                      <div className="project-list-card">
-                      
-                        <div>
-                          <div className="project-list-card-img">
-                            <Skeleton height={290} width={390} />
-                          </div>
+                    <SkeletonTheme highlightColor="#6fb3b8">
+                      <h1 className="project-list-title">
+                        <Skeleton />
+                      </h1>
+                      <div className="project-list-container">
+                        <div className="project-list-card">
+                          <div>
+                            <div className="project-list-card-img">
+                              <Skeleton height={290} width={390} />
+                            </div>
 
-                          <div className="project-list-card-title">
-                            <Skeleton />
-                          </div>
-                          <p>
-                            <Skeleton />
-                          </p>
-                          <div className="project-list-card-rating-container">
-                            <Skeleton />
+                            <div className="project-list-card-title">
+                              <Skeleton />
+                            </div>
+                            <p>
+                              <Skeleton />
+                            </p>
+                            <div className="project-list-card-rating-container">
+                              <Skeleton />
+                            </div>
                           </div>
                         </div>
-                        
-                      </div>
-                      <div className="project-list-card">
-                      
-                        <div>
-                          <div className="project-list-card-img">
-                            <Skeleton height={290} width={390} />
-                          </div>
+                        <div className="project-list-card">
+                          <div>
+                            <div className="project-list-card-img">
+                              <Skeleton height={290} width={390} />
+                            </div>
 
-                          <div className="project-list-card-title">
-                            <Skeleton />
-                          </div>
-                          <p>
-                            <Skeleton />
-                          </p>
-                          <div className="project-list-card-rating-container">
-                            <Skeleton />
+                            <div className="project-list-card-title">
+                              <Skeleton />
+                            </div>
+                            <p>
+                              <Skeleton />
+                            </p>
+                            <div className="project-list-card-rating-container">
+                              <Skeleton />
+                            </div>
                           </div>
                         </div>
-                        
-                      </div>
-                      <div className="project-list-card">
-                      
-                        <div>
-                          <div className="project-list-card-img">
-                            <Skeleton height={290} width={390} />
-                          </div>
+                        <div className="project-list-card">
+                          <div>
+                            <div className="project-list-card-img">
+                              <Skeleton height={290} width={390} />
+                            </div>
 
-                          <div className="project-list-card-title">
-                            <Skeleton />
-                          </div>
-                          <p>
-                            <Skeleton />
-                          </p>
-                          <div className="project-list-card-rating-container">
-                            <Skeleton />
+                            <div className="project-list-card-title">
+                              <Skeleton />
+                            </div>
+                            <p>
+                              <Skeleton />
+                            </p>
+                            <div className="project-list-card-rating-container">
+                              <Skeleton />
+                            </div>
                           </div>
                         </div>
-                        
                       </div>
-                    </div>
-                    
                     </SkeletonTheme>
                   </div>
-                );
+                )
               if (projectsError || userError)
-                return <span>{`Error: ${userError}`}</span>;
+                return <span>{`Error: ${userError}`}</span>
 
               if (projectsData.projects[0]) {
                 return (
@@ -135,8 +128,7 @@ class ProjectList extends React.Component {
                     }'s Projects`}</h1>
                     <div className="project-list-container">
                       {projectsData.projects.map((project) => {
-
-                        const stars = [];
+                        const stars = []
 
                         for (let i = 0; i < Math.round(project.rating); i++) {
                           stars.push(
@@ -146,7 +138,7 @@ class ProjectList extends React.Component {
                               alt="star"
                               key={i}
                             />
-                          );
+                          )
                         }
                         return (
                           <div className="project-list-card" key={project.id}>
@@ -168,12 +160,12 @@ class ProjectList extends React.Component {
                               </p>
                               <div className="project-list-card-rating-container">
                                 {stars.map((star) => {
-                                  return star;
+                                  return star
                                 })}
                               </div>
                             </div>
                           </div>
-                        );
+                        )
                       })}
                       <div className="project-list-card">
                         <div>
@@ -191,7 +183,7 @@ class ProjectList extends React.Component {
                       </div>
                     </div>
                   </div>
-                );
+                )
               } else {
                 return (
                   <div className="project-list-all-container">
@@ -213,15 +205,15 @@ class ProjectList extends React.Component {
                       </div>
                     </div>
                   </div>
-                );
+                )
               }
             }}
           </Query>
         )}
       </Query>
-    );
-    return <ProjectListWithData />;
+    )
+    return <ProjectListWithData />
   }
 }
 
-export default ProjectList;
+export default ProjectList

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withFirebase } from '../../components/Firebase/Exports';
-import * as ROUTES from '../../constants/routes';
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
-import './Signup.scss';
-import { GET_NATIVE_USER } from '../../reactRouter/reactRouter';
+import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+import { withFirebase } from '../../components/Firebase/Exports'
+import * as ROUTES from '../../constants/routes'
+import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
+import './Signup.scss'
+import { GET_NATIVE_USER } from '../../reactRouter/reactRouter'
 const newUser = gql`
   mutation newUser($username: String!, $firebaseUID: String!, $email: String!) {
     newUser(username: $username, firebaseUID: $firebaseUID, email: $email) {
@@ -16,7 +16,7 @@ const newUser = gql`
       firebaseUID
     }
   }
-`;
+`
 
 const SignUpPage = () => {
   return (
@@ -25,33 +25,33 @@ const SignUpPage = () => {
       <p>And be a part of the most creative community on the net</p>
       <SignUpForm />
     </div>
-  );
-};
+  )
+}
 const INITIAL_STATE = {
   username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
   error: null,
-  uid: ''
-};
+  uid: '',
+}
 class SignUpFormBase extends Component {
   constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
+    super(props)
+    this.state = { ...INITIAL_STATE }
   }
   onChangeHandler = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+      [event.target.name]: event.target.value,
+    })
+  }
   render() {
-    const { username, email, passwordOne, passwordTwo } = this.state;
+    const { username, email, passwordOne, passwordTwo } = this.state
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === ''
     return (
       <React.Fragment>
         <Mutation mutation={newUser}>
@@ -97,48 +97,48 @@ class SignUpFormBase extends Component {
                   </button>
                   <div>Submitting your change...</div>
                 </form>
-              );
+              )
             if (error) {
-              console.log({ passChangeError: error });
+              console.log({ passChangeError: error })
               return (
                 <form
                   onSubmit={(e) => {
-                    e.preventDefault();
-                    const { username, email, passwordOne } = this.state;
-                    const roles = [];
+                    e.preventDefault()
+                    const { username, email, passwordOne } = this.state
+                    const roles = []
                     this.props.firebase
                       .doCreateUserWithEmailAndPassword(email, passwordOne)
                       .then((authUser) => {
-                        this.setState({ uid: authUser.user.uid });
+                        this.setState({ uid: authUser.user.uid })
                         return this.props.firebase.user(authUser.user.uid).set(
                           {
                             username,
                             email,
-                            roles
+                            roles,
                           },
                           { merge: true }
-                        );
+                        )
                       })
                       .then(() => {
                         newUser({
                           variables: {
                             username: this.state.username,
                             firebaseUID: this.state.uid,
-                            email: this.state.email
-                          }
-                        });
+                            email: this.state.email,
+                          },
+                        })
                       })
                       .then(() => {
-                        this.props.history.push(ROUTES.HOME);
+                        this.props.history.push(ROUTES.HOME)
                       })
                       .catch((err) => {
                         // Made error codes/msg's strings until we set the value.
                         if (err.code === 'ERROR_CODE_ACCOUNT_EXISTS') {
-                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS';
+                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS'
                         }
 
-                        this.setState({ err });
-                      });
+                        this.setState({ err })
+                      })
                   }}
                 >
                   <input
@@ -175,48 +175,48 @@ class SignUpFormBase extends Component {
                   </button>
                   <div>There was an error submitting your change.</div>
                 </form>
-              );
+              )
             }
             if (data)
               return (
                 <form
                   onSubmit={(e) => {
-                    e.preventDefault();
-                    const { username, email, passwordOne } = this.state;
-                    const roles = [];
+                    e.preventDefault()
+                    const { username, email, passwordOne } = this.state
+                    const roles = []
                     this.props.firebase
                       .doCreateUserWithEmailAndPassword(email, passwordOne)
                       .then((authUser) => {
-                        this.setState({ uid: authUser.user.uid });
+                        this.setState({ uid: authUser.user.uid })
                         return this.props.firebase.user(authUser.user.uid).set(
                           {
                             username,
                             email,
-                            roles
+                            roles,
                           },
                           { merge: true }
-                        );
+                        )
                       })
                       .then(() => {
                         newUser({
                           variables: {
                             username: this.state.username,
                             firebaseUID: this.state.uid,
-                            email: this.state.email
-                          }
-                        });
+                            email: this.state.email,
+                          },
+                        })
                       })
                       .then(() => {
-                        this.props.history.push(ROUTES.HOME);
+                        this.props.history.push(ROUTES.HOME)
                       })
                       .catch((err) => {
                         // Made error codes/msg's strings until we set the value.
                         if (err.code === 'ERROR_CODE_ACCOUNT_EXISTS') {
-                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS';
+                          err.message = 'ERROR_MSG_ACCOUNT_EXISTS'
                         }
 
-                        this.setState({ err });
-                      });
+                        this.setState({ err })
+                      })
                   }}
                 >
                   <input
@@ -253,52 +253,52 @@ class SignUpFormBase extends Component {
                   </button>
                   <div>Your change was successfully submitted!</div>
                 </form>
-              );
+              )
             return (
               <form
                 onSubmit={(e) => {
-                  e.preventDefault();
-                  const { username, email, passwordOne } = this.state;
-                  const roles = [];
+                  e.preventDefault()
+                  const { username, email, passwordOne } = this.state
+                  const roles = []
                   this.props.firebase
                     .doCreateUserWithEmailAndPassword(email, passwordOne)
                     .then((authUser) => {
-                      this.setState({ uid: authUser.user.uid });
+                      this.setState({ uid: authUser.user.uid })
                       return this.props.firebase.user(authUser.user.uid).set(
                         {
                           username,
                           email,
-                          roles
+                          roles,
                         },
                         { merge: true }
-                      );
+                      )
                     })
                     .then(() => {
                       newUser({
                         variables: {
                           username: this.state.username,
                           firebaseUID: this.state.uid,
-                          email: this.state.email
+                          email: this.state.email,
                         },
                         refetchQueries: [
                           {
                             query: GET_NATIVE_USER,
-                            variables: { username: this.state.username }
-                          }
-                        ]
-                      });
+                            variables: { username: this.state.username },
+                          },
+                        ],
+                      })
                     })
                     .then(() => {
-                      this.props.history.push(ROUTES.HOME);
+                      this.props.history.push(ROUTES.HOME)
                     })
                     .catch((err) => {
                       // Made error codes/msg's strings until we set the value.
                       if (err.code === 'ERROR_CODE_ACCOUNT_EXISTS') {
-                        err.message = 'ERROR_MSG_ACCOUNT_EXISTS';
+                        err.message = 'ERROR_MSG_ACCOUNT_EXISTS'
                       }
 
-                      this.setState({ err });
-                    });
+                      this.setState({ err })
+                    })
                 }}
               >
                 <input
@@ -335,11 +335,11 @@ class SignUpFormBase extends Component {
                 </button>
                 {error && <p>{error.message}</p>}
               </form>
-            );
+            )
           }}
         </Mutation>
       </React.Fragment>
-    );
+    )
   }
 }
 const SignUpLink = () => {
@@ -347,13 +347,13 @@ const SignUpLink = () => {
     <p>
       Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
     </p>
-  );
-};
+  )
+}
 const SignUpForm = compose(
   withRouter,
   withFirebase
-)(SignUpFormBase);
+)(SignUpFormBase)
 // Allow SignUpForm to use Firebase and Router via recompose.
 
-export default SignUpPage;
-export { SignUpForm, SignUpLink };
+export default SignUpPage
+export { SignUpForm, SignUpLink }

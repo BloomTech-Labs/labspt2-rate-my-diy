@@ -1,17 +1,17 @@
-import React from 'react';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import Featured from '../Home/Featured/Featured';
-import './Profile.scss';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import React from 'react'
+import ReviewCard from '../ReviewCard/ReviewCard'
+import Featured from '../Home/Featured/Featured'
+import './Profile.scss'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 class Profile extends React.Component {
   render() {
     if (this.props.users[0]) {
-      let email = this.props.email;
-      const users = this.props.users;
+      let email = this.props.email
+      const users = this.props.users
       const user = this.props.users.filter((userInstance) => {
-        return userInstance.email === email;
-      })[0];
+        return userInstance.email === email
+      })[0]
       const {
         username,
         userProfileImage,
@@ -20,9 +20,8 @@ class Profile extends React.Component {
         Projects,
         LikedReviews,
         DislikedReviews,
-        RatedProjects
-      } = user;
-      console.log({ email: email, user: user });
+        RatedProjects,
+      } = user
 
       return (
         <React.Fragment>
@@ -57,7 +56,7 @@ class Profile extends React.Component {
                         />
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -65,7 +64,7 @@ class Profile extends React.Component {
 
             <div className="profile-projects">
               {Projects.map((project) => {
-                let meanRating = project.rating;
+                let meanRating = project.rating
 
                 return (
                   <div className="profile-project-card" key={project.id}>
@@ -78,7 +77,7 @@ class Profile extends React.Component {
                       clickHandler={this.clickUserHandler}
                     />
                   </div>
-                );
+                )
               })}
             </div>
             {LikedReviews.length > 1 ? (
@@ -102,7 +101,7 @@ class Profile extends React.Component {
                       />
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
             {DislikedReviews.length > 1 ? (
@@ -122,7 +121,7 @@ class Profile extends React.Component {
                       />
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
             {RatedProjects.length > 1 ? (
@@ -131,7 +130,7 @@ class Profile extends React.Component {
 
             <div className="profile-projects">
               {RatedProjects.map((project) => {
-                let meanRating = project.rating;
+                let meanRating = project.rating
 
                 return (
                   <div className="profile-project-card" key={project.id}>
@@ -145,12 +144,12 @@ class Profile extends React.Component {
                       clickHandler={this.clickUserHandler}
                     />
                   </div>
-                );
+                )
               })}
             </div>
           </div>
         </React.Fragment>
-      );
+      )
     } else {
       return (
         <React.Fragment>
@@ -237,9 +236,9 @@ class Profile extends React.Component {
             </div>
           </SkeletonTheme>
         </React.Fragment>
-      );
+      )
     }
   }
 }
 
-export default Profile;
+export default Profile
