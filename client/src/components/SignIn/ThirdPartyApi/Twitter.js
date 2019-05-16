@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
 import { TwitterLoginButton } from 'react-social-login-buttons';
+import '../SignIn.scss'
 
 const CHECK_IF_USER_EXISTS = gql`
   query user($thirdPartyUID: String!) {
@@ -114,7 +115,7 @@ class SignInTwitterBase extends Component {
             }
             if (data && !data.user) {
               return (
-                <div>
+                <div className="infoModal">
                   <form onSubmit={this.onSubmit}>
                     <TwitterLoginButton
                       size="35px"
@@ -127,7 +128,7 @@ class SignInTwitterBase extends Component {
                     isOpen={this.state.isOpen}
                     contentLabel="Example Modal"
                   >
-                    <div>
+                    <div className="infoModal">
                       <h1>Complete Your Sign Up.</h1>
                       <Mutation mutation={firebaseSignUp}>
                         {(firebaseSignUp) => {
