@@ -1,11 +1,25 @@
+@import '../../styles/variables.scss';
 .settings-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   height: 1200px;
-  width: 90%;
+  width: 100%;
   padding: 0 5%;
   text-align: center;
+  h1{
+    font-size: 4.8rem;
+    color: $color2;
+  }
+  h2{
+    color: $color3;
+    font-size: 3.6rem;
+  }
+
+  h3{
+    color: $color3;
+  }
 }
 
 .stripe-container {
@@ -13,4 +27,5 @@
   flex-direction: column;
   justify-content: space-around;
   height: 150px;
+  align-items: center;
 }

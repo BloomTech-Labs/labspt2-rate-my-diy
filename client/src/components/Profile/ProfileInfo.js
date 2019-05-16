@@ -90,8 +90,9 @@ class ProfileInfo extends React.Component {
                 <h2>{`${this.state.username}`}</h2>
                 <div className="img-container">
                   <img src={this.state.userProfileImage} alt="profile" />
+                  <button onClick={this.openCloudinary}>Set Profile Image</button>
                 </div>
-                <button onClick={this.openCloudinary}>Set Profile Image</button>
+                <div className="bioSection">
                 <h3>Bio</h3>
                 <textarea
                   name="bio"
@@ -99,6 +100,7 @@ class ProfileInfo extends React.Component {
                   onChange={this.textChange}
                 />
                 <button type="submit">Submit</button>
+                </div>
               </form>
             </div>
           );

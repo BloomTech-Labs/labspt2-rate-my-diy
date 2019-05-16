@@ -45,9 +45,9 @@ class Account extends Component {
           }}
         </Query>
         <div className="stripe-container">
-          <h2>Want to Buy Angela A Coffee?</h2>
+          <h2>Want to Buy Us A Coffee?</h2>
           <StripeCheckout
-            className="btn"
+            className="stripeButton"
             token={async (token) => {
               await this.props.mutate({
                 variables: { source: token.id, email: user.email }
