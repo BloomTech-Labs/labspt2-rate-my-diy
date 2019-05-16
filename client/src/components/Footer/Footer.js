@@ -12,7 +12,7 @@ function Footer() {
         </a>
       </nav>
       <p>
-        2019 Copyright <a href="/">Rate My DIY</a>{' '}
+        &copy; 2019 Copyright  <a href="/">Rate My DIY</a>{' '}
       </p>
     </div>
   );
