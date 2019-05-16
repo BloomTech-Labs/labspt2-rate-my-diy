@@ -4,6 +4,7 @@
   display: flex;
   padding: 40px 10px;
   flex-wrap: wrap;
+  height: 100px;
 
   .searchInput {
     border: 2px solid #bdc3c7;
@@ -19,6 +20,8 @@
       -moz-box-shadow: none;
       box-shadow: none;
       width: 90%;
+      font-size: 1.8rem;
+      padding: 5px;
     }
   }
 
@@ -35,6 +38,10 @@
       width: 100%;
       border-radius: 25px;
       padding: 10px;
+      input{
+        font-size: 1.8rem;
+        height: 50px;
+      }
     }
 
     .searchButton {
