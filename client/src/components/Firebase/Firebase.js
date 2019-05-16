@@ -1,9 +1,10 @@
+
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
 var config = {
-  apiKey: 'AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM',
+  apiKey: process.env.FB_KEY,
   authDomain: 'ratemydiy-9453b.firebaseapp.com',
   databaseURL: 'https://ratemydiy-9453b.firebaseio.com',
   projectId: 'ratemydiy-9453b',
