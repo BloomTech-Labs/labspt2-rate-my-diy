@@ -3,60 +3,47 @@ import ReactCloudinaryUploader from '@app-masters/react-cloudinary-uploader';
 import CreatableSelect from 'react-select/lib/Creatable';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router';
-import { UPDATE_PROJECT } from '../../query/query';
+import { CREATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import './CreateProject.scss';
 
-class EditProject extends Component {
+class CreateProject extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.projects[0]) {
-      const userPull = this.props.users.filter(
-        (user) => user.email === this.props.authUser.email
-      );
-      const { username, email } = userPull[0];
-      const categories = this.props.projects.map((project) => project.category);
-      let filteredCategories = [...new Set(categories)];
+    
+   console.log({props: props})
 
-      const {
-        name,
-        category,
-        timestamp,
-        titleImg,
-        titleBlurb,
-        steps,
-        id
-      } = this.props.project;
-      let newSteps = [];
-      if (typeof steps === 'string')
-        newSteps = JSON.parse(steps).concat([{ type: '', body: '' }]);
-      if (!typeof steps === 'string')
-        newSteps = steps.concat([{ type: '', body: '' }]);
+      let username = ""
+      let email = ""
+      let categories = []
+      let pro = []
+
+      if (this.props.users[0])
+      username = this.props.users.filter(
+        (user) => user.email === this.props.authUser.email
+      )[0].username
+
+      if (this.props.users[0])
+      email = this.props.users.filter(
+        (user) => user.email === this.props.authUser.email
+      )[0].email
+
+      if (this.props.projects[0])
+      categories = [...new Set(this.props.projects.map((project) => {return project.category}))];
+
+      if (this.props.projects[0])
+      pro = this.props.projects
+      
+      console.log({pro})
+
 
       this.state = {
         imgDeleteDisabled: true,
-        categories: filteredCategories,
+        categories: categories,
         username: username,
         email: email,
-        submitDisabled: true,
-        project: {
-          name: name,
-          category: category,
-          timestamp: timestamp,
-          titleImg: titleImg,
-          titleBlurb: titleBlurb,
-          steps: newSteps,
-          id: id
-        }
-      };
-    } else {
-      this.state = {
-        imgDeleteDisabled: true,
-        categories: [],
-        username: '',
-        email: '',
         submitDisabled: true,
         project: {
           name: '',
@@ -64,15 +51,34 @@ class EditProject extends Component {
           timestamp: '',
           titleImg: '',
           titleBlurb: '',
-          steps: [],
-          id: ''
+          steps: [{ type: '', body: '' }]
         }
-      };
+      }
+    }
+
+    
+
+    
+  
+
+    componentWillReceiveProps() {
+
+    if (this.props.users[0] && this.props.projects[0]) {
+      console.log({uss: this.props.users, projs: this.props.projects})
+      const authUser = this.props.authUser;
+      const userPull = this.props.users.filter(
+        (user) => user.email === authUser.email
+      );
+      const { username, email } = userPull[0];
+      const categories = this.props.projects.map((project) => project.category);
+      let filteredCategories = [...new Set(categories)];
+      this.setState({ ...this.state, username: username, email: email, categories: filteredCategories });
+      console.log({createState: this.state})
     }
   }
 
   componentDidMount = () => {
-    if (this.props.users[0]) {
+    if (this.state.project) {
       if (typeof this.state.project.steps === 'string') {
         let steps = this.state.project.steps;
         let array = JSON.parse(steps);
@@ -93,6 +99,7 @@ class EditProject extends Component {
       }
     });
   };
+
   textChangeHandler = (index) => (e) => {
     const newText = this.state.project.steps.map((step, sidx) => {
       if (index !== sidx) return step;
@@ -150,10 +157,7 @@ class EditProject extends Component {
   removeTextStep = (idx) => () => {
     const steps = this.state.project.steps.filter((step, sidx) => idx !== sidx);
     this.setState({
-      ...this.state,
-      project: { 
-        ...this.state.project, 
-        steps: steps }
+      project: { steps: steps }
     });
   };
 
@@ -207,12 +211,12 @@ class EditProject extends Component {
       imgDeleteDisabled: true,
       project: {
         ...this.state.project,
-        category: ''
+        titleImg: ''
       }
     });
   };
 
-  handleChange = async (newValue, actionMeta) => {
+  handleChange = async (newValue) => {
     let value = '';
 
     if (newValue !== null) value = await newValue.value;
@@ -228,7 +232,6 @@ class EditProject extends Component {
 
   finalize = async (e) => {
     e.preventDefault();
-
     try {
       const steps = await this.state.project['steps'];
 
@@ -240,8 +243,7 @@ class EditProject extends Component {
 
       const date = await new Date(Date.now());
 
-      const { name, category, titleImg, titleBlurb, id } = await this.state
-        .project;
+      const { name, category, titleImg, titleBlurb } = await this.state.project;
 
       await this.setState({
         ...this.state,
@@ -252,8 +254,7 @@ class EditProject extends Component {
           titleImg: titleImg,
           titleBlurb: titleBlurb,
           steps: string,
-          timestamp: date,
-          id: id
+          timestamp: date
         }
       });
     } catch (err) {
@@ -262,6 +263,10 @@ class EditProject extends Component {
   };
 
   render() {
+
+    
+    
+    
     if (this.props.project != undefined) {
       let categories = this.props.projects.map((project) => project.category)
       let cats = [...new Set(categories.map((category) => {return {value: category, label: category}}))];
@@ -428,7 +433,7 @@ class EditProject extends Component {
               ];
             }}
           >
-            {(editProject, { loading, error, data }) => {
+            {(newProject, { loading, error, data }) => {
               if (loading) return <span>Submitting your changes...</span>;
               if (error) return <span>{`Error: ${error}`}</span>;
               if (data)
@@ -679,5 +684,3 @@ class EditProject extends Component {
     }
   }
 }
-
-export default EditProject;

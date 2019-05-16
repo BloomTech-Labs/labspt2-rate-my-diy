@@ -157,7 +157,10 @@ class CreateProject extends Component {
   removeTextStep = (idx) => () => {
     const steps = this.state.project.steps.filter((step, sidx) => idx !== sidx);
     this.setState({
-      project: { steps: steps }
+      ...this.state,
+      project: { 
+        ...this.state.project,
+        steps: steps }
     });
   };
 

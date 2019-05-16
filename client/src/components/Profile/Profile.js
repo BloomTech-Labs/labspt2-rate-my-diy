@@ -41,18 +41,22 @@ class Profile extends React.Component {
                 <h2>{`${username}'s Reviews`}</h2>
               ) : null}
 
-              <div className="project-profile-container">
+              <div className="profileReviewContainer">
                 {ReviewList.map((review) => {
                   return (
-                    <ReviewCard
-                      key={review.id}
-                      review={review}
-                      users={users}
-                      user={user}
-                      refetch={this.props.refetch}
-                      loggedIn={this.props.loggedIn}
-                      authUser={this.props.authUser}
-                    />
+                    <div className="rated-card-container">
+                      <div className="inner-rated-card">
+                        <ReviewCard
+                          key={review.id}
+                          review={review}
+                          users={users}
+                          user={user}
+                          refetch={this.props.refetch}
+                          loggedIn={this.props.loggedIn}
+                          authUser={this.props.authUser}
+                        />
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -62,7 +66,7 @@ class Profile extends React.Component {
             <div className="profile-projects">
               {Projects.map((project) => {
                 let meanRating = project.rating;
-                
+
                 return (
                   <div className="profile-project-card" key={project.id}>
                     <Featured
@@ -125,20 +129,22 @@ class Profile extends React.Component {
               <h2>{`Projects Rated By ${username}`}</h2>
             ) : null}
 
-            <div className="project-profile-container">
+            <div className="profile-projects">
               {RatedProjects.map((project) => {
                 let meanRating = project.rating;
-                
+
                 return (
-                  <Featured
-                    key={project.id}
-                    id={project.id}
-                    image={project.titleImg}
-                    rating={meanRating}
-                    title={project.name}
-                    username={project.User.username}
-                    clickHandler={this.clickUserHandler}
-                  />
+                  <div className="profile-project-card" key={project.id}>
+                    <Featured
+                      key={project.id}
+                      id={project.id}
+                      image={project.titleImg}
+                      rating={meanRating}
+                      title={project.name}
+                      username={project.User.username}
+                      clickHandler={this.clickUserHandler}
+                    />
+                  </div>
                 );
               })}
             </div>
