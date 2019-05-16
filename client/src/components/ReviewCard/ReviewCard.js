@@ -6,6 +6,7 @@ import { editReview, likeAReview, dislikeAReview } from '../../query/query';
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import './ReviewCard.scss';
 
+
 class ReviewCard extends React.Component {
   constructor(props) {
     super(props);
@@ -15,9 +16,11 @@ class ReviewCard extends React.Component {
 
       let visitor = {};
       let authUser = { email: '' };
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) authUser = this.props.authUser;
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) visitor = users.filter((u) => u.email === authUser.email)[0];
-      console.log({users: users, visitor: visitor, authUser: authUser})
+    
 
       
 
@@ -63,7 +66,9 @@ class ReviewCard extends React.Component {
       const { loggedIn } = this.props;
       let authUser = { email: '' };
       let visitor = {};
+      // eslint-disable-next-line
       if (this.props.authUser != undefined)
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) authUser = this.props.authUser;
       this.state = {
         edit: false,
@@ -86,6 +91,7 @@ class ReviewCard extends React.Component {
 
   componentDidMount() {
     if (this.props.users[0]) {
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) {
         let disFilter = this.state.visitor.DislikedReviews.filter(
           (r) => r.id === this.state.review.id
@@ -219,13 +225,12 @@ class ReviewCard extends React.Component {
                                     onChange={this.textChange}
                                     disabled
                                   />
-                                  <span>{`Thumbs Up: ${
+                                  <div>{`Thumbs Up: ${
                                     this.state.thumbsUp
-                                  }`}</span>
-                                  |
-                                  <span>{`Thumbs Down: ${
+                                  }`}</div>
+                                  <div>{`Thumbs Down: ${
                                     this.state.thumbsDown
-                                  }`}</span>
+                                  }`}</div>
                                   <div>
                                     <span>Submitting your changes...</span>
                                     <button onClick={handleClose}>Close</button>
@@ -272,13 +277,13 @@ class ReviewCard extends React.Component {
                                     onChange={this.textChange}
                                     disabled
                                   />
-                                  <span>{`Thumbs Up: ${
+                                  <div>{`Thumbs Up: ${
                                     this.state.thumbsUp
-                                  }`}</span>
-                                  |
-                                  <span>{`Thumbs Down: ${
+                                  }`}</div>
+                                  
+                                  <div>{`Thumbs Down: ${
                                     this.state.thumbsDown
-                                  }`}</span>
+                                  }`}</div>
                                   <div>
                                     <span>
                                       There was an error submitting your
@@ -309,13 +314,13 @@ class ReviewCard extends React.Component {
                                 </Link>
                                 <div>{`${review.name}`}</div>
                                 <div>{`${review.text}`}</div>
-                                <span>{`Thumbs Up: ${
+                                <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
-                                }`}</span>
-                                |
-                                <span>{`Thumbs Down: ${
+                                }`}</div>
+                                
+                                <div>{`Thumbs Down: ${
                                   this.state.thumbsDown
-                                }`}</span>
+                                }`}</div>
                                 <button onClick={handleClose}>Close</button>
                               </div>
                             );
@@ -373,13 +378,13 @@ class ReviewCard extends React.Component {
                                   value={this.state.text}
                                   onChange={this.textChange}
                                 />
-                                <span>{`Thumbs Up: ${
+                                <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
-                                }`}</span>
-                                |
-                                <span>{`Thumbs Down: ${
+                                }`}</div>
+                                
+                                <div>{`Thumbs Down: ${
                                   this.state.thumbsDown
-                                }`}</span>
+                                }`}</div>
                                 <div>
                                   <button type="submit">Submit</button>
                                   <button onClick={handleClose}>Close</button>
@@ -433,8 +438,8 @@ class ReviewCard extends React.Component {
                         <div>{`Rating of Project: ${review.projRating}`}</div>
                         <div>{`${review.name}`}</div>
                         <div>{`${review.text}`}</div>
-                        <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
-                        <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                        <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
+                        <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                         <div>
                           <button
                             onClick={() =>
@@ -530,13 +535,13 @@ class ReviewCard extends React.Component {
                                     onChange={this.textChange}
                                     disabled
                                   />
-                                  <span>{`Thumbs Up: ${
+                                  <div>{`Thumbs Up: ${
                                     this.state.thumbsUp
-                                  }`}</span>
-                                  |
-                                  <span>{`Thumbs Down: ${
+                                  }`}</div>
+                                  
+                                  <div>{`Thumbs Down: ${
                                     this.state.thumbsDown
-                                  }`}</span>
+                                  }`}</div>
                                   <div>
                                     <span>Submitting your changes...</span>
                                     <button onClick={handleClose}>Close</button>
@@ -591,13 +596,13 @@ class ReviewCard extends React.Component {
                                   onChange={this.textChange}
                                   disabled
                                 />
-                                <span>{`Thumbs Up: ${
+                                <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
-                                }`}</span>
-                                |
-                                <span>{`Thumbs Down: ${
+                                }`}</div>
+                                
+                                <div>{`Thumbs Down: ${
                                   this.state.thumbsDown
-                                }`}</span>
+                                }`}</div>
                                 <div>
                                   <span>
                                     There was trouble submitting your changes.
@@ -626,13 +631,13 @@ class ReviewCard extends React.Component {
                                 </Link>
                                 <div>{`${review.name}`}</div>
                                 <div>{`${review.text}`}</div>
-                                <span>{`Thumbs Up: ${
+                                <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
-                                }`}</span>
-                                |
-                                <span>{`Thumbs Down: ${
+                                }`}</div>
+                                
+                                <div>{`Thumbs Down: ${
                                   this.state.thumbsDown
-                                }`}</span>
+                                }`}</div>
                                 <div>
                                   <button onClick={handleClose}>Close</button>
                                 </div>
@@ -703,13 +708,13 @@ class ReviewCard extends React.Component {
                                   value={this.state.text}
                                   onChange={this.textChange}
                                 />
-                                <span>{`Thumbs Up: ${
+                                <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
-                                }`}</span>
-                                |
-                                <span>{`Thumbs Down: ${
+                                }`}</div>
+                                
+                                <div>{`Thumbs Down: ${
                                   this.state.thumbsDown
-                                }`}</span>
+                                }`}</div>
                                 <div>
                                   <button type="submit">Submit</button>
                                   <button onClick={handleClose}>Close</button>
@@ -762,8 +767,8 @@ class ReviewCard extends React.Component {
                         </Link>
                         <div>{`${review.name}`}</div>
                         <div>{`${review.text}`}</div>
-                        <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>|
-                        <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                        <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
+                        <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                         <div>
                           <button
                             onClick={() =>
@@ -829,26 +834,26 @@ class ReviewCard extends React.Component {
                           if (loading)
                             return (
                               <form>
-                                <span>
+                                <div>
                                   <button
                                     disabled={this.state.thumbsUpDisabled}
                                   >
                                     +
                                   </button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                               </form>
                             );
                           if (error) {
                             console.log({ likeError: error });
                             return (
                               <form>
-                                <span>
+                                <div>
                                   <button disabled>+</button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                                 <span>
                                   There was an error submitting your rating.
                                 </span>
@@ -868,8 +873,12 @@ class ReviewCard extends React.Component {
                                       didThumbUp: this.state.didThumbUp
                                     }
                                   });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
+                                  console.log({refetch: this.props})
+                                await this.props.refetch();
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                   await this.thumbsUp();
                                   await this.setState({
                                     ...this.state,
@@ -878,7 +887,7 @@ class ReviewCard extends React.Component {
                                   });
                                 }}
                               >
-                                <span>
+                                <div>
                                   <button
                                     type="submit"
                                     disabled={this.state.thumbsUpDisabled}
@@ -886,8 +895,8 @@ class ReviewCard extends React.Component {
                                     +
                                   </button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                               </form>
                             );
                           return (
@@ -902,8 +911,12 @@ class ReviewCard extends React.Component {
                                     didThumbUp: this.state.didThumbUp
                                   }
                                 });
+                                console.log({refetch: this.props})
                                 await this.props.refetch();
-                                const { review } = await this.props;
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                 await this.thumbsUp();
                                 await this.setState({
                                   ...this.state,
@@ -912,7 +925,7 @@ class ReviewCard extends React.Component {
                                 });
                               }}
                             >
-                              <span>
+                              <div>
                                 <button
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
@@ -920,8 +933,8 @@ class ReviewCard extends React.Component {
                                   +
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
+                              </div>
+                              
                             </form>
                           );
                         }}
@@ -965,8 +978,12 @@ class ReviewCard extends React.Component {
                                       didThumbDown: this.state.didThumbDown
                                     }
                                   });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
+                                  console.log({refetch: this.props})
+                                await this.props.refetch();
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                   await this.thumbsDown();
                                   await this.setState({
                                     ...this.state,
@@ -998,8 +1015,12 @@ class ReviewCard extends React.Component {
                                     didThumbDown: this.state.didThumbDown
                                   }
                                 });
+                                console.log({refetch: this.props})
                                 await this.props.refetch();
-                                const { review } = await this.props;
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                 await this.thumbsDown();
                                 await this.setState({
                                   ...this.state,
@@ -1072,22 +1093,22 @@ class ReviewCard extends React.Component {
                           if (loading)
                             return (
                               <form>
-                                <span>
+                                <div>
                                   <button disabled>+</button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                               </form>
                             );
                           if (error) {
                             console.log({ likeError: error });
                             return (
                               <form>
-                                <span>
+                                <div>
                                   <button disabled>+</button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                               </form>
                             );
                           }
@@ -1103,8 +1124,12 @@ class ReviewCard extends React.Component {
                                       didThumbUp: this.state.didThumbUp
                                     }
                                   });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
+                                  console.log({refetch: this.props})
+                                await this.props.refetch();
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                   await this.thumbsUp();
                                   await this.setState({
                                     ...this.state,
@@ -1113,7 +1138,7 @@ class ReviewCard extends React.Component {
                                   });
                                 }}
                               >
-                                <span>
+                                <div>
                                   <button
                                     type="submit"
                                     disabled={this.state.thumbsUpDisabled}
@@ -1121,8 +1146,8 @@ class ReviewCard extends React.Component {
                                     +
                                   </button>
                                   {`Thumbs Up: ${this.state.thumbsUp}`}
-                                </span>
-                                |
+                                </div>
+                                
                               </form>
                             );
                           return (
@@ -1136,8 +1161,12 @@ class ReviewCard extends React.Component {
                                     didThumbUp: this.state.didThumbUp
                                   }
                                 });
+                                console.log({refetch: this.props})
                                 await this.props.refetch();
-                                const { review } = await this.props;
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                 await this.thumbsUp();
                                 await this.setState({
                                   ...this.state,
@@ -1146,7 +1175,7 @@ class ReviewCard extends React.Component {
                                 });
                               }}
                             >
-                              <span>
+                              <div>
                                 <button
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
@@ -1154,8 +1183,8 @@ class ReviewCard extends React.Component {
                                   +
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
-                              </span>
-                              |
+                              </div>
+                              
                             </form>
                           );
                         }}
@@ -1197,8 +1226,12 @@ class ReviewCard extends React.Component {
                                       didThumbDown: this.state.didThumbDown
                                     }
                                   });
-                                  await this.props.refetch();
-                                  const { review } = await this.props;
+                                  console.log({refetch: this.props})
+                                await this.props.refetch();
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                   await this.thumbsDown();
                                   await this.setState({
                                     ...this.state,
@@ -1229,8 +1262,12 @@ class ReviewCard extends React.Component {
                                     didThumbDown: this.state.didThumbDown
                                   }
                                 });
+                                console.log({refetch: this.props})
                                 await this.props.refetch();
-                                const { review } = await this.props;
+                                
+                                const { user } = await this.props;
+                                const review = user[0].ReviewList.filter(rev => rev.id === this.state.review.id)[0]
+                                console.log({review: user})
                                 await this.thumbsDown();
                                 await this.setState({
                                   ...this.state,

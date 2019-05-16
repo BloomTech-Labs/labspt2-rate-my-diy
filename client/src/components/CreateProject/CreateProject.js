@@ -13,14 +13,30 @@ class CreateProject extends Component {
     super(props);
 
     
-    if (this.props.users[0]) {
+   console.log({props: props})
 
+      let username = ""
+      let email = ""
+      let categories = []
+      let pro = []
 
-      const {username, email} = this.props.users.filter(
+      if (this.props.users[0])
+      username = this.props.users.filter(
         (user) => user.email === this.props.authUser.email
-      )[0]
+      )[0].username
 
-      const categories = this.props.projects.map((project) => project.category);
+      if (this.props.users[0])
+      email = this.props.users.filter(
+        (user) => user.email === this.props.authUser.email
+      )[0].email
+
+      if (this.props.projects[0])
+      categories = [...new Set(this.props.projects.map((project) => {return project.category}))];
+
+      if (this.props.projects[0])
+      pro = this.props.projects
+      
+      console.log({pro})
 
 
       this.state = {
@@ -37,31 +53,15 @@ class CreateProject extends Component {
           titleBlurb: '',
           steps: [{ type: '', body: '' }]
         }
-      };
-    }
-
-    else {
-      this.state = {
-        imgDeleteDisabled: true,
-        categories: [],
-        username: '',
-        email: '',
-        submitDisabled: true,
-        project: {
-          name: '',
-          category: '',
-          timestamp: '',
-          titleImg: '',
-          titleBlurb: '',
-          steps: [{ type: '', body: '' }]
-        }
-      };
+      }
     }
 
     
-  }
 
-  componentWillReceiveProps() {
+    
+  
+
+    componentWillReceiveProps() {
 
     if (this.props.users[0] && this.props.projects[0]) {
       console.log({uss: this.props.users, projs: this.props.projects})
@@ -73,6 +73,7 @@ class CreateProject extends Component {
       const categories = this.props.projects.map((project) => project.category);
       let filteredCategories = [...new Set(categories)];
       this.setState({ ...this.state, username: username, email: email, categories: filteredCategories });
+      console.log({createState: this.state})
     }
   }
 
@@ -264,13 +265,13 @@ class CreateProject extends Component {
   render() {
 
     
-    let cats = [];
-    if (this.state.categories[0])
-      cats = this.state.categories.map((cat) => {
-        return { value: cat, label: cat };
-      });
+    
 
-    if (this.props.users[0]) {
+    if (this.props.projects[0]) {
+      let categories = this.props.projects.map((project) => project.category)
+      let cats = [...new Set(categories.map((category) => {return {value: category, label: category}}))];
+      
+      
       if (
         this.state.project.steps != null &&
         typeof this.state.project.steps === 'object'
@@ -418,11 +419,11 @@ class CreateProject extends Component {
         );
       } else {
         let steps = JSON.parse(this.state.project.steps);
-        const json = localStorage.getItem('authUser');
-        const user = JSON.parse(json);
-        const email = user.email;
-
+        
+        const email = this.props.authUser.email;
+        const username = this.props.users.filter(user => user.email === email)[0].username
         return (
+
           <Mutation
             mutation={CREATE_PROJECT}
             refetchQueries={() => {
@@ -438,7 +439,7 @@ class CreateProject extends Component {
               if (loading) return <span>Submitting your project...</span>;
               if (error) return <span>{`Error: ${error}`}</span>;
               if (data)
-                return <Redirect to={`/${this.state.username}/projects`} />;
+                return <Redirect to={`/${username}/projects`} />;
               return (
                 <div className="projectInfo">
                   <form
@@ -453,14 +454,14 @@ class CreateProject extends Component {
                           titleImg: this.state.project.titleImg,
                           titleBlurb: this.state.project.titleBlurb,
                           steps: this.state.project.steps,
-                          username: this.state.username
+                          username: username
                         }
                       });
                     }}
                   >
                     {' '}
                     <div className="projectInfo">
-                      <form>
+                      
                         <h1>Create Project</h1>
                         <div className="projectTitle">
                           <h2>Title</h2>
@@ -509,7 +510,7 @@ class CreateProject extends Component {
 
                                 <textarea
                                   rows="6"
-                                  placeHolder="Add Description..."
+                                  placeholder="Add Description..."
                                   cols="75"
                                   name="titleBlurb"
                                   value={this.state.project.titleBlurb}
@@ -546,7 +547,7 @@ class CreateProject extends Component {
                               } else {
                                 return (
                                   <div key={idx}>
-                                    <textArea
+                                    <textarea
                                       type="text"
                                       placeholder="Add Step..."
                                       value={step.body}
@@ -596,20 +597,7 @@ class CreateProject extends Component {
                             Submit
                           </button>
                         )}
-                      </form>
-                    </div>
-                    {this.state.submitDisabled ? (
-                      <button type="button" onClick={this.finalize}>
-                        Finalize
-                      </button>
-                    ) : (
-                      <button
-                        type="submit"
-                        disabled={this.state.submitDisabled}
-                      >
-                        Submit
-                      </button>
-                    )}
+                      </div>
                   </form>
                 </div>
               );

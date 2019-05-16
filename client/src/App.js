@@ -83,7 +83,7 @@ class App extends Component {
                   loading: loadingReviews,
                   data: reviewData,
                   error: reviewError,
-                  refetch
+                  refetch: revRefetch
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews) {
                     let userArray = [];
@@ -133,6 +133,7 @@ class App extends Component {
                               loggedIn={loggedIn}
                               authUser={this.props.authUser}
                               refetch={userRefetch}
+                              revRefetch={revRefetch}
                             />
                           )}
                         />
@@ -222,7 +223,7 @@ class App extends Component {
                                       <ProjectCard
                                         {...props}
                                         users={userArray}
-                                        refetch={refetch}
+                                        revRefetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                         authUser={this.props.authUser}
@@ -255,7 +256,7 @@ class App extends Component {
                                     <ReviewCard
                                       {...props}
                                       users={userArray}
-                                      refetch={userRefetch}
+                                      refetch={revRefetch}
                                       loggedIn={loggedIn}
                                       authUser={this.props.authUser}
                                     />
@@ -361,6 +362,7 @@ class App extends Component {
                               loggedIn={loggedIn}
                               authUser={this.props.authUser}
                               refetch={userRefetch}
+                              revRefetch={revRefetch}
                             />
                           )}
                         />
@@ -463,7 +465,7 @@ class App extends Component {
                                         project={project}
                                         users={userArray}
                                         reviews={reviewArray}
-                                        refetch={refetch}
+                                        revRefetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                         authUser={this.props.authUser}
@@ -508,7 +510,7 @@ class App extends Component {
                                       review={review}
                                       users={userArray}
                                       user={user}
-                                      refetch={userRefetch}
+                                      refetch={revRefetch}
                                       loggedIn={loggedIn}
                                       authUser={this.props.authUser}
                                     />
@@ -579,7 +581,7 @@ class AppNonAuth extends Component {
                   loading: loadingReviews,
                   data: reviewData,
                   error: reviewError,
-                  refetch
+                  refetch: revRefetch
                 }) => {
                   if (loadingUsers || loadingProjects || loadingReviews) {
                     let userArray = [];
@@ -627,6 +629,7 @@ class AppNonAuth extends Component {
                               userArray={userArray}
                               loggedIn={loggedIn}
                               refetch={userRefetch}
+                              revRefetch={revRefetch}
                             />
                           )}
                         />
@@ -711,7 +714,7 @@ class AppNonAuth extends Component {
                                       <ProjectCard
                                         {...props}
                                         users={userArray}
-                                        refetch={refetch}
+                                        refetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />
@@ -742,7 +745,7 @@ class AppNonAuth extends Component {
                                     <ReviewCard
                                       {...props}
                                       users={userArray}
-                                      refetch={userRefetch}
+                                      refetch={revRefetch}
                                       loggedIn={loggedIn}
                                     />
                                   );
@@ -845,6 +848,7 @@ class AppNonAuth extends Component {
                               reviewArray={reviewArray}
                               loggedIn={loggedIn}
                               refetch={userRefetch}
+                              revRefetch={revRefetch}
                             />
                           )}
                         />
@@ -942,7 +946,7 @@ class AppNonAuth extends Component {
                                         project={project}
                                         users={userArray}
                                         reviews={reviewArray}
-                                        refetch={refetch}
+                                        refetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />
@@ -985,7 +989,7 @@ class AppNonAuth extends Component {
                                       review={review}
                                       users={userArray}
                                       user={user}
-                                      refetch={userRefetch}
+                                      refetch={revRefetch}
                                       loggedIn={loggedIn}
                                     />
                                   );

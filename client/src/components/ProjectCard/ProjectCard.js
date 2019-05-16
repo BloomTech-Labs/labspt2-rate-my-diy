@@ -16,7 +16,9 @@ class ProjectCard extends React.Component {
 
       let visitor = [{ username: '' }];
       let authUser = { email: '' };
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) authUser = this.props.authUser;
+      // eslint-disable-next-line
       if (this.props.authUser != undefined)
         visitor = users.filter((u) => u.email === authUser.email);
 
@@ -37,6 +39,7 @@ class ProjectCard extends React.Component {
     } else {
       const { loggedIn } = this.props;
       let authUser = { email: '' };
+      // eslint-disable-next-line
       if (this.props.authUser != undefined) authUser = this.props.authUser;
       this.state = {
         edit: false,
