@@ -105,7 +105,7 @@ class ReviewCard extends React.Component {
     const { loggedIn, authUser } = this.state;
     const { review } = this.props;
     if (loggedIn) {
-      // console.log("logged in")
+     
 
       if (review.Author.email === authUser.email) {
         // console.log("logged in, your review")
