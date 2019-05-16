@@ -3,6 +3,7 @@ import MicroModal from 'react-micro-modal';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editReview, likeAReview, dislikeAReview } from '../../query/query';
+import moment from 'moment';
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import './ReviewCard.scss';
 
@@ -151,8 +152,12 @@ class ReviewCard extends React.Component {
 
   render() {
     if (this.props.review && this.props.users[0]) {
-      const { loggedIn, authUser } = this.state;
-      const { review } = this.props;
+      const { loggedIn, authUser, review } = this.props;
+      const time = moment(review.timestamp).format('MMMM Do YYYY')
+      console.log({timestamp: review.timestamp, time: time})
+      if (time !== "Invalid date")
+      review.timestamp = time
+      
       if (loggedIn) {
         // console.log("logged in")
 
@@ -175,9 +180,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp
-                          .toString()
-                          .slice(0, 10)}`}</p>
+                        <p>{review.timestamp}</p>
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -297,7 +300,7 @@ class ReviewCard extends React.Component {
                           }
                           if (data)
                             return (
-                              <div className="review-card">
+                              <div className="reviewCardModal">
                                 <div>{`${review.ProjectReviewed.name}`}</div>
                                 <div>{`Review By: @${
                                   review.Author.username
@@ -312,8 +315,8 @@ class ReviewCard extends React.Component {
                                     alt="project"
                                   />
                                 </Link>
-                                <div>{`${review.name}`}</div>
-                                <div>{`${review.text}`}</div>
+                                <p>{`${review.name}`}</p>
+                                <p>{`${review.text}`}</p>
                                 <div>{`Thumbs Up: ${
                                   this.state.thumbsUp
                                 }`}</div>
@@ -347,7 +350,7 @@ class ReviewCard extends React.Component {
                                 });
                               }}
                             >
-                              <div>
+                              <div className="reviewCardModal">
                                 <div>{`${review.ProjectReviewed.name}`}</div>
                                 <div>{`Review By: @${
                                   review.Author.username
@@ -413,9 +416,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp
-                          .toString()
-                          .slice(0, 10)}`}</p>
+                        <p>{`Date of Review: ${review.timestamp}`}</p>
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -424,10 +425,10 @@ class ReviewCard extends React.Component {
                       </div>
                     )}
                     children={(handleClose) => (
-                      <div>
-                        <div>{`${review.ProjectReviewed.name}`}</div>
-                        <div>{`Review By: @${review.Author.username}`}</div>
-                        <div>{`${review.timestamp}`}</div>
+                      <div className="reviewCardModal">
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`${review.timestamp}`}</p>
                         <Link to={`/projects/${review.ProjectReviewed.id}`}>
                           <img
                             className="searchProjectImage"
@@ -436,8 +437,8 @@ class ReviewCard extends React.Component {
                           />
                         </Link>
                         <div>{`Rating of Project: ${review.projRating}`}</div>
-                        <div>{`${review.name}`}</div>
-                        <div>{`${review.text}`}</div>
+                        <h3>{`Review Title: ${review.name}`}</h3>
+                        <p>{`${review.text}`}</p>
                         <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                         <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                         <div>
@@ -473,9 +474,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp
-                          .toString()
-                          .slice(0, 10)}`}</p>
+                        <p>{`Date of Review: ${review.timestamp}`}</p>
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -489,11 +488,11 @@ class ReviewCard extends React.Component {
                           if (loading)
                             return (
                               <form>
-                                <div>
-                                  <div>{`${review.ProjectReviewed.name}`}</div>
-                                  <div>{`Review By: @${
+                                <div className="reviewCardModal">
+                                  <h3>{`${review.ProjectReviewed.name}`}</h3>
+                                  <p>{`Review By: @${
                                     review.Author.username
-                                  }`}</div>
+                                  }`}</p>
                                   <div>{`${review.timestamp}`}</div>
                                   <Link
                                     to={`/projects/${
@@ -667,7 +666,7 @@ class ReviewCard extends React.Component {
                                 });
                               }}
                             >
-                              <div>
+                              <div className="reviewCardModal">
                                 <div>{`${review.ProjectReviewed.name}`}</div>
                                 <div>{`Review By: @${
                                   review.Author.username
@@ -754,10 +753,10 @@ class ReviewCard extends React.Component {
                       </div>
                     )}
                     children={(handleClose) => (
-                      <div>
-                        <div>{`${review.ProjectReviewed.name}`}</div>
-                        <div>{`Review By: @${review.Author.username}`}</div>
-                        <div>{`${review.timestamp}`}</div>
+                      <div className="reviewCardModal">
+                        <h3>{`${review.ProjectReviewed.name}`}</h3>
+                        <p>{`Review By: @${review.Author.username}`}</p>
+                        <p>{`${review.timestamp}`}</p>
                         <Link to={`/projects/${review.ProjectReviewed.id}`}>
                           <img
                             className="searchProjectImage"
@@ -765,8 +764,8 @@ class ReviewCard extends React.Component {
                             alt="project"
                           />
                         </Link>
-                        <div>{`${review.name}`}</div>
-                        <div>{`${review.text}`}</div>
+                        <h3>{`Review Title: ${review.name}`}</h3>
+                        <p>{`${review.text}`}</p>
                         <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                         <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                         <div>
@@ -804,9 +803,7 @@ class ReviewCard extends React.Component {
                       />
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp
-                        .toString()
-                        .slice(0, 10)}`}</p>
+                      <p>{`Date of Review: ${review.timestamp}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
                       <p>{`Title: ${review.name}`}</p>
                       <button id="reviewButton" onClick={handleOpen}>
@@ -815,10 +812,10 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                   children={(handleClose) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
+                    <div className="reviewCardModal">
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`${review.timestamp}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
                           className="searchProjectImage"
@@ -827,8 +824,8 @@ class ReviewCard extends React.Component {
                         />
                       </Link>
                       <div>{`Rating of Project: ${review.projRating}`}</div>
-                      <div>{`${review.name}`}</div>
-                      <div>{`${review.text}`}</div>
+                      <h3>{`Review Title: ${review.name}`}</h3>
+                      <p>{`${review.text}`}</p>
                       <Mutation mutation={likeAReview}>
                         {(likeAReview, { loading, error, data }) => {
                           if (loading)
@@ -930,7 +927,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
                                 >
-                                  +
+                                  Like
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </div>
@@ -1034,7 +1031,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsDownDisabled}
                                 >
-                                  -
+                                  Dislike
                                 </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
@@ -1063,9 +1060,7 @@ class ReviewCard extends React.Component {
                       />
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp
-                        .toString()
-                        .slice(0, 10)}`}</p>
+                      <p>{`Date of Review: ${review.timestamp}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
                       <p>{`Title: ${review.name}`}</p>
                       <button id="reviewButton" onClick={handleOpen}>
@@ -1074,10 +1069,10 @@ class ReviewCard extends React.Component {
                     </div>
                   )}
                   children={(handleClose) => (
-                    <div>
-                      <div>{`${review.ProjectReviewed.name}`}</div>
-                      <div>{`Review By: @${review.Author.username}`}</div>
-                      <div>{`${review.timestamp}`}</div>
+                    <div className="reviewCardModal">
+                      <h3>{`${review.ProjectReviewed.name}`}</h3>
+                      <p>{`Review By: @${review.Author.username}`}</p>
+                      <p>{`${review.timestamp}`}</p>
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
                           className="searchProjectImage"
@@ -1085,7 +1080,7 @@ class ReviewCard extends React.Component {
                           alt="project"
                         />
                       </Link>
-                      <div>{`${review.name}`}</div>
+                      <h3>{`Review Title: ${review.name}`}</h3>
                       <div>{`${review.text}`}</div>
 
                       <Mutation mutation={likeAReview}>
@@ -1180,7 +1175,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsUpDisabled}
                                 >
-                                  +
+                                  Like
                                 </button>
                                 {`Thumbs Up: ${this.state.thumbsUp}`}
                               </div>
@@ -1281,7 +1276,7 @@ class ReviewCard extends React.Component {
                                   type="submit"
                                   disabled={this.state.thumbsDownDisabled}
                                 >
-                                  -
+                                  Dislike
                                 </button>
                                 {`Thumbs Down: ${this.state.thumbsDown}`}
                               </span>
@@ -1328,10 +1323,10 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
                 children={(handleClose) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
+                  <div className="reviewCardModal">
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`${review.timestamp}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
@@ -1340,10 +1335,10 @@ class ReviewCard extends React.Component {
                       />
                     </Link>
                     <div>{`Rating of Project: ${review.projRating}`}</div>
-                    <div>{`${review.name}`}</div>
+                    <h3>{`Review Title: ${review.name}`}</h3>
                     <div>{`${review.text}`}</div>
-                    <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                    <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                    <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
+                    <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                     <button onClick={handleClose}>Close</button>
                   </div>
                 )}
@@ -1376,10 +1371,10 @@ class ReviewCard extends React.Component {
                   </div>
                 )}
                 children={(handleClose) => (
-                  <div>
-                    <div>{`${review.ProjectReviewed.name}`}</div>
-                    <div>{`Review By: @${review.Author.username}`}</div>
-                    <div>{`${review.timestamp}`}</div>
+                  <div className="reviewCardModal">
+                    <h3>{`${review.ProjectReviewed.name}`}</h3>
+                    <p>{`Review By: @${review.Author.username}`}</p>
+                    <p>{`${review.timestamp}`}</p>
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
@@ -1387,10 +1382,10 @@ class ReviewCard extends React.Component {
                         alt="project"
                       />
                     </Link>
-                    <div>{`${review.name}`}</div>
-                    <div>{`${review.text}`}</div>
-                    <span>{`Thumbs Up: ${this.state.thumbsUp}`}</span>
-                    <span>{`Thumbs Down: ${this.state.thumbsDown}`}</span>
+                    <h3>{`Review Title: ${review.name}`}</h3>
+                    <p>{`${review.text}`}</p>
+                    <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
+                    <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
                     <button onClick={handleClose}>Close</button>
                   </div>
                 )}

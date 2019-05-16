@@ -5,6 +5,7 @@ import { withFirebase } from '../../components/Firebase/Exports';
 import * as ROUTES from '../../constants/routes';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import './Signup.scss';
 import { GET_NATIVE_USER } from '../../reactRouter/reactRouter';
 const newUser = gql`
   mutation newUser($username: String!, $firebaseUID: String!, $email: String!) {

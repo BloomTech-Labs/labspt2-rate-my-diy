@@ -33,7 +33,6 @@ class Account extends Component {
           {({ loading, data, error }) => {
             if (loading) return null;
             if (error) {
-              console.log({ accountError: error });
               return null;
             }
             if (data) {

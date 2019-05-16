@@ -4,7 +4,6 @@
   display: flex;
   padding-top: 40px;
   flex-wrap: wrap;
-  height: 100px;
   justify-content: center;
   align-content: center;
 
@@ -24,19 +23,24 @@
       -moz-box-shadow: none;
       box-shadow: none;
       width: 90%;
+      font-size: 1.8rem;
+      padding: 5px;
     }
 
     .skeletonBar {
-      width: 90%;
+      width: 95%;
     }
   }
 
   .searchButton {
+    margin-left: 1%;
     @include custom-button(20%, 5px);
   }
 
   @media (max-width: 600px) {
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     padding: 30px 10px;
 
     .searchInput {
@@ -44,10 +48,15 @@
       width: 100%;
       border-radius: 25px;
       padding: 10px;
+      input{
+        font-size: 1.8rem;
+        height: 50px;
+      }
     }
 
     .searchButton {
       @include custom-button(100%, 20px);
+      margin-top: 20px;
     }
   }
 }

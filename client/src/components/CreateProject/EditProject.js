@@ -262,6 +262,7 @@ class EditProject extends Component {
   };
 
   render() {
+    // eslint-disable-next-line
     if (this.props.project != undefined) {
       let categories = this.props.projects.map((project) => project.category)
       let cats = [...new Set(categories.map((category) => {return {value: category, label: category}}))];
