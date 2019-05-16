@@ -531,7 +531,6 @@ class EditProject extends Component {
 
                       <div className="stepSection">
                         <h2>Steps:</h2>
-                        <div>
                           {steps.map((step, idx) => {
                             if (step.type === 'img') {
                               return (
@@ -576,7 +575,7 @@ class EditProject extends Component {
                               )
                             }
                           })}
-                        </div>
+                       
                       </div>
                       {this.state.submitDisabled ? (
                         <button
