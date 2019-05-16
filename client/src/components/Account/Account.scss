@@ -28,4 +28,18 @@
   justify-content: space-around;
   height: 150px;
   align-items: center;
+  .stripeButton{
+     background-color: $color3 !important;
+      background-image: none !important;
+      background: $color3 !important;
+      box-shadow: none !important;
+      border: none !important;
+    span{
+      background-color: $color3 !important;
+      background-image: none !important;
+      background: $color3 !important;
+      box-shadow: none !important;
+    }
+
+  }
 }
