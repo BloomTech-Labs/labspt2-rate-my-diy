@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path');
 const { GraphQLServer } = require('graphql-yoga');
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
@@ -10,10 +11,10 @@ const nodemailer = require('nodemailer');
 const pug = require('pug');
 
 let transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: process.env.NM_SERVICE,
   auth: {
-    user: 'ratemydiyproject@gmail.com', // generated ethereal user
-    pass: 'lambda123' // generated ethereal password
+    user: process.env.NM_USER, // generated ethereal user
+    pass: process.env.NM_PW // generated ethereal password
   }
 });
 

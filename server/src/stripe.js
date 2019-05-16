@@ -1,6 +1,7 @@
+require('dotenv').config()
 const Stripe = require('stripe');
 
-const stripe = Stripe('sk_test_Id16CLirynJIZtXzrnFdYxrL'); // stripe secret
+const stripe = Stripe(process.env.S_SECRET_KEY); // stripe secret
 
 module.exports = {
   stripe
