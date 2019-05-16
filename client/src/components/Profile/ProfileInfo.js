@@ -74,7 +74,7 @@ class ProfileInfo extends React.Component {
             return <div>There was an error.</div>;
           }
           return (
-            <div className="profile-form-flex-container">
+            <div className="profile-container">
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
