@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { editUser } from '../../query/query';
 import './Profile.scss';
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 class ProfileInfo extends React.Component {
   constructor(props) {
@@ -15,32 +15,29 @@ class ProfileInfo extends React.Component {
         bio: this.props.user.bio,
         username: this.props.user.username
       };
-    }
-    else {
+    } else {
       this.state = {
-        userProfileImage: "",
-        bio: "",
-        username: ""
-      }
+        userProfileImage: '',
+        bio: '',
+        username: ''
+      };
     }
   }
 
   componentDidMount() {
-
     if (this.props.user) {
-      const user = this.props.authUser
+      const user = this.props.authUser;
 
-    if (user !== null && user !== undefined) {
-      if (user.email !== this.props.email) {
+      if (user !== null && user !== undefined) {
+        if (user.email !== this.props.email) {
+          return <Redirect to="/" />;
+        }
+        return null;
+      } else {
+        //Redirect
         return <Redirect to="/" />;
       }
-      return null;
-    } else {
-      //Redirect
-      return <Redirect to="/" />;
     }
-    }
-    
   }
 
   textChange = async (e) => {
@@ -88,7 +85,7 @@ class ProfileInfo extends React.Component {
               return <div>There was an error.</div>;
             }
             return (
-              <div className="profile-form-flex-container">
+              <div className="profile-container">
                 <form
                   onSubmit={async (e) => {
                     e.preventDefault();
@@ -104,15 +101,19 @@ class ProfileInfo extends React.Component {
                   <h2>{`${this.state.username}`}</h2>
                   <div className="img-container">
                     <img src={this.state.userProfileImage} alt="profile" />
+                    <button onClick={this.openCloudinary}>
+                      Set Profile Image
+                    </button>
                   </div>
-                  <button onClick={this.openCloudinary}>Set Profile Image</button>
-                  <h3>Bio</h3>
-                  <textarea
-                    name="bio"
-                    value={this.state.bio}
-                    onChange={this.textChange}
-                  />
-                  <button type="submit">Submit</button>
+                  <div className="bioSection">
+                    <h3>Bio</h3>
+                    <textarea
+                      name="bio"
+                      value={this.state.bio}
+                      onChange={this.textChange}
+                    />
+                    <button type="submit">Submit</button>
+                  </div>
                 </form>
               </div>
             );
@@ -121,25 +122,32 @@ class ProfileInfo extends React.Component {
       );
     } else {
       return (
-        <div className="profile-form-flex-container">
-        
-                <form>
-                <SkeletonTheme highlightColor="#6fb3b8">
-                  <h2><Skeleton/></h2>
-                  <div className="img-container">
-                    <Skeleton/>
-                  </div>
-                  <button><Skeleton/></button>
-                  <h3><Skeleton/></h3>
-                  <Skeleton count={5}/>
-                  <button><Skeleton/></button>
-                  </SkeletonTheme>
-                </form>
-                
+        <div className="profile-container">
+          <form>
+            <SkeletonTheme highlightColor="#6fb3b8">
+              <h2>
+                <Skeleton />
+              </h2>
+              <div className="img-container">
+                <Skeleton />
+                <button>
+                  <Skeleton />
+                </button>
               </div>
-      )
+              <div className="bioSection">
+                <h3>
+                  <Skeleton />
+                </h3>
+                <Skeleton count={5} />
+                <button>
+                  <Skeleton />
+                </button>
+              </div>
+            </SkeletonTheme>
+          </form>
+        </div>
+      );
     }
-    
   }
 }
 
