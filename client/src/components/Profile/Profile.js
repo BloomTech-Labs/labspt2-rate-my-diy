@@ -5,7 +5,6 @@ import * as math from 'mathjs';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import Featured from '../Home/Featured/Featured';
 import './Profile.scss';
-import ProjectCard from '../ProjectCard/ProjectCard';
 const GET_USERS = gql`
 	{
 		users {
