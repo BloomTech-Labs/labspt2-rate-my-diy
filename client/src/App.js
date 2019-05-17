@@ -713,7 +713,7 @@ class AppNonAuth extends Component {
                                       <ProjectCard
                                         {...props}
                                         users={userArray}
-                                        refetch={revRefetch}
+                                        revRefetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />
@@ -945,7 +945,7 @@ class AppNonAuth extends Component {
                                         project={project}
                                         users={userArray}
                                         reviews={reviewArray}
-                                        refetch={revRefetch}
+                                        revRefetch={revRefetch}
                                         userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />

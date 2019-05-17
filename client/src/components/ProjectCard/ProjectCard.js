@@ -322,7 +322,7 @@ class ProjectCard extends React.Component {
                                   </form>
                                 )
                               }
-                              if (data)
+                              
                                 return (
                                   <form
                                     onSubmit={async (e) => {
@@ -339,8 +339,9 @@ class ProjectCard extends React.Component {
                                           projRating: this.state.stars,
                                         },
                                       })
-
-                                      await this.props.refetch()
+                                      await console.log({props: this.props})
+                                      await this.props.revRefetch()
+                                      
                                       const { reviews } = await this.props
                                       let revs = await reviews.filter(
                                         (rev) =>
@@ -539,7 +540,7 @@ class ProjectCard extends React.Component {
                                       },
                                       // refetchQueries: [ { query: getReviews}]
                                     })
-                                    await this.props.refetch()
+                                    await this.props.revRefetch()
                                     const { reviews } = await this.props
                                     let revs = await reviews.filter(
                                       (rev) =>
@@ -741,7 +742,7 @@ class ProjectCard extends React.Component {
                                     },
                                     // refetchQueries: [ { query: getReviews}]
                                   })
-                                  await this.props.refetch()
+                                  await this.props.revRefetch()
                                   const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
@@ -1164,7 +1165,7 @@ class ProjectCard extends React.Component {
                                         },
                                         // refetchQueries: [ { query: getReviews}]
                                       })
-                                      await this.props.refetch()
+                                      await this.props.revRefetch()
                                       const { reviews } = await this.props
                                       let revs = await reviews.filter(
                                         (rev) =>
@@ -1325,7 +1326,7 @@ class ProjectCard extends React.Component {
                                     },
                                     refetchQueries: [{ query: getReviews }],
                                   })
-                                  await this.props.refetch()
+                                  await this.props.revRefetch()
                                   const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
@@ -1516,7 +1517,7 @@ class ProjectCard extends React.Component {
                                     },
                                     // refetchQueries: [ { query: getReviews}]
                                   })
-                                  await this.props.refetch()
+                                  await this.props.revRefetch()
                                   const { reviews } = await this.props
                                   let revs = await reviews.filter(
                                     (rev) =>
