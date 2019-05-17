@@ -370,7 +370,7 @@ class SearchBar extends Component {
             let projectSearch = projectsFuse.search(this.state.text)
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
-            )
+            ).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
@@ -406,7 +406,7 @@ class SearchBar extends Component {
             let projectSearch = this.props.projects
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
-            )
+            ).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
@@ -444,7 +444,7 @@ class SearchBar extends Component {
           //category & no stars & text
 
           if (this.state.text !== "") {
-            let projectSearch = projectsFuse.search(this.state.text)
+            let projectSearch = projectsFuse.search(this.state.text).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
@@ -476,7 +476,7 @@ class SearchBar extends Component {
           // category & no stars & no text
 
           if (this.state.text === "") {
-            let projectSearch = this.props.projects
+            let projectSearch = this.props.projects.filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
