@@ -137,6 +137,12 @@
           margin: 0;
           margin-right: 10px;
         }
+
+        .skeletonContainer {
+          width: 70%;
+          height: 261px;
+          flex-direction: column;
+        }
       }
       .emptyMainImage {
         display: flex;
@@ -174,6 +180,16 @@
         width: 100%;
         align-items: flex-start;
         textarea {
+          
+          width: 100%;
+          height: 261px;
+          text-overflow: scroll;
+          font-size: 1.6rem;
+          border: 5px solid $color2;
+          border-radius: 10px;
+          
+        }
+        .skeletonContainer {
           width: 100%;
           height: 261px;
           text-overflow: scroll;
@@ -187,6 +203,7 @@
   .stepSection {
     display: flex;
     flex-direction: column;
+    width: 100%;
     textarea {
       height: 150px;
       text-align: initial;
@@ -194,6 +211,16 @@
       font-size: 1.6rem;
       border: 5px solid $color2;
       border-radius: 10px;
+      
+    }
+    .skeletonContainer {
+      height: 150px;
+      text-align: initial;
+      width: 100%;
+      font-size: 1.6rem;
+      border: 5px solid $color2;
+      border-radius: 10px;
+      
     }
     img {
       width: 100%;

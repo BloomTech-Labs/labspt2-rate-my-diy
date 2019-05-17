@@ -2,14 +2,18 @@
 
 .searchBar {
   display: flex;
-  padding: 40px 10px;
+  padding-top: 40px;
   flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 
   .searchInput {
     border: 2px solid #bdc3c7;
     width: 70%;
+    height: 50px;
     border-radius: 25px;
     padding: 10px;
+    display: inline-flex;
 
     input {
       border: none;
@@ -19,15 +23,24 @@
       -moz-box-shadow: none;
       box-shadow: none;
       width: 90%;
+      font-size: 1.8rem;
+      padding: 5px;
+    }
+
+    .skeletonBar {
+      width: 95%;
     }
   }
 
   .searchButton {
-    @include custom-button(20%, 10px);
+    margin-left: 1%;
+    @include custom-button(20%, 5px);
   }
 
   @media (max-width: 600px) {
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     padding: 30px 10px;
 
     .searchInput {
@@ -35,10 +48,15 @@
       width: 100%;
       border-radius: 25px;
       padding: 10px;
+      input{
+        font-size: 1.8rem;
+        height: 50px;
+      }
     }
 
     .searchButton {
       @include custom-button(100%, 20px);
+      margin-top: 20px;
     }
   }
 }

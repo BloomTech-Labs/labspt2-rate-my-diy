@@ -1,16 +1,14 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export const getUsers = gql`
-  {
+  query {
     users {
       id
       username
       userProfileImage
-      bio
       email
-      RatedProjects {
-        id
-      }
+      bio
+      accountType
       ReviewList {
         id
         name
@@ -27,7 +25,28 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
+        }
+      }
+      Projects {
+        id
+        name
+        timestamp
+        titleImg
+        titleBlurb
+        rating
+        steps
+        User {
+          id
+          username
+          email
         }
       }
       LikedReviews {
@@ -35,8 +54,8 @@ export const getUsers = gql`
         name
         text
         timestamp
-        thumbsUp
         thumbsDown
+        thumbsUp
         projRating
         Author {
           id
@@ -46,7 +65,14 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
         }
       }
       DislikedReviews {
@@ -65,14 +91,34 @@ export const getUsers = gql`
         ProjectReviewed {
           id
           name
+          timestamp
           titleImg
+          titleBlurb
+          rating
+          User {
+            id
+            username
+          }
+        }
+      }
+      RatedProjects {
+        id
+        name
+        timestamp
+        titleImg
+        titleBlurb
+        rating
+        steps
+        User {
+          id
+          username
         }
       }
     }
   }
-`;
+`
 export const getProjects = gql`
-  {
+  query {
     projects {
       id
       name
@@ -89,10 +135,10 @@ export const getProjects = gql`
       }
     }
   }
-`;
+`
 
 export const getReviews = gql`
-  {
+  query {
     reviews {
       id
       name
@@ -113,7 +159,7 @@ export const getReviews = gql`
       }
     }
   }
-`;
+`
 
 export const CREATE_PROJECT = gql`
   mutation newProject(
@@ -138,7 +184,7 @@ export const CREATE_PROJECT = gql`
       name
     }
   }
-`;
+`
 
 export const UPDATE_PROJECT = gql`
   mutation editProject(
@@ -165,7 +211,7 @@ export const UPDATE_PROJECT = gql`
       name
     }
   }
-`;
+`
 
 export const editUser = gql`
   mutation editUser(
@@ -181,7 +227,7 @@ export const editUser = gql`
       email
     }
   }
-`;
+`
 
 export const editReview = gql`
   mutation editReview(
@@ -219,7 +265,7 @@ export const editReview = gql`
       }
     }
   }
-`;
+`
 
 export const NEW_REVIEW = gql`
   mutation newReview(
@@ -259,7 +305,7 @@ export const NEW_REVIEW = gql`
       }
     }
   }
-`;
+`
 
 export const dislikeAReview = gql`
   mutation dislikeAReview(
@@ -291,7 +337,7 @@ export const dislikeAReview = gql`
       }
     }
   }
-`;
+`
 
 export const likeAReview = gql`
   mutation likeAReview($revId: ID!, $username: String!, $didThumbUp: Boolean!) {
@@ -315,4 +361,4 @@ export const likeAReview = gql`
       }
     }
   }
-`;
+`

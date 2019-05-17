@@ -440,6 +440,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
     name: string; // String!
     ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown?: number | null; // Int
@@ -467,6 +468,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
     name: string; // String!
     ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown?: number | null; // Int
@@ -478,6 +480,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
     name: string; // String!
     ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown?: number | null; // Int
@@ -489,6 +492,7 @@ export interface NexusGenInputs {
     DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
     name: string; // String!
     ProjectReviewed: NexusGenInputs['ProjectCreateOneWithoutReviewsInput']; // ProjectCreateOneWithoutReviewsInput!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown?: number | null; // Int
@@ -500,6 +504,7 @@ export interface NexusGenInputs {
     DislikedBy?: NexusGenInputs['UserCreateManyWithoutDislikedReviewsInput'] | null; // UserCreateManyWithoutDislikedReviewsInput
     LikedBy?: NexusGenInputs['UserCreateManyWithoutLikedReviewsInput'] | null; // UserCreateManyWithoutLikedReviewsInput
     name: string; // String!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown?: number | null; // Int
@@ -538,6 +543,14 @@ export interface NexusGenInputs {
     name_starts_with?: string | null; // String
     NOT?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
     OR?: NexusGenInputs['ReviewScalarWhereInput'][] | null; // [ReviewScalarWhereInput!]
+    projRating?: number | null; // Int
+    projRating_gt?: number | null; // Int
+    projRating_gte?: number | null; // Int
+    projRating_in?: number[] | null; // [Int!]
+    projRating_lt?: number | null; // Int
+    projRating_lte?: number | null; // Int
+    projRating_not?: number | null; // Int
+    projRating_not_in?: number[] | null; // [Int!]
     rKey?: string | null; // String
     rKey_contains?: string | null; // String
     rKey_ends_with?: string | null; // String
@@ -597,6 +610,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
     name?: string | null; // String
     ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -605,6 +619,7 @@ export interface NexusGenInputs {
   }
   ReviewUpdateManyDataInput: { // input type
     name?: string | null; // String
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -613,6 +628,7 @@ export interface NexusGenInputs {
   }
   ReviewUpdateManyMutationInput: { // input type
     name?: string | null; // String
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -688,6 +704,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
     name?: string | null; // String
     ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -699,6 +716,7 @@ export interface NexusGenInputs {
     LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
     name?: string | null; // String
     ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -710,6 +728,7 @@ export interface NexusGenInputs {
     DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
     name?: string | null; // String
     ProjectReviewed?: NexusGenInputs['ProjectUpdateOneRequiredWithoutReviewsInput'] | null; // ProjectUpdateOneRequiredWithoutReviewsInput
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -721,6 +740,7 @@ export interface NexusGenInputs {
     DislikedBy?: NexusGenInputs['UserUpdateManyWithoutDislikedReviewsInput'] | null; // UserUpdateManyWithoutDislikedReviewsInput
     LikedBy?: NexusGenInputs['UserUpdateManyWithoutLikedReviewsInput'] | null; // UserUpdateManyWithoutLikedReviewsInput
     name?: string | null; // String
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text?: string | null; // String
     thumbsDown?: number | null; // Int
@@ -787,6 +807,14 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['ReviewWhereInput'][] | null; // [ReviewWhereInput!]
     OR?: NexusGenInputs['ReviewWhereInput'][] | null; // [ReviewWhereInput!]
     ProjectReviewed?: NexusGenInputs['ProjectWhereInput'] | null; // ProjectWhereInput
+    projRating?: number | null; // Int
+    projRating_gt?: number | null; // Int
+    projRating_gte?: number | null; // Int
+    projRating_in?: number[] | null; // [Int!]
+    projRating_lt?: number | null; // Int
+    projRating_lte?: number | null; // Int
+    projRating_not?: number | null; // Int
+    projRating_not_in?: number[] | null; // [Int!]
     rKey?: string | null; // String
     rKey_contains?: string | null; // String
     rKey_ends_with?: string | null; // String
@@ -1468,7 +1496,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   ProjectOrderByInput: "category_ASC" | "category_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "key_ASC" | "key_DESC" | "name_ASC" | "name_DESC" | "steps_ASC" | "steps_DESC" | "timestamp_ASC" | "timestamp_DESC" | "titleBlurb_ASC" | "titleBlurb_DESC" | "titleImg_ASC" | "titleImg_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  ReviewOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "rKey_ASC" | "rKey_DESC" | "text_ASC" | "text_DESC" | "thumbsDown_ASC" | "thumbsDown_DESC" | "thumbsUp_ASC" | "thumbsUp_DESC" | "timestamp_ASC" | "timestamp_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  ReviewOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "projRating_ASC" | "projRating_DESC" | "rKey_ASC" | "rKey_DESC" | "text_ASC" | "text_DESC" | "thumbsDown_ASC" | "thumbsDown_DESC" | "thumbsUp_ASC" | "thumbsUp_DESC" | "timestamp_ASC" | "timestamp_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   UserOrderByInput: "accountType_ASC" | "accountType_DESC" | "bio_ASC" | "bio_DESC" | "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "firebaseUID_ASC" | "firebaseUID_DESC" | "id_ASC" | "id_DESC" | "privilege_ASC" | "privilege_DESC" | "stripeId_ASC" | "stripeId_DESC" | "thirdPartyUID_ASC" | "thirdPartyUID_DESC" | "updatedAt_ASC" | "updatedAt_DESC" | "username_ASC" | "username_DESC" | "userProfileImage_ASC" | "userProfileImage_DESC"
 }
 
@@ -1515,6 +1543,7 @@ export interface NexusGenRootTypes {
   Review: { // root type
     id: string; // ID!
     name: string; // String!
+    projRating?: number | null; // Int
     rKey?: string | null; // String
     text: string; // String!
     thumbsDown: number; // Int!
@@ -1684,6 +1713,9 @@ export interface NexusGenFieldTypes {
     deleteReview: NexusGenRootTypes['Review'] | null; // Review
     deleteUser: NexusGenRootTypes['User'] | null; // User
     dislikeAReview: NexusGenRootTypes['Review']; // Review!
+    editProject: NexusGenRootTypes['Project']; // Project!
+    editReview: NexusGenRootTypes['Review']; // Review!
+    editUser: NexusGenRootTypes['User']; // User!
     firebaseSignUp: NexusGenRootTypes['User']; // User!
     likeAReview: NexusGenRootTypes['Review']; // Review!
     newProject: NexusGenRootTypes['Project']; // Project!
@@ -1747,6 +1779,7 @@ export interface NexusGenFieldTypes {
     LikedBy: NexusGenRootTypes['User'][] | null; // [User!]
     name: string; // String!
     ProjectReviewed: NexusGenRootTypes['Project']; // Project!
+    projRating: number | null; // Int
     rKey: string | null; // String
     text: string; // String!
     thumbsDown: number; // Int!
@@ -1824,8 +1857,32 @@ export interface NexusGenArgTypes {
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
     dislikeAReview: { // args
-      id?: string | null; // ID
+      didThumbDown?: boolean | null; // Boolean
+      revId?: string | null; // ID
       username?: string | null; // String
+    }
+    editProject: { // args
+      category?: string | null; // String
+      id?: string | null; // ID
+      name?: string | null; // String
+      steps?: string | null; // String
+      timestamp?: string | null; // String
+      titleBlurb?: string | null; // String
+      titleImg?: string | null; // String
+      username?: string | null; // String
+    }
+    editReview: { // args
+      name?: string | null; // String
+      projId?: string | null; // ID
+      projRating?: number | null; // Int
+      revId?: string | null; // ID
+      text?: string | null; // String
+      timestamp?: string | null; // String
+    }
+    editUser: { // args
+      bio?: string | null; // String
+      email?: string | null; // String
+      userProfileImage?: string | null; // String
     }
     firebaseSignUp: { // args
       email?: string | null; // String
@@ -1833,7 +1890,8 @@ export interface NexusGenArgTypes {
       username?: string | null; // String
     }
     likeAReview: { // args
-      id?: string | null; // ID
+      didThumbUp?: boolean | null; // Boolean
+      revId?: string | null; // ID
       username?: string | null; // String
     }
     newProject: { // args
@@ -1848,6 +1906,7 @@ export interface NexusGenArgTypes {
     newReview: { // args
       id?: string | null; // ID
       name?: string | null; // String
+      projRating?: number | null; // Int
       text?: string | null; // String
       timestamp?: string | null; // String
       user?: string | null; // String
@@ -1855,6 +1914,7 @@ export interface NexusGenArgTypes {
     }
     newUser: { // args
       email?: string | null; // String
+      firebaseUID?: string | null; // String
       username?: string | null; // String
     }
     rateAProject: { // args

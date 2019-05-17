@@ -1,10 +1,12 @@
+@import '../../styles/variables.scss';
+
 .footer {
   display: flex;
   width: 100%;
   justify-content: center;
   flex-direction: column;
   height: 150px;
-  border: 2px solid gray;
+  border: 3px solid $color4;
   padding: 10px;
 }
 

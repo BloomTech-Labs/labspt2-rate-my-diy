@@ -1,12 +1,13 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import { Link } from 'react-router-dom';
-import { getUsers } from '../../query/query';
-import plus from '../../img/plus.png';
+import React from 'react'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+import ReviewCard from '../ReviewCard/ReviewCard'
+import { Link } from 'react-router-dom'
+import { getUsers } from '../../query/query'
+import plus from '../../img/plus.png'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-import './ReviewList.scss';
+import './ReviewList.scss'
 
 const GET_REVIEWS = gql`
   query reviews($email: String!) {
@@ -35,7 +36,7 @@ const GET_REVIEWS = gql`
       }
     }
   }
-`;
+`
 
 const GET_USER = gql`
   query user($email: String!) {
@@ -44,20 +45,20 @@ const GET_USER = gql`
       username
     }
   }
-`;
+`
 
 class ReviewList extends React.Component {
   render() {
-    const json = localStorage.getItem('authUser');
-    const user = JSON.parse(json);
-    const email = this.props.email || user.email || 'asldkf@gmail.com';
+    const json = localStorage.getItem('authUser')
+    const user = JSON.parse(json)
+    const email = this.props.email || user.email || 'asldkf@gmail.com'
 
     const ReviewListWithData = () => (
       <Query query={GET_REVIEWS} variables={{ email: email }}>
         {({
           loading: reviewsLoading,
           error: reviewsError,
-          data: reviewsData
+          data: reviewsData,
         }) => (
           <Query query={GET_USER} variables={{ email: email }}>
             {({ loading: userLoading, data: userData, error: userError }) => (
@@ -65,11 +66,51 @@ class ReviewList extends React.Component {
                 {({
                   loading: usersLoading,
                   data: usersData,
-                  error: usersError
+                  error: usersError,
                 }) => {
                   if (reviewsLoading || userLoading || usersLoading)
-                    return 'Loading...';
-                  if (reviewsError || userError || usersError) return `Error!`;
+                    return (
+                      <div className="review-list-all-container">
+                        <SkeletonTheme highlightColor="#6fb3b8">
+                          <h1 className="review-list-title">
+                            <Skeleton />
+                          </h1>
+                          <div className="review-list-container">
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                            <div className="review-list-card">
+                              <div>
+                                <div className="reiew-list-card-img">
+                                  <Skeleton height={280} width={380} />
+                                </div>
+                                <p>
+                                  <Skeleton />
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </SkeletonTheme>
+                      </div>
+                    )
+                  if (reviewsError || userError || usersError) return `Error!`
 
                   if (reviewsData.reviews[0]) {
                     return (
@@ -85,8 +126,11 @@ class ReviewList extends React.Component {
                                 review={review}
                                 users={usersData.users}
                                 user={userData.user}
+                                refetch={this.props.refetch}
+                                loggedIn={this.props.loggedIn}
+                                authUser={this.props.authUser}
                               />
-                            );
+                            )
                           })}
                           <div className="review-list-card">
                             <div>
@@ -102,7 +146,7 @@ class ReviewList extends React.Component {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   } else {
                     return (
                       <div className="review-list-all-container">
@@ -122,7 +166,7 @@ class ReviewList extends React.Component {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   }
                 }}
               </Query>
@@ -130,9 +174,9 @@ class ReviewList extends React.Component {
           </Query>
         )}
       </Query>
-    );
-    return <ReviewListWithData />;
+    )
+    return <ReviewListWithData />
   }
 }
 
-export default ReviewList;
+export default ReviewList

@@ -5,6 +5,7 @@
 4. .then() send the users info to Prisma 
 */
 import React, { Component } from 'react';
+import './AdditionInfo.scss';
 
 class AdditionInfo extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class AdditionInfo extends Component {
   render() {
     const { email, username } = this.state;
     return (
-      <div>
+      <div className="additionalInfoModal">
         <h1>Complete Your Sign Up.</h1>
         <form onSubmit={this.onSubmit}>
           <input

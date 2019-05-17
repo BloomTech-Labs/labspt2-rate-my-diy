@@ -13,6 +13,9 @@
   .addReviewForm {
     width: 100%;
   }
+  h1, h2{
+    color: $color4;
+  }
   .addReviewSection {
     display: flex;
     flex-direction: column;
