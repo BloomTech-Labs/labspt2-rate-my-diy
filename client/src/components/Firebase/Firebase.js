@@ -2,6 +2,10 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0657f7ecca8928b8f5c65210b69840ba124514e4
 
 var config = {
   apiKey: 'AIzaSyA5At5iJg-ngD1uUquKrjflPdF7wxXJOsM',
