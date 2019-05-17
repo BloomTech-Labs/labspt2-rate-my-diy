@@ -171,10 +171,6 @@ enum ProjectOrderByInput {
   titleBlurb_DESC
   steps_ASC
   steps_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type ProjectPreviousValues {
@@ -727,10 +723,6 @@ enum ReviewOrderByInput {
   thumbsUp_DESC
   thumbsDown_ASC
   thumbsDown_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type ReviewPreviousValues {
@@ -1181,7 +1173,7 @@ input UserCreateInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1223,7 +1215,7 @@ input UserCreateWithoutDislikedReviewsInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1239,7 +1231,7 @@ input UserCreateWithoutLikedReviewsInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1255,7 +1247,7 @@ input UserCreateWithoutProjectsInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1271,7 +1263,7 @@ input UserCreateWithoutRatedProjectsInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1287,7 +1279,7 @@ input UserCreateWithoutReviewListInput {
   firebaseUID: String
   username: String!
   email: String!
-  userProfileImage: String
+  userProfileImage: String!
   bio: String
   privilege: String
   stripeId: String
@@ -1324,10 +1316,6 @@ enum UserOrderByInput {
   stripeId_DESC
   accountType_ASC
   accountType_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type UserPreviousValues {
