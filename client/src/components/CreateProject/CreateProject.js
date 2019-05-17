@@ -6,6 +6,7 @@ import { Redirect } from 'react-router';
 import { CREATE_PROJECT } from '../../query/query';
 import { GET_PROJECTS } from '../Lists/ProjectList';
 import './CreateProject.scss';
+require('dotenv').config()
 
 class CreateProject extends Component {
   constructor(props) {
@@ -123,8 +124,8 @@ class CreateProject extends Component {
   openCloudinary = (e) => {
     e.preventDefault();
     let options = {
-      cloud_name: 'dv1rhurfd',
-      upload_preset: 'korisbak',
+      cloud_name: process.env.C_CLOUD_NAME,
+      upload_preset: process.env.C_UPLOAD_PRESET,
       returnJustUrl: true,
       maxImageWidth: 400,
       maxImageHeight: 500
