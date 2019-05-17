@@ -345,7 +345,7 @@ class ProjectCard extends React.Component {
                                           id: project.id,
                                           projRating: this.state.stars,
                                         },
-                                        refetchQueries: [{ query: getReviews }],
+                                        // refetchQueries: [{ query: getReviews }],
                                       })
                                       await this.props.refetch()
                                       const { reviews } = await this.props
@@ -554,7 +554,7 @@ class ProjectCard extends React.Component {
                                         id: project.id,
                                         projRating: this.state.stars,
                                       },
-                                      refetchQueries: [{ query: getReviews }],
+                                      // refetchQueries: [{ query: getReviews }],
                                     })
                                     await this.props.refetch()
                                     const { reviews } = await this.props
@@ -771,7 +771,7 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars,
                                     },
-                                    refetchQueries: [{ query: getReviews }],
+                                    // refetchQueries: [{ query: getReviews }],
                                   })
                                   await this.props.refetch()
                                   const { reviews } = await this.props
@@ -1207,7 +1207,7 @@ class ProjectCard extends React.Component {
                                           id: project.id,
                                           projRating: this.state.stars,
                                         },
-                                        refetchQueries: [{ query: getReviews }],
+                                        // refetchQueries: [{ query: getReviews }],
                                       })
                                       await this.props.refetch()
                                       const { reviews } = await this.props
@@ -1373,7 +1373,7 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars,
                                     },
-                                    refetchQueries: [{ query: getReviews }],
+                                    // refetchQueries: [{ query: getReviews }],
                                   })
                                   await this.props.refetch()
                                   const { reviews } = await this.props
@@ -1573,7 +1573,7 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars,
                                     },
-                                    refetchQueries: [{ query: getReviews }],
+                                    // refetchQueries: [{ query: getReviews }],
                                   })
                                   await this.props.refetch()
                                   const { reviews } = await this.props
