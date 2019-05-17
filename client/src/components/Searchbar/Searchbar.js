@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import LoginPopup from '../LoginPopUp/LoginPopUp'
-import Fuse from 'fuse.js'
-import { Checkbox, CheckboxGroup } from 'react-checkbox-group'
-import { RadioGroup, Radio } from 'react-radio-group'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import '../../styles/_globals.scss'
-import './Searchbar.scss'
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import LoginPopup from '../LoginPopUp/LoginPopUp';
+import Fuse from 'fuse.js';
+import moment from "moment";
+import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
+import { RadioGroup, Radio } from 'react-radio-group';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import '../../styles/_globals.scss';
+import './Searchbar.scss';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -166,18 +167,22 @@ class SearchBar extends Component {
     this.setState({
       userSort: option,
     })
+    console.log({userSortState: this.state.userSort})
   }
 
   projectSortChange = (option) => {
     this.setState({
       projectSort: option,
     })
+    console.log({projSortState: this.state.projectSort})
   }
 
-  reviewSortChange = (option) => {
-    this.setState({
+  reviewSortChange = async (option) => {
+    console.log({option: option})
+    await this.setState({
       reviewSort: option,
     })
+    console.log({revSortState: this.state.reviewSort})
   }
 
   search = (option) => {
@@ -236,11 +241,14 @@ class SearchBar extends Component {
 
     //reviews search
 
+    
+
     if (option.includes('review')) {
       options.keys.push('name')
       const reviewsFuse = new Fuse(this.props.reviews, options)
       if (this.state.text) {
         let reviewSearch = reviewsFuse.search(this.state.text)
+
 
         if (this.state.reviewSort === 'alpha')
           reviewSearch = reviewSearch
@@ -255,16 +263,37 @@ class SearchBar extends Component {
           })
 
         if (this.state.reviewSort === 'newest')
-          reviewSearch = reviewSearch.sort(function(a, b) {
-            return new Date(b.timestamp) - new Date(a.timestamp)
+       
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            console.log({rev1: rev})
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp).reverse().map(rev => {
+            const tim = rev.timestamp.toString()
+            const timestam = new moment(tim)
+            rev.timestamp = timestam
+            console.log({rev2: rev})
+            return rev
           })
 
         if (this.state.reviewSort === 'oldest')
-          reviewSearch = reviewSearch
-            .sort(function(a, b) {
-              return new Date(b.timestamp) - new Date(a.timestamp)
+       
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            console.log({rev1: rev})
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp)
+            .map(rev => {
+              const tim = rev.timestamp.toString()
+              const timestam = new moment(tim)
+              rev.timestamp = timestam
+              console.log({rev2: rev})
+              return rev
             })
-            .reverse()
 
         this.props.reviewSearchHandler(reviewSearch)
 
@@ -286,16 +315,35 @@ class SearchBar extends Component {
           })
 
         if (this.state.reviewSort === 'newest')
-          reviewSearch = reviewSearch.sort(function(a, b) {
-            return new Date(b.timestamp) - new Date(a.timestamp)
+        
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            console.log({rev1: rev})
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp).reverse().map(rev => {
+            const tim = rev.timestamp.toString()
+            const timestam = new moment(tim)
+            rev.timestamp = timestam
+            console.log({rev2: rev})
+            return rev
           })
 
         if (this.state.reviewSort === 'oldest')
-          reviewSearch = reviewSearch
-            .sort(function(a, b) {
-              return new Date(b.timestamp) - new Date(a.timestamp)
+        
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp)
+            .map(rev => {
+              const tim = rev.timestamp.toString()
+              const timestam = new moment(tim)
+              rev.timestamp = timestam
+              return rev
             })
-            .reverse()
 
         this.props.reviewSearchHandler(reviewSearch)
 

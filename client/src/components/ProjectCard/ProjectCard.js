@@ -110,7 +110,7 @@ class ProjectCard extends React.Component {
     if (this.props.users[0]) {
       const { project } = this.props
       const time = moment(project.timestamp).format('MMMM Do YYYY')
-      if (time !== 'Invalid date') project.timestamp = time
+      
 
       let steps = JSON.parse(project.steps)
 
@@ -139,9 +139,8 @@ class ProjectCard extends React.Component {
                 <div className="header-info">
                   <h1>{`Project Title: ${project.name}`}</h1>
                   <p>{`Created By: ${project.User.username}`}</p>
-                  <p>{project.timestamp}</p>
+                  {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                   <p>{`Rating: ${project.rating}`}</p>
-                  <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                 </div>
 
                 <img
@@ -195,7 +194,7 @@ class ProjectCard extends React.Component {
                     <div className="project-card-container">
                       <h1>{`aProject Title:${project.name}`}</h1>
                       <p>{`Created By:${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating:${project.rating}`}</p>
                       <img
                         className="project-page-image"
@@ -399,7 +398,7 @@ class ProjectCard extends React.Component {
                     <div className="project-card-container">
                       <h1>{`bProject Title:${project.name}`}</h1>
                       <p>{`Created By:${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating:${project.rating}`}</p>
                       <img
                         className="project-page-image"
@@ -606,7 +605,7 @@ class ProjectCard extends React.Component {
                   <div className="project-card-container">
                     <h1>{`Project Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
-                    <p>{project.timestamp}</p>
+                    {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                     <p>{`Rating:${project.rating}`}</p>
                     <img
                       className="project-page-image"
@@ -817,7 +816,7 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
                       </div>
                       <img
@@ -866,7 +865,7 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
                       </div>
 
@@ -921,7 +920,7 @@ class ProjectCard extends React.Component {
                   <div className="project-card-container">
                     <h1>{`Project Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
-                    <p>{project.timestamp}</p>
+                    {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                     <p>{`Rating:${project.rating}`}</p>
                     <img
                       className="project-page-image"
@@ -988,7 +987,7 @@ class ProjectCard extends React.Component {
                 <div className="header-info">
                   <h1>{`Project Title: ${project.name}`}</h1>
                   <p>{`Created By: ${project.User.username}`}</p>
-                  <p>{project.timestamp}</p>
+                  {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                   <p>{`Rating: ${project.rating}`}</p>
                 </div>
 
@@ -1033,7 +1032,7 @@ class ProjectCard extends React.Component {
                     <div className="project-card-container">
                       <h1>{`Project Title:${project.name}`}</h1>
                       <p>{`Created By:${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating:${project.rating}`}</p>
                       <img
                         className="project-page-image"
@@ -1231,7 +1230,7 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
                       </div>
 
@@ -1388,7 +1387,7 @@ class ProjectCard extends React.Component {
                   <div className="project-card-container">
                     <h1>{`Project Title:${project.name}`}</h1>
                     <p>{`Created By:${project.User.username}`}</p>
-                    <p>{project.timestamp}</p>
+                    {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                     <p>{`Rating:${project.rating}`}</p>
                     <img
                       className="project-page-image"
@@ -1593,7 +1592,7 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
                       </div>
 
@@ -1643,7 +1642,7 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
                       </div>
 
@@ -1699,7 +1698,7 @@ class ProjectCard extends React.Component {
                     <div className="header-info">
                       <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating: ${project.rating}`}</p>
                     </div>
 
@@ -1749,7 +1748,7 @@ class ProjectCard extends React.Component {
               <div className="header-info">
                 <h1>{`Project Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
-                <p>{project.timestamp}</p>
+                {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                 <p>{`Rating: ${project.rating}`}</p>
               </div>
 
@@ -1799,7 +1798,7 @@ class ProjectCard extends React.Component {
               <div className="header-info">
                 <h1>{`Project Title: ${project.name}`}</h1>
                 <p>{`Created By: ${project.User.username}`}</p>
-                <p>{project.timestamp}</p>
+                {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                 <p>{`Rating: ${project.rating}`}</p>
               </div>
 
