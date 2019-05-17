@@ -195,9 +195,8 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
-                        <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                       </div>
 
                       <img
@@ -412,9 +411,8 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
-                        <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                       </div>
 
                       <img
@@ -630,9 +628,8 @@ class ProjectCard extends React.Component {
                     <div className="header-info">
                       <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating: ${project.rating}`}</p>
-                      <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                     </div>
 
                     <img
@@ -959,9 +956,8 @@ class ProjectCard extends React.Component {
                     <div className="header-info">
                       <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating: ${project.rating}`}</p>
-                      <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                     </div>
 
                     <img
@@ -1074,9 +1070,8 @@ class ProjectCard extends React.Component {
                       <div className="header-info">
                         <h1>{`Project Title: ${project.name}`}</h1>
                         <p>{`Created By: ${project.User.username}`}</p>
-                        <p>{project.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
-                        <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                       </div>
 
                       <img
@@ -1439,9 +1434,8 @@ class ProjectCard extends React.Component {
                     <div className="header-info">
                       <h1>{`Project Title: ${project.name}`}</h1>
                       <p>{`Created By: ${project.User.username}`}</p>
-                      <p>{project.timestamp}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                       <p>{`Rating: ${project.rating}`}</p>
-                      <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                     </div>
 
                     <img
@@ -1659,7 +1653,6 @@ class ProjectCard extends React.Component {
                         <p>{`Created By: ${project.User.username}`}</p>
                         {time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
                         <p>{`Rating: ${project.rating}`}</p>
-                        <p>{`Date Created: ${project.timestamp.slice(0, 10)}`}</p>
                       </div>
 
                       <img
