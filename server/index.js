@@ -1,6 +1,7 @@
 const path = require('path');
 const { ApolloServer } = require('apollo-server')
 import { GraphQLServer } from 'graphql-yoga'
+require('dotenv').config()
 const { makePrismaSchema, prismaObjectType } = require('nexus-prisma');
 const { prisma } = require('./src/generated/prisma-client');
 const datamodelInfo = require('./src/generated/nexus-prisma');
@@ -10,10 +11,10 @@ const nodemailer = require('nodemailer');
 const pug = require('pug');
 
 let transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: process.env.NM_SERVICE,
   auth: {
-    user: 'ratemydiyproject@gmail.com', // generated ethereal user
-    pass: 'lambda123' // generated ethereal password
+    user: process.env.NM_USER, // generated ethereal user
+    pass: process.env.NM_PW // generated ethereal password
   }
 });
 
