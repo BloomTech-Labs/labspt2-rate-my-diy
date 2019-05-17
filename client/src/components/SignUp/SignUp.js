@@ -79,7 +79,7 @@ class SignUpFormBase extends Component {
                     name="passwordOne"
                     value={passwordOne}
                     onChange={this.onChangeHandler}
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     disabled
                   />
@@ -87,7 +87,7 @@ class SignUpFormBase extends Component {
                     name="passwordTwo"
                     value={passwordTwo}
                     onChange={this.onChangeHandler}
-                    type="text"
+                    type="password"
                     placeholder="Confirm password."
                     disabled
                   />
