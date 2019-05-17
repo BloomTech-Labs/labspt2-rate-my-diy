@@ -22,8 +22,8 @@ export const GET_NAT_USER = gql`
 class Account extends Component {
   render() {
     if (this.props.user) {
-      const user = this.props.firebase.auth.currentUser
-      const email = user.providerData[0].email
+      const user = this.props.authUser
+      const email = user.email
       return (
         <div className="settings-container">
           <h1>Settings</h1>
