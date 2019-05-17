@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import moment from 'moment';
-import { NEW_REVIEW, getReviews } from '../../query/query';
+import { NEW_REVIEW} from '../../query/query';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import './ProjectCard.scss';
