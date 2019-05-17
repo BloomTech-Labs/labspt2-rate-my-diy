@@ -1509,39 +1509,39 @@ class ProjectCard extends React.Component {
                             if (error) {
                               console.log({ revError: error })
                               return (
-                                <form>
-                                  <div className="addReviewSection">
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                 <form>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      className="titleInput"
-                                      type="text"
-                                      name="name"
-                                      placeHolder="Add Title..."
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      className="reviewBody"
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
 
                                     <span>
                                       There was an error submitting your review.
@@ -1551,8 +1551,8 @@ class ProjectCard extends React.Component {
                                     >
                                       Go Back
                                     </button>
-                                  </div>
-                                </form>
+                                    </div>
+                                  </form>
                               )
                             }
 
