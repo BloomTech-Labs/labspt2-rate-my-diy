@@ -241,38 +241,40 @@ class ProjectCard extends React.Component {
                             {(newReview, { loading, error, data }) => {
                               if (loading)
                                 return (
-                                  <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                  <form className="addReviewForm">
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+                                    </div>
                                     <span>Submitting your review...</span>
                                   </form>
                                 )
@@ -280,37 +282,39 @@ class ProjectCard extends React.Component {
                                 console.log({ revError: error })
                                 return (
                                   <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+
                                     <span>
                                       There was an error submitting your review.
                                     </span>
@@ -319,15 +323,18 @@ class ProjectCard extends React.Component {
                                     >
                                       Go Back
                                     </button>
+                                    </div>
                                   </form>
                                 )
                               }
                               if (data)
                                 return (
                                   <form
+                                    className="addReviewForm"
                                     onSubmit={async (e) => {
                                       e.preventDefault()
                                       const date = await new Date(Date.now())
+
                                       await newReview({
                                         variables: {
                                           name: this.state.name,
@@ -338,8 +345,8 @@ class ProjectCard extends React.Component {
                                           id: project.id,
                                           projRating: this.state.stars,
                                         },
+                                        refetchQueries: [{ query: getReviews }],
                                       })
-
                                       await this.props.refetch()
                                       const { reviews } = await this.props
                                       let revs = await reviews.filter(
@@ -353,35 +360,40 @@ class ProjectCard extends React.Component {
                                       })
                                     }}
                                   >
-                                    <h2>New Review</h2>
-                                    <h3>Rating</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                    />
-                                    <button type="submit">Submit</button>
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+                                      <button type="submit">Submit</button>
+                                    </div>
                                   </form>
                                 )
                             }}
@@ -438,38 +450,40 @@ class ProjectCard extends React.Component {
                             {(newReview, { loading, error, data }) => {
                               if (loading)
                                 return (
-                                  <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                  <form className="addReviewForm">
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+                                      </div>
                                     <span>Submitting your review...</span>
                                   </form>
                                 )
@@ -477,51 +491,55 @@ class ProjectCard extends React.Component {
                                 console.log({ revError: error })
                                 return (
                                   <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <span>
-                                      There was an error submitting your review.
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+
+                                      <span>
+                                        There was an error submitting your review.
                                     </span>
-                                    <button
-                                      onClick={() => window.location.reload()}
-                                    >
-                                      Go Back
+                                      <button
+                                        onClick={() => window.location.reload()}
+                                      >
+                                        Go Back
                                     </button>
+                                    </div>
                                   </form>
                                 )
                               }
 
                               return (
                                 <form
+                                  className="addReviewForm"
                                   onSubmit={async (e) => {
                                     e.preventDefault()
                                     const date = await new Date(Date.now())
@@ -536,7 +554,7 @@ class ProjectCard extends React.Component {
                                         id: project.id,
                                         projRating: this.state.stars,
                                       },
-                                      // refetchQueries: [ { query: getReviews}]
+                                      refetchQueries: [{ query: getReviews }],
                                     })
                                     await this.props.refetch()
                                     const { reviews } = await this.props
@@ -551,35 +569,40 @@ class ProjectCard extends React.Component {
                                     })
                                   }}
                                 >
-                                  <h2>New Review</h2>
-                                  <h3>Rating:</h3>
-                                  <select
-                                    name="stars"
-                                    onChange={this.starChange}
-                                    value={this.state.stars}
-                                  >
-                                    <option value="0">Rating</option>
-                                    <option value="1">1 star</option>
-                                    <option value="2">2 stars</option>
-                                    <option value="3">3 stars</option>
-                                    <option value="4">4 stars</option>
-                                    <option value="5">5 stars</option>
-                                  </select>
+                                  <div className="addReviewSection">
+                                    <h2>New Review</h2>
+                                    <h3>Rating:</h3>
+                                    <select
+                                      name="stars"
+                                      onChange={this.starChange}
+                                      value={this.state.stars}
+                                    >
+                                      <option value="0">Rating</option>
+                                      <option value="1">1 star</option>
+                                      <option value="2">2 stars</option>
+                                      <option value="3">3 stars</option>
+                                      <option value="4">4 stars</option>
+                                      <option value="5">5 stars</option>
+                                    </select>
 
-                                  <h3>Title:</h3>
-                                  <input
-                                    type="text"
-                                    name="name"
-                                    value={this.state.name}
-                                    onChange={this.textChange}
-                                  />
-                                  <h3>Body:</h3>
-                                  <textarea
-                                    name="text"
-                                    value={this.state.text}
-                                    onChange={this.textChange}
-                                  />
-                                  <button type="submit">Submit</button>
+                                    <h3>Title:</h3>
+                                    <input
+                                      className="titleInput"
+                                      type="text"
+                                      name="name"
+                                      placeHolder="Add Title..."
+                                      value={this.state.name}
+                                      onChange={this.textChange}
+                                    />
+                                    <h3>Body:</h3>
+                                    <textarea
+                                      name="text"
+                                      value={this.state.text}
+                                      onChange={this.textChange}
+                                      className="reviewBody"
+                                    />
+                                    <button type="submit">Submit</button>
+                                  </div>
                                 </form>
                               )
                             }}
@@ -644,37 +667,40 @@ class ProjectCard extends React.Component {
                           {(newReview, { loading, error, data }) => {
                             if (loading)
                               return (
-                                <form>
-                                  <h2>New Review</h2>
-                                  <h3>Rating:</h3>
-                                  <select
-                                    name="stars"
-                                    onChange={this.starChange}
-                                    value={this.state.stars}
-                                    disabled
-                                  >
-                                    <option value="0">Rating</option>
-                                    <option value="1">1 star</option>
-                                    <option value="2">2 stars</option>
-                                    <option value="3">3 stars</option>
-                                    <option value="4">4 stars</option>
-                                    <option value="5">5 stars</option>
-                                  </select>
-                                  <h3>Title:</h3>
-                                  <input
-                                    type="text"
-                                    name="name"
-                                    value={this.state.name}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <h3>Body:</h3>
-                                  <textarea
-                                    name="text"
-                                    value={this.state.text}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
+                                <form className="addReviewForm">
+                                  <div className="addReviewSection">
+                                    <h2>New Review</h2>
+                                    <h3>Rating:</h3>
+                                    <select
+                                      name="stars"
+                                      onChange={this.starChange}
+                                      value={this.state.stars}
+                                    >
+                                      <option value="0">Rating</option>
+                                      <option value="1">1 star</option>
+                                      <option value="2">2 stars</option>
+                                      <option value="3">3 stars</option>
+                                      <option value="4">4 stars</option>
+                                      <option value="5">5 stars</option>
+                                    </select>
+
+                                    <h3>Title:</h3>
+                                    <input
+                                      className="titleInput"
+                                      type="text"
+                                      name="name"
+                                      placeHolder="Add Title..."
+                                      value={this.state.name}
+                                      onChange={this.textChange}
+                                    />
+                                    <h3>Body:</h3>
+                                    <textarea
+                                      name="text"
+                                      value={this.state.text}
+                                      onChange={this.textChange}
+                                      className="reviewBody"
+                                    />
+                                  </div>
                                   <span>Submitting your review...</span>
                                 </form>
                               )
@@ -682,51 +708,55 @@ class ProjectCard extends React.Component {
                               console.log({ revError: error })
                               return (
                                 <form>
-                                  <h2>New Review</h2>
-                                  <h3>Rating:</h3>
-                                  <select
-                                    name="stars"
-                                    onChange={this.starChange}
-                                    value={this.state.stars}
-                                    disabled
-                                  >
-                                    <option value="0">Rating</option>
-                                    <option value="1">1 star</option>
-                                    <option value="2">2 stars</option>
-                                    <option value="3">3 stars</option>
-                                    <option value="4">4 stars</option>
-                                    <option value="5">5 stars</option>
-                                  </select>
+                                  <div className="addReviewSection">
+                                    <h2>New Review</h2>
+                                    <h3>Rating:</h3>
+                                    <select
+                                      name="stars"
+                                      onChange={this.starChange}
+                                      value={this.state.stars}
+                                    >
+                                      <option value="0">Rating</option>
+                                      <option value="1">1 star</option>
+                                      <option value="2">2 stars</option>
+                                      <option value="3">3 stars</option>
+                                      <option value="4">4 stars</option>
+                                      <option value="5">5 stars</option>
+                                    </select>
 
-                                  <h3>Title:</h3>
-                                  <input
-                                    type="text"
-                                    name="name"
-                                    value={this.state.name}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <h3>Body:</h3>
-                                  <textarea
-                                    name="text"
-                                    value={this.state.text}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <span>
-                                    There was an error submitting your review.
-                                  </span>
-                                  <button
-                                    onClick={() => window.location.reload()}
-                                  >
-                                    Go Back
-                                  </button>
+                                    <h3>Title:</h3>
+                                    <input
+                                      className="titleInput"
+                                      type="text"
+                                      name="name"
+                                      placeHolder="Add Title..."
+                                      value={this.state.name}
+                                      onChange={this.textChange}
+                                    />
+                                    <h3>Body:</h3>
+                                    <textarea
+                                      name="text"
+                                      value={this.state.text}
+                                      onChange={this.textChange}
+                                      className="reviewBody"
+                                    />
+
+                                    <span>
+                                      There was an error submitting your review.
+                                    </span>
+                                    <button
+                                      onClick={() => window.location.reload()}
+                                    >
+                                      Go Back
+                                    </button>
+                                  </div>
                                 </form>
                               )
                             }
 
                             return (
                               <form
+                                className="addReviewForm"
                                 onSubmit={async (e) => {
                                   e.preventDefault()
                                   const date = await new Date(Date.now())
@@ -741,7 +771,7 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars,
                                     },
-                                    // refetchQueries: [ { query: getReviews}]
+                                    refetchQueries: [{ query: getReviews }],
                                   })
                                   await this.props.refetch()
                                   const { reviews } = await this.props
@@ -756,35 +786,40 @@ class ProjectCard extends React.Component {
                                   })
                                 }}
                               >
-                                <h2>New Review</h2>
-                                <h3>Rating:</h3>
-                                <select
-                                  name="stars"
-                                  onChange={this.starChange}
-                                  value={this.state.stars}
-                                >
-                                  <option value="0">Rating</option>
-                                  <option value="1">1 star</option>
-                                  <option value="2">2 stars</option>
-                                  <option value="3">3 stars</option>
-                                  <option value="4">4 stars</option>
-                                  <option value="5">5 stars</option>
-                                </select>
+                                <div className="addReviewSection">
+                                  <h2>New Review</h2>
+                                  <h3>Rating:</h3>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
 
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                />
-                                <button type="submit">Submit</button>
+                                  <h3>Title:</h3>
+                                  <input
+                                    className="titleInput"
+                                    type="text"
+                                    name="name"
+                                    placeHolder="Add Title..."
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    className="reviewBody"
+                                  />
+                                  <button type="submit">Submit</button>
+                                </div>
                               </form>
                             )
                           }}
@@ -1068,38 +1103,40 @@ class ProjectCard extends React.Component {
                             {(newReview, { loading, error, data }) => {
                               if (loading)
                                 return (
-                                  <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                  <form className="addReviewForm">
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+                                      </div>
                                     <span>Submitting your review...</span>
                                   </form>
                                 )
@@ -1107,37 +1144,39 @@ class ProjectCard extends React.Component {
                                 console.log({ revError: error })
                                 return (
                                   <form>
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                      disabled
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                      disabled
-                                    />
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+
                                     <span>
                                       There was an error submitting your review.
                                     </span>
@@ -1146,12 +1185,14 @@ class ProjectCard extends React.Component {
                                     >
                                       Go Back
                                     </button>
+                                    </div>
                                   </form>
                                 )
                               }
                               if (data)
                                 return (
                                   <form
+                                    className="addReviewForm"
                                     onSubmit={async (e) => {
                                       e.preventDefault()
                                       const date = await new Date(Date.now())
@@ -1166,7 +1207,7 @@ class ProjectCard extends React.Component {
                                           id: project.id,
                                           projRating: this.state.stars,
                                         },
-                                        // refetchQueries: [ { query: getReviews}]
+                                        refetchQueries: [{ query: getReviews }],
                                       })
                                       await this.props.refetch()
                                       const { reviews } = await this.props
@@ -1181,35 +1222,40 @@ class ProjectCard extends React.Component {
                                       })
                                     }}
                                   >
-                                    <h2>New Review</h2>
-                                    <h3>Rating:</h3>
-                                    <select
-                                      name="stars"
-                                      onChange={this.starChange}
-                                      value={this.state.stars}
-                                    >
-                                      <option value="0">Rating</option>
-                                      <option value="1">1 star</option>
-                                      <option value="2">2 stars</option>
-                                      <option value="3">3 stars</option>
-                                      <option value="4">4 stars</option>
-                                      <option value="5">5 stars</option>
-                                    </select>
+                                    <div className="addReviewSection">
+                                      <h2>New Review</h2>
+                                      <h3>Rating:</h3>
+                                      <select
+                                        name="stars"
+                                        onChange={this.starChange}
+                                        value={this.state.stars}
+                                      >
+                                        <option value="0">Rating</option>
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 stars</option>
+                                        <option value="3">3 stars</option>
+                                        <option value="4">4 stars</option>
+                                        <option value="5">5 stars</option>
+                                      </select>
 
-                                    <h3>Title:</h3>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      value={this.state.name}
-                                      onChange={this.textChange}
-                                    />
-                                    <h3>Body:</h3>
-                                    <textarea
-                                      name="text"
-                                      value={this.state.text}
-                                      onChange={this.textChange}
-                                    />
-                                    <button type="submit">Submit</button>
+                                      <h3>Title:</h3>
+                                      <input
+                                        className="titleInput"
+                                        type="text"
+                                        name="name"
+                                        placeHolder="Add Title..."
+                                        value={this.state.name}
+                                        onChange={this.textChange}
+                                      />
+                                      <h3>Body:</h3>
+                                      <textarea
+                                        name="text"
+                                        value={this.state.text}
+                                        onChange={this.textChange}
+                                        className="reviewBody"
+                                      />
+                                      <button type="submit">Submit</button>
+                                    </div>
                                   </form>
                                 )
                             }}
@@ -1423,38 +1469,40 @@ class ProjectCard extends React.Component {
                           {(newReview, { loading, error, data }) => {
                             if (loading)
                               return (
-                                <form>
-                                  <h2>New Review</h2>
-                                  <h3>Rating:</h3>
-                                  <select
-                                    name="stars"
-                                    onChange={this.starChange}
-                                    value={this.state.stars}
-                                    disabled
-                                  >
-                                    <option value="0">Rating</option>
-                                    <option value="1">1 star</option>
-                                    <option value="2">2 stars</option>
-                                    <option value="3">3 stars</option>
-                                    <option value="4">4 stars</option>
-                                    <option value="5">5 stars</option>
-                                  </select>
+                                <form className="addReviewForm">
+                                  <div className="addReviewSection">
+                                    <h2>New Review</h2>
+                                    <h3>Rating:</h3>
+                                    <select
+                                      name="stars"
+                                      onChange={this.starChange}
+                                      value={this.state.stars}
+                                    >
+                                      <option value="0">Rating</option>
+                                      <option value="1">1 star</option>
+                                      <option value="2">2 stars</option>
+                                      <option value="3">3 stars</option>
+                                      <option value="4">4 stars</option>
+                                      <option value="5">5 stars</option>
+                                    </select>
 
-                                  <h3>Title:</h3>
-                                  <input
-                                    type="text"
-                                    name="name"
-                                    value={this.state.name}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <h3>Body:</h3>
-                                  <textarea
-                                    name="text"
-                                    value={this.state.text}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
+                                    <h3>Title:</h3>
+                                    <input
+                                      className="titleInput"
+                                      type="text"
+                                      name="name"
+                                      placeHolder="Add Title..."
+                                      value={this.state.name}
+                                      onChange={this.textChange}
+                                    />
+                                    <h3>Body:</h3>
+                                    <textarea
+                                      name="text"
+                                      value={this.state.text}
+                                      onChange={this.textChange}
+                                      className="reviewBody"
+                                    />
+                                  </div>
                                   <span>Submitting your review...</span>
                                 </form>
                               )
@@ -1462,51 +1510,55 @@ class ProjectCard extends React.Component {
                               console.log({ revError: error })
                               return (
                                 <form>
-                                  <h2>New Review</h2>
-                                  <h3>Rating:</h3>
-                                  <select
-                                    name="stars"
-                                    onChange={this.starChange}
-                                    value={this.state.stars}
-                                    disabled
-                                  >
-                                    <option value="0">Rating</option>
-                                    <option value="1">1 star</option>
-                                    <option value="2">2 stars</option>
-                                    <option value="3">3 stars</option>
-                                    <option value="4">4 stars</option>
-                                    <option value="5">5 stars</option>
-                                  </select>
+                                  <div className="addReviewSection">
+                                    <h2>New Review</h2>
+                                    <h3>Rating:</h3>
+                                    <select
+                                      name="stars"
+                                      onChange={this.starChange}
+                                      value={this.state.stars}
+                                    >
+                                      <option value="0">Rating</option>
+                                      <option value="1">1 star</option>
+                                      <option value="2">2 stars</option>
+                                      <option value="3">3 stars</option>
+                                      <option value="4">4 stars</option>
+                                      <option value="5">5 stars</option>
+                                    </select>
 
-                                  <h3>Title:</h3>
-                                  <input
-                                    type="text"
-                                    name="name"
-                                    value={this.state.name}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <h3>Body:</h3>
-                                  <textarea
-                                    name="text"
-                                    value={this.state.text}
-                                    onChange={this.textChange}
-                                    disabled
-                                  />
-                                  <span>
-                                    There was an error submitting your review.
-                                  </span>
-                                  <button
-                                    onClick={() => window.location.reload()}
-                                  >
-                                    Go Back
-                                  </button>
+                                    <h3>Title:</h3>
+                                    <input
+                                      className="titleInput"
+                                      type="text"
+                                      name="name"
+                                      placeHolder="Add Title..."
+                                      value={this.state.name}
+                                      onChange={this.textChange}
+                                    />
+                                    <h3>Body:</h3>
+                                    <textarea
+                                      name="text"
+                                      value={this.state.text}
+                                      onChange={this.textChange}
+                                      className="reviewBody"
+                                    />
+
+                                    <span>
+                                      There was an error submitting your review.
+                                    </span>
+                                    <button
+                                      onClick={() => window.location.reload()}
+                                    >
+                                      Go Back
+                                    </button>
+                                  </div>
                                 </form>
                               )
                             }
 
                             return (
                               <form
+                                className="addReviewForm"
                                 onSubmit={async (e) => {
                                   e.preventDefault()
                                   const date = await new Date(Date.now())
@@ -1521,7 +1573,7 @@ class ProjectCard extends React.Component {
                                       id: project.id,
                                       projRating: this.state.stars,
                                     },
-                                    // refetchQueries: [ { query: getReviews}]
+                                    refetchQueries: [{ query: getReviews }],
                                   })
                                   await this.props.refetch()
                                   const { reviews } = await this.props
@@ -1536,35 +1588,40 @@ class ProjectCard extends React.Component {
                                   })
                                 }}
                               >
-                                <h2>New Review</h2>
-                                <h3>Rating:</h3>
-                                <select
-                                  name="stars"
-                                  onChange={this.starChange}
-                                  value={this.state.stars}
-                                >
-                                  <option value="0">Rating</option>
-                                  <option value="1">1 star</option>
-                                  <option value="2">2 stars</option>
-                                  <option value="3">3 stars</option>
-                                  <option value="4">4 stars</option>
-                                  <option value="5">5 stars</option>
-                                </select>
+                                <div className="addReviewSection">
+                                  <h2>New Review</h2>
+                                  <h3>Rating:</h3>
+                                  <select
+                                    name="stars"
+                                    onChange={this.starChange}
+                                    value={this.state.stars}
+                                  >
+                                    <option value="0">Rating</option>
+                                    <option value="1">1 star</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="5">5 stars</option>
+                                  </select>
 
-                                <h3>Title:</h3>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.textChange}
-                                />
-                                <h3>Body:</h3>
-                                <textarea
-                                  name="text"
-                                  value={this.state.text}
-                                  onChange={this.textChange}
-                                />
-                                <button type="submit">Submit</button>
+                                  <h3>Title:</h3>
+                                  <input
+                                    className="titleInput"
+                                    type="text"
+                                    name="name"
+                                    placeHolder="Add Title..."
+                                    value={this.state.name}
+                                    onChange={this.textChange}
+                                  />
+                                  <h3>Body:</h3>
+                                  <textarea
+                                    name="text"
+                                    value={this.state.text}
+                                    onChange={this.textChange}
+                                    className="reviewBody"
+                                  />
+                                  <button type="submit">Submit</button>
+                                </div>
                               </form>
                             )
                           }}
@@ -1576,7 +1633,7 @@ class ProjectCard extends React.Component {
                         >
                           Add a review
                         </button>
-                        <button onClick={this.collapse}>Collapse</button>
+                       
                       </div>
                    
                   </div>
