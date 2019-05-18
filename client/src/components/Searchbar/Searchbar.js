@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import LoginPopup from '../LoginPopUp/LoginPopUp'
-import Fuse from 'fuse.js'
-import { Checkbox, CheckboxGroup } from 'react-checkbox-group'
-import { RadioGroup, Radio } from 'react-radio-group'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import '../../styles/_globals.scss'
-import './Searchbar.scss'
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import LoginPopup from '../LoginPopUp/LoginPopUp';
+import Fuse from 'fuse.js';
+import moment from "moment";
+import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
+import { RadioGroup, Radio } from 'react-radio-group';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import '../../styles/_globals.scss';
+import './Searchbar.scss';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -166,18 +167,22 @@ class SearchBar extends Component {
     this.setState({
       userSort: option,
     })
+    
   }
 
   projectSortChange = (option) => {
     this.setState({
       projectSort: option,
     })
+    
   }
 
   reviewSortChange = (option) => {
+    
     this.setState({
       reviewSort: option,
     })
+    
   }
 
   search = (option) => {
@@ -194,18 +199,18 @@ class SearchBar extends Component {
 
       const usersFuse = new Fuse(this.props.users, options)
 
-      if (this.state.text) {
+      if (this.state.text !== "") {
         let userSearch = usersFuse.search(this.state.text)
 
         if (this.state.userSort === 'alpha')
           userSearch = userSearch.sort(function(a, b) {
-            return a.username - b.username
+            return a.username.toLowerCase() > b.username.toLowerCase() ? 1 : a.username.toLowerCase() < b.username.toLowerCase() ? -1 : 0;
           })
 
         if (this.state.userSort === 'revAlpha')
           userSearch = userSearch
             .sort(function(a, b) {
-              return a.username - b.username
+              return a.username.toLowerCase() > b.username.toLowerCase() ? 1 : a.username.toLowerCase() < b.username.toLowerCase() ? -1 : 0;
             })
             .reverse()
 
@@ -214,17 +219,17 @@ class SearchBar extends Component {
         this.props.history.push('/search')
       }
 
-      if (!this.state.text) {
+      if (this.state.text === "") {
         let userSearch = this.props.users
         if (this.state.userSort === 'alpha')
           userSearch = userSearch.sort(function(a, b) {
-            return a.username - b.username
+            return a.username.toLowerCase() > b.username.toLowerCase() ? 1 : a.username.toLowerCase() < b.username.toLowerCase() ? -1 : 0;
           })
 
         if (this.state.userSort === 'revAlpha')
           userSearch = userSearch
             .sort(function(a, b) {
-              return a.username - b.username
+              return a.username.toLowerCase() > b.username.toLowerCase() ? 1 : a.username.toLowerCase() < b.username.toLowerCase() ? -1 : 0;
             })
             .reverse()
 
@@ -236,66 +241,109 @@ class SearchBar extends Component {
 
     //reviews search
 
+    
+
     if (option.includes('review')) {
       options.keys.push('name')
       const reviewsFuse = new Fuse(this.props.reviews, options)
-      if (this.state.text) {
+      if (this.state.text !== "") {
         let reviewSearch = reviewsFuse.search(this.state.text)
+
 
         if (this.state.reviewSort === 'alpha')
           reviewSearch = reviewSearch
             .sort(function(a, b) {
-              return a.name - b.name
+              return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
             })
-            .reverse()
+            
 
         if (this.state.reviewSort === 'revAlpha')
           reviewSearch = reviewSearch.sort(function(a, b) {
-            return a.name - b.name
-          })
+            return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
+          }).reverse()
 
         if (this.state.reviewSort === 'newest')
-          reviewSearch = reviewSearch.sort(function(a, b) {
-            return new Date(b.timestamp) - new Date(a.timestamp)
+       
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp).reverse().map(rev => {
+            const tim = rev.timestamp.toString()
+            const timestam = new moment(tim)
+            rev.timestamp = timestam
+           
+            return rev
           })
 
         if (this.state.reviewSort === 'oldest')
-          reviewSearch = reviewSearch
-            .sort(function(a, b) {
-              return new Date(b.timestamp) - new Date(a.timestamp)
+       
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp)
+            .map(rev => {
+              const tim = rev.timestamp.toString()
+              const timestam = new moment(tim)
+              rev.timestamp = timestam
+              
+              return rev
             })
-            .reverse()
 
         this.props.reviewSearchHandler(reviewSearch)
 
         this.props.history.push('/search')
       }
-      if (!this.state.text) {
+      if (this.state.text === "") {
         let reviewSearch = this.props.reviews
 
         if (this.state.reviewSort === 'alpha')
           reviewSearch = reviewSearch
             .sort(function(a, b) {
-              return a.name - b.name
+              return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
             })
-            .reverse()
+            
 
         if (this.state.reviewSort === 'revAlpha')
           reviewSearch = reviewSearch.sort(function(a, b) {
-            return a.name - b.name
-          })
+            return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
+          }).reverse()
 
         if (this.state.reviewSort === 'newest')
-          reviewSearch = reviewSearch.sort(function(a, b) {
-            return new Date(b.timestamp) - new Date(a.timestamp)
+        
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp).reverse().map(rev => {
+            const tim = rev.timestamp.toString()
+            const timestam = new moment(tim)
+            rev.timestamp = timestam
+            
+            return rev
           })
 
         if (this.state.reviewSort === 'oldest')
-          reviewSearch = reviewSearch
-            .sort(function(a, b) {
-              return new Date(b.timestamp) - new Date(a.timestamp)
+        
+          reviewSearch = reviewSearch.map(rev => {
+            const time = new moment(rev.timestamp).format('YYYYMMDD')
+            const timestamp = parseInt(time)
+            rev.timestamp = timestamp
+            return rev
+          }).sort((a, b) => a.timestamp - b.timestamp)
+            .map(rev => {
+              const tim = rev.timestamp.toString()
+              const timestam = new moment(tim)
+              rev.timestamp = timestam
+              return rev
             })
-            .reverse()
 
         this.props.reviewSearchHandler(reviewSearch)
 
@@ -318,21 +366,22 @@ class SearchBar extends Component {
 
           // category & stars & text
 
-          if (this.state.text) {
+          if (this.state.text !== "") {
             let projectSearch = projectsFuse.search(this.state.text)
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
-            )
+            ).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
-                return a.name - b.name
+                
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               starsSearch = starsSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -353,21 +402,22 @@ class SearchBar extends Component {
 
           //category & stars & no text
 
-          if (!this.state.text) {
+          if (this.state.text === "") {
             let projectSearch = this.props.projects
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
-            )
+            ).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
-                return a.name - b.name
+                
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               starsSearch = starsSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -393,18 +443,18 @@ class SearchBar extends Component {
 
           //category & no stars & text
 
-          if (this.state.text) {
-            let projectSearch = projectsFuse.search(this.state.text)
+          if (this.state.text !== "") {
+            let projectSearch = projectsFuse.search(this.state.text).filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               projectSearch = projectSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -425,18 +475,18 @@ class SearchBar extends Component {
 
           // category & no stars & no text
 
-          if (!this.state.text) {
-            let projectSearch = this.props.projects
+          if (this.state.text === "") {
+            let projectSearch = this.props.projects.filter(proj => proj.category === this.state.category)
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               projectSearch = projectSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -467,7 +517,7 @@ class SearchBar extends Component {
 
           // no category & stars & text
 
-          if (this.state.text) {
+          if (this.state.text !== "") {
             let projectSearch = projectsFuse.search(this.state.text)
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
@@ -475,13 +525,13 @@ class SearchBar extends Component {
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               starsSearch = starsSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -502,7 +552,7 @@ class SearchBar extends Component {
 
           // no category & stars & no text
 
-          if (!this.state.text) {
+          if (this.state.text === "") {
             let projectSearch = this.props.projects
             let starsSearch = projectSearch.filter(
               (project) => project.rating >= this.state.stars
@@ -510,13 +560,13 @@ class SearchBar extends Component {
 
             if (this.state.projectSort === 'alpha')
               starsSearch = starsSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               starsSearch = starsSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -543,18 +593,18 @@ class SearchBar extends Component {
 
           // no category & no stars & text
 
-          if (this.state.text) {
+          if (this.state.text !== "") {
             let projectSearch = projectsFuse.search(this.state.text)
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               projectSearch = projectSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 
@@ -574,18 +624,18 @@ class SearchBar extends Component {
           }
 
           // no category & no stars & no text
-          if (!this.state.text) {
+          if (this.state.text === "") {
             let projectSearch = this.props.projects
 
             if (this.state.projectSort === 'alpha')
               projectSearch = projectSearch.sort(function(a, b) {
-                return a.name - b.name
+                return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
               })
 
             if (this.state.projectSort === 'revAlpha')
               projectSearch = projectSearch
                 .sort(function(a, b) {
-                  return a.name - b.name
+                  return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0;
                 })
                 .reverse()
 

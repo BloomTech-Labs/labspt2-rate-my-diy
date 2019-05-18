@@ -58,61 +58,43 @@ class ProjectList extends React.Component {
                 return (
                   <div className="project-list-all-container">
                     <SkeletonTheme highlightColor="#6fb3b8">
-                      <h1 className="project-list-title">
-                        <Skeleton />
-                      </h1>
-                      <div className="project-list-container">
-                        <div className="project-list-card">
-                          <div>
-                            <div className="project-list-card-img">
-                              <Skeleton height={290} width={390} />
-                            </div>
-
-                            <div className="project-list-card-title">
-                              <Skeleton />
-                            </div>
-                            <p>
-                              <Skeleton />
-                            </p>
-                            <div className="project-list-card-rating-container">
-                              <Skeleton />
-                            </div>
-                          </div>
+                    <div className="project-list-container">
+                    <div className="project-list-card">
+                        <div>
+                          
+                            <div
+                              className="project-list-card-img">
+                              <Skeleton height={280} width={350}/>
+                              </div>
+                            
+                            <p><Skeleton width={380}/></p>
+                          
                         </div>
-                        <div className="project-list-card">
-                          <div>
-                            <div className="project-list-card-img">
-                              <Skeleton height={290} width={390} />
-                            </div>
-
-                            <div className="project-list-card-title">
-                              <Skeleton />
-                            </div>
-                            <p>
-                              <Skeleton />
-                            </p>
-                            <div className="project-list-card-rating-container">
-                              <Skeleton />
-                            </div>
-                          </div>
+                      </div>
+                      <div className="project-list-card">
+                        <div>
+                          
+                            <div
+                              className="project-list-card-img">
+                              <Skeleton height={280} width={350}/>
+                              </div>
+                            
+                            <p><Skeleton width={380}/></p>
+                          
                         </div>
-                        <div className="project-list-card">
-                          <div>
-                            <div className="project-list-card-img">
-                              <Skeleton height={290} width={390} />
-                            </div>
-
-                            <div className="project-list-card-title">
-                              <Skeleton />
-                            </div>
-                            <p>
-                              <Skeleton />
-                            </p>
-                            <div className="project-list-card-rating-container">
-                              <Skeleton />
-                            </div>
-                          </div>
+                      </div>
+                      <div className="project-list-card">
+                        <div>
+                          
+                            <div
+                              className="project-list-card-img">
+                              <Skeleton height={280} width={350}/>
+                              </div>
+                            
+                            <p><Skeleton width={380}/></p>
+                          
                         </div>
+                      </div>
                       </div>
                     </SkeletonTheme>
                   </div>

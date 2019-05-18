@@ -9,7 +9,7 @@ type User {
   firebaseUID: String @unique
   username: String! @unique
   email: String! @unique
-  userProfileImage: String! @default(value: "https://rosieshouse.org/wp-content/uploads/2016/06/avatar-large-square.jpg")
+  userProfileImage: String!
   bio: String! @default(value: "Hi, this is my page where I share projects and reviews")
   privilege: String! @default(value: "Plebian")
   stripeId: String
@@ -30,8 +30,7 @@ type Project {
  titleImg: String! @default(value: "https://res.cloudinary.com/dv1rhurfd/image/upload/c_scale,w_400/v1555355210/project%20images/doodle-3644073_640.png")
  titleBlurb: String! @default(value: "I hope you like my project")
  rating: [Int!] @default(value: [])
- steps: String! @default(value: "
-[{\"type\":\"img\",\"body\":\"https://res.cloudinary.com/dv1rhurfd/image/upload/v1557536458/step1.jpg\"},{\"type\":\"text\",\"body\":\"Step 1\"}]")
+ steps: String! @default(value: "[{\"type\":\"img\",\"body\":\"https://res.cloudinary.com/dv1rhurfd/image/upload/v1557536458/step1.jpg\"},{\"type\":\"text\",\"body\":\"Step 1\"}]")
  User: User! @relation(name: "UserProjects")
  Reviews:[Review!] @relation(name: "ProjectReviews" onDelete: CASCADE)
  RatedBy: [User!] @relation(name: "UserRatedProjects")

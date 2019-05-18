@@ -36,7 +36,7 @@ class Profile extends React.Component {
                 />
                 <p>{`${bio}`}</p>
               </div>
-              {ReviewList.length > 1 ? (
+              {ReviewList.length >= 1 ? (
                 <h2>{`${username}'s Reviews`}</h2>
               ) : null}
 
@@ -60,7 +60,7 @@ class Profile extends React.Component {
                 })}
               </div>
             </div>
-            {Projects.length > 1 ? <h2>{`${username}'s Projects`}</h2> : null}
+            {Projects.length >= 1 ? <h2>{`${username}'s Projects`}</h2> : null}
 
             <div className="profile-projects">
               {Projects.map((project) => {
@@ -80,7 +80,7 @@ class Profile extends React.Component {
                 )
               })}
             </div>
-            {LikedReviews.length > 1 ? (
+            {LikedReviews.length >= 1 ? (
               <h2>{`Reviews Liked By ${username}`}</h2>
             ) : null}
 
@@ -104,7 +104,7 @@ class Profile extends React.Component {
                 )
               })}
             </div>
-            {DislikedReviews.length > 1 ? (
+            {DislikedReviews.length >= 1 ? (
               <h2>{`Reviews Disliked By ${username}`}</h2>
             ) : null}
             <div className="profileReviewContainer">
@@ -124,7 +124,7 @@ class Profile extends React.Component {
                 )
               })}
             </div>
-            {RatedProjects.length > 1 ? (
+            {RatedProjects.length >= 1 ? (
               <h2>{`Projects Rated By ${username}`}</h2>
             ) : null}
 

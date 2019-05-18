@@ -150,7 +150,7 @@ class ReviewCard extends React.Component {
     if (this.props.review && this.props.users[0]) {
       const { loggedIn, authUser, review } = this.props
       const time = moment(review.timestamp).format('MMMM Do YYYY')
-      if (time !== 'Invalid date') review.timestamp = time
+      
 
       if (loggedIn) {
         // console.log("logged in")
@@ -174,7 +174,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{review.timestamp}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -198,7 +198,7 @@ class ReviewCard extends React.Component {
                                   <p>{`Review By: @${
                                     review.Author.username
                                   }`}</p>
-                                  <p>{`${review.timestamp}`}</p>
+                                  {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                   <Link
                                     to={`/projects/${
                                       review.ProjectReviewed.id
@@ -244,7 +244,7 @@ class ReviewCard extends React.Component {
                                   <div>{`Review By: @${
                                     review.Author.username
                                   }`}</div>
-                                  <div>{`${review.timestamp}`}</div>
+                                  {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                   <Link
                                     to={`/projects/${
                                       review.ProjectReviewed.id
@@ -299,7 +299,7 @@ class ReviewCard extends React.Component {
                                 <div>{`Review By: @${
                                   review.Author.username
                                 }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
@@ -347,7 +347,7 @@ class ReviewCard extends React.Component {
                                 <div>{`Review By: @${
                                   review.Author.username
                                 }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
@@ -406,7 +406,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp}`}</p>
+                        {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -418,7 +418,7 @@ class ReviewCard extends React.Component {
                       <div className="reviewCardModal">
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`${review.timestamp}`}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`}>
                           <img
                             className="searchProjectImage"
@@ -464,7 +464,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp}`}</p>
+                        {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -483,7 +483,7 @@ class ReviewCard extends React.Component {
                                   <p>{`Review By: @${
                                     review.Author.username
                                   }`}</p>
-                                  <div>{`${review.timestamp}`}</div>
+                                  {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                   <Link
                                     to={`/projects/${
                                       review.ProjectReviewed.id
@@ -546,7 +546,7 @@ class ReviewCard extends React.Component {
                                 <div>{`Review By: @${
                                   review.Author.username
                                 }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
@@ -606,7 +606,7 @@ class ReviewCard extends React.Component {
                                 <div>{`Review By: @${
                                   review.Author.username
                                 }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
@@ -657,7 +657,7 @@ class ReviewCard extends React.Component {
                                 <div>{`Review By: @${
                                   review.Author.username
                                 }`}</div>
-                                <div>{`${review.timestamp}`}</div>
+                                {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                                 <Link
                                   to={`/projects/${review.ProjectReviewed.id}`}
                                 >
@@ -726,9 +726,7 @@ class ReviewCard extends React.Component {
                         />
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`Date of Review: ${review.timestamp
-                          .toString()
-                          .slice(0, 10)}`}</p>
+                        {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`} />
                         <p>{`Title: ${review.name}`}</p>
                         <button id="reviewButton" onClick={handleOpen}>
@@ -740,7 +738,7 @@ class ReviewCard extends React.Component {
                       <div className="reviewCardModal">
                         <h3>{`${review.ProjectReviewed.name}`}</h3>
                         <p>{`Review By: @${review.Author.username}`}</p>
-                        <p>{`${review.timestamp}`}</p>
+                        {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                         <Link to={`/projects/${review.ProjectReviewed.id}`}>
                           <img
                             className="searchProjectImage"
@@ -787,7 +785,7 @@ class ReviewCard extends React.Component {
                       />
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp}`}</p>
+                      {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
                       <p>{`Title: ${review.name}`}</p>
                       <button id="reviewButton" onClick={handleOpen}>
@@ -799,7 +797,7 @@ class ReviewCard extends React.Component {
                     <div className="reviewCardModal">
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`${review.timestamp}`}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
                           className="searchProjectImage"
@@ -1048,7 +1046,7 @@ class ReviewCard extends React.Component {
                       />
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`Date of Review: ${review.timestamp}`}</p>
+                      {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                       <Link to={`/projects/${review.ProjectReviewed.id}`} />
                       <p>{`Title: ${review.name}`}</p>
                       <button id="reviewButton" onClick={handleOpen}>
@@ -1060,7 +1058,7 @@ class ReviewCard extends React.Component {
                     <div className="reviewCardModal">
                       <h3>{`${review.ProjectReviewed.name}`}</h3>
                       <p>{`Review By: @${review.Author.username}`}</p>
-                      <p>{`${review.timestamp}`}</p>
+                      {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                       <Link to={`/projects/${review.ProjectReviewed.id}`}>
                         <img
                           className="searchProjectImage"
@@ -1300,9 +1298,7 @@ class ReviewCard extends React.Component {
                     />
                     <h3>{`${review.ProjectReviewed.name}`}</h3>
                     <p>{`Review By: @${review.Author.username}`}</p>
-                    <p>{`Date of Review: ${review.timestamp
-                      .toString()
-                      .slice(0, 10)}`}</p>
+                    {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                     <Link to={`/projects/${review.ProjectReviewed.id}`} />
                     <p>{`Title: ${review.name}`}</p>
                     <button id="reviewButton" onClick={handleOpen}>
@@ -1314,7 +1310,7 @@ class ReviewCard extends React.Component {
                   <div className="reviewCardModal">
                     <h3>{`${review.ProjectReviewed.name}`}</h3>
                     <p>{`Review By: @${review.Author.username}`}</p>
-                    <p>{`${review.timestamp}`}</p>
+                    {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
@@ -1348,9 +1344,7 @@ class ReviewCard extends React.Component {
                     />
                     <h3>{`${review.ProjectReviewed.name}`}</h3>
                     <p>{`Review By: @${review.Author.username}`}</p>
-                    <p>{`Date of Review: ${review.timestamp
-                      .toString()
-                      .slice(0, 10)}`}</p>
+                    {time !== 'Invalid date' ? <p>{`Date of Review: ${time}`}</p> : <p>{`Date of Review: ${review.timestamp.slice(0, 10)}`}</p>}
                     <Link to={`/projects/${review.ProjectReviewed.id}`} />
                     <p>{`Title: ${review.name}`}</p>
                     <button id="reviewButton" onClick={handleOpen}>
@@ -1362,7 +1356,7 @@ class ReviewCard extends React.Component {
                   <div className="reviewCardModal">
                     <h3>{`${review.ProjectReviewed.name}`}</h3>
                     <p>{`Review By: @${review.Author.username}`}</p>
-                    <p>{`${review.timestamp}`}</p>
+                    {time !== 'Invalid date' ? <p>{time}</p> : <p>{review.timestamp.slice(0, 10)}</p>}
                     <Link to={`/projects/${review.ProjectReviewed.id}`}>
                       <img
                         className="searchProjectImage"
