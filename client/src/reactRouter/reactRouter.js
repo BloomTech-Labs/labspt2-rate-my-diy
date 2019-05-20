@@ -156,6 +156,9 @@ const NavigationNonAuth = () => {
         <a id="home" className="menu-item" href={ROUTES.HOME}>
           <div>Home</div>
         </a>
+        <a id="search" className="menu-item" href={ROUTES.SEARCH}>
+          <div>Search</div>
+        </a>
         <a id="signIn" className="menu-item" href={ROUTES.SIGN_IN}>
           <div>Sign In</div>
         </a>

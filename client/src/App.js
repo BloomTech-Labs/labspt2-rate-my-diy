@@ -131,8 +131,8 @@ class App extends Component {
                               userArray={userArray}
                               loggedIn={loggedIn}
                               authUser={this.props.authUser}
-                              refetch={userRefetch}
                               revRefetch={revRefetch}
+                              userRefetch={userRefetch}
                             />
                           )}
                         />
@@ -163,7 +163,8 @@ class App extends Component {
                                       <Profile
                                         {...props}
                                         users={userArray}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                         authUser={this.props.authUser}
                                       />
@@ -195,7 +196,8 @@ class App extends Component {
                                         users={userArray}
                                         loggedIn={loggedIn}
                                         authUser={this.props.authUser}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -255,7 +257,8 @@ class App extends Component {
                                     <ReviewCard
                                       {...props}
                                       users={userArray}
-                                      refetch={revRefetch}
+                                      revRefetch={revRefetch}
+                                      userRefetch={userRefetch}
                                       loggedIn={loggedIn}
                                       authUser={this.props.authUser}
                                     />
@@ -360,8 +363,8 @@ class App extends Component {
                               reviewArray={reviewArray}
                               loggedIn={loggedIn}
                               authUser={this.props.authUser}
-                              refetch={userRefetch}
                               revRefetch={revRefetch}
+                              userRefetch={userRefetch}
                             />
                           )}
                         />
@@ -397,7 +400,8 @@ class App extends Component {
                                         user={user}
                                         users={userArray}
                                         loggedIn={loggedIn}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                         authUser={this.props.authUser}
                                       />
                                     );
@@ -430,7 +434,8 @@ class App extends Component {
                                         user={user}
                                         loggedIn={loggedIn}
                                         authUser={this.props.authUser}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -509,7 +514,8 @@ class App extends Component {
                                       review={review}
                                       users={userArray}
                                       user={user}
-                                      refetch={revRefetch}
+                                      revRefetch={revRefetch}
+                                      userRefetch={userRefetch}
                                       loggedIn={loggedIn}
                                       authUser={this.props.authUser}
                                     />
@@ -627,8 +633,8 @@ class AppNonAuth extends Component {
                               {...props}
                               userArray={userArray}
                               loggedIn={loggedIn}
-                              refetch={userRefetch}
                               revRefetch={revRefetch}
+                              userRefetch={userRefetch}
                             />
                           )}
                         />
@@ -658,7 +664,8 @@ class AppNonAuth extends Component {
                                       <Profile
                                         {...props}
                                         users={userArray}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />
                                     )
@@ -687,7 +694,8 @@ class AppNonAuth extends Component {
                                         {...props}
                                         users={userArray}
                                         loggedIn={loggedIn}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -744,7 +752,8 @@ class AppNonAuth extends Component {
                                     <ReviewCard
                                       {...props}
                                       users={userArray}
-                                      refetch={revRefetch}
+                                      revRefetch={revRefetch}
+                                      userRefetch={userRefetch}
                                       loggedIn={loggedIn}
                                     />
                                   );
@@ -846,8 +855,8 @@ class AppNonAuth extends Component {
                               projectArray={projectArray}
                               reviewArray={reviewArray}
                               loggedIn={loggedIn}
-                              refetch={userRefetch}
                               revRefetch={revRefetch}
+                              userRefetch={userRefetch}
                             />
                           )}
                         />
@@ -881,7 +890,8 @@ class AppNonAuth extends Component {
                                         email={user.email}
                                         user={user}
                                         users={userArray}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                         loggedIn={loggedIn}
                                       />
                                     );
@@ -912,7 +922,8 @@ class AppNonAuth extends Component {
                                         users={userArray}
                                         user={user}
                                         loggedIn={loggedIn}
-                                        refetch={userRefetch}
+                                        revRefetch={revRefetch}
+                                        userRefetch={userRefetch}
                                       />
                                     );
                                   }}
@@ -988,7 +999,8 @@ class AppNonAuth extends Component {
                                       review={review}
                                       users={userArray}
                                       user={user}
-                                      refetch={revRefetch}
+                                      revRefetch={revRefetch}
+                                      userRefetch={userRefetch}
                                       loggedIn={loggedIn}
                                     />
                                   );

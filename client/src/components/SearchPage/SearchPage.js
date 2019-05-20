@@ -64,7 +64,7 @@ class SearchPage extends Component {
                           <h3>{`${name}`}</h3>
                         </Link>
                         <Link to={`/${User.username}/profile`}>
-                          <p className="createdBy"> {`@${User.username}`}</p>
+                          <p className="createdBy">{`@${User.username}`}</p>
                         </Link>
                         <p>{`Category: ${category}`}</p>
 
@@ -115,7 +115,8 @@ class SearchPage extends Component {
                                 user={user}
                                 loggedIn={this.props.loggedIn}
                                 authUser={this.props.authUser}
-                                refetch={refetch}
+                                revRefetch={refetch}
+                                userRefetch={this.props.userRefetch}
                               />
                             )
                           }

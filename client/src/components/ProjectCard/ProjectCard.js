@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import moment from 'moment';
 import { NEW_REVIEW} from '../../query/query';
@@ -134,8 +134,8 @@ class ProjectCard extends React.Component {
 									Edit
 								</button>
 								<div className='header-info'>
-									<h1>{`Project Title: ${project.name}`}</h1>
-									<p>{`Created By: ${project.User.username}`}</p>
+									<h1>{`${project.name}`}</h1>
+									<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 									{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 									<p>{`Rating: ${project.rating}`}</p>
 								</div>
@@ -155,7 +155,7 @@ class ProjectCard extends React.Component {
 									<h2>Reviews:</h2>
 									<div className='review-section'>
 										{this.state.reviews.map((rev) => {
-											return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+											return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch} />;
 										})}
 									</div>
 								</div>
@@ -176,8 +176,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -197,7 +197,7 @@ class ProjectCard extends React.Component {
 												<h2>Reviews:</h2>
 												<div className='review-section'>
 													{this.state.reviews.map((rev) => {
-														return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+														return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch}/>;
 													})}
 												</div>
 												<button
@@ -358,8 +358,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -380,7 +380,7 @@ class ProjectCard extends React.Component {
 												<h2>Reviews:</h2>
 												<div className='review-section'>
 													{this.state.reviews.map((rev) => {
-														return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+														return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch}/>;
 													})}
 												</div>
 												<Mutation mutation={NEW_REVIEW}>
@@ -539,8 +539,8 @@ class ProjectCard extends React.Component {
 								return (
 									<div className='project-card-container'>
 										<div className='header-info'>
-											<h1>{`Project Title: ${project.name}`}</h1>
-											<p>{`Created By: ${project.User.username}`}</p>
+											<h1>{`${project.name}`}</h1>
+											<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 											{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 											<p>{`Rating: ${project.rating}`}</p>
 										</div>
@@ -561,7 +561,7 @@ class ProjectCard extends React.Component {
 											<h2>Reviews:</h2>
 											<div className='review-section'>
 												{this.state.reviews.map((rev) => {
-													return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+													return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch}/>;
 												})}
 											</div>
 											<Mutation mutation={NEW_REVIEW}>
@@ -726,8 +726,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -747,7 +747,7 @@ class ProjectCard extends React.Component {
 												<h2>Reviews:</h2>
 												<div className='review-section'>
 													{this.state.reviews.map((rev) => {
-														return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+														return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch} />;
 													})}
 												</div>
 											</div>
@@ -759,8 +759,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -781,7 +781,7 @@ class ProjectCard extends React.Component {
 												<h2>Reviews:</h2>
 												<div className='review-section'>
 													{this.state.reviews.map((rev) => {
-														return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+														return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch} />;
 													})}
 												</div>
 												<button
@@ -800,8 +800,8 @@ class ProjectCard extends React.Component {
 								return (
 									<div className='project-card-container'>
 										<div className='header-info'>
-											<h1>{`Project Title: ${project.name}`}</h1>
-											<p>{`Created By: ${project.User.username}`}</p>
+											<h1>{`${project.name}`}</h1>
+											<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 											{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 											<p>{`Rating: ${project.rating}`}</p>
 										</div>
@@ -822,7 +822,7 @@ class ProjectCard extends React.Component {
 											<h2>Reviews:</h2>
 											<div className='review-section'>
 												{this.state.reviews.map((rev) => {
-													return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+													return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch} />;
 												})}
 											</div>
 											<button
@@ -854,8 +854,8 @@ class ProjectCard extends React.Component {
 									Edit
 								</button>
 								<div className='header-info'>
-									<h1>{`Project Title: ${project.name}`}</h1>
-									<p>{`Created By: ${project.User.username}`}</p>
+									<h1>{`${project.name}`}</h1>
+									<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 									{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 									<p>{`Rating: ${project.rating}`}</p>
 								</div>
@@ -892,8 +892,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`aProject Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -1068,8 +1068,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -1192,8 +1192,8 @@ class ProjectCard extends React.Component {
 								return (
 									<div className='project-card-container'>
 										<div className='header-info'>
-											<h1>{`Project Title: ${project.name}`}</h1>
-											<p>{`Created By: ${project.User.username}`}</p>
+											<h1>{`${project.name}`}</h1>
+											<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 											{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 											<p>{`Rating: ${project.rating}`}</p>
 										</div>
@@ -1375,8 +1375,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -1413,8 +1413,8 @@ class ProjectCard extends React.Component {
 									return (
 										<div className='project-card-container'>
 											<div className='header-info'>
-												<h1>{`Project Title: ${project.name}`}</h1>
-												<p>{`Created By: ${project.User.username}`}</p>
+												<h1>{`${project.name}`}</h1>
+												<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 												{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 												<p>{`Rating: ${project.rating}`}</p>
 											</div>
@@ -1457,8 +1457,8 @@ class ProjectCard extends React.Component {
 											Edit
 										</button>
 										<div className='header-info'>
-											<h1>{`Project Title: ${project.name}`}</h1>
-											<p>{`Created By: ${project.User.username}`}</p>
+											<h1>{`${project.name}`}</h1>
+											<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 											{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 											<p>{`Rating: ${project.rating}`}</p>
 										</div>
@@ -1500,8 +1500,8 @@ class ProjectCard extends React.Component {
 					return (
 						<div className='project-card-container'>
 							<div className='header-info'>
-								<h1>{`Project Title: ${project.name}`}</h1>
-								<p>{`Created By: ${project.User.username}`}</p>
+								<h1>{`${project.name}`}</h1>
+								<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 								{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 								<p>{`Rating: ${project.rating}`}</p>
 							</div>
@@ -1521,7 +1521,7 @@ class ProjectCard extends React.Component {
 								<h2>Reviews:</h2>
 								<div className='review-section'>
 									{this.state.reviews.map((rev) => {
-										return <ReviewCard key={rev.id} review={rev} users={this.props.users} />;
+										return <ReviewCard key={rev.id} review={rev} users={this.props.users} authUser={this.state.authUser} revRefetch={this.props.revRefetch} userRefetch={this.props.userRefetch} />;
 									})}
 								</div>
 								<button
@@ -1539,8 +1539,8 @@ class ProjectCard extends React.Component {
 					return (
 						<div className='project-card-container'>
 							<div className='header-info'>
-								<h1>{`Project Title: ${project.name}`}</h1>
-								<p>{`Created By: ${project.User.username}`}</p>
+								<h1>{`${project.name}`}</h1>
+								<Link to={`/${project.User.username}/profile`}><p className="createdBy">{`@${project.User.username}`}</p></Link>
 								{time !== 'Invalid date' ? <p>{time}</p> : <p>{project.timestamp.slice(0, 10)}</p>}
 								<p>{`Rating: ${project.rating}`}</p>
 							</div>

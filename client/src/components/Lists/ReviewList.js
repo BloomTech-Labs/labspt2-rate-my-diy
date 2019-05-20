@@ -126,7 +126,8 @@ class ReviewList extends React.Component {
                                 review={review}
                                 users={usersData.users}
                                 user={userData.user}
-                                refetch={this.props.refetch}
+                                revRefetch={this.props.revRefetch}
+                                userRefetch={this.props.userRefetch}
                                 loggedIn={this.props.loggedIn}
                                 authUser={this.props.authUser}
                               />
