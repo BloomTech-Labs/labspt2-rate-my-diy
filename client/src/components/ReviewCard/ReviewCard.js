@@ -69,7 +69,7 @@ class ReviewCard extends React.Component {
           ? this.props.users.filter((u) => u.email === authUser.email)[0]
           : {}
         : {},
-      loggedIn: this.props.loggedIn,
+      loggedIn: this.props.loggedIn !== undefined ? this.props.loggedIn : false,
       name: this.props.review ? this.props.review.name : '',
       text: this.props.review ? this.props.review.text : '',
       stars: 0,
@@ -459,7 +459,7 @@ class ReviewCard extends React.Component {
                           />
                         </Link>
                         <div>{`Rating of Project: ${review.projRating}`}</div>
-                        <h3>{`Review Title: ${review.name}`}</h3>
+                        <h3>{`${review.name}`}</h3>
                         <p>{`${review.text}`}</p>
                         <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                         <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
@@ -804,7 +804,7 @@ class ReviewCard extends React.Component {
                             alt="project"
                           />
                         </Link>
-                        <h3>{`Review Title: ${review.name}`}</h3>
+                        <h3>{`${review.name}`}</h3>
                         <p>{`${review.text}`}</p>
                         <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                         <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
@@ -875,7 +875,7 @@ class ReviewCard extends React.Component {
                         />
                       </Link>
                       <div>{`Rating of Project: ${review.projRating}`}</div>
-                      <h3>{`Review Title: ${review.name}`}</h3>
+                      <h3>{`${review.name}`}</h3>
                       <p>{`${review.text}`}</p>
                       <Mutation mutation={likeAReview}>
                         {(likeAReview, { loading, error, data }) => {
@@ -1234,7 +1234,7 @@ class ReviewCard extends React.Component {
                           alt="project"
                         />
                       </Link>
-                      <h3>{`Review Title: ${review.name}`}</h3>
+                      <h3>{`${review.name}`}</h3>
                       <div>{`${review.text}`}</div>
 
                       <Mutation mutation={likeAReview}>
@@ -1591,7 +1591,7 @@ class ReviewCard extends React.Component {
                       />
                     </Link>
                     <div>{`Rating of Project: ${review.projRating}`}</div>
-                    <h3>{`Review Title: ${review.name}`}</h3>
+                    <h3>{`${review.name}`}</h3>
                     <div>{`${review.text}`}</div>
                     <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                     <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>
@@ -1647,7 +1647,7 @@ class ReviewCard extends React.Component {
                         alt="project"
                       />
                     </Link>
-                    <h3>{`Review Title: ${review.name}`}</h3>
+                    <h3>{`${review.name}`}</h3>
                     <p>{`${review.text}`}</p>
                     <div>{`Thumbs Up: ${this.state.thumbsUp}`}</div>
                     <div>{`Thumbs Down: ${this.state.thumbsDown}`}</div>

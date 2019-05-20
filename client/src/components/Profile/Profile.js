@@ -113,6 +113,7 @@ class Profile extends React.Component {
                   <div className="rated-card-container" key={review.id}>
                     <div className="inner-rated-card">
                       <ReviewCard
+                        loggedIn={this.props.loggedIn}
                         review={review}
                         users={users}
                         user={user}
