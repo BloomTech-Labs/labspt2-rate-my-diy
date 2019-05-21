@@ -81,7 +81,7 @@ class ReviewCard extends React.Component {
     if (this.props.users[0]) {
       const { users, review, authUser } = this.props;
 
-      let visitor = users.filter((u) => u.email === authUser.email)[0];
+      let visitor = users.filter((u) => u.email === this.state.authUser.email)[0];
 
       let disFilter = []
       let likeFilter = []
@@ -159,11 +159,12 @@ class ReviewCard extends React.Component {
     if (this.props.review && this.props.users[0]) {
       const { loggedIn, authUser, review } = this.props;
       const time = moment(review.timestamp).format('MMMM Do YYYY');
+      console.log({props: this.props})
 
       if (loggedIn) {
         // console.log("logged in")
 
-        if (review.Author.email === authUser.email) {
+        if (review.Author.email === this.state.authUser.email) {
           // console.log("logged in, your review")
           if (review.projRating !== null && review.projRating !== undefined) {
             // console.log("logged in, your review, you rated the project")
