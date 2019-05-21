@@ -43,14 +43,14 @@ class Profile extends React.Component {
               <div className="profileReviewContainer">
                 {ReviewList.map((review) => {
                   return (
-                    <div className="rated-card-container">
+                    <div className="rated-card-container" key={review.id}>
                       <div className="inner-rated-card">
                         <ReviewCard
-                          key={review.id}
                           review={review}
                           users={users}
                           user={user}
-                          refetch={this.props.refetch}
+                          revRefetch={this.props.revRefetch}
+                          userRefetch={this.props.userRefetch}
                           loggedIn={this.props.loggedIn}
                           authUser={this.props.authUser}
                         />
@@ -88,14 +88,14 @@ class Profile extends React.Component {
             <div className="profileReviewContainer">
               {LikedReviews.map((review) => {
                 return (
-                  <div className="rated-card-container">
+                  <div className="rated-card-container" key={review.id}>
                     <div className="inner-rated-card">
                       <ReviewCard
-                        key={review.id}
                         review={review}
                         users={users}
                         user={user}
-                        refetch={this.props.refetch}
+                        revRefetch={this.props.revRefetch}
+                        userRefetch={this.props.userRefetch}
                         loggedIn={this.props.loggedIn}
                         authUser={this.props.authUser}
                       />
@@ -110,14 +110,15 @@ class Profile extends React.Component {
             <div className="profileReviewContainer">
               {DislikedReviews.map((review) => {
                 return (
-                  <div className="rated-card-container">
+                  <div className="rated-card-container" key={review.id}>
                     <div className="inner-rated-card">
                       <ReviewCard
-                        key={review.id}
+                        loggedIn={this.props.loggedIn}
                         review={review}
                         users={users}
                         user={user}
-                        refetch={this.props.refetch}
+                        revRefetch={this.props.revRefetch}
+                        userRefetch={this.props.userRefetch}
                       />
                     </div>
                   </div>

@@ -55,6 +55,14 @@ button {
   justify-self: center;
 }
 
+.disabled {
+  opacity: 0.4;
+}
+
+.notDisabled:hover {
+  cursor: pointer;
+}
+
 .searchReviewCard {
   p {
     margin: 1%;
@@ -91,6 +99,12 @@ button {
   flex-direction: row;
   margin: 0 15px 0 -15px;
   // border: 5px solid crimson;
+}
+
+.createdBy {
+  &:hover {
+    color: $alternate-color-three;
+  }
 }
 
 
