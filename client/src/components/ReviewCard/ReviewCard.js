@@ -77,52 +77,6 @@ class ReviewCard extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (this.props.users[0]) {
-      const { users, review, authUser } = this.props;
-
-      let visitor = users.filter((u) => u.email === this.state.authUser.email)[0];
-
-      let disFilter = []
-      let likeFilter = []
-
-      if (visitor !== undefined && visitor !== {})
-      disFilter = visitor.DislikedReviews.filter((r) => r.id === review.id);
-
-      if (visitor !== undefined && visitor !== {})
-      likeFilter = visitor.LikedReviews.filter((r) => r.id === review.id);
-      
-      if (disFilter[0]) {
-        this.setState({
-          ...this.state,
-          thumbsUp: review.thumbsUp,
-          thumbsDown: review.thumbsDown,
-          authUser: authUser,
-          visitor: visitor,
-          name: review.name,
-          text: review.text,
-          review: review,
-          didThumbDown: true,
-          thumbsUpDisabled: true
-        });
-      }
-      if (likeFilter[0]) {
-        this.setState({
-          ...this.state,
-          thumbsUp: review.thumbsUp,
-          thumbsDown: review.thumbsDown,
-          authUser: authUser,
-          visitor: visitor,
-          name: review.name,
-          text: review.text,
-          review: review,
-          didThumbUp: true,
-          thumbsDownDisabled: true
-        });
-      }
-    }
-  }
-
   starChange = async (e) => {
     const stars = await parseInt(e.target.value);
     await this.setState({
@@ -157,14 +111,13 @@ class ReviewCard extends React.Component {
 
   render() {
     if (this.props.review && this.props.users[0]) {
-      const { loggedIn, authUser, review } = this.props;
+      const { loggedIn, authUser, review } = this.state;
       const time = moment(review.timestamp).format('MMMM Do YYYY');
-      console.log({props: this.props})
 
       if (loggedIn) {
         // console.log("logged in")
 
-        if (review.Author.email === this.state.authUser.email) {
+        if (review.Author.email === authUser.email) {
           // console.log("logged in, your review")
           if (review.projRating !== null && review.projRating !== undefined) {
             // console.log("logged in, your review, you rated the project")
