@@ -20,7 +20,7 @@
     "fuse.js": "^3.4.4",
     "graphql": "^14.1.1",
     "list.js": "^1.5.0",
-    "mathjs": "^5.8.0",
+    "mathjs": "^7.5.1",
     "micromodal": "^0.3.2",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
